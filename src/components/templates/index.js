@@ -4,6 +4,7 @@ import Blockquote from "@freesewing/components/Blockquote";
 import Example from "@freesewing/components/Example";
 import BlogTemplate from "./blog";
 import BlogIndexTemplate from "./blogindex";
+import BlogCategoryTemplate from "./blogcategory";
 import DocumentationTemplate from "./docs";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
@@ -46,7 +47,12 @@ const PageTemplate = props => {
       maxWidth: '42em',
       margin: 'auto',
     },
+    edit: {
+      fontSize: "90%",
+      paddingLeft: "1rem",
+    }
   }
+
   const components = {
     Note: ({ children }) => { return <Blockquote type="note">{children}</Blockquote>},
     Tip: ({ children }) => { return <Blockquote type="tip">{children}</Blockquote>},
@@ -54,13 +60,17 @@ const PageTemplate = props => {
     Example,
   }
 
+  let toc = null;
+  if (typeof props.pageContext.node !== "undefined")
+    toc = props.pageContext.node.tableOfContents;
+
   const menu = <TopicsToc
     slug={props.pageContext.slug}
     topicsToc={props.pageContext.topicsToc}
     topics={props.pageContext.topics}
     order={props.pageContext.topicsOrder}
     topic={props.pageContext.topic}
-    toc={props.pageContext.node.tableOfContents}
+    toc={toc}
   />
 
   const extraProps = {
@@ -68,16 +78,29 @@ const PageTemplate = props => {
     mobile
   }
 
+  const getTitle = () => {
+    if (typeof props.pageContext.node === "undefined") {
+      console.log(typeof props.pageContext.i18nTitle);
+      return <FormattedMessage id={props.pageContext.i18nTitle} />
+    }
+    return props.pageContext.node.frontmatter.linktitle
+      ? props.pageContext.node.frontmatter.linktitle
+      : props.pageContext.node.frontmatter.title
+  }
+  const pageTitle = getTitle();
+
   let main = null;
   if (props.pageContext.slug === "/blog")
     main = <BlogIndexTemplate {...props} {...extraProps}/>
+  else if (props.pageContext.slug.slice(0,14) === "/blog/category")
+    main = <BlogCategoryTemplate {...props} {...extraProps}/>
   else if (props.pageContext.slug.slice(0,6) === "/blog/")
     main = <BlogTemplate {...props} {...extraProps}/>
   else main = <DocumentationTemplate {...props} {...extraProps}/>
 
   return (
     <Layout
-      pageToc={props.pageContext.node.tableOfContents || false}
+      pageToc={toc}
       topics={props.pageContext.topics}
       topicsToc={props.pageContext.topicsToc}
       menu={menu}
@@ -88,11 +111,7 @@ const PageTemplate = props => {
           <article style={styles.body}>
             <Breadcrumbs
               crumbs={props.pageContext.crumbs}
-              pageTitle={
-                props.pageContext.node.frontmatter.linktitle
-                ? props.pageContext.node.frontmatter.linktitle
-                : props.pageContext.node.frontmatter.title
-              }
+              pageTitle={pageTitle}
             />
             {main}
             <div className="prev-next">
@@ -101,17 +120,17 @@ const PageTemplate = props => {
             </div>
             <Breadcrumbs
               crumbs={props.pageContext.crumbs}
-              pageTitle={
-                props.pageContext.node.frontmatter.linktitle
-                ? props.pageContext.node.frontmatter.linktitle
-                : props.pageContext.node.frontmatter.title
-              }
+              pageTitle={pageTitle}
+              suffix={(
+                <span style={styles.edit}>
+                  [&nbsp;
+                  <a href={"https://github.com/freesewing/markdown/edit/develop/dev"+props.pageContext.slug+"/"+props.pageContext.language+".md"}>
+                    <FormattedMessage id="app.editThisPage" />
+                  </a>
+                  &nbsp;]
+                </span>
+              )}
             />
-            <a
-              style={{borderTop: "1px solid #ccc4", display: 'block', fontSize: '85%'}}
-              href={"https://github.com/freesewing/markdown/edit/develop/dev"+props.pageContext.slug+"/"+props.pageContext.language+".md"}>
-              <FormattedMessage id="app.editThisPage" />
-            </a>
           </article>
         </section>
         { mobile ? null : (

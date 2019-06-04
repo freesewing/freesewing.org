@@ -1,9 +1,39 @@
 const path = require("path");
 const topics = require("./src/topics");
 const pages = {
-  "/": "homepage",
-  "/search": "search",
-  "/languages": "languages"
+  "/": {
+    params: {
+      component: path.resolve("src/components/pages/homepage.js"),
+    },
+    props: {
+      i18nTitle: "app.home",
+    },
+  },
+  "/search": {
+    params: {
+      component: path.resolve("src/components/pages/search.js"),
+    },
+    props: {
+      i18nTitle: "app.search",
+    },
+  },
+  "/languages": {
+    params: {
+      component: path.resolve("src/components/pages/languages.js"),
+    },
+    props: {
+      i18nTitle: "app.languages"
+    },
+  },
+  "/blog/category": {
+    params: {
+      component: path.resolve("src/components/templates/index.js"),
+      matchPath: "/blog/category/*"
+    },
+    props: {
+      i18nTitle: "app.category"
+    },
+  },
 }
 
 const getFileList = function(graphql, language, markdown) {
@@ -197,7 +227,6 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
         component: template,
         context: {
           node: markdown[i].node.node,
-          //markdown,
           topic,
           topics,
           topicsToc,
@@ -214,14 +243,14 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
 		promises.push(new Promise((resolve, reject) => {
       createPage({
         path: i,
-        component: path.resolve("src/components/pages/"+pages[i]+".js"),
+        ...pages[i].params,
         context: {
-          //markdown,
           topics,
           topicsToc,
           content,
           crumbs: breadcrumbs(i, titles),
-          slug: i
+          slug: i,
+          ...pages[i].props,
         }
       });
     	resolve(true);

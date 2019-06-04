@@ -13,7 +13,10 @@ const Breadcrumbs = props => {
       <ul>
         <li><Link to="/"><FormattedMessage id="app.home" /></Link></li>
         {props.crumbs.map( crumb => renderCrumb(crumb))}
-        <li>{props.pageTitle}</li>
+        <li>
+          {props.pageTitle}
+          { props.suffix ? props.suffix : null }
+        </li>
       </ul>
     </nav>
   );

@@ -56,7 +56,6 @@ const BlogTemplate = props => {
           {props.pageContext.node.code.body}
         </MDXRenderer>
       </MDXProvider>
-      <p style={{textAlign: "right", marginTop: "2rem"}}>--- {frontmatter.author}</p>
     </React.Fragment>
   );
 }
