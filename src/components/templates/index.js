@@ -3,6 +3,7 @@ import { withTheme } from '@material-ui/core/styles';
 import Blockquote from "@freesewing/components/Blockquote";
 import Example from "@freesewing/components/Example";
 import BlogTemplate from "./blog";
+import BlogIndexTemplate from "./blogindex";
 import DocumentationTemplate from "./docs";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
@@ -64,10 +65,13 @@ const PageTemplate = props => {
 
   const extraProps = {
     components,
+    mobile
   }
 
   let main = null;
-  if (props.pageContext.slug.slice(0,6) === "/blog/")
+  if (props.pageContext.slug === "/blog")
+    main = <BlogIndexTemplate {...props} {...extraProps}/>
+  else if (props.pageContext.slug.slice(0,6) === "/blog/")
     main = <BlogTemplate {...props} {...extraProps}/>
   else main = <DocumentationTemplate {...props} {...extraProps}/>
 
@@ -91,17 +95,23 @@ const PageTemplate = props => {
               }
             />
             {main}
-            <div>
-              <div className="prev-next">
-                {renderLink("prev")}
-                {renderLink("next")}
-              </div>
-              <a
-                style={{textAlign: "center", display: 'block', fontSize: '85%'}}
-                href={"https://github.com/freesewing/markdown/edit/develop/dev"+props.pageContext.slug+"/"+props.pageContext.language+".md"}>
-                <FormattedMessage id="app.editThisPage" />
-              </a>
+            <div className="prev-next">
+              {renderLink("prev")}
+              {renderLink("next")}
             </div>
+            <Breadcrumbs
+              crumbs={props.pageContext.crumbs}
+              pageTitle={
+                props.pageContext.node.frontmatter.linktitle
+                ? props.pageContext.node.frontmatter.linktitle
+                : props.pageContext.node.frontmatter.title
+              }
+            />
+            <a
+              style={{borderTop: "1px solid #ccc4", display: 'block', fontSize: '85%'}}
+              href={"https://github.com/freesewing/markdown/edit/develop/dev"+props.pageContext.slug+"/"+props.pageContext.language+".md"}>
+              <FormattedMessage id="app.editThisPage" />
+            </a>
           </article>
         </section>
         { mobile ? null : (

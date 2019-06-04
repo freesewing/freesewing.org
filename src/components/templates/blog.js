@@ -3,12 +3,9 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
-import DateIcon from "@material-ui/icons/DateRange";
-import CategoryIcon from "@material-ui/icons/Label";
-import AuthorIcon from "@material-ui/icons/Face";
 
 const BlogTemplate = props => {
-  console.log('blog props', props.pageContext);
+  console.log('blog post props', props.pageContext);
   let frontmatter = props.pageContext.node.frontmatter;
   let img = frontmatter.img.childImageSharp.fluid;
 
@@ -49,6 +46,7 @@ const BlogTemplate = props => {
             src={img.base64}
             style={{width: "100%"}}
             srcset={img.srcSet}
+            alt={frontmatter.caption}
           />
         </a>
         <figcaption>{frontmatter.caption}</figcaption>

@@ -3,6 +3,7 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
 
 const BlogTemplate = props => {
+  console.log('docs page props', props.pageContext);
 
   return (
     <React.Fragment>

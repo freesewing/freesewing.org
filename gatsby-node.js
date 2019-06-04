@@ -66,7 +66,7 @@ const frontmatter = {
     blurb
     img {
       childImageSharp {
-        fluid {
+        fluid(maxWidth: 800) {
           base64
           srcSet
           sizes
@@ -197,7 +197,7 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
         component: template,
         context: {
           node: markdown[i].node.node,
-          markdown,
+          //markdown,
           topic,
           topics,
           topicsToc,
@@ -216,7 +216,7 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
         path: i,
         component: path.resolve("src/components/pages/"+pages[i]+".js"),
         context: {
-          markdown,
+          //markdown,
           topics,
           topicsToc,
           content,
