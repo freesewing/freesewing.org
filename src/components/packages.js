@@ -2,7 +2,6 @@ import React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const Packages = props => {
-  console.log(props);
 	//const data = useStaticQuery(graphql`
 	//	{
 	//	  allSitePage(filter: {path: {regex: "/\/packages\//"}}) {

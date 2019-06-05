@@ -4,7 +4,9 @@ import Blockquote from "@freesewing/components/Blockquote";
 import Example from "@freesewing/components/Example";
 import BlogTemplate from "./blog";
 import BlogIndexTemplate from "./blogindex";
-import BlogCategoryTemplate from "./blogcategory";
+import ShowcaseTemplate from "./showcase";
+import ShowcaseIndexTemplate from "./showcaseindex";
+import ShowcaseCategoryTemplate from "./showcasecategory";
 import DocumentationTemplate from "./docs";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
@@ -12,6 +14,7 @@ import TopicsToc from "../topics-toc";
 import Layout from "../layout";
 import Breadcrumbs from "../breadcrumbs";
 import { FormattedMessage } from "react-intl";
+import { list as patterns } from "@freesewing/pattern-info";
 
 const PageTemplate = props => {
   const mobile = useMediaQuery("(max-width:599px)");
@@ -73,15 +76,17 @@ const PageTemplate = props => {
     toc={toc}
   />
 
+  const trailer = props['*'].split("/").pop();
   const extraProps = {
     components,
-    mobile
+    mobile,
+    trailer
   }
 
   const getTitle = () => {
     if (typeof props.pageContext.node === "undefined") {
-      console.log(typeof props.pageContext.i18nTitle);
-      return <FormattedMessage id={props.pageContext.i18nTitle} />
+      if (typeof props.pageContext.titleFrom !== "undefined") return "#"+trailer;
+      else return <FormattedMessage id={props.pageContext.i18nTitle} />
     }
     return props.pageContext.node.frontmatter.linktitle
       ? props.pageContext.node.frontmatter.linktitle
@@ -92,10 +97,16 @@ const PageTemplate = props => {
   let main = null;
   if (props.pageContext.slug === "/blog")
     main = <BlogIndexTemplate {...props} {...extraProps}/>
-  else if (props.pageContext.slug.slice(0,14) === "/blog/category")
-    main = <BlogCategoryTemplate {...props} {...extraProps}/>
   else if (props.pageContext.slug.slice(0,6) === "/blog/")
     main = <BlogTemplate {...props} {...extraProps}/>
+  else if (props.pageContext.slug === "/showcase")
+    main = <ShowcaseIndexTemplate {...props} {...extraProps}/>
+  else if (
+    props.pageContext.slug.slice(0,10) === "/showcase/"
+    && patterns.indexOf(trailer) !== -1
+  ) main = <ShowcaseCategoryTemplate {...props} {...extraProps}/>
+  else if (props.pageContext.slug.slice(0,10) === "/showcase/")
+    main = <ShowcaseTemplate {...props} {...extraProps}/>
   else main = <DocumentationTemplate {...props} {...extraProps}/>
 
   return (

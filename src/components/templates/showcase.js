@@ -30,9 +30,13 @@ const BlogTemplate = props => {
       <div style={style.meta}>
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit"/>
         <div>
-          <FormattedMessage id="app.by" />
-          &nbsp;
-          <Link to={"/users/"+frontmatter.author}>{frontmatter.author}</Link>
+    { frontmatter.patterns.map( pattern => (
+          <React.Fragment>
+            <Link to={"/showcase/"+pattern}>#{pattern}</Link>
+            &nbsp;
+          </React.Fragment>
+    ))}
+          <FormattedMessage id="app.by" /> <Link to={"/users/"+frontmatter.author}>{frontmatter.author}</Link>
         </div>
       </div>
       <figure style={style.figure}>

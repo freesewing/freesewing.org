@@ -1,5 +1,8 @@
 const path = require("path");
 const topics = require("./src/topics");
+
+const titleFromTrailer = trailer => "#"+trailer;
+
 const pages = {
   "/": {
     params: {
@@ -25,13 +28,13 @@ const pages = {
       i18nTitle: "app.languages"
     },
   },
-  "/blog/category": {
+  "/showcase/pattern": {
     params: {
       component: path.resolve("src/components/templates/index.js"),
-      matchPath: "/blog/category/*"
+      matchPath: "/showcase/*"
     },
     props: {
-      i18nTitle: "app.category"
+      titleFrom: "hashtrailer",
     },
   },
 }
@@ -92,8 +95,22 @@ const frontmatter = {
     linktitle
     caption
     author
-    category
-    blurb
+    img {
+      childImageSharp {
+        fluid(maxWidth: 800) {
+          base64
+          srcSet
+          sizes
+          originalImg
+          originalName
+        }
+      }
+    }`,
+  showcase: `title
+    date
+    caption
+    author
+    patterns
     img {
       childImageSharp {
         fluid(maxWidth: 800) {
@@ -113,6 +130,7 @@ const getMdx = function(graphql, language, markdown, titles) {
 	for (let i in markdown) {
     let fm = frontmatter.docs;
     if (markdown[i].path.indexOf("/blog/") !== -1) fm = frontmatter.blog;
+    if (markdown[i].path.indexOf("/showcase/") !== -1) fm = frontmatter.showcase;
 
 		promises.push(new Promise((resolve, reject) => {
  		  let query = `{

@@ -1,13 +1,12 @@
 import React from "react";
-//import { FormattedDate, FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-const BlogCategoryTemplate = props => {
-  console.log('blog index props', props);
+const ShowcaseIndexTemplate = props => {
 	const data = useStaticQuery(graphql`
 		{
 		  allMdx(
-        filter:{ fileAbsolutePath: {regex: "/\/blog\/[^\/]*\/en.md/"}}
+        filter:{ fileAbsolutePath: {regex: "/\/showcase\/[^\/]*\/en.md/"}}
         sort:{
           fields: [frontmatter___date]
           order: DESC
@@ -24,10 +23,8 @@ const BlogCategoryTemplate = props => {
             frontmatter {
               title
               date
-              linktitle
               author
-              category
-              blurb
+              patterns
 							img {
           			childImageSharp {
           			  fluid(maxWidth: 400) {
@@ -81,35 +78,38 @@ const BlogCategoryTemplate = props => {
   }
 
   return (
-    <div style={style.wrapper}>
-    {
-      data.allMdx.edges.map( node => {
-        let frontmatter = node.node.frontmatter;
-        let img = frontmatter.img.childImageSharp.fluid;
-        return (
-          <div style={style.post}>
-            <Link
-              to={"/"+node.node.parent.relativeDirectory}
-              style={style.link}
-              title={frontmatter.linktitle}
-            >
-              <figure style={style.figure}>
-                <img
-                  src={img.base64}
-                  style={{width: "100%"}}
-                  srcset={img.srcSet}
-                  alt={frontmatter.caption}
-                />
-              </figure>
-              <h2 style={style.title}>{frontmatter.title}</h2>
-              <p style={style.blurb}>{node.node.excerpt}</p>
-            </Link>
-          </div>
-        )
-      })
-    }
-    </div>
+    <React.Fragment>
+      <h1><FormattedMessage id="app.showcase" /></h1>
+      <div style={style.wrapper}>
+      {
+        data.allMdx.edges.map( node => {
+          let frontmatter = node.node.frontmatter;
+          let img = frontmatter.img.childImageSharp.fluid;
+          return (
+            <div style={style.post}>
+              <Link
+                to={"/"+node.node.parent.relativeDirectory}
+                style={style.link}
+                title={frontmatter.linktitle}
+              >
+                <figure style={style.figure}>
+                  <img
+                    src={img.base64}
+                    style={{width: "100%"}}
+                    srcset={img.srcSet}
+                    alt={frontmatter.caption}
+                  />
+                </figure>
+                <h2 style={style.title}>{frontmatter.title}</h2>
+                <p style={style.blurb}>{node.node.excerpt}</p>
+              </Link>
+            </div>
+          )
+        })
+      }
+      </div>
+    </React.Fragment>
   );
 }
 
-export default BlogCategoryTemplate;
+export default ShowcaseIndexTemplate;
