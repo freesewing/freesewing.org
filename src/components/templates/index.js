@@ -115,7 +115,7 @@ const PageTemplate = props => {
       topics={props.pageContext.topics}
       topicsToc={props.pageContext.topicsToc}
       menu={menu}
-      mobile={props.mobile}
+      mobile={mobile}
     >
       <div className="fs-sa">
         <section>
