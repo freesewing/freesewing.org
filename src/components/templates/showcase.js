@@ -4,7 +4,10 @@ import { MDXProvider } from '@mdx-js/react';
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 
-const BlogTemplate = props => {
+const ShowcaseTemplate = props => {
+  if (typeof props.pageContext.node === "undefined")
+    return null; // This is not a real page
+
   let frontmatter = props.pageContext.node.frontmatter;
   let img = frontmatter.img.childImageSharp.fluid;
 
@@ -59,4 +62,4 @@ const BlogTemplate = props => {
   );
 }
 
-export default BlogTemplate;
+export default ShowcaseTemplate;
