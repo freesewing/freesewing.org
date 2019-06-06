@@ -1,7 +1,10 @@
 const path = require("path");
 const topics = require("./src/topics");
 
-const titleFromTrailer = trailer => "#"+trailer;
+const redirects = {
+  "/privacy": "/docs/about/privacy",
+  "/rights": "/docs/about/rights",
+}
 
 const pages = {
   "/": {
@@ -283,6 +286,23 @@ const flattenTopicsToc = function(topicsToc) {
   return { slugs, titles };
 }
 
+const createRedirects = function(redirects, createRedirect) {
+  let promises = [];
+	for (let from in redirects) {
+		promises.push(new Promise((resolve, reject) => {
+      createRedirect({
+        fromPath: from,
+        toPath: redirects[from],
+        isPermanent: true,
+        redirectInBrowser: true,
+      });
+    	resolve(true);
+ 	  }));
+  }
+
+  return Promise.all(promises);
+}
+
 const createMdx = function(graphql, language, markdown, titles, createPage) {
   let promises = [];
   let template = path.resolve("src/components/templates/index.js");
@@ -346,7 +366,11 @@ exports.createPages = ({ actions, graphql }) => {
           createMdx(graphql, language, markdown, titles, actions.createPage)
           .then(() => {
             console.log("[##----]", "MDX pages created");
-            resolve(true);
+            createRedirects(redirects, actions.createRedirect)
+            .then(() => {
+              console.log("[##----]", "Redirects created");
+              resolve(true);
+            })
           })
         })
       })
