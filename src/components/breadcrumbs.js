@@ -7,7 +7,6 @@ const Breadcrumbs = props => {
   const renderCrumb = crumb => {
     return <li key={crumb.slug}><Link to={crumb.slug}>{crumb.title}</Link></li>
   }
-
   return (
     <nav className="breadcrumbs">
       <ul>

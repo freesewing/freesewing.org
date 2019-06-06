@@ -1,5 +1,5 @@
 module.exports = [
-//  "blog",
-//  "showcase",
+  "blog",
+  "showcase",
   "docs",
 ];

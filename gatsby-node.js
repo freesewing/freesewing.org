@@ -80,7 +80,7 @@ const breadcrumbs = function(baseSlug, titles) {
   let up = parentCrumb(baseSlug, titles);
   let count = 0;
   while (up && count < 20) {
-    crumbs.push(up);
+    crumbs.unshift(up);
     up = parentCrumb(up.slug, titles);
     count++;
   }
@@ -179,15 +179,6 @@ const isGrandchild = function (topic, slug) {
   else return false;
 }
 
-// pageHierarchy = function (slug) {
-//   let chunks = slug.split("/");
-//
-//   return [
-//     chunks[1],
-//     chunks[2]
-//   ];
-// }
-
 const getSortTitle = function (mdx) {
   let title = mdx.node.node.frontmatter.title;
   if (typeof mdx.node.node.frontmatter.linktitle !== "undefined")
@@ -239,7 +230,7 @@ const getTopics = function(markdown) {
 	    for (let slug of slugs) {
         let child = isGrandchild(topic, slug);
         if (child !== false) {
-          grandchildren[child] = {};
+          if (typeof grandchildren[child] === "undefined") grandchildren[child]= {};
           grandchildren[child][getSortTitle(markdown[slug])] = slug;
         }
       }
@@ -252,11 +243,10 @@ const getTopics = function(markdown) {
           if (typeof list[topic].children[child].children === "undefined")
             list[topic].children[child].children = {};
 
-          if (typeof markdown[slug] === "undefined") console.log('no markdown for', child, grandchildren);
+          if (typeof markdown[slug] === "undefined")
+            console.log('no markdown for', child, grandchildren);
 
           list[topic].children[child].children[slug] = { title: getTitle(markdown[slug]) };
-
-          console.log('added', slug, getTitle(markdown[slug]));
         }
       }
     }
@@ -280,7 +270,13 @@ const flattenTopicsToc = function(topicsToc) {
     titles["/"+topic] = topicsToc[topic].title;
     for (let child in topicsToc[topic].children) {
       slugs.push(child);
-      titles[child] = topicsToc[topic].children[child];
+      titles[child] = topicsToc[topic].children[child].title;
+      if (typeof topicsToc[topic].children !== "undefined") {
+        for (let grandchild in topicsToc[topic].children[child].children) {
+          slugs.push(grandchild);
+          titles[grandchild] = topicsToc[topic].children[child].children[grandchild].title;
+        }
+      }
     }
   }
 
