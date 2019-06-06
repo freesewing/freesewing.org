@@ -127,14 +127,16 @@ const frontmatter = {
 
 const getMdx = function(graphql, language, markdown, titles) {
   let promises = [];
-	for (let i in markdown) {
+  let slugs = Object.keys(markdown);
+  slugs.sort();
+	for (let slug of slugs) {
     let fm = frontmatter.docs;
-    if (markdown[i].path.indexOf("/blog/") !== -1) fm = frontmatter.blog;
-    if (markdown[i].path.indexOf("/showcase/") !== -1) fm = frontmatter.showcase;
+    if (markdown[slug].path.indexOf("/blog/") !== -1) fm = frontmatter.blog;
+    if (markdown[slug].path.indexOf("/showcase/") !== -1) fm = frontmatter.showcase;
 
 		promises.push(new Promise((resolve, reject) => {
  		  let query = `{
- 		  	allMdx(filter: {fileAbsolutePath: {eq: "${markdown[i].path}"} }) {
+ 		  	allMdx(filter: {fileAbsolutePath: {eq: "${markdown[slug].path}"} }) {
  		  		edges {
  		  			node {
  		      		id
@@ -154,8 +156,8 @@ const getMdx = function(graphql, language, markdown, titles) {
     	    console.log("More than one edge found:", query, res);
     	    reject();
     	  } else {
-					markdown[i].node = res.data.allMdx.edges[0];
-          titles[i] = markdown[i].node.node.frontmatter.title;
+					markdown[slug].node = res.data.allMdx.edges[0];
+          titles[slug] = markdown[slug].node.node.frontmatter.title;
     	    resolve(true);
 				}
     	});
@@ -165,45 +167,98 @@ const getMdx = function(graphql, language, markdown, titles) {
   return Promise.all(promises);
 };
 
-const isChild = function (topic, page) {
-  let chunks = page.split("/");
+const isChild = function (topic, slug) {
+  let chunks = slug.split("/");
   if (chunks.length === 3 && chunks[1] === topic) return true;
   else return false;
 }
 
+const isGrandchild = function (topic, slug) {
+  let chunks = slug.split("/");
+  if (chunks.length === 4 && chunks[1] === topic) return "/"+topic+"/"+chunks[2];
+  else return false;
+}
+
+// pageHierarchy = function (slug) {
+//   let chunks = slug.split("/");
+//
+//   return [
+//     chunks[1],
+//     chunks[2]
+//   ];
+// }
+
+const getSortTitle = function (mdx) {
+  let title = mdx.node.node.frontmatter.title;
+  if (typeof mdx.node.node.frontmatter.linktitle !== "undefined")
+    title = mdx.node.node.frontmatter.title;
+  let order = null;
+  if (typeof mdx.node.node.frontmatter.order !== "undefined")
+    order = mdx.node.node.frontmatter.order;
+  if (typeof mdx.node.node.frontmatter.date !== "undefined")
+    order = mdx.node.node.frontmatter.date;
+  if (order !== null) title = mdx.node.node.frontmatter.order + title;
+
+  return title;
+}
+
+const getTitle = function (mdx) {
+  if (typeof mdx.node.node.frontmatter.linktitle !== "undefined")
+    return mdx.node.node.frontmatter.linktitle;
+
+  return mdx.node.node.frontmatter.title;
+}
+
 const getTopics = function(markdown) {
   let list = { };
+  let slugs = Object.keys(markdown);
+  slugs.sort();
   for (let topic of topics) {
-    let pageSlug = "/"+topic;
-    if (typeof markdown[pageSlug] === "undefined")
-      throw new Error(`No page for topic ${topic} at ${pageSlug}`);
+    let slug = "/"+topic;
+    if (typeof markdown[slug] === "undefined")
+      throw new Error(`No page for topic ${topic} at ${slug}`);
     list[topic] = {
-      title: markdown[pageSlug].node.node.frontmatter.title,
+      title: markdown[slug].node.node.frontmatter.title,
       children: {},
     }
+    // Children of root topic
     let children = {};
-    for (let page in markdown) {
-      if (isChild(topic, page)) {
-        let title = markdown[page].node.node.frontmatter.title;
-        if (typeof markdown[page].node.node.frontmatter.linktitle !== "undefined")
-          title = markdown[page].node.node.frontmatter.title;
-        let order = null;
-        if (typeof markdown[page].node.node.frontmatter.order !== "undefined")
-          order = markdown[page].node.node.frontmatter.order;
-        if (typeof markdown[page].node.node.frontmatter.date !== "undefined")
-          order = markdown[page].node.node.frontmatter.date;
-        if (order !== null) title = markdown[page].node.node.frontmatter.order + title;
-        children[title] = page;
-      }
+	  for (let slug of slugs) {
+      if (isChild(topic, slug)) children[getSortTitle(markdown[slug])] = slug;
     }
     let childrenOrder = Object.keys(children);
     childrenOrder.sort();
-    for (let c of childrenOrder) {
-      let link = children[c];
+    for (let title of childrenOrder) {
+      let slug = children[title];
+      list[topic].children[slug] = {title: getTitle(markdown[slug])};
+    }
 
-      if (typeof markdown[link].node.node.frontmatter.linktitle !== "undefined")
-        list[topic].children[link] = markdown[link].node.node.frontmatter.linktitle;
-      else list[topic].children[link] = markdown[link].node.node.frontmatter.title;
+    // Grandchildren of docs topic
+    if (topic === "docs") {
+      let grandchildren = {};
+	    for (let slug of slugs) {
+        let child = isGrandchild(topic, slug);
+        if (child !== false) {
+          grandchildren[child] = {};
+          grandchildren[child][getSortTitle(markdown[slug])] = slug;
+        }
+      }
+      for (let child in grandchildren) {
+        let grandchildrenOrder = Object.keys(grandchildren[child]);
+        grandchildrenOrder.sort();
+        for (let title of grandchildrenOrder) {
+          let slug = grandchildren[child][title];
+
+          if (typeof list[topic].children[child].children === "undefined")
+            list[topic].children[child].children = {};
+
+          if (typeof markdown[slug] === "undefined") console.log('no markdown for', child, grandchildren);
+
+          list[topic].children[child].children[slug] = { title: getTitle(markdown[slug]) };
+
+          console.log('added', slug, getTitle(markdown[slug]));
+        }
+      }
     }
   }
 
@@ -237,21 +292,23 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
   let template = path.resolve("src/components/templates/index.js");
   let topicsToc = getTopics(markdown);
   let content = flattenTopicsToc(topicsToc);
-	for (let i in markdown) {
-    let topic = getTopic(i);
+  let slugs = Object.keys(markdown);
+  slugs.sort();
+	for (let slug of slugs) {
+    let topic = getTopic(slug);
 		promises.push(new Promise((resolve, reject) => {
       createPage({
-        path: i,
+        path: slug,
         component: template,
         context: {
-          node: markdown[i].node.node,
+          node: markdown[slug].node.node,
           topic,
           topics,
           topicsToc,
           content,
-          crumbs: breadcrumbs(i, titles),
-          language: markdown[i].language,
-          slug: i
+          crumbs: breadcrumbs(slug, titles),
+          language: markdown[slug].language,
+          slug: slug
         }
       });
     	resolve(true);

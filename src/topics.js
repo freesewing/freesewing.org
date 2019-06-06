@@ -1,7 +1,5 @@
 module.exports = [
-  "blog",
-  "showcase",
-  "patterns",
-  "measurements",
-  "sewing",
+//  "blog",
+//  "showcase",
+  "docs",
 ];

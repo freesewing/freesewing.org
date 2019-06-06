@@ -43,23 +43,33 @@ const Layout = props => {
   // Vars
   const navs = {
     left: {
+      patterns: {
+        type: "link",
+        href: "/patterns",
+        text: "app.patterns"
+      },
       docs: {
         type: "link",
-        href: "/start",
-        text: "app.getStarted"
-      },
-      tutorial: {
-        type: "link",
-        href: "/tutorial",
-        text: "app.tutorial"
+        href: "/docs",
+        text: "app.docs"
       },
       blog: {
         type: "link",
-        href: "/api",
-        text: "app.apiReference"
+        href: "/blog",
+        text: "app.blog"
       },
     },
     right: {
+      login: {
+        type: "link",
+        href: "/login",
+        text: "app.logIn"
+      },
+      account: {
+        type: "link",
+        href: "/account",
+        text: "app.account"
+      },
       search: {
         type: "link",
         href: "/search",

@@ -67,6 +67,7 @@ const PageTemplate = props => {
   if (typeof props.pageContext.node !== "undefined")
     toc = props.pageContext.node.tableOfContents;
 
+  console.log(props.pageContext);
   const menu = <TopicsToc
     slug={props.pageContext.slug}
     topicsToc={props.pageContext.topicsToc}
