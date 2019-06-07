@@ -3,17 +3,14 @@ import Button from "@material-ui/core/Button";
 import Layout from "../layout"
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import TopicsToc from "../topics-toc";
-import { FormattedMessage } from "react-intl";
+import { injectIntl, FormattedMessage } from "react-intl";
 import Subscribe from "../subscribe";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import { list as patternList } from "@freesewing/pattern-info";
 import { Link } from "gatsby";
 import patternsImage from "./patterns.jpg";
 import showcasesImage from "./showcases.jpg";
 import blogpostsImage from "./blogposts.jpg";
+import withLanguage from "../withLanguage";
 
 const IndexPage = props => {
   const mobile = useMediaQuery("(max-width:599px)");
@@ -71,13 +68,20 @@ const IndexPage = props => {
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      justifyContent: "space-evenly",
+      justifyContent: "space-between",
       padding: "2rem 0",
+      maxWidth: "1600px",
+      margin: "auto",
     },
     box: {
       padding: "1.5rem",
       maxWidth: "25%",
       minWidth: "314px",
+    },
+    solobox: {
+      padding: "1.5rem",
+      maxWidth: "600px",
+      margin: "auto",
     },
     primaryButton: {
       background: "#fff",
@@ -112,9 +116,30 @@ const IndexPage = props => {
       textAlign: "center",
       border: 0,
     },
-    subscribe: {
+    m1: {
       margin: "1rem"
-    }
+    },
+    card: {
+      width: "32%",
+      borderRadius: "6px",
+    },
+    cardImg: {
+      borderTopLeftRadius: "6px",
+      borderTopRightRadius: "6px",
+    },
+    cardText: {
+      padding: "0.25rem 1rem 1rem",
+      display: "flex",
+      flexDirection: "column"
+    },
+    patternList: {
+      margin: "0.5rem 0 0 0",
+      padding: 0
+    },
+    patternEntry: {
+      listStyleType: "none",
+      display: "inline",
+    },
   }
   if (tablet) {
     styles.header.backgroundSize = "30vh";
@@ -125,6 +150,8 @@ const IndexPage = props => {
     styles.header.backgroundPosition = "90% calc(100% + 20px)";
     styles.innerHeader.padding = "1rem";
     styles.box.maxWidth = "100%";
+    styles.card.width = "100%";
+    styles.card.marginBottom = "2rem";
   }
 
   return (
@@ -171,14 +198,14 @@ const IndexPage = props => {
           <div style={styles.box}>
             <h2>Packed with options plus live preview</h2>
             <p>
-              FreeSewing patterns come with a range of options that allow you to different aspects of the pattern.
+              FreeSewing patterns come with options that allow you to customize different aspects of the pattern.
               Our live preview means no surprises: what you see is what you get.
             </p>
           </div>
           <div style={styles.box}>
-            <h2>Recipes you can share, adapt, and remix</h2>
+            <h2>Recipes you can share and adapt</h2>
             <p>
-              FreeSewing uses a <em>recipe</em> to capture how you would like your pattern.
+              FreeSewing uses a <em>recipe</em> to capture how you configure your pattern.
               You can share these recipes with others so they can get the same look,
               drafted to their measurements.
             </p>
@@ -202,116 +229,127 @@ const IndexPage = props => {
           </div>
         </div>
 
-        <div style={styles.subscribe}>
+
+        <div style={styles.m1}>
+          <h3 style={{textAlign: "center", marginTop: "3rem"}}>Pricing</h3>
           <Subscribe mobile={mobile}/>
         </div>
 
-        <div style={styles.boxes}>
-          <Card classes={{ root: "nobg card center" }}>
-            <Link
-              to="/patterns"
-            >
-              <CardMedia
-                style={{ height: "240px" }}
-                image={patternsImage}
-              />
-            </Link>
-            <CardContent>
-              <h2 className="light">
-                <FormattedMessage id="app.patterns" />
-              </h2>
-              <ul className="inline">
-                {patternList.map((pattern, index) => (
-                  <li>
-                    <Link to={"/patterns/" + pattern}>
-                      {(pattern)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardActions classes={{ root: "row-reverse" }}>
-              <Button
-                size="small"
-                color="primary"
-                href="/patterns"
-              >
-                <FormattedMessage id="app.browsePatterns" />
-              </Button>
-            </CardActions>
-          </Card>
+        <div style={styles.m1}>
+          <h3 style={{textAlign: "center", marginTop: "3rem"}}>~~~~</h3>
+          <div style={styles.boxes}>
+            <div style={styles.card} className="shadow">
+              <Link to="/patterns" title={props.intl.formatMessage({id: "app.patterns"})}>
+                <img
+                  src={patternsImage}
+                  style={styles.cardImg}
+                  alt={props.intl.formatMessage({id: "app.patterns"})}
+                />
+              </Link>
+                <div style={styles.cardText}>
+                <Link to="/patterns" style={{color: "inherit"}} title={props.intl.formatMessage({id: "app.patterns"})}>
+                  <h4 style={{margin: 0}}><FormattedMessage id="app.patterns" /></h4>
+                </Link>
+                <ul style={styles.patternList}>
+                  {patternList.map((pattern, index) => (
+                    <li style={styles.patternEntry}>
+                      <Link to={"/patterns/" + pattern} title={pattern}>
+                        {(pattern)}
+                      </Link>
+                      {index < patternList.length -1 ? ', ' : ''}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div style={styles.card} className="shadow">
+              <Link to="/showcase" title={props.intl.formatMessage({id: "app.showcase"})}>
+                <img
+                  src={showcasesImage}
+                  style={styles.cardImg}
+                  alt={props.intl.formatMessage({id: "app.showcase"})}
+                />
+              </Link>
+              <div style={styles.cardText}>
+                <h4 style={{margin: 0}}>
+                  <Link
+                    to="/showcase"
+                    style={{color: "inherit"}}
+                    title={props.intl.formatMessage({id: "app.showcase"})}
+                  >
+                    <FormattedMessage id="app.showcase" />
+                  </Link>
+                </h4>
+                <p style={{marginTop: "0.5rem"}}>
+                  <Link
+                    to="/showcase"
+                    style={{color: "inherit"}}
+                    title={props.intl.formatMessage({id: "app.showcase"})}
+                  >
+                    <FormattedMessage id="intro.txt-showcase" />
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <div style={styles.card} className="shadow">
+              <Link to="/blog" title={props.intl.formatMessage({id: "app.blog"})}>
+                <img
+                  src={blogpostsImage}
+                  style={styles.cardImg}
+                  alt={props.intl.formatMessage({id: "app.patterns"})}
+                />
+              </Link>
+              <div style={styles.cardText}>
+                <h4 style={{margin: 0}}>
+                  <Link
+                    to="/blog"
+                    style={{color: "inherit"}}
+                    title={props.intl.formatMessage({id: "app.blog"})}
+                  >
+                    <FormattedMessage id="app.blog" />
+                  </Link>
+                </h4>
+                <p style={{marginTop: "0.5rem"}}>
+                  <Link
+                    to="/blog"
+                    style={{color: "inherit"}}
+                    title={props.intl.formatMessage({id: "app.blog"})}
+                  >
+                    <FormattedMessage id="intro.txt-blog" />
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div style={styles.boxes}>
-          <Card classes={{ root: "nobg card center" }}>
-            <Link
-              to="/patterns"
-            >
-              <CardMedia
-                style={{ height: "240px" }}
-                image={patternsImage}
-              />
-            </Link>
-            <CardContent>
-              <h2 className="light">
-                <FormattedMessage id="app.patterns" />
-              </h2>
-              <ul className="inline">
-                {patternList.map((pattern, index) => (
-                  <li>
-                    <Link to={"/patterns/" + pattern}>
-                      {(pattern)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardActions classes={{ root: "row-reverse" }}>
-              <Button
-                size="small"
-                color="primary"
-                href="/patterns"
-              >
-                <FormattedMessage id="app.browsePatterns" />
-              </Button>
-            </CardActions>
-          </Card>
-        </div>
-
-        <div style={styles.boxes}>
-          <Card classes={{ root: "nobg card center" }}>
-            <Link
-              to="/patterns"
-            >
-              <CardMedia
-                style={{ height: "240px" }}
-                image={patternsImage}
-              />
-            </Link>
-            <CardContent>
-              <h2 className="light">
-                <FormattedMessage id="app.patterns" />
-              </h2>
-              <ul className="inline">
-                {patternList.map((pattern, index) => (
-                  <li>
-                    <Link to={"/patterns/" + pattern}>
-                      {(pattern)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardActions classes={{ root: "row-reverse" }}>
-              <Button
-                size="small"
-                color="primary"
-                href="/patterns"
-              >
-                <FormattedMessage id="app.browsePatterns" />
-              </Button>
-            </CardActions>
-          </Card>
+          <div style={styles.box}>
+            <h2>Looking for our code?</h2>
+            <p>
+              Our developer documentation is hosted on <a href="https://freesewing.dev/">freesewing.dev</a>.
+              You'll find links to all our repositories there, as well as in-depth documentation, tutorials, and examples.
+            </p>
+          </div>
+          <div style={styles.box}>
+            <h2>Want to help out?</h2>
+            <p>
+              Awesome ❤️<br />Our <a href="https://freesewing.dev/contributor">contributor documentation</a> is
+              a good starting point. We also have dedicated guides for&nbsp;
+              <a href="https://freesewing.dev/translator">translators</a> and&nbsp;
+              <a href="https://freesewing.dev/editor">editors</a>.
+            </p>
+          </div>
+          <div style={styles.box}>
+            <h2>More questions?</h2>
+            <p>
+              Our <Link to="/faq">frequently asked questions</Link> might have the answer you're looking for.
+              If not, <a href="https://gitter.im/freesewing/freesewing">join our chat room</a> and we'll try to
+              help you there.
+            </p>
+          </div>
         </div>
 
       </div>
@@ -319,4 +357,4 @@ const IndexPage = props => {
   );
 }
 
-export default IndexPage;
+export default withLanguage(injectIntl(IndexPage), process.env.GATSBY_LANG);

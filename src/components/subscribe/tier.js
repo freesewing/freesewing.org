@@ -28,7 +28,6 @@ const Tier = props => {
       padding: "2rem",
       marginBottom: "1rem",
       textAlign: "center",
-      boxShadow: "0 0 3px #6666",
     },
     price: {
       fontSize: "4rem",
@@ -42,7 +41,7 @@ const Tier = props => {
   else if (props.tier === 4) styles.box.backgroundColor = "#228be6";
   else if (props.tier === 8) styles.box.backgroundColor = "#7950f2";
   return (
-      <div style={styles.box} id={"tier-"+props.tier}>
+      <div style={styles.box} id={"tier-"+props.tier} className="shadow">
           <div style={styles.price}>{props.tier}€</div>
           <div>
             <FormattedMessage id="app.perMonth" />

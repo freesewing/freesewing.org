@@ -4,6 +4,8 @@ const topics = require("./src/topics");
 const redirects = {
   "/privacy": "/docs/about/privacy",
   "/rights": "/docs/about/rights",
+  "/faq": "/docs/about/faq",
+  "/contact": "/docs/about/contact",
 }
 
 const pages = {
