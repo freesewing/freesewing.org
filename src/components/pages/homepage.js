@@ -5,6 +5,15 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import TopicsToc from "../topics-toc";
 import { FormattedMessage } from "react-intl";
 import Subscribe from "../subscribe";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import { list as patternList } from "@freesewing/pattern-info";
+import { Link } from "gatsby";
+import patternsImage from "./patterns.jpg";
+import showcasesImage from "./showcases.jpg";
+import blogpostsImage from "./blogposts.jpg";
 
 const IndexPage = props => {
   const mobile = useMediaQuery("(max-width:599px)");
@@ -144,27 +153,34 @@ const IndexPage = props => {
                 color="secondary"
                 href="/signup" variant="contained"
                 style={styles.primaryButton}
-              ><FormattedMessage id="app.signupForAFreeAccount" /></Button>
+              ><FormattedMessage id="app.signUp" /></Button>
             </div>
           </div>
         </div>
+
         <div style={styles.boxes}>
           <div style={styles.box}>
-            <h2><FormattedMessage id="app.100PercentOpenSource" /></h2>
+            <h2>Drafted to your measurements</h2>
             <p>
-              <FormattedMessage id="intro.txt-opensource" />
+              All our patterns are made-to-measure.
+              Not just <em>graded</em> up or down,
+              but actually drafted to your exact specifications,
+              just as you would on paper.
             </p>
           </div>
           <div style={styles.box}>
-            <h2><FormattedMessage id="app.100PercentCommunity" /></h2>
+            <h2>Packed with options plus live preview</h2>
             <p>
-              <FormattedMessage id="intro.txt-community" />
+              FreeSewing patterns come with a range of options that allow you to different aspects of the pattern.
+              Our live preview means no surprises: what you see is what you get.
             </p>
           </div>
           <div style={styles.box}>
-            <h2><FormattedMessage id="app.100PercentFree" /></h2>
+            <h2>Recipes you can share, adapt, and remix</h2>
             <p>
-              <FormattedMessage id="intro.txt-patrons" />
+              FreeSewing uses a <em>recipe</em> to capture how you would like your pattern.
+              You can share these recipes with others so they can get the same look,
+              drafted to their measurements.
             </p>
           </div>
         </div>
@@ -182,12 +198,120 @@ const IndexPage = props => {
               style={styles.primaryButton}
               variant="contained"
               href="#tier-2"
-            >Subscriptions</Button>
+            >Pricing</Button>
           </div>
         </div>
 
         <div style={styles.subscribe}>
           <Subscribe mobile={mobile}/>
+        </div>
+
+        <div style={styles.boxes}>
+          <Card classes={{ root: "nobg card center" }}>
+            <Link
+              to="/patterns"
+            >
+              <CardMedia
+                style={{ height: "240px" }}
+                image={patternsImage}
+              />
+            </Link>
+            <CardContent>
+              <h2 className="light">
+                <FormattedMessage id="app.patterns" />
+              </h2>
+              <ul className="inline">
+                {patternList.map((pattern, index) => (
+                  <li>
+                    <Link to={"/patterns/" + pattern}>
+                      {(pattern)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardActions classes={{ root: "row-reverse" }}>
+              <Button
+                size="small"
+                color="primary"
+                href="/patterns"
+              >
+                <FormattedMessage id="app.browsePatterns" />
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+
+        <div style={styles.boxes}>
+          <Card classes={{ root: "nobg card center" }}>
+            <Link
+              to="/patterns"
+            >
+              <CardMedia
+                style={{ height: "240px" }}
+                image={patternsImage}
+              />
+            </Link>
+            <CardContent>
+              <h2 className="light">
+                <FormattedMessage id="app.patterns" />
+              </h2>
+              <ul className="inline">
+                {patternList.map((pattern, index) => (
+                  <li>
+                    <Link to={"/patterns/" + pattern}>
+                      {(pattern)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardActions classes={{ root: "row-reverse" }}>
+              <Button
+                size="small"
+                color="primary"
+                href="/patterns"
+              >
+                <FormattedMessage id="app.browsePatterns" />
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+
+        <div style={styles.boxes}>
+          <Card classes={{ root: "nobg card center" }}>
+            <Link
+              to="/patterns"
+            >
+              <CardMedia
+                style={{ height: "240px" }}
+                image={patternsImage}
+              />
+            </Link>
+            <CardContent>
+              <h2 className="light">
+                <FormattedMessage id="app.patterns" />
+              </h2>
+              <ul className="inline">
+                {patternList.map((pattern, index) => (
+                  <li>
+                    <Link to={"/patterns/" + pattern}>
+                      {(pattern)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardActions classes={{ root: "row-reverse" }}>
+              <Button
+                size="small"
+                color="primary"
+                href="/patterns"
+              >
+                <FormattedMessage id="app.browsePatterns" />
+              </Button>
+            </CardActions>
+          </Card>
         </div>
 
       </div>

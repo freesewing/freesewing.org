@@ -38,7 +38,7 @@ const Tier = props => {
   }
 
   if (props.tier === 0) delete styles.box.color;
-  else if (props.tier === 2) styles.box.backgroundColor = "#40c057";
+  else if (props.tier === 2) styles.box.backgroundColor = "#37b24d";
   else if (props.tier === 4) styles.box.backgroundColor = "#228be6";
   else if (props.tier === 8) styles.box.backgroundColor = "#7950f2";
   return (
