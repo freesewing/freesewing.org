@@ -3,6 +3,8 @@ import Button from "@material-ui/core/Button";
 import Layout from "../layout"
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import TopicsToc from "../topics-toc";
+import { FormattedMessage } from "react-intl";
+import Subscribe from "../subscribe";
 
 const IndexPage = props => {
   const mobile = useMediaQuery("(max-width:599px)");
@@ -97,6 +99,13 @@ const IndexPage = props => {
       minWidth: "314px",
       marginBottom: "5rem",
     },
+    supportH2: {
+      textAlign: "center",
+      border: 0,
+    },
+    subscribe: {
+      margin: "1rem"
+    }
   }
   if (tablet) {
     styles.header.backgroundSize = "30vh";
@@ -121,77 +130,66 @@ const IndexPage = props => {
           <div style={styles.header}>
             <div style={styles.innerHeader}>
               <h1 style={styles.h1}>FreeSewing</h1>
-              <h2 style={styles.h2}>A JavaScript library for made-to-measure sewing patterns</h2>
+              <h2 style={styles.h2}>
+                <FormattedMessage id="app.sewingPatternsForNonAveragePeople" /><sup>*</sup>
+                <br />
+                <small>
+                  <small>
+                    * <FormattedMessage id="app.averagePeopleDontExist" />
+                  </small>
+                </small>
+              </h2>
               <Button
                 size="large"
                 color="secondary"
-                href="/start" variant="contained"
+                href="/signup" variant="contained"
                 style={styles.primaryButton}
-              >Get started</Button>
-              <Button
-                size="large"
-                color="secondary"
-                href="/tutorial"
-                variant="outlined"
-                style={styles.secondaryButton}
-              >Tutorial</Button>
+              ><FormattedMessage id="app.signupForAFreeAccount" /></Button>
             </div>
           </div>
         </div>
         <div style={styles.boxes}>
           <div style={styles.box}>
-            <h2>Get started in seconds</h2>
+            <h2><FormattedMessage id="app.100PercentOpenSource" /></h2>
             <p>
-              Setup your development environement with this one-liner:
+              <FormattedMessage id="intro.txt-opensource" />
             </p>
-            <div className="gatsby-highlight">
-              <pre className="language-bash">
-              <code className="language-bash">
-                npm init freesewing-pattern@beta
-              </code>
-              </pre>
-            </div>
-            <p>You can try it out right now, or learn more about what to expect.</p>
-            <Button variant="outlined" href="/packages/create-freesewing-pattern">Learn more</Button>
           </div>
           <div style={styles.box}>
-            <h2>FreeSewing tutorial</h2>
-            <p>Follow our step-by-step tutorial to familiarize yourself with the <a href="/concepts">basic concepts</a> and inner workings of FreeSewing.</p>
-            <p>You'll learn everything you need to start designing your own made-to-measure sewing patterns.</p>
-            <Button variant="outlined" href="/tutorial">Take the tutorial</Button>
+            <h2><FormattedMessage id="app.100PercentCommunity" /></h2>
+            <p>
+              <FormattedMessage id="intro.txt-community" />
+            </p>
           </div>
           <div style={styles.box}>
-            <h2>API Reference</h2>
-            <p>Detailed documentation for FreeSewing's API, including examples.</p>
-            <p>We also have <a href="/do">best practices</a> and <a href="/advanced">advanced guides</a> to take your work to the next level.</p>
-            <Button variant="outlined" href="/api">API Documentation</Button>
+            <h2><FormattedMessage id="app.100PercentFree" /></h2>
+            <p>
+              <FormattedMessage id="intro.txt-patrons" />
+            </p>
           </div>
         </div>
 
         <div style={styles.stripe}>
           <div style={styles.innerHeader}>
             <h1 style={styles.h1}>Support FreeSewing</h1>
-            <h2 style={styles.h2}>FreeSewing lives by the grace of our Patrons</h2>
+            <h2 style={styles.h2}>
+              FreeSewing is fuelled by a voluntary subscription model
+            </h2>
             <p style={styles.pitch}>
-              If you think what we do is worthwhile, and if you can spare a few coins each month
-              without hardship, you too should <b>become a patron of FreeSewing</b>.
+              If you think what we do is worthwhile, and if you can spare a few coins each month without hardship, you too should become a patron of FreeSewing.
             </p>
             <Button
               style={styles.primaryButton}
               variant="contained"
-              href="https://freesewing.org/patrons/join"
-            >Join the FreeSewing Patrons</Button>
+              href="#tier-2"
+            >Subscriptions</Button>
           </div>
         </div>
 
-        <div style={styles.boxes}>
-          <div style={styles.help}>
-            <h2>Need a hand?</h2>
-            <p>The FreeSewing community is ready to help out when you get stuck or have questions.</p>
-            <p>Join us <a href="https://gitter.im/freesewing/freesewing">in our chat room</a> for help, advice, or just a friendly chat.</p>
-            <Button variant="outlined" href="https://gitter.im/freesewing/freesewing">Join our chat room</Button>
-          </div>
+        <div style={styles.subscribe}>
+          <Subscribe mobile={mobile}/>
         </div>
+
       </div>
     </Layout>
   );
