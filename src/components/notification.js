@@ -56,7 +56,7 @@ const Notification = props => {
   const children = (
     <div style={{ ...styles.wrapper, ...styles.color[type]}} className="shadow">
       <Icon key="icon" style={styles.icon}/>
-      {msg}
+      <div className="font-title">{msg}</div>
     </div>
   )
   return (

@@ -15,7 +15,7 @@ const AccountAvatar = props => {
       }
       acceptedFiles.forEach(file => reader.readAsDataURL(file))
   }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   const styles = {
     wrapper: {
@@ -49,7 +49,7 @@ const AccountAvatar = props => {
         <FormattedMessage id="account.avatarInfo" />
       </Blockquote>
       <div style={styles.wrapper}>
-        <img src={img || app.account.pictureUris.m} style={styles.avatar} className="shadow"/>
+        <img alt="avatar" src={img || app.account.pictureUris.m} style={styles.avatar} className="shadow"/>
         <div {...getRootProps()} style={styles.dropzone}>
           <input {...getInputProps()} />
           <p><FormattedMessage id="app.dragAndDropImageHere" /></p>

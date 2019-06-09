@@ -16,7 +16,7 @@ const LoginRequired = props => {
 
   if (loggedIn()) return props.children
 
-  if (window) {
+  if (typeof window !== "undefined") {
     // Only try this in the browser
     navigate("/login", {
       state: {
