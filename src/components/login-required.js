@@ -16,11 +16,15 @@ const LoginRequired = props => {
 
   if (loggedIn()) return props.children
 
-  navigate("/login", {
-    state: {
-      intent: props.page
-    }
-  });
+  if (window) {
+    // Only try this in the browser
+    navigate("/login", {
+      state: {
+        intent: props.page
+      }
+    });
+  }
+
   return null;
 }
 
