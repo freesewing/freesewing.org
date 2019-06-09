@@ -7,7 +7,7 @@
   "homepage": "https://freesewing.org/",
   "repository": "https://github.com/freesewing.org/devsite",
   "dependencies": {
-    "@freesewing/components": "2.0.0-beta.19",
+    "@freesewing/components": "2.0.0-beta.19-1",
     "@freesewing/core": "2.0.0-beta.19",
     "@freesewing/css-theme": "2.0.0-beta.19",
     "@freesewing/examples": "2.0.0-beta.19",
