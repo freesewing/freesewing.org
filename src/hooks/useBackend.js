@@ -4,6 +4,15 @@ import { navigate } from "gatsby";
 function useBackend(props) {
   const backend = new Backend(process.env.GATSBY_BACKEND);
 
+  const token = props.storageData.token;
+
+  const saveAccountToStorage = (data) => {
+    if (data.account) props.updateStorageData(data.account, "account");
+    if (data.models) props.updateStorageData(data.models, "models");
+    if (data.recipes) props.updateStorageData(data.recipes, "recipes");
+    if (data.token) props.updateStorageData(data.token, "token");
+  }
+
   const login = (username, password) => {
     props.startLoading();
     backend
@@ -18,12 +27,33 @@ function useBackend(props) {
               { user: "@" + res.data.account.username }
             )
           );
-          props.updateStorageData(res.data.account, "account");
-          props.updateStorageData(res.data.models, "models");
-          props.updateStorageData(res.data.recipes, "recipes");
-          props.updateStorageData(res.data.token, "token");
-
+          saveAccountToStorage(res.data);
           navigate("/account", {replace: true});
+        }
+      })
+      .catch(err => {
+        props.stopLoading();
+        console.log(err);
+        props.showNotification("error", err);
+      });
+    };
+
+  const saveAccount = (data, field) => {
+    props.startLoading();
+    backend
+      .saveAccount(data, token)
+      .then(res => {
+        if (res.status === 200) {
+          props.stopLoading();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              { id: "app.fieldSaved" },
+              { field: field }
+            )
+          );
+          saveAccountToStorage(res.data);
+          navigate("/account/settings", {replace: true});
         }
       })
       .catch(err => {
@@ -35,6 +65,7 @@ function useBackend(props) {
 
   return {
     login,
+    saveAccount,
   }
 
 }

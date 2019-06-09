@@ -40,7 +40,8 @@ const Layout = props => {
     },
     startLoading: () => setLoading(true),
     stopLoading: () => setLoading(false),
-    updateStorageData: props.updateStorageData
+    updateStorageData: props.updateStorageData,
+    storageData: props.storageData
   });
   const frontend = {
     showNotification: (type, message) => {
@@ -63,7 +64,8 @@ const Layout = props => {
     closeNav: () => {
       if (menu) setMenu(false)
     },
-    mobile: props.mobile
+    mobile: props.mobile,
+    intl: props.intl
   }
   const app = {
     account: props.storageData.account || {},
@@ -191,5 +193,5 @@ export default withStorage(
   withLanguage(
     injectIntl(Layout),
     process.env.GATSBY_LANG
-  ), "freesewing.dev"
+  ), "freesewing.org"
 );
