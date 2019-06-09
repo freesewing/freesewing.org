@@ -25,6 +25,7 @@
     "@mdx-js/mdx": "^1.0.14",
     "@mdx-js/react": "^1.0.6",
     "algoliasearch": "3.33.0",
+    "axios": "0.19.0",
     "core-js": "^2.5.7",
     "dotenv": "8.0.0",
     "gatsby": "^2.3.25",

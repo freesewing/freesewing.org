@@ -3,9 +3,11 @@ import Layout from "../layout"
 import TopicsToc from "../topics-toc";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
+//import useAccount from "../../hooks/useAccount";
 
 const SearchPage = props => {
   const mobile = useMediaQuery("(max-width:599px)");
+//  const account = useAccount();
 
   const styles = {
     container: {

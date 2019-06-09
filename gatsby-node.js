@@ -1,5 +1,5 @@
 const path = require("path");
-const topics = require("./src/topics");
+const topics = require("./src/config/topics");
 
 const redirects = {
   "/privacy": "/docs/about/privacy",
@@ -40,6 +40,23 @@ const pages = {
     },
     props: {
       titleFrom: "hashtrailer",
+    },
+  },
+  "/login": {
+    params: {
+      component: path.resolve("src/components/pages/login.js"),
+    },
+    props: {
+      i18nTitle: "app.logIn"
+    },
+  },
+  "/account": {
+    params: {
+      component: path.resolve("src/components/pages/account.js"),
+      matchPath: "/account/*"
+    },
+    props: {
+      i18nTitle: "app.account"
     },
   },
 }

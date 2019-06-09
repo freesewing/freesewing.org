@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import TableOfContents from "./TableOfContents";
 import ExpandedIcon from "@material-ui/icons/KeyboardArrowDown";
 import CollapsedIcon from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from "gatsby";
+import AppContext from "../context/app";
+import UserMenu from "./user-menu";
 
 const TopicsToc = props => {
+  const app = useContext(AppContext);
 
   const parentSlug = slug => slug.split("/").slice(0, -1).join("/");
 
@@ -99,9 +102,12 @@ const TopicsToc = props => {
   }
 
   return (
+    <React.Fragment>
     <ul className="topics">
       {items}
     </ul>
+    { app.account.username ? <UserMenu /> : null }
+    </React.Fragment>
   );
 }
 

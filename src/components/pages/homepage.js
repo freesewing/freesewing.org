@@ -336,7 +336,8 @@ const IndexPage = props => {
           <div style={styles.box}>
             <h2>Want to help out?</h2>
             <p>
-              Awesome ❤️<br />Our <a href="https://freesewing.dev/contributor">contributor documentation</a> is
+              Awesome <span role="img" aria-label="<3">❤️</span>
+              <br />Our <a href="https://freesewing.dev/contributor">contributor documentation</a> is
               a good starting point. We also have dedicated guides for&nbsp;
               <a href="https://freesewing.dev/translator">translators</a> and&nbsp;
               <a href="https://freesewing.dev/editor">editors</a>.

@@ -19,26 +19,59 @@ import "@freesewing/css-theme";
 import "typeface-roboto-condensed";
 import "typeface-permanent-marker";
 import Fab from '@material-ui/core/Fab';
+import AppContext from "../context/app";
+import useBackend from "../hooks/useBackend";
+import { injectIntl } from "react-intl";
+import Notification from "./notification";
+import Loading from "./loading";
+import UserMenu from "./user-menu";
 
 const Layout = props => {
   const [theme, setTheme] = useState(props.storageData.theme || "light");
   const [menu, setMenu] = useState(false);
-  // Methods
-  const toggleDarkMode = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      props.updateStorageData("dark", "theme");
-    } else {
-      setTheme("light");
-      props.updateStorageData("light", "theme");
-    }
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState(false);
+  const [notificationVisible, setNotificationVisible] = useState(false);
+  const backend = useBackend({
+    intl: props.intl,
+    showNotification: (type, message) => {
+      setNotification({type, message});
+      setNotificationVisible(true);
+    },
+    startLoading: () => setLoading(true),
+    stopLoading: () => setLoading(false),
+    updateStorageData: props.updateStorageData
+  });
+  const frontend = {
+    showNotification: (type, message) => {
+      setNotification({type, message});
+      setNotificationVisible(true);
+    },
+    notification,
+    notificationVisible,
+    setNotificationVisible,
+    toggleDarkMode: () => {
+      if (theme === "light") {
+        setTheme("dark");
+        props.updateStorageData("dark", "theme");
+      } else {
+        setTheme("light");
+        props.updateStorageData("light", "theme");
+      }
+    },
+    toggleMenu: () => setMenu(!menu),
+    closeNav: () => {
+      if (menu) setMenu(false)
+    },
+    mobile: props.mobile
+  }
+  const app = {
+    account: props.storageData.account || {},
+    models: props.storageData.models || {},
+    recipes: props.storageData.recipes || {},
+    backend,
+    frontend,
   };
-  const toggleMenu = () => {
-    setMenu(!menu);
-  }
-  const closeNav = () => {
-    if (menu) setMenu(false);
-  }
 
   // Vars
   const navs = {
@@ -60,16 +93,9 @@ const Layout = props => {
       },
     },
     right: {
-      login: {
-        type: "link",
-        href: "/login",
-        text: "app.logIn"
-      },
-      account: {
-        type: "link",
-        href: "/account",
-        text: "app.account"
-      },
+      account: app.account.username
+      ? { type: "link", href: "/account", text: "app.account" }
+      : { type: "link", href: "/login", text: "app.logIn" },
       search: {
         type: "link",
         href: "/search",
@@ -84,7 +110,7 @@ const Layout = props => {
       },
       theme: {
         type: "button",
-        onClick: toggleDarkMode,
+        onClick: app.frontend.toggleDarkMode,
         text: <DarkModeIcon className="nav-icon moon" />,
         title: "Toggle dark mode"
       }
@@ -106,36 +132,45 @@ const Layout = props => {
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
       <div className={wrapperClasses}>
-        {props.mobile
-          ? (
-            <React.Fragment>
-              <Fab
-                color="primary"
-                className="fab primary only-xs"
-                aria-label="Menu"
-                onClick={toggleMenu}>
-                { menu
-                  ? <CloseIcon fontSize="inherit" />
-                  : <MenuIcon fontSize="inherit" />
-                }
-              </Fab>
-              <Navbar navs={navs} home="/" />
-            </React.Fragment>
-          )
-          : <Navbar navs={navs} home="/" />
-        }
-        {React.cloneElement(props.children, { closeNav })}
-        { props.mobile ? (
-          <div className="menu" onClick={closeNav}>
-            {props.menu}
-            <p style={styles.menuIcons}>
-              <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
-              <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>
-              <IconButton href="/languages" color="primary" variant="contained"><LanguageIcon /></IconButton>
-              <IconButton onClick={toggleDarkMode} color="primary" variant="contained"><DarkModeIcon style={{transform: "rotate(26deg)"}}/></IconButton>
-            </p>
-          </div>
-        ) : null }
+        <AppContext.Provider value={app}>
+          {props.mobile
+            ? (
+              <React.Fragment>
+                <Fab
+                  color="primary"
+                  className="fab primary only-xs"
+                  aria-label="Menu"
+                  onClick={app.frontend.toggleMenu}>
+                  { menu
+                    ? <CloseIcon fontSize="inherit" />
+                    : <MenuIcon fontSize="inherit" />
+                  }
+                </Fab>
+                <Navbar navs={navs} home="/" />
+              </React.Fragment>
+            )
+            : <Navbar navs={navs} home="/" />
+          }
+          {props.children}
+          <Notification
+            notification={notification}
+            notificationVisible={notificationVisible}
+            closeNotification={() => setNotificationVisible(false)}
+          />
+          <Loading loading={loading} />
+          { props.mobile ? (
+            <div className="menu" onClick={app.frontend.closeNav}>
+              {props.menu}
+              { app.account.username ? <UserMenu /> : null }
+              <p style={styles.menuIcons}>
+                <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
+                <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>
+                <IconButton href="/languages" color="primary" variant="contained"><LanguageIcon /></IconButton>
+                <IconButton onClick={app.frontend.toggleDarkMode} color="primary" variant="contained"><DarkModeIcon style={{transform: "rotate(26deg)"}}/></IconButton>
+              </p>
+            </div>
+          ) : null }
+        </AppContext.Provider>
         <Footer language={props.language}/>
       </div>
     </MuiThemeProvider>
@@ -154,7 +189,7 @@ Layout.defaultProps = {
 
 export default withStorage(
   withLanguage(
-    Layout,
+    injectIntl(Layout),
     process.env.GATSBY_LANG
   ), "freesewing.dev"
 );

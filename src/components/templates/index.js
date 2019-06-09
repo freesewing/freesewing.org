@@ -18,7 +18,6 @@ import { list as patterns } from "@freesewing/pattern-info";
 
 const PageTemplate = props => {
   const mobile = useMediaQuery("(max-width:599px)");
-
   const renderLink = side => {
     const slug = props.pageContext.slug;
     let to = false;
