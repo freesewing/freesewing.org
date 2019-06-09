@@ -49,11 +49,6 @@ const AccountMenu = props => {
     width: "calc(33.33% - 0.5rem)"
   }
 
-  if (props.mobile) {
-    styles.box2.width = "100%";
-    styles.box3.width = "100%";
-  }
-
   let addTiles = [
     {
       to: "/pattern",

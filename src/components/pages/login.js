@@ -37,7 +37,7 @@ const LoginPage = props => {
               crumbs={props.pageContext.crumbs}
               pageTitle={<FormattedMessage id={props.pageContext.i18nTitle} />}
             />
-            { props.location.state.intent
+            { props.location && props.location.state && props.location.state.intent
               ? <Blockquote type="note">
                   <FormattedMessage id="app.loginRequiredRedirect" values={{page: props.location.state.intent}}/>
                 </Blockquote>
