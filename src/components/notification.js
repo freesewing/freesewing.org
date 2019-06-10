@@ -8,10 +8,9 @@ import ErrorMsg from "./error";
 
 const Notification = props => {
 
-  if (!props.notificationVisible) return null;
+  if (typeof props.notification.type === "undefined") return null;
 
   let { type, message } = props.notification;
-
   const typeIcon = {
     success: CheckCircleIcon,
     warning: WarningIcon,
@@ -62,10 +61,10 @@ const Notification = props => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
+        vertical: props.mobile ? "top" : "bottom",
         horizontal: "right"
       }}
-      open={props.notificationVisible}
+      open={true}
       autoHideDuration={3000}
       onClose={props.closeNotification}
       children={children}

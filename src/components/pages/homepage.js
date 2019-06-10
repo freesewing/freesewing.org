@@ -1,27 +1,14 @@
 import React from "react"
 import Button from "@material-ui/core/Button";
-import Layout from "../layout"
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import TopicsToc from "../topics-toc";
-import { injectIntl, FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import Subscribe from "../subscribe";
 import { list as patternList } from "@freesewing/pattern-info";
 import { Link } from "gatsby";
 import patternsImage from "./patterns.jpg";
 import showcasesImage from "./showcases.jpg";
 import blogpostsImage from "./blogposts.jpg";
-import withLanguage from "../withLanguage";
 
-const IndexPage = props => {
-  const mobile = useMediaQuery("(max-width:599px)");
-  const tablet = useMediaQuery("(min-width: 600px) and (max-width: 959px)");
-
-  const menu = <TopicsToc
-    slug={props.pageContext.slug}
-    topicsToc={props.pageContext.topicsToc}
-    topics={props.pageContext.topics}
-    order={props.pageContext.topicsOrder}
-  />
+const HomePage = ({ app }) => {
 
   const styles = {
     container: {
@@ -141,11 +128,11 @@ const IndexPage = props => {
       display: "inline",
     },
   }
-  if (tablet) {
+  if (app.frontend.tablet) {
     styles.header.backgroundSize = "30vh";
     styles.header.backgroundPosition = "90% calc(100% + 40px)";
   }
-  if (mobile) {
+  if (app.frontend.mobile) {
     styles.header.backgroundSize = "20vh";
     styles.header.backgroundPosition = "90% calc(100% + 20px)";
     styles.innerHeader.padding = "1rem";
@@ -155,12 +142,6 @@ const IndexPage = props => {
   }
 
   return (
-    <Layout
-      topics={props.pageContext.topics}
-      topicsToc={props.pageContext.topicsToc}
-      menu={menu}
-      mobile={mobile}
-    >
       <div style={styles.container}>
         <div style={styles.headerWrapper}>
           <div style={styles.header}>
@@ -232,22 +213,22 @@ const IndexPage = props => {
 
         <div style={styles.m1}>
           <h3 style={{textAlign: "center", marginTop: "3rem"}}>Pricing</h3>
-          <Subscribe mobile={mobile}/>
+          <Subscribe mobile={app.frontend.mobile}/>
         </div>
 
         <div style={styles.m1}>
           <h3 style={{textAlign: "center", marginTop: "3rem"}}>~~~~</h3>
           <div style={styles.boxes}>
             <div style={styles.card} className="shadow">
-              <Link to="/patterns" title={props.intl.formatMessage({id: "app.patterns"})}>
+              <Link to="/patterns" title={app.frontend.intl.formatMessage({id: "app.patterns"})}>
                 <img
                   src={patternsImage}
                   style={styles.cardImg}
-                  alt={props.intl.formatMessage({id: "app.patterns"})}
+                  alt={app.frontend.intl.formatMessage({id: "app.patterns"})}
                 />
               </Link>
                 <div style={styles.cardText}>
-                <Link to="/patterns" style={{color: "inherit"}} title={props.intl.formatMessage({id: "app.patterns"})}>
+                <Link to="/patterns" style={{color: "inherit"}} title={app.frontend.intl.formatMessage({id: "app.patterns"})}>
                   <h4 style={{margin: 0}}><FormattedMessage id="app.patterns" /></h4>
                 </Link>
                 <ul style={styles.patternList}>
@@ -264,11 +245,11 @@ const IndexPage = props => {
             </div>
 
             <div style={styles.card} className="shadow">
-              <Link to="/showcase" title={props.intl.formatMessage({id: "app.showcase"})}>
+              <Link to="/showcase" title={app.frontend.intl.formatMessage({id: "app.showcase"})}>
                 <img
                   src={showcasesImage}
                   style={styles.cardImg}
-                  alt={props.intl.formatMessage({id: "app.showcase"})}
+                  alt={app.frontend.intl.formatMessage({id: "app.showcase"})}
                 />
               </Link>
               <div style={styles.cardText}>
@@ -276,7 +257,7 @@ const IndexPage = props => {
                   <Link
                     to="/showcase"
                     style={{color: "inherit"}}
-                    title={props.intl.formatMessage({id: "app.showcase"})}
+                    title={app.frontend.intl.formatMessage({id: "app.showcase"})}
                   >
                     <FormattedMessage id="app.showcase" />
                   </Link>
@@ -285,7 +266,7 @@ const IndexPage = props => {
                   <Link
                     to="/showcase"
                     style={{color: "inherit"}}
-                    title={props.intl.formatMessage({id: "app.showcase"})}
+                    title={app.frontend.intl.formatMessage({id: "app.showcase"})}
                   >
                     <FormattedMessage id="intro.txt-showcase" />
                   </Link>
@@ -294,11 +275,11 @@ const IndexPage = props => {
             </div>
 
             <div style={styles.card} className="shadow">
-              <Link to="/blog" title={props.intl.formatMessage({id: "app.blog"})}>
+              <Link to="/blog" title={app.frontend.intl.formatMessage({id: "app.blog"})}>
                 <img
                   src={blogpostsImage}
                   style={styles.cardImg}
-                  alt={props.intl.formatMessage({id: "app.patterns"})}
+                  alt={app.frontend.intl.formatMessage({id: "app.patterns"})}
                 />
               </Link>
               <div style={styles.cardText}>
@@ -306,7 +287,7 @@ const IndexPage = props => {
                   <Link
                     to="/blog"
                     style={{color: "inherit"}}
-                    title={props.intl.formatMessage({id: "app.blog"})}
+                    title={app.frontend.intl.formatMessage({id: "app.blog"})}
                   >
                     <FormattedMessage id="app.blog" />
                   </Link>
@@ -315,7 +296,7 @@ const IndexPage = props => {
                   <Link
                     to="/blog"
                     style={{color: "inherit"}}
-                    title={props.intl.formatMessage({id: "app.blog"})}
+                    title={app.frontend.intl.formatMessage({id: "app.blog"})}
                   >
                     <FormattedMessage id="intro.txt-blog" />
                   </Link>
@@ -354,8 +335,7 @@ const IndexPage = props => {
         </div>
 
       </div>
-    </Layout>
   );
 }
 
-export default withLanguage(injectIntl(IndexPage), process.env.GATSBY_LANG);
+export default HomePage;

@@ -1,0 +1,75 @@
+import React, { useState, useContext } from 'react'
+import { FormattedMessage } from "react-intl";
+import AppContext from "../../context/app";
+import Blockquote from "@freesewing/components/Blockquote";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { validateEmail, validateTld } from "@freesewing/utils";
+import ValidIcon from "@material-ui/icons/CheckCircle";
+import InvalidIcon from "@material-ui/icons/Warning";
+
+const AccountEmail = props => {
+  const app = useContext(AppContext);
+  const [email, setEmail] = useState(app.account.email || '');
+  const [emailValid, setEmailValid] = useState(true);
+
+  const updateEmail = evt => {
+    let value = evt.target.value;
+    setEmail(value);
+    let valid = (validateEmail(value) && validateTld(value)) || false
+    setEmailValid(valid);
+  }
+
+  return (
+    <React.Fragment>
+      <Blockquote type="note">
+        <FormattedMessage id={"account.emailInfo"} />
+      </Blockquote>
+      <TextField
+        id="email"
+        fullWidth={true}
+        label={app.frontend.intl.formatMessage({ id: "account.email"})}
+        margin="normal"
+        variant="outlined"
+        value={email}
+        type="text"
+        onChange={updateEmail}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              { emailValid
+                ? <ValidIcon style={{ color: "#40c057" }} />
+                : <InvalidIcon color="error" />
+              }
+            </InputAdornment>
+          )
+        }}
+      />
+      <p style={{textAlign: "right"}}>
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          size="large"
+          style={{marginLeft: '1rem'}}
+          variant="contained"
+          color="primary"
+          onClick={() => app.backend.saveAccount(
+            {email: email},
+            app.frontend.intl.formatMessage({id: "account.email"})
+          )}
+        >
+          <FormattedMessage id="app.save" />
+        </Button>
+      </p>
+    </React.Fragment>
+  );
+};
+
+export default AccountEmail;

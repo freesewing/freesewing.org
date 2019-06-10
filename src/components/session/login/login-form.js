@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { FormattedMessage } from "react-intl";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 const LoginForm = props => {
+  const [reveal, setReveal] = useState(false);
 
   const styles = {
     wrapper: {
@@ -28,13 +30,25 @@ const LoginForm = props => {
         <TextField
           id="password"
           fullWidth={true}
-          type="password"
+          type={ reveal ? "text" : "password"}
           autoComplete="password"
           label={props.intl.formatMessage({ id: "account.password" })}
           margin="normal"
           variant="outlined"
           value={props.password}
           onChange={evt => props.setPassword(evt.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <span role="img" aria-label="reveal" onClick={() => setReveal(!reveal)} className="poh">
+                  {reveal
+                    ? <span role="img" aria-label="show">👀 </span>
+                    : <span role="img" aria-label="show">🙈 </span>
+                  }
+                </span>
+              </InputAdornment>
+            )
+          }}
         />
         <Button
           type="submit"

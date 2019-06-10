@@ -1,5 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const ShowcaseIndexTemplate = props => {
@@ -79,7 +78,6 @@ const ShowcaseIndexTemplate = props => {
 
   return (
     <React.Fragment>
-      <h1><FormattedMessage id="app.showcase" /></h1>
       <div style={style.wrapper}>
       {
         data.allMdx.edges.map( node => {

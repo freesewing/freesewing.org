@@ -1,6 +1,8 @@
 const path = require("path");
 const topics = require("./src/config/topics");
 
+const rootComponent = path.resolve("src/components/app.js");
+
 const redirects = {
   "/privacy": "/docs/about/privacy",
   "/rights": "/docs/about/rights",
@@ -9,56 +11,21 @@ const redirects = {
 }
 
 const pages = {
-  "/": {
-    params: {
-      component: path.resolve("src/components/pages/homepage.js"),
-    },
-    props: {
-      i18nTitle: "app.home",
-    },
+  single: {
+    "/": "app.home",
+    "/language": "account.language",
+    "/login": "app.logIn",
+    "/logout": "app.logOut",
+    "/search": "app.search",
   },
-  "/search": {
-    params: {
-      component: path.resolve("src/components/pages/search.js"),
+  multiple: {
+    "/showcase/pattern": {
+      matchPath: "/showcase/*",
     },
-    props: {
-      i18nTitle: "app.search",
-    },
-  },
-  "/languages": {
-    params: {
-      component: path.resolve("src/components/pages/languages.js"),
-    },
-    props: {
-      i18nTitle: "app.languages"
-    },
-  },
-  "/showcase/pattern": {
-    params: {
-      component: path.resolve("src/components/templates/index.js"),
-      matchPath: "/showcase/*"
-    },
-    props: {
-      titleFrom: "hashtrailer",
-    },
-  },
-  "/login": {
-    params: {
-      component: path.resolve("src/components/pages/login.js"),
-    },
-    props: {
-      i18nTitle: "app.logIn"
-    },
-  },
-  "/account": {
-    params: {
-      component: path.resolve("src/components/pages/account.js"),
+    "/account": {
       matchPath: "/account/*"
     },
-    props: {
-      i18nTitle: "app.account"
-    },
-  },
+  }
 }
 
 const getFileList = function(graphql, language, markdown) {
@@ -324,7 +291,7 @@ const createRedirects = function(redirects, createRedirect) {
 
 const createMdx = function(graphql, language, markdown, titles, createPage) {
   let promises = [];
-  let template = path.resolve("src/components/templates/index.js");
+  //let template = path.resolve("src/components/templates/index.js");
   let topicsToc = getTopics(markdown);
   let content = flattenTopicsToc(topicsToc);
   let slugs = Object.keys(markdown);
@@ -334,7 +301,7 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
 		promises.push(new Promise((resolve, reject) => {
       createPage({
         path: slug,
-        component: template,
+        component: rootComponent,
         context: {
           node: markdown[slug].node.node,
           topic,
@@ -349,18 +316,35 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
     	resolve(true);
  	  }));
   }
-  for (let i in pages) {
+  for (let i in pages.single) {
 		promises.push(new Promise((resolve, reject) => {
       createPage({
         path: i,
-        ...pages[i].params,
+        component: rootComponent,
         context: {
           topics,
           topicsToc,
           content,
           crumbs: breadcrumbs(i, titles),
           slug: i,
-          ...pages[i].props,
+          title: pages.single[i]
+        }
+      });
+    	resolve(true);
+ 	  }));
+  }
+  for (let i in pages.multiple) {
+		promises.push(new Promise((resolve, reject) => {
+      createPage({
+        path: i,
+        component: rootComponent,
+        ...pages.multiple[i],
+        context: {
+          topics,
+          topicsToc,
+          content,
+          crumbs: breadcrumbs(i, titles),
+          slug: i,
         }
       });
     	resolve(true);

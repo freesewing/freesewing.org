@@ -1,19 +1,22 @@
 import React from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
+import Blockquote from "@freesewing/components/Blockquote";
 
-const BlogTemplate = props => {
+const DocumentationPage = props => {
+  const components = {
+    Note: ({ children }) => { return <Blockquote type="note">{children}</Blockquote>},
+    Tip: ({ children }) => { return <Blockquote type="tip">{children}</Blockquote>},
+    Warning: ({ children }) => { return <Blockquote type="warning">{children}</Blockquote>},
+  }
 
   return (
-    <React.Fragment>
-      <h1>{props.pageContext.node.frontmatter.title}</h1>
-        <MDXProvider components={props.components}>
-          <MDXRenderer>
-            {props.pageContext.node.code.body}
-          </MDXRenderer>
-        </MDXProvider>
-    </React.Fragment>
+    <MDXProvider components={components}>
+      <MDXRenderer>
+        {props.pageContext.node.code.body}
+      </MDXRenderer>
+    </MDXProvider>
   );
 }
 
-export default BlogTemplate;
+export default DocumentationPage;

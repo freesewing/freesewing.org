@@ -3,9 +3,8 @@ import Layout from "../layout"
 import TopicsToc from "../topics-toc";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Account from "../account/index.js";
-import LoginRequired from "../login-required";
 
-const AccountPage = props => {
+const LogoutPage = props => {
   const mobile = useMediaQuery("(max-width:599px)");
 
   const styles = {
@@ -31,9 +30,7 @@ const AccountPage = props => {
       <div className="fs-sa">
         <section>
           <article style={styles.body}>
-            <LoginRequired page="/account">
-              <Account slug={"/"+props['*']}/>
-            </LoginRequired>
+            <Account slug={"/"+props['*']}/>
           </article>
         </section>
         { mobile ? null : (
@@ -47,4 +44,4 @@ const AccountPage = props => {
   );
 }
 
-export default AccountPage;
+export default LogoutPage;

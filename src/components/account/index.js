@@ -9,6 +9,9 @@ import AccountBio from "./bio";
 import AccountLanguage from "./language";
 import AccountUnits from "./units";
 import AccountSocial from "./social";
+import AccountEmail from "./email";
+import AccountUsername from "./username";
+import AccountPassword from "./password";
 
 const Account = props => {
   const app = useContext(AppContext);
@@ -60,6 +63,21 @@ const Account = props => {
     title = "account.twitter";
     crumbs = [crumbLib.account, crumbLib.settings];
     main = <AccountSocial type='twitter'/>
+  }
+  else if (props.slug === "/account/settings/email") {
+    title = "account.email";
+    crumbs = [crumbLib.account, crumbLib.settings];
+    main = <AccountEmail />
+  }
+  else if (props.slug === "/account/settings/username") {
+    title = "account.username";
+    crumbs = [crumbLib.account, crumbLib.settings];
+    main = <AccountUsername />
+  }
+  else if (props.slug === "/account/settings/password") {
+    title = "account.password";
+    crumbs = [crumbLib.account, crumbLib.settings];
+    main = <AccountPassword />
   }
   let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id={title} />} />
 

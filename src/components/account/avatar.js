@@ -63,19 +63,31 @@ const AccountAvatar = props => {
           </p>
         </div>
       </div>
-      { img ? <p style={{textAlign: "right"}}>
+      <p style={{textAlign: "right"}}>
         <Button
           size="large"
-          variant="contained"
+          variant="outlined"
           color="primary"
-          onClick={() => app.backend.saveAccount(
-            {avatar: img},
-            app.frontend.intl.formatMessage({id: "account.avatar"})
-          )}
+          href="/account/settings"
         >
-          <FormattedMessage id="app.save" />
+          <FormattedMessage id="app.cancel" />
         </Button>
-      </p> : null }
+        { img
+          ? <Button
+              style={{marginLeft: '1rem'}}
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={() => app.backend.saveAccount(
+                {avatar: img},
+                app.frontend.intl.formatMessage({id: "account.avatar"})
+              )}
+            >
+              <FormattedMessage id="app.save" />
+            </Button>
+          : null
+        }
+      </p>
     </React.Fragment>
   );
 };

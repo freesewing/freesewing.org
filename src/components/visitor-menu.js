@@ -3,35 +3,15 @@ import Icon from "@material-ui/icons/KeyboardArrowRight";
 import { FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 
-const UserMenu = props => {
+const VisitorMenu = props => {
   const links = [
     {
-      to: "/pattern",
-      title: "app.newPattern"
+      to: "/login",
+      title: "app.logIn"
     },
     {
-      to: "/model",
-      title: "app.newModel"
-    },
-    {
-      to: "/models",
-      title: "app.models"
-    },
-    {
-      to: "/recipes",
-      title: "app.recipes"
-    },
-    {
-      to: "/user/"+props.username,
-      title: "app.profile"
-    },
-    {
-      to: "/account/settings",
-      title: "app.settings"
-    },
-    {
-      to: "/logout",
-      title: "app.logOut"
+      to: "/signup",
+      title: "app.signUp"
     },
   ];
   return (
@@ -48,5 +28,5 @@ const UserMenu = props => {
   );
 }
 
-export default UserMenu;
+export default VisitorMenu;
 

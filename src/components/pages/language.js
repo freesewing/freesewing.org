@@ -2,7 +2,7 @@ import React from "react"
 import Robot from "@freesewing/components/Robot";
 import Blockquote from "@freesewing/components/Blockquote";
 
-const SearchPage = ({ app }) => {
+const LanguagePage = ({ app }) => {
 
   const styles = {
     wrapper: {
@@ -27,8 +27,8 @@ const SearchPage = ({ app }) => {
     <div style={styles.wrapper}>
       <div style={styles.note}>
         <Blockquote type="note">
-          <p>Unfortunately, search is still under construction.</p>
-          <p>If you'd like to help us build this search page,
+          <p>Unfortunately, our website is currently only available in English.</p>
+          <p>If you'd like to help us translate our site to other languages,
           please <a href="https://gitter.im/freesewing/freesewing">get in touch</a>.</p>
         </Blockquote>
       </div>
@@ -38,4 +38,4 @@ const SearchPage = ({ app }) => {
     </div>
   );
 }
-export default SearchPage;
+export default LanguagePage;

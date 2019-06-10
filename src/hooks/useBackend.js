@@ -63,9 +63,39 @@ function useBackend(props) {
       });
     };
 
+  const isUsernameAvailable = (username, setResult) => {
+    backend
+      .availableUsername({ username }, token)
+      .then(res => {
+        if (res.status === 200) setResult(true);
+        else setResult(false);
+      })
+      .catch(err => setResult(false));
+  };
+
+  const logout = username => {
+    props.startLoading();
+    props.updateStorageData(null, "account");
+    props.updateStorageData(null, "models");
+    props.updateStorageData(null, "recipes");
+    props.updateStorageData(null, "token");
+    props.stopLoading();
+    props.showNotification(
+      "success",
+      props.intl.formatMessage(
+        { id: "app.seeYouLaterUser" },
+        { user: username }
+      )
+    );
+    navigate("/", {replace: true});
+  }
+
+
   return {
     login,
+    logout,
     saveAccount,
+    isUsernameAvailable,
   }
 
 }

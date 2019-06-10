@@ -39,6 +39,15 @@ const AccountLanguage = props => {
       <p style={{textAlign: "right"}}>
         <Button
           size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          size="large"
+          style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
           onClick={() => app.backend.saveAccount(
