@@ -121,6 +121,11 @@ const App = props => {
       account: app.account.username
       ? { type: "link", href: "/account", text: "app.account" }
       : { type: "link", href: "/login", text: "app.logIn" },
+      signup: {
+        type: "link",
+        href: "/signup",
+        text: "app.signUp"
+      },
       search: {
         type: "link",
         href: "/search",
@@ -141,7 +146,7 @@ const App = props => {
       }
     },
   };
-
+  if (app.account.username)  delete navs.right.signup;
   const styles = {
     menuIcons: {
       margin: "2rem 0 100px 0",

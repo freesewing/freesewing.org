@@ -179,7 +179,7 @@ const getSortTitle = function (mdx) {
     order = mdx.node.node.frontmatter.order;
   if (typeof mdx.node.node.frontmatter.date !== "undefined")
     order = mdx.node.node.frontmatter.date;
-  if (order !== null) title = mdx.node.node.frontmatter.order + title;
+  if (order !== null) title = order + title;
 
   return title;
 }
@@ -210,6 +210,8 @@ const getTopics = function(markdown) {
     }
     let childrenOrder = Object.keys(children);
     childrenOrder.sort();
+    // These are prefixed by date, put newest first
+    if (topic === "blog" || topic === "showcase") childrenOrder.reverse();
     for (let title of childrenOrder) {
       let slug = children[title];
       list[topic].children[slug] = {title: getTitle(markdown[slug])};
