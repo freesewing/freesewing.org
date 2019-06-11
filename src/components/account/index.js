@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 import AppContext from "../../context/app";
 import Breadcrumbs from "../breadcrumbs";
+import LoginRequired from "../login-required";
 import AccountMenu from "./menu";
 import AccountSettings from "./settings";
 import AccountAvatar from "./avatar";
@@ -12,6 +13,9 @@ import AccountSocial from "./social";
 import AccountEmail from "./email";
 import AccountUsername from "./username";
 import AccountPassword from "./password";
+import AccountExport from "./export";
+import AccountConsent from "./consent";
+import AccountRestrict from "./restrict";
 
 const Account = props => {
   const app = useContext(AppContext);
@@ -79,15 +83,30 @@ const Account = props => {
     crumbs = [crumbLib.account, crumbLib.settings];
     main = <AccountPassword />
   }
+  else if (props.slug === "/account/export") {
+    title = "account.exportYourData";
+    crumbs = [crumbLib.account];
+    main = <AccountExport app={app}/>
+  }
+  else if (props.slug === "/account/consent") {
+    title = "account.reviewYourConsent";
+    crumbs = [crumbLib.account];
+    main = <AccountConsent app={app}/>
+  }
+  else if (props.slug === "/account/restrict") {
+    title = "account.restrictProcessingOfYourData";
+    crumbs = [crumbLib.account];
+    main = <AccountRestrict app={app}/>
+  }
   let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id={title} />} />
 
   return (
-    <React.Fragment>
+    <LoginRequired page={props.slug}>
       {theCrumbs}
       <h1><FormattedMessage id={title} /></h1>
       {main}
       {theCrumbs}
-    </React.Fragment>
+    </LoginRequired>
   );
 };
 

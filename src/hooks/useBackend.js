@@ -65,12 +65,58 @@ function useBackend(props) {
 
   const isUsernameAvailable = (username, setResult) => {
     backend
-      .availableUsername({ username }, token)
+      .availableUsername({ username })
       .then(res => {
         if (res.status === 200) setResult(true);
         else setResult(false);
       })
       .catch(err => setResult(false));
+  };
+
+  const signup = (email, password, language, setResult) => {
+    backend
+      .signup(email, password, language)
+      .then(res => {
+        if (res.status === 200) setResult(true);
+        else setResult(false, res.data);
+      })
+      .catch(err => setResult(false, err));
+  };
+
+  const exportAccount = () => {
+    props.startLoading();
+    backend
+      .export(token)
+      .then(res => {
+        props.stopLoading();
+        if (res.status === 200) {
+          if (typeof window !== "undefined") window.location.href = res.data.export;
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
+  const removeAccount = () => {
+    props.startLoading();
+    backend
+      .remove(token)
+      .then(res => {
+        if (res.status === 200) {
+          props.updateStorageData(null, "account");
+          props.updateStorageData(null, "models");
+          props.updateStorageData(null, "recipes");
+          props.updateStorageData(null, "token");
+          props.stopLoading();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              { id: "account.accountRemoved" },
+            )
+          );
+          navigate("/", {replace: true});
+        }
+      })
+      .catch(err => console.log(err));
   };
 
   const logout = username => {
@@ -95,6 +141,9 @@ function useBackend(props) {
     login,
     logout,
     saveAccount,
+    signup,
+    exportAccount,
+    removeAccount,
     isUsernameAvailable,
   }
 

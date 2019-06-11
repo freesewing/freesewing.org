@@ -15,8 +15,10 @@ const pages = {
     "/": "app.home",
     "/language": "account.language",
     "/login": "app.logIn",
+    "/login": "app.logIn",
     "/logout": "app.logOut",
     "/search": "app.search",
+    "/signup": "app.signUp",
   },
   multiple: {
     "/showcase/pattern": {

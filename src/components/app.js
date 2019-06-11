@@ -35,6 +35,7 @@ import LanguagePage from "./pages/language";
 import SearchPage from "./pages/search";
 import LoginPage from "./session/login/";
 import LogoutPage from "./session/logout";
+import SignupPage from "./session/signup/";
 import AccountPage from "./account/";
 import BlogPage from "./templates/blog-index";
 import BlogPostPage from "./templates/blog-post";
@@ -200,6 +201,10 @@ const App = props => {
     noTitle = true;
   }
   else if (slug === "/logout") main = <LogoutPage {...pageProps} />
+  else if (slug === "/signup") {
+    main = <SignupPage {...pageProps} />
+    noTitle = true;
+  }
   else if (slug.slice(0,8) === "/account") {
     main = <AccountPage {...pageProps} />
     noTitle = true;

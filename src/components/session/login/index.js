@@ -1,16 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
-import { injectIntl, FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import LoginForm from "./login-form";
 import ResetPasswordForm from "./reset-password-form";
-import AppContext from "../../../context/app.js";
 import Blockquote from "@freesewing/components/Blockquote";
 
-const Login = props => {
+const Login = ({ app, location }) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [trouble, setTrouble] = useState(false);
-  const app = useContext(AppContext);
 
   const handleLogin = evt => {
     evt.preventDefault();
@@ -18,7 +16,7 @@ const Login = props => {
   }
 
   const formProps = {
-    intl: props.intl,
+    intl: app.frontend.intl,
     username,
     password,
     setUsername,
@@ -29,13 +27,12 @@ const Login = props => {
   }
   let main = <LoginForm  {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
-
   return (
     <React.Fragment>
       <h1><FormattedMessage id={"app." + (trouble ? "troubleLoggingIn" : "logIn")} /></h1>
-    { props.location && props.location.state && props.location.state.intent
+    { location && location.state && location.state.intent
       ? <Blockquote type="note">
-          <FormattedMessage id="app.loginRequiredRedirect" values={{page: props.location.state.intent}}/>
+          <FormattedMessage id="app.loginRequiredRedirect" values={{page: location.state.intent}}/>
         </Blockquote>
       : null
     }
@@ -51,4 +48,4 @@ const Login = props => {
   );
 };
 
-export default injectIntl(Login);
+export default Login;
