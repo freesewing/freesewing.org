@@ -13,6 +13,14 @@ function useBackend(props) {
     if (data.token) props.updateStorageData(data.token, "token");
   }
 
+  const refreshAccount = () => {
+    backend.account(token)
+      .then(res => {
+        if (res.status === 200) saveAccountToStorage(res.data);
+        // FIXME: What if this fails?
+      })
+  }
+
   const login = (username, password) => {
     props.startLoading();
     backend
@@ -103,6 +111,24 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
 
+  const createModel = (model, setResult) => {
+    props.startLoading();
+    backend
+      .createModel(model, token)
+      .then(res => {
+        if (res.status === 200) {
+          props.showNotification(
+            "success",
+            props.intl.formatMessage({ id: "app.created" })
+          );
+          saveAccountToStorage(res.data);
+          navigate("/models/"+res.data.model.handle, {replace: true});
+          refreshAccount();
+        } else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  };
+
   const exportAccount = () => {
     props.startLoading();
     backend
@@ -159,6 +185,7 @@ function useBackend(props) {
 
   return {
     createAccount,
+    createModel,
     exportAccount,
     isUsernameAvailable,
     login,

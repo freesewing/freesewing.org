@@ -19,6 +19,7 @@ const pages = {
     "/logout": "app.logOut",
     "/search": "app.search",
     "/signup": "app.signUp",
+    "/model": "app.newModel",
   },
   multiple: {
     "/showcase/pattern": {
