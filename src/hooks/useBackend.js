@@ -38,7 +38,7 @@ function useBackend(props) {
       });
     };
 
-  const saveAccount = (data, field) => {
+  const saveAccount = (data, field, to = false) => {
     props.startLoading();
     backend
       .saveAccount(data, token)
@@ -53,7 +53,7 @@ function useBackend(props) {
             )
           );
           saveAccountToStorage(res.data);
-          navigate("/account/settings", {replace: true});
+          navigate((to ? to : "/account/settings"), {replace: true});
         }
       })
       .catch(err => {
@@ -65,7 +65,7 @@ function useBackend(props) {
 
   const isUsernameAvailable = (username, setResult) => {
     backend
-      .availableUsername({ username })
+      .availableUsername({ username }, token)
       .then(res => {
         if (res.status === 200) setResult(true);
         else setResult(false);

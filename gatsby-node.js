@@ -30,6 +30,9 @@ const pages = {
     "/confirm": {
       matchPath: "/confirm/*"
     },
+    "/welcome": {
+      matchPath: "/welcome/*"
+    },
   }
 }
 

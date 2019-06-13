@@ -8,7 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 const AccountSocial = props => {
   const app = useContext(AppContext);
-  const [social, setSocial] = useState(app.account.social[props.type] || '');
+  const [social, setSocial] = useState(app.account.social ? app.account.social[props.type] : '');
 
   const updateSocial = evt => setSocial(evt.target.value)
 

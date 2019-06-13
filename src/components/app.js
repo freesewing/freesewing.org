@@ -38,6 +38,7 @@ import LogoutPage from "./session/logout";
 import SignupPage from "./session/signup/";
 import ConfirmPage from "./session/confirm/";
 import AccountPage from "./account/";
+import WelcomePage from "./welcome/";
 import BlogPage from "./templates/blog-index";
 import BlogPostPage from "./templates/blog-post";
 import ShowcasePage from "./templates/showcase-index";
@@ -234,6 +235,11 @@ const App = props => {
   }
   else if (slug.slice(0,8) === "/account") {
     main = <AccountPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
+  else if (slug.slice(0,8) === "/welcome") {
+    main = <WelcomePage {...pageProps} />
     noTitle = true;
     noCrumbs = true;
   }
