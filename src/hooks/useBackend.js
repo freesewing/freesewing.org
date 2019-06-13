@@ -78,9 +78,29 @@ function useBackend(props) {
       .signup(email, password, language)
       .then(res => {
         if (res.status === 200) setResult(true);
-        else setResult(false, res.data);
+        else setResult(false, res);
       })
-      .catch(err => setResult(false, err));
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  };
+
+  const createAccount = (confirmId, consent, setResult) => {
+    props.startLoading();
+    backend
+      .createAccount(confirmId, consent)
+      .then(res => {
+        if (res.status === 200) {
+          props.showNotification(
+            "success",
+            props.intl.formatMessage({ id: "app.accountCreated" }) +
+            " 🙌  " +
+            props.intl.formatMessage({ id: "app.welcomeAboard" }) +
+            " 🎉"
+          );
+          saveAccountToStorage(res.data);
+          navigate("/welcome", {replace: true});
+        } else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
 
   const exportAccount = () => {
@@ -138,13 +158,14 @@ function useBackend(props) {
 
 
   return {
+    createAccount,
+    exportAccount,
+    isUsernameAvailable,
     login,
     logout,
+    removeAccount,
     saveAccount,
     signup,
-    exportAccount,
-    removeAccount,
-    isUsernameAvailable,
   }
 
 }

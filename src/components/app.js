@@ -36,6 +36,7 @@ import SearchPage from "./pages/search";
 import LoginPage from "./session/login/";
 import LogoutPage from "./session/logout";
 import SignupPage from "./session/signup/";
+import ConfirmPage from "./session/confirm/";
 import AccountPage from "./account/";
 import BlogPage from "./templates/blog-index";
 import BlogPostPage from "./templates/blog-post";
@@ -62,6 +63,14 @@ const App = props => {
     setNotification(false);
     props.updateStorageData(null, "notification");
   }
+  const startLoading = () => {
+    setLoading(true);
+    // FIXME: Add time-out for when loading takes too long
+  }
+  const stopLoading = () => {
+    setLoading(false);
+  }
+
   const backend = useBackend({
     intl: props.intl,
     showNotification,
@@ -86,6 +95,8 @@ const App = props => {
     closeNav: () => {
       if (menu) setMenu(false)
     },
+    startLoading,
+    stopLoading,
     mobile,
     tablet,
     intl: props.intl
@@ -126,6 +137,11 @@ const App = props => {
         href: "/signup",
         text: "app.signUp"
       },
+      logout: {
+        type: "link",
+        href: "/logout",
+        text: "app.logOut"
+      },
       search: {
         type: "link",
         href: "/search",
@@ -147,6 +163,7 @@ const App = props => {
     },
   };
   if (app.account.username)  delete navs.right.signup;
+  else  delete navs.right.logout;
   const styles = {
     menuIcons: {
       margin: "2rem 0 100px 0",
@@ -209,6 +226,11 @@ const App = props => {
   else if (slug === "/signup") {
     main = <SignupPage {...pageProps} />
     noTitle = true;
+  }
+  else if (slug === "/confirm") {
+    main = <ConfirmPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
   }
   else if (slug.slice(0,8) === "/account") {
     main = <AccountPage {...pageProps} />

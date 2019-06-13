@@ -27,6 +27,9 @@ const pages = {
     "/account": {
       matchPath: "/account/*"
     },
+    "/confirm": {
+      matchPath: "/confirm/*"
+    },
   }
 }
 

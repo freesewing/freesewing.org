@@ -1,0 +1,43 @@
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import Breadcrumbs from "../../breadcrumbs";
+import SignupConfirmation from "./signup";
+
+const Confirm = props => {
+  const chunks = props.slug.split("/");
+  const confirmationId = chunks.pop();
+  const confirmationType = chunks.pop();
+  const crumbLib = {
+    confirm: {slug: "/confirm", title: <FormattedMessage id="app.pendingConfirmation"/>},
+  }
+
+  let main, title, crumbs;
+  if (confirmationType === "signup") {
+    title = "app.oneMoreThing";
+    crumbs = [crumbLib.confirm];
+    main = <SignupConfirmation app={props.app} confirmationId={confirmationId}/>
+  }
+  else {
+    title = [<FormattedMessage id="errors.404" />];
+    crumbs = [];
+    main = (
+      <React.Fragment>
+        <p><FormattedMessage id="errors.404" /></p>
+        <p><FormattedMessage id="errors.confirmationNotFound" /></p>
+      </React.Fragment>
+    );
+  }
+
+  let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id="app.signUp" />} />
+
+  return (
+    <React.Fragment>
+      {theCrumbs}
+      <h1><FormattedMessage id={title} /></h1>
+      {main}
+      {theCrumbs}
+    </React.Fragment>
+  );
+};
+
+export default Confirm;

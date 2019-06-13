@@ -7,6 +7,7 @@ import successGif from "./success.gif";
 import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
 import { validateEmail, validateTld } from "@freesewing/utils";
+import Blockquote from "@freesewing/components/Blockquote";
 
 const Signup = ({ app, location }) => {
   const [email, setEmail] = useState(null);
@@ -22,7 +23,11 @@ const Signup = ({ app, location }) => {
   }
 
   const handleResult = (backendResult, data = false) => {
-    if (!backendResult) console.log(data);
+    if (!backendResult) {
+      let msg = "errors.requestFailedWithStatusCode500";
+      if (data.data === "userExists") msg = "errors.emailExists";
+      setError(<FormattedMessage id={msg} />);
+    }
     setResult(backendResult);
   }
 
@@ -55,6 +60,10 @@ const Signup = ({ app, location }) => {
   const form = (
     <form onSubmit={handleSignup} style={styles.wrapper}>
       <h1><FormattedMessage id="app.signUp" /></h1>
+      { (!result && error)
+        ? <Blockquote type="warning">{error}</Blockquote>
+        : null
+      }
       <h6>
         <FormattedMessage id="app.enterEmailPickPassword" />
       </h6>
