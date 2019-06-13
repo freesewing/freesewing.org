@@ -199,6 +199,7 @@ const App = props => {
     order={props.pageContext.topicsOrder}
     topic={props.pageContext.topic}
     toc={toc}
+    app={app}
   />];
   if (app.account.username) mainMenu.push(<UserMenu />);
   else mainMenu.push(<VisitorMenu />);

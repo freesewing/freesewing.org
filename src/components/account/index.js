@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Breadcrumbs from "../breadcrumbs";
 import LoginRequired from "../login-required";
 import AccountMenu from "./menu";
@@ -18,11 +17,9 @@ import AccountConsent from "./consent";
 import AccountRestrict from "./restrict";
 
 const Account = props => {
-  const app = useContext(AppContext);
-
   let title = "app.account";
   let crumbs = [];
-  let main = <AccountMenu mobile={app.frontend.mobile} username={app.account.username}/>
+  let main = <AccountMenu mobile={props.app.frontend.mobile} username={props.app.account.username}/>
   let crumbLib = {
     account: {slug: "/account", title: <FormattedMessage id="app.account"/>},
     settings: {slug: "/account/settings", title: <FormattedMessage id="app.settings"/>},
@@ -86,17 +83,17 @@ const Account = props => {
   else if (props.slug === "/account/export") {
     title = "account.exportYourData";
     crumbs = [crumbLib.account];
-    main = <AccountExport app={app}/>
+    main = <AccountExport app={props.app}/>
   }
   else if (props.slug === "/account/consent") {
     title = "account.reviewYourConsent";
     crumbs = [crumbLib.account];
-    main = <AccountConsent app={app}/>
+    main = <AccountConsent app={props.app}/>
   }
   else if (props.slug === "/account/restrict") {
     title = "account.restrictProcessingOfYourData";
     crumbs = [crumbLib.account];
-    main = <AccountRestrict app={app}/>
+    main = <AccountRestrict app={props.app}/>
   }
   let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id={title} />} />
 

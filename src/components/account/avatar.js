@@ -1,13 +1,11 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback } from 'react'
 import {useDropzone} from 'react-dropzone'
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 
 const AccountAvatar = props => {
   const [img, setImg] = useState(false);
-  const app = useContext(AppContext);
   const onDrop = useCallback(acceptedFiles => {
     const reader = new FileReader()
       reader.onload = () => {
@@ -36,7 +34,7 @@ const AccountAvatar = props => {
     },
   }
 
-  if (app.frontend.mobile) {
+  if (props.app.frontend.mobile) {
     styles.avatar.width = "100%";
     styles.dropzone.width = "100%";
     styles.dropzone.marginTop = "2rem";
@@ -49,7 +47,7 @@ const AccountAvatar = props => {
         <FormattedMessage id="account.avatarInfo" />
       </Blockquote>
       <div style={styles.wrapper}>
-        <img alt="avatar" src={img || app.account.pictureUris.m} style={styles.avatar} className="shadow"/>
+        <img alt="avatar" src={img || props.app.account.pictureUris.m} style={styles.avatar} className="shadow"/>
         <div {...getRootProps()} style={styles.dropzone}>
           <input {...getInputProps()} />
           <p><FormattedMessage id="app.dragAndDropImageHere" /></p>
@@ -78,9 +76,9 @@ const AccountAvatar = props => {
               size="large"
               variant="contained"
               color="primary"
-              onClick={() => app.backend.saveAccount(
+              onClick={() => props.app.backend.saveAccount(
                 {avatar: img},
-                app.frontend.intl.formatMessage({id: "account.avatar"})
+                props.app.frontend.intl.formatMessage({id: "account.avatar"})
               )}
             >
               <FormattedMessage id="app.save" />

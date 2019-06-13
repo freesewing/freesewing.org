@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 const AccountPassword = props => {
-  const app = useContext(AppContext);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [currentReveal, setCurrentReveal] = useState(false);
@@ -24,7 +22,7 @@ const AccountPassword = props => {
             <TextField
               id="currentPassword"
               fullWidth={true}
-              label={app.frontend.intl.formatMessage({ id: "account.currentPassword"})}
+              label={props.app.frontend.intl.formatMessage({ id: "account.currentPassword"})}
               margin="normal"
               variant="outlined"
               value={currentPassword}
@@ -46,7 +44,7 @@ const AccountPassword = props => {
             <TextField
               id="newPassword"
               fullWidth={true}
-              label={app.frontend.intl.formatMessage({ id: "account.newPassword" })}
+              label={props.app.frontend.intl.formatMessage({ id: "account.newPassword" })}
               margin="normal"
               variant="outlined"
               value={newPassword}
@@ -79,9 +77,9 @@ const AccountPassword = props => {
           style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
-          onClick={() => app.backend.saveAccount(
+          onClick={() => props.app.backend.saveAccount(
             { currentPassword, newPassword },
-            app.frontend.intl.formatMessage({id: "account.password"})
+            props.app.frontend.intl.formatMessage({id: "account.password"})
           )}
         >
           <FormattedMessage id="app.save" />

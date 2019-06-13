@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app.js";
 import Button from "@material-ui/core/Button";
 import Robot from "@freesewing/components/Robot";
 
 const Logout = props => {
-  const app = useContext(AppContext);
 
   const styles = {
     wrapper: {
@@ -27,7 +25,7 @@ const Logout = props => {
             color="primary"
             size="large"
             fullWidth
-            onClick={() => app.backend.logout(app.account.username)}
+            onClick={() => props.app.backend.logout(props.app.account.username)}
           >
             <FormattedMessage id="app.logOut" />
           </Button>

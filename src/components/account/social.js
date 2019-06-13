@@ -1,23 +1,21 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 const AccountSocial = props => {
-  const app = useContext(AppContext);
-  const [social, setSocial] = useState(app.account.social ? app.account.social[props.type] : '');
+  const [social, setSocial] = useState(props.app.account.social ? props.app.account.social[props.type] : '');
 
   const updateSocial = evt => setSocial(evt.target.value)
 
   const saveSocial = () => {
     let data = {social: {}};
     data.social[props.type] = social;
-    app.backend.saveAccount(
+    props.app.backend.saveAccount(
       data,
-      app.frontend.intl.formatMessage({id: "account."+props.type})
+      props.app.frontend.intl.formatMessage({id: "account."+props.type})
     )
   }
 
@@ -29,7 +27,7 @@ const AccountSocial = props => {
             <TextField
               id="social"
               fullWidth={true}
-              label={app.frontend.intl.formatMessage({ id: "account." + props.type })}
+              label={props.app.frontend.intl.formatMessage({ id: "account." + props.type })}
               margin="normal"
               variant="outlined"
               value={social}

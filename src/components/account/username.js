@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -9,14 +8,13 @@ import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
 
 const AccountUsername = props => {
-  const app = useContext(AppContext);
-  const [username, setUsername] = useState(app.account.username || '');
+  const [username, setUsername] = useState(props.app.account.username || '');
   const [usernameValid, setUsernameValid] = useState(true);
 
   const updateUsername = evt => {
     let value = evt.target.value;
     setUsername(value);
-    app.backend.isUsernameAvailable(value, setUsernameValid);
+    props.app.backend.isUsernameAvailable(value, setUsernameValid);
   }
 
   return (
@@ -27,7 +25,7 @@ const AccountUsername = props => {
       <TextField
         id="username"
         fullWidth={true}
-        label={app.frontend.intl.formatMessage({ id: "account.username"})}
+        label={props.app.frontend.intl.formatMessage({ id: "account.username"})}
         margin="normal"
         variant="outlined"
         value={username}
@@ -58,9 +56,9 @@ const AccountUsername = props => {
           style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
-          onClick={() => app.backend.saveAccount(
+          onClick={() => props.app.backend.saveAccount(
             {username: username},
-            app.frontend.intl.formatMessage({id: "account.username"})
+            props.app.frontend.intl.formatMessage({id: "account.username"})
           )}
         >
           <FormattedMessage id="app.save" />

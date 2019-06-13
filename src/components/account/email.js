@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -10,8 +9,7 @@ import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
 
 const AccountEmail = props => {
-  const app = useContext(AppContext);
-  const [email, setEmail] = useState(app.account.email || '');
+  const [email, setEmail] = useState(props.app.account.email || '');
   const [emailValid, setEmailValid] = useState(true);
 
   const updateEmail = evt => {
@@ -29,7 +27,7 @@ const AccountEmail = props => {
       <TextField
         id="email"
         fullWidth={true}
-        label={app.frontend.intl.formatMessage({ id: "account.email"})}
+        label={props.app.frontend.intl.formatMessage({ id: "account.email"})}
         margin="normal"
         variant="outlined"
         value={email}
@@ -60,9 +58,9 @@ const AccountEmail = props => {
           style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
-          onClick={() => app.backend.saveAccount(
+          onClick={() => props.app.backend.saveAccount(
             {email: email},
-            app.frontend.intl.formatMessage({id: "account.email"})
+            props.app.frontend.intl.formatMessage({id: "account.email"})
           )}
         >
           <FormattedMessage id="app.save" />

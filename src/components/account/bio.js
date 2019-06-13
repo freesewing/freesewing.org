@@ -1,14 +1,12 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from "react-intl";
-import AppContext from "../../context/app";
 import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Markdown from "react-markdown";
 
 const AccountBio = props => {
-  const app = useContext(AppContext);
-  const [bio, setBio] = useState(app.account.bio || '');
+  const [bio, setBio] = useState(props.app.account.bio || '');
 
   const updateBio = evt => setBio(evt.target.value)
 
@@ -31,7 +29,7 @@ const AccountBio = props => {
         rows="4"
         rowsMax="12"
         fullWidth={true}
-        label={app.frontend.intl.formatMessage({ id: "account.bio" })}
+        label={props.app.frontend.intl.formatMessage({ id: "account.bio" })}
         margin="normal"
         variant="outlined"
         value={bio}
@@ -51,9 +49,9 @@ const AccountBio = props => {
           style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
-          onClick={() => app.backend.saveAccount(
+          onClick={() => props.app.backend.saveAccount(
             {bio: bio},
-            app.frontend.intl.formatMessage({id: "account.bio"})
+            props.app.frontend.intl.formatMessage({id: "account.bio"})
           )}
         >
           <FormattedMessage id="app.save" />

@@ -11,7 +11,6 @@ import Username from "./username";
 import Avatar from "./avatar";
 import Bio from "./bio";
 import Social from "./social";
-import { navigate } from "gatsby";
 
 const Welcome = ({ slug, app }) => {
 
