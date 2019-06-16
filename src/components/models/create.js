@@ -11,7 +11,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 
 const CreateModel = props => {
-  const [units, setUnits] = useState(props.app.account.settings.units);
+  const [units, setUnits] = useState(props.app.account
+    ? props.app.account.settings
+      ? props.app.account.settings.units || "metric"
+      : "metric"
+    : "metric"
+  );
   const [name, setName] = useState('');
   const [breasts, setBreasts] = useState("false");
   const [help, setHelp] = useState(false);
