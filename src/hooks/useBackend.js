@@ -71,6 +71,31 @@ function useBackend(props) {
       });
     };
 
+  const saveModel = (handle, data, field, to = false) => {
+    props.startLoading();
+    backend
+      .saveModel(handle, data, token)
+      .then(res => {
+        if (res.status === 200) {
+          props.stopLoading();
+          refreshAccount();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              { id: "app.fieldSaved" },
+              { field: field }
+            )
+          );
+          if (to) navigate(to);
+        }
+      })
+      .catch(err => {
+        props.stopLoading();
+        console.log(err);
+        props.showNotification("error", err);
+      });
+    };
+
   const isUsernameAvailable = (username, setResult) => {
     backend
       .availableUsername({ username }, token)
@@ -192,6 +217,7 @@ function useBackend(props) {
     logout,
     removeAccount,
     saveAccount,
+    saveModel,
     signup,
   }
 

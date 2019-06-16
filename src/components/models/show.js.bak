@@ -1,0 +1,168 @@
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import SettingsIcon from "@material-ui/icons/Tune";
+import MeasurementsIcon from "@material-ui/icons/Straighten";
+import RemoveIcon from "@material-ui/icons/DeleteForever";
+import ExportIcon from "@material-ui/icons/CloudDownload";
+import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "gatsby";
+import IconButton from "@material-ui/core/IconButton";
+// build, create, tune,
+const CreateModel = ({ app, model }) => {
+  const styles = {
+    wrapper: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+    },
+    box: {
+      textAlign: "center",
+      padding: "0",
+      borderRadius: "6px",
+      marginBottom: "1.5rem",
+      color: "#fffd",
+    },
+    icon: {
+      fontSize: "100px",
+      display: "block",
+      paddingBottom: "1rem",
+      margin: "auto",
+    },
+    heading: {
+      margin: 0,
+      padding: "1rem 0 0 0",
+    },
+    link: {
+      color: "#fffd",
+      textDecoration: "none",
+    },
+    table: {
+      padding: 0,
+      borderCollapse: "collapse",
+      width: "100%"
+    },
+    cell: {
+      padding: "1rem",
+      borderTop: "1px solid #9993",
+      verticalAlign: "top",
+    },
+    buttonCell: {
+      padding: 0,
+      borderTop: "1px solid #9993",
+      verticalAlign: "middle",
+    },
+    question: {
+      textAlign: "right",
+      fontWeight: "bold",
+    },
+    icon: {
+      fontSize: "1.5rem"
+    },
+    iconButton: {
+    }
+  }
+  styles.box2 = {
+    ...styles.box,
+    width: "calc(50% - 0.5rem)"
+  }
+  styles.box3 = {
+    ...styles.box,
+    width: "calc(33.33% - 0.5rem)"
+  }
+
+  let addTiles = [
+    {
+      to: "/models/"+model+"/measurements",
+      icon: <MeasurementsIcon fontSize="inherit" style={styles.icon}/>,
+      title: "app.measurements",
+      style: { backgroundColor: "#37b24d" }
+
+    },
+    {
+      to: "/models/"+model+"/settings",
+      icon: <SettingsIcon fontSize="inherit" style={styles.icon}/>,
+      title: "app.settings",
+      style: { backgroundColor: "#7048e8" }
+
+    },
+    {
+      to: "/models/"+model+"/export",
+      icon: <ExportIcon fontSize="inherit" style={styles.icon}/>,
+      title: "app.export",
+      style: { backgroundColor: "#1c7ed6" }
+    },
+    {
+      to: "/models/"+model+"/remove",
+      icon: <RemoveIcon fontSize="inherit" style={styles.icon}/>,
+      title: "app.remove",
+      style: { backgroundColor: "#e03131" }
+
+    },
+  ]
+
+
+  return (
+    <React.Fragment>
+    <table style={styles.table} className="font-title">
+      <tr style={styles.row}>
+        <td style={{...styles.cell, ...styles.question}}>
+          <FormattedMessage id="app.chest" />
+        </td>
+        <td style={styles.cell}>
+          <FormattedMessage id={"app.with" + (app.models[model].breasts ? "" : "out") + "Breasts"} />
+        </td>
+        <td style={styles.buttonCell}>
+          <IconButton
+            color="primary"
+            style={styles.iconButton}
+            size="medium"
+            onClick={() => app.backend.saveModel(
+              model,
+              {breasts: (app.models[model].breasts ? "false" : "true")},
+              app.frontend.intl.formatMessage({id: "app.chest"})
+            )}
+          >
+            <EditIcon fontSize="inherit" style={styles.icon}/>
+          </IconButton>
+        </td>
+      </tr>
+      <tr style={styles.row}>
+        <td style={{...styles.cell, ...styles.question}}>
+          <FormattedMessage id="account.units" />
+        </td>
+        <td style={styles.cell}>
+          <FormattedMessage id={"app." + app.models[model].units + "Units"} />
+        </td>
+        <td style={styles.buttonCell}>
+          <IconButton
+            color="primary"
+            style={styles.iconButton}
+            size="medium"
+            onClick={() => app.backend.saveModel(
+              model,
+              {units: (app.models[model].units === "metric" ? "imperial" : "metric")},
+              app.frontend.intl.formatMessage({id: "account.units"})
+            )}
+          >
+            <EditIcon fontSize="inherit" style={styles.icon}/>
+          </IconButton>
+        </td>
+      </tr>
+    </table>
+      <div style={styles.wrapper}>
+        {addTiles.map( tile => (
+          <div style={{...styles.box2, ...tile.style}} className="shadow">
+            <Link to={tile.to} style={styles.link}>
+              <h4 style={styles.heading}><FormattedMessage id={tile.title} /></h4>
+              {tile.icon}
+            </Link>
+          </div>
+        ))}
+      </div>
+    <pre>{JSON.stringify(app.models[model], null, 2)}</pre>
+    </React.Fragment>
+  );
+}
+
+export default CreateModel;

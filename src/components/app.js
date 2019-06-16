@@ -46,6 +46,7 @@ import ShowcaseCategoryPage from "./templates/showcase-category";
 import ShowcasePostPage from "./templates/showcase-post";
 import DocumentationPage from "./templates/docs";
 import CreateModelPage from "./models/create";
+import ModelsPage from "./models/";
 
 /* This component is the root component for all pages */
 
@@ -246,6 +247,11 @@ const App = props => {
     noCrumbs = true;
   }
   else if (slug === "/model") main = <CreateModelPage {...pageProps} />
+  else if (slug.slice(0,7) === "/models") {
+    main = <ModelsPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
   else if (slug === "/blog") main = <BlogPage {...pageProps} />
   else if (slug.slice(0,6) === "/blog/") {
     main = <BlogPostPage {...pageProps} />
