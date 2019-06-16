@@ -152,7 +152,7 @@ const HomePage = ({ app }) => {
                 <br />
                 <small>
                   <small>
-                    * <FormattedMessage id="app.averagePeopleDontExist" />
+                    * <FormattedMessage id="app.averagePeopleDoNotExist" />
                   </small>
                 </small>
               </h2>
