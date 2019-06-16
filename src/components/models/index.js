@@ -4,8 +4,6 @@ import Breadcrumbs from "../breadcrumbs";
 import LoginRequired from "../login-required";
 import ModelList from "./list";
 import ModelPage from "./show";
-//import ModelEdit from "./edit";
-import Avatar from "../avatar";
 import EditNamePage from "./edit-name";
 import EditMeasurementPage from "./edit-measurement";
 

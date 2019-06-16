@@ -22,7 +22,6 @@ const MeasurementImages = props => {
     "naturalWaistToUnderbust",
     "underbust"
   ];
-  let bewbs = (breastsOnly.indexOf(props.measurement) === -1) ? false : true;
 
   const bg = "/model-"
     + ((tab === 0) ? '' : 'no')

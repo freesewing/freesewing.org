@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-//import SettingsIcon from "@material-ui/icons/Tune";
-//import MeasurementsIcon from "@material-ui/icons/Straighten";
-//import RemoveIcon from "@material-ui/icons/DeleteForever";
-//import ExportIcon from "@material-ui/icons/CloudDownload";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
-//import { Link } from "gatsby";
 import IconButton from "@material-ui/core/IconButton";
 import { measurements as allMeasurements } from "@freesewing/models";
 import { formatMm } from "@freesewing/utils";
 
 const ShowModel = ({ app, model }) => {
-  const [modal, setModal] = useState(false);
-
   const styles = {
     table: {
       padding: 0,
@@ -213,6 +206,7 @@ const ShowModel = ({ app, model }) => {
                 Object.keys(app.models[model].measurements).map( m => {
                   let value = app.models[model].measurements[m];
                   if (value !== null) return measurementRow(m, value)
+                  else return null;
                 }),
                 remainingMeasurements().map( m => measurementRow(m)),
               ]

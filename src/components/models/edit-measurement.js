@@ -3,17 +3,13 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
-import { FormattedHTMLMessage, FormattedMessage } from "react-intl";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
 import { measurementAsMm } from "@freesewing/utils";
 import { formatMm } from "@freesewing/utils";
 import { useStaticQuery, graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
-import MeasurementsImage from "../measurements/image";
 import MeasurementsImages from "../measurements/images";
 
 const EditMeasurement = props => {
@@ -48,7 +44,6 @@ const EditMeasurement = props => {
   );
 
   const units = props.app.models[props.model].units;
-  const data = { measurements: {} }
 
   const updateMeasurement = evt => {
     let value = evt.target.value;
