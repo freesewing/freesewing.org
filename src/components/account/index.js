@@ -28,57 +28,57 @@ const Account = props => {
   if (props.slug === "/account/settings") {
     title = "app.settings";
     crumbs = [crumbLib.account];
-    main = <AccountSettings />
+    main = <AccountSettings app={props.app} />
   }
   else if (props.slug === "/account/settings/avatar") {
     title = "account.avatar";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountAvatar />
+    main = <AccountAvatar app={props.app} />
   }
   else if (props.slug === "/account/settings/bio") {
     title = "account.bio";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountBio />
+    main = <AccountBio  app={props.app} />
   }
   else if (props.slug === "/account/settings/language") {
     title = "account.language";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountLanguage />
+    main = <AccountLanguage  app={props.app} />
   }
   else if (props.slug === "/account/settings/units") {
     title = "account.units";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountUnits />
+    main = <AccountUnits  app={props.app} />
   }
   else if (props.slug === "/account/settings/github") {
     title = "account.github";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='github'/>
+    main = <AccountSocial type='github' app={props.app} />
   }
   else if (props.slug === "/account/settings/instagram") {
     title = "account.instagram";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='instagram'/>
+    main = <AccountSocial type='instagram' app={props.app} />
   }
   else if (props.slug === "/account/settings/twitter") {
     title = "account.twitter";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='twitter'/>
+    main = <AccountSocial type='twitter' app={props.app} />
   }
   else if (props.slug === "/account/settings/email") {
     title = "account.email";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountEmail />
+    main = <AccountEmail app={props.app}  />
   }
   else if (props.slug === "/account/settings/username") {
     title = "account.username";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountUsername />
+    main = <AccountUsername  app={props.app} />
   }
   else if (props.slug === "/account/settings/password") {
     title = "account.password";
     crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountPassword />
+    main = <AccountPassword  app={props.app} />
   }
   else if (props.slug === "/account/export") {
     title = "account.exportYourData";
