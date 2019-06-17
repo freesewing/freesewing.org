@@ -5,9 +5,10 @@ import LoginRequired from "../login-required";
 import ModelList from "./list";
 import ModelPage from "./show";
 import EditNamePage from "./edit-name";
+import EditNotesPage from "./edit-notes";
 import EditMeasurementPage from "./edit-measurement";
 
-const CreateModel = props => {
+const ModelIndex = props => {
   let title = "app.models";
   let crumbs = [];
   let main = <ModelList app={props.app} />
@@ -25,9 +26,15 @@ const CreateModel = props => {
       main = <ModelPage model={model} app={props.app} />
     }
     else if (chunks.length === 4) {
-      title = <FormattedMessage id="app.name" />
-      crumbs = [modelsCrumb, {slug: "/models/"+model, title: props.app.models[model].name}];
-      main = <EditNamePage model={model} app={props.app} />
+      if (chunks[3] === "name") {
+        title = <FormattedMessage id="app.name" />
+        crumbs = [modelsCrumb, {slug: "/models/"+model, title: props.app.models[model].name}];
+        main = <EditNamePage model={model} app={props.app} />
+      } else {
+        title = <FormattedMessage id="app.notes" />
+        crumbs = [modelsCrumb, {slug: "/models/"+model, title: props.app.models[model].name}];
+        main = <EditNotesPage model={model} app={props.app} />
+      }
     }
     else if (chunks.length === 5) {
       let measurement = chunks[4];
@@ -48,4 +55,4 @@ const CreateModel = props => {
   );
 }
 
-export default CreateModel;
+export default ModelIndex;

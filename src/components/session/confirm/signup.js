@@ -23,7 +23,7 @@ const AccountConsent = ({ app, confirmationId }) => {
   }
 
   const setResult = (one, two) => {
-    console.log('set result', one, two);
+    console.log('FIXME: Handle result', one, two);
   }
 
   const styles = {

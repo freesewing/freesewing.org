@@ -73,7 +73,6 @@ const EditMeasurement = props => {
 	for (let node of Object.values(mdx.allMdx.edges)) {
 		let m = node.node.parent.relativeDirectory.split("/").pop();
 		if (m === props.measurement.toLowerCase()) docs = node.node.code.body;
-		else console.log(m, 'does not equal', props.measurement);
 	}
 
 	return (

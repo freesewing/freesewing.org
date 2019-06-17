@@ -5,18 +5,29 @@ import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
 import { measurements as allMeasurements } from "@freesewing/models";
 import { formatMm } from "@freesewing/utils";
+import Avatar from "../avatar";
+import Markdown from "react-markdown";
 
 const ShowModel = ({ app, model }) => {
   const styles = {
+    avatarWrapper: {
+      width: "250px",
+      height: "250px",
+      margin: "auto",
+    },
     table: {
       padding: 0,
       borderCollapse: "collapse",
-      width: "100%"
+      width: "100%",
+      tableLayout: "fixed",
+      whiteSpace: "nowrap",
     },
     cell: {
       padding: "1rem",
       borderTop: "1px solid #9993",
       verticalAlign: "top",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     buttonCell: {
       padding: 0,
@@ -29,6 +40,8 @@ const ShowModel = ({ app, model }) => {
       verticalAlign: "top",
       textAlign: "right",
       fontWeight: "bold",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     icon: {
       fontSize: "1.5rem"
@@ -43,9 +56,13 @@ const ShowModel = ({ app, model }) => {
     },
     heading: {
       margin: 0,
-      padding: "1rem 0",
-      textAlign: "right",
+      padding: "1rem",
     }
+  }
+
+  if (app.frontend.mobile) {
+    styles.table.margin = "0 -1.5rem";
+    styles.table.width = "calc(100% + 3rem)";
   }
 
   const sortMeasurements = measurements => {
@@ -90,7 +107,7 @@ const ShowModel = ({ app, model }) => {
     }
 
     return (
-      <tr>
+      <tr className="hover">
         <td style={{...styles.title, ...missing}}>
           <FormattedMessage id={"measurements."+name} />
         </td>
@@ -120,8 +137,49 @@ const ShowModel = ({ app, model }) => {
 
   return (
     <React.Fragment>
+      <div style={styles.avatarWrapper}>
+        <Avatar data={app.models[model]} />
+      </div>
+      { (typeof app.models[model].notes === "undefined" || app.models[model].notes === '')
+        ? (
+          <h5 style={styles.heading}>
+            <span style={{opacity: "0.5"}}>
+              <FormattedMessage id="app.notes" />
+            </span>
+            <IconButton
+              color="primary"
+              style={styles.iconButton}
+              size="medium"
+              href={"/models/"+model+"/notes"}
+            >
+              <AddIcon fontSize="inherit" style={styles.icon}/>
+            </IconButton>
+          </h5>
+        ) : (
+          <React.Fragment>
+          <h5 style={styles.heading}>
+            <FormattedMessage id="app.notes" />
+          </h5>
+          <Markdown source={app.models[model].notes || ''} />
+          <p style={{textAlign: "right"}}>
+            <IconButton
+              color="primary"
+              style={styles.iconButton}
+              size="medium"
+              href={"/models/"+model+"/notes"}
+            >
+              <EditIcon fontSize="inherit" style={styles.icon}/>
+            </IconButton>
+          </p>
+          </React.Fragment>
+        )}
       <table style={styles.table} className="font-title">
         <tbody>
+          <tr>
+            <td style={{width: "225px"}}>&nbsp;</td>
+            <td style={{width: "100%"}}>&nbsp;</td>
+            <td style={{width: "48px"}}>&nbsp;</td>
+          </tr>
           <tr>
             <td>
               <h5 style={styles.heading}><FormattedMessage id="app.settings" /></h5>
@@ -129,7 +187,7 @@ const ShowModel = ({ app, model }) => {
             <td colspan="2">&nbsp;</td>
           </tr>
           {/* name */}
-          <tr>
+          <tr className="hover">
             <td style={styles.title}>
               <FormattedMessage id="app.name" />
             </td>
@@ -148,7 +206,7 @@ const ShowModel = ({ app, model }) => {
             </td>
           </tr>
           {/* chest */}
-          <tr>
+          <tr className="hover">
             <td style={styles.title}>
               <FormattedMessage id="app.chest" />
             </td>
@@ -171,7 +229,7 @@ const ShowModel = ({ app, model }) => {
             </td>
           </tr>
           {/* units */}
-          <tr>
+          <tr className="hover">
             <td style={styles.title}>
               <FormattedMessage id="account.units" />
             </td>

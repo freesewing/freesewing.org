@@ -6,7 +6,7 @@ import InvalidIcon from "@material-ui/icons/Warning";
 import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
 
-const CreateModel = props => {
+const EditName = props => {
   const [name, setName] = useState(props.app.models[props.model].name);
 
   const updateName = evt => setName(evt.target.value);
@@ -53,4 +53,4 @@ const CreateModel = props => {
   );
 }
 
-export default CreateModel;
+export default EditName;
