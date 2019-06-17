@@ -66,7 +66,7 @@ const TopicsToc = props => {
           typeof props.topicsToc[topic].children[childSlug].children !== "undefined" &&
           Object.keys(props.topicsToc[topic].children[childSlug].children).length > 0
         ) childIcon = <CollapsedIcon fontSize="inherit" style={childIconStyle}/>
-
+        if (childSlug === props.page) childClass = 'active';
         children.push(<li key={childSlug} className={childClass}>
           <Link to={childSlug}>
             {childIcon}
@@ -90,6 +90,7 @@ const TopicsToc = props => {
         </Link>
       { props.slug.split("/").length === 2
         && props.topic === topic
+        && props.toc
         && props.toc.items
         && props.toc.items.length > 0
         ? <ul className="topics l1"><li>{tocComponent}</li></ul>

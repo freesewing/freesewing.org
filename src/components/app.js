@@ -194,18 +194,31 @@ const App = props => {
   if (typeof props.pageContext.node !== "undefined")
     toc = props.pageContext.node.tableOfContents;
 
+  let topics = props.pageContext.topics;
+  let topicsToc = props.pageContext.topicsToc;
+
+  if (app.account) {
+    if (topics.indexOf('models') === -1) topics.push('models');
+    topicsToc.models = {
+      title: props.intl.formatMessage({id: "app.models"}),
+      children: {}
+    }
+    for (let m in app.models) {
+      topicsToc.models.children["/models/"+m] = {
+        title: app.models[m].name
+      }
+    }
+  }
   const mainMenu = [<TopicsToc
+    page={"/"+props['*']}
     slug={slug}
-    topicsToc={props.pageContext.topicsToc}
+    topicsToc={topicsToc}
     topics={props.pageContext.topics}
     order={props.pageContext.topicsOrder}
-    topic={props.pageContext.topic}
+    topic={slug.split("/")[1]}
     toc={toc}
     app={app}
   />];
-  if (app.account.username) mainMenu.push(<UserMenu />);
-  else mainMenu.push(<VisitorMenu />);
-
 
   // Gather props for pages
   const pageProps = {
