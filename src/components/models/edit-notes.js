@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import ValidIcon from "@material-ui/icons/CheckCircle";
-import InvalidIcon from "@material-ui/icons/Warning";
 import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
 import Markdown from "react-markdown";
