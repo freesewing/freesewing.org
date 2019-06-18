@@ -1,7 +1,7 @@
 import React from "react";
 
 const TableOfContents = props => {
-  if (!props.toc.items) return null;
+  if (!props.toc || !props.toc.items) return null;
   const items = [];
   for (let i=0; i < props.toc.items.length; i++) {
     let item = props.toc.items[i];
