@@ -13,27 +13,19 @@ const UserMenu = props => {
       to: "/model",
       title: "app.newModel"
     },
-    {
-      to: "/models",
-      title: "app.models"
-    },
-    {
-      to: "/recipes",
-      title: "app.recipes"
-    },
-    {
-      to: "/user/"+props.username,
-      title: "app.profile"
-    },
-    {
-      to: "/account/settings",
-      title: "app.settings"
-    },
-    {
+  ];
+
+  if (props.mobile) {
+    links.push({
+      to: "/account",
+      title: "app.account"
+    });
+    links.push({
       to: "/logout",
       title: "app.logOut"
-    },
-  ];
+    });
+  }
+
   return (
     <ul className="topics">
       {links.map( link => (

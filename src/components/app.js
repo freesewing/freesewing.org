@@ -197,7 +197,7 @@ const App = props => {
   let topics = props.pageContext.topics;
   let topicsToc = props.pageContext.topicsToc;
 
-  if (app.account) {
+  if (app.account.username) {
     if (topics.indexOf('models') === -1) topics.push('models');
     topicsToc.models = {
       title: props.intl.formatMessage({id: "app.models"}),
@@ -208,6 +208,12 @@ const App = props => {
         title: app.models[m].name
       }
     }
+    if (topics.indexOf('recipes') === -1) topics.push('recipes');
+    topicsToc.recipes = {
+      title: props.intl.formatMessage({id: "app.recipes"}),
+      children: {}
+    }
+    // TODO: Add recipes here
   }
   const mainMenu = [<TopicsToc
     page={"/"+props['*']}
@@ -348,7 +354,7 @@ const App = props => {
           { mobile ? (
             <div className="menu" onClick={app.frontend.closeNav}>
               {mainMenu}
-              { app.account.username ? <UserMenu /> : <VisitorMenu /> }
+              { app.account.username ? <UserMenu mobile={mobile} /> : <VisitorMenu /> }
               <p style={styles.menuIcons}>
                 <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
                 <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>
