@@ -75,6 +75,8 @@ const ShowcaseIndexTemplate = props => {
       textDecoration: "none"
     }
   }
+  if (props.app.frontend.mobile || props.app.frontend.tablet)
+    style.post.width = "100%";
 
   return (
     <React.Fragment>

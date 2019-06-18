@@ -50,7 +50,7 @@ const BlogIndexTemplate = props => {
       justifyContent: "space-between"
     },
     post: {
-      width: props.mobile ? "100%" : "47.5%",
+      width: "47.5%",
       marginBottom: "2rem",
     },
     figure: {
@@ -75,6 +75,8 @@ const BlogIndexTemplate = props => {
       textDecoration: "none"
     }
   }
+  if (props.app.frontend.mobile || props.app.frontend.tablet)
+    style.post.width = "100%";
 
   return (
     <React.Fragment>

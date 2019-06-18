@@ -7,7 +7,6 @@ import { Link } from "gatsby";
 const BlogTemplate = props => {
   let frontmatter = props.pageContext.node.frontmatter;
   let img = frontmatter.img.childImageSharp.fluid;
-
   const style = {
     meta: {
       display: "flex",
