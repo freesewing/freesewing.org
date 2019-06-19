@@ -37,6 +37,9 @@ const pages = {
     "/models": {
       matchPath: "/models/*"
     },
+    "/draft": {
+      matchPath: "/draft/*"
+    },
   }
 }
 

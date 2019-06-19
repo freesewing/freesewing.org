@@ -47,6 +47,7 @@ import ShowcasePostPage from "./templates/showcase-post";
 import DocumentationPage from "./templates/docs";
 import CreateModelPage from "./models/create";
 import ModelsPage from "./models/";
+import DraftPage from "./draft/";
 
 /* This component is the root component for all pages */
 
@@ -213,7 +214,7 @@ const App = props => {
       title: props.intl.formatMessage({id: "app.recipes"}),
       children: {}
     }
-    // TODO: Add recipes here
+    // FIXME: Add recipes here
   }
   const mainMenu = [<TopicsToc
     page={"/"+props['*']}
@@ -271,6 +272,11 @@ const App = props => {
     noTitle = true;
     noCrumbs = true;
   }
+  else if (slug === "/draft") {
+    main = <DraftPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
   else if (slug === "/blog") main = <BlogPage {...pageProps} />
   else if (slug.slice(0,6) === "/blog/") {
     main = <BlogPostPage {...pageProps} />
@@ -309,6 +315,10 @@ const App = props => {
       <aside>
         <div className="sticky">
           {mainMenu}
+          { app.account.username
+              ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+              : <VisitorMenu />
+          }
         </div>
       </aside> )}
     </div>
@@ -354,7 +364,10 @@ const App = props => {
           { mobile ? (
             <div className="menu" onClick={app.frontend.closeNav}>
               {mainMenu}
-              { app.account.username ? <UserMenu mobile={mobile} /> : <VisitorMenu /> }
+              { app.account.username
+                  ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+                  : <VisitorMenu />
+              }
               <p style={styles.menuIcons}>
                 <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
                 <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>

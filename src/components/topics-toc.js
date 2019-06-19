@@ -3,7 +3,6 @@ import TableOfContents from "./TableOfContents";
 import ExpandedIcon from "@material-ui/icons/KeyboardArrowDown";
 import CollapsedIcon from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from "gatsby";
-import UserMenu from "./user-menu";
 
 const TopicsToc = props => {
   const [collapse, setCollapse] = useState(false);
@@ -103,14 +102,7 @@ const TopicsToc = props => {
       </li>);
   }
 
-  return (
-    <React.Fragment>
-    <ul className="topics">
-      {items}
-    </ul>
-    { props.app.account.username ? <UserMenu /> : null }
-    </React.Fragment>
-  );
+  return <ul className="topics">{items}</ul>
 }
 
 export default TopicsToc;
