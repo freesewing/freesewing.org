@@ -48,6 +48,7 @@ import DocumentationPage from "./templates/docs";
 import CreateModelPage from "./models/create";
 import ModelsPage from "./models/";
 import DraftPage from "./draft/";
+import DraftPattern from "./draft/draft";
 
 /* This component is the root component for all pages */
 
@@ -103,7 +104,8 @@ const App = props => {
     stopLoading,
     mobile,
     tablet,
-    intl: props.intl
+    intl: props.intl,
+    theme,
   }
   const app = {
     account: props.storageData.account || {},
@@ -140,11 +142,6 @@ const App = props => {
         type: "link",
         href: "/signup",
         text: "app.signUp"
-      },
-      logout: {
-        type: "link",
-        href: "/logout",
-        text: "app.logOut"
       },
       search: {
         type: "link",
@@ -298,8 +295,20 @@ const App = props => {
     main = <DocumentationPage {...pageProps} />
     showNext = true;
   }
-  // Figure out what layout to load (default or homepage)
+
+  const mobileIcons = (
+    <p style={styles.menuIcons}>
+      <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
+      <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>
+      <IconButton href="/language" color="primary" variant="contained"><LanguageIcon /></IconButton>
+      <IconButton onClick={app.frontend.toggleDarkMode} color="primary" variant="contained"><DarkModeIcon style={{transform: "rotate(26deg)"}}/></IconButton>
+    </p>
+  );
+
+
+  // Figure out what layout to load (default, draft,  or homepage)
   const crumbs = <Breadcrumbs crumbs={props.pageContext.crumbs} pageTitle={app.frontend.pageTitle} />
+  let draftLayout = false;
   let layout = (
     <div className="fs-sa">
       <section>
@@ -324,7 +333,23 @@ const App = props => {
     </div>
   );
   if (slug === "/") layout = <HomePage app={app} />
-
+  else {
+    let chunks = props['*'].split('/');
+    if (chunks.length === 4 && chunks[0] === "draft" && chunks[2] === "for") {
+      draftLayout = true;
+      layout = <DraftPattern
+        model={chunks[3]}
+        pattern={chunks[1]}
+        app={app}
+        mainMenu={mainMenu}
+        userMenu={app.account.username
+          ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+          : <VisitorMenu />
+        }
+        mobileIcons={mobileIcons}
+      />
+    }
+  }
 
   // Render
   let wrapperClasses = theme === "light"
@@ -361,19 +386,14 @@ const App = props => {
             mobile={mobile}
           />
           <Loading loading={loading} />
-          { mobile ? (
+          { (mobile && !draftLayout) ? (
             <div className="menu" onClick={app.frontend.closeNav}>
               {mainMenu}
               { app.account.username
                   ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
                   : <VisitorMenu />
               }
-              <p style={styles.menuIcons}>
-                <IconButton href="/" color="primary" variant="contained"><HomeIcon /></IconButton>
-                <IconButton href="/search" color="primary" variant="contained"><SearchIcon /></IconButton>
-                <IconButton href="/language" color="primary" variant="contained"><LanguageIcon /></IconButton>
-                <IconButton onClick={app.frontend.toggleDarkMode} color="primary" variant="contained"><DarkModeIcon style={{transform: "rotate(26deg)"}}/></IconButton>
-              </p>
+              {mobileIcons}
             </div>
           ) : null }
         </AppContext.Provider>

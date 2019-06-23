@@ -2,7 +2,6 @@ import React from "react";
 import Avatar from "../avatar";
 import { FormattedMessage } from "react-intl";
 import { Link, navigate } from "gatsby";
-import { list } from "@freesewing/pattern-info";
 import Breadcrumbs from "../breadcrumbs";
 import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
 import Blockquote from "@freesewing/components/Blockquote";
@@ -27,7 +26,6 @@ const SelectPatternPage = props => {
       ok: [],
       no: []
     }
-
     for (let i in userModels) {
       let model = userModels[i];
       if (typeof model.measurements === "undefined"

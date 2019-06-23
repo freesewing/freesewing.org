@@ -15,10 +15,10 @@ const UserMenu = props => {
           values={{pattern: props.intl.formatMessage({id: "app.pattern"})}}
         />,
         <span>&nbsp;</span>,
-        '✨',
       ]
     },
   ];
+  if (props.slug.slice(0,6) !== "/draft") links[0].title.push('✨');
 
   if (props.mobile) {
     links.push({
@@ -31,20 +31,19 @@ const UserMenu = props => {
     });
   }
 
-  let children = [];
-  let active = '';
-  console.log(props.slug, props.slug.slice(0,6));
-  if (props.slug.slice(0,6) === "/draft") {
-    children = list;
-    active = 'active';
-  }
+  const chunks = props.slug.split("/");
 
   return (
     <ul className="topics">
-      {links.map( link => (
-        <li className={"topic "+active} key={link.title}>
+      {links.map( link => {
+        let active = false;
+        if ("/"+chunks[1] === link.to) active = true;
+        return (
+        <li
+          className={active ? "topic active" : "topic"}
+        key={link.title}>
           <Link className="topic" to={link.to}>
-            { active === "active"
+            { active
               ? <ExpandedIcon fontSize="inherit" />
               : <CollapsedIcon fontSize="inherit" />
             }
@@ -53,12 +52,12 @@ const UserMenu = props => {
               : link.title
             }
           </Link>
-        { children.length > 0
+        { (link.to === "/draft" && active)
           ? (
             <ul className="topics l1">
-              {children.map( pattern => {
+              {list.map( pattern => {
                 return (
-                  <li>
+                  <li className={chunks[2] === pattern ? "active" : ""}>
                     <Link to={"/draft/"+pattern}>
                       <FormattedMessage id="app.draftPattern" values={{pattern}} />
                     </Link>
@@ -69,7 +68,8 @@ const UserMenu = props => {
           ) : null
         }
         </li>
-      ))}
+      )
+      })}
     </ul>
   );
 }
