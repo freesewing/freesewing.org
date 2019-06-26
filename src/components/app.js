@@ -215,9 +215,13 @@ const App = props => {
       title: props.intl.formatMessage({id: "app.recipes"}),
       children: {}
     }
-    for (let r in app.recipes) {
-      topicsToc.recipes.children["/recipes/"+r] = {
-        title: capitalize(app.recipes[r].recipe.pattern) + ": " + app.recipes[r].name
+    if (typeof app.recipes !== "undefined") {
+      for (let r in app.recipes) {
+        if (typeof app.recipes[r].recipe !== "undefined") {
+          topicsToc.recipes.children["/recipes/"+r] = {
+            title: capitalize(app.recipes[r].recipe.pattern) + ": " + app.recipes[r].name
+          }
+        }
       }
     }
   }
