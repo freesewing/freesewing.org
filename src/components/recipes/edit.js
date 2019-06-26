@@ -4,11 +4,16 @@ import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
 import Markdown from "react-markdown";
 import Blockquote from "@freesewing/components/Blockquote";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import ValidIcon from "@material-ui/icons/CheckCircle";
+import InvalidIcon from "@material-ui/icons/Warning";
 
-const EditNotes = props => {
-  const [notes, setNotes] = useState(props.app.models[props.model].notes || '');
+const EditRecipe = props => {
+  const [name, setName] = useState(props.app.recipes[props.recipe].name);
+  const [notes, setNotes] = useState(props.app.recipes[props.recipe].notes || '');
 
   const updateNotes = evt => setNotes(evt.target.value);
+  const updateName = evt => setName(evt.target.value);
 
   const styles = {
     preview: {
@@ -21,6 +26,25 @@ const EditNotes = props => {
 
   return (
     <React.Fragment>
+      <TextField
+        fullWidth={true}
+        label={props.app.frontend.intl.formatMessage({ id: "app.name"})}
+        margin="normal"
+        variant="outlined"
+        value={name}
+        type="text"
+        onChange={updateName}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              { name.length > 0
+                ? <ValidIcon style={{ color: "#40c057" }} />
+                : <InvalidIcon color="error" />
+              }
+            </InputAdornment>
+          )
+        }}
+      />
     <TextField
         multiline={true}
         rows="8"
@@ -46,11 +70,11 @@ const EditNotes = props => {
           style={{marginLeft: '1rem'}}
           variant="contained"
           color="primary"
-          onClick={() => props.app.backend.saveModel(
-            props.model,
-            {notes: notes},
-            props.app.frontend.intl.formatMessage({id: "app.notes"}),
-            "/models/"+props.model
+          onClick={() => props.app.backend.saveRecipe(
+            props.recipe,
+            {notes, name},
+            props.app.frontend.intl.formatMessage({id: "app.recipe"}),
+            "/recipes/"+props.recipe
           )}
         >
           <FormattedMessage id="app.save" />
@@ -58,6 +82,7 @@ const EditNotes = props => {
       </p>
       <h6><FormattedMessage id="app.preview" /></h6>
       <div style={styles.preview} className="shadow">
+        <h1>{name}</h1>
         <Markdown source={notes} />
       </div>
       <Blockquote type="note">
@@ -67,4 +92,4 @@ const EditNotes = props => {
   );
 }
 
-export default EditNotes;
+export default EditRecipe;

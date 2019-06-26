@@ -57,6 +57,7 @@ const ShowRecipe = ({ app, recipe }) => {
           variant="contained"
         >
           <FormattedMessage id="app.draft" />
+          (FIXME)
         </Button>
         <Button
           color="primary"

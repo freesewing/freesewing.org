@@ -4,8 +4,7 @@ import Breadcrumbs from "../breadcrumbs";
 import LoginRequired from "../login-required";
 import RecipesList from "./list";
 import RecipePage from "./show";
-import EditNamePage from "./edit-name";
-import EditNotesPage from "./edit-notes";
+import EditRecipePage from "./edit";
 
 const RecipeIndex = props => {
   let title = "app.recipes";
@@ -27,15 +26,9 @@ const RecipeIndex = props => {
         main = <RecipePage recipe={recipe} app={props.app} />
       }
       else if (chunks.length === 4) {
-        if (chunks[3] === "name") {
-          title = <FormattedMessage id="app.name" />
-          crumbs = [recipesCrumb, {slug: "/recipes/"+recipe, title: props.app.recipes[recipe].name}];
-          main = <EditNamePage recipe={recipe} app={props.app} />
-        } else {
-          title = <FormattedMessage id="app.notes" />
-          crumbs = [recipesCrumb, {slug: "/recipes/"+recipe, title: props.app.recipes[recipe].name}];
-          main = <EditNotesPage recipe={recipe} app={props.app} />
-        }
+        title = <FormattedMessage id="app.name" />
+        crumbs = [recipesCrumb, {slug: "/recipes/"+recipe, title: props.app.recipes[recipe].name}];
+        main = <EditRecipePage recipe={recipe} app={props.app} />
       }
     }
   }
