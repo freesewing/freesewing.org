@@ -1,5 +1,4 @@
 import { tiler as Tiler } from "@freesewing/utils";
-import { navigate } from "gatsby";
 
 function useTiler(props) {
   const tiler = new Tiler();

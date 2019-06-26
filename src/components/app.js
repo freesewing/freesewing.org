@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import { Helmet } from "react-helmet";
 import { MuiThemeProvider } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core";
@@ -20,6 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import Fab from '@material-ui/core/Fab';
 import "@freesewing/css-theme";
+import { capitalize } from "@freesewing/utils";
 import "typeface-roboto-condensed";
 import "typeface-permanent-marker";
 import { FormattedMessage, injectIntl } from "react-intl";
@@ -47,6 +48,7 @@ import ShowcasePostPage from "./templates/showcase-post";
 import DocumentationPage from "./templates/docs";
 import CreateModelPage from "./models/create";
 import ModelsPage from "./models/";
+import RecipesPage from "./recipes/";
 import DraftPage from "./draft/";
 import DraftPattern from "./draft/draft";
 
@@ -75,7 +77,6 @@ const App = props => {
   const stopLoading = () => {
     setLoading(false);
   }
-
   const backend = useBackend({
     intl: props.intl,
     showNotification,
@@ -84,6 +85,9 @@ const App = props => {
     updateStorageData: props.updateStorageData,
     storageData: props.storageData
   });
+  useEffect(() => {
+    backend.refreshAccount();
+  }, []);
   const frontend = {
     showNotification,
     closeNotification,
@@ -211,7 +215,11 @@ const App = props => {
       title: props.intl.formatMessage({id: "app.recipes"}),
       children: {}
     }
-    // FIXME: Add recipes here
+    for (let r in app.recipes) {
+      topicsToc.recipes.children["/recipes/"+r] = {
+        title: capitalize(app.recipes[r].recipe.pattern) + ": " + app.recipes[r].name
+      }
+    }
   }
   const mainMenu = [<TopicsToc
     page={"/"+props['*']}
@@ -266,6 +274,11 @@ const App = props => {
   else if (slug === "/model") main = <CreateModelPage {...pageProps} />
   else if (slug.slice(0,7) === "/models") {
     main = <ModelsPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
+  else if (slug.slice(0,8) === "/recipes") {
+    main = <RecipesPage {...pageProps} />
     noTitle = true;
     noCrumbs = true;
   }

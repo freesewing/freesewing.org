@@ -6,17 +6,18 @@ function useBackend(props) {
 
   const token = props.storageData.token;
 
-  const saveAccountToStorage = (data) => {
+  const saveAccountToStorage = (data, callback) => {
     if (data.account) props.updateStorageData(data.account, "account");
     if (data.models) props.updateStorageData(data.models, "models");
     if (data.recipes) props.updateStorageData(data.recipes, "recipes");
     if (data.token) props.updateStorageData(data.token, "token");
+    if (callback) callback();
   }
 
-  const refreshAccount = () => {
+  const refreshAccount = (callback = false) => {
     backend.account(token)
       .then(res => {
-        if (res.status === 200) saveAccountToStorage(res.data);
+        if (res.status === 200) saveAccountToStorage(res.data, callback);
         // FIXME: What if this fails?
       })
   }
@@ -154,6 +155,44 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
 
+  const createRecipe = (data, setResult) => {
+    props.startLoading();
+    backend
+      .createRecipe(data, token)
+      .then(res => {
+        if (res.status === 200) {
+          props.showNotification(
+            "success",
+            props.intl.formatMessage({ id: "app.created" })
+          );
+          refreshAccount(
+            navigate("/recipes/"+res.data.handle, {replace: true})
+          );
+        } else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  };
+
+  const removeRecipe = handle => {
+    props.startLoading();
+    backend
+      .removeRecipe(handle, token)
+      .then(res => {
+        if (res.status === 204) {
+          props.stopLoading();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              { id: "account.success" },
+            )
+          );
+          navigate("/recipes", {replace: true});
+          refreshAccount();
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   const exportAccount = () => {
     props.startLoading();
     backend
@@ -211,11 +250,14 @@ function useBackend(props) {
   return {
     createAccount,
     createModel,
+    createRecipe,
     exportAccount,
     isUsernameAvailable,
     login,
     logout,
+    removeRecipe,
     removeAccount,
+    refreshAccount,
     saveAccount,
     saveModel,
     signup,

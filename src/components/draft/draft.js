@@ -149,7 +149,11 @@ const DraftPage = props => {
     />
   }
   else if (display === "save") {
-    main = <SaveRecipe />
+    main = <SaveRecipe
+      setDisplay={setDisplay}
+      app={props.app}
+      gist={props.gist}
+    />
   }
   else {
     main = error
