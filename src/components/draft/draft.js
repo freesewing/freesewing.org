@@ -24,12 +24,10 @@ const DraftPage = props => {
     props.updateGist(props.pattern, 'pattern');
     props.updateGist(props.model, 'model');
     props.updateGist(true, 'settings', 'embed');
-    props.updateGist(0, 'settings', 'sa');
-    props.updateGist(0, 'settings', 'complete');
-    props.updateGist(0, 'settings', 'paperless');
-    props.updateGist(0, 'settings', 'units');
+    props.updateGist(10, 'settings', 'sa');
+    props.updateGist(true, 'settings', 'complete');
+    props.updateGist(false, 'settings', 'paperless');
     props.updateGist({}, 'settings', 'options');
-   // props.updateGist(0, 'settings', 'units');
     props.updateGist(props.app.account.settings.units, 'settings', 'units');
     let measurements = {}
     for (let m of requiredMeasurements[props.pattern]) {
