@@ -1,9 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import EditIcon from "@material-ui/icons/Edit";
-import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
-import Avatar from "../avatar";
 import Markdown from "react-markdown";
 import RecipeCode from "../recipe";
 
