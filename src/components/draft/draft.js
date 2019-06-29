@@ -9,17 +9,20 @@ import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
 import Draft from "@freesewing/components/Draft";
 import i18nPlugin from "@freesewing/plugin-i18n";
 import { plugin as patternTranslations } from "@freesewing/i18n";
+import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import MenuIcon from "@material-ui/icons/Menu";
 import SettingsIcon from "@material-ui/icons/Tune";
+import FitIcon from "@material-ui/icons/UnfoldMore";
 import ExportPattern from "./export-pattern";
 import SaveRecipe from "./save-recipe";
 
 const DraftPage = props => {
   const [tab, setTab] = useState(0);
   const [display, setDisplay] = useState('draft');
+  const [fit, setFit] = useState("false");
   useEffect(() => {
     props.updateGist(props.pattern, 'pattern');
     props.updateGist(props.model, 'model');
@@ -85,6 +88,14 @@ const DraftPage = props => {
     button: {
       margin: "0.5rem",
     },
+    iconButton: {
+      margin: "0.5rem",
+      padding: "6px",
+      border: "1px solid",
+      borderColor: props.app.frontend.theme === "light"
+        ? "rgba(33, 37, 41, 0.5)"
+        : "rgba(255, 255, 255, 0.5)",
+    },
     tabs: {
     },
     tab: {
@@ -98,6 +109,14 @@ const DraftPage = props => {
   }
   const buttons = (
     <div style={styles.buttons}>
+      <IconButton
+        variant="outlined"
+        color="primary"
+        style={styles.iconButton}
+        onClick={() => setFit(!fit)}
+      >
+        <FitIcon style={{transform: "rotate("+ (fit ? 90 : 0) +"deg)"}}/>
+      </IconButton>
       <Button
         variant="outlined"
         color="primary"
@@ -137,6 +156,10 @@ const DraftPage = props => {
         />);
   else side.push(<div style={{paddingTop: "1rem"}} onClick={props.app.frontend.closeNav}>{[props.mainMenu, props.userMenu]}</div>);
 
+  if (fit && patternProps) patternProps.style = {
+    maxHeight: "85vh"
+  }
+
   let main;
   if (display === "export") {
     main = <ExportPattern
@@ -156,7 +179,11 @@ const DraftPage = props => {
   else {
     main = error
       ? <p>Shit</p>
-      : [buttons, <Draft {...patternProps} />, buttons]
+      : [
+        buttons,
+        <figure style={{textAlign: "center"}}><Draft {...patternProps} /></figure>,
+        buttons
+      ]
   }
 
   return (
