@@ -5,19 +5,22 @@ import { capitalize } from "@freesewing/utils";
 import DraftConfigurator from "@freesewing/components/DraftConfigurator";
 import withGist from "@freesewing/components/withGist";
 import * as patterns from "@freesewing/patterns";
-import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
+import { measurements as requiredMeasurements, withBreasts as withBreastsPatterns } from "@freesewing/pattern-info";
 import Draft from "@freesewing/components/Draft";
 import i18nPlugin from "@freesewing/plugin-i18n";
 import { plugin as patternTranslations } from "@freesewing/i18n";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import ZoomInIcon from "@material-ui/icons/ZoomIn";
+import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import MenuIcon from "@material-ui/icons/Menu";
 import SettingsIcon from "@material-ui/icons/Tune";
-import FitIcon from "@material-ui/icons/UnfoldMore";
+import ExportIcon from "@material-ui/icons/GetApp";
+import SaveIcon from "@material-ui/icons/CloudUpload";
 import ExportPattern from "./export-pattern";
 import SaveRecipe from "./save-recipe";
+import { withoutBreasts, withBreasts } from "@freesewing/models";
 
 const DraftPage = props => {
   const [tab, setTab] = useState(0);
@@ -48,7 +51,13 @@ const DraftPage = props => {
   try {
     pattern = new patterns[capitalize(props.pattern)](props.gist.settings)
       .use(i18nPlugin, { strings: patternTranslations });
-    pattern.draft();
+    if (display === "compare") {
+      let compareWith = {};
+      if (withBreastsPatterns.indexOf(props.pattern) === -1) compareWith = {...withoutBreasts};
+      else compareWith = {...withBreasts};
+      compareWith.model = props.app.models[props.model].measurements;
+      pattern.sampleModels(compareWith, 'model');
+    } else pattern.draft();
     patternProps = pattern.getRenderProps();
   } catch (err) {
     console.log({ err, pattern });
@@ -82,21 +91,14 @@ const DraftPage = props => {
       maxWidth: '100%',
     },
     buttons: {
-      textAlign: "right",
+      textAlign: props.app.frontend.mobile ? "center" : "right",
       margin: "1rem auto",
     },
     button: {
       margin: "0.5rem",
     },
-    iconButton: {
-      margin: "0.5rem",
-      padding: "6px",
-      border: "1px solid",
-      borderColor: props.app.frontend.theme === "light"
-        ? "rgba(33, 37, 41, 0.5)"
-        : "rgba(255, 255, 255, 0.5)",
-    },
-    tabs: {
+    buttonIcon: {
+      marginRight: "0.5rem",
     },
     tab: {
       active: {
@@ -107,22 +109,39 @@ const DraftPage = props => {
       }
     }
   }
-  const buttons = (
+  const preButtons = (
     <div style={styles.buttons}>
-      <IconButton
-        variant="outlined"
-        color="primary"
-        style={styles.iconButton}
-        onClick={() => setFit(!fit)}
-      >
-        <FitIcon style={{transform: "rotate("+ (fit ? 90 : 0) +"deg)"}}/>
-      </IconButton>
+      {props.app.frontend.mobile ? null : (
       <Button
         variant="outlined"
         color="primary"
         style={styles.button}
+        onClick={() => setFit(!fit)}
+      >
+        { fit ? <ZoomInIcon /> : <ZoomOutIcon /> }
+      </Button>
+      )}
+      <Button
+        variant="contained"
+        color="primary"
+        className="accent"
+        style={styles.button}
+        onClick={() => setDisplay(display === "compare" ? "draft" : "compare")}
+      >
+        <FormattedMessage id={display === "compare" ? "app.preview" : "app.compare"} />
+      </Button>
+    </div>
+  );
+  const postButtons = (
+    <div style={styles.buttons}>
+      <Button
+        variant="contained"
+        color="primary"
+        className="info"
+        style={styles.button}
         onClick={() => setDisplay("save")}
       >
+        <SaveIcon style={styles.buttonIcon}/>
         <FormattedMessage id="app.saveRecipe" />
       </Button>
       <Button
@@ -131,6 +150,7 @@ const DraftPage = props => {
         style={styles.button}
         onClick={() => setDisplay("export")}
       >
+        <ExportIcon style={styles.buttonIcon}/>
         <FormattedMessage id="app.exportPattern" />
       </Button>
     </div>
@@ -180,9 +200,9 @@ const DraftPage = props => {
     main = error
       ? <p>Shit</p>
       : [
-        buttons,
+        preButtons,
         <figure style={{textAlign: "center"}}><Draft {...patternProps} /></figure>,
-        buttons
+        postButtons
       ]
   }
 
