@@ -18,8 +18,10 @@ function useBackend(props) {
     backend.account(token)
       .then(res => {
         if (res.status === 200) saveAccountToStorage(res.data, callback);
-        // FIXME: What if this fails?
       })
+      .catch(err => {
+        return false;
+      });
   }
 
   const login = (username, password) => {
