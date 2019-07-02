@@ -48,10 +48,31 @@ const DraftPage = props => {
     }
     props.updateGist(measurements, 'settings', 'measurements');
   }, [props.pattern, props.model]);
-	const optionDocs = useStaticQuery(graphql`
+	const markdownDocs = useStaticQuery(graphql`
 		{
-		  allMdx(
+      options: allMdx(
         filter:{ fileAbsolutePath: {regex: "/\/docs\/patterns\/aaron\/options\/[^\/]*\/en.md/"}}
+        sort:{
+          fields: [frontmatter___title]
+          order: DESC
+        }
+      ) {
+        edges {
+          node {
+            code { body }
+            parent {
+              ... on File {
+                relativeDirectory
+              }
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+		  }
+      settings: allMdx(
+        filter:{ fileAbsolutePath: {regex: "/\/docs\/draft\/settings\/[^\/]*\/en.md/"}}
         sort:{
           fields: [frontmatter___title]
           order: DESC
@@ -77,9 +98,16 @@ const DraftPage = props => {
     options: {},
     settings: {}
   };
-  for (let node of optionDocs.allMdx.edges) {
+  for (let node of markdownDocs.options.edges) {
     let name = node.node.parent.relativeDirectory.split("/").pop();
     docs.options[name] = {
+      title: node.node.frontmatter.title,
+      body: node.node.code.body
+    }
+  }
+  for (let node of markdownDocs.settings.edges) {
+    let name = node.node.parent.relativeDirectory.split("/").pop();
+    docs.settings[name] = {
       title: node.node.frontmatter.title,
       body: node.node.code.body
     }
@@ -270,22 +298,22 @@ const DraftPage = props => {
     );
     main = [];
     main.push(close);
-    if (eventType === "patternOption") {
-      main = (
-        <React.Fragment>
-          {close}
-          <div style={styles.docsWrapper}>
-            <h2>{docs.options[eventValue.toLowerCase()].title}</h2>
-            <MDXProvider components={props.components}>
-              <MDXRenderer>
-                {docs.options[eventValue.toLowerCase()].body}
-              </MDXRenderer>
-            </MDXProvider>
-          </div>
-          {close}
-        </React.Fragment>
-      );
-    }
+    let topicDocs = docs.options;
+    if (eventType === "draftSetting") topicDocs = docs.settings;
+    main = (
+      <React.Fragment>
+        {close}
+        <div style={styles.docsWrapper}>
+          <h2>{topicDocs[eventValue.toLowerCase()].title}</h2>
+          <MDXProvider components={props.components}>
+            <MDXRenderer>
+              {topicDocs[eventValue.toLowerCase()].body}
+            </MDXRenderer>
+          </MDXProvider>
+        </div>
+        {close}
+      </React.Fragment>
+    );
   }
   else {
     main = error
