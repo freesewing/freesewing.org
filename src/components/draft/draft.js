@@ -21,11 +21,18 @@ import SaveIcon from "@material-ui/icons/CloudUpload";
 import ExportPattern from "./export-pattern";
 import SaveRecipe from "./save-recipe";
 import { withoutBreasts, withBreasts } from "@freesewing/models";
+import Blockquote from "@freesewing/components/Blockquote";
+import Icon from "@freesewing/components/Icon";
+import { useStaticQuery, graphql } from "gatsby"
+import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { MDXProvider } from '@mdx-js/react';
 
 const DraftPage = props => {
   const [tab, setTab] = useState(0);
   const [display, setDisplay] = useState('draft');
   const [fit, setFit] = useState("false");
+  const [eventType, setEventType] = useState("");
+  const [eventValue, setEventValue] = useState("");
   useEffect(() => {
     props.updateGist(props.pattern, 'pattern');
     props.updateGist(props.model, 'model');
@@ -41,10 +48,53 @@ const DraftPage = props => {
     }
     props.updateGist(measurements, 'settings', 'measurements');
   }, [props.pattern, props.model]);
+	const optionDocs = useStaticQuery(graphql`
+		{
+		  allMdx(
+        filter:{ fileAbsolutePath: {regex: "/\/docs\/patterns\/aaron\/options\/[^\/]*\/en.md/"}}
+        sort:{
+          fields: [frontmatter___title]
+          order: DESC
+        }
+      ) {
+        edges {
+          node {
+            code { body }
+            parent {
+              ... on File {
+                relativeDirectory
+              }
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+		  }
+		}`
+  );
+  const docs = {
+    options: {},
+    settings: {}
+  };
+  for (let node of optionDocs.allMdx.edges) {
+    let name = node.node.parent.relativeDirectory.split("/").pop();
+    docs.options[name] = {
+      title: node.node.frontmatter.title,
+      body: node.node.code.body
+    }
+  }
 
   const toggleTab = () => {
     if(tab === 1) setTab(0);
     else setTab(1);
+  }
+  const raiseEvent = (type, data) => {
+    if (type === "showHelp") {
+      setEventType(data.type);
+      setEventValue(data.value);
+      setDisplay("help");
+    }
   }
 
   let pattern, error, patternProps;
@@ -107,6 +157,19 @@ const DraftPage = props => {
         background: props.app.frontend.theme === "light" ? "#868e96" : "#868e96",
         color: props.app.frontend.theme === "light" ? "#fff" : "#000",
       }
+    },
+    errorWrapper: {
+      maxWidth: "800px",
+      margin: "auto",
+    },
+    docsWrapper: {
+      maxWidth: "42em",
+      margin: "auto",
+    },
+    error: {
+      overflowX: "auto",
+      fontSize: "80%",
+      fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
     }
   }
   const preButtons = (
@@ -173,6 +236,7 @@ const DraftPage = props => {
           units={props.app.account.settings.units}
           config={pattern.config}
           updateGist={props.updateGist}
+          raiseEvent={raiseEvent}
         />);
   else side.push(<div style={{paddingTop: "1rem"}} onClick={props.app.frontend.closeNav}>{[props.mainMenu, props.userMenu]}</div>);
 
@@ -196,9 +260,59 @@ const DraftPage = props => {
       gist={props.gist}
     />
   }
+  else if (display === "help") {
+    let close = (
+      <div style={styles.buttons}>
+      <Button variant="contained" color="primary" onClick={() => setDisplay("draft")}>
+        <FormattedMessage id="app.back" />
+      </Button>
+      </div>
+    );
+    main = [];
+    main.push(close);
+    if (eventType === "patternOption") {
+      main = (
+        <React.Fragment>
+          {close}
+          <div style={styles.docsWrapper}>
+            <h2>{docs.options[eventValue.toLowerCase()].title}</h2>
+            <MDXProvider components={props.components}>
+              <MDXRenderer>
+                {docs.options[eventValue.toLowerCase()].body}
+              </MDXRenderer>
+            </MDXProvider>
+          </div>
+          {close}
+        </React.Fragment>
+      );
+    }
+  }
   else {
     main = error
-      ? <p>Shit</p>
+      ? (
+        <div style={styles.errorWrapper}>
+        <Blockquote type="warning">
+          <h3><FormattedMessage id="app.ohNo" /></h3>
+          <p><FormattedMessage id="errors.requestFailedWithStatusCode500" /></p>
+          <p><b>{error.name}</b>: {error.message}</p>
+          <p style={{textAlign: "right"}}>
+            <Button
+              variant="contained"
+              color="primary"
+              href="https://github.com/freesewing/freesewing.org/issues/new"
+              target="_BLANK"
+            >
+              <Icon icon="github" style={{marginRight: "0.5rem"}}/>
+              <FormattedMessage id="app.reportThisOnGithub" />
+            </Button>
+          </p>
+          <h5>Stack trace</h5>
+          <pre dangerouslySetInnerHTML={{__html: JSON.stringify(
+            error.stack.replace(/\n/g, "<br />"), null, 2
+            ).slice(1, -1)}} style={styles.error}/>
+        </Blockquote>
+        </div>
+      )
       : [
         preButtons,
         <figure style={{textAlign: "center"}}><Draft {...patternProps} /></figure>,
