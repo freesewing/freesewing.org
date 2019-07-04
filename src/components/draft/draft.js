@@ -275,7 +275,7 @@ const DraftPage = props => {
     maxHeight: "85vh"
   }
 
-  let main, helpTitle, helpCrumbs;
+  let main, helpTitle;
   if (display === "export") {
     main = <ExportPattern
       setDisplay={setDisplay}
