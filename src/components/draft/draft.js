@@ -119,9 +119,16 @@ const DraftPage = props => {
   }
   const raiseEvent = (type, data) => {
     if (type === "showHelp") {
-      setEventType(data.type);
-      setEventValue(data.value);
-      setDisplay("help");
+      // Clicking same help icon again will cancel it out
+      if (display === "help"
+        && eventType === data.type
+        && eventValue === data.value
+      ) setDisplay("draft");
+      else {
+        setEventType(data.type);
+        setEventValue(data.value);
+        setDisplay("help");
+      }
     }
   }
 
@@ -162,7 +169,7 @@ const DraftPage = props => {
     values={{pattern: capitalize(props.pattern), model: props.app.models[props.model].name}} />
   const styles = {
     narrow: {
-      maxWidth: '62em',
+      maxWidth: '42em',
       margin: 'auto',
     },
     wide: {
@@ -188,10 +195,6 @@ const DraftPage = props => {
     },
     errorWrapper: {
       maxWidth: "800px",
-      margin: "auto",
-    },
-    docsWrapper: {
-      maxWidth: "42em",
       margin: "auto",
     },
     error: {
@@ -272,7 +275,7 @@ const DraftPage = props => {
     maxHeight: "85vh"
   }
 
-  let main;
+  let main, helpTitle, helpCrumbs;
   if (display === "export") {
     main = <ExportPattern
       setDisplay={setDisplay}
@@ -300,11 +303,10 @@ const DraftPage = props => {
     main.push(close);
     let topicDocs = docs.options;
     if (eventType === "draftSetting") topicDocs = docs.settings;
+    helpTitle = topicDocs[eventValue.toLowerCase()].title;
     main = (
       <React.Fragment>
-        {close}
-        <div style={styles.docsWrapper}>
-          <h2>{topicDocs[eventValue.toLowerCase()].title}</h2>
+        <div>
           <MDXProvider components={props.components}>
             <MDXRenderer>
               {topicDocs[eventValue.toLowerCase()].body}
@@ -348,19 +350,22 @@ const DraftPage = props => {
       ]
   }
 
+  const crumbJsx = <Breadcrumbs
+    crumbs={crumbs}
+    pageTitle={display === "help" ? helpTitle : pageTitle}
+  />
+
   return (
     <React.Fragment>
       <div className="fs-sa">
         <section>
-          <article style={styles.wide}>
+          <article style={display === "help" ? styles.narrow : styles.wide}>
             <div style={styles.narrow}>
-              <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
-              <h1>{pageTitle}</h1>
+              {crumbJsx}
+              <h1>{display === "help" ? helpTitle : pageTitle}</h1>
             </div>
             {main}
-            <div style={styles.narrow}>
-              <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
-            </div>
+            <div style={styles.narrow}>{crumbJsx}</div>
           </article>
         </section>
         { props.app.frontend.mobile ? null : (
