@@ -21,9 +21,13 @@ const ModelIndex = props => {
       // FIXME: Handle missing modle
     }
     if (chunks.length === 3) {
-      title = props.app.models[model].name;
-      crumbs = [modelsCrumb];
-      main = <ModelPage model={model} app={props.app} />
+      if (typeof props.app.models[model] === "undefined") {
+        // Too soon?
+      } else {
+        title = props.app.models[model].name;
+        crumbs = [modelsCrumb];
+        main = <ModelPage model={model} app={props.app} />
+      }
     }
     else if (chunks.length === 4) {
       if (chunks[3] === "name") {

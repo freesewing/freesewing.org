@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import { measurements as allMeasurements } from "@freesewing/models";
 import { formatMm } from "@freesewing/utils";
 import Avatar from "../avatar";
@@ -184,7 +185,7 @@ const ShowModel = ({ app, model }) => {
             <td>
               <h5 style={styles.heading}><FormattedMessage id="app.settings" /></h5>
             </td>
-            <td colspan="2">&nbsp;</td>
+            <td colSpan="2">&nbsp;</td>
           </tr>
           {/* name */}
           <tr className="hover">
@@ -251,13 +252,13 @@ const ShowModel = ({ app, model }) => {
               </IconButton>
             </td>
           </tr>
-          <tr><td colspan="3">&nbsp;</td></tr>
+          <tr><td colSpan="3">&nbsp;</td></tr>
           {/* measurements */}
           <tr>
             <td>
               <h5 style={styles.heading}><FormattedMessage id="app.measurements" /></h5>
             </td>
-            <td colspan="2">&nbsp;</td>
+            <td colSpan="2">&nbsp;</td>
           </tr>
           { app.models[model].measurements
             ? [
@@ -272,6 +273,16 @@ const ShowModel = ({ app, model }) => {
           }
         </tbody>
       </table>
+      <p style={{textAlign: "right"}}>
+        <Button
+          className="danger"
+          color="primary"
+          variant="contained"
+          onClick={() => app.backend.removeModel(model)}
+        >
+          <FormattedMessage id="app.remove" />
+        </Button>
+      </p>
     </React.Fragment>
   );
 }

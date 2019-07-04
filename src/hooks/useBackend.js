@@ -220,6 +220,27 @@ function useBackend(props) {
       .catch(err => console.log(err));
   };
 
+  const removeModel = handle => {
+    props.startLoading();
+    backend
+      .removeModel(handle, token)
+      .then(res => {
+        if (res.status === 204) {
+          props.stopLoading();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              {id: "app.fieldRemoved"},
+              { field: props.intl.formatMessage({id: "app.model"}) }
+            )
+          );
+          navigate("/models", {replace: true});
+          refreshAccount();
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   const exportAccount = () => {
     props.startLoading();
     backend
@@ -282,6 +303,7 @@ function useBackend(props) {
     isUsernameAvailable,
     login,
     logout,
+    removeModel,
     removeRecipe,
     removeAccount,
     refreshAccount,

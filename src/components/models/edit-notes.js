@@ -37,7 +37,7 @@ const EditNotes = props => {
           size="large"
           variant="outlined"
           color="primary"
-          href="/account/settings"
+          href={"/models/"+props.model}
         >
           <FormattedMessage id="app.cancel" />
         </Button>

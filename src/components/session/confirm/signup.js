@@ -134,9 +134,7 @@ const AccountConsent = ({ app, confirmationId }) => {
 
   return (
     <React.Fragment>
-      <Blockquote type="note">
       <p><FormattedMessage id="gdpr.compliant" /></p>
-      </Blockquote>
       <p><FormattedHTMLMessage id="gdpr.consentWhyAnswer" /></p>
       {details ? profileDetails : null}
       <h5><FormattedMessage id="gdpr.profileQuestion" /></h5>
