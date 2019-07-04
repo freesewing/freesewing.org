@@ -12,27 +12,27 @@ const MeasurementImages = props => {
   const toggleTab = () => setTab(tab === 0 ? 1 : 0);
 
   const seated = [
-    "seatDepth"
+    "seatdepth"
   ];
 
   const breastsOnly = [
-    "bustSpan",
-    "highBust",
-    "highPointShoulderToBust",
-    "naturalWaistToUnderbust",
+    "bustspan",
+    "highbust",
+    "highpointshouldertobust",
+    "naturalwaisttounderbust",
     "underbust"
   ];
 
   const bg = "/model-"
     + ((tab === 0) ? '' : 'no')
     + "breasts-"
-    + ((seated.indexOf(props.measurement) !== -1) ? "seated" : "standing")
+    + ((seated.indexOf(props.measurement.toLowerCase()) !== -1) ? "seated" : "standing")
     + ".jpg";
   const img = tab === 0
     ? breastsImages[props.measurement.toLowerCase()]
     : nobreastsImages[props.measurement.toLowerCase()]
 
-  if (breastsOnly.indexOf(props.measurement) !== -1)
+  if (breastsOnly.indexOf(props.measurement.toLowerCase()) !== -1)
     return (
       <MeasurementImage
         measurement={props.measurement}
