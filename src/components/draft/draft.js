@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { capitalize } from "@freesewing/utils";
 import DraftConfigurator from "@freesewing/components/DraftConfigurator";
 import withGist from "@freesewing/components/withGist";
-import * as patterns from "@freesewing/patterns";
+import patterns from "./patterns";
 import { measurements as requiredMeasurements, withBreasts as withBreastsPatterns } from "@freesewing/pattern-info";
 import Draft from "@freesewing/components/Draft";
 import i18nPlugin from "@freesewing/plugin-i18n";
