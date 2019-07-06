@@ -15,7 +15,10 @@ const SelectPatternPage = props => {
 
   const hasRequiredMeasurements = (measurements, required) => {
     for (let m of required) {
-      if (Object.keys(measurements).indexOf(m) === -1) return false;
+      if (
+        Object.keys(measurements).indexOf(m) === -1
+        || measurements[m] === null
+      ) return false;
     }
 
     return true;
