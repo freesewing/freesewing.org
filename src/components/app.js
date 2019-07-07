@@ -62,6 +62,7 @@ const App = props => {
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState(props.storageData.notification || false);
 
+  const uri = props.location.pathname;
   const showNotification = (type, message) => {
     props.updateStorageData({type, message}, "notification");
     setNotification({type, message});
@@ -226,7 +227,7 @@ const App = props => {
     }
   }
   const mainMenu = [<TopicsToc
-    page={"/"+props['*']}
+    page={uri}
     slug={slug}
     topicsToc={topicsToc}
     topics={props.pageContext.topics}
@@ -241,7 +242,7 @@ const App = props => {
     app,
     location: props.location,
     pageContext: props.pageContext,
-    slug: "/"+props['*'],
+    slug: uri,
   }
 
   // Figure out what page to load
@@ -298,10 +299,11 @@ const App = props => {
     showNext = true;
   }
   else if (slug === "/showcase") main = <ShowcasePage {...pageProps} />
-  else if (slug === "/showcase/pattern") {
-    const category = props['*'].split('/').pop();
+  else if (slug === "/showcase/patterns") {
+    const category = uri.split('/').pop();
     main = <ShowcaseCategoryPage {...pageProps} category={category}/>
-    app.frontend.pageTitle = "#" + category;
+    noCrumbs = true;
+    noTitle = true;
   } else if (slug.slice(0,10) === "/showcase/") {
     main = <ShowcasePostPage {...pageProps} />
     noTitle = true;
@@ -342,7 +344,7 @@ const App = props => {
         <div className="sticky">
           {mainMenu}
           { app.account.username
-              ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+              ? <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
               : <VisitorMenu />
           }
         </div>
@@ -351,16 +353,16 @@ const App = props => {
   );
   if (slug === "/") layout = <HomePage app={app} />
   else {
-    let chunks = props['*'].split('/');
-    if (chunks.length === 4 && chunks[0] === "draft" && chunks[2] === "for") {
+    let chunks = uri.split('/');
+    if (chunks.length === 5 && chunks[1] === "draft" && chunks[3] === "for") {
       draftLayout = true;
       layout = <DraftPattern
-        model={chunks[3]}
-        pattern={chunks[1]}
+        model={chunks[4]}
+        pattern={chunks[2]}
         app={app}
         mainMenu={mainMenu}
         userMenu={app.account.username
-          ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+          ? <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
           : <VisitorMenu />
         }
         mobileIcons={mobileIcons}
@@ -407,7 +409,7 @@ const App = props => {
             <div className="menu" onClick={app.frontend.closeNav}>
               {mainMenu}
               { app.account.username
-                  ? <UserMenu mobile={mobile} intl={props.intl} slug={"/"+props['*']} />
+                  ? <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
                   : <VisitorMenu />
               }
               {mobileIcons}

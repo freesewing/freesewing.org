@@ -22,8 +22,8 @@ const pages = {
     "/model": "app.newModel",
   },
   multiple: {
-    "/showcase/pattern": {
-      matchPath: "/showcase/*",
+    "/showcase/patterns": {
+      matchPath: "/showcase/patterns/*",
     },
     "/account": {
       matchPath: "/account/*"

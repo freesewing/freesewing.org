@@ -35,7 +35,7 @@ const ShowcaseTemplate = props => {
         <div>
     { frontmatter.patterns.map( pattern => (
           <React.Fragment>
-            <Link to={"/showcase/"+pattern}>#{pattern}</Link>
+            <Link to={"/showcase/patterns/"+pattern}>#{pattern}</Link>
             &nbsp;
           </React.Fragment>
     ))}

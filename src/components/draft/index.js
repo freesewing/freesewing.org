@@ -7,7 +7,7 @@ import DraftPage from "./draft";
 const DraftIndex = props => {
   let main = null;
   let chunks = [];
-  if (props.slug === "/draft") {
+  if (props.slug === "/draft" || props.slug === "/draft/") {
     main = <SelectPatternPage app={props.app} />
   } else {
     chunks = props.slug.split('/');
