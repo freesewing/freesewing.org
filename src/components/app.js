@@ -42,6 +42,7 @@ import AccountPage from "./account/";
 import WelcomePage from "./welcome/";
 import BlogPage from "./templates/blog-index";
 import BlogPostPage from "./templates/blog-post";
+import BlogYearPage from "./templates/blog-year";
 import ShowcasePage from "./templates/showcase-index";
 import ShowcaseCategoryPage from "./templates/showcase-category";
 import ShowcasePostPage from "./templates/showcase-post";
@@ -293,6 +294,12 @@ const App = props => {
     noCrumbs = true;
   }
   else if (slug === "/blog") main = <BlogPage {...pageProps} />
+  else if (slug.slice(0,11) === "/blog/years") {
+    const year = uri.split('/').pop();
+    main = <BlogYearPage {...pageProps} year={year}/>
+    noCrumbs = true;
+    noTitle = true;
+  }
   else if (slug.slice(0,6) === "/blog/") {
     main = <BlogPostPage {...pageProps} />
     noTitle = true;

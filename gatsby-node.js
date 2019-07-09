@@ -26,6 +26,9 @@ const pages = {
     "/showcase/patterns": {
       matchPath: "/showcase/patterns/*",
     },
+    "/blog/years": {
+      matchPath: "/blog/years/*",
+    },
     "/account": {
       matchPath: "/account/*"
     },
@@ -225,7 +228,9 @@ const getTopics = function(markdown) {
     let children = {};
     if (topic === "showcase") {
       for (let pattern of patterns) {
-        list.showcase.children["/showcase/patterns/"+pattern] = {title: pattern}
+        list.showcase.children["/showcase/patterns/"+pattern] = {
+          title: pattern.charAt(0).toUpperCase() + pattern.slice(1)
+        }
       }
     } else {
 	    for (let slug of slugs) {
@@ -240,7 +245,7 @@ const getTopics = function(markdown) {
           let slug = children[title];
           let year = markdown[children[title]].node.node.frontmatter.year;
           if (typeof list.blog.children[year] === "undefined") {
-            list.blog.children["/blog/year/"+year] = { title: year }
+            list.blog.children["/blog/years/"+year] = { title: year }
           }
         }
         // HERE
