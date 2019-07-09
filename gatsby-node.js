@@ -1,5 +1,6 @@
 const path = require("path");
 const topics = require("./src/config/topics");
+const patterns = require("@freesewing/pattern-info").list;
 
 const rootComponent = path.resolve("src/components/app.js");
 
@@ -99,6 +100,7 @@ const frontmatter = {
   docs: `title`,
   blog: `title
     date
+    year:date(formatString: "YYYY")
     linktitle
     caption
     author
@@ -221,18 +223,34 @@ const getTopics = function(markdown) {
     }
     // Children of root topic
     let children = {};
-	  for (let slug of slugs) {
-      if (isChild(topic, slug)) children[getSortTitle(markdown[slug])] = slug;
+    if (topic === "showcase") {
+      for (let pattern of patterns) {
+        list.showcase.children["/showcase/patterns/"+pattern] = {title: pattern}
+      }
+    } else {
+	    for (let slug of slugs) {
+        if (isChild(topic, slug)) children[getSortTitle(markdown[slug])] = slug;
+      }
+      let childrenOrder = Object.keys(children);
+      childrenOrder.sort();
+      if (topic === "blog") {
+        // These are prefixed by date, put newest first
+        childrenOrder.reverse();
+        for (let title of childrenOrder) {
+          let slug = children[title];
+          let year = markdown[children[title]].node.node.frontmatter.year;
+          if (typeof list.blog.children[year] === "undefined") {
+            list.blog.children["/blog/year/"+year] = { title: year }
+          }
+        }
+        // HERE
+      } else {
+        for (let title of childrenOrder) {
+          let slug = children[title];
+          list[topic].children[slug] = {title: getTitle(markdown[slug])};
+        }
+      }
     }
-    let childrenOrder = Object.keys(children);
-    childrenOrder.sort();
-    // These are prefixed by date, put newest first
-    if (topic === "blog" || topic === "showcase") childrenOrder.reverse();
-    for (let title of childrenOrder) {
-      let slug = children[title];
-      list[topic].children[slug] = {title: getTitle(markdown[slug])};
-    }
-
     // Grandchildren of docs topic
     if (topic === "docs") {
       let grandchildren = {};
