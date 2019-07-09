@@ -8,129 +8,98 @@ import ModelsIcon from "@material-ui/icons/PermContactCalendar";
 import NewModelIcon from "@material-ui/icons/PersonAdd";
 import RecipesIcon from "@material-ui/icons/FolderOpen";
 import NewPatternIcon from "@material-ui/icons/NoteAdd";
+import Button from "@material-ui/core/Button";
 
 const AccountMenu = props => {
 
   const styles = {
     wrapper: {
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-between",
-    },
-    box: {
-      textAlign: "center",
-      padding: "0",
-      borderRadius: "6px",
-      marginBottom: "1.5rem",
-      color: "#fffd",
+      maxWidth: "400px",
+      margin: "0 auto 40px",
     },
     icon: {
-      fontSize: "100px",
-      display: "block",
-      paddingBottom: "1rem",
-      margin: "auto",
+      marginRight: "0.5rem",
     },
-    heading: {
-      margin: 0,
-      padding: "1rem 0 0 0",
-    },
-    link: {
-      color: "#fffd",
-      textDecoration: "none",
+    button: {
+      margin: "0 1rem 1rem 0",
     }
   }
-  styles.box2 = {
-    ...styles.box,
-    width: "calc(50% - 0.5rem)"
-  }
-  styles.box3 = {
-    ...styles.box,
-    width: "calc(33.33% - 0.5rem)"
-  }
-
-  let addTiles = [
-    {
-      to: "/pattern",
-      icon: <NewPatternIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.newPattern",
-      style: { backgroundColor: "#37b24d" }
-
-    },
-    {
-      to: "/model",
-      icon: <NewModelIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.newModel",
-      style: { backgroundColor: "#37b24d" }
-    },
-  ];
-  let browseTiles = [
-    {
-      to: "/models",
-      icon: <ModelsIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.models",
-      style: { backgroundColor: "#1c7ed6" }
-    },
-    {
-      to: "/recipes",
-      icon: <RecipesIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.recipes",
-      style: { backgroundColor: "#1c7ed6" }
-    },
-    {
-      to: "/users/"+props.username,
-      icon: <ProfileIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.profile",
-      style: { backgroundColor: "#1c7ed6" }
-    },
-  ];
-  let otherTiles = [
-    {
-      to: "/account/settings",
-      icon: <SettingsIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.settings",
-      style: { backgroundColor: "#7048e8" }
-    },
-    {
-      to: "/logout",
-      icon: <LogoutIcon fontSize="inherit" style={styles.icon}/>,
-      title: "app.logOut",
-      style: { backgroundColor: "#f76707" }
-    },
-  ];
+  const tiles = {
+    primary: [
+      {
+        to: "/draft",
+        icon: <NewPatternIcon style={styles.icon}/>,
+        title: <FormattedMessage
+          id="app.draftPattern"
+          values={{pattern: props.intl.formatMessage({ id: "app.pattern" })}} />
+      },
+      {
+        to: "/model",
+        icon: <NewModelIcon style={styles.icon}/>,
+        title: "app.newModel",
+      },
+    ],
+    info: [
+      {
+        to: "/models",
+        icon: <ModelsIcon style={styles.icon}/>,
+        title: "app.models",
+        className: "info"
+      },
+      {
+        to: "/recipes",
+        icon: <RecipesIcon style={styles.icon}/>,
+        title: "app.recipes",
+        className: "info"
+      },
+    ],
+    accent: [
+      {
+        to: "/users/"+props.username,
+        icon: <ProfileIcon style={styles.icon}/>,
+        title: "app.profile",
+      },
+      {
+        to: "/account/settings",
+        icon: <SettingsIcon style={styles.icon}/>,
+        title: "app.settings",
+      },
+    ],
+    danger: [
+      {
+        to: "/logout",
+        icon: <LogoutIcon style={styles.icon}/>,
+        title: "app.logOut",
+      },
+    ]
+  };
 
   return (
     <React.Fragment>
-      <div style={styles.wrapper}>
-        {addTiles.map( tile => (
-          <div style={{...styles.box2, ...tile.style}} className="shadow">
-            <Link to={tile.to} style={styles.link}>
-              <h4 style={styles.heading}><FormattedMessage id={tile.title} /></h4>
+      {Object.keys(tiles).map( type => {
+        let btns = [];
+        for (let tile of tiles[type]) btns.push(
+          <Button
+            key={tile.to}
+            color="primary"
+            fullWidth
+            style={styles.button}
+            variant="contained"
+            className={type}
+            href={tile.to}
+            size="large"
+          >
               {tile.icon}
-            </Link>
-          </div>
-        ))}
-      </div>
-      <div style={styles.wrapper}>
-        {browseTiles.map( tile => (
-          <div style={{...styles.box3, ...tile.style}} className="shadow">
-            <Link to={tile.to} style={styles.link}>
-              <h4 style={styles.heading}><FormattedMessage id={tile.title} /></h4>
-              {tile.icon}
-            </Link>
-          </div>
-        ))}
-      </div>
-      <div style={styles.wrapper}>
-        {otherTiles.map( tile => (
-          <div style={{...styles.box2, ...tile.style}} className="shadow">
-            <Link to={tile.to} style={styles.link}>
-              <h4 style={styles.heading}><FormattedMessage id={tile.title} /></h4>
-              {tile.icon}
-            </Link>
-          </div>
-        ))}
-      </div>
+          { typeof tile.title === "string"
+              ? <FormattedMessage id={tile.title} />
+              : tile.title
+          }
+          </Button>
+        );
+
+        return <div style={styles.wrapper}>{btns}</div>
+        })
+      }
     </React.Fragment>
   );
 };

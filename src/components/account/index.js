@@ -19,7 +19,11 @@ import AccountRestrict from "./restrict";
 const Account = props => {
   let title = "app.account";
   let crumbs = [];
-  let main = <AccountMenu mobile={props.app.frontend.mobile} username={props.app.account.username}/>
+  let main = <AccountMenu
+    mobile={props.app.frontend.mobile}
+    username={props.app.account.username}
+    intl={props.app.frontend.intl}
+  />
   let crumbLib = {
     account: {slug: "/account", title: <FormattedMessage id="app.account"/>},
     settings: {slug: "/account/settings", title: <FormattedMessage id="app.settings"/>},
