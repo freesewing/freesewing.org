@@ -73,9 +73,11 @@ const ShowModel = ({ app, model }) => {
       let translation = app.frontend.intl.messages["measurements"+m] || m;
       translated[translation] = m;
     }
-    for (let m of Object.keys(translated).sort()) sorted.push(translated[m]);
+    let order = Object.keys(translated);
+    order.sort();
+    for (let m of order) sorted.push(translated[m]);
 
-    return Object.values(translated);
+    return Object.values(sorted);
   }
 
   const measurements = app.models[model].breasts
