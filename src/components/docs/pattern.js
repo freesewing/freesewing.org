@@ -9,38 +9,44 @@ const PatternIndexPage = props => {
 
   return (
     <React.Fragment>
-      <h2>
+      <h1>
         <FormattedMessage id={"patterns."+props.pattern+".title"} />
-      </h2>
+      </h1>
       <p>
         <FormattedMessage id={"patterns."+props.pattern+".description"} />
       </p>
-      <h3>
+      <h2>
         <FormattedMessage id="app.patternInstructions" />
-      </h3>
+      </h2>
       <ul className="links">
         <li>
           <Link to={"/docs/patterns/"+props.pattern+"/instructions"}>
-            <FormattedMessage id="app.patternInstructions" />
+            <FormattedMessage id="app.patternInstructions" />: {capitalize(props.pattern)}
           </Link>
         </li>
       </ul>
-      <h3>
+      <h2>
         <FormattedMessage id="app.patternOptions" />
-      </h3>
+      </h2>
+      <p>
+        <FormattedMessage id="app.options" />:
+      </p>
       <PatternOptions pattern={props.pattern}/>
-      <h3>
+      <h2>
         <FormattedMessage id="app.requiredMeasurements" />
-      </h3>
+      </h2>
+      <p><FormattedMessage id="app.howToTakeMeasurements" />:</p>
       <PatternMeasurements pattern={props.pattern} app={props.app}/>
-      <h3>
-          <FormattedMessage id="app.examples" />
-      </h3>
+      <h2>
+        <FormattedMessage id="app.examples" />
+      </h2>
+      <p>
+        <FormattedMessage id="intro.txt-showcase" />:
+      </p>
       <ul className="links">
         <li>
           <Link to={"/showcase/patterns/"+props.pattern}>
-            <FormattedMessage id="app.showcase" />
-            : {capitalize(props.pattern)}
+            <FormattedMessage id="app.showcase" /> / {capitalize(props.pattern)}
           </Link>
         </li>
       </ul>

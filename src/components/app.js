@@ -30,6 +30,7 @@ import TopicsToc from "./topics-toc";
 import Loading from "./loading";
 import UserMenu from "./user-menu";
 import VisitorMenu from "./visitor-menu";
+import { list as patterns } from "@freesewing/pattern-info";
 // pages
 import HomePage from "./pages/homepage";
 import LanguagePage from "./pages/language";
@@ -63,7 +64,9 @@ const App = props => {
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState(props.storageData.notification || false);
 
-  const uri = props.location.pathname;
+  let uri = props.location.pathname;
+  // Strip trailing slash
+  if (uri.slice(-1) === "/") uri = uri.slice(0,-1);
   const showNotification = (type, message) => {
     props.updateStorageData({type, message}, "notification");
     setNotification({type, message});
@@ -319,7 +322,11 @@ const App = props => {
   else if (slug === "/docs") main = <DocumentationPage {...pageProps} />
   else if (slug.slice(0,6) === "/docs/") {
     main = <DocumentationPage {...pageProps} />
-    showNext = true;
+    showNext = true
+    if (slug.slice(0,15) === "/docs/patterns/") {
+      let chunks = uri.split('/');
+      if (chunks.length === 4 && patterns.indexOf(chunks[3]) !== -1) noTitle = true;
+    }
   }
 
   const mobileIcons = (
