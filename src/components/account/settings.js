@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import { FormattedMessage } from "react-intl";
 import AvatarIcon from "@material-ui/icons/PhotoCamera";
 import BioIcon from "@material-ui/icons/ChatBubbleOutline";

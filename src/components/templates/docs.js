@@ -8,6 +8,8 @@ import PatternPage from "../docs/pattern";
 import { list as patterns } from "@freesewing/pattern-info";
 import { Link } from "gatsby";
 import { capitalize } from "@freesewing/utils";
+import PatternOptions from "../docs/pattern-options";
+import PatternMeasurements from "../docs/pattern-measurements";
 
 const DocumentationPage = props => {
   if (props.slug === "/docs") return <DocsIndexPage {...props} />
@@ -42,15 +44,28 @@ const DocumentationPage = props => {
     && chunks[1] === "docs"
     && chunks[2] === "patterns"
   ) suffix = <PatternPage pattern={chunks[3]} {...props} />
+  else if (
+    chunks.length === 5
+    && chunks[1] === "docs"
+    && chunks[2] === "patterns"
+    && chunks[4] === "options"
+  ) suffix = <PatternOptions pattern={chunks[3]} />
+  else if (
+    chunks.length === 5
+    && chunks[1] === "docs"
+    && chunks[2] === "patterns"
+    && chunks[4] === "measurements"
+  ) suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
 
   return (
     <React.Fragment>
       {prefix}
+      {props.pageContext.node ? (
       <MDXProvider components={components}>
         <MDXRenderer>
           {props.pageContext.node.code.body}
         </MDXRenderer>
-      </MDXProvider>
+      </MDXProvider> ) : null }
       {suffix}
     </React.Fragment>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import { FormattedMessage } from "react-intl";
 import ProfileIcon from "@material-ui/icons/Fingerprint";
 import SettingsIcon from "@material-ui/icons/Tune";

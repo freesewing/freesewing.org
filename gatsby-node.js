@@ -11,6 +11,10 @@ const redirects = {
   "/contact": "/docs/about/contact",
 }
 
+const patternMeasurements = {}
+for (let pattern of patterns) {
+  patternMeasurements["/docs/patterns/"+pattern+"/measurements"] = "app.requiredMeasurements";
+}
 const pages = {
   single: {
     "/": "app.home",
@@ -21,6 +25,7 @@ const pages = {
     "/search": "app.search",
     "/signup": "app.signUp",
     "/model": "app.newModel",
+    ...patternMeasurements
   },
   multiple: {
     "/showcase/patterns": {
