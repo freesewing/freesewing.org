@@ -73,7 +73,7 @@ const TopicsToc = props => {
       );
     }
 
-    return <ul className="topic-links">{children}</ul>
+    return <ul className={"topic-links level-"+level}>{children}</ul>
   }
 
   return renderSidebar();
