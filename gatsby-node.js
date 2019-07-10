@@ -184,17 +184,27 @@ const getMdx = function(graphql, language, markdown, titles) {
   return Promise.all(promises);
 };
 
-const isChild = function (topic, slug) {
+const isDescendant = function (topic, slug, level=1) {
   let chunks = slug.split("/");
-  if (chunks.length === 3 && chunks[1] === topic) return true;
+  if (chunks.length === (level + 2) && chunks[1] === topic) {
+    if (level === 1) return true;
+    if (level === 2) return "/"+topic+"/"+chunks[2];
+    if (level === 3) return "/"+topic+"/"+chunks[2]+"/"+chunks[3];
+  }
   else return false;
 }
 
-const isGrandchild = function (topic, slug) {
-  let chunks = slug.split("/");
-  if (chunks.length === 4 && chunks[1] === topic) return "/"+topic+"/"+chunks[2];
-  else return false;
-}
+//const isChild = function (topic, slug) {
+//  let chunks = slug.split("/");
+//  if (chunks.length === 3 && chunks[1] === topic) return true;
+//  else return false;
+//}
+//
+//const isGrandchild = function (topic, slug) {
+//  let chunks = slug.split("/");
+//  if (chunks.length === 4 && chunks[1] === topic) return "/"+topic+"/"+chunks[2];
+//  else return false;
+//}
 
 const getSortTitle = function (mdx) {
   let title = mdx.node.node.frontmatter.title;
@@ -215,6 +225,9 @@ const getTitle = function (mdx) {
     return mdx.node.node.frontmatter.linktitle;
 
   return mdx.node.node.frontmatter.title;
+}
+
+const getDocsLevel = (level, data) => {
 }
 
 const getTopics = function(markdown) {
@@ -239,7 +252,7 @@ const getTopics = function(markdown) {
       }
     } else {
 	    for (let slug of slugs) {
-        if (isChild(topic, slug)) children[getSortTitle(markdown[slug])] = slug;
+        if (isDescendant(topic, slug, 1)) children[getSortTitle(markdown[slug])] = slug;
       }
       let childrenOrder = Object.keys(children);
       childrenOrder.sort();
@@ -253,7 +266,6 @@ const getTopics = function(markdown) {
             list.blog.children["/blog/years/"+year] = { title: year }
           }
         }
-        // HERE
       } else {
         for (let title of childrenOrder) {
           let slug = children[title];
@@ -261,31 +273,38 @@ const getTopics = function(markdown) {
         }
       }
     }
-    // Grandchildren of docs topic
-    if (topic === "docs") {
-      let grandchildren = {};
-	    for (let slug of slugs) {
-        let child = isGrandchild(topic, slug);
-        if (child !== false) {
-          if (typeof grandchildren[child] === "undefined") grandchildren[child]= {};
-          grandchildren[child][getSortTitle(markdown[slug])] = slug;
-        }
+  }
+
+  // (great) Grandchildren of docs topic
+  let greatgrandchildren = {};
+  let grandchildren = {};
+	for (let slug of slugs) {
+    let child = isDescendant("docs", slug, 2);
+    if (child !== false) {
+      if (typeof grandchildren[child] === "undefined") grandchildren[child]= {};
+      grandchildren[child][getSortTitle(markdown[slug])] = slug;
+      let grandchild = isDescendant("docs", slug, 3);
+      if (grandchild !== false) {
+        console.log(slug);
+        if (typeof greatgrandchildren[child] === "undefined") greatgrandchildren[child]= {};
+        if (typeof greatgrandchildren[child][grandchild] === "undefined") greatgrandchildren[child][grandchild]= {};
+        greatgrandchildren[child][grandchild][getSortTitle(markdown[slug])] = slug;
       }
-      for (let child in grandchildren) {
-        let grandchildrenOrder = Object.keys(grandchildren[child]);
-        grandchildrenOrder.sort();
-        for (let title of grandchildrenOrder) {
-          let slug = grandchildren[child][title];
+    }
+  }
+  for (let child in grandchildren) {
+    let grandchildrenOrder = Object.keys(grandchildren[child]);
+    grandchildrenOrder.sort();
+    for (let title of grandchildrenOrder) {
+      let slug = grandchildren[child][title];
 
-          if (typeof list[topic].children[child].children === "undefined")
-            list[topic].children[child].children = {};
+      if (typeof list.docs.children[child].children === "undefined")
+        list.docs.children[child].children = {};
 
-          if (typeof markdown[slug] === "undefined")
-            console.log('no markdown for', child, grandchildren);
+      if (typeof markdown[slug] === "undefined")
+        console.log('no markdown for', child, grandchildren);
 
-          list[topic].children[child].children[slug] = { title: getTitle(markdown[slug]) };
-        }
-      }
+      list.docs.children[child].children[slug] = { title: getTitle(markdown[slug]) };
     }
   }
 
@@ -341,17 +360,17 @@ const createMdx = function(graphql, language, markdown, titles, createPage) {
   let promises = [];
   let topicsToc = getTopics(markdown);
   // Stuff topicsToc with pattern info (too deep or not available in markdown)
-  for (let pattern of patterns) {
-    let children = {};
-    let prefix = "/docs/patterns/"+pattern;
-    children[prefix+"/options"] = {title: "Pattern options"} // FIXME: Translation
-    children[prefix+"/measurements"] = {title: "Required measurements"} // FIXME: Translation
-    children[prefix+"/needs"] = {title: "What you need"} // FIXME: Translation
-    children[prefix+"/fabric"] = {title: "Fabric options"} // FIXME: Translation
-    children[prefix+"/cutting"] = {title: "Cutting"} // FIXME: Translation
-    children[prefix+"/instructions"] = {title: "Instructions"} // FIXME: Translation
-    topicsToc.docs.children["/docs/patterns"].children[prefix].children = children;
-  }
+  //for (let pattern of patterns) {
+  //  let children = {};
+  //  let prefix = "/docs/patterns/"+pattern;
+  //  children[prefix+"/options"] = {title: "Pattern options"} // FIXME: Translation
+  //  children[prefix+"/measurements"] = {title: "Required measurements"} // FIXME: Translation
+  //  children[prefix+"/needs"] = {title: "What you need"} // FIXME: Translation
+  //  children[prefix+"/fabric"] = {title: "Fabric options"} // FIXME: Translation
+  //  children[prefix+"/cutting"] = {title: "Cutting"} // FIXME: Translation
+  //  children[prefix+"/instructions"] = {title: "Instructions"} // FIXME: Translation
+  //  topicsToc.docs.children["/docs/patterns"].children[prefix].children = children;
+  //}
   let content = flattenTopicsToc(topicsToc);
   let slugs = Object.keys(markdown);
   slugs.sort();
