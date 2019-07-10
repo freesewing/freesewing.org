@@ -1,108 +1,82 @@
-import React, { useState } from "react";
+import React from "react";
 import TableOfContents from "./TableOfContents";
 import ExpandedIcon from "@material-ui/icons/KeyboardArrowDown";
 import CollapsedIcon from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from "gatsby";
+import { FormattedMessage } from "react-intl";
 
 const TopicsToc = props => {
-  const [collapse, setCollapse] = useState(false);
+  const isDescendant = (checkSlug, baseSlug) => {
+    if (checkSlug.slice(0, baseSlug.length) === baseSlug) return true;
 
-  const parentSlug = slug => slug.split("/").slice(0, -1).join("/");
-
-  let childIconStyle = {
-    marginLeft: "-16px",
-    fontSize: "16px"
+    return false;
   }
-  let items = [];
-  let children = false;
-  for (let topic of props.topics) {
-    let liProps = {
-      key: topic,
-      className: "topic",
+
+  const styles = {
+    icon: {
+      fontSize: "16px"
     }
-    let toc = null;
-    let tocComponent = <TableOfContents toc={props.toc} slug={props.slug}/>
-    if (topic === props.topic) {
-      liProps.className += " active";
-      children = [];
-      if (!collapse) {
-        for (let childSlug in props.topicsToc[topic].children) {
-          let grandchildren = [];
-          if (childSlug === props.slug) toc = tocComponent
-          if (
-            childSlug === props.slug
-            || childSlug === parentSlug(props.slug)
-          ) {
-            for (let grandchildSlug in props.topicsToc[topic].children[childSlug].children) {
-              let grandToc = null
-              if (grandchildSlug === props.slug) grandToc = tocComponent
-              grandchildren.push(<li
-                key={grandchildSlug}
-                className={grandchildSlug === props.slug ? "active" : ""}
-                style={{paddingLeft: "1rem"}}
-                >
-                <Link
-                  to={grandchildSlug}
-                  style={{fontWeight: grandchildSlug === props.slug ? "bold" : "normal"}}
-                >
-                  {props.topicsToc[topic].children[childSlug].children[grandchildSlug].title}
-                </Link>
-                {grandToc}
-              </li>);
-            }
-          }
-          else toc = null;
-
-          let childIcon = null;
-          let childClass = '';
-          if (grandchildren.length > 0) {
-            grandchildren = <ul className="topics">{grandchildren}</ul>
-            if (childSlug === props.slug || childSlug === parentSlug(props.slug)) {
-              childClass = "active";
-              childIcon = <ExpandedIcon fontSize="inherit" style={childIconStyle}/>
-            }
-          }
-          if (
-            childClass !== "active" &&
-            typeof props.topicsToc[topic].children[childSlug].children !== "undefined" &&
-            Object.keys(props.topicsToc[topic].children[childSlug].children).length > 0
-          ) childIcon = <CollapsedIcon fontSize="inherit" style={childIconStyle}/>
-          if (childSlug === props.page) childClass = 'active';
-          children.push(<li key={childSlug} className={childClass}>
-            <Link to={childSlug}>
-              {childIcon}
-              {props.topicsToc[topic].children[childSlug].title}
-            </Link>
-            {toc}
-            {grandchildren}
-          </li>);
-        }
-        if (children) children = <ul className="topics l1">{children}</ul>
-        else children = null;
-      } else children = null;
-    } else children = null;
-    if (!children && props.topic === topic) children = <TableOfContents toc={props.toc} slug={props.slug}/>
-    items.push(<li {...liProps}>
-        <Link to={"/"+topic} className="topic" onClick={() => {if(props.topic === topic) setCollapse(!collapse)}}>
-      { (topic === props.topic && !collapse)
-        ? <ExpandedIcon fontSize="inherit"/>
-        : <CollapsedIcon fontSize="inherit"/>
-      }
-          {props.topicsToc[topic].title}
-        </Link>
-      { props.slug.split("/").length === 2
-        && props.topic === topic
-        && props.toc
-        && props.toc.items
-        && props.toc.items.length > 0
-        ? <ul className="topics l1"><li>{tocComponent}</li></ul>
-        : null
-      }
-        {children}
-      </li>);
   }
 
-  return <ul className="topics">{items}</ul>
+  const renderSidebar = () => {
+    let items = [];
+    for (let topic of props.topics) {
+      let active = isDescendant(props.slug, "/"+topic) ? true : false;
+      items.push(
+        <li key={topic} className={active ? "topic active" : "topic"}>
+          <Link className={active ? "topic active" : "topic"} to={"/"+topic}>
+            { active
+              ? <ExpandedIcon fontSize="inherit" style={styles.icon}/>
+              : <CollapsedIcon fontSize="inherit" style={styles.icon}/>
+            }
+
+            <FormattedMessage id={"app."+topic}/>
+          </Link>
+          {active
+            ? renderSidebarLevel(1, props.topicsToc[topic].children)
+            : null
+          }
+        </li>
+      );
+    }
+
+    return <ul className="topics">{items}</ul>
+  }
+
+  const renderSidebarLevel = (level, data) => {
+    // Avoid too much recursion
+    if (level > 3) return null;
+    let children = [];
+    for (let key in data) {
+      let grandchildren = null;
+      let active = isDescendant(props.slug, key) ? true : false;
+      let current = props.slug === key ? true : false;
+      if (active && typeof data[key].children !== "undefined") {
+        grandchildren = renderSidebarLevel(level+1, data[key].children);
+      }
+      let className = active ? "active" : "inactive"
+      children.push(
+        <li key={key} className={className}>
+          <Link className={className} to={key}>
+            { active
+              ? <ExpandedIcon fontSize="inherit" style={styles.icon}/>
+              : <CollapsedIcon fontSize="inherit" style={styles.icon}/>
+            }
+            {data[key].title}
+          </Link >
+          {current
+            ? <TableOfContents toc={props.toc} slug={key}/>
+            : null
+          }
+          {grandchildren}
+        </li>
+      );
+    }
+
+    return <ul className="topic-links">{children}</ul>
+  }
+
+  return renderSidebar();
 }
 
 export default TopicsToc;

@@ -339,8 +339,16 @@ const createRedirects = function(redirects, createRedirect) {
 
 const createMdx = function(graphql, language, markdown, titles, createPage) {
   let promises = [];
-  //let template = path.resolve("src/components/templates/index.js");
   let topicsToc = getTopics(markdown);
+  // Stuff topicsToc with pattern info (not available in markdown)
+  for (let pattern of patterns) {
+    let children = {};
+    let prefix = "/docs/patterns/"+pattern;
+    children[prefix+"/instructions"] = {title: "Instructions"} // FIXME: Translation
+    children[prefix+"/options"] = {title: "Options"} // FIXME: Translation
+    children[prefix+"/measurements"] = {title: "Required measurements"} // FIXME: Translation
+    topicsToc.docs.children["/docs/patterns"].children[prefix].children = children;
+  }
   let content = flattenTopicsToc(topicsToc);
   let slugs = Object.keys(markdown);
   slugs.sort();
