@@ -45,7 +45,7 @@ const TopicsToc = props => {
 
   const renderSidebarLevel = (level, data) => {
     // Avoid too much recursion
-    if (level > 3) return null;
+    if (level > 4) return null;
     let children = [];
     for (let key in data) {
       let grandchildren = null;

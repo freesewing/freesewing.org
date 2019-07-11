@@ -194,11 +194,16 @@ const isDescendant = function (topic, slug, level=1) {
   else return false;
 }
 
-//const isChild = function (topic, slug) {
-//  let chunks = slug.split("/");
-//  if (chunks.length === 3 && chunks[1] === topic) return true;
-//  else return false;
-//}
+const isChild = function (base, slug) {
+  if (slug.slice(0, base.length) !== base) return false;
+  let chunks = {
+    base: base.split("/"),
+    slug: slug.split("/")
+  }
+  if (chunks.base.length + 1 === chunks.slug.length) return true;
+
+  return false;
+}
 //
 //const isGrandchild = function (topic, slug) {
 //  let chunks = slug.split("/");
@@ -274,37 +279,42 @@ const getTopics = function(markdown) {
       }
     }
   }
-
-  // (great) Grandchildren of docs topic
-  let greatgrandchildren = {};
-  let grandchildren = {};
-	for (let slug of slugs) {
-    let child = isDescendant("docs", slug, 2);
-    if (child !== false) {
-      if (typeof grandchildren[child] === "undefined") grandchildren[child]= {};
-      grandchildren[child][getSortTitle(markdown[slug])] = slug;
-      let grandchild = isDescendant("docs", slug, 3);
-      if (grandchild !== false) {
-        console.log(slug);
-        if (typeof greatgrandchildren[child] === "undefined") greatgrandchildren[child]= {};
-        if (typeof greatgrandchildren[child][grandchild] === "undefined") greatgrandchildren[child][grandchild]= {};
-        greatgrandchildren[child][grandchild][getSortTitle(markdown[slug])] = slug;
-      }
-    }
+  const buildDocsLevel = () => {
   }
-  for (let child in grandchildren) {
-    let grandchildrenOrder = Object.keys(grandchildren[child]);
-    grandchildrenOrder.sort();
-    for (let title of grandchildrenOrder) {
-      let slug = grandchildren[child][title];
-
-      if (typeof list.docs.children[child].children === "undefined")
-        list.docs.children[child].children = {};
-
-      if (typeof markdown[slug] === "undefined")
-        console.log('no markdown for', child, grandchildren);
-
-      list.docs.children[child].children[slug] = { title: getTitle(markdown[slug]) };
+  // Docs have a deeper hierarchy
+  // FIXME: This is not a very efficient way to do this
+  for (let parent in list.docs.children) {
+	  for (let child of slugs) {
+      let grandchildren = false;
+      if (isChild(parent, child)) {
+        grandchildren = true;
+        if (typeof list.docs.children[parent].children === "undefined") {
+          list.docs.children[parent].children = {}
+        }
+        list.docs.children[parent].children[child] = {title: getTitle(markdown[child])}
+        if (grandchildren) {
+	        for (let grandchild of slugs) {
+            let greatgrandchildren = false;
+            if (isChild(child, grandchild)) {
+              greatgrandchildren = true;
+              if (typeof list.docs.children[parent].children[child].children === "undefined") {
+                list.docs.children[parent].children[child].children = {}
+              }
+              list.docs.children[parent].children[child].children[grandchild] = {title: getTitle(markdown[grandchild])}
+              if (greatgrandchildren) {
+	              for (let greatgrandchild of slugs) {
+                  if (isChild(grandchild, greatgrandchild)) {
+                    if (typeof list.docs.children[parent].children[child].children[grandchild].children === "undefined") {
+                      list.docs.children[parent].children[child].children[grandchild].children = {}
+                    }
+                    list.docs.children[parent].children[child].children[grandchild].children[greatgrandchild] = {title: getTitle(markdown[greatgrandchild])}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
