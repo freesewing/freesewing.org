@@ -5,6 +5,7 @@ import { measurements } from "@freesewing/pattern-info";
 
 const PatternMeasurements = props => {
   const sortMeasurements = measurements => {
+    if (typeof measurements === "undefined") return []
     let sorted = [];
     let translated = {};
     for (let m of measurements) {
