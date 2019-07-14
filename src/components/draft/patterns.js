@@ -10,6 +10,7 @@ import Florent from "@freesewing/florent";
 import Huey from "@freesewing/huey";
 import Hugo from "@freesewing/hugo";
 import Jaeger from "@freesewing/jaeger";
+import Sandy from "@freesewing/sandy";
 import Shin from "@freesewing/shin";
 import Simon from "@freesewing/simon";
 import Sven from "@freesewing/sven";
@@ -34,6 +35,7 @@ const patterns = {
   Huey,
   Hugo,
   Jaeger,
+  Sandy,
   Shin,
   Simon,
   Sven,

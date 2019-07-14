@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
 import Icon from "@freesewing/components/Icon";
-import { camelCase } from "@freesewing/utils";
+import camelCase from "@freesewing/utils/camelCase";
 
 const Error = props => {
 

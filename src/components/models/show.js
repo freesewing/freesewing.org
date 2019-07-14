@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import { measurements as allMeasurements } from "@freesewing/models";
-import { formatMm } from "@freesewing/utils";
+import formatMm from "@freesewing/utils/formatMm";
 import Avatar from "../avatar";
 import Markdown from "react-markdown";
 

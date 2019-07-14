@@ -5,8 +5,8 @@ import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
 import { FormattedMessage } from "react-intl";
 import Button from "@material-ui/core/Button";
-import { measurementAsMm } from "@freesewing/utils";
-import { formatMm } from "@freesewing/utils";
+import measurementAsMm from "@freesewing/utils/measurementAsMm";
+import formatMm from "@freesewing/utils/formatMm";
 import { useStaticQuery, graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';

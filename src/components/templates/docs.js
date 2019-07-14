@@ -7,7 +7,7 @@ import DocsIndexPage from "../docs/";
 import PatternPage from "../docs/pattern";
 import { list as patterns } from "@freesewing/pattern-info";
 import { Link } from "gatsby";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 import PatternOptions from "../docs/pattern-options";
 import PatternMeasurements from "../docs/pattern-measurements";
 

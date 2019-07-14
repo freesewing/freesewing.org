@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { camelCase } from "@freesewing/utils";
+import camelCase from "@freesewing/utils/camelCase";
 import Breadcrumbs from "../breadcrumbs";
 import LoginRequired from "../login-required";
 import Button from "@material-ui/core/Button";

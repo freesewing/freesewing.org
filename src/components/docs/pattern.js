@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 import { Link } from "gatsby"
 import PatternOptions from "./pattern-options";
 import PatternMeasurements from "./pattern-measurements";

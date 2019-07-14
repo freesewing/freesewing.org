@@ -6,7 +6,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import successGif from "./success.gif";
 import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
-import { validateEmail, validateTld } from "@freesewing/utils";
+import validateEmail from "@freesewing/utils/validateEmail";
+import validateTld from "@freesewing/utils/validateTld";
 import Blockquote from "@freesewing/components/Blockquote";
 
 const Signup = ({ app, location }) => {

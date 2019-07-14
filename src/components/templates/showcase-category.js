@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Breadcrumbs from "../breadcrumbs";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 
 const BlogCategoryTemplate = props => {
 	const data = useStaticQuery(graphql`

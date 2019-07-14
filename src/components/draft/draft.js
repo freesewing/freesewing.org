@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Breadcrumbs from "../breadcrumbs";
 import { FormattedMessage } from "react-intl";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 import DraftConfigurator from "@freesewing/components/DraftConfigurator";
 import withGist from "@freesewing/components/withGist";
 import patterns from "./patterns";
@@ -135,6 +135,7 @@ const DraftPage = props => {
 
   let pattern, error, patternProps;
   try {
+    console.log('pattern', props.pattern, patterns);
     pattern = new patterns[capitalize(props.pattern)](props.gist.settings)
       .use(i18nPlugin, { strings: patternTranslations });
     if (display === "compare") {

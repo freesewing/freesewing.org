@@ -4,7 +4,8 @@ import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { validateEmail, validateTld } from "@freesewing/utils";
+import validateEmail from "@freesewing/utils/validateEmail";
+import validateTld from "@freesewing/utils/validateTld";
 import ValidIcon from "@material-ui/icons/CheckCircle";
 import InvalidIcon from "@material-ui/icons/Warning";
 

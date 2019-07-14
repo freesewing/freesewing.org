@@ -20,7 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import Fab from '@material-ui/core/Fab';
 import "@freesewing/css-theme";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 import "typeface-roboto-condensed";
 import "typeface-permanent-marker";
 import { FormattedMessage, injectIntl } from "react-intl";

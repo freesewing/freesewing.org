@@ -1,4 +1,4 @@
-import { backend as Backend } from "@freesewing/utils";
+import Backend from "@freesewing/utils/backend";
 import { navigate } from "gatsby";
 
 function useBackend(props) {

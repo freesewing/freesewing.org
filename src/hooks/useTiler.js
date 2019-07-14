@@ -1,4 +1,4 @@
-import { tiler as Tiler } from "@freesewing/utils";
+import Tiler from "@freesewing/utils/tiler";
 
 function useTiler(props) {
   const tiler = new Tiler();

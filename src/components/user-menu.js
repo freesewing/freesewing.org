@@ -54,11 +54,12 @@ const UserMenu = props => {
           </Link>
         { (link.to === "/draft" && active)
           ? (
-            <ul className="topics l1">
+            <ul className="topic-links level-1">
               {list.map( pattern => {
                 return (
-                  <li className={chunks[2] === pattern ? "active" : ""}>
-                    <Link to={"/draft/"+pattern}>
+                  <li>
+                    <Link to={"/draft/"+pattern} className={chunks[2] === pattern ? "active" : ""}>
+                      <CollapsedIcon fontSize="inherit" />
                       <FormattedMessage id="app.draftPattern" values={{pattern}} />
                     </Link>
                   </li>

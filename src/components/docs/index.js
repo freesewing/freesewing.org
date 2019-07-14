@@ -2,7 +2,7 @@ import React from "react";
 import { list as patterns } from "@freesewing/pattern-info";
 import { measurements } from "@freesewing/models";
 import { FormattedMessage } from "react-intl";
-import { capitalize } from "@freesewing/utils";
+import capitalize from "@freesewing/utils/capitalize";
 import { Link, useStaticQuery, graphql } from "gatsby"
 import Blockquote from "@freesewing/components/Blockquote";
 
