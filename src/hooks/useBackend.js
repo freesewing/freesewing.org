@@ -304,6 +304,14 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
 
+  const loadProfile = (username, setResult) => {
+    backend.profile(username, token)
+      .then(res => {
+        if (res.status === 200) setResult(true, res.data);
+        else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  }
 
   return {
     createAccount,
@@ -312,6 +320,7 @@ function useBackend(props) {
     exportAccount,
     isUsernameAvailable,
     loadPatrons,
+    loadProfile,
     login,
     logout,
     removeModel,

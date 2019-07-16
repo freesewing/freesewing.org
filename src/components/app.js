@@ -54,6 +54,7 @@ import RecipesPage from "./recipes/";
 import DraftPage from "./draft/";
 import DraftPattern from "./draft/draft";
 import PatronsPage from "./patrons/";
+import UsersPage from "./users/";
 
 /* This component is the root component for all pages */
 
@@ -294,6 +295,11 @@ const App = props => {
   }
   else if (slug.slice(0,8) === "/patrons") {
     main = <PatronsPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
+  else if (slug.slice(0,6) === "/users") {
+    main = <UsersPage {...pageProps} />
     noTitle = true;
     noCrumbs = true;
   }

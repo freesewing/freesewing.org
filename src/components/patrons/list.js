@@ -32,7 +32,8 @@ const JoinPatrons = props => {
   }
   const renderStars = tier => {
     let stars = [];
-    for (let i=0;i<parseInt(tier);i++) {
+    if ([2,4,8].indexOf(tier) === -1) return null;
+    for (let i=0;i<parseInt(tier/2);i++) {
       stars.push(<span role="img" aria-label="*" key={tier+"-"+i}>🌟</span>);
     }
     return stars;
