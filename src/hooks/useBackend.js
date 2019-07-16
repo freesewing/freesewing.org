@@ -294,6 +294,16 @@ function useBackend(props) {
     navigate("/", {replace: true});
   }
 
+  const loadPatrons = setResult => {
+    backend
+      .loadPatrons()
+      .then(res => {
+        if (res.status === 200) setResult(true, res.data);
+        else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  };
+
 
   return {
     createAccount,
@@ -301,6 +311,7 @@ function useBackend(props) {
     createRecipe,
     exportAccount,
     isUsernameAvailable,
+    loadPatrons,
     login,
     logout,
     removeModel,

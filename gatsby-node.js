@@ -49,6 +49,9 @@ const pages = {
     "/recipes": {
       matchPath: "/recipes/*"
     },
+    "/patrons": {
+      matchPath: "/patrons/*"
+    },
     "/draft": {
       matchPath: "/draft/*"
     },

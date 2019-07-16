@@ -31,11 +31,16 @@ const Subscribe = props => {
 
   return (
     <div style={styles.wrapper}>
-      <div style={styles.white}><Tier tier={0}/></div>
-      <div style={styles.colors}>
-        <div style={styles.color}><Tier tier={2}/></div>
-        <div style={styles.color}><Tier tier={4}/></div>
-        <div style={styles.color}><Tier tier={8}/></div>
+    {props.noFree
+      ? null
+      : <div style={styles.white}><Tier tier={0}/></div>
+    }
+      <div>
+        <div style={styles.colors}>
+          <div style={styles.color}><Tier tier={2} mobile={props.mobile}/></div>
+          <div style={styles.color}><Tier tier={4} mobile={props.mobile}/></div>
+          <div style={styles.color}><Tier tier={8} mobile={props.mobile}/></div>
+        </div>
       </div>
     </div>
   );

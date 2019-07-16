@@ -15,6 +15,7 @@ import Shin from "@freesewing/shin";
 import Simon from "@freesewing/simon";
 import Sven from "@freesewing/sven";
 import Tamiko from "@freesewing/tamiko";
+import Theo from "@freesewing/theo";
 import Trayvon from "@freesewing/trayvon";
 import Wahid from "@freesewing/wahid";
 
@@ -40,6 +41,7 @@ const patterns = {
   Simon,
   Sven,
   Tamiko,
+  Theo,
   Trayvon,
   Wahid,
 }

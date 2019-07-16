@@ -53,6 +53,7 @@ import ModelsPage from "./models/";
 import RecipesPage from "./recipes/";
 import DraftPage from "./draft/";
 import DraftPattern from "./draft/draft";
+import PatronsPage from "./patrons/";
 
 /* This component is the root component for all pages */
 
@@ -291,6 +292,11 @@ const App = props => {
     noTitle = true;
     noCrumbs = true;
   }
+  else if (slug.slice(0,8) === "/patrons") {
+    main = <PatronsPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
   else if (slug === "/draft") {
     main = <DraftPage {...pageProps} />
     noTitle = true;
@@ -383,6 +389,18 @@ const App = props => {
       />
     }
   }
+  const footerLinks = {
+    left: {
+      blog: "/blog",
+      aboutFreesewing: "/docs/about",
+      faq: "/docs/faq"
+    },
+    right: {
+      becomeAPatron: "/patrons/join",
+      makerDocs: "/docs",
+      devDocs: "https://" + props.language + ".freesewing.dev/"
+    }
+  }
 
   // Render
   let wrapperClasses = theme === "light"
@@ -430,7 +448,7 @@ const App = props => {
             </div>
           ) : null }
         </AppContext.Provider>
-        <Footer language={props.language}/>
+        <Footer language={props.language} links={footerLinks}/>
       </div>
     </MuiThemeProvider>
   );

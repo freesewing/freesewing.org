@@ -61,7 +61,7 @@ const EditRecipe = props => {
           size="large"
           variant="outlined"
           color="primary"
-          href="/account/settings"
+          href={"/recipes/"+props.recipe}
         >
           <FormattedMessage id="app.cancel" />
         </Button>
