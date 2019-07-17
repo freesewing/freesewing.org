@@ -36,6 +36,7 @@ import HomePage from "./pages/homepage";
 import LanguagePage from "./pages/language";
 import SearchPage from "./pages/search";
 import LoginPage from "./session/login/";
+import OauthPage from "./session/login/callback";
 import LogoutPage from "./session/logout";
 import SignupPage from "./session/signup/";
 import ConfirmPage from "./session/confirm/";
@@ -262,6 +263,11 @@ const App = props => {
     main = <LoginPage {...pageProps} />
     noTitle = true;
   }
+  else if (slug === "/login/callback") {
+    main = <OauthPage {...pageProps} />
+    noTitle = true;
+    noCrumbs = true;
+  }
   else if (slug === "/logout") main = <LogoutPage {...pageProps} />
   else if (slug === "/signup") {
     main = <SignupPage {...pageProps} />
@@ -303,7 +309,7 @@ const App = props => {
     noTitle = true;
     noCrumbs = true;
   }
-  else if (slug === "/draft") {
+  else if (slug === "/draft" || slug === "/recreate") {
     main = <DraftPage {...pageProps} />
     noTitle = true;
     noCrumbs = true;

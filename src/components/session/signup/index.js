@@ -9,6 +9,7 @@ import InvalidIcon from "@material-ui/icons/Warning";
 import validateEmail from "@freesewing/utils/validateEmail";
 import validateTld from "@freesewing/utils/validateTld";
 import Blockquote from "@freesewing/components/Blockquote";
+import Oauth from "../oauth/";
 
 const Signup = ({ app, location }) => {
   const [email, setEmail] = useState(null);
@@ -71,6 +72,7 @@ const Signup = ({ app, location }) => {
       <TextField
         id="email"
         fullWidth={true}
+        autoFocus={true}
         label={app.frontend.intl.formatMessage({ id: "account.email"})}
         helperText={app.frontend.intl.formatMessage({ id: "app.weNeverShareYourEmail" })}
         margin="normal"
@@ -122,7 +124,9 @@ const Signup = ({ app, location }) => {
       >
         <FormattedMessage id="app.signUp" />
       </Button>
+      <Oauth app={app} />
     </form>
+
   );
 
   return result ? success : form;

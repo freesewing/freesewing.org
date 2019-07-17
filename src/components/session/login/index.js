@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import LoginForm from "./login-form";
 import ResetPasswordForm from "./reset-password-form";
 import Blockquote from "@freesewing/components/Blockquote";
+import Oauth from "../oauth/";
 
 const Login = ({ app, location }) => {
   const [username, setUsername] = useState(null);
@@ -44,6 +45,9 @@ const Login = ({ app, location }) => {
       <Link to="/signup">
         <FormattedMessage id="app.signUpForAFreeAccount" />
       </Link>
+      <div style={{marginTop: "3rem", maxWidth: "500px" }}>
+        <Oauth app={app} login />
+      </div>
     </React.Fragment>
   );
 };

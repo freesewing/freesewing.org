@@ -20,7 +20,6 @@ const pages = {
     "/": "app.home",
     "/language": "account.language",
     "/login": "app.logIn",
-    "/login": "app.logIn",
     "/logout": "app.logOut",
     "/search": "app.search",
     "/signup": "app.signUp",
@@ -28,6 +27,9 @@ const pages = {
     ...patternMeasurements
   },
   multiple: {
+    "/login/callback": {
+      matchPath: "/login/callback/*",
+    },
     "/showcase/patterns": {
       matchPath: "/showcase/patterns/*",
     },
@@ -57,6 +59,9 @@ const pages = {
     },
     "/draft": {
       matchPath: "/draft/*"
+    },
+    "/recreate": {
+      matchPath: "/recreate/*"
     },
   }
 }

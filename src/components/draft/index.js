@@ -3,11 +3,16 @@ import LoginRequired from "../login-required";
 import SelectPatternPage from "./select-pattern";
 import SelectModelPage from "./select-model";
 import DraftPage from "./draft";
+import RecreatePage from "./recreate";
 
 const DraftIndex = props => {
   let main = null;
   let chunks = [];
-  if (props.slug === "/draft" || props.slug === "/draft/") {
+  console.log(props.slug.slice(0,9));
+  if (props.slug.slice(0,9) === "/recreate") {
+    main = <RecreatePage app={props.app} slug={props.slug}/>
+  }
+  else if (props.slug === "/draft" || props.slug === "/draft/") {
     main = <SelectPatternPage app={props.app} />
   } else {
     chunks = props.slug.split('/');

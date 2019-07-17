@@ -1,6 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import Button from "@material-ui/core/Button";
 import Breadcrumbs from "../breadcrumbs";
 import Profile from "./profile";
 import Robot from "@freesewing/components/Robot";

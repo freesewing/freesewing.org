@@ -313,15 +313,56 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   }
 
+  const loadRecipe = (handle, setResult) => {
+    backend.loadRecipe(handle, token)
+      .then(res => {
+        if (res.status === 200) setResult(true, res.data);
+        else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  }
+
+  const initOauth = (data, setResult) => {
+    backend
+      .initOauth(data)
+      .then(res => {
+        if (res.status === 200) setResult(true, data.provider, res.data);
+        else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, data.provider, {error: err, data: err.response.data}));
+  };
+
+  const loginOauth = (data, setResult) => {
+    backend
+      .providerLogin(data)
+      .then(res => {
+        if (res.status === 200) {
+          saveAccountToStorage(res.data);
+          props.showNotification(
+            "success",
+            props.intl.formatMessage(
+              { id: "app.goodToSeeYouAgain" },
+              { user: "@" + res.data.account.username }
+            )
+          );
+          setResult(true, res.data.signup);
+        } else setResult(false, res);
+      })
+      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+  };
+
   return {
     createAccount,
     createModel,
     createRecipe,
     exportAccount,
+    initOauth,
     isUsernameAvailable,
     loadPatrons,
     loadProfile,
+    loadRecipe,
     login,
+    loginOauth,
     logout,
     removeModel,
     removeRecipe,

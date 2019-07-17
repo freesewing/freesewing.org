@@ -31,7 +31,7 @@ const UserProfile = props => {
         {user.username}
         <small> <PatronStars tier={user.patron}/> </small>
       </h1>
-      <img src={user.pictureUris.l} style={styles.avatar} className="shadow"/>
+      <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username}/>
       <Markdown source={user.bio} />
       <p style={{textAlign: "center"}}>
           <UserSocial accounts={user.social} size={36}/>

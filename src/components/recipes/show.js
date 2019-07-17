@@ -50,11 +50,10 @@ const ShowRecipe = ({ app, recipe }) => {
         <Button
           color="primary"
           style={styles.draftButton}
-          href={"/recipes/"+recipe+"/notes"}
+          href={"/recreate/"+recipe}
           variant="contained"
         >
-          <FormattedMessage id="app.draft" />
-          (FIXME)
+          <FormattedMessage id="app.recreate" />
         </Button>
         <Button
           color="primary"
