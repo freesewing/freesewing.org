@@ -57,8 +57,8 @@ const pages = {
     "/users": {
       matchPath: "/users/*"
     },
-    "/draft": {
-      matchPath: "/draft/*"
+    "/create": {
+      matchPath: "/create/*"
     },
     "/recreate": {
       matchPath: "/recreate/*"
