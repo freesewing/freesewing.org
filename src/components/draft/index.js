@@ -12,7 +12,7 @@ const DraftIndex = props => {
   if (props.slug.slice(0,9) === "/recreate") {
     main = <RecreatePage app={props.app} slug={props.slug}/>
   }
-  else if (props.slug === "/draft" || props.slug === "/draft/") {
+  else if (props.slug === "/create" || props.slug === "/create/") {
     main = <SelectPatternPage app={props.app} />
   } else {
     chunks = props.slug.split('/');

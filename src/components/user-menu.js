@@ -8,17 +8,17 @@ import { list } from "@freesewing/pattern-info";
 const UserMenu = props => {
   const links = [
     {
-      to: "/draft",
+      to: "/create",
       title: [
         <FormattedMessage
-          id="app.draftPattern"
+          id="app.newPattern"
           values={{pattern: props.intl.formatMessage({id: "app.pattern"})}}
         />,
         <span>&nbsp;</span>,
       ]
     },
   ];
-  if (props.slug.slice(0,6) !== "/draft") links[0].title.push('✨');
+  if (props.slug.slice(0,7) !== "/create") links[0].title.push('✨');
 
   if (props.mobile) {
     links.push({
@@ -52,15 +52,15 @@ const UserMenu = props => {
               : link.title
             }
           </Link>
-        { (link.to === "/draft" && active)
+        { (link.to === "/create" && active)
           ? (
             <ul className="topic-links level-1">
               {list.map( pattern => {
                 return (
                   <li>
-                    <Link to={"/draft/"+pattern} className={chunks[2] === pattern ? "active" : ""}>
+                    <Link to={"/create/"+pattern} className={chunks[2] === pattern ? "active" : ""}>
                       <CollapsedIcon fontSize="inherit" />
-                      <FormattedMessage id="app.draftPattern" values={{pattern}} />
+                      <FormattedMessage id="app.newPattern" values={{pattern}} />
                     </Link>
                   </li>
                 )

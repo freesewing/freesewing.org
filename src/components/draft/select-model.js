@@ -61,9 +61,9 @@ const SelectPatternPage = props => {
   }
   if (props.app.frontend.tablet) styles.pattern.width = "calc(33% - 1rem)";
   if (props.app.frontend.mobile) styles.pattern.width = "calc(50% - 1rem)";
-  const pageTitle = <FormattedMessage id="app.draftPattern" values={{pattern: props.pattern}} />
-  const crumbs = [{slug: "/draft", title: <FormattedMessage
-      id="app.draftPattern"
+  const pageTitle = <FormattedMessage id="app.newPattern" values={{pattern: props.pattern}} />
+  const crumbs = [{slug: "/create", title: <FormattedMessage
+      id="app.newPattern"
       values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
     />}];
   const models = checkModels(props.app.models);
@@ -78,7 +78,7 @@ const SelectPatternPage = props => {
           models.ok.map( model => {
             return (
               <div style={styles.pattern}>
-                <Link to={"/draft/"+props.pattern+"/for/"+model.handle} title={model.name}>
+                <Link to={"/create/"+props.pattern+"/for/"+model.handle} title={model.name}>
                 <Avatar data={model} />
                 <h5 style={styles.name}>{model.name}</h5>
                 </Link>

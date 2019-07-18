@@ -26,7 +26,7 @@ const SelectPatternPage = props => {
   if (props.app.frontend.tablet) styles.pattern.width = "calc(33% - 1rem)";
   if (props.app.frontend.mobile) styles.pattern.width = "calc(50% - 1rem)";
   const pageTitle = <FormattedMessage
-      id="app.draftPattern"
+      id="app.newPattern"
       values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
     />
 
@@ -39,7 +39,7 @@ const SelectPatternPage = props => {
           list.map( pattern => {
             return (
               <div style={styles.pattern}>
-                <Link to={"/draft/"+pattern} title={pageTitle}>
+                <Link to={"/create/"+pattern} title={pageTitle}>
                 <h5 style={styles.name}>
                   {pattern}
                 </h5>

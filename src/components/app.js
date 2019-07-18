@@ -309,7 +309,7 @@ const App = props => {
     noTitle = true;
     noCrumbs = true;
   }
-  else if (slug === "/draft" || slug === "/recreate") {
+  else if (slug === "/create" || slug === "/recreate") {
     main = <DraftPage {...pageProps} />
     noTitle = true;
     noCrumbs = true;
@@ -386,7 +386,7 @@ const App = props => {
   if (slug === "/") layout = <HomePage app={app} />
   else {
     let chunks = uri.split('/');
-    if (chunks.length === 5 && chunks[1] === "draft" && chunks[3] === "for") {
+    if (chunks.length === 5 && chunks[1] === "create" && chunks[3] === "for") {
       draftLayout = true;
       layout = <DraftPattern
         model={chunks[4]}

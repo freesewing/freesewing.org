@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import Breadcrumbs from "../../breadcrumbs";
 import SignupConfirmation from "./signup";
+import { navigate } from "gatsby";
 
 const Confirm = props => {
   const chunks = props.slug.split("/");
@@ -16,6 +17,12 @@ const Confirm = props => {
     title = "app.oneMoreThing";
     crumbs = [crumbLib.confirm];
     main = <SignupConfirmation app={props.app} confirmationId={confirmationId}/>
+  }
+  else if (confirmationType === "email") {
+    navigate("/account");
+    title = "app.justAMoment";
+    crumbs = [crumbLib.confirm];
+    main = null;
   }
   else {
     title = [<FormattedMessage id="errors.404" />];

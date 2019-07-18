@@ -26,10 +26,10 @@ const AccountMenu = props => {
   const tiles = {
     primary: [
       {
-        to: "/draft",
+        to: "/create",
         icon: <NewPatternIcon style={styles.icon}/>,
         title: <FormattedMessage
-          id="app.draftPattern"
+          id="app.create"
           values={{pattern: props.intl.formatMessage({ id: "app.pattern" })}} />
       },
       {

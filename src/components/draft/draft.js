@@ -153,21 +153,21 @@ const DraftPage = props => {
 
   const crumbs = [
     {
-      slug: "/draft",
+      slug: "/create",
       title: <FormattedMessage
-        id="app.draftPattern"
+        id="app.newPattern"
         values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
       />
     },
     {
-      slug: "/draft/"+props.pattern,
+      slug: "/create/"+props.pattern,
       title: <FormattedMessage
-        id="app.draftPattern"
+        id="app.newPattern"
         values={{pattern: capitalize(props.pattern)}}
       />
     }
   ];
-  const pageTitle = <FormattedMessage id="app.draftPatternForModel"
+  const pageTitle = <FormattedMessage id="app.newPatternForModel"
     values={{pattern: capitalize(props.pattern), model: props.app.models[props.model].name}} />
   const styles = {
     narrow: {
