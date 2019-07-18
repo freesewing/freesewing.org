@@ -5,13 +5,11 @@ import { list } from "@freesewing/pattern-info";
 import Breadcrumbs from "../breadcrumbs";
 
 const RecreatePage = props => {
-  console.log(list)
   const handleResult = (result, data) => {
     if (result) {
       setRecipe(data);
     } else {
       // FIXME: Handle error
-      console.log(data);
     }
   }
   const [recipe, setRecipe] = useState(false);

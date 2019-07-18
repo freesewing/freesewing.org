@@ -8,11 +8,9 @@ import UserSocial from "../user-social";
 const JoinPatrons = props => {
   const handleResult = (result, data) => {
     if (result) {
-      console.log(data);
       setPatrons(data);
     } else {
       // FIXME: Handle error
-      console.log(data);
     }
   }
   const [patrons, setPatrons] = useState({2: {}, 4: {}, 8: {}});

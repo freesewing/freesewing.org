@@ -8,7 +8,6 @@ import RecreatePage from "./recreate";
 const DraftIndex = props => {
   let main = null;
   let chunks = [];
-  console.log(props.slug.slice(0,9));
   if (props.slug.slice(0,9) === "/recreate") {
     main = <RecreatePage app={props.app} slug={props.slug}/>
   }

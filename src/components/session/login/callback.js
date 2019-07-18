@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
-import { Link, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import { FormattedMessage } from "react-intl";
-import LoginForm from "./login-form";
-import ResetPasswordForm from "./reset-password-form";
-import Blockquote from "@freesewing/components/Blockquote";
-import Oauth from "../oauth/";
 import Breadcrumbs from "../../breadcrumbs";
 
 const Callback = props => {
@@ -25,31 +21,6 @@ const Callback = props => {
     props.app.backend.loginOauth({validation, confirmation}, handleResult);
 
   }, []);
-  /*
-  login = (confirmation, validation) => {
-    backend
-      .providerLogin({ confirmation, validation })
-      .then(res => {
-        if (res.status === 200) {
-          this.props.setUserAccount(res.data.account);
-          this.props.setModels(res.data.models);
-          this.props.setDrafts(res.data.drafts);
-          saveToken(res.data.token);
-          let to = "/account";
-          if (res.data.signup) to = "/welcome";
-          navigate(locLang.set(to, this.props.pageContext.language));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  componentDidMount() {
-    let validation = chunks.pop();
-    let confirmation = chunks.pop();
-    this.login(confirmation, validation);
-  }
-  */
   props.app.frontend.startLoading();
   const crumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.logIn" />} />
 

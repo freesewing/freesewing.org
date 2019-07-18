@@ -11,14 +11,8 @@ const Oauth = props => {
     }, handleResult);
   }
   const handleResult = (backendResult, provider, data = false) => {
-    console.log(data);
-
     if (!backendResult) {
       // FIXME: handle error
-      let msg = "errors.requestFailedWithStatusCode500";
-      console.log(data);
-      //if (data.data === "userExists") msg = "errors.emailExists";
-      //setError(<FormattedMessage id={msg} />);
     } else {
       window.location = oauthConfig[provider] + data.state;
     }

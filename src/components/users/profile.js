@@ -9,7 +9,6 @@ const UserProfile = props => {
       setUser(data.profile);
     } else {
       // FIXME: Handle error
-      console.log(data);
     }
   }
   const [user, setUser] = useState(false);

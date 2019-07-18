@@ -5,7 +5,6 @@ import { list } from "@freesewing/pattern-info";
 import Breadcrumbs from "../breadcrumbs";
 
 const SelectPatternPage = props => {
-  console.log(list)
   const styles = {
     wrapper: {
       display: "flex",
