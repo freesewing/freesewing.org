@@ -34,21 +34,55 @@ const DraftPage = props => {
   const [fit, setFit] = useState("false");
   const [eventType, setEventType] = useState("");
   const [eventValue, setEventValue] = useState("");
-  useEffect(() => {
-    props.updateGist(props.pattern, 'pattern');
-    props.updateGist(props.model, 'model');
-    props.updateGist(true, 'settings', 'embed');
-    props.updateGist(10, 'settings', 'sa');
-    props.updateGist(true, 'settings', 'complete');
-    props.updateGist(false, 'settings', 'paperless');
-    props.updateGist({}, 'settings', 'options');
-    props.updateGist(props.app.account.settings.units, 'settings', 'units');
-    let measurements = {}
-    for (let m of requiredMeasurements[props.pattern]) {
-      measurements[m] = props.app.models[props.model].measurements[m];
+  const [ready, setReady] = useState(false);
+  const [recipe, setRecipe] = useState(false);
+  const [design, setDesign] = useState(false);
+  const handleRecipeResult = (result, data) => {
+    if (result) {
+      setRecipe(data);
+      setDesign(data.recipe.pattern);
+      props.updateGist(data.recipe.pattern, 'pattern');
+      props.updateGist({...data.recipe.settings}, 'settings');
+      props.updateGist({...data.recipe.settings.options}, 'settings', 'options');
+      if (props.model === "replica") props.updateGist(data.recipe.model, 'model');
+      else {
+        props.updateGist(props.model, 'model');
+        let measurements = {}
+        for (let m of requiredMeasurements[data.recipe.pattern]) {
+          measurements[m] = props.app.models[props.model].measurements[m];
+        }
+        props.updateGist(measurements, 'settings', 'measurements');
+      }
+      setReady(true);
+    } else {
+      // FIXME: Handle error
     }
-    props.updateGist(measurements, 'settings', 'measurements');
-  }, [props.pattern, props.model]);
+  }
+  useEffect(() => {
+    props.updateGist(true, 'settings', 'embed');
+    console.log('running useEffect');
+    if (props.recreate) {
+      // Recreate from recipe
+      props.app.backend.loadRecipe(props.recipe, handleRecipeResult);
+    } else {
+      // Create from scratch
+      setDesign(props.pattern);
+      props.updateGist(props.pattern, 'pattern');
+      props.updateGist(props.model, 'model');
+      props.updateGist(10, 'settings', 'sa');
+      props.updateGist(true, 'settings', 'complete');
+      props.updateGist(false, 'settings', 'paperless');
+      props.updateGist({}, 'settings', 'options');
+      props.updateGist(props.app.account.settings.units, 'settings', 'units');
+      let measurements = {}
+      for (let m of requiredMeasurements[props.pattern]) {
+        measurements[m] = props.app.models[props.model].measurements[m];
+      }
+      props.updateGist(measurements, 'settings', 'measurements');
+      setReady(true);
+    }
+  }, [props.pattern, props.model, props.recipe]);
+
 	const markdownDocs = useStaticQuery(graphql`
 		{
       options: allMdx(
@@ -95,6 +129,12 @@ const DraftPage = props => {
 		  }
 		}`
   );
+
+  if (!ready) {
+    props.app.frontend.startLoading();
+    return null;
+  } else props.app.frontend.stopLoading();
+
   const docs = {
     options: {},
     settings: {}
@@ -135,12 +175,11 @@ const DraftPage = props => {
 
   let pattern, error, patternProps;
   try {
-    console.log('pattern', props.pattern, patterns);
-    pattern = new patterns[capitalize(props.pattern)](props.gist.settings)
+    pattern = new patterns[capitalize(design)](props.gist.settings)
       .use(i18nPlugin, { strings: patternTranslations });
     if (display === "compare") {
       let compareWith = {};
-      if (withBreastsPatterns.indexOf(props.pattern) === -1) compareWith = {...withoutBreasts};
+      if (withBreastsPatterns.indexOf(design) === -1) compareWith = {...withoutBreasts};
       else compareWith = {...withBreasts};
       compareWith.model = props.app.models[props.model].measurements;
       pattern.sampleModels(compareWith, 'model');
@@ -160,15 +199,16 @@ const DraftPage = props => {
       />
     },
     {
-      slug: "/create/"+props.pattern,
+      slug: "/create/"+design,
       title: <FormattedMessage
         id="app.newPattern"
-        values={{pattern: capitalize(props.pattern)}}
+        values={{pattern: capitalize(design)}}
       />
     }
   ];
-  const pageTitle = <FormattedMessage id="app.newPatternForModel"
-    values={{pattern: capitalize(props.pattern), model: props.app.models[props.model].name}} />
+  const pageTitle = (props.model === "replica")
+    ? "FIXME - Replica title"
+    : <FormattedMessage id="app.newPatternForModel" values={{pattern: capitalize(design), model: props.app.models[props.model].name}} />
   const styles = {
     narrow: {
       maxWidth: '42em',
@@ -265,6 +305,7 @@ const DraftPage = props => {
     </Tabs>];
   if (tab === 0) side.push(
        <DraftConfigurator
+          recipe={recipe.recipe}
           gist={props.gist}
           units={props.app.account.settings.units}
           config={pattern.config}

@@ -53,7 +53,7 @@ import CreateModelPage from "./models/create";
 import ModelsPage from "./models/";
 import RecipesPage from "./recipes/";
 import DraftPage from "./draft/";
-import DraftPattern from "./draft/draft";
+//import DraftPattern from "./draft/draft";
 import PatronsPage from "./patrons/";
 import UsersPage from "./users/";
 
@@ -386,11 +386,20 @@ const App = props => {
   if (slug === "/") layout = <HomePage app={app} />
   else {
     let chunks = uri.split('/');
-    if (chunks.length === 5 && chunks[1] === "create" && chunks[3] === "for") {
+    if (
+      (
+        chunks.length === 5
+        && (chunks[1] === "create" || chunks[1] === "recreate")
+        && chunks[3] === "for"
+      ) || (
+        chunks.length === 4
+        && chunks[1] === "recreate"
+        && chunks[3] === "replica"
+      )
+    ) {
       draftLayout = true;
-      layout = <DraftPattern
-        model={chunks[4]}
-        pattern={chunks[2]}
+      layout = <DraftPage
+        slug={uri}
         app={app}
         mainMenu={mainMenu}
         userMenu={app.account.username
