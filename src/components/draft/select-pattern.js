@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 import { list } from "@freesewing/pattern-info";
-import Breadcrumbs from "../breadcrumbs";
 
 const SelectPatternPage = props => {
   useEffect(() => {

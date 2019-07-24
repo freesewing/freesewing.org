@@ -8,9 +8,7 @@ import { injectIntl } from "react-intl";
 
 const MeasurementImages = props => {
   const [tab, setTab] = useState(0);
-
   const toggleTab = () => setTab(tab === 0 ? 1 : 0);
-
   const seated = [
     "seatdepth"
   ];

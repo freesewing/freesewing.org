@@ -99,7 +99,7 @@ const BlogCategoryTemplate = props => {
         let img = frontmatter.img.childImageSharp.fluid;
         if (frontmatter.patterns.indexOf(category) === -1) return null;
         return (
-          <div style={style.post}>
+          <div style={style.post} key={node.node.parent.relativeDirectory}>
             <Link
               to={"/"+node.node.parent.relativeDirectory}
               style={style.link}
@@ -109,7 +109,7 @@ const BlogCategoryTemplate = props => {
                 <img
                   src={img.base64}
                   style={{width: "100%"}}
-                  srcset={img.srcSet}
+                  srcSet={img.srcSet}
                   alt={frontmatter.caption}
                 />
               </figure>

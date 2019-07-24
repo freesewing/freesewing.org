@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
-import Breadcrumbs from "../breadcrumbs";
 import LoginRequired from "../login-required";
 import AccountMenu from "./menu";
 import AccountSettings from "./settings";
@@ -17,98 +16,101 @@ import AccountConsent from "./consent";
 import AccountRestrict from "./restrict";
 
 const Account = props => {
-  let title = "app.account";
-  let crumbs = [];
-  let main = <AccountMenu
-    mobile={props.app.frontend.mobile}
-    username={props.app.account.username}
-    intl={props.app.frontend.intl}
-  />
-  let crumbLib = {
-    account: {slug: "/account", title: <FormattedMessage id="app.account"/>},
-    settings: {slug: "/account/settings", title: <FormattedMessage id="app.settings"/>},
+  useEffect(() => {
+    let crumbs = {
+      account: {slug: "/account", title: <FormattedMessage id="app.account"/>},
+      settings: {slug: "/account/settings", title: <FormattedMessage id="app.settings"/>},
+    }
+    switch(props.slug) {
+      case "/account/settings":
+        props.app.frontend.setTitle(<FormattedMessage id="app.settings"/>);
+        props.app.frontend.setCrumbs([crumbs.account]);
+        break;
+      case "/account/settings/avatar":
+      case "/account/settings/bio":
+      case "/account/settings/language":
+      case "/account/settings/units":
+      case "/account/settings/github":
+      case "/account/settings/twitter":
+      case "/account/settings/instagram":
+      case "/account/settings/email":
+      case "/account/settings/username":
+      case "/account/settings/password":
+        let topic = props.slug.split("/").pop();
+        props.app.frontend.setTitle(<FormattedMessage id={"account."+topic}/>);
+        props.app.frontend.setCrumbs([crumbs.account, crumbs.settings]);
+        break;
+      case "/account/export":
+        props.app.frontend.setTitle(<FormattedMessage id="account.exportYourData"/>);
+        props.app.frontend.setCrumbs([crumbs.account]);
+        break;
+      case "/account/consent":
+        props.app.frontend.setTitle(<FormattedMessage id="account.reviewYourConsent"/>);
+        props.app.frontend.setCrumbs([crumbs.account]);
+        break;
+      case "/account/restrict":
+        props.app.frontend.setTitle(<FormattedMessage id="account.restrictProcessinOfYourData"/>);
+        props.app.frontend.setCrumbs([crumbs.account]);
+        break;
+      default:
+        props.app.frontend.setTitle(<FormattedMessage id="app.account"/>);
+        props.app.frontend.setCrumbs([]);
+    }
+  }, [props.slug]);
+
+  let main;
+  switch(props.slug) {
+    case "/account/settings":
+      main = <AccountSettings app={props.app} />
+      break;
+    case "/account/settings/avatar":
+      main = <AccountAvatar app={props.app} />
+      break;
+    case "/account/settings/bio":
+      main = <AccountBio  app={props.app} />
+      break;
+    case "/account/settings/language":
+      main = <AccountLanguage  app={props.app} />
+      break;
+    case "/account/settings/units":
+      main = <AccountUnits  app={props.app} />
+      break;
+    case "/account/settings/github":
+      main = <AccountSocial type='github' app={props.app} />
+      break;
+    case "/account/settings/twitter":
+      main = <AccountSocial type='twitter' app={props.app} />
+      break;
+    case "/account/settings/instagram":
+      main = <AccountSocial type='instagram' app={props.app} />
+      break;
+    case "/account/settings/email":
+      main = <AccountEmail app={props.app}  />
+      break;
+    case "/account/settings/username":
+      main = <AccountUsername  app={props.app} />
+      break;
+    case "/account/settings/password":
+      main = <AccountPassword  app={props.app} />
+      break;
+    case "/account/export":
+      main = <AccountExport app={props.app}/>
+      break;
+    case "/account/consent":
+      main = <AccountConsent app={props.app}/>
+      break;
+    case "/account/restrict":
+      main = <AccountRestrict app={props.app}/>
+      break;
+    default:
+      main = <AccountMenu
+        mobile={props.app.frontend.mobile}
+        username={props.app.account.username}
+        intl={props.app.frontend.intl}
+      />
   }
 
-  if (props.slug === "/account/settings") {
-    title = "app.settings";
-    crumbs = [crumbLib.account];
-    main = <AccountSettings app={props.app} />
-  }
-  else if (props.slug === "/account/settings/avatar") {
-    title = "account.avatar";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountAvatar app={props.app} />
-  }
-  else if (props.slug === "/account/settings/bio") {
-    title = "account.bio";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountBio  app={props.app} />
-  }
-  else if (props.slug === "/account/settings/language") {
-    title = "account.language";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountLanguage  app={props.app} />
-  }
-  else if (props.slug === "/account/settings/units") {
-    title = "account.units";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountUnits  app={props.app} />
-  }
-  else if (props.slug === "/account/settings/github") {
-    title = "account.github";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='github' app={props.app} />
-  }
-  else if (props.slug === "/account/settings/instagram") {
-    title = "account.instagram";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='instagram' app={props.app} />
-  }
-  else if (props.slug === "/account/settings/twitter") {
-    title = "account.twitter";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountSocial type='twitter' app={props.app} />
-  }
-  else if (props.slug === "/account/settings/email") {
-    title = "account.email";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountEmail app={props.app}  />
-  }
-  else if (props.slug === "/account/settings/username") {
-    title = "account.username";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountUsername  app={props.app} />
-  }
-  else if (props.slug === "/account/settings/password") {
-    title = "account.password";
-    crumbs = [crumbLib.account, crumbLib.settings];
-    main = <AccountPassword  app={props.app} />
-  }
-  else if (props.slug === "/account/export") {
-    title = "account.exportYourData";
-    crumbs = [crumbLib.account];
-    main = <AccountExport app={props.app}/>
-  }
-  else if (props.slug === "/account/consent") {
-    title = "account.reviewYourConsent";
-    crumbs = [crumbLib.account];
-    main = <AccountConsent app={props.app}/>
-  }
-  else if (props.slug === "/account/restrict") {
-    title = "account.restrictProcessingOfYourData";
-    crumbs = [crumbLib.account];
-    main = <AccountRestrict app={props.app}/>
-  }
-  let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id={title} />} />
-
-  return (
-    <LoginRequired page={props.slug}>
-      {theCrumbs}
-      <h1><FormattedMessage id={title} /></h1>
-      {main}
-      {theCrumbs}
-    </LoginRequired>
-  );
+  return <LoginRequired page={props.slug}>{main}</LoginRequired>
 };
 
 export default Account;

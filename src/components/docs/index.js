@@ -87,7 +87,7 @@ const DocumentationIndexPage = props => {
     let links = [];
     let list = Object.keys(docs[topic]);
     list.sort();
-    for (let title of list) links.push(<li><Link to={docs[topic][title]}>{title}</Link></li>)
+    for (let title of list) links.push(<li key={docs[topic][title]}><Link to={docs[topic][title]}>{title}</Link></li>)
     return <ul className="links">{links}</ul>
   }
 

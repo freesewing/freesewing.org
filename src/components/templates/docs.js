@@ -10,6 +10,7 @@ import { Link } from "gatsby";
 import capitalize from "@freesewing/utils/capitalize";
 import PatternOptions from "../docs/pattern-options";
 import PatternMeasurements from "../docs/pattern-measurements";
+import { measurements } from "@freesewing/models";
 
 const DocumentationPage = props => {
   useEffect(() => {
@@ -21,6 +22,12 @@ const DocumentationPage = props => {
     Tip: ({ children }) => { return <Blockquote type="tip">{children}</Blockquote>},
     Warning: ({ children }) => { return <Blockquote type="warning">{children}</Blockquote>},
   }
+  const realMeasurementName = m => {
+    for (let measurement of measurements.womenswear) {
+      if (measurement.toLowerCase() === m) return measurement;
+    }
+    return m;
+  }
 
   let prefix = null;
   let suffix = null;
@@ -30,12 +37,12 @@ const DocumentationPage = props => {
     chunks.length === 4
     && chunks[1] === "docs"
     && chunks[2] === "measurements"
-  ) prefix = <MeasurementsImages measurement={chunks[3]} />
+  ) prefix = <MeasurementsImages measurement={realMeasurementName(chunks[3])} />
   else if (props.slug === "/docs/patterns")
     suffix = (
       <ul className="links">
         {patterns.map( pattern => (
-          <li>
+          <li key={pattern}>
             <Link to={"/docs/patterns/"+pattern}>{capitalize(pattern)}</Link>
           </li>
         ))}

@@ -13,7 +13,7 @@ const PatternOptions = props => {
       for (let l2 of groups[l1]) {
         if(typeof l2 === "string") {
           children.push(
-            <li>
+            <li key={props.pattern+l2}>
               <Link to={"/docs/patterns/"+props.pattern+"/options/"+l2.toLowerCase()}>
                 <FormattedMessage id={"options."+props.pattern+"."+l2+".title"}/>
               </Link>
@@ -24,7 +24,7 @@ const PatternOptions = props => {
             let grandchildren = [];
             for (let l4 of l2[l3]) {
               grandchildren.push(
-                <li>
+                <li key={props.pattern+l4}>
                   <Link to={"/docs/patterns/"+props.pattern+"/options/"+l4.toLowerCase()}>
                     <FormattedMessage id={"options."+props.pattern+"."+l4+".title"}/>
                   </Link>
@@ -32,7 +32,7 @@ const PatternOptions = props => {
               );
             }
             children.push(
-              <li><b><FormattedMessage id={"optiongroups."+l3}/></b>
+              <li key={props.pattern+l3}><b><FormattedMessage id={"optiongroups."+l3}/></b>
                 <ul className="links">{grandchildren}</ul>
               </li>
             );
@@ -40,15 +40,13 @@ const PatternOptions = props => {
         }
       }
       list.push(
-        <li><b><FormattedMessage id={"optiongroups."+l1}/></b>
+        <li key={props.pattern+l1}><b><FormattedMessage id={"optiongroups."+l1}/></b>
           <ul className="links">{children}</ul>
         </li>
       );
     }
 
-    return [
-      <ul className="links">{list}</ul>
-    ];
+    return <ul className="links">{list}</ul>
   }
 
   return renderOptions();

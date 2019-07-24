@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Avatar from "../avatar";
 import { FormattedMessage } from "react-intl";
 import { Link, navigate } from "gatsby";
-import Breadcrumbs from "../breadcrumbs";
 import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
 import Blockquote from "@freesewing/components/Blockquote";
 import capitalize from "@freesewing/utils/capitalize";

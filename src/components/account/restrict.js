@@ -5,7 +5,8 @@ import Button from "@material-ui/core/Button";
 
 const AccountRestrict = ({ app }) => (
   <React.Fragment>
-                <FormattedMessage id="app.proceedWithCaution" />
+   FIXME: This is not yet implemented
+    <FormattedMessage id="app.proceedWithCaution" />
     <Blockquote type="note">
       <FormattedHTMLMessage id="account.restrictProcessingOfYourDataInfo" />
     </Blockquote>

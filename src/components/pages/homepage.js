@@ -233,7 +233,7 @@ const HomePage = ({ app }) => {
                 </Link>
                 <ul style={styles.patternList}>
                   {patternList.map((pattern, index) => (
-                    <li style={styles.patternEntry}>
+                    <li style={styles.patternEntry} key={pattern}>
                       <Link to={"/patterns/" + pattern} title={pattern}>
                         {(pattern)}
                       </Link>

@@ -25,14 +25,10 @@ const PatternIndexPage = props => {
       <h2>
         <FormattedMessage id="app.patternOptions" />
       </h2>
-      <p>
-        <FormattedMessage id="app.options" />:
-      </p>
       <PatternOptions pattern={props.pattern}/>
       <h2>
         <FormattedMessage id="app.requiredMeasurements" />
       </h2>
-      <p><FormattedMessage id="app.howToTakeMeasurements" />:</p>
       <PatternMeasurements pattern={props.pattern} app={props.app}/>
       <h2>
         <FormattedMessage id="app.examples" />

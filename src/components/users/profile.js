@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Markdown from "react-markdown";
-import PatronStars from "../patron-stars";
 import UserSocial from "../user-social";
 
 const UserProfile = props => {
@@ -26,10 +25,6 @@ const UserProfile = props => {
 
   return (
     <React.Fragment>
-      <h1>
-        {user.username}
-        <small> <PatronStars tier={user.patron}/> </small>
-      </h1>
       <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username}/>
       <Markdown source={user.bio} />
       <p style={{textAlign: "center"}}>

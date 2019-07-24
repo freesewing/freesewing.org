@@ -90,7 +90,7 @@ const ShowcaseIndexTemplate = props => {
           let frontmatter = node.node.frontmatter;
           let img = frontmatter.img.childImageSharp.fluid;
           return (
-            <div style={style.post}>
+            <div style={style.post} key={node.node.parent.relativeDirectory}>
               <Link
                 to={"/"+node.node.parent.relativeDirectory}
                 style={style.link}
@@ -100,7 +100,7 @@ const ShowcaseIndexTemplate = props => {
                   <img
                     src={img.base64}
                     style={{width: "100%"}}
-                    srcset={img.srcSet}
+                    srcSet={img.srcSet}
                     alt={frontmatter.caption}
                   />
                 </figure>

@@ -14,8 +14,9 @@ const UserMenu = props => {
         <FormattedMessage
           id="app.newPattern"
           values={{pattern: props.intl.formatMessage({id: "app.pattern"})}}
+          key="msg-1"
         />,
-        <span>&nbsp;</span>,
+        <span key="msg-2">&nbsp;</span>,
       ]
     },
   ];
@@ -42,7 +43,7 @@ const UserMenu = props => {
         return (
         <li
           className={active ? "topic active" : "topic"}
-        key={link.title}>
+          key={link.to}>
           <Link className="topic" to={link.to}>
             { active
               ? <ExpandedIcon fontSize="inherit" />
@@ -58,7 +59,7 @@ const UserMenu = props => {
             <ul className="topic-links level-1">
               {list.map( pattern => {
                 return (
-                  <li>
+                  <li key={pattern}>
                     <Link to={"/create/"+pattern} className={chunks[2] === pattern ? "active" : ""}>
                       <CollapsedIcon fontSize="inherit" />
                       <FormattedMessage id="app.newPattern" values={{pattern: capitalize(pattern)}} />

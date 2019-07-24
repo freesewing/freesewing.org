@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-const BlogCategoryTemplate = props => {
+const BlogYearTemplate = props => {
   useEffect(() => {
     if (props.year  === "years") {
       props.app.frontend.setTitle(<FormattedMessage id="app.years"/>);
@@ -69,7 +69,7 @@ const BlogCategoryTemplate = props => {
             let frontmatter = node.node.frontmatter;
             if (frontmatter.year !== props.year) return null;
             return (
-              <li>
+              <li key={node.node.parent.relativeDirectory}>
                 <Link
                   to={"/"+node.node.parent.relativeDirectory}
                   title={frontmatter.linktitle}
@@ -84,4 +84,4 @@ const BlogCategoryTemplate = props => {
   );
 }
 
-export default BlogCategoryTemplate;
+export default BlogYearTemplate;

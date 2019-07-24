@@ -41,7 +41,7 @@ const BlogTemplate = props => {
           <img
             src={img.base64}
             style={{width: "100%"}}
-            srcset={img.srcSet}
+            srcSet={img.srcSet}
             alt={frontmatter.caption}
           />
         </a>
