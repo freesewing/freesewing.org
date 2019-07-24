@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 
 const ShowcaseTemplate = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(props.pageContext.node.frontmatter.title);
+  }, []);
   if (typeof props.pageContext.node === "undefined")
     return null; // This is not a real page
 
@@ -29,7 +32,6 @@ const ShowcaseTemplate = props => {
 
   return (
     <React.Fragment>
-      <h1 style={style.title}>{props.pageContext.node.frontmatter.title}</h1>
       <div style={style.meta}>
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit"/>
         <div>

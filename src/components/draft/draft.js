@@ -60,7 +60,6 @@ const DraftPage = props => {
   }
   useEffect(() => {
     props.updateGist(true, 'settings', 'embed');
-    console.log('running useEffect');
     if (props.recreate) {
       // Recreate from recipe
       props.app.backend.loadRecipe(props.recipe, handleRecipeResult);
@@ -313,7 +312,6 @@ const DraftPage = props => {
           raiseEvent={raiseEvent}
         />);
   else side.push(<div style={{paddingTop: "1rem"}} onClick={props.app.frontend.closeNav}>{[props.mainMenu, props.userMenu]}</div>);
-
   if (fit && patternProps) patternProps.style = {
     maxHeight: "85vh"
   }

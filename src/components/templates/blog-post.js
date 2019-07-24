@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 
 const BlogTemplate = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(props.pageContext.node.frontmatter.title);
+  }, []);
   let frontmatter = props.pageContext.node.frontmatter;
   let img = frontmatter.img.childImageSharp.fluid;
   const style = {
@@ -25,7 +28,6 @@ const BlogTemplate = props => {
 
   return (
     <React.Fragment>
-      <h1 style={style.title}>{props.pageContext.node.frontmatter.title}</h1>
       <div style={style.meta}>
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit"/>
         <div>

@@ -9,7 +9,7 @@ import showcasesImage from "./showcases.jpg";
 import blogpostsImage from "./blogposts.jpg";
 
 const HomePage = ({ app }) => {
-
+  app.frontend.setLayout = "home";
   const styles = {
     container: {
       flexGrow: 2,

@@ -4,6 +4,7 @@ import ExpandedIcon from "@material-ui/icons/KeyboardArrowDown";
 import { FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 import { list } from "@freesewing/pattern-info";
+import capitalize from "@freesewing/utils/capitalize";
 
 const UserMenu = props => {
   const links = [
@@ -60,7 +61,7 @@ const UserMenu = props => {
                   <li>
                     <Link to={"/create/"+pattern} className={chunks[2] === pattern ? "active" : ""}>
                       <CollapsedIcon fontSize="inherit" />
-                      <FormattedMessage id="app.newPattern" values={{pattern}} />
+                      <FormattedMessage id="app.newPattern" values={{pattern: capitalize(pattern)}} />
                     </Link>
                   </li>
                 )

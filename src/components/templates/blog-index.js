@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby"
+import { FormattedMessage } from "react-intl";
 
 const BlogIndexTemplate = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="app.blog"/>);
+  }, []);
 	const data = useStaticQuery(graphql`
 		{
 		  allMdx(

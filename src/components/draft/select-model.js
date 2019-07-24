@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "../avatar";
 import { FormattedMessage } from "react-intl";
 import { Link, navigate } from "gatsby";
 import Breadcrumbs from "../breadcrumbs";
 import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
 import Blockquote from "@freesewing/components/Blockquote";
+import capitalize from "@freesewing/utils/capitalize";
 
 const SelectPatternPage = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="app.chooseAModel" />);
+    props.app.frontend.setCrumbs([
+      {
+        slug: "/create",
+        title: <FormattedMessage id="app.newPattern" values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}/>
+      },
+      {
+        slug: "/create",
+        title: <FormattedMessage id="app.newPattern" values={{pattern: capitalize(props.pattern)}}/>
+      },
+    ]);
+  }, []);
   // There's no point without models
   if (
     typeof props.app.models === "undefined"
@@ -61,18 +75,10 @@ const SelectPatternPage = props => {
   }
   if (props.app.frontend.tablet) styles.pattern.width = "calc(33% - 1rem)";
   if (props.app.frontend.mobile) styles.pattern.width = "calc(50% - 1rem)";
-  const pageTitle = <FormattedMessage id="app.newPattern" values={{pattern: props.pattern}} />
-  const crumbs = [{slug: "/create", title: <FormattedMessage
-      id="app.newPattern"
-      values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
-    />}];
   const models = checkModels(props.app.models);
-
 
   return (
     <React.Fragment>
-      <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
-      <h1><FormattedMessage id="app.chooseAModel" /></h1>
       <div style={styles.wrapper}>
         {
           models.ok.map( model => {
@@ -120,7 +126,6 @@ const SelectPatternPage = props => {
         }
 
       </div>
-      <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
     </React.Fragment>
   );
 }

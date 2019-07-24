@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
 import { list } from "@freesewing/pattern-info";
 import Breadcrumbs from "../breadcrumbs";
 
 const SelectPatternPage = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="app.chooseAPattern" />);
+    props.app.frontend.setCrumbs([{
+      slug: "/create",
+      title: <FormattedMessage id="app.newPattern"
+          values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
+      />
+    }]);
+  }, []);
   const styles = {
     wrapper: {
       display: "flex",
@@ -30,26 +39,22 @@ const SelectPatternPage = props => {
     />
 
   return (
-    <React.Fragment>
-      <Breadcrumbs crumbs={[]} pageTitle={pageTitle} />
-      <h1><FormattedMessage id="app.chooseAPattern" /></h1>
-      <div style={styles.wrapper}>
-        {
-          list.map( pattern => {
-            return (
-              <div style={styles.pattern}>
-                <Link to={"/create/"+pattern} title={pageTitle}>
-                <h5 style={styles.name}>
-                  {pattern}
-                </h5>
-                </Link>
-              </div>
-            )
-          })
-        }
-      </div>
-      <Breadcrumbs crumbs={[]} pageTitle={pageTitle} />
-    </React.Fragment>
+    <div style={styles.wrapper}>
+      {
+        list.map( pattern => {
+          return (
+            <div style={styles.pattern}>
+              <Link to={"/create/"+pattern} title={pageTitle}>
+              <h5 style={styles.name}>
+                {pattern}
+              </h5>
+              <FormattedMessage id={"patterns."+pattern+".title"} />
+              </Link>
+            </div>
+          )
+        })
+      }
+    </div>
   );
 }
 

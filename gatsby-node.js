@@ -2,7 +2,7 @@ const path = require("path");
 const topics = require("./src/config/topics");
 const patterns = require("@freesewing/pattern-info").list;
 
-const rootComponent = path.resolve("src/components/app.js");
+const rootComponent = path.resolve("src/components/app/index.js");
 
 const redirects = {
   "/privacy": "/docs/about/privacy",

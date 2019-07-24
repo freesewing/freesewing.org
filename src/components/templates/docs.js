@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from '@mdx-js/react';
 import Blockquote from "@freesewing/components/Blockquote";
@@ -12,8 +12,10 @@ import PatternOptions from "../docs/pattern-options";
 import PatternMeasurements from "../docs/pattern-measurements";
 
 const DocumentationPage = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(props.pageContext.node.frontmatter.title);
+  }, [props.slug]);
   if (props.slug === "/docs") return <DocsIndexPage {...props} />
-
   const components = {
     Note: ({ children }) => { return <Blockquote type="note">{children}</Blockquote>},
     Tip: ({ children }) => { return <Blockquote type="tip">{children}</Blockquote>},

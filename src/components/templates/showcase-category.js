@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Breadcrumbs from "../breadcrumbs";
 import capitalize from "@freesewing/utils/capitalize";
 
 const BlogCategoryTemplate = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(capitalize(category));
+    props.app.frontend.setCrumbs([
+      {
+        slug: "/showcase",
+        title: <FormattedMessage id="app.showcase"/>
+      },
+      {
+        slug: "/showcase/patterns",
+        title: <FormattedMessage id="app.patterns"/>
+      }
+    ]);
+  }, [props.slug]);
+
 	const data = useStaticQuery(graphql`
 		{
 		  allMdx(
@@ -77,24 +90,8 @@ const BlogCategoryTemplate = props => {
     }
   }
   const category = props.slug.split('/').pop();
-  const crumbs = [
-    {
-      slug: "/showcase",
-      title: <FormattedMessage id="app.showcase"/>
-    },
-    {
-      slug: "/showcase/patterns",
-      title: <FormattedMessage id="app.patterns"/>
-    },
-  ];
 
   return (
-    <div>
-      <Breadcrumbs crumbs={crumbs} pageTitle={capitalize(props.category)}/>
-      <h1>
-        <FormattedMessage id="app.showcase" />
-        : {capitalize(props.category)}
-      </h1>
     <div style={style.wrapper}>
     {
       data.allMdx.edges.map( node => {
@@ -123,7 +120,6 @@ const BlogCategoryTemplate = props => {
         )
       })
     }
-    </div>
     </div>
   );
 }

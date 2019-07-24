@@ -9,9 +9,6 @@ const PatternIndexPage = props => {
 
   return (
     <React.Fragment>
-      <h1>
-        <FormattedMessage id={"patterns."+props.pattern+".title"} />
-      </h1>
       <p>
         <FormattedMessage id={"patterns."+props.pattern+".description"} />
       </p>
