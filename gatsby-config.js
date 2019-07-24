@@ -29,6 +29,15 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: ['.mdx', '.md'],
+        // Plugins workaround. See: https://github.com/gatsbyjs/gatsby/issues/15486
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 756,
+            },
+          },
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
