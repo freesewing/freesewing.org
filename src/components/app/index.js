@@ -145,11 +145,11 @@ const App = props => {
       <div className="fs-sa">
         <section>
           <article style={{ maxWidth: '42em', margin: 'auto', }}>
-            {crumbs ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null }
+            {(crumbs && title) ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null }
             {title ? <h1>{title}</h1> : null }
             <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />
             {next ? <PreviousNext pageContext={props.pageContext} theme={theme}/> : null }
-            {crumbs ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null }
+            {(crumbs && title) ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null }
           </article>
         </section>
         { mobile ? null : (

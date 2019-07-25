@@ -22,6 +22,7 @@ import DraftPage from "../draft/";
 import PatronsPage from "../patrons/";
 import UsersPage from "../users/";
 import HomePage from "../pages/homepage";
+import NotFound from "../errors/404";
 
 const MainPage = props => {
   // Props for pages
@@ -58,6 +59,8 @@ const MainPage = props => {
       else if (props.pageContext.slug.slice(0,6) === "/blog/") return <BlogPostPage {...pageProps} />
       else if (props.pageContext.slug.slice(0,10) === "/showcase/") return <ShowcasePostPage {...pageProps} />
       else if (props.pageContext.slug.slice(0,6) === "/docs/") return <DocumentationPage {...pageProps} />
+
+      return <NotFound {...pageProps} />
   }
 }
 

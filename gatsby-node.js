@@ -63,6 +63,9 @@ const pages = {
     "/recreate": {
       matchPath: "/recreate/*"
     },
+    "/patterns": {
+      matchPath: "/patterns/*"
+    },
   }
 }
 
