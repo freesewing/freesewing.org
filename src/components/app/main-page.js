@@ -22,6 +22,7 @@ import DraftPage from "../draft/";
 import PatronsPage from "../patrons/";
 import UsersPage from "../users/";
 import HomePage from "../pages/homepage";
+import PatternsPage from "../patterns/";
 import NotFound from "../errors/404";
 
 const MainPage = props => {
@@ -48,6 +49,7 @@ const MainPage = props => {
     case "/showcase": return <ShowcasePage {...pageProps} />
     case "/showcase/patterns": return <ShowcaseCategoryPage {...pageProps} category={props.uri.split("/").pop()}/>
     case "/docs": return <DocumentationPage {...pageProps} />
+    case "/patterns": return <PatternsPage {...pageProps} />
     default:
       if (props.pageContext.slug.slice(0,8) === "/account") return <AccountPage {...pageProps} />
       else if (props.pageContext.slug.slice(0,8) === "/welcome") return <WelcomePage {...pageProps} />
@@ -59,6 +61,7 @@ const MainPage = props => {
       else if (props.pageContext.slug.slice(0,6) === "/blog/") return <BlogPostPage {...pageProps} />
       else if (props.pageContext.slug.slice(0,10) === "/showcase/") return <ShowcasePostPage {...pageProps} />
       else if (props.pageContext.slug.slice(0,6) === "/docs/") return <DocumentationPage {...pageProps} />
+      else if (props.pageContext.slug.slice(0,10) === "/patterns/") return <PatternsPage {...pageProps} />
 
       return <NotFound {...pageProps} />
   }

@@ -5,6 +5,7 @@ import capitalize from "@freesewing/utils/capitalize";
 const MainMenu = props => {
   let toc = null;
   let slug = props.pageContext.slug;
+  if (props.uri) slug = props.uri;
   if (typeof props.pageContext.node !== "undefined")
     toc = props.pageContext.node.tableOfContents;
   let topics = props.pageContext.topics;

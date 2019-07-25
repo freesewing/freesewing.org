@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Robot from "@freesewing/components/Robot";
-import Blockquote from "@freesewing/components/Blockquote";
 import Button from "@material-ui/core/Button";
 
 const NotFound = props => {

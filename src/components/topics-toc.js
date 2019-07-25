@@ -4,11 +4,23 @@ import ExpandedIcon from "@material-ui/icons/KeyboardArrowDown";
 import CollapsedIcon from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from "gatsby";
 import { FormattedMessage } from "react-intl";
+import { list } from "@freesewing/pattern-info";
+import capitalize from "@freesewing/utils/capitalize";
 
 const TopicsToc = props => {
+  const topics = ["patterns", ...props.topics];
+  const topicsToc = {
+    patterns: {
+      title: props.app.frontend.intl.formatMessage({id: "app.patterns"}),
+      children: {}
+    },
+    ...props.topicsToc
+  }
+  for (let pattern of list) topicsToc.patterns.children["/patterns/"+pattern] = {title: capitalize(pattern)}
+
   const isDescendant = (checkSlug, baseSlug) => {
     if (checkSlug.slice(0, baseSlug.length) === baseSlug) return true;
-
+    console.log(checkSlug,'is no des of', baseSlug);
     return false;
   }
 
@@ -17,10 +29,9 @@ const TopicsToc = props => {
       fontSize: "16px"
     }
   }
-
   const renderSidebar = () => {
     let items = [];
-    for (let topic of props.topics) {
+    for (let topic of topics) {
       let active = isDescendant(props.slug, "/"+topic) ? true : false;
       items.push(
         <li key={topic} className={active ? "topic active" : "topic"}>
@@ -33,7 +44,7 @@ const TopicsToc = props => {
             <FormattedMessage id={"app."+topic}/>
           </Link>
           {active
-            ? renderSidebarLevel(1, props.topicsToc[topic].children)
+            ? renderSidebarLevel(1, topicsToc[topic].children)
             : null
           }
         </li>

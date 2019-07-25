@@ -165,7 +165,6 @@ const App = props => {
       </div>
     )
   }
-
   // Render
   let wrapperClasses = theme === "light"
     ? "theme-wrapper light"
