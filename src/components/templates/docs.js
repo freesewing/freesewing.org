@@ -11,6 +11,7 @@ import capitalize from "@freesewing/utils/capitalize";
 import PatternOptions from "../docs/pattern-options";
 import PatternMeasurements from "../docs/pattern-measurements";
 import { measurements } from "@freesewing/models";
+import { FormattedMessage } from "react-intl";
 
 const DocumentationPage = props => {
   useEffect(() => {
@@ -31,6 +32,18 @@ const DocumentationPage = props => {
 
   let prefix = null;
   let suffix = null;
+  if (props.slug === "/docs/measurements") {
+    let children = [];
+    for (let m of measurements.womenswear) {
+      children.push(<li key={m}>
+        <Link to={"/docs/measurements/"+m.toLowerCase()}>
+          <FormattedMessage id={"measurements."+m} />
+        </Link>
+      </li>);
+    }
+    prefix = <ul>{children}</ul>
+  }
+
   // Add measurements images when needed
   const chunks = props.slug.split("/");
   if (
