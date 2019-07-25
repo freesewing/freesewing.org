@@ -20,7 +20,6 @@ const TopicsToc = props => {
 
   const isDescendant = (checkSlug, baseSlug) => {
     if (checkSlug.slice(0, baseSlug.length) === baseSlug) return true;
-    console.log(checkSlug,'is no des of', baseSlug);
     return false;
   }
 
