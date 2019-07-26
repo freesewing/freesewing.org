@@ -13,7 +13,9 @@ const PatternFilter = props => {
   const [filter, setFilter] = useState({
     department: [],
     type: [],
-    tags: []
+    tags: [],
+    design: [],
+    code: [],
   });
 
   const closeFilter = () => {
@@ -31,7 +33,9 @@ const PatternFilter = props => {
     let clear = {
       department: [],
       type: [],
-      tags: []
+      tags: [],
+      design: [],
+      code: [],
     }
     setFilter(clear);
     props.applyFilter(filteredPatternList(clear, ""));
@@ -103,19 +107,44 @@ const PatternFilter = props => {
         }
       }
     }
+    if (filtered.code.length > 0) {
+      for (let pattern in patterns) {
+        for (let t of filtered.code) {
+          if (patterns[pattern].code.indexOf(t) === -1) {
+            delete patterns[pattern];
+            break;
+          }
+        }
+      }
+    }
+    if (filtered.design.length > 0) {
+      for (let pattern in patterns) {
+        for (let t of filtered.design) {
+          if (patterns[pattern].design.indexOf(t) === -1) {
+            delete patterns[pattern];
+            break;
+          }
+        }
+      }
+    }
     return Object.keys(patterns);
   }
 
   const filterTypes = {
     department: [],
     type: [],
-    tags: []
+    tags: [],
+    design: [],
+    code: []
   };
 
   for (let p in info) {
     for (let f in filterTypes) {
-      if (f === "tags") {
-        for (let tag of info[p][f]) filterTypes.tags.push(tag);
+      if (f === "tags" || f === "code" || f === "design") {
+        if (typeof info[p][f] === "string") filterTypes[f].push(info[p][f]);
+        else {
+          for (let tag of info[p][f]) filterTypes[f].push(tag);
+        }
       }
       else filterTypes[f].push(info[p][f]);
     }
@@ -142,7 +171,9 @@ const PatternFilter = props => {
       listStyleType: "none",
     },
     listTitle: {
-      display: "inline"
+      display: "inline",
+      fontFamily: "Roboto Condensed",
+      fontWeight: "bold",
     }
   }
 
@@ -171,7 +202,7 @@ const PatternFilter = props => {
         return (
           <ul style={styles.list}>
             <li style={styles.key}>
-              <h6 style={styles.listTitle}><FormattedMessage id={"filter."+type+".title"} />:</h6>
+              <span style={styles.listTitle}><FormattedMessage id={"filter."+type} />:</span>
             </li>
             {filterTypes[type].map((value, index) => {
               return (
@@ -182,7 +213,7 @@ const PatternFilter = props => {
                 >
                   <Chip
                     color="primary"
-                    label={<FormattedMessage id={"filter."+type+"." + value}/>}
+                    label={(type === "code" || type === "design") ? value : <FormattedMessage id={"filter."+type}/>}
                     size="small"
                     variant={isSelected(type, value) ? "default" : "outlined"}
                     clickable={true}
