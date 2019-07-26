@@ -65,18 +65,18 @@ const PatronsIndex = props => {
         {theCrumbs}
         <div style={styles.stripe}>
           <div style={styles.innerHeader}>
-            <h1 style={styles.h1}>Support FreeSewing</h1>
+            <h1 style={styles.h1}><FormattedMessage id="app.supportFreesewing"/></h1>
             <h2 style={styles.h2}>
-              FreeSewing is fuelled by a voluntary subscription model
+              <FormattedMessage id="app.txt-tiers" />
             </h2>
             <p style={styles.pitch}>
-              If you think what we do is worthwhile, and if you can spare a few coins each month without hardship, you too should become a patron of FreeSewing.
+              <FormattedMessage id="app.patronPitch" />
             </p>
             <Button
               style={styles.primaryButton}
               variant="contained"
               href="#tier-2"
-            >Pricing</Button>
+            ><FormattedMessage id="app.pricing"/></Button>
           </div>
         </div>
         <Join app={props.app}/>

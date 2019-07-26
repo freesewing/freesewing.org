@@ -208,7 +208,7 @@ const HomePage = ({ app }) => {
 
         <div style={styles.stripe}>
           <div style={styles.innerHeader}>
-            <h1 style={styles.h1}>Support FreeSewing</h1>
+            <h1 style={styles.h1}><FormattedMessage id="supportFreesewing"/></h1>
             <h2 style={styles.h2}>
               <FormattedMessage id="app.txt-tiers" />
             </h2>
