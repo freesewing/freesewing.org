@@ -137,6 +137,7 @@ const HomePage = ({ app }) => {
     styles.header.backgroundPosition = "90% calc(100% + 20px)";
     styles.innerHeader.padding = "1rem";
     styles.box.maxWidth = "100%";
+    styles.box.minWidth = "200px";
     styles.card.width = "100%";
     styles.card.marginBottom = "2rem";
   }

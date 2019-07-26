@@ -1,51 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "gatsby";
+import React from "react";
 import Blockquote from "@freesewing/components/Blockquote";
 import { FormattedMessage } from "react-intl";
 import PatronStars from "../patron-stars";
 import UserSocial from "../user-social";
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 const JoinPatrons = props => {
-  const handleResult = (result, data) => {
-    if (result) {
-      setPatrons(data);
-    } else {
-      // FIXME: Handle error
-    }
-  }
-  const [patrons, setPatrons] = useState({2: {}, 4: {}, 8: {}});
-  useEffect(() => {
-    props.app.backend.loadPatrons(handleResult);
-  }, []);
-
-  const renderPatronTier = tier => {
-    let list = [];
-    for (let id in patrons[tier]) {
-      let patron = patrons[tier][id];
-      list.push(
-        <div key={patron.handle} style={styles.patron}>
-          <Link to={"/users/"+patron.username}>
-            <img style={styles.avatar} src={patron.pic} alt={patron.username} className="shadow"/>
-          </Link>
-          <div style={styles.username}>{patron.username}</div>
-          <div style={styles.social}>
-            <UserSocial accounts={patron.social} />
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div key={tier}>
-        <h2>
-          <FormattedMessage id={"app.patron-"+tier} />
-          <small> <PatronStars tier={tier} /> </small>
-        </h2>
-        <div style={styles.list}>
-          {list}
-        </div>
-      </div>
-    );
-  }
+	const data = useStaticQuery(graphql`
+		{
+      allFsPatron {
+        edges {
+          node {
+            patron {
+              username
+              pic { m }
+              social {
+                twitter
+                instagram
+                github
+              }
+              handle
+              tier
+            }
+          }
+        }
+      }
+		}`
+  );
 
   const styles = {
     patron: {
@@ -54,6 +35,7 @@ const JoinPatrons = props => {
       flexDirection: "column",
       alignItems: "center",
       marginBottom: "2rem",
+      textAlign: "center",
     },
     avatar: {
       width: "calc(100% - 15px)",
@@ -68,12 +50,36 @@ const JoinPatrons = props => {
     username: {
       fontWeight: "bold",
       fontFamily: "'Roboto Condensed', sans-serif",
-      margin: "0.5rem 0",
+      margin: "-0.5rem 0 0.5rem 0",
     },
   }
+  const patrons = {};
+  data.allFsPatron.edges.map( node => patrons[node.node.patron.username] = node.node.patron );
+
+  const order = Object.keys(patrons);
+  order.sort()
+  const list = [];
+  order.map( username => {
+    let patron = patrons[username];
+    list.push(
+      <div key={patron.handle} style={styles.patron}>
+        <Link to={"/users/"+patron.username}>
+          <img style={styles.avatar} src={patron.pic.m} alt={patron.username} className="shadow"/>
+        </Link>
+        <div><PatronStars tier={patron.tier} /></div>
+        <div style={styles.username}>{patron.username}</div>
+        <div style={styles.social}>
+          <UserSocial accounts={patron.social} />
+        </div>
+      </div>
+    );
+  });
+
   return (
     <React.Fragment>
-      {[2,4,8].map( tier => renderPatronTier(tier))}
+      <div style={styles.list}>
+        {list}
+      </div>
       <Blockquote type="note">
         <FormattedMessage id="account.patronInfo" />
       </Blockquote>

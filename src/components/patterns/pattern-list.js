@@ -33,7 +33,7 @@ const PatternList = props => {
       borderRadius: "4px",
     }
   }
-
+  if (props.app.frontend.mobile) styles.pattern.width = "48%";
   return (
     <React.Fragment>
     { filter

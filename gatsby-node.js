@@ -482,4 +482,53 @@ exports.createPages = ({ actions, graphql }) => {
     })
 };
 
+/* Source nodes from backend */
+
+const axios = require(`axios`)
+const crypto = require(`crypto`)
+
+exports.sourceNodes = async ({
+  actions,
+  getNode,
+  createNodeId,
+  hasNodeChanged,
+}) => {
+  const { createNode } = actions
+
+  // Do the initial fetch
+  console.time(`fetch FreeSewing data`)
+  const result = await axios.get("http://localhost:3000/patrons")
+  console.timeEnd(`fetch FreeSewing data`)
+
+  // Create patron nodes.
+  let i = 0;
+  Object.keys(result.data).map( tier => {
+    result.data[tier].map( patron => {
+      const patronNode = {
+        id: createNodeId(patron.handle),
+        parent: null,
+        patron: {
+          ...patron,
+          tier: tier
+        },
+        internal: {
+          type: `FSPatron`,
+        },
+        order: i
+      }
+      i++
+
+      // Get content digest of node.
+      const contentDigest = crypto
+        .createHash(`md5`)
+        .update(JSON.stringify(patronNode))
+        .digest(`hex`)
+
+      patronNode.internal.contentDigest = contentDigest
+      createNode(patronNode)
+    })
+  })
+
+  return
+}
 
