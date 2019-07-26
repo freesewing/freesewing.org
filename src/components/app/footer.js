@@ -38,10 +38,15 @@ const Footer = props => {
     }
   }
 
-  const patrons = [];
-  data.allFsPatron.edges.map( node => {
-    let patron = node.node.patron;
-    patrons.push(
+  const patrons = {};
+  data.allFsPatron.edges.map( node => patrons[node.node.patron.username] = node.node.patron );
+
+  const order = Object.keys(patrons);
+  order.sort()
+  const list = [];
+  order.map( username => {
+    let patron = patrons[username];
+    list.push(
       <li key={patron.username} style={styles.li}>
         <Link to={"/users/"+patron.username} title={patron.username}>
           <img src={patron.pic.xs} alt={patron.username} style={styles.img}/>
@@ -50,7 +55,7 @@ const Footer = props => {
     );
   });
 
-  const allPatrons = <ul style={styles.ul}>{patrons}</ul>
+  const allPatrons = <ul style={styles.ul}>{list}</ul>
 
   const links = {
     left: {
