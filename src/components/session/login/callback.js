@@ -9,7 +9,6 @@ const Callback = props => {
       if (signup) navigate("/welcome");
       else navigate("/account");
     } else {
-      // FIXME: Handle error
       console.log(result, signup);
     }
   }

@@ -1,13 +1,13 @@
 import React from "react";
 import Blockquote from "@freesewing/components/Blockquote";
+import { FormattedMessage } from "react-intl";
 
 const NoRecipe = props => {
 
-  // FIXME: this needs to be translated
   return (
     <Blockquote type="note">
-      <h6>Start by drafting a pattern</h6>
-      <p>You don't have any recipes (yet). Draft a pattern, then save its recipe.</p>
+      <h6><FormattedMessage id="app.createFirst" /></h6>
+      <p><FormattedMessage id="app.noRecipe" /></p>
     </Blockquote>
   );
 }

@@ -159,7 +159,7 @@ function useBackend(props) {
           );
           saveAccountToStorage(res.data);
           navigate("/welcome", {replace: true});
-        } else setResult(false, res);
+        } else setResult(res);
       })
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
@@ -351,6 +351,27 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
   };
 
+  const restrictAccount = () => {
+    props.startLoading();
+    backend
+      .restrict(token)
+      .then(res => {
+        if (res.status === 200) {
+          props.updateStorageData(null, "account");
+          props.updateStorageData(null, "models");
+          props.updateStorageData(null, "recipes");
+          props.updateStorageData(null, "token");
+          props.stopLoading();
+          props.showNotification(
+            "success",
+            props.intl.formatMessage({ id: "app.accountRestricted" })
+          );
+          navigate("/", {replace: true});
+        }
+      })
+      .catch((err, foo) => console.log({error: err, data: err.response.data}));
+  };
+
   return {
     createAccount,
     createModel,
@@ -364,6 +385,7 @@ function useBackend(props) {
     login,
     loginOauth,
     logout,
+    restrictAccount,
     removeModel,
     removeRecipe,
     removeAccount,

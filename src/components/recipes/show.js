@@ -28,9 +28,6 @@ const ShowRecipe = ({ app, recipe }) => {
     styles.table.width = "calc(100% + 3rem)";
   }
 
-  if (typeof app.recipes[recipe] === "undefined") {
-    return <p>FIXME: Recipe not found. Perhaps a relead will fix it?</p>
-  }
   return (
     <React.Fragment>
       { (typeof app.recipes[recipe].notes === "undefined" || app.recipes[recipe].notes === '')

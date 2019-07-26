@@ -62,7 +62,7 @@ const App = props => {
     props.updateStorageData(null, "notification");
   }
 
-  const startLoading = () => setLoading(true); // FIXME: Add time-out
+  const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
 
   // Prepare props
@@ -170,7 +170,6 @@ const App = props => {
     ? "theme-wrapper light"
     : "theme-wrapper dark";
   if (menu) wrapperClasses += " show-menu";
-    console.log(process.env.GATSBY_LANGUAGE);
 
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>

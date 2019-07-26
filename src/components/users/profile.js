@@ -4,11 +4,8 @@ import UserSocial from "../user-social";
 
 const UserProfile = props => {
   const handleResult = (result, data) => {
-    if (result) {
-      setUser(data.profile);
-    } else {
-      // FIXME: Handle error
-    }
+    if (result) setUser(data.profile);
+    else console.log(data);
   }
   const [user, setUser] = useState(false);
   useEffect(() => {

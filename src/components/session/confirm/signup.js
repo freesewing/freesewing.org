@@ -22,8 +22,9 @@ const AccountConsent = ({ app, confirmationId }) => {
     }
   }
 
-  const setResult = (one, two) => {
-    console.log('FIXME: Handle result', one, two);
+  const setResult = res => {
+    // This only gets called if createAccount fails
+    console.log(res);
   }
 
   const styles = {

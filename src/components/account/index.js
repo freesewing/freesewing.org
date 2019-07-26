@@ -49,7 +49,7 @@ const Account = props => {
         props.app.frontend.setCrumbs([crumbs.account]);
         break;
       case "/account/restrict":
-        props.app.frontend.setTitle(<FormattedMessage id="account.restrictProcessinOfYourData"/>);
+        props.app.frontend.setTitle(<FormattedMessage id="account.restrictProcessingOfYourData"/>);
         props.app.frontend.setCrumbs([crumbs.account]);
         break;
       default:

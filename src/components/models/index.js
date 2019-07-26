@@ -33,9 +33,7 @@ const ModelIndex = props => {
   else {
     const chunks = props.slug.split("/");
     const model = chunks[2];
-    if (props.app.models[model] === "undefined") {
-      // FIXME: Handle missing model
-    }
+    if (props.app.models[model] === "undefined") console.log('model was undefined', model, props.app.models);
     if (chunks.length === 3) main = <ModelPage model={model} app={props.app} />
     else if (chunks.length === 4) {
       if (chunks[3] === "name") main = <EditNamePage model={model} app={props.app} />

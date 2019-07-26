@@ -17,14 +17,13 @@ const UsersIndex = props => {
     }
   }, [props.slug]);
 
-  // FIXME: translation
   if (props.slug === "/users") {
     return (
       <LoginRequired page={props.slug}>
         <Blockquote type="note">
           <div style={{float: "left", paddingRight: "2rem"}}><Robot pose="shrug2" size={250}/></div>
-          <h3>You can't just browse all users</h3>
-          <p>We've got thousands of them. Surely you have better things to do?</p>
+          <h3><FormattedMessage id="app.noUserBrowsingTitle" /></h3>
+          <p><FormattedMessage id="app.noUserBrowsingText" /></p>
           <div style={{clear: "both"}}/>
         </Blockquote>
       </LoginRequired>

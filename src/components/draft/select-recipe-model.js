@@ -2,23 +2,23 @@ import React, { useState, useEffect } from "react";
 import Avatar from "../avatar";
 import { FormattedMessage } from "react-intl";
 import { Link } from "gatsby";
-import Breadcrumbs from "../breadcrumbs";
 import { measurements as requiredMeasurements } from "@freesewing/pattern-info";
 import Blockquote from "@freesewing/components/Blockquote";
 import capitalize from "@freesewing/utils/capitalize";
 import Button from "@material-ui/core/Button";
 
 const SelectRecipeModelPage = props => {
-  // FIXME: Translation
   const [recipe, setRecipe] = useState(false);
   useEffect(() => {
-    console.log('using effect');
+    props.app.frontend.setTitle([<FormattedMessage id="app.recreat"/>, " ", recipe.name]);
+    props.app.frontend.setCrumbs([{
+      slug: "/recreate",
+      title: <FormattedMessage id="app.newPattern"/>
+    }]);
+
     let chunks = props.slug.split('/');
     if (chunks.length === 3 && chunks[1] === "recreate") {
-      console.log('loading recipe', chunks[2]);
       props.app.backend.loadRecipe(chunks[2], handleResult);
-    } else {
-      console.log('not loading recipe', chunks[2]);
     }
 
   }, []);
@@ -26,7 +26,7 @@ const SelectRecipeModelPage = props => {
     if (result) {
       setRecipe(data);
     } else {
-      // FIXME: Handle error
+      console.log(data);
     }
   }
   const hasRequiredMeasurements = (measurements, required) => {
@@ -75,18 +75,11 @@ const SelectRecipeModelPage = props => {
       wordWrap: "anywhere",
     }
   }
-  const pageTitle = <FormattedMessage id="app.newPattern" values={{pattern: props.pattern}} />
-  const crumbs = [{slug: "/recreate", title: <FormattedMessage
-      id="app.newPattern"
-      values={{pattern: props.app.frontend.intl.formatMessage({id: "app.pattern"})}}
-    />}];
   const models = recipe ? checkModels(props.app.models) : null;
 
 
   return (
     <React.Fragment>
-      <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
-      <h1><FormattedMessage id="app.recreate" /> {recipe.name}</h1>
       <h2 id="models"><FormattedMessage id="app.chooseAModel" /></h2>
       <div style={styles.wrapper}>
         {
@@ -134,10 +127,10 @@ const SelectRecipeModelPage = props => {
           ) : null
         }
       </div>
-      <h2 id="replica">Use the recipe's model</h2>
-      <Button href={"/recreate/"+props.recipe+"/replica"} variant="contained" color="primary">Create a replica</Button>
-      <Breadcrumbs crumbs={crumbs} pageTitle={pageTitle} />
-      <pre>{JSON.stringify(recipe, null, 2)}</pre>
+      <h2 id="replica"><FormattedMessage id="app.useRecipeModel"/></h2>
+      <Button href={"/recreate/"+props.recipe+"/replica"} variant="contained" color="primary">
+        <FormattedMessage id="app.createReplica"/>
+      </Button>
     </React.Fragment>
   );
 }

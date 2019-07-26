@@ -11,12 +11,8 @@ const Oauth = props => {
     }, handleResult);
   }
   const handleResult = (backendResult, provider, data = false) => {
-    if (!backendResult) {
-      // FIXME: handle error
-    } else {
-      window.location = oauthConfig[provider] + data.state;
-    }
-
+    if (backendResult) window.location = oauthConfig[provider] + data.state;
+    else console.log(backendResult);
   }
 
   const styles = {

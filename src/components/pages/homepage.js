@@ -170,7 +170,6 @@ const HomePage = ({ app }) => {
       ><FormattedMessage id="app.signUp" /></Button>
     )
   }
-  console.log(app);
 
   return (
       <div style={styles.container}>

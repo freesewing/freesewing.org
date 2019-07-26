@@ -55,7 +55,7 @@ const DraftPage = props => {
       }
       setReady(true);
     } else {
-      // FIXME: Handle error
+      console.log(data);
     }
   }
   useEffect(() => {
@@ -206,7 +206,7 @@ const DraftPage = props => {
     }
   ];
   const pageTitle = (props.model === "replica")
-    ? "FIXME - Replica title"
+    ? recipe.name || null
     : <FormattedMessage id="app.newPatternForModel" values={{pattern: capitalize(design), model: props.app.models[props.model].name}} />
   const styles = {
     narrow: {
