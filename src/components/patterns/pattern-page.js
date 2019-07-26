@@ -17,7 +17,7 @@ const PatternPage = props => {
       slug: "/patterns",
       title: <FormattedMessage id="app.patterns"/>
     }]);
-  }, [props.slug]);
+  }, [props.pattern]);
 	const data = useStaticQuery(graphql`
 		{
 		  allMdx(

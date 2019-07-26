@@ -170,6 +170,7 @@ const App = props => {
     ? "theme-wrapper light"
     : "theme-wrapper dark";
   if (menu) wrapperClasses += " show-menu";
+    console.log(process.env.GATSBY_LANGUAGE);
 
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
@@ -220,6 +221,6 @@ const App = props => {
 export default withStorage(
   withLanguage(
     injectIntl(App),
-    process.env.GATSBY_LANG
+    process.env.GATSBY_LANGUAGE
   ), "freesewing.org"
 );

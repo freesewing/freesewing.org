@@ -1,8 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Robot from "@freesewing/components/Robot";
 import Blockquote from "@freesewing/components/Blockquote";
+import { FormattedMessage } from "react-intl";
 
-const SearchPage = ({ app }) => {
+const SearchPage = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="app.search" />);
+  }, []);
 
   const styles = {
     wrapper: {
@@ -19,7 +23,7 @@ const SearchPage = ({ app }) => {
       width: "calc(70% - 1rem)"
     }
   }
-  if (app.frontend.mobile || app.frontend.tablet) {
+  if (props.app.frontend.mobile || props.app.frontend.tablet) {
     styles.robot.width = "300px";
     styles.note.width = "100%";
   }

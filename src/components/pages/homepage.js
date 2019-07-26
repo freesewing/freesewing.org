@@ -1,6 +1,6 @@
 import React from "react"
 import Button from "@material-ui/core/Button";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
 import Subscribe from "../subscribe";
 import { list as patternList } from "@freesewing/pattern-info";
 import { Link } from "gatsby";
@@ -141,6 +141,36 @@ const HomePage = ({ app }) => {
     styles.card.width = "100%";
     styles.card.marginBottom = "2rem";
   }
+  let mainButton;
+  if (app.account.patron) {
+    mainButton = (
+      <Button
+        size="large"
+        color="secondary"
+        href="/share" variant="contained"
+        style={styles.primaryButton}
+      ><FormattedMessage id="app.share" /></Button>
+    )
+  } else if (app.account.username) {
+    mainButton = (
+      <Button
+        size="large"
+        color="secondary"
+        href="/patrons/join" variant="contained"
+        style={styles.primaryButton}
+      ><FormattedMessage id="app.subscribe" /></Button>
+    )
+  } else {
+    mainButton = (
+      <Button
+        size="large"
+        color="secondary"
+        href="/signup" variant="contained"
+        style={styles.primaryButton}
+      ><FormattedMessage id="app.signUp" /></Button>
+    )
+  }
+  console.log(app);
 
   return (
       <div style={styles.container}>
@@ -157,40 +187,23 @@ const HomePage = ({ app }) => {
                   </small>
                 </small>
               </h2>
-              <Button
-                size="large"
-                color="secondary"
-                href="/signup" variant="contained"
-                style={styles.primaryButton}
-              ><FormattedMessage id="app.signUp" /></Button>
+              {mainButton}
             </div>
           </div>
         </div>
 
         <div style={styles.boxes}>
           <div style={styles.box}>
-            <h2>Drafted to your measurements</h2>
-            <p>
-              All our patterns are made-to-measure.
-              Not just <em>graded</em> up or down,
-              but actually drafted to your exact specifications,
-              just as you would on paper.
-            </p>
+            <h2><FormattedMessage id="homepage.row1col1title" /></h2>
+            <p><FormattedHTMLMessage id="homepage.row1col1text" /></p>
           </div>
           <div style={styles.box}>
-            <h2>Packed with options plus live preview</h2>
-            <p>
-              FreeSewing patterns come with options that allow you to customize different aspects of the pattern.
-              Our live preview means no surprises: what you see is what you get.
-            </p>
+            <h2><FormattedMessage id="homepage.row1col2title" /></h2>
+            <p><FormattedMessage id="homepage.row1col2text" /></p>
           </div>
           <div style={styles.box}>
-            <h2>Recipes you can share and adapt</h2>
-            <p>
-              FreeSewing uses a <em>recipe</em> to capture how you configure your pattern.
-              You can share these recipes with others so they can get the same look,
-              drafted to their measurements.
-            </p>
+            <h2><FormattedMessage id="homepage.row1col3title" /></h2>
+            <p><FormattedHTMLMessage id="homepage.row1col3text" /></p>
           </div>
         </div>
 
@@ -198,22 +211,22 @@ const HomePage = ({ app }) => {
           <div style={styles.innerHeader}>
             <h1 style={styles.h1}>Support FreeSewing</h1>
             <h2 style={styles.h2}>
-              FreeSewing is fuelled by a voluntary subscription model
+              <FormattedMessage id="app.txt-tiers" />
             </h2>
             <p style={styles.pitch}>
-              If you think what we do is worthwhile, and if you can spare a few coins each month without hardship, you too should become a patron of FreeSewing.
+              <FormattedMessage id="app.patronPitch" />
             </p>
             <Button
               style={styles.primaryButton}
               variant="contained"
               href="#tier-2"
-            >Pricing</Button>
+            ><FormattedMessage id="app.pricing" /></Button>
           </div>
         </div>
 
 
         <div style={styles.m1}>
-          <h3 style={{textAlign: "center", marginTop: "3rem"}}>Pricing</h3>
+          <h3 style={{textAlign: "center", marginTop: "3rem"}}><FormattedMessage id="app.pricing" /></h3>
           <Subscribe mobile={app.frontend.mobile}/>
         </div>
 
@@ -309,29 +322,16 @@ const HomePage = ({ app }) => {
 
         <div style={styles.boxes}>
           <div style={styles.box}>
-            <h2>Looking for our code?</h2>
-            <p>
-              Our developer documentation is hosted on <a href="https://freesewing.dev/">freesewing.dev</a>.
-              You'll find links to all our repositories there, as well as in-depth documentation, tutorials, and examples.
-            </p>
+            <h2><FormattedMessage id="homepage.row2col1title" /></h2>
+            <p><FormattedHTMLMessage id="homepage.row2col1text" /></p>
           </div>
           <div style={styles.box}>
-            <h2>Want to help out?</h2>
-            <p>
-              Awesome <span role="img" aria-label="<3">❤️</span>
-              <br />Our <a href="https://freesewing.dev/contributor">contributor documentation</a> is
-              a good starting point. We also have dedicated guides for&nbsp;
-              <a href="https://freesewing.dev/translator">translators</a> and&nbsp;
-              <a href="https://freesewing.dev/editor">editors</a>.
-            </p>
+            <h2><FormattedMessage id="homepage.row2col2title" /></h2>
+            <p><FormattedHTMLMessage id="homepage.row2col2text" /></p>
           </div>
           <div style={styles.box}>
-            <h2>More questions?</h2>
-            <p>
-              Our <Link to="/faq">frequently asked questions</Link> might have the answer you're looking for.
-              If not, <a href="https://gitter.im/freesewing/freesewing">join our chat room</a> and we'll try to
-              help you there.
-            </p>
+            <h2><FormattedMessage id="homepage.row2col3title" /></h2>
+            <p><FormattedHTMLMessage id="homepage.row2col3text" /></p>
           </div>
         </div>
 

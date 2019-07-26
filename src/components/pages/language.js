@@ -1,41 +1,32 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Robot from "@freesewing/components/Robot";
 import Blockquote from "@freesewing/components/Blockquote";
+import { FormattedMessage } from "react-intl";
+import { languages } from "@freesewing/i18n";
 
-const LanguagePage = ({ app }) => {
-
-  const styles = {
-    wrapper: {
-      display: "flex",
-      alignItems: "center",
-      flexWrap: "wrap",
-      justifyContent: "space-between"
-    },
-    robot: {
-      width: "30%",
-      margin: "auto"
-    },
-    note: {
-      width: "calc(70% - 1rem)"
-    }
-  }
-  if (app.frontend.mobile || app.frontend.tablet) {
-    styles.robot.width = "300px";
-    styles.note.width = "100%";
-  }
+const LanguagePage = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="account.language" />);
+  }, []);
+  const bold = { fontWeight: "bold"}
   return (
-    <div style={styles.wrapper}>
-      <div style={styles.note}>
-        <Blockquote type="note">
-          <p>Unfortunately, our website is currently only available in English.</p>
-          <p>If you'd like to help us translate our site to other languages,
-          please <a href="https://gitter.im/freesewing/freesewing">get in touch</a>.</p>
-        </Blockquote>
-      </div>
-      <div style={styles.robot}>
-        <Robot embed pose="shrug"/>
-      </div>
-    </div>
+    <ul className="links">
+    { Object.keys(languages).map( lang => {
+      let current = (lang === process.env.GATSBY_LANGUAGE) ? true : false;
+      return (
+        <li key={lang} style={current ? bold : {}}>
+          <a href={current ? "/" : "https://"+lang+".freesewing.org"}>
+            {lang}.freesewing.org
+          </a>
+          : {languages[lang]}
+          {current
+              ? null
+              : [<span key="open"> (</span>, <FormattedMessage id={"i18n."+lang} key="lang"/>, <span key="close">)</span>]
+          }
+        </li>
+      )
+    })}
+    </ul>
   );
 }
 export default LanguagePage;
