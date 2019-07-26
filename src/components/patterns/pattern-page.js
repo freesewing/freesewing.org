@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
-import Image from "gatsby-image";
 import StarIcon from "@material-ui/icons/Star";
-import OptionsIcon from "@material-ui/icons/Tune";
-import MeasurementsIcon from "@material-ui/icons/AccessibilityNew";
 import Button from "@material-ui/core/Button";
 import { info as patternInfo, measurements, options} from "@freesewing/pattern-info";
 import PatternMeasurements from "../docs/pattern-measurements";

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react"
-import Robot from "@freesewing/components/Robot";
-import Blockquote from "@freesewing/components/Blockquote";
 import { FormattedMessage } from "react-intl";
 import { languages } from "@freesewing/i18n";
 

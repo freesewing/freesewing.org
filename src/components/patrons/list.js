@@ -73,6 +73,7 @@ const JoinPatrons = props => {
         </div>
       </div>
     );
+    return null;
   });
 
   return (

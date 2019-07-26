@@ -53,6 +53,7 @@ const Footer = props => {
         </Link>
       </li>
     );
+    return null;
   });
 
   const allPatrons = <ul style={styles.ul}>{list}</ul>
