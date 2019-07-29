@@ -75,7 +75,7 @@ const getFileList = function(graphql, language, markdown) {
       allFile(filter: {
         sourceInstanceName: {eq: "markdown"},
         extension: {eq: "md"},
-        name: {in: ["${language}","en"]}
+        name: {eq: "${language}"}
       }) { edges { node { relativeDirectory, name, absolutePath }}}
     }`;
     graphql(query).then(res => {
