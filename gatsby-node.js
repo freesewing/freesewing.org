@@ -188,6 +188,7 @@ const getMdx = function(graphql, language, markdown, titles) {
     	    reject();
     	  } else {
 					markdown[slug].node = res.data.allMdx.edges[0];
+          if (typeof markdown[slug].node.node.frontmatter === "undefined") console.log(slug, "\n\n\n", markdown[slug].node.node, "\n\n\n");
           titles[slug] = markdown[slug].node.node.frontmatter.title;
     	    resolve(true);
 				}
