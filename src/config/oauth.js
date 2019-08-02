@@ -4,7 +4,7 @@ export default {
     "?client_id=" +
     process.env.GATSBY_GITHUB_CLIENT_ID +
     "&redirect_uri=" +
-    process.env.GATSBY_GITHUB_CALLBACK +
+    `${process.env.GATSBY_BACKEND}/callback/from/github` +
     "&scope=" +
     "read:user" +
     "&state=",
@@ -14,7 +14,7 @@ export default {
     "&client_id=" +
     process.env.GATSBY_GOOGLE_CLIENT_ID +
     "&redirect_uri=" +
-    process.env.GATSBY_GOOGLE_CALLBACK +
+    `${process.env.GATSBY_BACKEND}/callback/from/google` +
     "&scope=" +
     "https://www.googleapis.com/auth/userinfo.profile" +
     " " +
