@@ -497,9 +497,7 @@ exports.sourceNodes = async ({
   const { createNode } = actions
 
   // Do the initial fetch
-  console.time(`fetch FreeSewing data`)
-  const result = await axios.get("http://localhost:3000/patrons")
-  console.timeEnd(`fetch FreeSewing data`)
+  const result = await axios.get(process.env.GATSBY_BACKEND + "patrons")
 
   // Create patron nodes.
   let i = 0;
