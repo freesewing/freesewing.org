@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import ValidIcon from "@material-ui/icons/CheckCircle";
-import InvalidIcon from "@material-ui/icons/Warning";
-import { FormattedMessage } from "react-intl";
-import Button from "@material-ui/core/Button";
+import React, { useState } from 'react'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import ValidIcon from '@material-ui/icons/CheckCircle'
+import InvalidIcon from '@material-ui/icons/Warning'
+import { FormattedMessage } from 'react-intl'
+import Button from '@material-ui/core/Button'
 
 const EditName = props => {
-  const [name, setName] = useState(props.app.models[props.model].name);
+  const [name, setName] = useState(props.app.models[props.model].name)
 
-  const updateName = evt => setName(evt.target.value);
+  const updateName = evt => setName(evt.target.value)
 
   return (
     <React.Fragment>
       <TextField
         fullWidth={true}
-        label={props.app.frontend.intl.formatMessage({ id: "app.name"})}
+        label={props.app.frontend.intl.formatMessage({ id: 'app.name' })}
         margin="normal"
         variant="outlined"
         value={name}
@@ -24,33 +24,36 @@ const EditName = props => {
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
-              { name.length > 0
-                ? <ValidIcon style={{ color: "#40c057" }} />
-                : <InvalidIcon color="error" />
-              }
+              {name.length > 0 ? (
+                <ValidIcon style={{ color: '#40c057' }} />
+              ) : (
+                <InvalidIcon color="error" />
+              )}
             </InputAdornment>
           )
         }}
       />
-      <p style={{textAlign: "right"}}>
+      <p style={{ textAlign: 'right' }}>
         <Button
           size="large"
-          style={{marginLeft: '1rem'}}
+          style={{ marginLeft: '1rem' }}
           variant="contained"
           color="primary"
           disabled={name.length > 0 ? false : true}
-          onClick={() => props.app.backend.saveModel(
-            props.model,
-            {name: name},
-            props.app.frontend.intl.formatMessage({id: "app.name"}),
-            "/models/"+props.model
-          )}
+          onClick={() =>
+            props.app.backend.saveModel(
+              props.model,
+              { name: name },
+              props.app.frontend.intl.formatMessage({ id: 'app.name' }),
+              '/models/' + props.model
+            )
+          }
         >
           <FormattedMessage id="app.save" />
         </Button>
       </p>
     </React.Fragment>
-  );
+  )
 }
 
-export default EditName;
+export default EditName

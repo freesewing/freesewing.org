@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
-import { useStaticQuery, graphql, Link } from "gatsby"
-import { FormattedMessage } from "react-intl";
+import React, { useEffect } from 'react'
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import { FormattedMessage } from 'react-intl'
 
 const BlogIndexTemplate = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="app.blog"/>);
-  }, []);
-	const data = useStaticQuery(graphql`
-		{
-		  allMdx(
-        filter:{ fileAbsolutePath: {regex: "/\/blog\/[^\/]*\/en.md/"}}
-        sort:{
-          fields: [frontmatter___date]
-          order: DESC
-        }
+    props.app.frontend.setTitle(<FormattedMessage id="app.blog" />)
+  }, [])
+  const data = useStaticQuery(graphql`
+    {
+      allMdx(
+        filter: { fileAbsolutePath: { regex: "//blog/[^/]*/en.md/" } }
+        sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
           node {
@@ -28,78 +25,75 @@ const BlogIndexTemplate = props => {
               date
               linktitle
               author
-							img {
-          			childImageSharp {
-          			  fluid(maxWidth: 400) {
-          			    base64
-          			    srcSet
-          			    sizes
-          			    presentationWidth
-          			    presentationHeight
-          			  }
-          			}
-        			}
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 400) {
+                    base64
+                    srcSet
+                    sizes
+                    presentationWidth
+                    presentationHeight
+                  }
+                }
+              }
             }
           }
         }
-		  }
-		}`
-  );
+      }
+    }
+  `)
 
   const style = {
     wrapper: {
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-between"
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between'
     },
     post: {
-      width: "47.5%",
-      marginBottom: "2rem",
+      width: '47.5%',
+      marginBottom: '2rem'
     },
     figure: {
       margin: 0,
-      padding: 0,
-
+      padding: 0
     },
     title: {
       border: 0,
-      fontSize: "1.5rem",
+      fontSize: '1.5rem',
       margin: 0,
       padding: 0,
-      lineHeight: 1.25,
+      lineHeight: 1.25
     },
     blurb: {
-      fontSize: "1rem",
+      fontSize: '1rem',
       margin: 0,
-      padding: 0,
+      padding: 0
     },
     link: {
-      color: "inherit",
-      textDecoration: "none"
+      color: 'inherit',
+      textDecoration: 'none'
     }
   }
-  if (props.app.frontend.mobile || props.app.frontend.tablet)
-    style.post.width = "100%";
+  if (props.app.frontend.mobile || props.app.frontend.tablet) style.post.width = '100%'
 
   return (
     <React.Fragment>
       <div style={style.wrapper}>
-      {
-        data.allMdx.edges.map( node => {
-          let frontmatter = node.node.frontmatter;
-          let img = frontmatter.img.childImageSharp.fluid;
+        {data.allMdx.edges.map(node => {
+          let frontmatter = node.node.frontmatter
+          let img = frontmatter.img.childImageSharp.fluid
           return (
             <div style={style.post} key={node.node.parent.relativeDirectory}>
               <Link
-                to={"/"+node.node.parent.relativeDirectory}
+                to={'/' + node.node.parent.relativeDirectory}
                 style={style.link}
                 title={frontmatter.linktitle}
               >
                 <figure style={style.figure}>
                   <img
                     src={img.base64}
-                    style={{width: "100%"}}
+                    style={{ width: '100%' }}
                     srcSet={img.srcSet}
                     alt={frontmatter.caption}
                   />
@@ -109,11 +103,10 @@ const BlogIndexTemplate = props => {
               </Link>
             </div>
           )
-        })
-      }
+        })}
       </div>
     </React.Fragment>
-  );
+  )
 }
 
-export default BlogIndexTemplate;
+export default BlogIndexTemplate

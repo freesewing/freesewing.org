@@ -1,376 +1,352 @@
-import Backend from "@freesewing/utils/backend";
-import { navigate } from "gatsby";
+import Backend from '@freesewing/utils/backend'
+import { navigate } from 'gatsby'
 
 function useBackend(props) {
-  const backend = new Backend(process.env.GATSBY_BACKEND);
+  const backend = new Backend(process.env.GATSBY_BACKEND)
 
-  const token = props.storageData.token;
+  const token = props.storageData.token
 
   const saveAccountToStorage = (data, callback) => {
-    if (data.account) props.updateStorageData(data.account, "account");
-    if (data.models) props.updateStorageData(data.models, "models");
-    if (data.recipes) props.updateStorageData(data.recipes, "recipes");
-    if (data.token) props.updateStorageData(data.token, "token");
-    if (callback) callback();
+    if (data.account) props.updateStorageData(data.account, 'account')
+    if (data.models) props.updateStorageData(data.models, 'models')
+    if (data.recipes) props.updateStorageData(data.recipes, 'recipes')
+    if (data.token) props.updateStorageData(data.token, 'token')
+    if (callback) callback()
   }
 
   const refreshAccount = (callback = false) => {
-    backend.account(token)
+    backend
+      .account(token)
       .then(res => {
-        if (res.status === 200) saveAccountToStorage(res.data, callback);
+        if (res.status === 200) saveAccountToStorage(res.data, callback)
       })
       .catch(err => {
-        return false;
-      });
+        return false
+      })
   }
 
   const login = (username, password) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .login(username, password)
       .then(res => {
         if (res.status === 200) {
-          props.stopLoading();
+          props.stopLoading()
           props.showNotification(
-            "success",
+            'success',
             props.intl.formatMessage(
-              { id: "app.goodToSeeYouAgain" },
-              { user: "@" + res.data.account.username }
+              { id: 'app.goodToSeeYouAgain' },
+              { user: '@' + res.data.account.username }
             )
-          );
-          saveAccountToStorage(res.data);
-          navigate("/account", {replace: true});
+          )
+          saveAccountToStorage(res.data)
+          navigate('/account', { replace: true })
         }
       })
       .catch(err => {
-        props.stopLoading();
-        console.log(err);
-        props.showNotification("error", err);
-      });
-    };
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
 
   const saveAccount = (data, field, to = false) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .saveAccount(data, token)
       .then(res => {
         if (res.status === 200) {
-          props.stopLoading();
+          props.stopLoading()
           props.showNotification(
-            "success",
-            props.intl.formatMessage(
-              { id: "app.fieldSaved" },
-              { field: field }
-            )
-          );
-          saveAccountToStorage(res.data);
-          navigate((to ? to : "/account/settings"), {replace: true});
+            'success',
+            props.intl.formatMessage({ id: 'app.fieldSaved' }, { field: field })
+          )
+          saveAccountToStorage(res.data)
+          navigate(to ? to : '/account/settings', { replace: true })
         }
       })
       .catch(err => {
-        props.stopLoading();
-        console.log(err);
-        props.showNotification("error", err);
-      });
-    };
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
 
   const saveModel = (handle, data, field, to = false) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .saveModel(handle, data, token)
       .then(res => {
         if (res.status === 200) {
-          props.stopLoading();
-          refreshAccount();
+          props.stopLoading()
+          refreshAccount()
           props.showNotification(
-            "success",
-            props.intl.formatMessage(
-              { id: "app.fieldSaved" },
-              { field: field }
-            )
-          );
-          if (to) navigate(to);
+            'success',
+            props.intl.formatMessage({ id: 'app.fieldSaved' }, { field: field })
+          )
+          if (to) navigate(to)
         }
       })
       .catch(err => {
-        props.stopLoading();
-        console.log(err);
-        props.showNotification("error", err);
-      });
-    };
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
 
   const saveRecipe = (handle, data, field, to = false) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .saveRecipe(handle, data, token)
       .then(res => {
         if (res.status === 200) {
-          props.stopLoading();
-          refreshAccount();
+          props.stopLoading()
+          refreshAccount()
           props.showNotification(
-            "success",
-            props.intl.formatMessage(
-              { id: "app.fieldSaved" },
-              { field: field }
-            )
-          );
-          if (to) navigate(to);
+            'success',
+            props.intl.formatMessage({ id: 'app.fieldSaved' }, { field: field })
+          )
+          if (to) navigate(to)
         }
       })
       .catch(err => {
-        props.stopLoading();
-        console.log(err);
-        props.showNotification("error", err);
-      });
-    };
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
 
   const isUsernameAvailable = (username, setResult) => {
     backend
       .availableUsername({ username }, token)
       .then(res => {
-        if (res.status === 200) setResult(true);
-        else setResult(false);
+        if (res.status === 200) setResult(true)
+        else setResult(false)
       })
-      .catch(err => setResult(false));
-  };
+      .catch(err => setResult(false))
+  }
 
   const signup = (email, password, language, setResult) => {
     backend
       .signup(email, password, language)
       .then(res => {
-        if (res.status === 200) setResult(true);
-        else setResult(false, res);
+        if (res.status === 200) setResult(true)
+        else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const createAccount = (confirmId, consent, setResult) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .createAccount(confirmId, consent)
       .then(res => {
         if (res.status === 200) {
           props.showNotification(
-            "success",
-            props.intl.formatMessage({ id: "app.accountCreated" }) +
-            " 🙌  " +
-            props.intl.formatMessage({ id: "app.welcomeAboard" }) +
-            " 🎉"
-          );
-          saveAccountToStorage(res.data);
-          navigate("/welcome", {replace: true});
-        } else setResult(res);
+            'success',
+            props.intl.formatMessage({ id: 'app.accountCreated' }) +
+              ' 🙌  ' +
+              props.intl.formatMessage({ id: 'app.welcomeAboard' }) +
+              ' 🎉'
+          )
+          saveAccountToStorage(res.data)
+          navigate('/welcome', { replace: true })
+        } else setResult(res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const createModel = (model, setResult) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .createModel(model, token)
       .then(res => {
         if (res.status === 200) {
-          props.showNotification(
-            "success",
-            props.intl.formatMessage({ id: "app.created" })
-          );
-          saveAccountToStorage(res.data);
-          navigate("/models/"+res.data.model.handle, {replace: true});
-          refreshAccount();
-        } else setResult(false, res);
+          props.showNotification('success', props.intl.formatMessage({ id: 'app.created' }))
+          saveAccountToStorage(res.data)
+          navigate('/models/' + res.data.model.handle, { replace: true })
+          refreshAccount()
+        } else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const createRecipe = (data, setResult) => {
-    props.startLoading();
+    props.startLoading()
     backend
       .createRecipe(data, token)
       .then(res => {
         if (res.status === 200) {
-          props.showNotification(
-            "success",
-            props.intl.formatMessage({ id: "app.created" })
-          );
-          refreshAccount(
-            navigate("/recipes/"+res.data.handle, {replace: true})
-          );
-        } else setResult(false, res);
+          props.showNotification('success', props.intl.formatMessage({ id: 'app.created' }))
+          refreshAccount(navigate('/recipes/' + res.data.handle, { replace: true }))
+        } else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const removeRecipe = handle => {
-    props.startLoading();
+    props.startLoading()
     backend
       .removeRecipe(handle, token)
       .then(res => {
         if (res.status === 204) {
-          props.stopLoading();
-          props.showNotification(
-            "success",
-            props.intl.formatMessage(
-              { id: "account.success" },
-            )
-          );
-          navigate("/recipes", {replace: true});
-          refreshAccount();
+          props.stopLoading()
+          props.showNotification('success', props.intl.formatMessage({ id: 'account.success' }))
+          navigate('/recipes', { replace: true })
+          refreshAccount()
         }
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const removeModel = handle => {
-    props.startLoading();
+    props.startLoading()
     backend
       .removeModel(handle, token)
       .then(res => {
         if (res.status === 204) {
-          props.stopLoading();
+          props.stopLoading()
           props.showNotification(
-            "success",
+            'success',
             props.intl.formatMessage(
-              {id: "app.fieldRemoved"},
-              { field: props.intl.formatMessage({id: "app.model"}) }
+              { id: 'app.fieldRemoved' },
+              { field: props.intl.formatMessage({ id: 'app.model' }) }
             )
-          );
-          navigate("/models", {replace: true});
-          refreshAccount();
+          )
+          navigate('/models', { replace: true })
+          refreshAccount()
         }
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const exportAccount = () => {
-    props.startLoading();
+    props.startLoading()
     backend
       .export(token)
       .then(res => {
-        props.stopLoading();
+        props.stopLoading()
         if (res.status === 200) {
-          if (typeof window !== "undefined") window.location.href = res.data.export;
+          if (typeof window !== 'undefined') window.location.href = res.data.export
         }
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const removeAccount = () => {
-    props.startLoading();
+    props.startLoading()
     backend
       .remove(token)
       .then(res => {
         if (res.status === 200) {
-          props.updateStorageData(null, "account");
-          props.updateStorageData(null, "models");
-          props.updateStorageData(null, "recipes");
-          props.updateStorageData(null, "token");
-          props.stopLoading();
+          props.updateStorageData(null, 'account')
+          props.updateStorageData(null, 'models')
+          props.updateStorageData(null, 'recipes')
+          props.updateStorageData(null, 'token')
+          props.stopLoading()
           props.showNotification(
-            "success",
-            props.intl.formatMessage(
-              { id: "account.accountRemoved" },
-            )
-          );
-          navigate("/", {replace: true});
+            'success',
+            props.intl.formatMessage({ id: 'account.accountRemoved' })
+          )
+          navigate('/', { replace: true })
         }
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   const logout = username => {
-    props.startLoading();
-    props.updateStorageData(null, "account");
-    props.updateStorageData(null, "models");
-    props.updateStorageData(null, "recipes");
-    props.updateStorageData(null, "token");
-    props.stopLoading();
+    props.startLoading()
+    props.updateStorageData(null, 'account')
+    props.updateStorageData(null, 'models')
+    props.updateStorageData(null, 'recipes')
+    props.updateStorageData(null, 'token')
+    props.stopLoading()
     props.showNotification(
-      "success",
-      props.intl.formatMessage(
-        { id: "app.seeYouLaterUser" },
-        { user: username }
-      )
-    );
-    navigate("/", {replace: true});
+      'success',
+      props.intl.formatMessage({ id: 'app.seeYouLaterUser' }, { user: username })
+    )
+    navigate('/', { replace: true })
   }
 
   const loadPatrons = setResult => {
     backend
       .loadPatrons()
       .then(res => {
-        if (res.status === 200) setResult(true, res.data);
-        else setResult(false, res);
+        if (res.status === 200) setResult(true, res.data)
+        else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const loadProfile = (username, setResult) => {
-    backend.profile(username, token)
+    backend
+      .profile(username, token)
       .then(res => {
-        if (res.status === 200) setResult(true, res.data);
-        else setResult(false, res);
+        if (res.status === 200) setResult(true, res.data)
+        else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
   }
 
   const loadRecipe = (handle, setResult) => {
-    backend.loadRecipe(handle, token)
+    backend
+      .loadRecipe(handle, token)
       .then(res => {
-        if (res.status === 200) setResult(true, res.data);
-        else setResult(false, res);
+        if (res.status === 200) setResult(true, res.data)
+        else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
   }
 
   const initOauth = (data, setResult) => {
     backend
       .initOauth(data)
       .then(res => {
-        if (res.status === 200) setResult(true, data.provider, res.data);
-        else setResult(false, res);
+        if (res.status === 200) setResult(true, data.provider, res.data)
+        else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, data.provider, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, data.provider, { error: err, data: err.response.data }))
+  }
 
   const loginOauth = (data, setResult) => {
     backend
       .providerLogin(data)
       .then(res => {
         if (res.status === 200) {
-          saveAccountToStorage(res.data);
+          saveAccountToStorage(res.data)
           props.showNotification(
-            "success",
+            'success',
             props.intl.formatMessage(
-              { id: "app.goodToSeeYouAgain" },
-              { user: "@" + res.data.account.username }
+              { id: 'app.goodToSeeYouAgain' },
+              { user: '@' + res.data.account.username }
             )
-          );
-          setResult(true, res.data.signup);
-        } else setResult(false, res);
+          )
+          setResult(true, res.data.signup)
+        } else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, {error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
 
   const restrictAccount = () => {
-    props.startLoading();
+    props.startLoading()
     backend
       .restrict(token)
       .then(res => {
         if (res.status === 200) {
-          props.updateStorageData(null, "account");
-          props.updateStorageData(null, "models");
-          props.updateStorageData(null, "recipes");
-          props.updateStorageData(null, "token");
-          props.stopLoading();
+          props.updateStorageData(null, 'account')
+          props.updateStorageData(null, 'models')
+          props.updateStorageData(null, 'recipes')
+          props.updateStorageData(null, 'token')
+          props.stopLoading()
           props.showNotification(
-            "success",
-            props.intl.formatMessage({ id: "app.accountRestricted" })
-          );
-          navigate("/", {replace: true});
+            'success',
+            props.intl.formatMessage({ id: 'app.accountRestricted' })
+          )
+          navigate('/', { replace: true })
         }
       })
-      .catch((err, foo) => console.log({error: err, data: err.response.data}));
-  };
+      .catch((err, foo) => console.log({ error: err, data: err.response.data }))
+  }
 
   return {
     createAccount,
@@ -393,9 +369,8 @@ function useBackend(props) {
     saveAccount,
     saveModel,
     saveRecipe,
-    signup,
+    signup
   }
-
 }
 
-export default useBackend;
+export default useBackend

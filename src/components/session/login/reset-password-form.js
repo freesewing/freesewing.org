@@ -1,11 +1,11 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
 const ResetPasswordForm = props => (
   <React.Fragment>
-    <div style={{textAlign: "left"}}>
+    <div style={{ textAlign: 'left' }}>
       <ul>
         <li>
           <FormattedHTMLMessage id="app.emailWorksToo" />
@@ -22,21 +22,21 @@ const ResetPasswordForm = props => (
         autoFocus={true}
         fullWidth={true}
         autoComplete="username"
-        label={props.intl.formatMessage({ id: "account.email" })}
+        label={props.intl.formatMessage({ id: 'account.email' })}
         margin="normal"
         variant="outlined"
       />
-        <Button
-          type="submit"
-          color="primary"
-          size="large"
-          variant="contained"
-          style={{margin: "2rem 0"}}
-        >
-          <FormattedMessage id="app.resetPassword" />
-        </Button>
+      <Button
+        type="submit"
+        color="primary"
+        size="large"
+        variant="contained"
+        style={{ margin: '2rem 0' }}
+      >
+        <FormattedMessage id="app.resetPassword" />
+      </Button>
     </form>
   </React.Fragment>
-);
+)
 
-export default ResetPasswordForm;
+export default ResetPasswordForm

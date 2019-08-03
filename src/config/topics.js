@@ -1,5 +1,1 @@
-module.exports = [
-  "blog",
-  "showcase",
-  "docs",
-];
+module.exports = ['blog', 'showcase', 'docs']

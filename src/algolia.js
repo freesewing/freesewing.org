@@ -12,22 +12,23 @@ const query = `{
   }
 }`
 
-const flatten = arr => arr.map( node => {
-  return {
-    path: "/" + node.node.parent.relativePath.slice(0, -5),
-    body: node.node.rawBody,
-    html: node.node.html,
-    title: node.node.frontmatter.title
-  }
-})
+const flatten = arr =>
+  arr.map(node => {
+    return {
+      path: '/' + node.node.parent.relativePath.slice(0, -5),
+      body: node.node.rawBody,
+      html: node.node.html,
+      title: node.node.frontmatter.title
+    }
+  })
 
 const queries = [
   {
     query,
     transformer: ({ data }) => flatten(data.allMdx.edges),
-    indexName: "en_freesewing_dev",
-    settings: {},
+    indexName: 'en_freesewing_dev',
+    settings: {}
   }
-];
+]
 
-module.exports = queries;
+module.exports = queries

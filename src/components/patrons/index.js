@@ -1,89 +1,90 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import Button from "@material-ui/core/Button";
-import Breadcrumbs from "../breadcrumbs";
-import Join from "./join";
-import List from "./list";
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
+import Button from '@material-ui/core/Button'
+import Breadcrumbs from '../breadcrumbs'
+import Join from './join'
+import List from './list'
 
 const PatronsIndex = props => {
-
-  if (props.slug === "/patrons") {
+  if (props.slug === '/patrons') {
     let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
     return (
       <React.Fragment>
         {theCrumbs}
-        <h1><FormattedMessage id="app.ourPatrons" /></h1>
+        <h1>
+          <FormattedMessage id="app.ourPatrons" />
+        </h1>
         <List app={props.app} />
         {theCrumbs}
       </React.Fragment>
-    );
+    )
   }
 
   const styles = {
     header: {
-      minHeight: "300px",
-      padding: "3rem 2rem",
+      minHeight: '300px',
+      padding: '3rem 2rem',
       fontFamily: "'Roboto Condensed', sans-serif",
-      position: "relative",
+      position: 'relative',
       backgroundImage: "url('/flag.svg')",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "90% -30%",
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '90% -30%'
     },
     innerHeader: {
-      maxWidth: "650px",
-      padding: "1rem 2rem",
-
+      maxWidth: '650px',
+      padding: '1rem 2rem'
     },
     h1: {
-      margin: "0 0 2rem 0",
+      margin: '0 0 2rem 0',
       padding: 0,
       fontWeight: 900,
-      color: "#fff",
+      color: '#fff'
     },
     h2: {
-      borderColor: "rgba(255,255,255,0.25)",
-      margin: "0 0 1rem 0",
-      color: "#fff",
+      borderColor: 'rgba(255,255,255,0.25)',
+      margin: '0 0 1rem 0',
+      color: '#fff'
     },
     stripe: {
       backgroundImage: "url('/support.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "bottom",
-      minHeight: "300px",
-      padding: "3rem 2rem",
-      fontFamily: "'Roboto Condensed', sans-serif",
+      backgroundSize: 'cover',
+      backgroundPosition: 'bottom',
+      minHeight: '300px',
+      padding: '3rem 2rem',
+      fontFamily: "'Roboto Condensed', sans-serif"
     },
     pitch: {
-      color: "white",
-      fontSize: "125%"
-    },
+      color: 'white',
+      fontSize: '125%'
+    }
   }
-  let crumbs = [{slug: "/patrons", title: <FormattedMessage id="app.ourPatrons"/>}]
-  let theCrumbs = <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id="app.supportFreesewing" />} />
-    return (
-      <React.Fragment>
-        {theCrumbs}
-        <div style={styles.stripe}>
-          <div style={styles.innerHeader}>
-            <h1 style={styles.h1}><FormattedMessage id="app.supportFreesewing"/></h1>
-            <h2 style={styles.h2}>
-              <FormattedMessage id="app.txt-tiers" />
-            </h2>
-            <p style={styles.pitch}>
-              <FormattedMessage id="app.patronPitch" />
-            </p>
-            <Button
-              style={styles.primaryButton}
-              variant="contained"
-              href="#tier-2"
-            ><FormattedMessage id="app.pricing"/></Button>
-          </div>
+  let crumbs = [{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }]
+  let theCrumbs = (
+    <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id="app.supportFreesewing" />} />
+  )
+  return (
+    <React.Fragment>
+      {theCrumbs}
+      <div style={styles.stripe}>
+        <div style={styles.innerHeader}>
+          <h1 style={styles.h1}>
+            <FormattedMessage id="app.supportFreesewing" />
+          </h1>
+          <h2 style={styles.h2}>
+            <FormattedMessage id="app.txt-tiers" />
+          </h2>
+          <p style={styles.pitch}>
+            <FormattedMessage id="app.patronPitch" />
+          </p>
+          <Button style={styles.primaryButton} variant="contained" href="#tier-2">
+            <FormattedMessage id="app.pricing" />
+          </Button>
         </div>
-        <Join app={props.app}/>
-        {theCrumbs}
-      </React.Fragment>
-    );
-
+      </div>
+      <Join app={props.app} />
+      {theCrumbs}
+    </React.Fragment>
+  )
 }
 
-export default PatronsIndex;
+export default PatronsIndex

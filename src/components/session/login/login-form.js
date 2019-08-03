@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { FormattedMessage } from "react-intl";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import React, { useState } from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { FormattedMessage } from 'react-intl'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 const LoginForm = props => {
-  const [reveal, setReveal] = useState(false);
+  const [reveal, setReveal] = useState(false)
 
   const styles = {
     wrapper: {
-      maxWidth: "500px",
+      maxWidth: '500px'
     }
   }
 
@@ -21,7 +21,7 @@ const LoginForm = props => {
           autoFocus={true}
           fullWidth={true}
           autoComplete="username"
-          label={props.intl.formatMessage({ id: "account.username" })}
+          label={props.intl.formatMessage({ id: 'account.username' })}
           margin="normal"
           variant="outlined"
           value={props.username}
@@ -30,9 +30,9 @@ const LoginForm = props => {
         <TextField
           id="password"
           fullWidth={true}
-          type={ reveal ? "text" : "password"}
+          type={reveal ? 'text' : 'password'}
           autoComplete="password"
-          label={props.intl.formatMessage({ id: "account.password" })}
+          label={props.intl.formatMessage({ id: 'account.password' })}
           margin="normal"
           variant="outlined"
           value={props.password}
@@ -40,11 +40,21 @@ const LoginForm = props => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <span role="img" aria-label="reveal" onClick={() => setReveal(!reveal)} className="poh">
-                  {reveal
-                    ? <span role="img" aria-label="show">👀 </span>
-                    : <span role="img" aria-label="show">🙈 </span>
-                  }
+                <span
+                  role="img"
+                  aria-label="reveal"
+                  onClick={() => setReveal(!reveal)}
+                  className="poh"
+                >
+                  {reveal ? (
+                    <span role="img" aria-label="show">
+                      👀{' '}
+                    </span>
+                  ) : (
+                    <span role="img" aria-label="show">
+                      🙈{' '}
+                    </span>
+                  )}
                 </span>
               </InputAdornment>
             )
@@ -56,13 +66,13 @@ const LoginForm = props => {
           size="large"
           variant="contained"
           disabled={props.loading}
-          style={{margin: "2rem 0"}}
+          style={{ margin: '2rem 0' }}
         >
           <FormattedMessage id="app.logIn" />
         </Button>
       </form>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

@@ -6,6 +6,7 @@
   "author": "Joost De Cock <joost@decock.org> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "https://github.com/freesewing/freesewing.org",
+  "prettier": "@freesewing/prettier-config",
   "dependencies": {
     "@freesewing/aaron": "2.0.0-beta.37",
     "@freesewing/benjamin": "2.0.0-beta.37",
@@ -33,6 +34,7 @@
     "@freesewing/plugin-flip": "2.0.0-beta.37",
     "@freesewing/plugin-i18n": "2.0.0-beta.37",
     "@freesewing/plugin-theme": "2.0.0-beta.37",
+    "@freesewing/prettier-config": "2.0.0-beta.37",
     "@freesewing/rendertest": "2.0.0-beta.37",
     "@freesewing/sandy": "2.0.0-beta.37",
     "@freesewing/shin": "2.0.0-beta.37",
@@ -95,6 +97,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"
   }
