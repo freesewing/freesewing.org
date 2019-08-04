@@ -228,8 +228,6 @@ const isChild = function (base, slug) {
 
 const getSortTitle = function (mdx) {
   let title = mdx.node.node.frontmatter.title;
-  if (typeof mdx.node.node.frontmatter.linktitle !== "undefined")
-    title = mdx.node.node.frontmatter.title;
   let order = null;
   if (typeof mdx.node.node.frontmatter.order !== "undefined")
     order = mdx.node.node.frontmatter.order;
@@ -245,9 +243,6 @@ const getTitle = function (mdx) {
     return mdx.node.node.frontmatter.linktitle;
 
   return mdx.node.node.frontmatter.title;
-}
-
-const getDocsLevel = (level, data) => {
 }
 
 const getTopics = function(markdown) {
@@ -280,7 +275,6 @@ const getTopics = function(markdown) {
         // These are prefixed by date, put newest first
         childrenOrder.reverse();
         for (let title of childrenOrder) {
-          let slug = children[title];
           let year = markdown[children[title]].node.node.frontmatter.year;
           if (typeof list.blog.children[year] === "undefined") {
             list.blog.children["/blog/years/"+year] = { title: year }
@@ -294,8 +288,7 @@ const getTopics = function(markdown) {
       }
     }
   }
-  const buildDocsLevel = () => {
-  }
+
   // Docs have a deeper hierarchy
   // FIXME: This is not a very efficient way to do this
   for (let parent in list.docs.children) {
@@ -307,24 +300,20 @@ const getTopics = function(markdown) {
           list.docs.children[parent].children = {}
         }
         list.docs.children[parent].children[child] = {title: getTitle(markdown[child])}
-        if (grandchildren) {
-	        for (let grandchild of slugs) {
-            let greatgrandchildren = false;
-            if (isChild(child, grandchild)) {
-              greatgrandchildren = true;
-              if (typeof list.docs.children[parent].children[child].children === "undefined") {
-                list.docs.children[parent].children[child].children = {}
-              }
-              list.docs.children[parent].children[child].children[grandchild] = {title: getTitle(markdown[grandchild])}
-              if (greatgrandchildren) {
-	              for (let greatgrandchild of slugs) {
-                  if (isChild(grandchild, greatgrandchild)) {
-                    if (typeof list.docs.children[parent].children[child].children[grandchild].children === "undefined") {
-                      list.docs.children[parent].children[child].children[grandchild].children = {}
-                    }
-                    list.docs.children[parent].children[child].children[grandchild].children[greatgrandchild] = {title: getTitle(markdown[greatgrandchild])}
-                  }
+	      for (let grandchild of slugs) {
+          let greatgrandchildren = false;
+          if (isChild(child, grandchild)) {
+            greatgrandchildren = true;
+            if (typeof list.docs.children[parent].children[child].children === "undefined") {
+              list.docs.children[parent].children[child].children = {}
+            }
+            list.docs.children[parent].children[child].children[grandchild] = {title: getTitle(markdown[grandchild])}
+	          for (let greatgrandchild of slugs) {
+              if (isChild(grandchild, greatgrandchild)) {
+                if (typeof list.docs.children[parent].children[child].children[grandchild].children === "undefined") {
+                  list.docs.children[parent].children[child].children[grandchild].children = {}
                 }
+                list.docs.children[parent].children[child].children[grandchild].children[greatgrandchild] = {title: getTitle(markdown[greatgrandchild])}
               }
             }
           }
@@ -501,7 +490,7 @@ exports.sourceNodes = async ({
 
   // Create patron nodes.
   let i = 0;
-  Object.keys(result.data).map( tier => {
+  Object.keys(result.data).forEach( tier => {
     result.data[tier].map( patron => {
       const patronNode = {
         id: createNodeId(patron.handle),

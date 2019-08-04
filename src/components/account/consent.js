@@ -23,10 +23,8 @@ const AccountConsent = ({ app }) => {
   )
   const [openData, setOpenData] = useState(
     app.account.consent
-      ? app.account.consent
-        ? app.account.consent.model
-          ? true
-          : false
+      ? app.account.consent.model
+        ? true
         : false
       : false
   )
@@ -64,10 +62,10 @@ const AccountConsent = ({ app }) => {
   }
 
   const profileDetails = [
-    <h2>
+    <h2 key="profileTitle">
       <FormattedMessage id="gdpr.consentForProfileData" />
     </h2>,
-    <table style={styles.table} className="font-title">
+    <table style={styles.table} className="font-title" key="profileTable">
       <tr style={styles.row}>
         <td style={{ ...styles.cell, ...styles.question }}>
           <FormattedMessage id="gdpr.profileWhatQuestion" />
@@ -105,10 +103,10 @@ const AccountConsent = ({ app }) => {
     </table>
   ]
   const modelDetails = [
-    <h2>
+    <h2 key="modelTitle">
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
-    <table style={styles.table} className="font-title">
+    <table style={styles.table} className="font-title" key="modelData">
       <tr style={styles.row}>
         <td style={{ ...styles.cell, ...styles.question }}>
           <FormattedMessage id="gdpr.modelWhatQuestion" />

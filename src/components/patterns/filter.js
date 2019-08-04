@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import SearchIcon from '@material-ui/icons/Search'
 import TextField from '@material-ui/core/TextField'
@@ -199,7 +198,7 @@ const PatternFilter = props => {
       </form>
       {Object.keys(filterTypes).map(type => {
         return (
-          <ul style={styles.list}>
+          <ul style={styles.list} key={type}>
             <li style={styles.key}>
               <span style={styles.listTitle}>
                 <FormattedMessage id={'filter.' + type} />:
@@ -242,10 +241,6 @@ const PatternFilter = props => {
       </p>
     </div>
   )
-}
-
-PatternFilter.propTypes = {
-  langauge: PropTypes.string
 }
 
 export default PatternFilter

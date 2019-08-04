@@ -35,7 +35,7 @@ const ShowcaseTemplate = props => {
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
         <div>
           {frontmatter.patterns.map(pattern => (
-            <React.Fragment>
+            <React.Fragment key={pattern}>
               <Link to={'/showcase/patterns/' + pattern}>#{pattern}</Link>
               &nbsp;
             </React.Fragment>
@@ -49,7 +49,7 @@ const ShowcaseTemplate = props => {
           <img
             src={img.base64}
             style={{ width: '100%' }}
-            srcset={img.srcSet}
+            srcSet={img.srcSet}
             alt={frontmatter.caption}
           />
         </a>

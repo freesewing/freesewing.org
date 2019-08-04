@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import LoginIcon from '@material-ui/icons/VpnKey'
 import Button from '@material-ui/core/Button'
-import { Link } from 'gatsby'
-import { injectIntl, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import ButtonSpinner from '../../ButtonSpinner'
 
 const LoginForm = props => {

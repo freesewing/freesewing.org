@@ -126,11 +126,8 @@ class ImageField extends React.PureComponent {
 }
 
 ImageField.propTypes = {
-  key: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired,
   config: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
 }
 
 export default ImageField

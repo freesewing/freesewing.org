@@ -32,7 +32,7 @@ const ModelList = props => {
         {Object.keys(props.app.models).length > 0 ? (
           Object.keys(props.app.models).map((handle, model) => {
             return (
-              <div style={styles.model}>
+              <div style={styles.model} key={handle}>
                 <Link to={'/models/' + handle} title={props.app.models[handle].name}>
                   <Avatar variant="model" data={props.app.models[handle]} />
                   <h5 style={styles.name}>{props.app.models[handle].name}</h5>

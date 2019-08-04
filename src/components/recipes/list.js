@@ -29,7 +29,7 @@ const RecipeList = props => {
         <ul className="links">
           {Object.keys(props.app.recipes).map((handle, recipe) => {
             return (
-              <li>
+              <li key={handle}>
                 <Link to={'/recipes/' + handle} title={props.app.recipes[handle].name}>
                   {props.app.recipes[handle].recipe ? (
                     <span>{props.app.recipes[handle].recipe.pattern} / </span>

@@ -1,16 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Icon from '@freesewing/components/Icon'
 import camelCase from '@freesewing/utils/camelCase'
 
-const Error = props => {
-  if (props.report !== undefined)
+const defaultError = { message: "error" }
+
+const Error = ({
+    report = false,
+    err = defaultError
+  }) => {
+  if (report)
     return (
       <React.Fragment>
         <p>
-          <FormattedMessage id={'errors.' + camelCase(props.err.message)} />
+          <FormattedMessage id={'errors.' + camelCase(err.message)} />
         </p>
         <p>
           <Button
@@ -25,11 +29,7 @@ const Error = props => {
         </p>
       </React.Fragment>
     )
-  else return <FormattedMessage id={'errors.' + camelCase(props.err.message)} />
-}
-
-Error.propTypes = {
-  err: PropTypes.object.isRequired
+  else return <FormattedMessage id={'errors.' + camelCase(err.message)} />
 }
 
 export default Error

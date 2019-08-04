@@ -51,10 +51,10 @@ const AccountConsent = ({ app, confirmationId }) => {
   }
 
   const profileDetails = [
-    <h2>
+    <h2 key="pdtitle">
       <FormattedMessage id="gdpr.consentForProfileData" />
     </h2>,
-    <table style={styles.table} className="font-title">
+    <table style={styles.table} className="font-title" key="pdtable">
       <tr style={styles.row}>
         <td style={{ ...styles.cell, ...styles.question }}>
           <FormattedMessage id="gdpr.profileWhatQuestion" />
@@ -92,10 +92,10 @@ const AccountConsent = ({ app, confirmationId }) => {
     </table>
   ]
   const modelDetails = [
-    <h2>
+    <h2 key="mdtitle">
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
-    <table style={styles.table} className="font-title">
+    <table style={styles.table} className="font-title" key="mdtable">
       <tr style={styles.row}>
         <td style={{ ...styles.cell, ...styles.question }}>
           <FormattedMessage id="gdpr.modelWhatQuestion" />

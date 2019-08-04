@@ -48,7 +48,7 @@ const SelectPatternPage = props => {
     <div style={styles.wrapper}>
       {list.map(pattern => {
         return (
-          <div style={styles.pattern}>
+          <div style={styles.pattern} key={pattern}>
             <Link to={'/create/' + pattern} title={pageTitle}>
               <h5 style={styles.name}>{pattern}</h5>
               <FormattedMessage id={'patterns.' + pattern + '.title'} />

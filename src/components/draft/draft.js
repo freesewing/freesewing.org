@@ -234,7 +234,7 @@ const DraftPage = props => {
     tab: {
       active: {},
       inactive: {
-        background: props.app.frontend.theme === 'light' ? '#868e96' : '#868e96',
+        background: '#868e96',
         color: props.app.frontend.theme === 'light' ? '#fff' : '#000'
       }
     },
@@ -249,7 +249,7 @@ const DraftPage = props => {
     }
   }
   const preButtons = (
-    <div style={styles.buttons}>
+    <div style={styles.buttons} key="prebuttons">
       {props.app.frontend.mobile ? null : (
         <Button
           variant="outlined"
@@ -272,7 +272,7 @@ const DraftPage = props => {
     </div>
   )
   const postButtons = (
-    <div style={styles.buttons}>
+    <div style={styles.buttons} key="postbuttons">
       <Button
         variant="contained"
         color="primary"
@@ -296,6 +296,7 @@ const DraftPage = props => {
   )
   const side = [
     <Tabs
+      key="tabs"
       value={tab}
       onChange={toggleTab}
       indicatorColor="primary"
@@ -444,7 +445,7 @@ const DraftPage = props => {
     ) : (
       [
         preButtons,
-        <figure style={{ textAlign: 'center' }}>
+        <figure style={{ textAlign: 'center' }} key="figure">
           <Draft {...patternProps} />
         </figure>,
         postButtons
