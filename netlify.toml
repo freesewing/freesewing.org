@@ -1,5 +1,5 @@
 [context.production]
-  environment = { GATSBY_BACKEND = "https://backend.freesewing.org/", GATSBY_TILER = "https://tiler.freesewing.org/", GATSBY_GITHUB_CLIENT_ID = "6b998e4616d5851b098b", GATSBY_GITHUB_CALLBACK = "https://backend.freesewing.org/callback/from/github", GATSBY_GOOGLE_CLIENT_ID = "316708420427-4spj1rj2ekgke887ng5dsi1bsu8bcg8j.apps.googleusercontent.com", GATSBY_GOOGLE_CALLBACK = "https://backend.freesewing.org/callback/from/google" }
+  environment = { GATSBY_BACKEND = "https://backend.freesewing.org/", GATSBY_TILER = "https://tiler.freesewing.org/", GATSBY_GITHUB_CLIENT_ID = "6b998e4616d5851b098b", GATSBY_GOOGLE_CLIENT_ID = "316708420427-4spj1rj2ekgke887ng5dsi1bsu8bcg8j.apps.googleusercontent.com" }
 
 [[redirects]]
   from = "/*"
