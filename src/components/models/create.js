@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Blockquote from '@freesewing/components/Blockquote'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -11,6 +11,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 
 const CreateModel = props => {
+  useEffect(() => {
+    props.app.frontend.setTitle(<FormattedMessage id="app.newModel"/>)
+  }, [])
   const [units, setUnits] = useState(
     props.app.account
       ? props.app.account.settings
