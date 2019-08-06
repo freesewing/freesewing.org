@@ -1,17 +1,8 @@
-//const queries = require("./src/algolia")
-//require("dotenv").config()
+const searchData = require("./src/algolia")
+require("dotenv").config()
 
 module.exports = {
   plugins: [
-		//{
-    //  resolve: `gatsby-plugin-algolia`,
-    //  options: {
-    //    appId: process.env.GATSBY_ALGOLIA_APP_ID,
-    //    apiKey: process.env.ALGOLIA_ADMIN_KEY,
-    //    queries,
-    //    chunkSize: 10000,
-    //  },
-    //},
 		{
     	resolve: `gatsby-plugin-nprogress`,
     	options: {
@@ -64,6 +55,14 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-offline',
-    'gatsby-plugin-sharp',
+		{
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_API_ID,
+        apiKey: process.env.GATSBY_ALGOLIA_UPDATE_KEY,
+        queries: searchData(process.env.GATSBY_LANGUAGE),
+        chunkSize: 10000,
+      },
+    },
   ],
 };

@@ -1,34 +1,41 @@
-const query = `{
-  docs: allMdx(filter: {fileAbsolutePath: {regex: "/en.md/"}}) {
+const getQuery = language => `{
+  allMdx(filter: {fileAbsolutePath: {regex: "/${language}.md/"}}) {
   	edges {
   	  node {
+        id
   	    fileAbsolutePath
-  	    html
-  	    parent { ... on File { relativePath, name } }
-  	    rawBody
+  	    parent { ... on File { relativeDirectory } }
   	    frontmatter { title }
+        internal { content }
   	  }
   	}
   }
 }`
 
-const flatten = arr =>
-  arr.map(node => {
-    return {
-      path: '/' + node.node.parent.relativePath.slice(0, -5),
-      body: node.node.rawBody,
-      html: node.node.html,
-      title: node.node.frontmatter.title
+const flatten = arr => {
+  return arr.map(node => {
+    let it =
+    {
+      objectId: node.node.id,
+      path: '/' + node.node.parent.relativeDirectory,
+      title: node.node.frontmatter.title,
+      content: node.node.internal.content
     }
+    return it;
   })
+}
 
-const queries = [
-  {
-    query,
-    transformer: ({ data }) => flatten(data.allMdx.edges),
-    indexName: 'en_freesewing_dev',
-    settings: {}
-  }
-]
+const getSearchData = language => {
+  const data = [
+    {
+      query: getQuery(language),
+      transformer: ({ data }) => flatten(data.allMdx.edges),
+      indexName: `${language}_freesewing_org`,
+      settings: {}
+    }
+  ]
 
-module.exports = queries
+  return data;
+}
+
+module.exports = getSearchData
