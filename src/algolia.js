@@ -2,10 +2,11 @@ const getQuery = language => `{
   allMdx(filter: {fileAbsolutePath: {regex: "/${language}.md/"}}) {
   	edges {
   	  node {
+        id
   	    fileAbsolutePath
-        html
-  	    parent { ... on File { relativePath } }
+  	    parent { ... on File { relativeDirectory } }
   	    frontmatter { title }
+        internal { content }
   	  }
   	}
   }
@@ -15,9 +16,10 @@ const flatten = arr => {
   return arr.map(node => {
     let it =
     {
-      path: '/' + node.node.parent.relativePath.slice(0, -5),
+      objectId: node.node.id,
+      path: '/' + node.node.parent.relativeDirectory,
       title: node.node.frontmatter.title,
-      html: node.node.html
+      content: node.node.internal.content
     }
     return it;
   })
