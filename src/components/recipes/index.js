@@ -25,15 +25,20 @@ const RecipeIndex = props => {
     }
   }, [props.slug])
 
-  let main
-  if (props.slug === '/recipes') main = <RecipesList app={props.app} />
+  if (props.slug === '/recipes') return (
+    <LoginRequired page={props.slug}>
+      <RecipesList app={props.app} />
+    </LoginRequired>
+  )
   else {
     let chunks = props.slug.split('/')
-    if (chunks.length === 3) main = <RecipePage recipe={chunks[2]} app={props.app} />
-    else if (chunks.length === 4) main = <EditRecipePage recipe={chunks[2]} app={props.app} />
+    if (chunks.length === 3) return  <RecipePage recipe={chunks[2]} app={props.app} />
+    else if (chunks.length === 4) return (
+      <LoginRequired page={props.slug}>
+        <EditRecipePage recipe={chunks[2]} app={props.app} />
+      </LoginRequired>
+    )
   }
-
-  return <LoginRequired page={props.slug}>{main}</LoginRequired>
 }
 
 export default RecipeIndex
