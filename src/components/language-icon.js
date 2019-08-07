@@ -8,10 +8,10 @@ const LanguageIcon = props => {
           <path d="M25,15 h25 v15 z v15 h-25 z h-25 v-15 z v-15 h25 z"/>
         </clipPath>
         <path key="color1"d="M0,0 v30 h50 v-30 z" fill="#00247d"/>
-        <path key="color2"d="M0,0 L50,30 M50,0 L0,30" stroke="#fff" stroke-width="6"/>
-        <path key="color3"d="M0,0 L50,30 M50,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
-        <path key="color4"d="M25,0 v30 M0,15 h50" stroke="#fff" stroke-width="10"/>
-        <path key="color5"d="M25,0 v30 M0,15 h50" stroke="#cf142b" stroke-width="6"/>
+        <path key="color2"d="M0,0 L50,30 M50,0 L0,30" stroke="#fff" strokeWidth="6"/>
+        <path key="color3"d="M0,0 L50,30 M50,0 L0,30" clipPath="url(#t)" stroke="#cf142b" strokeWidth="4"/>
+        <path key="color4"d="M25,0 v30 M0,15 h50" stroke="#fff" strokeWidth="10"/>
+        <path key="color5"d="M25,0 v30 M0,15 h50" stroke="#cf142b" strokeWidth="6"/>
       </g>
     ),
     de: (

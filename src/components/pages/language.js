@@ -8,7 +8,6 @@ const LanguagePage = props => {
   useEffect(() => {
     props.app.frontend.setTitle(<FormattedMessage id="account.language" />)
   }, [])
-  const bold = { fontWeight: 'bold' }
   const styles = {
     wrapper: {
       maxWidth: "500px",
