@@ -23,7 +23,7 @@ import PatronsPage from '../patrons/'
 import UsersPage from '../users/'
 import HomePage from '../pages/homepage'
 import PatternsPage from '../patterns/'
-import NotFound from '../errors/404'
+import NotFound from '../pages/404'
 
 const MainPage = props => {
   // Props for pages
