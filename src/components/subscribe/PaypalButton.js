@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
 const PaypalButton = props => {
