@@ -238,7 +238,7 @@ const HomePage = ({ app }) => {
           <p style={styles.pitch}>
             <FormattedMessage id="app.patronPitch" />
           </p>
-          <Button style={styles.primaryButton} variant="contained" href="#tier-2">
+          <Button style={styles.primaryButton} variant="contained" href="#tiers">
             <FormattedMessage id="app.pricing" />
           </Button>
         </div>
@@ -248,7 +248,7 @@ const HomePage = ({ app }) => {
         <h3 style={{ textAlign: 'center', marginTop: '3rem' }}>
           <FormattedMessage id="app.pricing" />
         </h3>
-        <Subscribe mobile={app.frontend.mobile} />
+        <Subscribe showFree={true} />
       </div>
 
       <div style={styles.m1}>

@@ -1,54 +1,107 @@
 import React from 'react'
-import Tier from './tier'
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardActions from '@material-ui/core/CardActions'
+import Grid from '@material-ui/core/Grid'
+import PaypalButton from './PaypalButton'
 
 const Subscribe = props => {
-  const styles = {
-    wrapper: {
-      maxWidth: '1600px',
-      margin: 'auto'
+  const { showFree } = props
+
+  const useStyles = makeStyles({
+    tier2: {
+      backgroundColor: '#37b24d',
+      color: '#fff',
+      height: '100%'
     },
-    white: {
-      margin: '1rem 0'
+    tier4: {
+      backgroundColor: '#228be6',
+      color: '#fff',
+      height: '100%'
     },
-    colors: {
-      margin: '1rem 0',
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between'
+    tier8: {
+      backgroundColor: '#7950f2',
+      color: '#fff',
+      height: '100%'
     }
-  }
-  if (props.mobile) {
-    styles.color = {
-      width: '100%'
-    }
-  } else {
-    styles.color = {
-      width: '32%'
-    }
-  }
+  })
 
   return (
-    <div style={styles.wrapper}>
-      {props.noFree ? null : (
-        <div style={styles.white}>
-          <Tier tier={0} />
-        </div>
+    <Grid id="tiers" container spacing="2" alignItems="stretch">
+      {showFree && (
+        <Grid item sm="12" md>
+          <Card>
+            <CardContent>
+              <h3>
+                €0{' '}
+                <small>
+                  <FormattedMessage id="app.perMonth" />
+                </small>
+              </h3>
+              <p>
+                <FormattedHTMLMessage id={'app.txt-tier0'} />
+              </p>
+            </CardContent>
+          </Card>
+        </Grid>
       )}
-      <div>
-        <div style={styles.colors}>
-          <div style={styles.color}>
-            <Tier tier={2} mobile={props.mobile} />
-          </div>
-          <div style={styles.color}>
-            <Tier tier={4} mobile={props.mobile} />
-          </div>
-          <div style={styles.color}>
-            <Tier tier={8} mobile={props.mobile} />
-          </div>
-        </div>
-      </div>
-    </div>
+      <Grid item sm="12" md>
+        <Card className={useStyles().tier2}>
+          <CardContent>
+            <h3>
+              €2{' '}
+              <small>
+                <FormattedMessage id="app.perMonth" />
+              </small>
+            </h3>
+            <p>
+              <FormattedHTMLMessage id={'app.txt-tier2'} />
+            </p>
+          </CardContent>
+          <CardActions>
+            <PaypalButton tier={2} />
+          </CardActions>
+        </Card>
+      </Grid>
+      <Grid item sm="12" md>
+        <Card className={useStyles().tier4}>
+          <CardContent>
+            <h3>
+              €4{' '}
+              <small>
+                <FormattedMessage id="app.perMonth" />
+              </small>
+            </h3>
+            <p>
+              <FormattedHTMLMessage id={'app.txt-tier4'} />
+            </p>
+          </CardContent>
+          <CardActions>
+            <PaypalButton tier={4} />
+          </CardActions>
+        </Card>
+      </Grid>
+      <Grid item sm="12" md>
+        <Card className={useStyles().tier8}>
+          <CardContent>
+            <h3>
+              €8{' '}
+              <small>
+                <FormattedMessage id="app.perMonth" />
+              </small>
+            </h3>
+            <p>
+              <FormattedHTMLMessage id={'app.txt-tier8'} />
+            </p>
+          </CardContent>
+          <CardActions>
+            <PaypalButton tier={8} />
+          </CardActions>
+        </Card>
+      </Grid>
+    </Grid>
   )
 }
 
