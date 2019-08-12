@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Breadcrumbs from '../breadcrumbs'
-import Join from './join'
+import Subscribe from '../subscribe'
 import List from './list'
 
 const PatronsIndex = props => {
@@ -51,7 +51,8 @@ const PatronsIndex = props => {
       backgroundPosition: 'bottom',
       minHeight: '300px',
       padding: '3rem 2rem',
-      fontFamily: "'Roboto Condensed', sans-serif"
+      fontFamily: "'Roboto Condensed', sans-serif",
+      marginBottom: '1rem'
     },
     pitch: {
       color: 'white',
@@ -76,12 +77,12 @@ const PatronsIndex = props => {
           <p style={styles.pitch}>
             <FormattedMessage id="app.patronPitch" />
           </p>
-          <Button style={styles.primaryButton} variant="contained" href="#tier-2">
+          <Button style={styles.primaryButton} variant="contained" href="#tiers">
             <FormattedMessage id="app.pricing" />
           </Button>
         </div>
       </div>
-      <Join app={props.app} />
+      <Subscribe />
       {theCrumbs}
     </React.Fragment>
   )
