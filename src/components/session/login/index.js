@@ -16,6 +16,11 @@ const Login = ({ app, location }) => {
     app.backend.login(username, password)
   }
 
+  const handlePasswordReset = evt => {
+    evt.preventDefault()
+    app.backend.resetPassword(evt.target[1].value)
+  }
+
   const formProps = {
     intl: app.frontend.intl,
     username,
@@ -24,7 +29,8 @@ const Login = ({ app, location }) => {
     setPassword,
     trouble,
     setTrouble,
-    handleLogin
+    handleLogin,
+    handlePasswordReset
   }
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />

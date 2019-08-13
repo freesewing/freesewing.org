@@ -10,7 +10,7 @@ const Footer = props => {
           node {
             patron {
               username
-              pic {
+              pictureUris {
                 xs
               }
             }
@@ -50,7 +50,7 @@ const Footer = props => {
     list.push(
       <li key={patron.username} style={styles.li}>
         <Link to={'/users/' + patron.username} title={patron.username}>
-          <img src={patron.pic.xs} alt={patron.username} style={styles.img} />
+          <img src={patron.pictureUris.xs} alt={patron.username} style={styles.img} />
         </Link>
       </li>
     )

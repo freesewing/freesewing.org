@@ -27,6 +27,9 @@ const pages = {
     ...patternMeasurements
   },
   multiple: {
+    "/404": {
+      matchPath: "^\/?404\/?$",
+    },
     "/login/callback": {
       matchPath: "/login/callback/*",
     },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Breadcrumbs from '../../breadcrumbs'
 import SignupConfirmation from './signup'
@@ -8,6 +8,10 @@ const Confirm = props => {
   const chunks = props.slug.split('/')
   const confirmationId = chunks.pop()
   const confirmationType = chunks.pop()
+  useEffect(() => {
+    props.app.backend.confirmationLogin(confirmationId)
+  }, [props.slug])
+
   const crumbLib = {
     confirm: { slug: '/confirm', title: <FormattedMessage id="app.pendingConfirmation" /> }
   }
@@ -17,6 +21,12 @@ const Confirm = props => {
     title = 'app.oneMoreThing'
     crumbs = [crumbLib.confirm]
     main = <SignupConfirmation app={props.app} confirmationId={confirmationId} />
+  } else if (confirmationType === 'reset') {
+    console.log('this is a reset');
+    props.app.frontend.startLoading();
+    title = 'app.justAMoment'
+    crumbs = [crumbLib.confirm]
+    main = null
   } else if (confirmationType === 'email') {
     navigate('/account')
     title = 'app.justAMoment'

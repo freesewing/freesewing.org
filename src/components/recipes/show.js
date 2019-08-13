@@ -30,7 +30,8 @@ const ShowRecipe = ({ app, recipe }) => {
 
   return (
     <React.Fragment>
-      {typeof app.recipes[recipe].notes === 'undefined' ||
+      {
+        typeof app.recipes[recipe].notes === 'undefined' ||
       app.recipes[recipe].notes === '' ? null : (
         <Markdown source={app.recipes[recipe].notes || ''} />
       )}
