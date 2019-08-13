@@ -66,7 +66,7 @@ const JoinPatrons = props => {
     list.push(
       <div key={patron.handle} style={styles.patron}>
         <Link to={'/users/' + patron.username}>
-          <img style={styles.avatar} src={patron.pic.m} alt={patron.username} className="shadow" />
+          <img style={styles.avatar} src={patron.pictureUris.m} alt={patron.username} className="shadow" />
         </Link>
         <div>
           <PatronStars tier={patron.tier} />

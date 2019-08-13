@@ -32,8 +32,12 @@ const RecipeIndex = props => {
   )
   else {
     let chunks = props.slug.split('/')
-    if (chunks.length === 3) return  <RecipePage recipe={chunks[2]} app={props.app} />
-    else if (chunks.length === 4) return (
+    if (chunks.length === 3) {
+      if (typeof props.app.recipes[recipe] === 'undefined') {
+        console.log('undefined');
+        return null;
+      } else return  <RecipePage recipe={chunks[2]} app={props.app} />
+    } else if (chunks.length === 4) return (
       <LoginRequired page={props.slug}>
         <EditRecipePage recipe={chunks[2]} app={props.app} />
       </LoginRequired>
