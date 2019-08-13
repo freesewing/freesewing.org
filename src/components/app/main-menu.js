@@ -9,7 +9,6 @@ const MainMenu = props => {
   if (typeof props.pageContext.node !== 'undefined') toc = props.pageContext.node.tableOfContents
   let topics = props.pageContext.topics
   let topicsToc = props.pageContext.topicsToc
-
   if (props.app.account.username) {
     if (topics.indexOf('models') === -1) topics.push('models')
     topicsToc.models = {
@@ -29,9 +28,10 @@ const MainMenu = props => {
     if (typeof props.app.recipes !== 'undefined') {
       for (let r in props.app.recipes) {
         if (typeof props.app.recipes[r].recipe !== 'undefined') {
+          let pattern = props.app.recipes[r].recipe.pattern || 'FIXME';
           topicsToc.recipes.children['/recipes/' + r] = {
             title:
-              capitalize(props.app.recipes[r].recipe.pattern) + ': ' + props.app.recipes[r].name
+              capitalize(pattern) + ': ' + props.app.recipes[r].name
           }
         }
       }

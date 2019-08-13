@@ -13,7 +13,7 @@ const JoinPatrons = props => {
           node {
             patron {
               username
-              pic {
+              pictureUris {
                 m
               }
               social {

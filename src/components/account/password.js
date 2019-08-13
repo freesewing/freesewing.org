@@ -16,41 +16,6 @@ const AccountPassword = props => {
 
   return (
     <React.Fragment>
-      <Blockquote type="note">
-        <FormattedMessage id={'account.passwordInfo'} />
-      </Blockquote>
-      <TextField
-        id="currentPassword"
-        fullWidth={true}
-        label={props.app.frontend.intl.formatMessage({ id: 'account.currentPassword' })}
-        margin="normal"
-        variant="outlined"
-        value={currentPassword}
-        type={currentReveal ? 'text' : 'password'}
-        onChange={updateCurrentPassword}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <span
-                role="img"
-                aria-label="reveal"
-                onClick={() => setCurrentReveal(!currentReveal)}
-                className="poh"
-              >
-                {currentReveal ? (
-                  <span role="img" aria-label="show">
-                    👀{' '}
-                  </span>
-                ) : (
-                  <span role="img" aria-label="show">
-                    🙈{' '}
-                  </span>
-                )}
-              </span>
-            </InputAdornment>
-          )
-        }}
-      />
       <TextField
         id="newPassword"
         fullWidth={true}
@@ -94,7 +59,7 @@ const AccountPassword = props => {
           color="primary"
           onClick={() =>
             props.app.backend.saveAccount(
-              { currentPassword, newPassword },
+              { password: newPassword },
               props.app.frontend.intl.formatMessage({ id: 'account.password' })
             )
           }

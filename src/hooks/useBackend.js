@@ -7,6 +7,7 @@ function useBackend(props) {
   const token = props.storageData.token
 
   const saveAccountToStorage = (data, callback) => {
+    console.log(data);
     if (data.account) props.updateStorageData(data.account, 'account')
     if (data.models) props.updateStorageData(data.models, 'models')
     if (data.recipes) props.updateStorageData(data.recipes, 'recipes')
@@ -15,6 +16,7 @@ function useBackend(props) {
   }
 
   const refreshAccount = (callback = false) => {
+    console.log('token is', token);
     backend
       .account(token)
       .then(res => {
@@ -29,6 +31,31 @@ function useBackend(props) {
     props.startLoading()
     backend
       .login(username, password)
+      .then(res => {
+        if (res.status === 200) {
+          props.stopLoading()
+          props.showNotification(
+            'success',
+            props.intl.formatMessage(
+              { id: 'app.goodToSeeYouAgain' },
+              { user: '@' + res.data.account.username }
+            )
+          )
+          saveAccountToStorage(res.data)
+          navigate('/account', { replace: true })
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
+  const confirmationLogin = id => {
+    props.startLoading()
+    backend
+      .confirmationLogin(id)
       .then(res => {
         if (res.status === 200) {
           props.stopLoading()
@@ -348,6 +375,26 @@ function useBackend(props) {
       .catch((err, foo) => console.log({ error: err, data: err.response.data }))
   }
 
+  const resetPassword = username => {
+    props.startLoading()
+    backend
+      .resetPassword(username)
+      .then(res => {
+        if (res.status === 200) {
+          props.stopLoading()
+          props.showNotification(
+            'success',
+            props.intl.formatMessage({ id: 'app.checkInboxClickLinkInConfirmationEmail' })
+          )
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
   return {
     createAccount,
     createModel,
@@ -359,8 +406,10 @@ function useBackend(props) {
     loadProfile,
     loadRecipe,
     login,
+    confirmationLogin,
     loginOauth,
     logout,
+    resetPassword,
     restrictAccount,
     removeModel,
     removeRecipe,
