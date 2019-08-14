@@ -34,7 +34,7 @@ const SearchPage = props => {
           <p>Unfortunately, search is still under construction.</p>
           <p>
             If you'd like to help us build this search page, please{' '}
-            <a href="https://gitter.im/freesewing/freesewing">get in touch</a>.
+            <a href="https://gitter.im/freesewing/develop">get in touch</a>.
           </p>
         </Blockquote>
       </div>
