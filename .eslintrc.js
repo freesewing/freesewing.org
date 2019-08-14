@@ -1,3 +1,7 @@
 module.exports = {
-  extends: 'airbnb-base'
+  extends: 'airbnb-base',
+  rules: {
+    'comma-dangle': ['error', 'never'],
+    semi: ['error', 'never']
+  }
 }
