@@ -24,7 +24,6 @@ const RecipeIndex = props => {
       }
     }
   }, [props.slug])
-
   if (props.slug === '/recipes') return (
     <LoginRequired page={props.slug}>
       <RecipesList app={props.app} />
@@ -32,14 +31,14 @@ const RecipeIndex = props => {
   )
   else {
     let chunks = props.slug.split('/')
+    const recipe = chunks[2]
     if (chunks.length === 3) {
       if (typeof props.app.recipes[recipe] === 'undefined') {
-        console.log('undefined');
-        return null;
-      } else return  <RecipePage recipe={chunks[2]} app={props.app} />
+        return <p>FIXME: Load recipe from backend</p>;
+      } else return  <RecipePage recipe={recipe} app={props.app} />
     } else if (chunks.length === 4) return (
       <LoginRequired page={props.slug}>
-        <EditRecipePage recipe={chunks[2]} app={props.app} />
+        <EditRecipePage recipe={recipe} app={props.app} />
       </LoginRequired>
     )
   }
