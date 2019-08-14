@@ -7,7 +7,6 @@ function useBackend(props) {
   const token = props.storageData.token
 
   const saveAccountToStorage = (data, callback) => {
-    console.log(data);
     if (data.account) props.updateStorageData(data.account, 'account')
     if (data.models) props.updateStorageData(data.models, 'models')
     if (data.recipes) props.updateStorageData(data.recipes, 'recipes')
