@@ -16,7 +16,6 @@ function useBackend(props) {
   }
 
   const refreshAccount = (callback = false) => {
-    console.log('token is', token);
     backend
       .account(token)
       .then(res => {
