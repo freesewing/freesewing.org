@@ -45,6 +45,10 @@ const App = props => {
   const [crumbs, setCrumbs] = useState(props.pageContext.crumbs || false)
   const [title, setTitle] = useState(false)
   const [next, setNext] = useState(false)
+  const [pageLayout, setPageLayout] = useState('default')
+  useEffect(() => {
+    setPageLayout(getLayout(props.location.pathname))
+  }, [props.location.pathname])
   useEffect(() => {
     app.backend.refreshAccount()
   }, [])
@@ -101,7 +105,7 @@ const App = props => {
       setTitle,
       setCrumbs,
       setNext
-    }
+    },
   }
 
   const uri =
@@ -127,62 +131,55 @@ const App = props => {
   )
 
   let layout = getLayout(props.location.pathname)
-  let pageLayout
-  switch (layout) {
-    case 'home':
-      pageLayout = (
-        <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />
-      )
-      break
-    case 'draft':
-      pageLayout = (
-        <MainPage
-          app={app}
-          pageContext={props.pageContext}
-          slug={props.slug}
-          uri={uri}
-          mainMenu={<MainMenu app={app} pageContext={props.pageContext} uri={uri} />}
-          userMenu={
-            app.account.username ? (
-              <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
-            ) : (
-              <VisitorMenu />
-            )
-          }
-          mobileIcons={mobileIcons}
-        />
-      )
-      break
-    default:
-      pageLayout = (
-        <div className="fs-sa">
-          <section>
-            <article style={{ maxWidth: '42em', margin: 'auto' }}>
-              {crumbs && title ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null}
-              {title ? <h1>{title}</h1> : null}
-              <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />
-              {next ? <PreviousNext pageContext={props.pageContext} theme={theme} /> : null}
-              {crumbs && title ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null}
-            </article>
-          </section>
-          {mobile ? null : (
-            <aside>
-              <div className="sticky">
-                <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
-                {app.account.username ? (
-                  <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
-                ) : (
-                  <VisitorMenu />
-                )}
-              </div>
-            </aside>
-          )}
-        </div>
-      )
+  const layouts = {
+    home: <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />,
+    draft:(
+      <MainPage
+        app={app}
+        pageContext={props.pageContext}
+        slug={props.slug}
+        uri={uri}
+        mainMenu={<MainMenu app={app} pageContext={props.pageContext} uri={uri} />}
+        userMenu={
+          app.account.username ? (
+            <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
+          ) : (
+            <VisitorMenu />
+          )
+        }
+        mobileIcons={mobileIcons}
+      />
+    ),
+    default: (
+      <div className="fs-sa">
+        <section>
+          <article style={{ maxWidth: '42em', margin: 'auto' }}>
+            {crumbs && title ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null}
+            {title ? <h1>{title}</h1> : null}
+            <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />
+            {next ? <PreviousNext pageContext={props.pageContext} theme={theme} /> : null}
+            {crumbs && title ? <Breadcrumbs crumbs={crumbs} pageTitle={title} /> : null}
+          </article>
+        </section>
+        {mobile ? null : (
+          <aside>
+            <div className="sticky">
+              <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
+              {app.account.username ? (
+                <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
+              ) : (
+                <VisitorMenu />
+              )}
+            </div>
+          </aside>
+        )}
+      </div>
+    )
   }
   // Render
   let wrapperClasses = theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (menu) wrapperClasses += ' show-menu'
+  wrapperClasses += ' layout'+pageLayout
 
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
@@ -204,6 +201,7 @@ const App = props => {
             <Navbar app={app} />
           )}
           {pageLayout}
+          {layouts[pageLayout]}
           <Notification
             notification={notification}
             closeNotification={closeNotification}
