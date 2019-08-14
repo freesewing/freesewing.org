@@ -457,16 +457,16 @@ exports.createPages = ({ actions, graphql }) => {
     const markdown = {};
     getFileList(graphql, language, markdown)
       .then(() => {
-        console.log("[#-----]", "GraphQl file list query completed");
+        console.log("[#---]", "GraphQl file list query completed");
         getMdx(graphql, language, markdown, titles)
         .then(() => {
-          console.log("[##----]", "MDX queries completed");
+          console.log("[##--]", "MDX queries completed");
           createMdx(graphql, language, markdown, titles, actions.createPage)
           .then(() => {
-            console.log("[##----]", "MDX pages created");
+            console.log("[###-]", "MDX pages created");
             createRedirects(redirects, actions.createRedirect)
             .then(() => {
-              console.log("[##----]", "Redirects created");
+              console.log("[####]", "Redirects created");
               resolve(true);
             })
           })
@@ -490,7 +490,6 @@ exports.sourceNodes = async ({
 
   // Do the initial fetch
   const result = await axios.get(process.env.GATSBY_BACKEND + "patrons")
-
   // Create patron nodes.
   let i = 0;
   Object.keys(result.data).forEach( tier => {
