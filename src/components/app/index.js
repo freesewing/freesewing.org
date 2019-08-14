@@ -200,7 +200,6 @@ const App = props => {
           ) : (
             <Navbar app={app} />
           )}
-          {pageLayout}
           {layouts[pageLayout]}
           <Notification
             notification={notification}
