@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
-import RecipeCode from '../recipe'
+import RecipeCode from './recipe'
 
 const ShowRecipe = ( props) => {
   const styles = {
