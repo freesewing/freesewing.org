@@ -21,6 +21,7 @@ const HomePage = ({ app }) => {
         href="/share"
         variant="contained"
         style={styles.primaryButton}
+        data-test-data="top-button-patron"
       >
         <FormattedMessage id="app.share" />
       </Button>
@@ -33,6 +34,7 @@ const HomePage = ({ app }) => {
         href="/patrons/join"
         variant="contained"
         style={styles.primaryButton}
+        data-test="top-button-user"
       >
         <FormattedMessage id="app.subscribe" />
       </Button>
@@ -45,6 +47,7 @@ const HomePage = ({ app }) => {
         href="/signup"
         variant="contained"
         style={styles.primaryButton}
+        data-test="top-button-visitor"
       >
         <FormattedMessage id="app.signUp" />
       </Button>
@@ -54,15 +57,15 @@ const HomePage = ({ app }) => {
   return (
     <div style={styles.container}>
       <div style={styles.headerWrapper}>
-        <div style={styles.header}>
+        <div style={styles.header} data-test="header">
           <div style={styles.innerHeader}>
             <h1 style={styles.h1}>FreeSewing</h1>
-            <h2 style={styles.h2}>
+            <h2 style={styles.h2} data-test="slogan">
               <FormattedMessage id="app.sewingPatternsForNonAveragePeople" />
               <sup>*</sup>
               <br />
               <small>
-                <small>
+                <small data-test="subslogan">
                   * <FormattedMessage id="app.averagePeopleDoNotExist" />
                 </small>
               </small>
@@ -72,7 +75,7 @@ const HomePage = ({ app }) => {
         </div>
       </div>
       <div style={styles.boxes}>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row1-1">
           <h2 style={styles.h2Box}>
             <FormattedMessage id="homepage.row1col1title" />
           </h2>
@@ -80,7 +83,7 @@ const HomePage = ({ app }) => {
             <FormattedHTMLMessage id="homepage.row1col1text" />
           </p>
         </div>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row1-2">
           <h2 style={styles.h2Box}>
             <FormattedMessage id="homepage.row1col2title" />
           </h2>
@@ -88,7 +91,7 @@ const HomePage = ({ app }) => {
             <FormattedMessage id="homepage.row1col2text" />
           </p>
         </div>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row1-3">
           <h2 style={styles.h2Box}>
             <FormattedMessage id="homepage.row1col3title" />
           </h2>
@@ -98,10 +101,10 @@ const HomePage = ({ app }) => {
         </div>
       </div>
 
-      <div style={styles.stripe}>
+      <div style={styles.stripe} data-test="subscribe">
         <div style={styles.innerHeader}>
           <h1 style={styles.h1}>
-            <FormattedMessage id="supportFreesewing" />
+            <FormattedMessage id="app.supportFreesewing" />
           </h1>
           <h2 style={styles.h2}>
             <FormattedMessage id="app.txt-tiers" />
@@ -115,7 +118,7 @@ const HomePage = ({ app }) => {
         </div>
       </div>
 
-      <div style={styles.m1}>
+      <div style={styles.m1} data-test="tiers">
         <h3 style={{ textAlign: 'center', marginTop: '3rem' }}>
           <FormattedMessage id="app.pricing" />
         </h3>
@@ -125,7 +128,7 @@ const HomePage = ({ app }) => {
       <div style={styles.m1}>
         <h3 style={{ textAlign: 'center', marginTop: '3rem' }}>~~~~</h3>
         <div style={styles.boxes}>
-          <div style={styles.card} className="shadow">
+          <div style={styles.card} className="shadow" data-test="patterns">
             <Link to="/patterns" title={app.frontend.intl.formatMessage({ id: 'app.patterns' })}>
               <img
                 src={patternsImage}
@@ -156,7 +159,7 @@ const HomePage = ({ app }) => {
             </div>
           </div>
 
-          <div style={styles.card} className="shadow">
+          <div style={styles.card} className="shadow" data-test="showcase">
             <Link to="/showcase" title={app.frontend.intl.formatMessage({ id: 'app.showcase' })}>
               <img
                 src={showcasesImage}
@@ -186,7 +189,7 @@ const HomePage = ({ app }) => {
             </div>
           </div>
 
-          <div style={styles.card} className="shadow">
+          <div style={styles.card} className="shadow" data-test="blog">
             <Link to="/blog" title={app.frontend.intl.formatMessage({ id: 'app.blog' })}>
               <img
                 src={blogpostsImage}
@@ -219,7 +222,7 @@ const HomePage = ({ app }) => {
       </div>
 
       <div style={styles.boxes}>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row2-1">
           <h2>
             <FormattedMessage id="homepage.row2col1title" />
           </h2>
@@ -227,7 +230,7 @@ const HomePage = ({ app }) => {
             <FormattedHTMLMessage id="homepage.row2col1text" />
           </p>
         </div>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row2-2">
           <h2>
             <FormattedMessage id="homepage.row2col2title" />
           </h2>
@@ -235,7 +238,7 @@ const HomePage = ({ app }) => {
             <FormattedHTMLMessage id="homepage.row2col2text" />
           </p>
         </div>
-        <div style={styles.box}>
+        <div style={styles.box} data-test="row2-3">
           <h2>
             <FormattedMessage id="homepage.row2col3title" />
           </h2>

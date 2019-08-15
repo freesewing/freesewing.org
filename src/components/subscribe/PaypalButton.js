@@ -31,7 +31,7 @@ const PaypalButton = props => {
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"
         target="_top"
-        id={'form-patron-' + form.name}
+        id={'form-tier' + tier}
       >
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />
         <input type="hidden" name="business" value="info@freesewing.org" />
@@ -69,7 +69,7 @@ const PaypalButton = props => {
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"
         target="_top"
-        id={'form-patron-' + form.name + '-yearly'}
+        id={'form-tier' + tier + '-yearly'}
       >
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />
         <input type="hidden" name="business" value="info@freesewing.org" />

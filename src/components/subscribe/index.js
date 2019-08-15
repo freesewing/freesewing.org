@@ -3,7 +3,6 @@ import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
 import Grid from '@material-ui/core/Grid'
 import PaypalButton from './PaypalButton'
 
@@ -61,7 +60,7 @@ const Subscribe = props => {
     <React.Fragment>
       {showFree && (
         <Grid item sm="12" md>
-          <Card className={useStyles().tier0}>
+          <Card className={useStyles().tier0} data-test="tier-0">
             <CardContent className={useStyles().content}>
               <h3>
                 <span className={useStyles().price}>0€</span>
@@ -78,7 +77,7 @@ const Subscribe = props => {
       )}
     <Grid id="tiers" container spacing="2" alignItems="stretch">
       <Grid item sm="12" md>
-        <Card className={useStyles().tier2}>
+        <Card className={useStyles().tier2} data-test="tier-2">
           <CardContent className={useStyles().content}>
             <h3>
               <span className={useStyles().price}>2€</span>
@@ -94,7 +93,7 @@ const Subscribe = props => {
         </Card>
       </Grid>
       <Grid item sm="12" md>
-        <Card className={useStyles().tier4}>
+        <Card className={useStyles().tier4} data-test="tier-4">
           <CardContent className={useStyles().content}>
             <h3>
               <span className={useStyles().price}>4€</span>
@@ -110,7 +109,7 @@ const Subscribe = props => {
         </Card>
       </Grid>
       <Grid item sm="12" md>
-        <Card className={useStyles().tier8}>
+        <Card className={useStyles().tier8} data-test="tier-8">
           <CardContent className={useStyles().content}>
             <h3>
               <span className={useStyles().price}>8€</span>
