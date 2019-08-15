@@ -93,6 +93,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.0",
+    "cypress": "3.4.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
@@ -103,6 +104,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "cypress:open": "cypress open",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"

@@ -58,7 +58,7 @@ const plugins = [
 
 // Only update the Algolia indices when having the ALGOLIA_UPDATE_KEY set.
 //   Most likely on deployment to production only
-if (process.env.GATSBY_ALGOLIA_UPDATE_KEY) {
+if (process.env.CONTEXT === 'production') {
   plugins.push({
     resolve: 'gatsby-plugin-algolia',
     options: {
