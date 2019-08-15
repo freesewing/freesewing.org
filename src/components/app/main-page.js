@@ -21,7 +21,7 @@ import RecipesPage from '../recipes/'
 import DraftPage from '../draft/'
 import PatronsPage from '../patrons/'
 import UsersPage from '../users/'
-import HomePage from '../pages/homepage'
+import HomePage from '../pages/homepage/'
 import PatternsPage from '../patterns/'
 import NotFound from '../pages/404'
 
