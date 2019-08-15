@@ -10,35 +10,64 @@ import PaypalButton from './PaypalButton'
 const Subscribe = props => {
   const { showFree } = props
 
+  const sharedStyles = {
+    textAlign: 'center',
+    color: '#fff',
+    height: 'calc(100% - 2rem)',
+    marginBottom: '1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingBottom: '2rem',
+  }
+
   const useStyles = makeStyles({
+    tier0: {
+      ...sharedStyles,
+      color: '#212529'
+    },
     tier2: {
+      ...sharedStyles,
       backgroundColor: '#37b24d',
-      color: '#fff',
-      height: '100%'
     },
     tier4: {
+      ...sharedStyles,
       backgroundColor: '#228be6',
-      color: '#fff',
-      height: '100%'
     },
     tier8: {
+      ...sharedStyles,
       backgroundColor: '#7950f2',
-      color: '#fff',
-      height: '100%'
-    }
+    },
+    content: {
+      padding: '1rem 2rem',
+    },
+    price: {
+      fontSize: '4rem',
+      display: 'block',
+      lineHeight: 1,
+      fontWeight: 900,
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      letterSpacing: '0.2rem'
+    },
+    perMonth: {
+      fontSize: '1.2rem',
+      display: 'block',
+      lineHeight: 1,
+      fontWeight: 300,
+    },
   })
 
   return (
-    <Grid id="tiers" container spacing="2" alignItems="stretch">
+    <React.Fragment>
       {showFree && (
         <Grid item sm="12" md>
-          <Card>
-            <CardContent>
+          <Card className={useStyles().tier0}>
+            <CardContent className={useStyles().content}>
               <h3>
-                €0{' '}
-                <small>
+                <span className={useStyles().price}>0€</span>
+                <span className={useStyles().perMonth}>
                   <FormattedMessage id="app.perMonth" />
-                </small>
+                </span>
               </h3>
               <p>
                 <FormattedHTMLMessage id={'app.txt-tier0'} />
@@ -47,61 +76,57 @@ const Subscribe = props => {
           </Card>
         </Grid>
       )}
+    <Grid id="tiers" container spacing="2" alignItems="stretch">
       <Grid item sm="12" md>
         <Card className={useStyles().tier2}>
-          <CardContent>
+          <CardContent className={useStyles().content}>
             <h3>
-              €2{' '}
-              <small>
+              <span className={useStyles().price}>2€</span>
+              <span className={useStyles().perMonth}>
                 <FormattedMessage id="app.perMonth" />
-              </small>
+              </span>
             </h3>
             <p>
               <FormattedHTMLMessage id={'app.txt-tier2'} />
             </p>
           </CardContent>
-          <CardActions>
-            <PaypalButton tier={2} />
-          </CardActions>
+          <PaypalButton tier={2} />
         </Card>
       </Grid>
       <Grid item sm="12" md>
         <Card className={useStyles().tier4}>
-          <CardContent>
+          <CardContent className={useStyles().content}>
             <h3>
-              €4{' '}
-              <small>
+              <span className={useStyles().price}>4€</span>
+              <span className={useStyles().perMonth}>
                 <FormattedMessage id="app.perMonth" />
-              </small>
+              </span>
             </h3>
             <p>
               <FormattedHTMLMessage id={'app.txt-tier4'} />
             </p>
           </CardContent>
-          <CardActions>
-            <PaypalButton tier={4} />
-          </CardActions>
+          <PaypalButton tier={4} />
         </Card>
       </Grid>
       <Grid item sm="12" md>
         <Card className={useStyles().tier8}>
-          <CardContent>
+          <CardContent className={useStyles().content}>
             <h3>
-              €8{' '}
-              <small>
+              <span className={useStyles().price}>8€</span>
+              <span className={useStyles().perMonth}>
                 <FormattedMessage id="app.perMonth" />
-              </small>
+              </span>
             </h3>
             <p>
               <FormattedHTMLMessage id={'app.txt-tier8'} />
             </p>
           </CardContent>
-          <CardActions>
-            <PaypalButton tier={8} />
-          </CardActions>
+          <PaypalButton tier={8} />
         </Card>
       </Grid>
     </Grid>
+    </React.Fragment>
   )
 }
 
