@@ -104,7 +104,8 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "cypress:open": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
+    "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
+    "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"
