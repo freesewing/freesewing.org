@@ -83,7 +83,7 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('not.have.attr', 'disabled')
   })
 
-  it('Form should submit via keyboard', function() {
+  it.only('Form should submit via keyboard', function() {
 
     // Fill in username
     cy.get('#username').type('😇')
@@ -92,7 +92,7 @@ describe('Login flow', function() {
     cy.get('#password').type('cypress{enter}')
 
     // Check error message
-    //cy.get('blockquote.warning').should('contain', i18n['errors.emailExists'])
+    cy.get('[data-test=notification]').should('contain', i18n['errors.requestFailedWithStatusCode401'])
   })
 
   it('Password reveal icon should toggle password visibility', function() {
