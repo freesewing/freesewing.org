@@ -44,6 +44,9 @@ describe('Sign up flow', function() {
 
   it('Verify sign up state on load', function() {
 
+    // (auto) focus on email
+    cy.focused().should('have.attr', 'id', 'email')
+
     // Disabled sign up button
     cy.get('form button[type=submit]').should('have.attr', 'disabled')
 
@@ -96,6 +99,18 @@ describe('Sign up flow', function() {
     // Email input should be valid
     cy.get('[data-test=email-valid]').should('be.visible')
 
+  })
+
+  it.only('Form should submit via keyboard', function() {
+
+    // Fill in valid email address
+    cy.get('#email').type('test_user@freesewing.org')
+
+    // Fill in password
+    cy.get('#password').type('cypress{enter}')
+
+    // Check error message
+    cy.get('blockquote.warning').should('contain', i18n['errors.emailExists'])
   })
 
   it('Password reveal icon should toggle password visibility', function() {
