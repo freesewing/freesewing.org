@@ -22,6 +22,11 @@ const Notification = props => {
   if (message instanceof Error) msg = <ErrorMsg err={message} />
   else if (message instanceof String)
     msg = <span key="message" dangerouslySetInnerHTML={{ __html: msg }} />
+  else if (message instanceof Object) {
+    // We seem to hit this (only) when testing headless with cypress
+    // It most likely has something to do with the notification in localstorage
+    msg = <span key="message" dangerouslySetInnerHTML={{ __html: '<pre>FIXME: '+JSON.stringify(msg)+'</pre>' }} />
+  }
 
   const styles = {
     icon: {
