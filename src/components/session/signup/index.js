@@ -12,10 +12,10 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Oauth from '../oauth/'
 
 const Signup = ({ app, location }) => {
-  const [email, setEmail] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [emailValid, setEmailValid] = useState(null)
-  const [reveal, setReveal] = useState(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailValid, setEmailValid] = useState(false)
+  const [reveal, setReveal] = useState(false)
   const [result, setResult] = useState(false)
   const [error, setError] = useState(false)
 
@@ -87,9 +87,9 @@ const Signup = ({ app, location }) => {
           endAdornment: (
             <InputAdornment position="start">
               {emailValid ? (
-                <ValidIcon style={{ color: '#40c057' }} />
+                <ValidIcon style={{ color: '#40c057' }} data-test='email-valid'/>
               ) : (
-                <InvalidIcon color="error" />
+                <InvalidIcon color="error" data-test='email-invalid'/>
               )}
             </InputAdornment>
           )
@@ -116,11 +116,11 @@ const Signup = ({ app, location }) => {
                 className="poh"
               >
                 {reveal ? (
-                  <span role="img" aria-label="show">
+                  <span role="img" aria-label="show" data-test='show-password'>
                     👀{' '}
                   </span>
                 ) : (
-                  <span role="img" aria-label="show">
+                  <span role="img" aria-label="show" data-test='hide-password'>
                     🙈{' '}
                   </span>
                 )}
@@ -135,6 +135,7 @@ const Signup = ({ app, location }) => {
         size="large"
         variant="contained"
         style={{ margin: '2rem 0' }}
+        disabled={!emailValid || password.length<1}
       >
         <FormattedMessage id="app.signUp" />
       </Button>

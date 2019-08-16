@@ -22,7 +22,7 @@ const OauthProvider = props => {
       size="large"
       variant="outlined"
       fullWidth={true}
-      dataProvider={props.provider}
+      data-provider={props.provider}
     >
       <Icon icon={props.provider} style={styles.icon} />
       {props.login ? (
