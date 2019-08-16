@@ -67,6 +67,7 @@ const Notification = props => {
       autoHideDuration={3000}
       onClose={props.closeNotification}
       children={children}
+      data-test='notification'
     />
   )
 }

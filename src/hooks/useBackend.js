@@ -373,10 +373,10 @@ function useBackend(props) {
       .catch((err, foo) => console.log({ error: err, data: err.response.data }))
   }
 
-  const resetPassword = username => {
+  const recoverAccount = username => {
     props.startLoading()
     backend
-      .resetPassword(username)
+      .recoverAccount(username)
       .then(res => {
         if (res.status === 200) {
           props.stopLoading()
@@ -407,7 +407,7 @@ function useBackend(props) {
     confirmationLogin,
     loginOauth,
     logout,
-    resetPassword,
+    recoverAccount,
     restrictAccount,
     removeModel,
     removeRecipe,

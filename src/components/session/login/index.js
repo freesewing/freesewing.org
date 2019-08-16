@@ -7,8 +7,8 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Oauth from '../oauth/'
 
 const Login = ({ app, location }) => {
-  const [username, setUsername] = useState(null)
-  const [password, setPassword] = useState(null)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [trouble, setTrouble] = useState(false)
 
   const handleLogin = evt => {
@@ -18,7 +18,7 @@ const Login = ({ app, location }) => {
 
   const handlePasswordReset = evt => {
     evt.preventDefault()
-    app.backend.resetPassword(evt.target[1].value)
+    app.backend.recoverAccount(evt.target[1].value)
   }
 
   const formProps = {
@@ -48,11 +48,11 @@ const Login = ({ app, location }) => {
         </Blockquote>
       ) : null}
       <div>{main}</div>
-      <a href="#trouble" className="mimic" onClick={() => setTrouble(!trouble)}>
+      <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test='trouble'>
         <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
       </a>
       <span style={{ padding: '0 1rem' }}>|</span>
-      <Link to="/signup">
+      <Link to="/signup" data-test='signup'>
         <FormattedMessage id="app.signUpForAFreeAccount" />
       </Link>
       <div style={{ marginTop: '3rem', maxWidth: '500px' }}>

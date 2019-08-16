@@ -1,7 +1,7 @@
 import { strings } from "@freesewing/i18n";
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Sign up flow', function() {
+describe('Signup flow', function() {
 
   beforeEach(function () {
     cy.visit('/signup')
@@ -9,7 +9,7 @@ describe('Sign up flow', function() {
       .should('have.class', 'layoutdefault')
   })
 
-  it('Verify sign up page translations', function() {
+  it('Verify signup page translations', function() {
 
     // Title
     cy.get('h1').should('contain', i18n['app.signUp'])
@@ -42,12 +42,12 @@ describe('Sign up flow', function() {
 
   })
 
-  it('Verify sign up state on load', function() {
+  it('Verify signup state on load', function() {
 
     // (auto) focus on email
     cy.focused().should('have.attr', 'id', 'email')
 
-    // Disabled sign up button
+    // Disabled signup button
     cy.get('form button[type=submit]').should('have.attr', 'disabled')
 
     // Invalid email input
@@ -101,7 +101,7 @@ describe('Sign up flow', function() {
 
   })
 
-  it.only('Form should submit via keyboard', function() {
+  it('Form should submit via keyboard', function() {
 
     // Fill in valid email address
     cy.get('#email').type('test_user@freesewing.org')
