@@ -8,14 +8,15 @@ const AccountExport = ({ app }) => (
     <Blockquote type="note">
       <FormattedHTMLMessage id="account.exportYourDataInfo" />
     </Blockquote>
-    <h5 style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
+    <h6 style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
       <FormattedMessage id="account.exportYourDataTitle" />
-    </h5>
+    </h6>
     <p style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
-      <Button size="large" variant="outlined" color="primary" href="/account/settings">
+      <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
         <FormattedMessage id="app.cancel" />
       </Button>
       <Button
+        data-test="export"
         size="large"
         style={{ marginLeft: '1rem' }}
         variant="contained"

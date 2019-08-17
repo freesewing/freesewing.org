@@ -11,7 +11,6 @@ describe('Account settings', function() {
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
-    cy.visit('/account/settings')
   })
 
   const buttons = [
@@ -27,13 +26,10 @@ describe('Account settings', function() {
   ]
 
   it('Verify translations and links', function() {
-    // Title
+    cy.visit('/account/settings')
     cy.get('h1').should('contain', i18n['app.settings'])
-
-    // Buttons
-    for (let button of buttons) {
+    for (let button of buttons)
       cy.get(`a[href="/account/settings/${button}"]`).should('contain', i18n['account.'+button])
-    }
   })
 
   it('Avatar (translations only)', function() {

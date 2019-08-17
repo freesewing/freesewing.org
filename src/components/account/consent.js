@@ -62,85 +62,85 @@ const AccountConsent = ({ app }) => {
   }
 
   const profileDetails = [
-    <h2 key="profileTitle">
+    <h2 key="profileTitle" data-test="consentForProfileData">
       <FormattedMessage id="gdpr.consentForProfileData" />
     </h2>,
     <table style={styles.table} className="font-title" key="profileTable">
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="profileWhatQuestion">
           <FormattedMessage id="gdpr.profileWhatQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileWhatAnswer">
           <FormattedHTMLMessage id="gdpr.profileWhatAnswer" />
           <br />
           <FormattedHTMLMessage id="gdpr.profileWhatAnswerOptional" />
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileWhyAnswer">
           <FormattedHTMLMessage id="gdpr.profileWhyAnswer" />
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileTimingAnswer">
           <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileShareAnswer">
           <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
         </td>
       </tr>
     </table>
   ]
   const modelDetails = [
-    <h2 key="modelTitle">
+    <h2 key="modelTitle" data-test="consentForModelData">
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
     <table style={styles.table} className="font-title" key="modelData">
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="modelWhatQuestion">
           <FormattedMessage id="gdpr.modelWhatQuestion" />
         </td>
-        <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswer" />
+        <td style={styles.cell} data-test="modelWhatAnswer">
+          <FormattedHTMLMessage id="gdpr.modelWhatAnswer"/>
           <br />
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional" />
+          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional"/>
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="modelWhyAnswer">
           <FormattedHTMLMessage id="gdpr.modelWhyAnswer" />
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileTimingAnswer">
           <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
         </td>
       </tr>
       <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }}>
+        <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
-        <td style={styles.cell}>
+        <td style={styles.cell} data-test="profileShareAnswer">
           <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
           <br />
-          <small>
+          <small data-test="openData">
             <FormattedMessage id="gdpr.openData" />
           </small>
         </td>
@@ -151,25 +151,27 @@ const AccountConsent = ({ app }) => {
   return (
     <React.Fragment>
       <Blockquote type="note">
-        <p>
+        <p data-test="compliant">
           <FormattedMessage id="gdpr.compliant" />
         </p>
-        <p>
+        <p data-test="consentWhyAnswer">
           <FormattedHTMLMessage id="gdpr.consentWhyAnswer" />
         </p>
       </Blockquote>
       {details ? profileDetails : null}
-      <h5>
+      <h5 data-test="profileQuestion">
         <FormattedMessage id="gdpr.profileQuestion" />
       </h5>
       <RadioGroup name="profile" onChange={() => setProfile(!profile)} value={profile}>
         <FormControlLabel
+          data-test="noIDoNot"
           control={<Radio color="primary" />}
           value={false}
           checked={profile ? false : true}
           label={app.frontend.intl.formatMessage({ id: 'gdpr.noIDoNot' })}
         />
         <FormControlLabel
+          data-test="yesIDo"
           control={<Radio color="primary" />}
           value={true}
           checked={profile ? true : false}
@@ -177,23 +179,25 @@ const AccountConsent = ({ app }) => {
         />
       </RadioGroup>
       {profile ? null : (
-        <Blockquote type="warning">
+        <Blockquote type="warning" data-test="profileWarning">
           <FormattedMessage id="gdpr.profileWarning" />
         </Blockquote>
       )}
 
       {details ? modelDetails : null}
-      <h5>
+      <h5 data-test="modelQuestion">
         <FormattedMessage id="gdpr.modelQuestion" />
       </h5>
       <RadioGroup name="model" onChange={() => setModel(!model)} value={model}>
         <FormControlLabel
+          data-test="noIDoNot"
           control={<Radio color="primary" />}
           value={false}
           checked={model ? false : true}
           label={app.frontend.intl.formatMessage({ id: 'gdpr.noIDoNot' })}
         />
         <FormControlLabel
+          data-test="yesIDo"
           control={<Radio color="primary" />}
           value={true}
           checked={model ? true : false}
@@ -203,6 +207,7 @@ const AccountConsent = ({ app }) => {
       {details ? (
         <div style={{ marginLeft: '2rem' }}>
           <FormControlLabel
+            data-test="openDataQuestion"
             control={<Checkbox color="primary" onChange={() => setOpenData(!openData)} />}
             value={true}
             checked={openData ? true : false}
@@ -210,7 +215,7 @@ const AccountConsent = ({ app }) => {
           />
           {openData ? null : (
             <p style={{ marginTop: 0 }}>
-              <small>
+              <small data-test="openDataInfo">
                 <FormattedMessage id="gdpr.openDataInfo" />
               </small>
             </p>
@@ -219,16 +224,17 @@ const AccountConsent = ({ app }) => {
       ) : null}
 
       {model ? null : (
-        <Blockquote type="warning">
+        <Blockquote type="warning" data-test="modelWarning">
           <FormattedMessage id="gdpr.modelWarning" />
         </Blockquote>
       )}
 
       <p style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="details"
           style={{ marginLeft: '1rem' }}
           size="large"
           variant="outlined"
@@ -238,6 +244,7 @@ const AccountConsent = ({ app }) => {
           <FormattedMessage id={'app.' + (details ? 'hide' : 'show') + 'Details'} />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

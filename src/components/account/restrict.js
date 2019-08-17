@@ -21,17 +21,18 @@ const AccountRestrict = props => {
           <FormattedMessage id="account.restrictProcessingWarning" />
         </p>
         <p style={{ textAlign: 'right' }}>
-          <Button href="/account/settings" variant="outlined" color="primary">
+          <Button href="/account/settings" variant="outlined" color="primary" data-test="back">
             <FormattedMessage id="app.back" />
           </Button>
         </p>
       </Blockquote>
 
       <p style={{ textAlign: props.app.frontend.mobile ? 'left' : 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           className="danger"
           size="large"
           style={{ marginLeft: '1rem' }}
