@@ -105,10 +105,12 @@
   "main": "n/a",
   "scripts": {
     "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
-    "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
+    "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY --group 'freesewing.org'",
     "test:homepage": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/homepage.spec.js'",
     "test:signup": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/signup.spec.js'",
     "test:login": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/login.spec.js'",
+    "test:account": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/account.spec.js'",
+    "test:settings": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/settings.spec.js'",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"

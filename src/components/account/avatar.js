@@ -55,26 +55,28 @@ const AccountAvatar = props => {
         />
         <div {...getRootProps()} style={styles.dropzone}>
           <input {...getInputProps()} />
-          <p>
+          <p data-test='instructions'>
             <FormattedMessage id="app.dragAndDropImageHere" />
           </p>
           <p>
-            <Button variant="outlined" color="primary">
+            <Button variant="outlined" color="primary" data-test='pick-file'>
               <FormattedMessage id="app.selectImage" />
             </Button>
           </p>
         </div>
       </div>
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test='cancel'>
           <FormattedMessage id="app.cancel" />
         </Button>
         {img ? (
           <Button
+            data-test="save"
             style={{ marginLeft: '1rem' }}
             size="large"
             variant="contained"
             color="primary"
+            data-test='save'
             onClick={() =>
               props.app.backend.saveAccount(
                 { avatar: img },

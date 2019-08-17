@@ -107,7 +107,7 @@ const Account = props => {
         <AccountMenu
           mobile={props.app.frontend.mobile}
           username={props.app.account.username}
-          intl={props.app.frontend.intl}
+          app={props.app}
         />
       )
   }

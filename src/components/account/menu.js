@@ -29,8 +29,8 @@ const AccountMenu = props => {
         icon: <NewPatternIcon style={styles.icon} />,
         title: (
           <FormattedMessage
-            id="app.create"
-            values={{ pattern: props.intl.formatMessage({ id: 'app.pattern' }) }}
+            id="app.newPattern"
+            values={{ pattern: props.app.frontend.intl.formatMessage({ id: 'app.pattern' }) }}
           />
         )
       },
@@ -70,7 +70,8 @@ const AccountMenu = props => {
       {
         to: '/logout',
         icon: <LogoutIcon style={styles.icon} />,
-        title: 'app.logOut'
+        title: 'app.logOut',
+        onClick: () => props.app.backend.logout(props.app.account.username)
       }
     ]
   }
@@ -88,8 +89,10 @@ const AccountMenu = props => {
               style={styles.button}
               variant="contained"
               className={type}
-              href={tile.to}
+              href={tile.to === "/logout" ? "#" : tile.to}
               size="large"
+              data-test={tile.to}
+              onClick={tile.to === "/logout" ? tile.onClick : null}
             >
               {tile.icon}
               {typeof tile.title === 'string' ? <FormattedMessage id={tile.title} /> : tile.title}

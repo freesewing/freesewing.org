@@ -35,11 +35,11 @@ const AccountPassword = props => {
                 className="poh"
               >
                 {newReveal ? (
-                  <span role="img" aria-label="show">
+                  <span role="img" aria-label="show" data-test="show">
                     👀{' '}
                   </span>
                 ) : (
-                  <span role="img" aria-label="show">
+                  <span role="img" aria-label="show" data-test="hide">
                     🙈{' '}
                   </span>
                 )}
@@ -49,10 +49,11 @@ const AccountPassword = props => {
         }}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

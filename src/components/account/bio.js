@@ -36,10 +36,11 @@ const AccountBio = props => {
         onChange={updateBio}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"
@@ -57,7 +58,7 @@ const AccountBio = props => {
       <h6>
         <FormattedMessage id="app.preview" />
       </h6>
-      <div style={styles.preview} className="shadow">
+      <div style={styles.preview} className="shadow" data-test="preview">
         <Markdown source={bio} />
       </div>
     </React.Fragment>

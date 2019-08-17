@@ -21,6 +21,7 @@ const AccountLanguage = props => {
         {Object.keys(languages).map((lang, index) => {
           return (
             <FormControlLabel
+              data-test={lang}
               control={<Radio color="primary" />}
               value={lang}
               checked={language === lang ? true : false}
@@ -36,10 +37,11 @@ const AccountLanguage = props => {
         })}
       </RadioGroup>
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

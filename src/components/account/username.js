@@ -35,19 +35,20 @@ const AccountUsername = props => {
           endAdornment: (
             <InputAdornment position="start">
               {usernameValid ? (
-                <ValidIcon style={{ color: '#40c057' }} />
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid"/>
               ) : (
-                <InvalidIcon color="error" />
+                <InvalidIcon color="error" data-test="invalid"/>
               )}
             </InputAdornment>
           )
         }}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

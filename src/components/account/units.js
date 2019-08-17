@@ -20,6 +20,7 @@ const AccountUnits = props => {
         {['metric', 'imperial'].map(type => {
           return (
             <FormControlLabel
+              data-test={type}
               control={<Radio color="primary" />}
               value={type}
               checked={type === units ? true : false}
@@ -30,10 +31,11 @@ const AccountUnits = props => {
         })}
       </RadioGroup>
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings">
+        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"
