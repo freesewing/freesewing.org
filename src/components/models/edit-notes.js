@@ -21,6 +21,7 @@ const EditNotes = props => {
   return (
     <React.Fragment>
       <TextField
+        data-test="notes"
         multiline={true}
         rows="8"
         rowsMax="16"
@@ -32,10 +33,11 @@ const EditNotes = props => {
         onChange={updateNotes}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model}>
+        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model} data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

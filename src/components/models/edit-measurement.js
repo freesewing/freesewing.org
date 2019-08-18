@@ -86,6 +86,7 @@ const EditMeasurement = props => {
   return (
     <React.Fragment>
       <TextField
+        data-test="measurement"
         fullWidth={true}
         label={props.app.frontend.intl.formatMessage({ id: 'measurements.' + props.measurement })}
         margin="normal"
@@ -99,19 +100,20 @@ const EditMeasurement = props => {
               {units === 'imperial' ? '"' : 'cm'}
               &nbsp;
               {typeof measurementAsMm(value, units) === 'number' ? (
-                <ValidIcon style={{ color: '#40c057' }} />
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid"/>
               ) : (
-                <InvalidIcon color="error" />
+                <InvalidIcon color="error" data-test="invalid"/>
               )}
             </InputAdornment>
           )
         }}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model}>
+        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model} data-test="cancel">
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"
@@ -122,7 +124,7 @@ const EditMeasurement = props => {
           <FormattedMessage id="app.save" />
         </Button>
       </p>
-      <h5>
+      <h5 data-test="howto">
         <FormattedMessage id="app.howToTakeMeasurements" />
       </h5>
       <MeasurementsImages measurement={props.measurement} />

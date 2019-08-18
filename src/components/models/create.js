@@ -40,10 +40,11 @@ const CreateModel = props => {
 
   return (
     <React.Fragment>
-      <h5>
+      <h5 data-test="name-title">
         <FormattedMessage id="app.name" />
       </h5>
       <TextField
+        data-test="name"
         fullWidth={true}
         label={props.app.frontend.intl.formatMessage({ id: 'app.name' })}
         margin="normal"
@@ -55,22 +56,22 @@ const CreateModel = props => {
           endAdornment: (
             <InputAdornment position="start">
               {name.length > 0 ? (
-                <ValidIcon style={{ color: '#40c057' }} />
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid"/>
               ) : (
-                <InvalidIcon color="error" />
+                <InvalidIcon color="error" data-test="invalid"/>
               )}
             </InputAdornment>
           )
         }}
       />
-      <h5>
+      <h5 data-test="units-title">
         <FormattedMessage id="account.units" />
       </h5>
-      <RadioGroup name="units" onChange={updateUnits} value={units}>
+      <RadioGroup name="units" onChange={updateUnits} value={units} data-test="units">
         {['metric', 'imperial'].map(type => {
           return (
             <FormControlLabel
-              control={<Radio color="primary" />}
+              control={<Radio color="primary" data-test={type}/>}
               value={type}
               checked={type === units ? true : false}
               label={props.app.frontend.intl.formatMessage({ id: 'app.' + type + 'Units' })}
@@ -79,11 +80,12 @@ const CreateModel = props => {
           )
         })}
       </RadioGroup>
-      <h5>
+      <h5 data-test="chest-title">
         <FormattedMessage id="app.chest" />
         <sup>
           <a
             href="#logo"
+            data-test="help"
             onClick={() => setHelp(!help)}
             style={{ padding: '2rem', fontSize: '85%', marginLeft: 'calc(-2rem + 5px)' }}
           >
@@ -102,7 +104,7 @@ const CreateModel = props => {
         {['true', 'false'].map(type => {
           return (
             <FormControlLabel
-              control={<Radio color="primary" />}
+              control={<Radio color="primary" data-test={type === 'true' ? 'withBreasts' : 'withoutBreasts'}/>}
               value={type}
               checked={type === breasts ? true : false}
               label={props.app.frontend.intl.formatMessage({
@@ -115,6 +117,7 @@ const CreateModel = props => {
       </RadioGroup>
       <p style={{ textAlign: 'right' }}>
         <Button
+          data-test="save"
           size="large"
           style={{ marginLeft: '1rem' }}
           variant="contained"

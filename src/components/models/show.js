@@ -143,11 +143,12 @@ const ShowModel = ({ app, model }) => {
         <Avatar data={app.models[model]} />
       </div>
       {typeof app.models[model].notes === 'undefined' || app.models[model].notes === '' ? (
-        <h5 style={styles.heading}>
+        <h5 style={styles.heading} data-test="notes-title">
           <span style={{ opacity: '0.5' }}>
             <FormattedMessage id="app.notes" />
           </span>
           <IconButton
+            data-test="add-notes"
             color="primary"
             style={styles.iconButton}
             size="medium"
@@ -158,12 +159,13 @@ const ShowModel = ({ app, model }) => {
         </h5>
       ) : (
         <React.Fragment>
-          <h5 style={styles.heading}>
+          <h5 style={styles.heading} data-test="notes-title">
             <FormattedMessage id="app.notes" />
           </h5>
-          <Markdown source={app.models[model].notes || ''} />
+          <Markdown source={app.models[model].notes || ''} data-test="notes"/>
           <p style={{ textAlign: 'right' }}>
             <IconButton
+              data-test="edit-notes"
               color="primary"
               style={styles.iconButton}
               size="medium"
@@ -183,7 +185,7 @@ const ShowModel = ({ app, model }) => {
           </tr>
           <tr>
             <td>
-              <h5 style={styles.heading}>
+              <h5 style={styles.heading} data-test="settings-title">
                 <FormattedMessage id="app.settings" />
               </h5>
             </td>
@@ -264,7 +266,7 @@ const ShowModel = ({ app, model }) => {
           {/* measurements */}
           <tr>
             <td>
-              <h5 style={styles.heading}>
+              <h5 style={styles.heading} data-test="measurements-title">
                 <FormattedMessage id="app.measurements" />
               </h5>
             </td>
@@ -284,6 +286,7 @@ const ShowModel = ({ app, model }) => {
       </table>
       <p style={{ textAlign: 'right' }}>
         <Button
+          data-test="remove"
           className="danger"
           color="primary"
           variant="contained"

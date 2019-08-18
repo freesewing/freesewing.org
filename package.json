@@ -114,6 +114,7 @@
     "test:rights": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/rights.spec.js'",
     "test:patterns": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/patterns.spec.js'",
     "test:measurements": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/measurements.spec.js'",
+    "test:models": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/models.spec.js'",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"

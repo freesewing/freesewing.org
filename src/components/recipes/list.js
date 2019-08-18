@@ -47,7 +47,7 @@ const RecipeList = props => {
                     </div>
                       {props.app.recipes[handle].recipe ? (
                         <div>
-                        <h6 styles={styles.name}>
+                        <h6 style={styles.name}>
                           {capitalize(props.app.recipes[handle].recipe.pattern)}:&nbsp;
                           {props.app.recipes[handle].name}
                         </h6>

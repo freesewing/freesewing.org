@@ -28,8 +28,6 @@ const ModelList = props => {
       padding: "8px",
     }
   }
-  if (props.app.frontend.tablet) styles.model.width = 'calc(33% - 1rem)'
-  if (props.app.frontend.mobile) styles.model.width = 'calc(50% - 1rem)'
 
   return (
     <React.Fragment>
