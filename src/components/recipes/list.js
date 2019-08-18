@@ -1,51 +1,68 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import NoRecipe from '../no-recipe'
+import capitalize from "@freesewing/utils/capitalize";
 
 const RecipeList = props => {
   const styles = {
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'start'
-    },
     recipe: {
-      margin: '0.5rem 0.5rem 0',
-      width: 'calc(25% - 1rem)',
-      textAlign: 'center'
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
     },
     name: {
+      wordWrap: 'anywhere',
       margin: 0,
-      wordWrap: 'anywhere'
+      padding: 0
+    },
+    notes: {
+      wordWrap: 'anywhere',
+      margin: 0,
+      padding: 0
+    },
+    img: {
+      maxHeight: "64px",
+      maxWidth: "64px",
+      padding: "8px 16px",
     }
   }
   if (props.app.frontend.tablet) styles.recipe.width = 'calc(33% - 1rem)'
   if (props.app.frontend.mobile) styles.recipe.width = 'calc(50% - 1rem)'
 
   return (
-    <div style={styles.wrapper}>
-      {Object.keys(props.app.recipes).length > 0 ? (
-        <ul className="links">
-          {Object.keys(props.app.recipes).map((handle, recipe) => {
+    <React.Fragment>
+      {Object.keys(props.app.recipes).length > 0
+        ? Object.keys(props.app.recipes).map((handle, recipe) => {
             return (
-              <li key={handle}>
+              <div key={handle} className="box">
                 <Link to={'/recipes/' + handle} title={props.app.recipes[handle].name}>
-                  {props.app.recipes[handle].recipe ? (
-                    <span>{props.app.recipes[handle].recipe.pattern} / </span>
-                  ) : (
-                    ''
-                  )}
-                  {props.app.recipes[handle].name}
+                  <div style={styles.recipe}>
+                    <div>
+                      {props.app.recipes[handle].pattern}
+                      <img
+                        src={'/patterns/' + props.app.recipes[handle].recipe.pattern + '.jpg'}
+                        alt={props.app.recipes[handle].recipe.pattern}
+                        style={styles.img}
+                      />
+                    </div>
+                      {props.app.recipes[handle].recipe ? (
+                        <div>
+                        <h6 styles={styles.name}>
+                          {capitalize(props.app.recipes[handle].recipe.pattern)}:&nbsp;
+                          {props.app.recipes[handle].name}
+                        </h6>
+                        <p style={styles.notes}>{props.app.recipes[handle].notes}</p>
+                        </div>
+                      ) : null
+                      }
+                  </div>
                 </Link>
-              </li>
+              </div>
             )
-          })}
-        </ul>
-      ) : (
-        <NoRecipe />
-      )}
-    </div>
+          })
+       : <NoRecipe />
+      }
+    </React.Fragment>
   )
 }
 

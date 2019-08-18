@@ -7,20 +7,25 @@ import NoModel from '../no-model'
 
 const ModelList = props => {
   const styles = {
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'start'
-    },
     model: {
-      margin: '0.5rem 0.5rem 0',
-      width: 'calc(25% - 1rem)',
-      textAlign: 'center'
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
     },
     name: {
+      wordWrap: 'anywhere',
       margin: 0,
-      wordWrap: 'anywhere'
+      padding: 0
+    },
+    notes: {
+      wordWrap: 'anywhere',
+      margin: 0,
+      padding: 0
+    },
+    avatar: {
+      height: "64px",
+      width: "64px",
+      padding: "8px",
     }
   }
   if (props.app.frontend.tablet) styles.model.width = 'calc(33% - 1rem)'
@@ -28,14 +33,20 @@ const ModelList = props => {
 
   return (
     <React.Fragment>
-      <div style={styles.wrapper}>
         {Object.keys(props.app.models).length > 0 ? (
           Object.keys(props.app.models).map((handle, model) => {
             return (
-              <div style={styles.model} key={handle}>
+              <div className="box" key={handle}>
                 <Link to={'/models/' + handle} title={props.app.models[handle].name}>
-                  <Avatar variant="model" data={props.app.models[handle]} />
-                  <h5 style={styles.name}>{props.app.models[handle].name}</h5>
+                  <div style={styles.model}>
+                    <div style={styles.avatar}>
+                      <Avatar variant="model" data={props.app.models[handle]} />
+                    </div>
+                    <div>
+                      <h6 style={styles.name}>{props.app.models[handle].name}</h6>
+                      <p style={styles.notes}>{props.app.models[handle].notes}</p>
+                    </div>
+                  </div>
                 </Link>
               </div>
             )
@@ -43,7 +54,6 @@ const ModelList = props => {
         ) : (
           <NoModel />
         )}
-      </div>
       <p style={{ textAlign: 'right' }}>
         <Button size="large" variant="contained" color="primary" href="/model">
           <FormattedMessage id="app.newModel" />

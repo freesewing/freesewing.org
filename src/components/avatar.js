@@ -5,11 +5,10 @@ const Avatar = props => {
     borderRadius: '50%',
     width: '100%',
     height: '100%',
-    background: '#343a40'
   }
   if (props.data && typeof props.data.pictureUris !== 'undefined')
-    return <img src={props.data.pictureUris.m} style={style} className="shadow" alt="🙂" />
-  else return <img src="/avatar.svg" style={style} className="shadow" alt="🙂" />
+    return <img src={props.data.pictureUris.m} style={style} alt="🙂" />
+  else return <img src="/avatar.svg" style={style} alt="🙂" />
 }
 
 export default Avatar
