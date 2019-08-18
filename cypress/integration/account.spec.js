@@ -3,7 +3,7 @@ const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Account page', function() {
 
-  beforeEach(function () {
+  before(function () {
     cy.visit('/login')
     cy.get('div.theme-wrapper')
       .should('have.class', 'layoutdefault')

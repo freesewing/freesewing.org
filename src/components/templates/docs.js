@@ -87,9 +87,11 @@ const DocumentationPage = props => {
     <React.Fragment>
       {prefix}
       {props.pageContext.node ? (
-        <MDXProvider components={components}>
-          <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
-        </MDXProvider>
+        <section data-test="mdx">
+          <MDXProvider components={components}>
+            <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
+          </MDXProvider>
+        </section>
       ) : null}
       {suffix}
     </React.Fragment>

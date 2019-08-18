@@ -138,12 +138,13 @@ const PatternPage = props => {
 
   return (
     <React.Fragment>
-      <p>
+      <p data-test="description">
         <FormattedMessage id={'patterns.' + props.pattern + '.description'} />
       </p>
       <div style={styles.wrapper}>
         <div style={styles.col}>
           <Button
+            data-test="create"
             style={styles.button}
             color="primary"
             variant="contained"
@@ -154,6 +155,7 @@ const PatternPage = props => {
             <FormattedMessage id="app.newPattern" values={{ pattern: props.pattern }} />
           </Button>
           <img
+            data-test="cover"
             src={'/patterns/' + props.pattern + '.jpg'}
             alt={props.pattern}
             className="shadow"
@@ -162,6 +164,7 @@ const PatternPage = props => {
         </div>
         <div style={styles.col}>
           <Button
+            data-test="docs"
             style={styles.button}
             color="primary"
             variant="outlined"
@@ -193,18 +196,18 @@ const PatternPage = props => {
               </tr>
               <tr>
                 <td style={styles.keyTd}>
-                  <FormattedMessage id={'filter.department.title'} />
+                  <FormattedMessage id={'filter.department'} />
                 </td>
                 <td style={styles.valTd}>
-                  <FormattedMessage id={'filter.department.' + info.department} />
+                  <FormattedMessage id={'filter.' + info.department} />
                 </td>
               </tr>
               <tr>
                 <td style={styles.keyTd}>
-                  <FormattedMessage id={'filter.type.title'} />
+                  <FormattedMessage id={'filter.type'} />
                 </td>
                 <td style={styles.valTd}>
-                  <FormattedMessage id={'filter.type.' + info.type} />
+                  <FormattedMessage id={'filter.' + info.type} />
                 </td>
               </tr>
               <tr>
@@ -222,13 +225,13 @@ const PatternPage = props => {
             </tbody>
           </table>
         </div>
-        <div>
+        <div data-test="measurements">
           <h2>
             <FormattedMessage id="app.requiredMeasurements" />
           </h2>
           <PatternMeasurements pattern={props.pattern} app={props.app} />
         </div>
-        <div>
+        <div data-test="options">
           <h2>
             <FormattedMessage id="app.patternOptions" />
           </h2>

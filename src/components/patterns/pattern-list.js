@@ -49,7 +49,7 @@ const PatternList = props => {
       <div style={styles.wrapper}>
         {patterns.map(pattern => {
           return (
-            <div key={pattern} style={styles.pattern}>
+            <div key={pattern} style={styles.pattern} data-test={pattern}>
               <Link to={'/patterns/' + pattern} style={styles.link}>
                 <img
                   src={'/patterns/' + pattern + '.jpg'}

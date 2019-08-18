@@ -42,7 +42,7 @@ const MeasurementImages = props => {
     )
   else
     return (
-      <div>
+      <div data-test="measurement-images">
         <Tabs
           value={tab}
           onChange={toggleTab}

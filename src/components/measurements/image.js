@@ -2,6 +2,7 @@ import React from 'react'
 
 const MeasurementImage = props => (
   <img
+    data-test="measurement-image"
     className="shadow"
     src={props.img}
     alt={props.intl.formatMessage({
