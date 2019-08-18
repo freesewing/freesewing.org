@@ -1,9 +1,8 @@
-import { strings, languages } from "@freesewing/i18n";
-import { list, options } from "@freesewing/pattern-info";
+import { strings } from "@freesewing/i18n";
+import { list } from "@freesewing/pattern-info";
 import capitalize from "@freesewing/utils/capitalize";
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-const pickOne = array => array[Math.floor(Math.random() * array.length)];
 
 describe('Core pattern drafting', function() {
 

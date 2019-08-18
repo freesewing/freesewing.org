@@ -1,4 +1,4 @@
-import { strings, languages } from "@freesewing/i18n";
+import { strings } from "@freesewing/i18n";
 const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Model flow', function() {

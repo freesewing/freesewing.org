@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -11,7 +10,6 @@ const AccountPassword = props => {
   const [currentReveal, setCurrentReveal] = useState(false)
   const [newReveal, setNewReveal] = useState(false)
 
-  const updateCurrentPassword = evt => setCurrentPassword(evt.target.value)
   const updateNewPassword = evt => setNewPassword(evt.target.value)
 
   return (

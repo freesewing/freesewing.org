@@ -76,7 +76,6 @@ const AccountAvatar = props => {
             size="large"
             variant="contained"
             color="primary"
-            data-test='save'
             onClick={() =>
               props.app.backend.saveAccount(
                 { avatar: img },
