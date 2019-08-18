@@ -78,14 +78,16 @@ const SelectPatternPage = props => {
   if (props.app.frontend.tablet) styles.pattern.width = 'calc(33% - 1rem)'
   if (props.app.frontend.mobile) styles.pattern.width = 'calc(50% - 1rem)'
   const models = checkModels(props.app.models)
+  let count = 0
 
   return (
     <React.Fragment>
       <div style={styles.wrapper}>
         {models.ok.map(model => {
+          count++
           return (
             <div style={styles.pattern} key={model.handle}>
-              <Link to={'/create/' + props.pattern + '/for/' + model.handle} title={model.name} data-test="model">
+              <Link to={'/create/' + props.pattern + '/for/' + model.handle} title={model.name} data-test={"model"+count}>
                 <Avatar data={model} />
                 <h5 style={styles.name}>{model.name}</h5>
               </Link>

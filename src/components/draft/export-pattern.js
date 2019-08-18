@@ -85,7 +85,7 @@ const ExportPattern = props => {
 
   const cancel = (
     <p style={{ textAlign: 'right' }}>
-      <Button variant="outlined" color="primary" onClick={() => props.setDisplay('draft')}>
+      <Button variant="outlined" color="primary" onClick={() => props.setDisplay('draft')} data-test="cancel">
         <FormattedMessage id="app.cancel" />
       </Button>
     </p>
