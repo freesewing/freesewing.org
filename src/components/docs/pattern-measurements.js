@@ -9,14 +9,14 @@ const PatternMeasurements = props => {
     let sorted = []
     let translated = {}
     for (let m of measurements) {
-      let translation = props.app.frontend.intl.messages['measurements' + m] || m
+      let translation = props.app.frontend.intl.messages['measurements.' + m] || m
       translated[translation] = m
     }
     let order = Object.keys(translated)
     order.sort()
     for (let m of order) sorted.push(translated[m])
 
-    return Object.values(sorted)
+    return sorted
   }
 
   return (

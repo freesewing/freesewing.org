@@ -15,7 +15,7 @@ import { FormattedMessage } from 'react-intl'
 
 const DocumentationPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.pageContext.node.frontmatter.title)
+    props.app.frontend.setTitle(noTitle ? noTitle : props.pageContext.node.frontmatter.title)
   }, [props.slug])
   if (props.slug === '/docs') return <DocsIndexPage {...props} />
   const components = {
@@ -36,6 +36,7 @@ const DocumentationPage = props => {
     return m
   }
 
+  let noTitle = false; // For when title is not from markdown frontmatter
   let prefix = null
   let suffix = null
   if (props.slug === '/docs/measurements') {
@@ -80,9 +81,10 @@ const DocumentationPage = props => {
     chunks[1] === 'docs' &&
     chunks[2] === 'patterns' &&
     chunks[4] === 'measurements'
-  )
+  ) {
     suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
-
+    noTitle = <FormattedMessage id="app.requiredMeasurements" />
+  }
   return (
     <React.Fragment>
       {prefix}

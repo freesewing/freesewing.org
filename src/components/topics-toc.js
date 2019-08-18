@@ -55,6 +55,17 @@ const TopicsToc = props => {
   const renderSidebarLevel = (level, data) => {
     // Avoid too much recursion
     if (level > 4) return null
+    // FIXME: This is a very hackish way to add a required measurements page per pattern
+    // but it's because these pages don't exist in markdown
+    if (level === 3) {
+      let slug = Object.keys(data)[0];
+      if (slug.slice(0,15) === "/docs/patterns/") {
+        let chunks = slug.split("/");
+        chunks.pop()
+        data[chunks.join("/")+"/measurements"] = { title: props.app.frontend.intl.messages["app.requiredMeasurements"] };
+      }
+    }
+
     let children = []
     for (let key in data) {
       let grandchildren = null
