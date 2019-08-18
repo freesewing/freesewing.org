@@ -1,4 +1,3 @@
-import { strings } from "@freesewing/i18n";
 import { measurements } from "@freesewing/models";
 
 describe('Measurement documentation', function() {
