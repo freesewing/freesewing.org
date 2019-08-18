@@ -85,7 +85,7 @@ const SelectPatternPage = props => {
         {models.ok.map(model => {
           return (
             <div style={styles.pattern} key={model.handle}>
-              <Link to={'/create/' + props.pattern + '/for/' + model.handle} title={model.name}>
+              <Link to={'/create/' + props.pattern + '/for/' + model.handle} title={model.name} data-test="model">
                 <Avatar data={model} />
                 <h5 style={styles.name}>{model.name}</h5>
               </Link>

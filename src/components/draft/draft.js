@@ -74,6 +74,7 @@ const DraftPage = props => {
       props.updateGist(10, 'settings', 'sa')
       props.updateGist(true, 'settings', 'complete')
       props.updateGist(false, 'settings', 'paperless')
+      props.updateGist(props.app.frontend.intl.locale, 'settings', 'locale')
       props.updateGist({}, 'settings', 'options')
       props.updateGist(props.app.account.settings.units, 'settings', 'units')
       let measurements = {}
@@ -252,15 +253,17 @@ const DraftPage = props => {
     <div style={styles.buttons} key="prebuttons">
       {props.app.frontend.mobile ? null : (
         <Button
+          data-test="zoom"
           variant="outlined"
           color="primary"
           style={styles.button}
           onClick={() => setFit(!fit)}
         >
-          {fit ? <ZoomInIcon /> : <ZoomOutIcon />}
+          {fit ? <ZoomInIcon data-test="zoomIn"/> : <ZoomOutIcon data-test="zoomOut"/>}
         </Button>
       )}
       <Button
+        data-test="compare"
         variant="contained"
         color="primary"
         className="accent"
@@ -274,6 +277,7 @@ const DraftPage = props => {
   const postButtons = (
     <div style={styles.buttons} key="postbuttons">
       <Button
+        data-test="save"
         variant="contained"
         color="primary"
         className="info"
@@ -284,6 +288,7 @@ const DraftPage = props => {
         <FormattedMessage id="app.saveRecipe" />
       </Button>
       <Button
+        data-test="export"
         variant="contained"
         color="primary"
         style={styles.button}
@@ -304,8 +309,8 @@ const DraftPage = props => {
       variant="fullWidth"
       style={styles.tabs}
     >
-      <Tab icon={<SettingsIcon />} style={styles.tab[tab === 0 ? 'active' : 'inactive']} />
-      <Tab icon={<MenuIcon />} style={styles.tab[tab === 1 ? 'active' : 'inactive']} />
+      <Tab icon={<SettingsIcon />} style={styles.tab[tab === 0 ? 'active' : 'inactive']} data-test="config-tab"/>
+      <Tab icon={<MenuIcon />} style={styles.tab[tab === 1 ? 'active' : 'inactive']} data-test="menu-tab"/>
     </Tabs>
   ]
   if (tab === 0)
@@ -340,7 +345,7 @@ const DraftPage = props => {
   } else if (display === 'help') {
     let close = (
       <div style={styles.buttons}>
-        <Button variant="contained" color="primary" onClick={() => setDisplay('draft')}>
+        <Button variant="contained" color="primary" onClick={() => setDisplay('draft')} data-test="back">
           <FormattedMessage id="app.back" />
         </Button>
       </div>
@@ -352,7 +357,7 @@ const DraftPage = props => {
     helpTitle = topicDocs[eventValue.toLowerCase()].title
     main = (
       <React.Fragment>
-        <div>
+        <div data-test='mdx'>
           <MDXProvider components={props.components}>
             <MDXRenderer>{topicDocs[eventValue.toLowerCase()].body}</MDXRenderer>
           </MDXProvider>
@@ -362,7 +367,7 @@ const DraftPage = props => {
     )
   } else {
     main = error ? (
-      <div style={styles.errorWrapper}>
+      <div style={styles.errorWrapper} data-test='error'>
         <Blockquote type="warning">
           {error.message === 'cannot scale this curve. Try reducing it first.' ? (
             <React.Fragment>
@@ -445,7 +450,7 @@ const DraftPage = props => {
     ) : (
       [
         preButtons,
-        <figure style={{ textAlign: 'center' }} key="figure">
+        <figure style={{ textAlign: 'center' }} key="figure" data-test="draft">
           <Draft {...patternProps} />
         </figure>,
         postButtons

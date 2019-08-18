@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import NoRecipe from '../no-recipe'
 import capitalize from "@freesewing/utils/capitalize";
+import LineDrawing from "@freesewing/components/LineDrawing"
 
 const RecipeList = props => {
   const styles = {
@@ -20,14 +21,13 @@ const RecipeList = props => {
       margin: 0,
       padding: 0
     },
-    img: {
+    linedrawing: {
       maxHeight: "64px",
       maxWidth: "64px",
-      padding: "8px 16px",
+      padding: "8px",
+      marginRight: '1rem'
     }
   }
-  if (props.app.frontend.tablet) styles.recipe.width = 'calc(33% - 1rem)'
-  if (props.app.frontend.mobile) styles.recipe.width = 'calc(50% - 1rem)'
 
   return (
     <React.Fragment>
@@ -37,12 +37,11 @@ const RecipeList = props => {
               <div key={handle} className="box">
                 <Link to={'/recipes/' + handle} title={props.app.recipes[handle].name}>
                   <div style={styles.recipe}>
-                    <div>
-                      {props.app.recipes[handle].pattern}
-                      <img
-                        src={'/patterns/' + props.app.recipes[handle].recipe.pattern + '.jpg'}
-                        alt={props.app.recipes[handle].recipe.pattern}
-                        style={styles.img}
+                    <div style={styles.linedrawing}>
+                      <LineDrawing
+                        pattern={props.app.recipes[handle].recipe.pattern}
+                        color={props.app.frontend.theme === "dark" ? "#f8f9fa" : "#212529"}
+                        size="64"
                       />
                     </div>
                       {props.app.recipes[handle].recipe ? (

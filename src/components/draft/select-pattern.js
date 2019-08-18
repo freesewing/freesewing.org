@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import { list } from '@freesewing/pattern-info'
+import LineDrawing from "@freesewing/components/LineDrawing"
+import capitalize from "@freesewing/utils/capitalize";
 
 const SelectPatternPage = props => {
   useEffect(() => {
@@ -19,24 +21,28 @@ const SelectPatternPage = props => {
     ])
   }, [])
   const styles = {
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'start'
-    },
     pattern: {
-      margin: '0.5rem 0.5rem 0',
-      width: 'calc(25% - 1rem)',
-      textAlign: 'center'
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
     },
     name: {
+      wordWrap: 'anywhere',
       margin: 0,
-      wordWrap: 'anywhere'
+      padding: 0
+    },
+    notes: {
+      wordWrap: 'anywhere',
+      margin: 0,
+      padding: 0
+    },
+    linedrawing: {
+      height: "64px",
+      width: "64px",
+      padding: "8px",
+      marginRight: "1rem",
     }
   }
-  if (props.app.frontend.tablet) styles.pattern.width = 'calc(33% - 1rem)'
-  if (props.app.frontend.mobile) styles.pattern.width = 'calc(50% - 1rem)'
   const pageTitle = (
     <FormattedMessage
       id="app.newPattern"
@@ -45,18 +51,29 @@ const SelectPatternPage = props => {
   )
 
   return (
-    <div style={styles.wrapper}>
+    <React.Fragment>
       {list.map(pattern => {
         return (
-          <div style={styles.pattern} key={pattern}>
+          <div className="box" key={pattern}>
             <Link to={'/create/' + pattern} title={pageTitle}>
-              <h5 style={styles.name}>{pattern}</h5>
-              <FormattedMessage id={'patterns.' + pattern + '.title'} />
+              <div style={styles.pattern}>
+                <div style={styles.linedrawing}>
+                  <LineDrawing
+                    pattern={pattern}
+                    color={props.app.frontend.theme === "dark" ? "#f8f9fa" : "#212529"}
+                    size="64"
+                  />
+                </div>
+                <div>
+                  <h6 style={styles.name}>{capitalize(pattern)}</h6>
+                  <p style={styles.notes}><FormattedMessage id={'patterns.' + pattern + '.title'} /></p>
+                </div>
+              </div>
             </Link>
           </div>
         )
       })}
-    </div>
+    </React.Fragment>
   )
 }
 

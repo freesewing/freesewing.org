@@ -5,6 +5,8 @@ import fileSaver from 'file-saver'
 import YAML from 'yaml'
 import useTiler from '../../hooks/useTiler'
 import theme from '@freesewing/plugin-theme'
+import { plugin as patternTranslations } from '@freesewing/i18n'
+import i18n from '@freesewing/plugin-i18n'
 
 const ExportPattern = props => {
   const gist = { ...props.gist }
@@ -16,13 +18,17 @@ const ExportPattern = props => {
     startLoading: props.app.frontend.startLoading,
     stopLoading: props.app.frontend.stopLoading
   })
-
   const handleExport = (type, format) => {
     if (type === 'recipe') {
       if (format === 'json') exportJsonRecipe(gist)
       else if (format === 'yaml') exportYamlRecipe(gist)
     } else {
-      const svg = props.pattern.use(theme).render()
+      const svg = props.pattern
+        .use(theme)
+        .use(i18n, {
+          strings: patternTranslations
+        })
+        .render()
       if (type === 'raw') {
         if (format === 'svg') svgToFile(svg)
         else if (format === 'postscript') convert(svg, 'ps', 'full')
@@ -96,26 +102,26 @@ const ExportPattern = props => {
     <React.Fragment>
       {cancel}
       <div style={styles.wrapper}>
-        <div style={styles.column}>
-          <h5>Export for printing</h5>
+        <div style={styles.column} data-test="printing">
+          <h5><FormattedMessage id="app.exportForPrinting" /></h5>
           {['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid'].map(size => (
-            <Button {...btnProps} onClick={() => handleExport('tile', size)}>
+            <Button {...btnProps} onClick={() => handleExport('tile', size)} data-test={size}>
               {size} PDF
             </Button>
           ))}
         </div>
-        <div style={styles.column}>
-          <h5>Export for editing</h5>
+        <div style={styles.column} data-test="editing">
+          <h5><FormattedMessage id="app.exportForEditing" /></h5>
           {['svg', 'postscript', 'pdf'].map(format => (
-            <Button {...btnProps} onClick={() => handleExport('raw', format)}>
+            <Button {...btnProps} onClick={() => handleExport('raw', format)} data-test={format}>
               {format}
             </Button>
           ))}
         </div>
-        <div style={styles.column}>
-          <h5>Export recipe</h5>
+        <div style={styles.column} data-test="export">
+          <h5><FormattedMessage id="app.exportRecipe" /></h5>
           {['json', 'yaml'].map(format => (
-            <Button {...btnProps} onClick={() => handleExport('recipe', format)}>
+            <Button {...btnProps} onClick={() => handleExport('recipe', format)} data-test={format}>
               {format}
             </Button>
           ))}
