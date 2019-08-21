@@ -75,7 +75,7 @@ const DocumentationPage = props => {
     chunks[2] === 'patterns' &&
     chunks[4] === 'options'
   )
-    suffix = <PatternOptions pattern={chunks[3]} />
+    prefix = <PatternOptions pattern={chunks[3]} />
   else if (
     chunks.length === 5 &&
     chunks[1] === 'docs' &&

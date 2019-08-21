@@ -21,7 +21,7 @@ describe('Core pattern drafting', function() {
 
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
-    if (pattern === 'aaron' || true) {
+    if (pattern === 'wahid' || 0) {
       it('Draft '+capitalize(pattern), function() {
         cy.visit('/create/'+pattern)
         cy.get('[data-test=model1]').click()

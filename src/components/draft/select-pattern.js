@@ -37,9 +37,6 @@ const SelectPatternPage = props => {
       padding: 0
     },
     linedrawing: {
-      height: "64px",
-      width: "64px",
-      padding: "8px",
       marginRight: "1rem",
     }
   }
@@ -58,11 +55,7 @@ const SelectPatternPage = props => {
             <Link to={'/create/' + pattern} title={pageTitle}>
               <div style={styles.pattern}>
                 <div style={styles.linedrawing}>
-                  <LineDrawing
-                    pattern={pattern}
-                    color={props.app.frontend.theme === "dark" ? "#f8f9fa" : "#212529"}
-                    size="64"
-                  />
+                  <LineDrawing pattern={pattern} size={props.app.frontend.mobile ? 92 : 164} />
                 </div>
                 <div>
                   <h6 style={styles.name}>{capitalize(pattern)}</h6>

@@ -22,9 +22,6 @@ const RecipeList = props => {
       padding: 0
     },
     linedrawing: {
-      maxHeight: "64px",
-      maxWidth: "64px",
-      padding: "8px",
       marginRight: '1rem'
     }
   }
@@ -41,7 +38,7 @@ const RecipeList = props => {
                       <LineDrawing
                         pattern={props.app.recipes[handle].recipe.pattern}
                         color={props.app.frontend.theme === "dark" ? "#f8f9fa" : "#212529"}
-                        size="64"
+                        size={props.app.frontend.mobile ? 92 : 164}
                       />
                     </div>
                       {props.app.recipes[handle].recipe ? (
