@@ -106,6 +106,7 @@
   "scripts": {
     "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
     "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
+    "testcli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE",
     "test:homepage": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/homepage.spec.js'",
     "test:signup": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/signup.spec.js'",
     "test:login": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/login.spec.js'",
