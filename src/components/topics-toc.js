@@ -4,7 +4,7 @@ import ExpandedIcon from '@material-ui/icons/KeyboardArrowDown'
 import CollapsedIcon from '@material-ui/icons/KeyboardArrowRight'
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
-import { list } from '@freesewing/pattern-info'
+import { list, options } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
 const TopicsToc = props => {
@@ -55,14 +55,62 @@ const TopicsToc = props => {
   const renderSidebarLevel = (level, data) => {
     // Avoid too much recursion
     if (level > 4) return null
-    // FIXME: This is a very hackish way to add a required measurements page per pattern
-    // but it's because these pages don't exist in markdown
+    if (level == 2) {
+      let slug = Object.keys(data)[0];
+      if (slug.slice(0,15) === "/docs/patterns/") {
+        for (let slug of Object.keys(data)) {
+          let chunks = slug.split("/");
+          //data[slug].title = capitalize(chunks[3]);
+          data[slug].title = <FormattedMessage id={`patterns.${chunks[3]}.title`} />
+        }
+      }
+    }
     if (level === 3) {
+      // FIXME: This is a very hackish way to add a required measurements page per pattern
+      // but it's because these pages don't exist in markdown
       let slug = Object.keys(data)[0];
       if (slug.slice(0,15) === "/docs/patterns/") {
         let chunks = slug.split("/");
         chunks.pop()
-        data[chunks.join("/")+"/measurements"] = { title: props.app.frontend.intl.messages["app.requiredMeasurements"] };
+        data[chunks.join("/")+"/measurements"] = { title: <FormattedMessage id="app.requiredMeasurements" /> };
+      }
+      let patternChildren = false
+      for (let slug of Object.keys(data)) {
+        let chunks = slug.split("/");
+        if (chunks.length === 5 && chunks[1] === "docs" && chunks[2] === "patterns") {
+          if (chunks[4] === 'options') data[slug].title = <FormattedMessage id="app.patternOptions" />
+          else if (chunks[4] === 'cutting') data[slug].title = <FormattedMessage id="app.cutting" />
+          else if (chunks[4] === 'fabric') data[slug].title = <FormattedMessage id="app.fabricOptions" />
+          else if (chunks[4] === 'instructions') data[slug].title = <FormattedMessage id="app.instructions" />
+          else if (chunks[4] === 'needs') data[slug].title = <FormattedMessage id="app.whatYouNeed" />
+          chunks.pop()
+          patternChildren = chunks.join("/")+"/";
+        }
+      }
+      if (patternChildren) {
+        let newData = {}
+        let order = [
+          'options',
+          'measurements',
+          'needs',
+          'fabric',
+          'cutting',
+          'instructions',
+        ]
+        for (let o of order) newData[patternChildren + o] = data[patternChildren + o]
+        data = newData
+      }
+
+
+    }
+    if (level === 4) {
+      for (let slug of Object.keys(data)) {
+        let chunks = slug.split("/");
+        if (chunks.length === 6 && chunks[1] === "docs" && chunks[2] === "patterns" && chunks[4] === 'options') {
+          for (let option of options[chunks[3]]) {
+            if (option.toLowerCase() === chunks[5]) data[slug].title = <FormattedMessage id={`options.${chunks[3]}.${option}.title`} />
+          }
+        }
       }
     }
 

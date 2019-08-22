@@ -5,7 +5,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import MeasurementsImages from '../measurements/images'
 import DocsIndexPage from '../docs/'
 import PatternPage from '../docs/pattern'
-import { list as patterns } from '@freesewing/pattern-info'
+import { list as patterns, options } from '@freesewing/pattern-info'
 import { Link } from 'gatsby'
 import capitalize from '@freesewing/utils/capitalize'
 import PatternOptions from '../docs/pattern-options'
@@ -62,28 +62,44 @@ const DocumentationPage = props => {
       <ul className="links">
         {patterns.map(pattern => (
           <li key={pattern}>
-            <Link to={'/docs/patterns/' + pattern}>{capitalize(pattern)}</Link>
+            <Link to={'/docs/patterns/' + pattern}>
+              <FormattedMessage id={`patterns.${pattern}.title`} />
+          </Link>
           </li>
         ))}
       </ul>
     )
-  else if (chunks.length === 4 && chunks[1] === 'docs' && chunks[2] === 'patterns')
+  else if (chunks.length === 4 && chunks[1] === 'docs' && chunks[2] === 'patterns') {
     suffix = <PatternPage pattern={chunks[3]} {...props} />
+    noTitle = <FormattedMessage id={`patterns.${chunks[3]}.title`} />
+  }
   else if (
     chunks.length === 5 &&
+    chunks[1] === 'docs' &&
+    chunks[2] === 'patterns'
+  ) {
+    if (chunks[4] === 'options') {
+      prefix = <PatternOptions pattern={chunks[3]} />
+      noTitle = <FormattedMessage id="app.patternOptions" />
+    }
+    else if (chunks[4] === 'measurements') {
+      noTitle = <FormattedMessage id="app.requiredMeasurements" />
+      suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
+    }
+    else if (chunks[4] === 'needs') noTitle = <FormattedMessage id="app.whatYouNeed" />
+    else if (chunks[4] === 'instructions') noTitle = <FormattedMessage id="app.instructions" />
+    else if (chunks[4] === 'fabric') noTitle = <FormattedMessage id="app.fabricOptions" />
+    else if (chunks[4] === 'cutting') noTitle = <FormattedMessage id="app.cutting" />
+  }
+  else if (
+    chunks.length === 6 &&
     chunks[1] === 'docs' &&
     chunks[2] === 'patterns' &&
     chunks[4] === 'options'
-  )
-    prefix = <PatternOptions pattern={chunks[3]} />
-  else if (
-    chunks.length === 5 &&
-    chunks[1] === 'docs' &&
-    chunks[2] === 'patterns' &&
-    chunks[4] === 'measurements'
   ) {
-    suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
-    noTitle = <FormattedMessage id="app.requiredMeasurements" />
+    for (let option of options[chunks[3]]) {
+      if (option.toLowerCase() === chunks[5]) noTitle = <FormattedMessage id={`options.${chunks[3]}.${option}.title`} />
+    }
   }
   return (
     <React.Fragment>
