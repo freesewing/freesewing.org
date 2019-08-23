@@ -117,6 +117,8 @@
     "test:measurements": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/measurements.spec.js'",
     "test:models": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/models.spec.js'",
     "test:core": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/core.spec.js'",
+    "test:showcase": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/showcase.spec.js'",
+    "test:blog": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/blog.spec.js'",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop"

@@ -28,24 +28,25 @@ const BlogTemplate = props => {
 
   return (
     <React.Fragment>
-      <div style={style.meta}>
+      <div style={style.meta} data-test="meta">
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
         <div>
           <FormattedMessage id="app.by" />
           &nbsp;
-          <Link to={'/users/' + frontmatter.author}>{frontmatter.author}</Link>
+          <Link to={'/users/' + frontmatter.author} data-test="author">{frontmatter.author}</Link>
         </div>
       </div>
       <figure style={style.figure}>
         <a href={img.originalImg}>
           <img
+            data-test='img'
             src={img.base64}
             style={{ width: '100%' }}
             srcSet={img.srcSet}
             alt={frontmatter.caption}
           />
         </a>
-        <figcaption>{frontmatter.caption}</figcaption>
+        <figcaption data-test="caption">{frontmatter.caption}</figcaption>
       </figure>
       <MDXProvider components={props.components}>
         <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>

@@ -22,26 +22,37 @@ describe('Account page', function() {
     '/logout': 'app.logOut'
   }
 
-  it('Verify translations', function() {
-    // Title
-    cy.get('h1').should('contain', i18n['app.account'])
+  describe('Verify translations', function() {
+    it('app.account', function() {
+      cy.get('h1').should('contain', i18n['app.account'])
+    })
 
-    // Buttons
-    for (let button in buttons) cy.get(`a[data-test="${button}"] > span.MuiButton-label > span`).should('contain', i18n[buttons[button]].slice(0,4))
+    for (let button in buttons) {
+      it(buttons[button], function() {
+        cy.get(`a[data-test="${button}"] > span.MuiButton-label > span`).should('contain', i18n[buttons[button]].slice(0,4))
+      })
+    }
 
-    // Breadcrumbs
-    cy.get('nav.breadcrumbs > ul > li:first-of-type > a > span').should('contain', i18n['app.home'])
+    it('app.home', function() {
+      cy.get('nav.breadcrumbs > ul > li:first-of-type > a > span').should('contain', i18n['app.home'])
+    })
   })
 
-  it('Verify links', function() {
+  describe('Verify links', function() {
     for (let button in buttons) {
-      if (button !== "/logout") cy.get(`a[data-test="${button}"]`).should('have.attr', 'href', button)
+      if (button !== "/logout") {
+        it(button, function() {
+          cy.get(`a[data-test="${button}"]`).should('have.attr', 'href', button)
+        })
+      }
     }
   })
 
-  it('Log out flow', function() {
-    cy.get('a[data-test="/logout"]').click({force: true})
-    cy.get('div.theme-wrapper').should('have.class', 'layouthome')
+  after(function () {
+    it('Log out flow', function() {
+      cy.get('a[data-test="/logout"]').click({force: true})
+      cy.get('div.theme-wrapper').should('have.class', 'layouthome')
+    })
   })
 
 })

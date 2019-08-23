@@ -86,6 +86,7 @@ const BlogIndexTemplate = props => {
           return (
             <div style={style.post} key={node.node.parent.relativeDirectory}>
               <Link
+                data-test="post-link"
                 to={'/' + node.node.parent.relativeDirectory}
                 style={style.link}
                 title={frontmatter.linktitle}
