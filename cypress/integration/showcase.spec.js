@@ -1,4 +1,3 @@
-import { strings } from "@freesewing/i18n";
 // FIXME: This should obviously be handled in logic,
 // but doing so makes it hard to run a test per post :|
 const posts = [
