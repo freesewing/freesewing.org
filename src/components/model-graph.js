@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import neckstimate from "@freesewing/utils/neckstimate"
-import { FormattedMessage } from "react-intl";
 import formatMm from "@freesewing/utils/formatMm";
 
 const ModelGraph = props => {
@@ -93,7 +92,6 @@ const ModelGraph = props => {
     let angle = 180;
     let points = []
     let output = []
-    let cp = (360/hor.length)/3
     for (let size of sizes) output.push(<text key={size} x="0" y={-1* absSize(size) + 15} className="size">{size}</text>)
     for (let i = 0;i<hor.length;i++) {
       let size = pieSize(hor[i])
@@ -164,10 +162,10 @@ const ModelGraph = props => {
       viewBox="-500 -500 3000 1000"
     >
       {renderVerticalMeasurements(data)}
-      {sizes.map( size => <circle cx="0" cy="0" r={absSize(size)} className="sizebg"/>)}
+      {sizes.map( size => <circle cx="0" cy="0" r={absSize(size)} className="sizebg" key={size}/>)}
       {renderHorizontalMeasurements(data)}
       <circle cx="0" cy="0" r="50" className="shape center" />
-      {sizes.map( size => <circle cx="0" cy="0" r={absSize(size)} className="size"/>)}
+      {sizes.map( size => <circle cx="0" cy="0" r={absSize(size)} className="size" key={size}/>)}
       <path d={`M ${vd} -350 l 0 700`} className="vdefault" />
       <foreignObject x="400" y="300" width="2000" height="200">
         <div
