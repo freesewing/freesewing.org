@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import Avatar from '../avatar'
 import { Link } from 'gatsby'
 import NoModel from '../no-model'
+import ModelGraph from "../model-graph.js"
 
 const ModelList = props => {
   const styles = {
@@ -28,7 +29,6 @@ const ModelList = props => {
       padding: "8px",
     }
   }
-
   return (
     <React.Fragment>
         {Object.keys(props.app.models).length > 0 ? (
@@ -44,6 +44,9 @@ const ModelList = props => {
                       <h6 style={styles.name}>{props.app.models[handle].name}</h6>
                       <p style={styles.notes}>{props.app.models[handle].notes}</p>
                     </div>
+                  </div>
+                  <div>
+                    <ModelGraph model={props.app.models[handle]} intl={props.app.frontend.intl}/>
                   </div>
                 </Link>
               </div>

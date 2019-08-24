@@ -8,6 +8,7 @@ import { measurements as allMeasurements } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
 import Avatar from '../avatar'
 import Markdown from 'react-markdown'
+import ModelGraph from "../model-graph.js"
 
 const ShowModel = ({ app, model }) => {
   const styles = {
@@ -176,6 +177,7 @@ const ShowModel = ({ app, model }) => {
           </p>
         </React.Fragment>
       )}
+      <ModelGraph model={app.models[model]} intl={app.frontend.intl}/>
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
