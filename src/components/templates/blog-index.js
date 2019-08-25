@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { FormattedMessage } from 'react-intl'
 
 const BlogIndexTemplate = props => {
   useEffect(() => {

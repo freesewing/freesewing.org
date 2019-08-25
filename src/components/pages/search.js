@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { FormattedMessage } from 'react-intl'
 import Search from "../search";
 
 const SearchPage = props => {

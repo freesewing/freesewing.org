@@ -31,7 +31,6 @@ import UserMenu from '../user-menu'
 import VisitorMenu from '../visitor-menu'
 import MainPage from './main-page'
 import getLayout from './getLayout'
-import { renderToString } from 'react-dom/server'
 
 /* This component is the root component for all pages */
 
