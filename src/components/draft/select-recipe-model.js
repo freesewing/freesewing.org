@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 const SelectRecipeModelPage = props => {
   const [recipe, setRecipe] = useState(false)
   useEffect(() => {
-    props.app.frontend.setTitle([<FormattedMessage id="app.recreat" />, ' ', recipe.name])
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.recreate'}))
     props.app.frontend.setCrumbs([
       {
         slug: '/recreate',

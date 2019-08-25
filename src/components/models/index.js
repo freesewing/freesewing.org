@@ -10,7 +10,7 @@ import EditMeasurementPage from './edit-measurement'
 const ModelIndex = props => {
   useEffect(() => {
     if (props.slug === '/models') {
-      props.app.frontend.setTitle(<FormattedMessage id="app.models" />)
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.models'}))
     } else {
       const chunks = props.slug.split('/')
       const model = chunks[2]
@@ -19,13 +19,13 @@ const ModelIndex = props => {
         props.app.frontend.setTitle(props.app.models[model].name)
         props.app.frontend.setCrumbs([modelsCrumb])
       } else if (chunks.length === 4) {
-        props.app.frontend.setTitle(<FormattedMessage id={'app.' + chunks[3]} />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.' + chunks[3]}))
         props.app.frontend.setCrumbs([
           modelsCrumb,
           { slug: '/models/' + model, title: props.app.models[model].name }
         ])
       } else if (chunks.length === 5) {
-        props.app.frontend.setTitle(<FormattedMessage id={'measurements.' + chunks[4]} />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.' + chunks[4]}))
         props.app.frontend.setCrumbs([
           modelsCrumb,
           { slug: '/models/' + model, title: props.app.models[model].name }

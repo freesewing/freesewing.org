@@ -15,6 +15,7 @@ import { FormattedMessage } from 'react-intl'
 const DocumentationPage = props => {
   useEffect(() => {
     props.app.frontend.setTitle(noTitle ? noTitle : props.pageContext.node.frontmatter.title)
+    props.app.frontend.setDescription(props.pageContext.node.excerpt)
   }, [props.slug])
   if (props.slug === '/docs') return <DocsIndexPage {...props} />
   const components = {

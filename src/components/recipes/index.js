@@ -11,7 +11,7 @@ const RecipeIndex = props => {
   const [loadedRecipe, setLoadedRecipe] = useState(false)
   useEffect(() => {
     if (props.slug === '/recipes') {
-      props.app.frontend.setTitle(<FormattedMessage id="app.recipes" />)
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.recipes'}))
     } else {
       let recipesCrumb = { slug: '/recipes', title: <FormattedMessage id="app.recipes" /> }
       let recipe = chunks[2]

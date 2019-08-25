@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 
 const BlogIndexTemplate = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="app.blog" />)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:"app.blog"}))
   }, [])
   const data = useStaticQuery(graphql`
     {

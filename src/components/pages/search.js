@@ -4,7 +4,7 @@ import Search from "../search";
 
 const SearchPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="app.search" />)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.search'}))
   }, [])
 
   return (

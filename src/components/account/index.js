@@ -23,7 +23,7 @@ const Account = props => {
     }
     switch (props.slug) {
       case '/account/settings':
-        props.app.frontend.setTitle(<FormattedMessage id="app.settings" />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.settings'}))
         props.app.frontend.setCrumbs([crumbs.account])
         break
       case '/account/settings/avatar':
@@ -37,23 +37,23 @@ const Account = props => {
       case '/account/settings/username':
       case '/account/settings/password':
         let topic = props.slug.split('/').pop()
-        props.app.frontend.setTitle(<FormattedMessage id={'account.' + topic} />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.' + topic}))
         props.app.frontend.setCrumbs([crumbs.account, crumbs.settings])
         break
       case '/account/export':
-        props.app.frontend.setTitle(<FormattedMessage id="account.exportYourData" />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.exportYourData'}))
         props.app.frontend.setCrumbs([crumbs.account])
         break
       case '/account/consent':
-        props.app.frontend.setTitle(<FormattedMessage id="account.reviewYourConsent" />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.reviewYourConsent'}))
         props.app.frontend.setCrumbs([crumbs.account])
         break
       case '/account/restrict':
-        props.app.frontend.setTitle(<FormattedMessage id="account.restrictProcessingOfYourData" />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.restrictProcessingOfYourData'}))
         props.app.frontend.setCrumbs([crumbs.account])
         break
       default:
-        props.app.frontend.setTitle(<FormattedMessage id="app.account" />)
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.account'}))
         props.app.frontend.setCrumbs([])
     }
   }, [props.slug])

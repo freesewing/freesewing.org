@@ -9,7 +9,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 
 const PatternPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id={'patterns.' + props.pattern + '.title'} />)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'patterns.' + props.pattern + '.title'}))
     props.app.frontend.setCrumbs([
       {
         slug: '/patterns',

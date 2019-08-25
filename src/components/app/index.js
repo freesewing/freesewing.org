@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-//import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet";
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
 import withLanguage from '../withLanguage'
@@ -31,6 +31,7 @@ import UserMenu from '../user-menu'
 import VisitorMenu from '../visitor-menu'
 import MainPage from './main-page'
 import getLayout from './getLayout'
+import { renderToString } from 'react-dom/server'
 
 /* This component is the root component for all pages */
 
@@ -43,7 +44,10 @@ const App = props => {
   const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
   const [crumbs, setCrumbs] = useState(props.pageContext.crumbs || false)
-  const [title, setTitle] = useState(false)
+  const [title, setTitle] = useState('FreeSewing')
+  const [description, setDescription] = useState(false)
+  const [image, setImage] = useState(`https://freesewing.org/share/${process.env.GATSBY_LANGUAGE}.wide.jpg`)
+  const [url, setUrl] = useState(`https://${process.env.GATSBY_LANGUAGE}.freesewing.org/`)
   const [next, setNext] = useState(false)
   const [pageLayout, setPageLayout] = useState('default')
   useEffect(() => {
@@ -103,6 +107,9 @@ const App = props => {
       intl: props.intl,
       theme,
       setTitle,
+      setDescription,
+      setImage,
+      setUrl,
       setCrumbs,
       setNext
     },
@@ -181,8 +188,23 @@ const App = props => {
   if (menu) wrapperClasses += ' show-menu'
   wrapperClasses += ' layout'+pageLayout
 
+console.log({title})
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
+      <Helmet>
+        <title>
+          { title }
+        </title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <div className={wrapperClasses}>
         <AppContext.Provider value={app}>
           {mobile ? (

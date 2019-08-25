@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 
 const CreateModel = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="app.newModel"/>)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.newModel'}))
   }, [])
   const [units, setUnits] = useState(
     props.app.account

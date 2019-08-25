@@ -53,7 +53,7 @@ const plugins = [
   'gatsby-plugin-styled-components',
   'gatsby-plugin-catch-links',
   'gatsby-plugin-react-helmet',
-   'gatsby-plugin-netlify'
+  'gatsby-plugin-netlify'
 ]
 
 // Only update the Algolia indices when having the ALGOLIA_UPDATE_KEY set.

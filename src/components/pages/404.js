@@ -8,7 +8,7 @@ import Icon from '@freesewing/components/Icon';
 
 const LanguagePage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="errors.404" key="msg"/>);
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'errors.404'}))
   }, [])
   const styles = {
     wrapper: {

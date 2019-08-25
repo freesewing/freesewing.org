@@ -9,6 +9,7 @@ const redirects = {
   "/rights": "/docs/about/rights",
   "/faq": "/docs/about/faq",
   "/contact": "/docs/about/contact",
+  "/share": "/docs/about/share",
 }
 
 const patternMeasurements = {}
@@ -222,12 +223,6 @@ const isChild = function (base, slug) {
 
   return false;
 }
-//
-//const isGrandchild = function (topic, slug) {
-//  let chunks = slug.split("/");
-//  if (chunks.length === 4 && chunks[1] === topic) return "/"+topic+"/"+chunks[2];
-//  else return false;
-//}
 
 const getSortTitle = function (mdx) {
   let title = mdx.node.node.frontmatter.title;

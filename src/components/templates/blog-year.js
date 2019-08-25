@@ -5,7 +5,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 const BlogYearTemplate = props => {
   useEffect(() => {
     if (props.year === 'years') {
-      props.app.frontend.setTitle(<FormattedMessage id="app.years" />)
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.years'}))
       props.app.frontend.setCrumbs([
         {
           slug: '/blog',

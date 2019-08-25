@@ -7,7 +7,7 @@ import capitalize from "@freesewing/utils/capitalize";
 
 const SelectPatternPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="app.chooseAPattern" />)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.chooseAPattern'}))
     props.app.frontend.setCrumbs([
       {
         slug: '/create',

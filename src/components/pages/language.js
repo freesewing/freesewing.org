@@ -6,7 +6,7 @@ import LanguageIcon from "../language-icon";
 
 const LanguagePage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(<FormattedMessage id="account.language" />)
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.language'}))
   }, [])
   const styles = {
     wrapper: {
