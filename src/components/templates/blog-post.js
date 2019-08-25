@@ -5,7 +5,6 @@ import { FormattedDate, FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 
 const BlogTemplate = props => {
-  console.log(props.pageContext.node)
   useEffect(() => {
     props.app.frontend.setTitle(props.pageContext.node.frontmatter.title)
   }, [])
