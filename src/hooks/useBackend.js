@@ -181,7 +181,7 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
   }
 
-  const createModel = (model, setResult) => {
+  const createModel = model => {
     props.startLoading()
     backend
       .createModel(model, token)
@@ -191,9 +191,13 @@ function useBackend(props) {
           saveAccountToStorage(res.data)
           navigate('/models/' + res.data.model.handle, { replace: true })
           refreshAccount()
-        } else setResult(false, res)
+        } else
+          props.showNotification('error')
       })
-      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+      .catch((err, foo) => {
+        props.showNotification('error', err)
+        props.stopLoading()
+      })
   }
 
   const createRecipe = (data, setResult) => {
@@ -206,7 +210,10 @@ function useBackend(props) {
           refreshAccount(navigate('/recipes/' + res.data.handle, { replace: true }))
         } else setResult(false, res)
       })
-      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+      .catch((err, foo) => {
+        setResult(false, { error: err, data: err.response.data })
+        props.stopLoading()
+      })
   }
 
   const removeRecipe = handle => {

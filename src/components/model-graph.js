@@ -9,7 +9,8 @@ const ModelGraph = props => {
   if (
     typeof props.model === "undefined" ||
     typeof props.model.measurements === "undefined" ||
-    typeof props.model.measurements.neckCircumference === "undefined"
+    typeof props.model.measurements.neckCircumference === "undefined" ||
+    props.model.measurements.neckCircumference === null
   ) return null
 
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
@@ -78,7 +79,7 @@ const ModelGraph = props => {
   const absSize = size => size*20 - 500
   const pieSize = m => ((data[m] / neckstimate(neck, m, props.model.breasts)) * neck*2) - 500
   //const pieSize = m => (data[m] / neckstimate(neck, m, props.model.breasts)) * neck
-  const barSize = m => 5*pieSize(m)
+  const barSize = m => 4*pieSize(m)
   const rotate = (x, y, angle) => {
     // Radians please
     angle =  angle * Math.PI / 180;

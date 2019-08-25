@@ -9,6 +9,7 @@ import formatMm from '@freesewing/utils/formatMm'
 import Avatar from '../avatar'
 import Markdown from 'react-markdown'
 import ModelGraph from "../model-graph.js"
+import Blockquote from "@freesewing/components/Blockquote"
 
 const ShowModel = ({ app, model }) => {
   const styles = {
@@ -137,7 +138,6 @@ const ShowModel = ({ app, model }) => {
       </tr>
     )
   }
-
   return (
     <React.Fragment>
       <div style={styles.avatarWrapper}>
@@ -267,12 +267,28 @@ const ShowModel = ({ app, model }) => {
           </tr>
           {/* measurements */}
           <tr>
-            <td>
+            <td colspan="3">
               <h5 style={styles.heading} data-test="measurements-title">
                 <FormattedMessage id="app.measurements" />
               </h5>
+              {(
+                typeof app.models[model].measurements === "undefined"
+                ||  typeof app.models[model].measurements.neckCircumference === "undefined"
+                ||  app.models[model].measurements.neckCircumference === null
+              ) ? (<Blockquote className="note">
+                    <h6><FormattedMessage id="app.startWithNeckTitle" /></h6>
+                    <p><FormattedMessage id="app.startWithNeckDescription" /></p>
+                    <p style={{textAlign: "right"}}>
+                      <Button variant="outlined" color="primary" href="/docs/about/model-graph" style={{marginRight: "1rem"}}>
+                        <FormattedMessage id="app.docs" />
+                      </Button>
+                      <Button variant="contained" color="primary" href={`/models/${model}/measurements/neckcircumference`}>
+                        <AddIcon fontSize="inherit" style={{marginRight: "0.5rem"}} />
+                        <FormattedMessage id="measurements.neckCircumference" />
+                      </Button>
+                    </p>
+                  </Blockquote>) : null }
             </td>
-            <td colSpan="2">&nbsp;</td>
           </tr>
           {app.models[model].measurements
             ? [
