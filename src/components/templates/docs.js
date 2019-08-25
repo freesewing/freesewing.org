@@ -71,7 +71,7 @@ const DocumentationPage = props => {
     )
   else if (chunks.length === 4 && chunks[1] === 'docs' && chunks[2] === 'patterns') {
     suffix = <PatternPage pattern={chunks[3]} {...props} />
-    noTitle = <FormattedMessage id={`patterns.${chunks[3]}.title`} />
+    noTitle = props.app.frontend.intl.formatMessage({id:`patterns.${chunks[3]}.title`})
   }
   else if (
     chunks.length === 5 &&
@@ -80,16 +80,16 @@ const DocumentationPage = props => {
   ) {
     if (chunks[4] === 'options') {
       prefix = <PatternOptions pattern={chunks[3]} />
-      noTitle = <FormattedMessage id="app.patternOptions" />
+      noTitle = props.app.frontend.intl.formatMessage({id:'app.patternOptions'})
     }
     else if (chunks[4] === 'measurements') {
-      noTitle = <FormattedMessage id="app.requiredMeasurements" />
+      noTitle = props.app.frontend.intl.formatMessage({id:'app.requiredMeasurements'})
       suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
     }
-    else if (chunks[4] === 'needs') noTitle = <FormattedMessage id="app.whatYouNeed" />
-    else if (chunks[4] === 'instructions') noTitle = <FormattedMessage id="app.instructions" />
-    else if (chunks[4] === 'fabric') noTitle = <FormattedMessage id="app.fabricOptions" />
-    else if (chunks[4] === 'cutting') noTitle = <FormattedMessage id="app.cutting" />
+    else if (chunks[4] === 'needs') noTitle = props.app.frontend.intl.formatMessage({id:'app.whatYouNeed'})
+    else if (chunks[4] === 'instructions') noTitle = props.app.frontend.intl.formatMessage({id:'app.instructions'})
+    else if (chunks[4] === 'fabric') noTitle = props.app.frontend.intl.formatMessage({id:'app.fabricOptions'})
+    else if (chunks[4] === 'cutting') noTitle = props.app.frontend.intl.formatMessage({id:'app.cutting'})
   }
   else if (
     chunks.length === 6 &&
@@ -98,7 +98,7 @@ const DocumentationPage = props => {
     chunks[4] === 'options'
   ) {
     for (let option of options[chunks[3]]) {
-      if (option.toLowerCase() === chunks[5]) noTitle = <FormattedMessage id={`options.${chunks[3]}.${option}.title`} />
+      if (option.toLowerCase() === chunks[5]) noTitle = props.app.frontend.intl.formatMessage({id:`options.${chunks[3]}.${option}.title`})
     }
   }
   return (

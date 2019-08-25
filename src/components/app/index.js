@@ -188,7 +188,6 @@ const App = props => {
   if (menu) wrapperClasses += ' show-menu'
   wrapperClasses += ' layout'+pageLayout
 
-console.log({title})
   return (
     <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
       <Helmet>
