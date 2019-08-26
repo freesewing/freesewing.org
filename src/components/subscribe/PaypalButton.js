@@ -44,7 +44,7 @@ const PaypalButton = props => {
         <input
           type="hidden"
           name="return"
-          value={'https://freesewing.org/' + props.language + '/patrons/thank-you'}
+          value='https://freesewing.org/patrons/thanks'
         />
         <input type="hidden" name="src" value="1" />
         <input type="hidden" name="a3" value={tier + '.00'} />
@@ -86,7 +86,7 @@ const PaypalButton = props => {
         <input
           type="hidden"
           name="return"
-          value={'https://freesewing.org/' + props.language + '/patrons/thank-you'}
+          value='https://freesewing.org/patrons/thanks'
         />
         <input type="hidden" name="src" value="1" />
         <input type="hidden" name="a3" value={tier * 12 + '.00'} />
@@ -96,7 +96,7 @@ const PaypalButton = props => {
         <input
           type="hidden"
           name="bn"
-          value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHosted"
+          value='https://freesewing.org/patrons/thanks'
         />
         <input
           type="hidden"

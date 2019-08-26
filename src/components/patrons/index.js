@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import Breadcrumbs from '../breadcrumbs'
 import Subscribe from '../subscribe'
 import List from './list'
+import Thanks from './thanks'
 
 const PatronsIndex = props => {
   if (props.slug === '/patrons') {
@@ -16,6 +17,14 @@ const PatronsIndex = props => {
         </h1>
         <List app={props.app} />
         {theCrumbs}
+      </React.Fragment>
+    )
+  }
+  else if (props.slug === '/patrons/thanks') {
+    let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
+    return (
+      <React.Fragment>
+        <Thanks app={props.app} />
       </React.Fragment>
     )
   }
