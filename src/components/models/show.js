@@ -185,7 +185,6 @@ const ShowModel = ({ app, model }) => {
           <tr>
             <td style={{ width: '225px' }}>&nbsp;</td>
             <td style={{ width: '50%' }}>&nbsp;</td>
-            <td style={{ width: '50%' }}>&nbsp;</td>
             <td style={{ width: '48px' }}>&nbsp;</td>
           </tr>
           <tr>
