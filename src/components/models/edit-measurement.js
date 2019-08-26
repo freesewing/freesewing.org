@@ -94,6 +94,7 @@ const EditMeasurement = props => {
         value={value}
         type="text"
         onChange={updateMeasurement}
+        autoFocus={true}
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
