@@ -1,8 +1,3 @@
-> **Note**: This is part of version 2 of FreeSewing.  
-> It is a work in progress, and not ready for prime-time yet
-> 
-> For all questions, please come say hello in [our chatroom on Gitter](https://gitter.im/).
-
 <p align="center">
   <a title="Visit freesewing.org" href="https://freesewing.org/">
     <img src="https://freesewing.org/img/logo/black.svg" align="center" width="150px" alt="Freesewing logo"/>
