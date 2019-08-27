@@ -62,7 +62,7 @@ const DraftPage = props => {
     }
   }
   useEffect(() => {
-    props.updateGist(true, 'settings', 'embed')
+    props.updateGist((display === "export" ? false : true), 'settings', 'embed')
     if (props.recreate) {
       // Recreate from recipe
       props.app.backend.loadRecipe(props.recipe, handleRecipeResult)
@@ -338,7 +338,7 @@ const DraftPage = props => {
   let main, helpTitle
   if (display === 'export') {
     main = (
-      <ExportPattern setDisplay={setDisplay} app={props.app} gist={props.gist} pattern={pattern} />
+      <ExportPattern setDisplay={setDisplay} app={props.app} gist={props.gist} pattern={patterns[capitalize(design)]} />
     )
   } else if (display === 'save') {
     main = <SaveRecipe setDisplay={setDisplay} app={props.app} gist={props.gist} />

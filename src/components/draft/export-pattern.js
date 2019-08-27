@@ -23,11 +23,12 @@ const ExportPattern = props => {
       if (format === 'json') exportJsonRecipe(gist)
       else if (format === 'yaml') exportYamlRecipe(gist)
     } else {
-      const svg = props.pattern
+      const svg = new props.pattern({...props.gist.settings, embed: false})
         .use(theme)
         .use(i18n, {
           strings: patternTranslations
         })
+        .draft()
         .render()
       if (type === 'raw') {
         if (format === 'svg') svgToFile(svg)
