@@ -51,7 +51,7 @@ const EditMeasurement = props => {
     }
   `)
 
-  const units = props.app.models[props.model].units
+  const { units, breasts } = props.app.models[props.model]
 
   const updateMeasurement = evt => {
     let value = evt.target.value
@@ -84,7 +84,7 @@ const EditMeasurement = props => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <TextField
         data-test="measurement"
         fullWidth={true}
@@ -94,22 +94,29 @@ const EditMeasurement = props => {
         value={value}
         type="text"
         onChange={updateMeasurement}
+        autoFocus={true}
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
               {units === 'imperial' ? '"' : 'cm'}
               &nbsp;
               {typeof measurementAsMm(value, units) === 'number' ? (
-                <ValidIcon style={{ color: '#40c057' }} data-test="valid"/>
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon color="error" data-test="invalid"/>
+                <InvalidIcon color="error" data-test="invalid" />
               )}
             </InputAdornment>
           )
         }}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model} data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href={'/models/' + props.model}
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button
@@ -127,11 +134,11 @@ const EditMeasurement = props => {
       <h5 data-test="howto">
         <FormattedMessage id="app.howToTakeMeasurements" />
       </h5>
-      <MeasurementsImages measurement={props.measurement} />
+      <MeasurementsImages measurement={props.measurement} breasts={breasts} />
       <MDXProvider components={props.components}>
         <MDXRenderer>{docs}</MDXRenderer>
       </MDXProvider>
-    </React.Fragment>
+    </>
   )
 }
 

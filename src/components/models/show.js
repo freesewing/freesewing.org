@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
+import RefreshIcon from '@material-ui/icons/Refresh'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
@@ -8,8 +9,8 @@ import { measurements as allMeasurements } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
 import Avatar from '../avatar'
 import Markdown from 'react-markdown'
-import ModelGraph from "../model-graph.js"
-import Blockquote from "@freesewing/components/Blockquote"
+import ModelGraph from '../model-graph.js'
+import Blockquote from '@freesewing/components/Blockquote'
 
 const ShowModel = ({ app, model }) => {
   const styles = {
@@ -138,6 +139,7 @@ const ShowModel = ({ app, model }) => {
       </tr>
     )
   }
+
   return (
     <React.Fragment>
       <div style={styles.avatarWrapper}>
@@ -163,7 +165,7 @@ const ShowModel = ({ app, model }) => {
           <h5 style={styles.heading} data-test="notes-title">
             <FormattedMessage id="app.notes" />
           </h5>
-          <Markdown source={app.models[model].notes || ''} data-test="notes"/>
+          <Markdown source={app.models[model].notes || ''} data-test="notes" />
           <p style={{ textAlign: 'right' }}>
             <IconButton
               data-test="edit-notes"
@@ -177,7 +179,7 @@ const ShowModel = ({ app, model }) => {
           </p>
         </React.Fragment>
       )}
-      <ModelGraph model={app.models[model]} intl={app.frontend.intl}/>
+      <ModelGraph model={app.models[model]} intl={app.frontend.intl} />
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
@@ -233,7 +235,7 @@ const ShowModel = ({ app, model }) => {
                   )
                 }
               >
-                <EditIcon fontSize="inherit" style={styles.icon} />
+                <RefreshIcon fontSize="inherit" style={styles.icon} />
               </IconButton>
             </td>
           </tr>
@@ -258,7 +260,7 @@ const ShowModel = ({ app, model }) => {
                   )
                 }
               >
-                <EditIcon fontSize="inherit" style={styles.icon} />
+                <RefreshIcon fontSize="inherit" style={styles.icon} />
               </IconButton>
             </td>
           </tr>
@@ -271,23 +273,36 @@ const ShowModel = ({ app, model }) => {
               <h5 style={styles.heading} data-test="measurements-title">
                 <FormattedMessage id="app.measurements" />
               </h5>
-              {(
-                typeof app.models[model].measurements === "undefined"
-                ||  typeof app.models[model].measurements.neckCircumference === "undefined"
-                ||  app.models[model].measurements.neckCircumference === null
-              ) ? (<Blockquote className="note">
-                    <h6><FormattedMessage id="app.startWithNeckTitle" /></h6>
-                    <p><FormattedMessage id="app.startWithNeckDescription" /></p>
-                    <p style={{textAlign: "right"}}>
-                      <Button variant="outlined" color="primary" href="/docs/about/model-graph" style={{marginRight: "1rem"}}>
-                        <FormattedMessage id="app.docs" />
-                      </Button>
-                      <Button variant="contained" color="primary" href={`/models/${model}/measurements/neckcircumference`}>
-                        <AddIcon fontSize="inherit" style={{marginRight: "0.5rem"}} />
-                        <FormattedMessage id="measurements.neckCircumference" />
-                      </Button>
-                    </p>
-                  </Blockquote>) : null }
+              {typeof app.models[model].measurements === 'undefined' ||
+              typeof app.models[model].measurements.neckCircumference === 'undefined' ||
+              app.models[model].measurements.neckCircumference === null ? (
+                <Blockquote className="note">
+                  <h6>
+                    <FormattedMessage id="app.startWithNeckTitle" />
+                  </h6>
+                  <p>
+                    <FormattedMessage id="app.startWithNeckDescription" />
+                  </p>
+                  <p style={{ textAlign: 'right' }}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      href="/docs/about/model-graph"
+                      style={{ marginRight: '1rem' }}
+                    >
+                      <FormattedMessage id="app.docs" />
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      href={`/models/${model}/measurements/neckcircumference`}
+                    >
+                      <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
+                      <FormattedMessage id="measurements.neckCircumference" />
+                    </Button>
+                  </p>
+                </Blockquote>
+              ) : null}
             </td>
           </tr>
           {app.models[model].measurements

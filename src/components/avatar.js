@@ -4,11 +4,13 @@ const Avatar = props => {
   const style = {
     borderRadius: '50%',
     width: '100%',
-    height: '100%',
+    height: '100%'
   }
-  if (props.data && typeof props.data.pictureUris !== 'undefined')
-    return <img src={props.data.pictureUris.m} style={style} alt="🙂" />
-  else return <img src="/avatar.svg" style={style} alt="🙂" />
+
+  const { picture, pictureUris } = props.data
+  const pictureUrl = picture ? pictureUris.m : '/avatar.svg'
+
+  return <img src={pictureUrl} style={style} alt="🙂" />
 }
 
 export default Avatar

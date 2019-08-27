@@ -7,10 +7,13 @@ import MeasurementImage from './image'
 import { injectIntl } from 'react-intl'
 
 const MeasurementImages = props => {
-  const [tab, setTab] = useState(0)
-  const toggleTab = () => setTab(tab === 0 ? 1 : 0)
-  const seated = ['seatdepth']
+  const { measurement, intl, breasts } = props
 
+  // Set tab to 0 with model that has breasts or 1 for no breasts
+  const [tab, setTab] = useState(breasts ? 0 : 1)
+  const toggleTab = () => setTab(tab === 0 ? 1 : 0)
+
+  const seated = ['seatdepth']
   const breastsOnly = [
     'bustspan',
     'highbust',
@@ -23,22 +26,16 @@ const MeasurementImages = props => {
     '/model-' +
     (tab === 0 ? '' : 'no') +
     'breasts-' +
-    (seated.indexOf(props.measurement.toLowerCase()) !== -1 ? 'seated' : 'standing') +
+    (seated.indexOf(measurement.toLowerCase()) !== -1 ? 'seated' : 'standing') +
     '.jpg'
   const img =
     tab === 0
-      ? breastsImages[props.measurement.toLowerCase()]
-      : nobreastsImages[props.measurement.toLowerCase()]
+      ? breastsImages[measurement.toLowerCase()]
+      : nobreastsImages[measurement.toLowerCase()]
 
-  if (breastsOnly.indexOf(props.measurement.toLowerCase()) !== -1)
+  if (breastsOnly.indexOf(measurement.toLowerCase()) !== -1)
     return (
-      <MeasurementImage
-        measurement={props.measurement}
-        breasts={true}
-        intl={props.intl}
-        bg={bg}
-        img={img}
-      />
+      <MeasurementImage measurement={measurement} breasts={true} intl={intl} bg={bg} img={img} />
     )
   else
     return (
@@ -58,7 +55,7 @@ const MeasurementImages = props => {
           />
         </Tabs>
         <MeasurementImage
-          measurement={props.measurement}
+          measurement={measurement}
           breasts={tab === 0 ? true : false}
           intl={props.intl}
           bg={bg}
