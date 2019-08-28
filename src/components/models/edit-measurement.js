@@ -94,6 +94,9 @@ const EditMeasurement = props => {
         value={value}
         type="text"
         onChange={updateMeasurement}
+        onKeyPress={event => {
+          if (event.key === 'Enter') saveMeasurement()
+        }}
         autoFocus={true}
         InputProps={{
           endAdornment: (
