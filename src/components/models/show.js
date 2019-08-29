@@ -273,9 +273,8 @@ const ShowModel = ({ app, model }) => {
               <h5 style={styles.heading} data-test="measurements-title">
                 <FormattedMessage id="app.measurements" />
               </h5>
-              {typeof app.models[model].measurements === 'undefined' ||
-              typeof app.models[model].measurements.neckCircumference === 'undefined' ||
-              app.models[model].measurements.neckCircumference === null ? (
+              {!app.models[model].measurements ||
+              !app.models[model].measurements.neckCircumference ? (
                 <Blockquote className="note">
                   <h6>
                     <FormattedMessage id="app.startWithNeckTitle" />
