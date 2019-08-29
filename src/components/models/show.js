@@ -180,6 +180,14 @@ const ShowModel = ({ app, model }) => {
         </React.Fragment>
       )}
       <ModelGraph model={app.models[model]} intl={app.frontend.intl} />
+      <Button
+        variant="outlined"
+        color="primary"
+        href="/docs/about/model-graph"
+        style={{ marginRight: '1rem' }}
+      >
+        <FormattedMessage id="app.docs" />
+      </Button>
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
