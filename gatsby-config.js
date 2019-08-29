@@ -53,6 +53,18 @@ const plugins = [
   'gatsby-plugin-styled-components',
   'gatsby-plugin-catch-links',
   'gatsby-plugin-react-helmet',
+  {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `FreeSewing`,
+      short_name: `FreeSewing`,
+      start_url: `/`,
+      background_color: `#ffffff`,
+      theme_color: `#228be6`,
+      display: `standalone`,
+      icon: `src/images/logo.svg`
+    }
+  },
   'gatsby-plugin-netlify'
 ]
 
