@@ -87,7 +87,8 @@ const EditMeasurement = props => {
     if (m === currentMeasurement.toLowerCase()) docs = node.node.code.body
   }
   const label = props.app.frontend.intl.formatMessage({ id: 'measurements.' + currentMeasurement })
-  const measurementEstimate = neckstimate(neckCircumference, currentMeasurement, breasts) / 10
+  const measurementEstimate =
+    neckstimate(neckCircumference || 3600, currentMeasurement, breasts) / 10
   // TODO: Instead use a  smarter system in the make at: https://github.com/freesewing/freesewing/issues/82
   // Currently just take 20%
   const measurementInRange =
@@ -133,7 +134,7 @@ const EditMeasurement = props => {
               {measurementInRange ? (
                 <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon color="error" data-test="invalid" />
+                <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
               )}
             </InputAdornment>
           )
