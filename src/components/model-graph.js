@@ -5,22 +5,17 @@ import formatMm from '@freesewing/utils/formatMm'
 const ModelGraph = props => {
   const [text, setText] = useState('')
   const [highlight, setHighlight] = useState(false)
+  const { model } = props
 
-  if (
-    typeof props.model === 'undefined' ||
-    typeof props.model.measurements === 'undefined' ||
-    typeof props.model.measurements.neckCircumference === 'undefined' ||
-    props.model.measurements.neckCircumference === null
-  )
-    return null
+  if (!model || !model.measurements || !model.measurements.neckCircumference) return null
 
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
   ver.push('centerBackNeckToWaist')
   ver.push('shoulderToElbow')
   ver.push('shoulderToWrist')
-  if (props.model.breasts) ver.push('highPointShoulderToBust')
-  if (props.model.breasts) ver.push('naturalWaistToUnderbust')
+  if (model.breasts) ver.push('highPointShoulderToBust')
+  if (model.breasts) ver.push('naturalWaistToUnderbust')
   ver.push('naturalWaistToHip')
   ver.push('naturalWaistToSeat')
   ver.push('naturalWaistToKnee')
@@ -33,10 +28,10 @@ const ModelGraph = props => {
   hor.push('headCircumference')
   hor.push('shoulderToShoulder')
   hor.push('shoulderSlope')
-  if (props.model.breasts) hor.push('highBust')
+  if (model.breasts) hor.push('highBust')
   hor.push('chestCircumference')
-  if (props.model.breasts) hor.push('bustSpan')
-  if (props.model.breasts) hor.push('underbust')
+  if (model.breasts) hor.push('bustSpan')
+  if (model.breasts) hor.push('underbust')
   hor.push('naturalWaist')
   hor.push('hipsCircumference')
   hor.push('seatCircumference')
@@ -46,16 +41,14 @@ const ModelGraph = props => {
   hor.push('ankleCircumference')
 
   const own = m => {
-    if (typeof props.model.measurements[m] === 'undefined' || props.model.measurements[m] === null)
-      return false
-    else return true
+    return model.measurements[m]
   }
 
   const modelData = measurements => {
     let data = {}
     for (let m of ver.concat(hor)) {
-      if (own(m)) data[m] = props.model.measurements[m]
-      else data[m] = neckstimate(neck, m, props.model.breasts)
+      if (own(m)) data[m] = model.measurements[m]
+      else data[m] = neckstimate(neck, m, model.breasts)
     }
 
     return data
@@ -70,7 +63,7 @@ const ModelGraph = props => {
           id: 'measurements.' + measurement
         }) +
           ': ' +
-          formatMm(data[measurement], props.model.units) +
+          formatMm(data[measurement], model.units) +
           ' ' +
           (isOwn ? '' : '(' + props.intl.formatMessage({ id: 'app.estimate' }) + ')')
       )
@@ -78,8 +71,8 @@ const ModelGraph = props => {
   }
 
   const absSize = size => size * 20 - 500
-  const pieSize = m => (data[m] / neckstimate(neck, m, props.model.breasts)) * neck * 2 - 500
-  //const pieSize = m => (data[m] / neckstimate(neck, m, props.model.breasts)) * neck
+  const pieSize = m => (data[m] / neckstimate(neck, m, model.breasts)) * neck * 2 - 500
+  //const pieSize = m => (data[m] / neckstimate(neck, m, model.breasts)) * neck
   const barSize = m => 4 * pieSize(m)
   const rotate = (x, y, angle) => {
     // Radians please
@@ -165,8 +158,8 @@ const ModelGraph = props => {
   }
 
   // Get neck measurement, (estimated) model data, and default bar size
-  const neck = props.model.measurements.neckCircumference
-  const data = modelData(props.model)
+  const neck = model.measurements.neckCircumference
+  const data = modelData(model)
   const vd = barSize('neckCircumference')
 
   return (
