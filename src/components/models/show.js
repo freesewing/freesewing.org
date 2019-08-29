@@ -11,6 +11,9 @@ import Avatar from '../avatar'
 import Markdown from 'react-markdown'
 import ModelGraph from '../model-graph.js'
 import Blockquote from '@freesewing/components/Blockquote'
+import neckstimate from '@freesewing/utils/neckstimate'
+import ValidIcon from '@material-ui/icons/CheckCircle'
+import InvalidIcon from '@material-ui/icons/Warning'
 
 const ShowModel = ({ app, model }) => {
   const styles = {
@@ -101,7 +104,12 @@ const ShowModel = ({ app, model }) => {
     return remaining
   }
 
-  const measurementRow = (name, value = false) => {
+  const measurementRow = (
+    name,
+    value = false,
+    measurementEstimate = null,
+    measurementInRange = null
+  ) => {
     const missing = {
       opacity: value ? 1 : 0.5,
       padding: value ? '1rem' : '0 1rem',
@@ -118,10 +126,29 @@ const ShowModel = ({ app, model }) => {
           <FormattedMessage id={'measurements.' + name} />
         </td>
         <td style={{ ...styles.cell, ...missing }}>
-          {value ? (
-            <span dangerouslySetInnerHTML={{ __html: formatMm(value, app.models[model].units) }} />
-          ) : null}
+          {measurementEstimate && (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: formatMm(Math.round(measurementEstimate), app.models[model].units)
+              }}
+            />
+          )}
         </td>
+        <td style={{ ...styles.cell, ...missing }}>
+          {value && (
+            <>
+              <span
+                dangerouslySetInnerHTML={{ __html: formatMm(value, app.models[model].units) }}
+              />{' '}
+              {measurementInRange ? (
+                <ValidIcon size="small" style={{ color: '#40c057' }} data-test="valid" />
+              ) : (
+                <InvalidIcon size="small" style={{ color: 'orange' }} data-test="invalid" />
+              )}
+            </>
+          )}
+        </td>
+
         <td style={styles.buttonCell}>
           <IconButton
             color="primary"
@@ -179,7 +206,9 @@ const ShowModel = ({ app, model }) => {
           </p>
         </React.Fragment>
       )}
+
       <ModelGraph model={app.models[model]} intl={app.frontend.intl} />
+
       <Button
         variant="outlined"
         color="primary"
@@ -188,21 +217,12 @@ const ShowModel = ({ app, model }) => {
       >
         <FormattedMessage id="app.docs" />
       </Button>
+
+      <h5 style={styles.heading} data-test="settings-title">
+        <FormattedMessage id="app.settings" />
+      </h5>
       <table style={styles.table} className="font-title">
         <tbody>
-          <tr>
-            <td style={{ width: '225px' }}>&nbsp;</td>
-            <td style={{ width: '100%' }}>&nbsp;</td>
-            <td style={{ width: '48px' }}>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>
-              <h5 style={styles.heading} data-test="settings-title">
-                <FormattedMessage id="app.settings" />
-              </h5>
-            </td>
-            <td colSpan="2">&nbsp;</td>
-          </tr>
           {/* name */}
           <tr className="hover">
             <td style={styles.title}>
@@ -272,15 +292,17 @@ const ShowModel = ({ app, model }) => {
               </IconButton>
             </td>
           </tr>
-          <tr>
-            <td colSpan="3">&nbsp;</td>
-          </tr>
-          {/* measurements */}
+        </tbody>
+      </table>
+      {/* measurements */}
+      <h5 style={styles.heading} data-test="measurements-title">
+        <FormattedMessage id="app.measurements" />
+      </h5>
+
+      <table style={styles.table} className="font-title">
+        <tbody>
           <tr>
             <td colspan="3">
-              <h5 style={styles.heading} data-test="measurements-title">
-                <FormattedMessage id="app.measurements" />
-              </h5>
               {!app.models[model].measurements ||
               !app.models[model].measurements.neckCircumference ? (
                 <Blockquote className="note">
@@ -312,16 +334,32 @@ const ShowModel = ({ app, model }) => {
               ) : null}
             </td>
           </tr>
-          {app.models[model].measurements
-            ? [
-                Object.keys(app.models[model].measurements).map(m => {
-                  let value = app.models[model].measurements[m]
-                  if (value !== null) return measurementRow(m, value)
-                  else return null
-                }),
-                remainingMeasurements().map(m => measurementRow(m))
-              ]
-            : remainingMeasurements().map(m => measurementRow(m))}
+          <tr>
+            <td></td>
+            <td>Estimate</td>
+            <td>Actual</td>
+            <td></td>
+          </tr>
+          {[
+            Object.keys(app.models[model].measurements).map(m => {
+              let value = app.models[model].measurements[m]
+
+              if (value) {
+                const measurementEstimate = neckstimate(
+                  app.models[model].measurements.neckCircumference || 360,
+                  m,
+                  app.models[model].breasts
+                )
+                // TODO: Instead use a  smarter system in the make at: https://github.com/freesewing/freesewing/issues/82
+                // Currently just take 20%
+                const measurementInRange =
+                  0.8 <= value / measurementEstimate && value / measurementEstimate <= 1.2
+
+                return measurementRow(m, value, measurementEstimate, measurementInRange)
+              } else return null
+            }),
+            remainingMeasurements().map(m => measurementRow(m))
+          ]}
         </tbody>
       </table>
       <p style={{ textAlign: 'right' }}>
