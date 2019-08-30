@@ -32,7 +32,7 @@ const buildQuery = function(language) {
             img {
               childImageSharp {
                 fluid(maxWidth: 800) {
-                  base64
+                  src
                   srcSet
                   sizes
                   originalImg
@@ -61,7 +61,7 @@ const buildQuery = function(language) {
             img {
               childImageSharp {
                 fluid(maxWidth: 800) {
-                  base64
+                  src
                   srcSet
                   sizes
                   originalImg
