@@ -104,6 +104,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "clean": "gatsby clean",
     "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
     "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
     "testcli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE",
