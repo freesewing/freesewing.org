@@ -60,7 +60,7 @@ const plugins = [
       short_name: `FreeSewing`,
       start_url: `/`,
       background_color: `#ffffff`,
-      theme_color: `#228be6`,
+      theme_color: `#212529`,
       display: `standalone`,
       icon: `src/images/logo.svg`
     }
