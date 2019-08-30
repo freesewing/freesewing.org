@@ -41,10 +41,6 @@ const pageConfig =  {
 
 const getNonMdxPages = function() {
   const pages = {}
-  for (let pattern of patterns) {
-    pageConfig.single["/docs/patterns/"+pattern+"/measurements"] = "app.requiredMeasurements";
-  }
-
   for (let slug in pageConfig.single) {
     pages[slug] = {
       frontmatter: {

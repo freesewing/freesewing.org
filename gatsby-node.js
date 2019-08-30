@@ -3,18 +3,16 @@ const buildNavigation = require("./gatsby/navigation")
 const utils = require("./gatsby/utils")
 const create = require("./gatsby/create")
 const nonMdxPages = require("./gatsby/non-mdx-pages")
-
+const duplicates = require("./gatsby/duplicates")
 
 const slugFromFilePath = filePath => {
   return "/"+filePath.match(/[\/|\\]markdown[\/|\\]org[\/|\\](.*)/).pop().slice(0,-5)
 }
 
 const getMdxPages = function(graphql, language) {
-  console.log('Getting MDX pages')
   const query = mdxQuery(language)
   return new Promise((resolve, reject) => {
     graphql(query).then(res => {
-      console.log('Query complete')
     	if (typeof res.data === "undefined") {
     	  console.log("query failed", query, res);
     	  reject();
@@ -25,8 +23,11 @@ const getMdxPages = function(graphql, language) {
             pages[slugFromFilePath(page.node.fileAbsolutePath)] = page.node
           }
         }
-    	  resolve(pages);
-			}
+        for (let slug in duplicates) {
+          for (let dupe of duplicates[slug]) pages[dupe] = pages[slug]
+        }
+        resolve(pages);
+      }
     })
   })
 }
@@ -37,17 +38,12 @@ exports.createPages = async ({ actions, graphql }) => {
   if (typeof language === "undefined")
     throw new Error("You MUST set the GATSBY_LANGUAGE environment variable (to 'en' for example)");
 
-  console.log('getting mdx')
   const mdxPages = await getMdxPages(graphql, language)
-  console.log('done, doing titles')
   const titles = utils.getTitles(mdxPages)
-  console.log('done, building navigation')
   const navigation = buildNavigation(mdxPages, titles)
-  console.log('done, creating pages')
   await create.mdxPages(mdxPages, navigation, titles, actions.createPage)
   await create.otherPages(nonMdxPages, navigation, titles, actions.createPage)
 
-  console.log('return from createPages')
   return
 };
 

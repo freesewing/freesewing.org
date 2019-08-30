@@ -3,11 +3,7 @@ import Navigation from './navigation'
 import capitalize from '@freesewing/utils/capitalize'
 
 const MainMenu = props => {
-  // FIXME: This is making me loose my mind, but I'm not sure what's going on
-  // I rewrote the build script, which changes the contents of props.pageContext
-  // Some pages have the new content, yet some for whatever reason that I don't get, have the old style
-  // So we'll just deal with both until I understand what's going on :(
-  let navigation = props.pageContext.navigation || props.pageContext.topicsToc
+  let navigation = props.pageContext.navigation
   let toc = null
   let slug = props.pageContext.slug
   if (typeof props.pageContext.node !== 'undefined') toc = props.pageContext.node.tableOfContents

@@ -1,23 +1,22 @@
 const path = require("path");
 const rootComponent = path.resolve("./src/components/app/index.js");
 const redirects = require("./redirects")
-
 module.exports = {
   mdxPages: function(pages, navigation, titles, createPage) {
     let promises = [];
 	  for (let slug in pages) {
+      let data = {
+        path: slug,
+        component: rootComponent,
+        context: {
+          node: pages[slug],
+          slug,
+          navigation,
+          titles,
+        }
+      }
 	  	promises.push(new Promise((resolve, reject) => {
-        createPage({
-          path: slug,
-          component: rootComponent,
-          context: {
-            node: pages[slug],
-            slug,
-            navigation,
-            titles,
-            newBuild: true
-          }
-        });
+        createPage(data)
       	resolve(true);
  	    }));
     }
