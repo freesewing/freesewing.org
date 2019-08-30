@@ -37,10 +37,10 @@ const BlogTemplate = props => {
         </div>
       </div>
       <figure style={style.figure}>
-        <a href={img.originalImg}>
+        <a href={img.src}>
           <img
             data-test='img'
-            src={img.base64}
+            src={img.src}
             style={{ width: '100%' }}
             srcSet={img.srcSet}
             alt={frontmatter.caption}

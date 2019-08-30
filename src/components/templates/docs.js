@@ -101,10 +101,11 @@ const DocumentationPage = props => {
       if (option.toLowerCase() === chunks[5]) noTitle = props.app.frontend.intl.formatMessage({id:`options.${chunks[3]}.${option}.title`})
     }
   }
+
   return (
     <React.Fragment>
       {prefix}
-      {props.pageContext.node ? (
+      {props.pageContext.node.code ? (
         <section data-test="mdx">
           <MDXProvider components={components}>
             <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
