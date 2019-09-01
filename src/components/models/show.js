@@ -295,7 +295,7 @@ const ShowModel = ({ app, model }) => {
                     <Button
                       variant="contained"
                       color="primary"
-                      href={`/models/${model}/measurements/neckcircumference`}
+                      href={`/models/${model}/measurements/neckCircumference`}
                     >
                       <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
                       <FormattedMessage id="measurements.neckCircumference" />
