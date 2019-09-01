@@ -27,7 +27,7 @@ import { withoutBreasts, withBreasts } from '@freesewing/models'
 import Blockquote from '@freesewing/components/Blockquote'
 import Icon from '@freesewing/components/Icon'
 import { useStaticQuery, graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import Robot from '@freesewing/components/Robot'
 
@@ -94,9 +94,7 @@ const DraftPage = props => {
       ) {
         edges {
           node {
-            code {
-              body
-            }
+            body
             parent {
               ... on File {
                 relativeDirectory
@@ -114,9 +112,7 @@ const DraftPage = props => {
       ) {
         edges {
           node {
-            code {
-              body
-            }
+            body
             parent {
               ... on File {
                 relativeDirectory
@@ -144,14 +140,14 @@ const DraftPage = props => {
     let name = node.node.parent.relativeDirectory.split('/').pop()
     docs.options[name] = {
       title: node.node.frontmatter.title,
-      body: node.node.code.body
+      body: node.node.body
     }
   }
   for (let node of markdownDocs.settings.edges) {
     let name = node.node.parent.relativeDirectory.split('/').pop()
     docs.settings[name] = {
       title: node.node.frontmatter.title,
-      body: node.node.code.body
+      body: node.node.body
     }
   }
 

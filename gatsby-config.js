@@ -16,7 +16,7 @@ const plugins = [
     }
   },
   {
-    resolve: 'gatsby-mdx',
+    resolve: 'gatsby-plugin-mdx',
     options: {
       extensions: ['.mdx', '.md'],
       // Plugins workaround. See: https://github.com/gatsbyjs/gatsby/issues/15486

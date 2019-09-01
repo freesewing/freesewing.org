@@ -6,7 +6,7 @@ const buildQuery = function(language) {
   ) {
       edges {
         node {
-          code { body }
+          body
           fileAbsolutePath
           frontmatter {
             title
@@ -20,7 +20,7 @@ const buildQuery = function(language) {
   ) {
       edges {
         node {
-          code { body }
+          body
           fileAbsolutePath
           frontmatter {
             title
@@ -50,7 +50,7 @@ const buildQuery = function(language) {
   ) {
       edges {
         node {
-          code { body }
+          body
           fileAbsolutePath
           frontmatter {
             title
