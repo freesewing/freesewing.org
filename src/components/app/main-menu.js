@@ -12,17 +12,17 @@ const MainMenu = props => {
 
   if (props.app.account.username) {
     if (topics.indexOf('models') === -1) topics.push('models')
-    navigation.models = {
+    navigation['/models/'] = {
       title: props.app.frontend.intl.formatMessage({ id: 'app.models' }),
       children: {}
     }
     for (let m in props.app.models) {
-      navigation.models.children['/models/' + m] = {
+      navigation['/models/'].children['/models/' + m + '/'] = {
         title: props.app.models[m].name
       }
     }
     if (topics.indexOf('recipes') === -1) topics.push('recipes')
-    navigation.recipes = {
+    navigation['/recipes/'] = {
       title: props.app.frontend.intl.formatMessage({ id: 'app.recipes' }),
       children: {}
     }
@@ -30,7 +30,7 @@ const MainMenu = props => {
       for (let r in props.app.recipes) {
         if (typeof props.app.recipes[r].recipe !== 'undefined') {
           let pattern = props.app.recipes[r].recipe.pattern || 'FIXME';
-          navigation.recipes.children['/recipes/' + r] = {
+          navigation['/recipes/'].children['/recipes/' + r + '/'] = {
             title:
               capitalize(pattern) + ': ' + props.app.recipes[r].name
           }

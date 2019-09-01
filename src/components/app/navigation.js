@@ -36,6 +36,7 @@ const Navigation = props => {
   const renderSidebar = () => {
     let items = []
     for (let topic of topics) {
+
       let active = isDescendant(props.slug, topic) ? true : false
       items.push(
         <li key={topic} className={active ? 'topic active' : 'topic'}>
