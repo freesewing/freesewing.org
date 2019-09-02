@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'
 import MeasurementsImages from '../measurements/images'
@@ -101,13 +101,14 @@ const DocumentationPage = props => {
       if (option.toLowerCase() === chunks[5]) noTitle = props.app.frontend.intl.formatMessage({id:`options.${chunks[3]}.${option}.title`})
     }
   }
+
   return (
     <React.Fragment>
       {prefix}
-      {props.pageContext.node ? (
+      {props.pageContext.node.body ? (
         <section data-test="mdx">
           <MDXProvider components={components}>
-            <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
+            <MDXRenderer>{props.pageContext.node.body}</MDXRenderer>
           </MDXProvider>
         </section>
       ) : null}

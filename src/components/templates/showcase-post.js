@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -45,10 +45,10 @@ const ShowcaseTemplate = props => {
         </div>
       </div>
       <figure style={style.figure}>
-        <a href={img.originalImg}>
+        <a href={img.src}>
           <img
             data-test='img'
-            src={img.base64}
+            src={img.src}
             style={{ width: '100%' }}
             srcSet={img.srcSet}
             alt={frontmatter.caption}
@@ -57,7 +57,7 @@ const ShowcaseTemplate = props => {
         <figcaption data-test="caption">{frontmatter.caption}</figcaption>
       </figure>
       <MDXProvider components={props.components}>
-        <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
+        <MDXRenderer>{props.pageContext.node.body}</MDXRenderer>
       </MDXProvider>
     </React.Fragment>
   )

@@ -38,7 +38,7 @@ const BlogCategoryTemplate = props => {
               img {
                 childImageSharp {
                   fluid(maxWidth: 400) {
-                    base64
+                    src
                     srcSet
                     sizes
                     presentationWidth
@@ -102,7 +102,7 @@ const BlogCategoryTemplate = props => {
             >
               <figure style={style.figure}>
                 <img
-                  src={img.base64}
+                  src={img.src}
                   style={{ width: '100%' }}
                   srcSet={img.srcSet}
                   alt={frontmatter.caption}

@@ -37,8 +37,8 @@ const PatternPage = props => {
               img {
                 childImageSharp {
                   fluid(maxWidth: 400) {
-                    base64
                     srcSet
+                    src
                     sizes
                     presentationWidth
                     presentationHeight
@@ -255,7 +255,7 @@ const PatternPage = props => {
               >
                 <figure style={styles.figure}>
                   <img
-                    src={img.base64}
+                    src={img.src}
                     style={{ width: '100%' }}
                     srcSet={img.srcSet}
                     alt={frontmatter.caption}
