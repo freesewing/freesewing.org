@@ -48,7 +48,7 @@ const App = props => {
   const [image, setImage] = useState(`https://freesewing.org/share/${process.env.GATSBY_LANGUAGE}.wide.jpg`)
   const [url, setUrl] = useState(`https://${process.env.GATSBY_LANGUAGE}.freesewing.org/`)
   const [next, setNext] = useState(false)
-  const [pageLayout, setPageLayout] = useState('default')
+  const [pageLayout, setPageLayout] = useState('loading')
   useEffect(() => {
     setPageLayout(getLayout(props.location.pathname))
   }, [props.location.pathname])
@@ -180,6 +180,11 @@ const App = props => {
           </aside>
         )}
       </div>
+    ),
+    loading: (
+      <Loading loading={true}>
+        <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
+      </Loading>
     )
   }
   // Render

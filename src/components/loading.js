@@ -25,11 +25,14 @@ const Loading = props => {
   }
 
   return (
+    <React.Fragment>
     <div id="loader" style={style.wrapper}>
       <div className="dark" style={style.inner}>
         <Spinner size={400} />
       </div>
     </div>
+    {props.children}
+    </React.Fragment>
   )
 }
 
