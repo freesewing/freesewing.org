@@ -20,15 +20,15 @@
 
 FreeSewing is a free and open source library for made-to-measure sewing patterns.
 
-Try [the online demo](https://beta.freesewing.org/en/demo/) to *get it*.
+Try [the online demo](https://beta.freesewing.org/en/demo/) to _get it_.
 
 ## Links
 
- - 💻 Website: [freesewing.org](https://freesewing.org)
- - 💬 Chat: [Gitter](https://gitter.im/freesewing/freesewing)
- - 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
- - 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
- 
+- 💻 Website: [freesewing.org](https://freesewing.org)
+- 💬 Chat: [Gitter](https://gitter.im/freesewing/freesewing)
+- 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
+- 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
+
 ## Features
 
 - Parametric design of sewing patterns
@@ -42,6 +42,10 @@ Try [the online demo](https://beta.freesewing.org/en/demo/) to *get it*.
 
 ## Getting started
 
-This repository is a rewrite of [freesewing/core](https://github.com/freesewing/core) in JavaScript.  
+This repository is a rewrite of [freesewing/core](https://github.com/freesewing/core) in JavaScript.
 
 It is an ongoing project, and not ready for prime-time yet. Watch this space.
+
+## Software we use
+
+[![Bugsnag](https://global-uploads.webflow.com/5c741219fd0819540590e785/5c741219fd0819856890e790_asset%2039.svg)](https://www.bugsnag.com)
