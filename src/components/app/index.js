@@ -182,7 +182,7 @@ const App = props => {
       </div>
     ),
     loading: (
-      <Loading loading={true}>
+      <Loading loading={true} opaque>
         <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
       </Loading>
     )
