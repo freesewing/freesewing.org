@@ -33,13 +33,15 @@ import MainPage from './main-page'
 import getLayout from './getLayout'
 import bugsnag from '@bugsnag/js'
 import bugsnagReact from '@bugsnag/plugin-react'
+import ErrorBoundary from './error-boundary'
 
 /* This component is the root component for all pages */
-window.bugsnagClient = bugsnag('12eebb132933c355271140dcdc32bc20')
-bugsnagClient.use(bugsnagReact, React)
 
-// wrap your entire app tree in the ErrorBoundary provided
-const ErrorBoundary = bugsnagClient.getPlugin('react')
+if (typeof window !== "undefined" && process.env.CONTEXT === "production") {
+  window.bugsnagClient = bugsnag('12eebb132933c355271140dcdc32bc20')
+  bugsnagClient.use(bugsnagReact, React)
+  ErrorBoundary = bugsnagClient.getPlugin('react')
+}
 
 const App = props => {
   // React hooks
