@@ -86,17 +86,19 @@ const ShowModel = ({ app, model }) => {
     return Object.values(sorted)
   }
 
-  const measurements = app.models[model].breasts
+  const currentModel = app.models[model]
+
+  const measurements = currentModel.breasts
     ? sortMeasurements(allMeasurements.womenswear)
     : sortMeasurements(allMeasurements.menswear)
 
   const remainingMeasurements = () => {
-    if (typeof app.models[model].measurements === 'undefined') return measurements
+    if (typeof currentModel.measurements === 'undefined') return measurements
     let remaining = []
     for (let m of measurements) {
       if (
-        typeof app.models[model].measurements[m] === 'undefined' ||
-        app.models[model].measurements[m] === null
+        typeof currentModel.measurements[m] === 'undefined' ||
+        currentModel.measurements[m] === null
       )
         remaining.push(m)
     }
@@ -129,7 +131,7 @@ const ShowModel = ({ app, model }) => {
           {measurementEstimate && (
             <span
               dangerouslySetInnerHTML={{
-                __html: formatMm(Math.round(measurementEstimate), app.models[model].units)
+                __html: formatMm(Math.round(measurementEstimate), currentModel.units)
               }}
             />
           )}
@@ -137,9 +139,7 @@ const ShowModel = ({ app, model }) => {
         <td style={{ ...styles.cell, ...missing }}>
           {value && (
             <>
-              <span
-                dangerouslySetInnerHTML={{ __html: formatMm(value, app.models[model].units) }}
-              />{' '}
+              <span dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units) }} />{' '}
               {measurementInRange ? (
                 <ValidIcon size="small" style={{ color: '#40c057' }} data-test="valid" />
               ) : (
@@ -170,9 +170,9 @@ const ShowModel = ({ app, model }) => {
   return (
     <React.Fragment>
       <div style={styles.avatarWrapper}>
-        <Avatar data={app.models[model]} />
+        <Avatar data={currentModel} />
       </div>
-      {typeof app.models[model].notes === 'undefined' || app.models[model].notes === '' ? (
+      {currentModel.notes ? (
         <h5 style={styles.heading} data-test="notes-title">
           <span style={{ opacity: '0.5' }}>
             <FormattedMessage id="app.notes" />
@@ -192,7 +192,7 @@ const ShowModel = ({ app, model }) => {
           <h5 style={styles.heading} data-test="notes-title">
             <FormattedMessage id="app.notes" />
           </h5>
-          <Markdown source={app.models[model].notes || ''} data-test="notes" />
+          <Markdown source={currentModel.notes || ''} data-test="notes" />
           <p style={{ textAlign: 'right' }}>
             <IconButton
               data-test="edit-notes"
@@ -207,7 +207,7 @@ const ShowModel = ({ app, model }) => {
         </React.Fragment>
       )}
 
-      <ModelGraph model={app.models[model]} intl={app.frontend.intl} />
+      <ModelGraph model={currentModel} intl={app.frontend.intl} />
 
       <Button
         variant="outlined"
@@ -228,7 +228,7 @@ const ShowModel = ({ app, model }) => {
             <td style={styles.title}>
               <FormattedMessage id="app.name" />
             </td>
-            <td style={styles.cell}>{app.models[model].name}</td>
+            <td style={styles.cell}>{currentModel.name}</td>
             <td style={styles.buttonCell}>
               <IconButton
                 color="primary"
@@ -246,9 +246,7 @@ const ShowModel = ({ app, model }) => {
               <FormattedMessage id="app.chest" />
             </td>
             <td style={styles.cell}>
-              <FormattedMessage
-                id={'app.with' + (app.models[model].breasts ? '' : 'out') + 'Breasts'}
-              />
+              <FormattedMessage id={'app.with' + (currentModel.breasts ? '' : 'out') + 'Breasts'} />
             </td>
             <td style={styles.buttonCell}>
               <IconButton
@@ -258,7 +256,7 @@ const ShowModel = ({ app, model }) => {
                 onClick={() =>
                   app.backend.saveModel(
                     model,
-                    { breasts: app.models[model].breasts ? 'false' : 'true' },
+                    { breasts: currentModel.breasts ? 'false' : 'true' },
                     app.frontend.intl.formatMessage({ id: 'app.chest' })
                   )
                 }
@@ -273,7 +271,7 @@ const ShowModel = ({ app, model }) => {
               <FormattedMessage id="account.units" />
             </td>
             <td style={styles.cell}>
-              <FormattedMessage id={'app.' + app.models[model].units + 'Units'} />
+              <FormattedMessage id={'app.' + currentModel.units + 'Units'} />
             </td>
             <td style={styles.buttonCell}>
               <IconButton
@@ -283,7 +281,7 @@ const ShowModel = ({ app, model }) => {
                 onClick={() =>
                   app.backend.saveModel(
                     model,
-                    { units: app.models[model].units === 'metric' ? 'imperial' : 'metric' },
+                    { units: currentModel.units === 'metric' ? 'imperial' : 'metric' },
                     app.frontend.intl.formatMessage({ id: 'account.units' })
                   )
                 }
@@ -303,35 +301,35 @@ const ShowModel = ({ app, model }) => {
         <tbody>
           <tr>
             <td colspan="3">
-              {!app.models[model].measurements ||
-              !app.models[model].measurements.neckCircumference ? (
-                <Blockquote className="note">
-                  <h6>
-                    <FormattedMessage id="app.startWithNeckTitle" />
-                  </h6>
-                  <p>
-                    <FormattedMessage id="app.startWithNeckDescription" />
-                  </p>
-                  <p style={{ textAlign: 'right' }}>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      href="/docs/about/model-graph"
-                      style={{ marginRight: '1rem' }}
-                    >
-                      <FormattedMessage id="app.docs" />
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      href={`/models/${model}/measurements/neckCircumference`}
-                    >
-                      <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
-                      <FormattedMessage id="measurements.neckCircumference" />
-                    </Button>
-                  </p>
-                </Blockquote>
-              ) : null}
+              {!currentModel.measurements ||
+                (!currentModel.measurements.neckCircumference && (
+                  <Blockquote className="note">
+                    <h6>
+                      <FormattedMessage id="app.startWithNeckTitle" />
+                    </h6>
+                    <p>
+                      <FormattedMessage id="app.startWithNeckDescription" />
+                    </p>
+                    <p style={{ textAlign: 'right' }}>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        href="/docs/about/model-graph"
+                        style={{ marginRight: '1rem' }}
+                      >
+                        <FormattedMessage id="app.docs" />
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        href={`/models/${model}/measurements/neckCircumference`}
+                      >
+                        <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
+                        <FormattedMessage id="measurements.neckCircumference" />
+                      </Button>
+                    </p>
+                  </Blockquote>
+                ))}
             </td>
           </tr>
           <tr>
@@ -340,15 +338,15 @@ const ShowModel = ({ app, model }) => {
             <td>Actual</td>
             <td></td>
           </tr>
-          {[
-            Object.keys(app.models[model].measurements).map(m => {
-              let value = app.models[model].measurements[m]
+          {currentModel.measurements &&
+            Object.keys(currentModel.measurements).map(m => {
+              let value = currentModel.measurements[m]
 
               if (value) {
                 const measurementEstimate = neckstimate(
-                  app.models[model].measurements.neckCircumference || 360,
+                  currentModel.measurements.neckCircumference || 360,
                   m,
-                  app.models[model].breasts
+                  currentModel.breasts
                 )
                 // TODO: Instead use a  smarter system in the make at: https://github.com/freesewing/freesewing/issues/82
                 // Currently just take 20%
@@ -357,9 +355,8 @@ const ShowModel = ({ app, model }) => {
 
                 return measurementRow(m, value, measurementEstimate, measurementInRange)
               } else return null
-            }),
-            remainingMeasurements().map(m => measurementRow(m))
-          ]}
+            })}
+          {remainingMeasurements().map(m => measurementRow(m))}
         </tbody>
       </table>
       <p style={{ textAlign: 'right' }}>
