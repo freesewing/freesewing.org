@@ -172,7 +172,7 @@ const ShowModel = ({ app, model }) => {
       <div style={styles.avatarWrapper}>
         <Avatar data={currentModel} />
       </div>
-      {currentModel.notes ? (
+      {!currentModel.notes ? (
         <h5 style={styles.heading} data-test="notes-title">
           <span style={{ opacity: '0.5' }}>
             <FormattedMessage id="app.notes" />
