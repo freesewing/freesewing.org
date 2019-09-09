@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
 import formatMm from '@freesewing/utils/formatMm'
 import { useStaticQuery, graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import MeasurementsImages from '../measurements/images'
 import neckstimate from '@freesewing/utils/neckstimate'
@@ -47,9 +47,7 @@ const EditMeasurement = props => {
                 relativeDirectory
               }
             }
-            code {
-              body
-            }
+            body
           }
         }
       }
@@ -84,7 +82,7 @@ const EditMeasurement = props => {
   let docs = null
   for (let node of Object.values(mdx.allMdx.edges)) {
     let m = node.node.parent.relativeDirectory.split('/').pop()
-    if (m === currentMeasurement.toLowerCase()) docs = node.node.code.body
+    if (m === currentMeasurement.toLowerCase()) docs = node.node.body
   }
   const label = props.app.frontend.intl.formatMessage({ id: 'measurements.' + currentMeasurement })
   const measurementEstimate =

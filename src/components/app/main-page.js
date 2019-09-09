@@ -55,9 +55,9 @@ const MainPage = props => {
     case '/create':
     case '/recreate':
       return <DraftPage {...pageProps} mainMenu={props.mainMenu} userMenu={props.userMenu} />
-    case '/blog':
+    case '/blog/':
       return <BlogPage {...pageProps} />
-    case '/showcase':
+    case '/showcase/':
       return <ShowcasePage {...pageProps} />
     case '/showcase/patterns':
       return <ShowcaseCategoryPage {...pageProps} category={props.uri.split('/').pop()} />

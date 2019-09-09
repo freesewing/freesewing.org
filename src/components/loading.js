@@ -11,7 +11,7 @@ const Loading = props => {
       left: 0,
       width: '100%',
       height: '100vh',
-      background: '#0009',
+      background: props.opaque ? '#212529' : '#0009',
       zIndex: 15,
       display: 'flex',
       alignContent: 'center',
@@ -25,11 +25,14 @@ const Loading = props => {
   }
 
   return (
+    <React.Fragment>
     <div id="loader" style={style.wrapper}>
       <div className="dark" style={style.inner}>
         <Spinner size={400} />
       </div>
     </div>
+    {props.children}
+    </React.Fragment>
   )
 }
 

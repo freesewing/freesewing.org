@@ -18,30 +18,24 @@
 
 ## About freesewing
 
-FreeSewing is a free and open source library for made-to-measure sewing patterns.
-
-Try [the online demo](https://beta.freesewing.org/en/demo/) to *get it*.
+FreeSewing is a open source platform for made-to-measure sewing patterns.
 
 ## Links
 
- - 💻 Website: [freesewing.org](https://freesewing.org)
- - 💬 Chat: [Gitter](https://gitter.im/freesewing/freesewing)
- - 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
- - 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
- 
+- 💻 Website: [freesewing.org](https://freesewing.org)
+- 💻 Developer docs: [freesewing.dev](https://freesewing.dev)
+- 💬 Chat: [Gitter](https://gitter.im/freesewing/freesewing)
+- 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
+- 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
+
 ## Features
 
 - Parametric design of sewing patterns
-- Modular design with support for [plugins](https://github.com/freesewing/plugins)
+- Modular design with support for plugins
 - Auto-layout of pattern parts
 - Auto-offset of paths for seam allowance
-- Support for paperless patterns (with [our theme plugin](https://github.com/freesewing/plugin-theme))
+- Support for paperless patterns 
 - Sampling of options, a single measurement, or across models
-- Renders to SVG
+- Renders to SVG or as React component
 - Run in the browser as well as on the server with Node.js
 
-## Getting started
-
-This repository is a rewrite of [freesewing/core](https://github.com/freesewing/core) in JavaScript.  
-
-It is an ongoing project, and not ready for prime-time yet. Watch this space.

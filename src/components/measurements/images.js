@@ -22,7 +22,6 @@ const MeasurementImages = props => {
     'naturalwaisttounderbust',
     'underbust'
   ]
-
   const bg =
     '/model-' +
     (tab === 0 ? '' : 'no') +
