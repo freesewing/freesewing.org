@@ -2632,7 +2632,14 @@ better-assert@~1.0.0:
   dependencies:
     callsite "1.0.0"
 
-better-opn@0.1.4, better-opn@^0.1.4:
+better-opn@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/better-opn/-/better-opn-1.0.0.tgz#0454e4bb9115c6a9e4e5744417dd9c97fb9fce41"
+  integrity sha512-q3eO2se4sFbTERB1dFBDdjTiIIpRohMErpwBX21lhPvmgmQNNrcQj0zbWRhMREDesJvyod9kxBS3kOtdAvkB/A==
+  dependencies:
+    open "^6.4.0"
+
+better-opn@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/better-opn/-/better-opn-0.1.4.tgz#271d03bd8bcb8406d2d9d4cda5c0944d726ea171"
   integrity sha512-7V92EnOdjWOB9lKsVsthCcu1FdFT5qNJVTiOgGy5wPuTsSptMMxm2G1FGHgWu22MyX3tyDRzTWk4lxY2Ppdu7A==
@@ -6115,10 +6122,10 @@ gatsby-cli@^1.1.58:
     yargs "^11.1.0"
     yurnalist "^0.2.1"
 
-gatsby-cli@^2.7.42:
-  version "2.7.44"
-  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.7.44.tgz#5ae22f7eb9bdad7fa87d989e56ba2014e7f2ac1c"
-  integrity sha512-HSNGXSGNXLUEH4D3CUg/5p24Ft0NEU/Cv40oQ2kgoT7Ccs/hgq6B1MRgBTHi1ew6+zF+UrReb80zYKdePNZzUw==
+gatsby-cli@^2.7.45:
+  version "2.7.45"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.7.45.tgz#a9dd6b88e6ecd2cffeda168f4e772f1bd5cf162f"
+  integrity sha512-0M8TiglJcH7bkqWzE/APKOQ2xSWGWP8bgoO7RimB6FPsLoOmPnOSZup6vjPbNXiPERh6sMGN1IryME55WuJmXA==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/runtime" "^7.5.5"
@@ -6166,7 +6173,7 @@ gatsby-core-utils@^1.0.7:
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.7.tgz#0f41dd91da2f2acb59e102ad4c6a4cffeb176b05"
   integrity sha512-G4C/n8tzZVUgs+nLs8Gho7OfgcOWsoKij6az25vCATC9daqrCh1R0ouInqCtIBk7pBim/jt7UAtlClXpp6HyqQ==
 
-gatsby-graphiql-explorer@^0.2.9:
+gatsby-graphiql-explorer@^0.2.13:
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/gatsby-graphiql-explorer/-/gatsby-graphiql-explorer-0.2.13.tgz#5df71ea5603adc0be895846bca7890e337c2c15d"
   integrity sha512-cznrs+5+XfyO03kkrPQAnOHRsDsmPuoeEhgc9ldVf8fyNC9Slzs6NDfG+QCwdOFU2moGUQyTQw+VFGDurLIqOg==
@@ -6191,7 +6198,7 @@ gatsby-link@2.2.11:
     "@types/reach__router" "^1.2.4"
     prop-types "^15.7.2"
 
-gatsby-link@^2.2.11:
+gatsby-link@^2.2.12:
   version "2.2.12"
   resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-2.2.12.tgz#ccc0f41b744bf57b318e50e3788c5e12a95906fe"
   integrity sha512-21eemFnbXREK61rs3SGuI0exsKBUQvBeNXBgmkYaDuhgtAeGBH0UDhWtsxpsn/EgOMHSxIBQSwi/3bCky8Wp/g==
@@ -6314,7 +6321,7 @@ gatsby-plugin-offline@^3.0.1:
     slash "^3.0.0"
     workbox-build "^4.3.1"
 
-gatsby-plugin-page-creator@^2.1.15:
+gatsby-plugin-page-creator@^2.1.16:
   version "2.1.16"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.1.16.tgz#1968fd6e5df92c6a5d7e9df883944f19ed490111"
   integrity sha512-UavctQrB208KlC5qVKPUa5trqWW1Z851mKZibepj04uzdme74zUbEAXLipFD6tilXDwzLPqeuRFpcBrFjOJyJQ==
@@ -6446,7 +6453,7 @@ gatsby-source-filesystem@2.1.19:
     valid-url "^1.0.9"
     xstate "^3.3.3"
 
-gatsby-telemetry@^1.1.21, gatsby-telemetry@^1.1.22:
+gatsby-telemetry@^1.1.22:
   version "1.1.22"
   resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-1.1.22.tgz#b53f91409df906a456a1e9f4f230771de0670c23"
   integrity sha512-Gj6FWkW5jid+riu8H0IZrx8pPzvcEJWkCLNMJ3qNtdeK6hdrEj4wjN06tJHxrjIsLiGrXTzpd5iL+70qWbk09w==
@@ -6509,10 +6516,10 @@ gatsby-transformer-sharp@2.2.13:
     semver "^5.7.1"
     sharp "^0.23.0"
 
-gatsby@2.15.2:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.15.2.tgz#586e60327e0575116c765edf62c414d6f2fc490f"
-  integrity sha512-B6mm2RFeKamv9Cy0c9+ExZO34ki+ejlpq88oBXSEJngluX5B7eT98KMcOr5ut788CpE27Py0W+TacNqeUwBUWQ==
+gatsby@2.15.11:
+  version "2.15.11"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.15.11.tgz#8d66f47c35886455fa7be3ccd2fb1f751ed80ec0"
+  integrity sha512-jBVMhrSqUvnqD0Oy4f2kNdx38C/iFBMa/PRC7XdhK32Et/Um/uvwH3X8Lz8zB3lCjMFShFlgAIg2MhSDxrSzAA==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.5.5"
@@ -6537,7 +6544,7 @@ gatsby@2.15.2:
     babel-plugin-dynamic-import-node "^1.2.0"
     babel-plugin-remove-graphql-queries "^2.7.6"
     babel-preset-gatsby "^0.2.12"
-    better-opn "0.1.4"
+    better-opn "1.0.0"
     better-queue "^3.8.10"
     bluebird "^3.5.5"
     browserslist "3.2.8"
@@ -6574,13 +6581,13 @@ gatsby@2.15.2:
     flat "^4.1.0"
     fs-exists-cached "1.0.0"
     fs-extra "^8.1.0"
-    gatsby-cli "^2.7.42"
+    gatsby-cli "^2.7.45"
     gatsby-core-utils "^1.0.7"
-    gatsby-graphiql-explorer "^0.2.9"
-    gatsby-link "^2.2.11"
-    gatsby-plugin-page-creator "^2.1.15"
+    gatsby-graphiql-explorer "^0.2.13"
+    gatsby-link "^2.2.12"
+    gatsby-plugin-page-creator "^2.1.16"
     gatsby-react-router-scroll "^2.1.7"
-    gatsby-telemetry "^1.1.21"
+    gatsby-telemetry "^1.1.22"
     glob "^7.1.4"
     got "8.3.2"
     graphql "^14.5.4"
@@ -6638,7 +6645,7 @@ gatsby@2.15.2:
     uuid "^3.3.3"
     v8-compile-cache "^1.1.2"
     webpack "~4.39.3"
-    webpack-dev-middleware "^3.7.0"
+    webpack-dev-middleware "^3.7.1"
     webpack-dev-server "^3.8.0"
     webpack-hot-middleware "^2.25.0"
     webpack-merge "^4.2.2"
@@ -10248,6 +10255,13 @@ open-color@1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/open-color/-/open-color-1.6.3.tgz#ff0d62983bcdda8048b776daedda2237e8a322ed"
   integrity sha512-UAnb19odLDupaVDSioSHZZlWEkJvKHDE7CxB3Zg1vS0FpHAc72AkzfH0wCSwYK5TKg6bjtmFSfmQF9FcjQANZA==
+
+open@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/open/-/open-6.4.0.tgz#5c13e96d0dc894686164f18965ecfe889ecfc8a9"
+  integrity sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==
+  dependencies:
+    is-wsl "^1.1.0"
 
 opentracing@^0.14.4:
   version "0.14.4"
@@ -14518,7 +14532,7 @@ webpack-assets-manifest@^3.1.1:
     tapable "^1.0.0"
     webpack-sources "^1.0.0"
 
-webpack-dev-middleware@^3.7.0:
+webpack-dev-middleware@^3.7.0, webpack-dev-middleware@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-3.7.1.tgz#1167aea02afa034489869b8368fe9fed1aea7d09"
   integrity sha512-5MWu9SH1z3hY7oHOV6Kbkz5x7hXbxK56mGHNqHTe6d+ewxOwKUxoUJBs7QIaJb33lPjl9bJZ3X0vCoooUzC36A==
