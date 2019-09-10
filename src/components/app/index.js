@@ -37,7 +37,7 @@ import ErrorBoundary from './error-boundary'
 
 /* This component is the root component for all pages */
 
-if (typeof window !== "undefined" && process.env.CONTEXT === "production") {
+if (typeof window !== "undefined" && process.env.GATSBY_CONTEXT === "production") {
   window.bugsnagClient = bugsnag('12eebb132933c355271140dcdc32bc20')
   bugsnagClient.use(bugsnagReact, React)
   ErrorBoundary = bugsnagClient.getPlugin('react')
