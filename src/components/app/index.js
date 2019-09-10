@@ -33,15 +33,17 @@ import MainPage from './main-page'
 import getLayout from './getLayout'
 import bugsnag from '@bugsnag/js'
 import bugsnagReact from '@bugsnag/plugin-react'
-import ErrorBoundary from './error-boundary'
+import ErrorFallback from './error-fallback'
 
 /* This component is the root component for all pages */
-
-if (typeof window !== "undefined" && process.env.GATSBY_CONTEXT === "production") {
-  window.bugsnagClient = bugsnag('12eebb132933c355271140dcdc32bc20')
-  bugsnagClient.use(bugsnagReact, React)
-  ErrorBoundary = bugsnagClient.getPlugin('react')
-}
+const bugsnagClient = bugsnag({
+  apiKey: '12eebb132933c355271140dcdc32bc20',
+  collectUserIp: false,
+  releaseStage: process.env.GATSBY_CONTEXT,
+  notifyReleaseStages: [ 'production' ],
+})
+bugsnagClient.use(bugsnagReact, React)
+const ErrorBoundary = bugsnagClient.getPlugin('react')
 
 const App = props => {
   // React hooks
@@ -204,7 +206,7 @@ const App = props => {
   wrapperClasses += ' layout' + pageLayout
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
         <Helmet>
           <title>{title}</title>
