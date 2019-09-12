@@ -86,10 +86,11 @@ const DraftPage = props => {
       setReady(true)
     }
   }, [props.pattern, props.model, props.recipe])
+
   const markdownDocs = useStaticQuery(graphql`
     {
       options: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/patterns/aaron/options/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/patterns/[^/]*/options/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: DESC }
       ) {
         edges {
@@ -98,6 +99,7 @@ const DraftPage = props => {
             parent {
               ... on File {
                 relativeDirectory
+                name
               }
             }
             frontmatter {
@@ -107,7 +109,7 @@ const DraftPage = props => {
         }
       }
       settings: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/draft/settings/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/draft/settings/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: DESC }
       ) {
         edges {
@@ -116,6 +118,7 @@ const DraftPage = props => {
             parent {
               ... on File {
                 relativeDirectory
+                name
               }
             }
             frontmatter {
@@ -137,17 +140,24 @@ const DraftPage = props => {
     settings: {}
   }
   for (let node of markdownDocs.options.edges) {
-    let name = node.node.parent.relativeDirectory.split('/').pop()
-    docs.options[name] = {
-      title: node.node.frontmatter.title,
-      body: node.node.body
+    let pattern = node.node.parent.relativeDirectory.split('/')[2]
+    let language = node.node.parent.name
+    if (pattern === props.pattern && language === process.env.GATSBY_LANGUAGE) {
+      let name = node.node.parent.relativeDirectory.split('/').pop()
+      docs.options[name] = {
+        title: node.node.frontmatter.title,
+        body: node.node.body
+      }
     }
   }
   for (let node of markdownDocs.settings.edges) {
     let name = node.node.parent.relativeDirectory.split('/').pop()
-    docs.settings[name] = {
-      title: node.node.frontmatter.title,
-      body: node.node.body
+    let language = node.node.parent.name
+    if (language === process.env.GATSBY_LANGUAGE) {
+      docs.settings[name] = {
+        title: node.node.frontmatter.title,
+        body: node.node.body
+      }
     }
   }
 
