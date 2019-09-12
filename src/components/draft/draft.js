@@ -82,10 +82,10 @@ const DraftPage = props => {
         measurements[m] = props.app.models[props.model].measurements[m]
       }
       props.updateGist(measurements, 'settings', 'measurements')
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id: "app.newPatternForModel"}, {pattern: capitalize(props.pattern), model: props.app.models[props.model].name }))
       setReady(true)
     }
   }, [props.pattern, props.model, props.recipe])
-
   const markdownDocs = useStaticQuery(graphql`
     {
       options: allMdx(
