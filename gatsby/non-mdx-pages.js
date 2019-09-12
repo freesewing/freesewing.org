@@ -9,6 +9,7 @@ const pageConfig =  {
     "/login": "app.logIn",
     "/logout": "app.logOut",
     "/search": "app.search",
+    "/error": "error",
     "/signup": "app.signUp",
     "/model": "app.newModel",
     "/docs/": "app.docs",
