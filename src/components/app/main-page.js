@@ -1,6 +1,7 @@
 import React from 'react'
 import LanguagePage from '../pages/language'
 import SearchPage from '../pages/search'
+import ErrorPage from '../pages/error'
 import LoginPage from '../session/login/'
 import OauthPage from '../session/login/callback'
 import LogoutPage from '../session/logout'
@@ -38,6 +39,8 @@ const MainPage = props => {
       return <HomePage {...pageProps} />
     case '/language':
       return <LanguagePage {...pageProps} />
+    case '/error':
+      return <ErrorPage {...pageProps} />
     case '/search':
       return <SearchPage {...pageProps} />
     case '/login':

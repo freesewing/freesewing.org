@@ -1,6 +1,7 @@
 const i18n = require("@freesewing/i18n").strings
 const capitalize = require("@freesewing/utils/capitalize")
 const options = require('@freesewing/pattern-info').options
+const patterns = require('@freesewing/pattern-info').list
 
 const  translate = key => i18n[process.env.GATSBY_LANGUAGE][key] || key
 
@@ -37,6 +38,7 @@ const pageTitle = (slug, page) => {
 const getTitles = mdxPages => {
   let titles = {}
   for (let slug in mdxPages) titles[slug] = pageTitle(slug, mdxPages[slug])
+  for (let pattern of patterns) titles[`/docs/patterns/${pattern}/`] = translate(`patterns.${pattern}.title`)
 
   return titles
 }

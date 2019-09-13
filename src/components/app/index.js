@@ -33,15 +33,18 @@ import MainPage from './main-page'
 import getLayout from './getLayout'
 import bugsnag from '@bugsnag/js'
 import bugsnagReact from '@bugsnag/plugin-react'
-import ErrorBoundary from './error-boundary'
+import ErrorFallback from './error-fallback'
+import crumbsFromNavigation from './crumbsFromNavigation'
 
 /* This component is the root component for all pages */
-
-if (typeof window !== "undefined" && process.env.CONTEXT === "production") {
-  window.bugsnagClient = bugsnag('12eebb132933c355271140dcdc32bc20')
-  bugsnagClient.use(bugsnagReact, React)
-  ErrorBoundary = bugsnagClient.getPlugin('react')
-}
+const bugsnagClient = bugsnag({
+  apiKey: '12eebb132933c355271140dcdc32bc20',
+  collectUserIp: false,
+  releaseStage: process.env.GATSBY_CONTEXT,
+  notifyReleaseStages: [ 'production' ],
+})
+bugsnagClient.use(bugsnagReact, React)
+const ErrorBoundary = bugsnagClient.getPlugin('react')
 
 const App = props => {
   // React hooks
@@ -51,7 +54,7 @@ const App = props => {
   const [menu, setMenu] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
-  const [crumbs, setCrumbs] = useState(props.pageContext.crumbs || false)
+  const [crumbs, setCrumbs] = useState(crumbsFromNavigation(props.location.pathname, props.pageContext.navigation, props.pageContext.titles))
   const [title, setTitle] = useState('FreeSewing')
   const [description, setDescription] = useState(false)
   const [image, setImage] = useState(
@@ -204,7 +207,7 @@ const App = props => {
   wrapperClasses += ' layout' + pageLayout
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
         <Helmet>
           <title>{title}</title>
