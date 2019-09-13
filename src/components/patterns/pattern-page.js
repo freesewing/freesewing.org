@@ -20,7 +20,7 @@ const PatternPage = props => {
   const data = useStaticQuery(graphql`
     {
       allMdx(
-        filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
