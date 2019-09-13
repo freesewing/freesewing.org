@@ -12,6 +12,7 @@ import Markdown from 'react-markdown'
 import ModelGraph from '../model-graph.js'
 import Blockquote from '@freesewing/components/Blockquote'
 import neckstimate from '@freesewing/utils/neckstimate'
+import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
@@ -106,6 +107,8 @@ const ShowModel = ({ app, model }) => {
     return remaining
   }
 
+  const blankSlate = !currentModel.measurements || !currentModel.measurements.neckCircumference
+
   const measurementRow = (
     name,
     value = false,
@@ -155,6 +158,7 @@ const ShowModel = ({ app, model }) => {
             style={styles.iconButton}
             size="medium"
             href={'/models/' + model + '/measurements/' + name}
+            data-test={`add-${name}-measurement`}
           >
             {value ? (
               <EditIcon fontSize="inherit" style={styles.icon} />
@@ -296,49 +300,45 @@ const ShowModel = ({ app, model }) => {
       <h5 style={styles.heading} data-test="measurements-title">
         <FormattedMessage id="app.measurements" />
       </h5>
-
+      {blankSlate && (
+        <Blockquote className="note" data-test="blank-slate">
+          <h6>
+            <FormattedMessage id="app.startWithNeckTitle" />
+          </h6>
+          <p>
+            <FormattedMessage id="app.startWithNeckDescription" />
+          </p>
+          <p style={{ textAlign: 'right' }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              href="/docs/about/model-graph"
+              style={{ marginRight: '1rem' }}
+            >
+              <FormattedMessage id="app.docs" />
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              href={`/models/${model}/measurements/neckCircumference`}
+              data-test="add-neck-circumference"
+            >
+              <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
+              <FormattedMessage id="measurements.neckCircumference" />
+            </Button>
+          </p>
+        </Blockquote>
+      )}
       <table style={styles.table} className="font-title">
         <tbody>
-          <tr>
-            <td colspan="3">
-              {!currentModel.measurements ||
-                (!currentModel.measurements.neckCircumference && (
-                  <Blockquote className="note">
-                    <h6>
-                      <FormattedMessage id="app.startWithNeckTitle" />
-                    </h6>
-                    <p>
-                      <FormattedMessage id="app.startWithNeckDescription" />
-                    </p>
-                    <p style={{ textAlign: 'right' }}>
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        href="/docs/about/model-graph"
-                        style={{ marginRight: '1rem' }}
-                      >
-                        <FormattedMessage id="app.docs" />
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        href={`/models/${model}/measurements/neckCircumference`}
-                      >
-                        <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
-                        <FormattedMessage id="measurements.neckCircumference" />
-                      </Button>
-                    </p>
-                  </Blockquote>
-                ))}
-            </td>
-          </tr>
           <tr>
             <td></td>
             <td>Estimate</td>
             <td>Actual</td>
             <td></td>
           </tr>
-          {currentModel.measurements &&
+          {currentModel &&
+            currentModel.measurements &&
             Object.keys(currentModel.measurements).map(m => {
               let value = currentModel.measurements[m]
 
@@ -348,10 +348,13 @@ const ShowModel = ({ app, model }) => {
                   m,
                   currentModel.breasts
                 )
-                // TODO: Instead use a  smarter system in the make at: https://github.com/freesewing/freesewing/issues/82
-                // Currently just take 20%
-                const measurementInRange =
-                  0.8 <= value / measurementEstimate && value / measurementEstimate <= 1.2
+                const measurementInRange = true
+                // measurementDiffers(
+                //   currentModel.measurements.neckCircumference || 360,
+                //   m,
+                //   value,
+                //   currentModel.breasts
+                // ) <= 2
 
                 return measurementRow(m, value, measurementEstimate, measurementInRange)
               } else return null
