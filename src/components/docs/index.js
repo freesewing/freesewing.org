@@ -10,7 +10,7 @@ const DocumentationIndexPage = props => {
   const markdownDocs = useStaticQuery(graphql`
     {
       about: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/about/[^.]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/about/[^.]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: DESC }
       ) {
         edges {
@@ -27,7 +27,7 @@ const DocumentationIndexPage = props => {
         }
       }
       sewing: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/sewing/[^.]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/sewing/[^.]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: DESC }
       ) {
         edges {
@@ -44,7 +44,7 @@ const DocumentationIndexPage = props => {
         }
       }
       draft: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/draft/[^.]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/draft/[^.]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: DESC }
       ) {
         edges {

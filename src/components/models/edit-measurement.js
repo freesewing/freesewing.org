@@ -32,7 +32,7 @@ const EditMeasurement = props => {
   const mdx = useStaticQuery(graphql`
     {
       allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/measurements/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//docs/measurements/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___title], order: ASC }
       ) {
         edges {
