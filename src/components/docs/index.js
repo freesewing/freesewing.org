@@ -1,86 +1,11 @@
 import React from 'react'
 import { list as patterns } from '@freesewing/pattern-info'
-import { measurements } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 
 const DocumentationIndexPage = props => {
-  const markdownDocs = useStaticQuery(graphql`
-    {
-      about: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/about/[^.]*/[a-z]{2}.md/" } }
-        sort: { fields: [frontmatter___title], order: DESC }
-      ) {
-        edges {
-          node {
-            parent {
-              ... on File {
-                relativeDirectory
-              }
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-      sewing: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/sewing/[^.]*/[a-z]{2}.md/" } }
-        sort: { fields: [frontmatter___title], order: DESC }
-      ) {
-        edges {
-          node {
-            parent {
-              ... on File {
-                relativeDirectory
-              }
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-      draft: allMdx(
-        filter: { fileAbsolutePath: { regex: "//docs/draft/[^.]*/[a-z]{2}.md/" } }
-        sort: { fields: [frontmatter___title], order: DESC }
-      ) {
-        edges {
-          node {
-            parent {
-              ... on File {
-                relativeDirectory
-              }
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-    }
-  `)
-  const docs = {}
-  for (let topic of ['about', 'sewing', 'draft']) {
-    docs[topic] = {}
-    for (let node of markdownDocs[topic].edges) {
-      docs[topic][node.node.frontmatter.title] = '/' + node.node.parent.relativeDirectory
-    }
-  }
-  const sortMeasurements = measurements => {
-    let sorted = []
-    let translated = {}
-    for (let m of measurements) {
-      let translation = props.app.frontend.intl.messages['measurements' + m] || m
-      translated[translation] = m
-    }
-    for (let m of Object.keys(translated).sort()) sorted.push(translated[m])
-
-    return Object.values(translated)
-  }
-
   const renderPatternDocs = pattern => {
     return (
       <li key={pattern}>
@@ -101,12 +26,12 @@ const DocumentationIndexPage = props => {
 
   const renderTopicDocs = topic => {
     let links = []
-    let list = Object.keys(docs[topic])
+    let list = Object.keys(props.docs[topic])
     list.sort()
     for (let title of list)
       links.push(
-        <li key={docs[topic][title]}>
-          <Link to={docs[topic][title]}>{title}</Link>
+        <li key={props.docs[topic][title]}>
+          <Link to={props.docs[topic][title]}>{title}</Link>
         </li>
       )
     return <ul className="links">{links}</ul>
@@ -141,7 +66,7 @@ const DocumentationIndexPage = props => {
             <FormattedMessage id="app.measurements" />
           </h2>
           <ul className="links">
-            {sortMeasurements(measurements.womenswear).map(measurement =>
+            {props.measurements.map(measurement =>
               renderMeasurementDocs(measurement)
             )}
           </ul>
