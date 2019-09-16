@@ -3,14 +3,15 @@ import Markdown from 'react-markdown'
 import UserSocial from '../user-social'
 
 const UserProfile = props => {
-  const handleResult = (result, data) => {
-    if (result) setUser(data.profile)
-    else console.log(data)
-  }
   const [user, setUser] = useState(false)
   useEffect(() => {
     props.app.backend.loadProfile(props.user, handleResult)
   }, [])
+
+  const handleResult = (result, data) => {
+    if (result) setUser(data)
+    else console.log(data)
+  }
 
   const styles = {
     avatar: {
@@ -18,15 +19,16 @@ const UserProfile = props => {
       borderRadius: '4px'
     }
   }
-  if (!user) return null
+  if (!user) return <pre>{JSON.stringify(props, null, 2)}</pre>
 
   return (
     <React.Fragment>
       <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username} />
       <Markdown source={user.bio} />
-      <p style={{ textAlign: 'center' }}>
-        <UserSocial accounts={user.social} size={36} />
-      </p>
+      {user.social && (
+        <p style={{ textAlign: 'center' }}>
+          <UserSocial accounts={user.social} size={36} />
+        </p> )}
     </React.Fragment>
   )
 }
