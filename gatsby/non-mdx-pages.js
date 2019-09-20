@@ -25,7 +25,7 @@ const pageConfig =  {
     "/404": "^\/?404\/?$",
     "/login/callback": "/login/callback/*",
     "/showcase/patterns": "/showcase/patterns/*",
-    "/blog/years": "/blog/years/*",
+    "/admin": "/admin/*",
     "/account": "/account/*",
     "/confirm": "/confirm/*",
     "/welcome": "/welcome/*",
