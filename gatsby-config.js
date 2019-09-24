@@ -1,5 +1,11 @@
 const searchData = require('./src/algolia')
+const languages = require('@freesewing/i18n').languages
 require('dotenv').config()
+
+const ignore = []
+for (let lang in languages) {
+  if (lang !== process.env.GATSBY_LANGUAGE) ignore.push(`**/${lang}.md`)
+}
 
 const plugins = [
   {
@@ -12,7 +18,8 @@ const plugins = [
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/markdown/org`,
-      name: 'markdown'
+      name: 'markdown',
+      ignore: ignore
     }
   },
   {

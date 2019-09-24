@@ -24,6 +24,7 @@ import PatronsPage from '../patrons/'
 import UsersPage from '../users/'
 import HomePage from '../pages/homepage/'
 import PatternsPage from '../patterns/'
+import AdminPage from '../admin/'
 import NotFound from '../pages/404'
 
 const MainPage = props => {
@@ -89,6 +90,7 @@ const MainPage = props => {
         return <DocumentationPage {...pageProps} />
       else if (props.pageContext.slug.slice(0, 10) === '/patterns/')
         return <PatternsPage {...pageProps} />
+      else if (props.pageContext.slug.slice(0, 6) === '/admin') return <AdminPage {...pageProps} />
 
       return <NotFound {...pageProps} />
   }

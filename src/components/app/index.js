@@ -34,6 +34,7 @@ import getLayout from './getLayout'
 import bugsnag from '@bugsnag/js'
 import bugsnagReact from '@bugsnag/plugin-react'
 import ErrorFallback from './error-fallback'
+import crumbsFromNavigation from './crumbsFromNavigation'
 
 /* This component is the root component for all pages */
 const bugsnagClient = bugsnag({
@@ -53,7 +54,7 @@ const App = props => {
   const [menu, setMenu] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
-  const [crumbs, setCrumbs] = useState(props.pageContext.crumbs || false)
+  const [crumbs, setCrumbs] = useState(crumbsFromNavigation(props.location.pathname, props.pageContext.navigation, props.pageContext.titles))
   const [title, setTitle] = useState('FreeSewing')
   const [description, setDescription] = useState(false)
   const [image, setImage] = useState(
@@ -88,6 +89,7 @@ const App = props => {
     account: props.storageData.account || {},
     models: props.storageData.models || {},
     recipes: props.storageData.recipes || {},
+    impersonates: props.storageData.admin ? true : false,
     backend: useBackend({
       intl: props.intl,
       showNotification,
@@ -123,7 +125,9 @@ const App = props => {
       setImage,
       setUrl,
       setCrumbs,
-      setNext
+      setNext,
+      updateStorageData: props.updateStorageData,
+      storageData: props.storageData
     }
   }
 

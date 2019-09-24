@@ -12,7 +12,7 @@ module.exports = {
           node: pages[slug],
           slug,
           navigation,
-          titles,
+          titles
         }
       }
 	  	promises.push(new Promise((resolve, reject) => {
@@ -33,8 +33,7 @@ module.exports = {
           node: { frontmatter: pages[slug].frontmatter },
           slug,
           navigation,
-          titles,
-          newBuild: true
+          titles
         }
       }
       if (pages[slug].matchPath) data.matchPath = pages[slug].matchPath
