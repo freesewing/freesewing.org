@@ -26,11 +26,11 @@ const patternOptions = {
   },
   '/docs/patterns/brian/options/frontarmholedeeper/': {
     find: 'brian',
-    replace: ['carlita', 'carlton', 'huey', 'jaeger', 'simon', 'sven']
+    replace: ['carlita', 'carlton', 'huey', 'jaeger', 'simon', 'sven', 'bent']
   },
   '/docs/patterns/brian/options/shoulderslopereduction/': {
     find: 'brian',
-    replace: ['carlita', 'carlton', 'simon', 'huey']
+    replace: ['carlita', 'carlton', 'simon', 'huey', 'bent']
   },
   '/docs/patterns/brian/options/sleevelengthbonus/': {
     find: 'brian',
@@ -42,35 +42,35 @@ const patternOptions = {
   },
   '/docs/patterns/brian/options/acrossbackfactor/': {
     find: 'brian',
-    replace: ['huey', 'hugo']
+    replace: ['huey', 'hugo', 'bent']
   },
   '/docs/patterns/brian/options/armholedepthfactor/': {
     find: 'brian',
-    replace: ['huey', 'sven', 'wahid']
+    replace: ['huey', 'sven', 'wahid', 'bent']
   },
   '/docs/patterns/brian/options/bicepsease/': {
     find: 'brian',
-    replace: ['huey', 'hugo', 'jaeger']
+    replace: ['huey', 'hugo', 'jaeger', 'bent']
   },
   '/docs/patterns/brian/options/chestease/': {
     find: 'brian',
-    replace: ['huey', 'hugo']
+    replace: ['huey', 'hugo', 'bent']
   },
   '/docs/patterns/brian/options/collarease/': {
     find: 'brian',
-    replace: ['huey', 'jaeger', 'sven']
+    replace: ['huey', 'jaeger', 'sven', 'bent']
   },
   '/docs/patterns/brian/options/cuffease/': {
     find: 'brian',
-    replace: ['huey', 'hugo']
+    replace: ['huey', 'hugo', 'bent']
   },
   '/docs/patterns/brian/options/lengthbonus/': {
     find: 'brian',
-    replace: ['huey', 'hugo']
+    replace: ['huey', 'hugo', 'bent']
   },
   '/docs/patterns/brian/options/shoulderease/': {
     find: 'brian',
-    replace: ['huey', 'jaeger', 'simon']
+    replace: ['huey', 'jaeger', 'simon', 'bent']
   },
   '/docs/patterns/huey/options/ribbingheight/': {
     find: 'huey',
@@ -110,7 +110,6 @@ const patternOptions = {
   '/docs/patterns/brian/options/sleevecapease/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecapfrontfactorx/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecapfrontfactory/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapheightfactor/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecapq1offset/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecapq1spread1/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecapq1spread2/': brianSleevecap,
