@@ -10,6 +10,7 @@ import Florent from '@freesewing/florent'
 import Huey from '@freesewing/huey'
 import Hugo from '@freesewing/hugo'
 import Jaeger from '@freesewing/jaeger'
+import Penelope from '@freesewing/penelope'
 import Sandy from '@freesewing/sandy'
 import Shin from '@freesewing/shin'
 import Simon from '@freesewing/simon'
@@ -18,11 +19,8 @@ import Tamiko from '@freesewing/tamiko'
 import Theo from '@freesewing/theo'
 import Trayvon from '@freesewing/trayvon'
 import Wahid from '@freesewing/wahid'
+import Waralee from '@freesewing/waralee'
 
-/*
- * This is the same as importing @freesewing/patterns
- * but it does make it easier to debug patterns :)
- */
 const patterns = {
   Aaron,
   Benjamin,
@@ -36,6 +34,7 @@ const patterns = {
   Huey,
   Hugo,
   Jaeger,
+  Penelope,
   Sandy,
   Shin,
   Simon,
@@ -43,7 +42,8 @@ const patterns = {
   Tamiko,
   Theo,
   Trayvon,
-  Wahid
+  Wahid,
+  Waralee
 }
 
 export default patterns
