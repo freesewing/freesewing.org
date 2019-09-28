@@ -8,6 +8,7 @@ import Thanks from './thanks'
 
 const PatronsIndex = props => {
   if (props.slug === '/patrons') {
+    let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
     return (
       <React.Fragment>
         {theCrumbs}
@@ -20,7 +21,6 @@ const PatronsIndex = props => {
     )
   }
   else if (props.slug === '/patrons/thanks') {
-    let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
     return (
       <React.Fragment>
         <Thanks app={props.app} />
