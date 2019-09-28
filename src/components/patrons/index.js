@@ -21,7 +21,6 @@ const PatronsIndex = props => {
     )
   }
   else if (props.slug === '/patrons/thanks') {
-    let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
     return (
       <React.Fragment>
         <Thanks app={props.app} />

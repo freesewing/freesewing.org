@@ -89,6 +89,7 @@ const App = props => {
     account: props.storageData.account || {},
     models: props.storageData.models || {},
     recipes: props.storageData.recipes || {},
+    impersonates: props.storageData.admin ? true : false,
     backend: useBackend({
       intl: props.intl,
       showNotification,
@@ -124,7 +125,9 @@ const App = props => {
       setImage,
       setUrl,
       setCrumbs,
-      setNext
+      setNext,
+      updateStorageData: props.updateStorageData,
+      storageData: props.storageData
     }
   }
 

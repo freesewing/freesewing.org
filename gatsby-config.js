@@ -6,7 +6,6 @@ const ignore = []
 for (let lang in languages) {
   if (lang !== process.env.GATSBY_LANGUAGE) ignore.push(`**/${lang}.md`)
 }
-console.log({ignore})
 
 const plugins = [
   {

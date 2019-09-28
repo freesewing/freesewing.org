@@ -1,6 +1,5 @@
 const path = require("path");
 const rootComponent = path.resolve("./src/components/app/index.js");
-const redirects = require("./redirects")
 module.exports = {
   mdxPages: function(pages, navigation, titles, createPage) {
     let promises = [];
@@ -21,7 +20,7 @@ module.exports = {
  	    }));
     }
 
-    return
+    return Promise.all(promises);
   },
   otherPages: function(pages, navigation, titles, createPage) {
     let promises = [];
@@ -43,7 +42,7 @@ module.exports = {
  	    }));
     }
 
-    return
+    return Promise.all(promises);
   },
   redirects: function(redirects, createRedirect) {
     let promises = [];

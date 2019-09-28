@@ -14,6 +14,11 @@ function useBackend(props) {
     if (callback) callback()
   }
 
+  const impersonateAccountInStorage = data => {
+    props.updateStorageData(JSON.parse(JSON.stringify(props.storageData)), 'admin')
+    saveAccountToStorage(data)
+  }
+
   const refreshAccount = (callback = false) => {
     backend
       .account(token)
@@ -400,6 +405,93 @@ function useBackend(props) {
       })
   }
 
+  const adminSearch = (query, saveResult) => {
+    props.startLoading()
+    backend.adminSearch(query, token)
+      .then(res => {
+        if (res.status === 200) {
+          props.stopLoading()
+          saveResult(res.data)
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
+  const adminSetPatronStatus = (data, saveResult) => {
+    props.startLoading()
+    backend.adminSetPatronStatus(data, token)
+      .then(res => {
+        props.stopLoading()
+        if (res.status === 200) {
+          saveResult(res.data)
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
+  const adminSetRole = (data, saveResult) => {
+    props.startLoading()
+    backend.adminSetRole(data, token)
+      .then(res => {
+        props.stopLoading()
+        if (res.status === 200) {
+          saveResult(res.data)
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
+  const adminUnfreeze = (data, saveResult) => {
+    props.startLoading()
+    backend.adminUnfreeze(data, token)
+      .then(res => {
+        props.stopLoading()
+        if (res.status === 200) {
+          saveResult(res.data)
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
+  const adminImpersonate = (data, saveResult) => {
+    props.startLoading()
+    backend.adminImpersonate(data, token)
+      .then(res => {
+        props.stopLoading()
+        if (res.status === 200) {
+          props.showNotification(
+            'success',
+            props.intl.formatMessage(
+              { id: 'app.goodToSeeYouAgain' },
+              { user: '@' + res.data.account.username }
+            )
+          )
+          impersonateAccountInStorage(res.data)
+        }
+      })
+      .catch(err => {
+        props.stopLoading()
+        console.log(err)
+        props.showNotification('error', err)
+      })
+  }
+
   return {
     createAccount,
     createModel,
@@ -423,7 +515,12 @@ function useBackend(props) {
     saveAccount,
     saveModel,
     saveRecipe,
-    signup
+    signup,
+    adminSearch,
+    adminSetPatronStatus,
+    adminSetRole,
+    adminUnfreeze,
+    adminImpersonate
   }
 }
 
