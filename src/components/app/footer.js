@@ -1,6 +1,6 @@
 import React from 'react'
 import FooterBase from '@freesewing/components/Footer'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const Footer = props => {
   const data = useStaticQuery(graphql`
@@ -19,25 +19,25 @@ const Footer = props => {
       }
     }
   `)
-  const styles = {
-    ul: {
-      margin: '2rem auto',
-      padding: 0,
-      maxWidth: '666px'
-    },
-    li: {
-      display: 'inline',
-      listStyleType: 'none'
-    },
-    img: {
-      width: '36px',
-      height: '36px',
-      borderRadius: '50%',
-      background: '#000',
-      margin: '2px',
-      border: '1px solid #fff6'
-    }
-  }
+  //const styles = {
+  //  ul: {
+  //    margin: '2rem auto',
+  //    padding: 0,
+  //    maxWidth: '666px'
+  //  },
+  //  li: {
+  //    display: 'inline',
+  //    listStyleType: 'none'
+  //  },
+  //  img: {
+  //    width: '36px',
+  //    height: '36px',
+  //    borderRadius: '50%',
+  //    background: '#000',
+  //    margin: '2px',
+  //    border: '1px solid #fff6'
+  //  }
+  //}
 
   const patrons = {}
   data.allFsPatron.edges.map(node => (patrons[node.node.patron.username] = node.node.patron))

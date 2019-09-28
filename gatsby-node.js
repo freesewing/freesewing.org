@@ -4,6 +4,7 @@ const utils = require("./gatsby/utils")
 const create = require("./gatsby/create")
 const nonMdxPages = require("./gatsby/non-mdx-pages")
 const duplicates = require("./gatsby/duplicates")
+const redirects = require("./gatsby/redirects")
 
 const slugFromFilePath = filePath => {
   return "/"+filePath.match(/[\/|\\]markdown[\/|\\]org[\/|\\](.*)/).pop().slice(0,-5)
@@ -43,6 +44,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const navigation = buildNavigation(mdxPages, titles)
   await create.mdxPages(mdxPages, navigation, titles, actions.createPage)
   await create.otherPages(nonMdxPages, navigation, titles, actions.createPage)
+  await create.redirects(redirects, actions.createRedirect)
 
   return
 };

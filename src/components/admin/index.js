@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
 import SearchHit from './hit'
@@ -15,7 +14,6 @@ const AdminIndex = props => {
   const search = e => props.app.backend.adminSearch(query, setUsers)
   const revert = () => {
     let data = props.app.frontend.storageData.admin
-    let handle = props.app.account.handle;
     if (data.account) props.app.frontend.updateStorageData(data.account, 'account')
     if (data.models)  props.app.frontend.updateStorageData(data.models, 'models')
     if (data.recipes) props.app.frontend.updateStorageData(data.recipes, 'recipes')
@@ -39,7 +37,7 @@ const AdminIndex = props => {
       <p style={{textAlign: 'center'}}>
         <Button onClick={search} variant="contained" color="primary" size="large">Search</Button>
       </p>
-      {users.map( user => <SearchHit user={user} search={search} app={props.app} />)}
+      {users.map( user => <SearchHit key={user.handle} user={user} search={search} app={props.app} />)}
     </React.Fragment>
 
   )
