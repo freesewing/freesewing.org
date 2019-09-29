@@ -6,6 +6,7 @@ import { info as patternInfo, measurements, options } from '@freesewing/pattern-
 import PatternMeasurements from '../docs/pattern-measurements'
 import PatternOptions from '../docs/pattern-options'
 import { useStaticQuery, graphql, Link } from 'gatsby'
+import LineDrawing from "@freesewing/components/LineDrawing"
 
 const PatternPage = props => {
   useEffect(() => {
@@ -174,6 +175,7 @@ const PatternPage = props => {
           >
             <FormattedMessage id="app.docs" />
           </Button>
+          <LineDrawing pattern={props.pattern} />
           <table style={styles.table}>
             <tbody>
               <tr>
