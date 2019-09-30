@@ -52,7 +52,7 @@ const App = props => {
   const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
   const [theme, setTheme] = useState(props.storageData.theme || 'light')
   const [menu, setMenu] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
   const [crumbs, setCrumbs] = useState(crumbsFromNavigation(props.location.pathname, props.pageContext.navigation, props.pageContext.titles))
   const [title, setTitle] = useState('FreeSewing')
@@ -199,7 +199,7 @@ const App = props => {
       </div>
     ),
     loading: (
-      <Loading loading={true}>
+      <Loading loading={true} init>
         <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
       </Loading>
     )
@@ -247,7 +247,7 @@ const App = props => {
               closeNotification={closeNotification}
               mobile={mobile}
             />
-            <Loading loading={loading} init/>
+            <Loading loading={loading}/>
             {mobile && layout !== 'Draft' ? (
               <div className="menu" onClick={app.frontend.closeNav}>
                 <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
