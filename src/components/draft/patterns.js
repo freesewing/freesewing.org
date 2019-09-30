@@ -14,7 +14,7 @@ import Penelope from '@freesewing/penelope'
 import Sandy from '@freesewing/sandy'
 import Shin from '@freesewing/shin'
 import Simon from '@freesewing/simon'
-import Simone from '@freesewing/simon'
+import Simone from '@freesewing/simone'
 import Sven from '@freesewing/sven'
 import Tamiko from '@freesewing/tamiko'
 import Theo from '@freesewing/theo'
@@ -39,6 +39,7 @@ const patterns = {
   Sandy,
   Shin,
   Simon,
+  Simone,
   Sven,
   Tamiko,
   Theo,
