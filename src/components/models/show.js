@@ -337,8 +337,7 @@ const ShowModel = ({ app, model }) => {
             <td>Actual</td>
             <td></td>
           </tr>
-          {currentModel &&
-            currentModel.measurements &&
+          {currentModel.measurements &&
             Object.keys(currentModel.measurements).map(m => {
               let value = currentModel.measurements[m]
 
