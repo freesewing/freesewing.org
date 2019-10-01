@@ -172,11 +172,29 @@ const ShowModel = ({ app, model }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div style={styles.avatarWrapper}>
         <Avatar data={currentModel} />
       </div>
-      {!currentModel.notes ? (
+      {currentModel.notes ? (
+        <>
+          <h5 style={styles.heading} data-test="notes-title">
+            <FormattedMessage id="app.notes" />
+          </h5>
+          <Markdown source={currentModel.notes} data-test="notes" />
+          <p style={{ textAlign: 'right' }}>
+            <IconButton
+              data-test="edit-notes"
+              color="primary"
+              style={styles.iconButton}
+              size="medium"
+              href={'/models/' + model + '/notes'}
+            >
+              <EditIcon fontSize="inherit" style={styles.icon} />
+            </IconButton>
+          </p>
+        </>
+      ) : (
         <h5 style={styles.heading} data-test="notes-title">
           <span style={{ opacity: '0.5' }}>
             <FormattedMessage id="app.notes" />
@@ -191,24 +209,6 @@ const ShowModel = ({ app, model }) => {
             <AddIcon fontSize="inherit" style={styles.icon} />
           </IconButton>
         </h5>
-      ) : (
-        <React.Fragment>
-          <h5 style={styles.heading} data-test="notes-title">
-            <FormattedMessage id="app.notes" />
-          </h5>
-          <Markdown source={currentModel.notes || ''} data-test="notes" />
-          <p style={{ textAlign: 'right' }}>
-            <IconButton
-              data-test="edit-notes"
-              color="primary"
-              style={styles.iconButton}
-              size="medium"
-              href={'/models/' + model + '/notes'}
-            >
-              <EditIcon fontSize="inherit" style={styles.icon} />
-            </IconButton>
-          </p>
-        </React.Fragment>
       )}
 
       <ModelGraph model={currentModel} intl={app.frontend.intl} />
@@ -372,7 +372,7 @@ const ShowModel = ({ app, model }) => {
           <FormattedMessage id="app.remove" />
         </Button>
       </p>
-    </React.Fragment>
+    </>
   )
 }
 
