@@ -95,15 +95,15 @@ const EditMeasurement = props => {
   if (currentModel.measurements.neckCircumference) {
     measurementEstimate =
       neckstimate(
-        currentModel.measurements.neckCircumference || 360,
+        currentModel.measurements.neckCircumference,
         currentMeasurement,
         currentModel.breasts
       ) / 10
     measurementInRange =
       measurementDiffers(
-        currentModel.measurements.neckCircumference || 360,
+        currentModel.measurements.neckCircumference,
         currentMeasurement,
-        value,
+        value * 10,
         currentModel.breasts
       ) <= 2
 

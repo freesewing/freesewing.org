@@ -146,7 +146,7 @@ const ShowModel = ({ app, model }) => {
               {measurementInRange ? (
                 <ValidIcon size="small" style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon size="small" style={{ color: 'orange' }} data-test="invalid" />
+                <InvalidIcon size="small" style={{ color: 'yellow' }} data-test="invalid" />
               )}
             </>
           )}
@@ -348,13 +348,13 @@ const ShowModel = ({ app, model }) => {
                   m,
                   currentModel.breasts
                 )
-                const measurementInRange = true
-                // measurementDiffers(
-                //   currentModel.measurements.neckCircumference || 360,
-                //   m,
-                //   value,
-                //   currentModel.breasts
-                // ) <= 2
+                const measurementInRange =
+                  measurementDiffers(
+                    currentModel.measurements.neckCircumference || 360,
+                    m,
+                    value,
+                    currentModel.breasts
+                  ) <= 2
 
                 return measurementRow(m, value, measurementEstimate, measurementInRange)
               } else return null
