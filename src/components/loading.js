@@ -1,5 +1,6 @@
 import React from 'react'
 import Spinner from '@freesewing/components/Spinner'
+import { FormattedMessage } from 'react-intl'
 
 const Loading = props => {
   if (!props.loading) return null
@@ -11,7 +12,7 @@ const Loading = props => {
       left: 0,
       width: '100%',
       height: '100vh',
-      background: props.opaque ? '#212529' : '#0009',
+      background: props.init ? '#000b' : '#0009',
       zIndex: 15,
       display: 'flex',
       alignContent: 'center',
@@ -21,7 +22,14 @@ const Loading = props => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center'
+    },
+    msg: {
+      color: '#fff',
+      textAlign: 'center',
+      margin: "-40px 0 0",
+      padding: 0
     }
+
   }
 
   return (
@@ -29,6 +37,11 @@ const Loading = props => {
     <div id="loader" style={style.wrapper}>
       <div className="dark" style={style.inner}>
         <Spinner size={400} />
+        <h5 style={style.msg}>
+          <FormattedMessage id='app.oneMomentPlease' />
+          <br />
+          <FormattedMessage id='app.loadingMagic' />
+        </h5>
       </div>
     </div>
     {props.children}

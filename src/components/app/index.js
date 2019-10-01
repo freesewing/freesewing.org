@@ -89,6 +89,7 @@ const App = props => {
     account: props.storageData.account || {},
     models: props.storageData.models || {},
     recipes: props.storageData.recipes || {},
+    impersonates: props.storageData.admin ? true : false,
     backend: useBackend({
       intl: props.intl,
       showNotification,
@@ -124,7 +125,9 @@ const App = props => {
       setImage,
       setUrl,
       setCrumbs,
-      setNext
+      setNext,
+      updateStorageData: props.updateStorageData,
+      storageData: props.storageData
     }
   }
 
@@ -196,7 +199,7 @@ const App = props => {
       </div>
     ),
     loading: (
-      <Loading loading={true} opaque>
+      <Loading loading={true} init>
         <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
       </Loading>
     )
@@ -244,7 +247,7 @@ const App = props => {
               closeNotification={closeNotification}
               mobile={mobile}
             />
-            <Loading loading={loading} />
+            <Loading loading={loading}/>
             {mobile && layout !== 'Draft' ? (
               <div className="menu" onClick={app.frontend.closeNav}>
                 <MainMenu app={app} pageContext={props.pageContext} uri={uri} />

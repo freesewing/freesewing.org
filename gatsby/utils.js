@@ -18,14 +18,12 @@ const pageTitle = (slug, page) => {
       }
       if (chunks.length === 6) {
         // Perhaps a pattern subpage
-        for (let sub of ['options', 'measurements', 'needs', 'fabric', 'cutting', 'instructions']) {
-          if(chunks[4] === 'options') return translate('app.patternOptions')
-          if(chunks[4] === 'measurements') return translate('app.requiredMeasurements')
-          if(chunks[4] === 'needs') return translate('app.whatYouNeed')
-          if(chunks[4] === 'fabric') return translate('app.fabricOptions')
-          if(chunks[4] === 'cutting') return translate('app.cutting')
-          if(chunks[4] === 'instructions') return translate('app.instructions')
-        }
+        if(chunks[4] === 'options') return translate('app.patternOptions')
+        if(chunks[4] === 'measurements') return translate('app.requiredMeasurements')
+        if(chunks[4] === 'needs') return translate('app.whatYouNeed')
+        if(chunks[4] === 'fabric') return translate('app.fabricOptions')
+        if(chunks[4] === 'cutting') return translate('app.cutting')
+        if(chunks[4] === 'instructions') return translate('app.instructions')
       }
     }
   }

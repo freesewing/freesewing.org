@@ -42,7 +42,7 @@ const BlogYearTemplate = props => {
   const data = useStaticQuery(graphql`
     {
       allMdx(
-        filter: { fileAbsolutePath: { regex: "//blog/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {

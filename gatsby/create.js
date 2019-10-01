@@ -1,6 +1,5 @@
 const path = require("path");
 const rootComponent = path.resolve("./src/components/app/index.js");
-const redirects = require("./redirects")
 module.exports = {
   mdxPages: function(pages, navigation, titles, createPage) {
     let promises = [];
@@ -12,7 +11,7 @@ module.exports = {
           node: pages[slug],
           slug,
           navigation,
-          titles,
+          titles
         }
       }
 	  	promises.push(new Promise((resolve, reject) => {
@@ -21,7 +20,7 @@ module.exports = {
  	    }));
     }
 
-    return
+    return Promise.all(promises);
   },
   otherPages: function(pages, navigation, titles, createPage) {
     let promises = [];
@@ -33,8 +32,7 @@ module.exports = {
           node: { frontmatter: pages[slug].frontmatter },
           slug,
           navigation,
-          titles,
-          newBuild: true
+          titles
         }
       }
       if (pages[slug].matchPath) data.matchPath = pages[slug].matchPath
@@ -44,7 +42,7 @@ module.exports = {
  	    }));
     }
 
-    return
+    return Promise.all(promises);
   },
   redirects: function(redirects, createRedirect) {
     let promises = [];
