@@ -333,8 +333,8 @@ const ShowModel = ({ app, model }) => {
         <tbody>
           <tr>
             <td></td>
-            <td>Estimate</td>
-            <td>Actual</td>
+            <td><FormattedMessage id="app.estimate"/></td>
+            <td><FormattedMessage id="app.actual"/></td>
             <td></td>
           </tr>
           {currentModel.measurements &&
