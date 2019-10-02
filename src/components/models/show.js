@@ -146,7 +146,7 @@ const ShowModel = ({ app, model }) => {
               {measurementInRange ? (
                 <ValidIcon size="small" style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon size="small" style={{ color: 'yellow' }} data-test="invalid" />
+                <InvalidIcon size="small" style={{ color: 'orange' }} data-test="invalid" />
               )}
             </>
           )}
