@@ -130,7 +130,7 @@ const ShowModel = ({ app, model }) => {
         <td style={{ ...styles.title, ...missing }}>
           <FormattedMessage id={'measurements.' + name} />
         </td>
-        <td style={{ ...styles.cell, ...missing }}>
+        <td style={{ ...styles.cell, ...missing, textAlign: 'right' }}>
           {measurementEstimate && (
             <span
               dangerouslySetInnerHTML={{
@@ -139,14 +139,14 @@ const ShowModel = ({ app, model }) => {
             />
           )}
         </td>
-        <td style={{ ...styles.cell, ...missing }}>
+        <td style={{ ...styles.cell, ...missing, textAlign: 'right' }}>
           {value && (
             <>
               <span dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units) }} />{' '}
               {measurementInRange ? (
-                <ValidIcon size="small" style={{ color: '#40c057' }} data-test="valid" />
+                <ValidIcon size="small" style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="valid" />
               ) : (
-                <InvalidIcon size="small" style={{ color: 'orange' }} data-test="invalid" />
+                <InvalidIcon size="small" style={{ color: 'orange', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="invalid" />
               )}
             </>
           )}
@@ -333,8 +333,8 @@ const ShowModel = ({ app, model }) => {
         <tbody>
           <tr>
             <td></td>
-            <td><FormattedMessage id="app.estimate"/></td>
-            <td><FormattedMessage id="app.actual"/></td>
+            <td style={{textAlign: 'right'}}><FormattedMessage id="app.estimate"/></td>
+            <td style={{textAlign: 'right'}}><FormattedMessage id="app.actual"/></td>
             <td></td>
           </tr>
           {currentModel.measurements &&
