@@ -102,6 +102,8 @@
     "cypress": "3.4.1",
     "eslint": "6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-cypress": "^2.6.1",
     "eslint-plugin-import": "^2.18.2"
   },
   "keywords": [

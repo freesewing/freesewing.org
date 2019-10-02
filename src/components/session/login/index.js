@@ -18,7 +18,7 @@ const Login = ({ app, location }) => {
 
   const handlePasswordReset = evt => {
     evt.preventDefault()
-    app.backend.recoverAccount(evt.target[1].value)
+    app.backend.recoverAccount(evt.target[0].value)
   }
 
   const formProps = {
