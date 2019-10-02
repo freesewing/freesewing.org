@@ -104,7 +104,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
     "eslint-plugin-cypress": "^2.6.1",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "start-server-and-test": "^1.10.3"
   },
   "keywords": [
     "gatsby"
@@ -114,22 +115,14 @@
   "scripts": {
     "clean": "gatsby clean",
     "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
-    "testci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
-    "testcli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE",
-    "test:homepage": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/homepage.spec.js'",
-    "test:signup": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/signup.spec.js'",
-    "test:login": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/login.spec.js'",
-    "test:account": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/account.spec.js'",
-    "test:settings": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/settings.spec.js'",
-    "test:rights": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/rights.spec.js'",
-    "test:patterns": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/patterns.spec.js'",
-    "test:measurements": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/measurements.spec.js'",
-    "test:models": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/models.spec.js'",
-    "test:core": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/core.spec.js'",
-    "test:showcase": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/showcase.spec.js'",
-    "test:blog": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/blog.spec.js'",
+    "test:ci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
+    "test:cli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "start:api": "node backend/build/main.js",
+    "serve:website-and-api": "start-test start:api 3000 serve",
+    "start-and-test": "start-test serve:website-and-api 9000 test:ci"
   }
 }
