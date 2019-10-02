@@ -1,10 +1,5 @@
 import React from 'react'
-import { IntlProvider, addLocaleData } from 'react-intl'
-import en from 'react-intl/locale-data/en'
-import de from 'react-intl/locale-data/de'
-import es from 'react-intl/locale-data/es'
-import fr from 'react-intl/locale-data/fr'
-import nl from 'react-intl/locale-data/nl'
+import { IntlProvider } from 'react-intl'
 import { strings } from '@freesewing/i18n'
 
 const withLanguage = (WrappedComponent, lang = 'en', store = false) => {
@@ -20,8 +15,6 @@ const withLanguage = (WrappedComponent, lang = 'en', store = false) => {
     }
 
     render() {
-      const localeData = { en, de, es, fr, nl }
-      addLocaleData(localeData[this.state.language])
       return (
         <IntlProvider locale={this.state.language} messages={strings[this.state.language]}>
           <WrappedComponent

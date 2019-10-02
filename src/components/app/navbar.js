@@ -3,6 +3,7 @@ import NavbarBase from '@freesewing/components/Navbar'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
+import { FormattedMessage } from 'react-intl'
 
 const Navbar = props => {
   const navs = {
@@ -24,6 +25,14 @@ const Navbar = props => {
       }
     },
     right: {
+      create: {
+        type: 'link',
+        href: '/create',
+        text: [
+          <FormattedMessage id='app.newPattern' values={{pattern: props.app.frontend.intl.formatMessage({id: 'app.pattern'})}} />,
+          <span>&nbsp;✨</span>
+        ]
+      },
       account: props.app.account.username
         ? { type: 'link', href: '/account', text: 'app.account' }
         : { type: 'link', href: '/login', text: 'app.logIn' },
@@ -53,7 +62,10 @@ const Navbar = props => {
     }
   }
   if (props.app.account.username) delete navs.right.signup
-  else delete navs.right.logout
+  else {
+    delete navs.right.create
+    delete navs.right.logout
+  }
 
   return <NavbarBase navs={navs} home="/" />
 }

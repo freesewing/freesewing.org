@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'
 import MeasurementsImages from '../measurements/images'
 import DocsIndexPage from '../docs/'
 import PatternPage from '../docs/pattern'
 import { list as patterns, options } from '@freesewing/pattern-info'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import PatternOptions from '../docs/pattern-options'
 import PatternMeasurements from '../docs/pattern-measurements'
 import { measurements } from '@freesewing/models'
@@ -17,7 +17,83 @@ const DocumentationPage = props => {
     props.app.frontend.setTitle(noTitle ? noTitle : props.pageContext.node.frontmatter.title)
     props.app.frontend.setDescription(props.pageContext.node.excerpt)
   }, [props.slug])
-  if (props.slug === '/docs') return <DocsIndexPage {...props} />
+  const markdownDocs = useStaticQuery(graphql`
+    {
+      about: allMdx(
+        filter: { fileAbsolutePath: { regex: "//docs/about/[^.]*/[a-z]{2}.md/" } }
+        sort: { fields: [frontmatter___title], order: DESC }
+      ) {
+        edges {
+          node {
+            parent {
+              ... on File {
+                relativeDirectory
+              }
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+      sewing: allMdx(
+        filter: { fileAbsolutePath: { regex: "//docs/sewing/[^.]*/[a-z]{2}.md/" } }
+        sort: { fields: [frontmatter___title], order: DESC }
+      ) {
+        edges {
+          node {
+            parent {
+              ... on File {
+                relativeDirectory
+              }
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+      draft: allMdx(
+        filter: { fileAbsolutePath: { regex: "//docs/draft/[^.]*/[a-z]{2}.md/" } }
+        sort: { fields: [frontmatter___title], order: DESC }
+      ) {
+        edges {
+          node {
+            parent {
+              ... on File {
+                relativeDirectory
+              }
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    }
+  `)
+  const docs = {}
+  for (let topic of ['about', 'sewing', 'draft']) {
+    docs[topic] = {}
+    for (let node of markdownDocs[topic].edges) {
+      docs[topic][node.node.frontmatter.title] = '/' + node.node.parent.relativeDirectory
+    }
+  }
+  const sortMeasurements = measurements => {
+    let sorted = []
+    let translated = {}
+    for (let m of measurements) {
+      let translation = props.app.frontend.intl.messages['measurements' + m] || m
+      translated[translation] = m
+    }
+    for (let m of Object.keys(translated).sort()) sorted.push(translated[m])
+
+    return Object.values(translated)
+  }
+  const measurementsList = sortMeasurements(measurements.womenswear)
+
+  if (props.slug === '/docs') return <DocsIndexPage {...props} docs={docs} measurements={measurementsList}/>
+
   const components = {
     Note: ({ children }) => {
       return <Blockquote type="note">{children}</Blockquote>
@@ -47,6 +123,19 @@ const DocumentationPage = props => {
           <Link to={'/docs/measurements/' + m.toLowerCase()}>
             <FormattedMessage id={'measurements.' + m} />
           </Link>
+        </li>
+      )
+    }
+    prefix = <ul>{children}</ul>
+  }
+  else if (props.slug === '/docs/sewing') {
+    //console.log(docs.sewing)
+    let children = []
+    for (let title of Object.keys(docs.sewing).sort()) {
+      let to = docs.sewing[title]
+      children.push(
+        <li key={to}>
+          <Link to={to}>{title}</Link>
         </li>
       )
     }
@@ -101,13 +190,14 @@ const DocumentationPage = props => {
       if (option.toLowerCase() === chunks[5]) noTitle = props.app.frontend.intl.formatMessage({id:`options.${chunks[3]}.${option}.title`})
     }
   }
+
   return (
     <React.Fragment>
       {prefix}
-      {props.pageContext.node ? (
+      {props.pageContext.node.body ? (
         <section data-test="mdx">
           <MDXProvider components={components}>
-            <MDXRenderer>{props.pageContext.node.code.body}</MDXRenderer>
+            <MDXRenderer>{props.pageContext.node.body}</MDXRenderer>
           </MDXProvider>
         </section>
       ) : null}

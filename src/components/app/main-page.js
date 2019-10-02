@@ -1,6 +1,7 @@
 import React from 'react'
 import LanguagePage from '../pages/language'
 import SearchPage from '../pages/search'
+import ErrorPage from '../pages/error'
 import LoginPage from '../session/login/'
 import OauthPage from '../session/login/callback'
 import LogoutPage from '../session/logout'
@@ -23,6 +24,7 @@ import PatronsPage from '../patrons/'
 import UsersPage from '../users/'
 import HomePage from '../pages/homepage/'
 import PatternsPage from '../patterns/'
+import AdminPage from '../admin/'
 import NotFound from '../pages/404'
 
 const MainPage = props => {
@@ -38,6 +40,8 @@ const MainPage = props => {
       return <HomePage {...pageProps} />
     case '/language':
       return <LanguagePage {...pageProps} />
+    case '/error':
+      return <ErrorPage {...pageProps} />
     case '/search':
       return <SearchPage {...pageProps} />
     case '/login':
@@ -55,9 +59,9 @@ const MainPage = props => {
     case '/create':
     case '/recreate':
       return <DraftPage {...pageProps} mainMenu={props.mainMenu} userMenu={props.userMenu} />
-    case '/blog':
+    case '/blog/':
       return <BlogPage {...pageProps} />
-    case '/showcase':
+    case '/showcase/':
       return <ShowcasePage {...pageProps} />
     case '/showcase/patterns':
       return <ShowcaseCategoryPage {...pageProps} category={props.uri.split('/').pop()} />
@@ -86,6 +90,7 @@ const MainPage = props => {
         return <DocumentationPage {...pageProps} />
       else if (props.pageContext.slug.slice(0, 10) === '/patterns/')
         return <PatternsPage {...pageProps} />
+      else if (props.pageContext.slug.slice(0, 6) === '/admin') return <AdminPage {...pageProps} />
 
       return <NotFound {...pageProps} />
   }

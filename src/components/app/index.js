@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet'
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
 import withLanguage from '../withLanguage'
@@ -31,8 +31,20 @@ import UserMenu from '../user-menu'
 import VisitorMenu from '../visitor-menu'
 import MainPage from './main-page'
 import getLayout from './getLayout'
+import bugsnag from '@bugsnag/js'
+import bugsnagReact from '@bugsnag/plugin-react'
+import ErrorFallback from './error-fallback'
+import crumbsFromNavigation from './crumbsFromNavigation'
 
 /* This component is the root component for all pages */
+const bugsnagClient = bugsnag({
+  apiKey: '12eebb132933c355271140dcdc32bc20',
+  collectUserIp: false,
+  releaseStage: process.env.GATSBY_CONTEXT,
+  notifyReleaseStages: [ 'production' ],
+})
+bugsnagClient.use(bugsnagReact, React)
+const ErrorBoundary = bugsnagClient.getPlugin('react')
 
 const App = props => {
   // React hooks
@@ -42,13 +54,15 @@ const App = props => {
   const [menu, setMenu] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
-  const [crumbs, setCrumbs] = useState(props.pageContext.crumbs || false)
+  const [crumbs, setCrumbs] = useState(crumbsFromNavigation(props.location.pathname, props.pageContext.navigation, props.pageContext.titles))
   const [title, setTitle] = useState('FreeSewing')
   const [description, setDescription] = useState(false)
-  const [image, setImage] = useState(`https://freesewing.org/share/${process.env.GATSBY_LANGUAGE}.wide.jpg`)
+  const [image, setImage] = useState(
+    `https://freesewing.org/share/${process.env.GATSBY_LANGUAGE}.wide.jpg`
+  )
   const [url, setUrl] = useState(`https://${process.env.GATSBY_LANGUAGE}.freesewing.org/`)
   const [next, setNext] = useState(false)
-  const [pageLayout, setPageLayout] = useState('default')
+  const [pageLayout, setPageLayout] = useState('loading')
   useEffect(() => {
     setPageLayout(getLayout(props.location.pathname))
   }, [props.location.pathname])
@@ -75,6 +89,7 @@ const App = props => {
     account: props.storageData.account || {},
     models: props.storageData.models || {},
     recipes: props.storageData.recipes || {},
+    impersonates: props.storageData.admin ? true : false,
     backend: useBackend({
       intl: props.intl,
       showNotification,
@@ -110,8 +125,10 @@ const App = props => {
       setImage,
       setUrl,
       setCrumbs,
-      setNext
-    },
+      setNext,
+      updateStorageData: props.updateStorageData,
+      storageData: props.storageData
+    }
   }
 
   const uri =
@@ -139,7 +156,7 @@ const App = props => {
   let layout = getLayout(props.location.pathname)
   const layouts = {
     home: <MainPage app={app} pageContext={props.pageContext} slug={props.slug} uri={uri} />,
-    draft:(
+    draft: (
       <MainPage
         app={app}
         pageContext={props.pageContext}
@@ -180,68 +197,73 @@ const App = props => {
           </aside>
         )}
       </div>
+    ),
+    loading: (
+      <Loading loading={true} init>
+        <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
+      </Loading>
     )
   }
   // Render
   let wrapperClasses = theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (menu) wrapperClasses += ' show-menu'
-  wrapperClasses += ' layout'+pageLayout
+  wrapperClasses += ' layout' + pageLayout
 
   return (
-    <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
-      <Helmet>
-        <title>
-          { title }
-        </title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
-        <meta property="og:url" content={url} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
-      <div className={wrapperClasses}>
-        <AppContext.Provider value={app}>
-          {mobile ? (
-            <React.Fragment>
-              <Fab
-                color="primary"
-                className="fab primary only-xs"
-                aria-label="Menu"
-                onClick={app.frontend.toggleMenu}
-              >
-                {menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
-              </Fab>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
+          <meta property="og:url" content={url} />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
+        <div className={wrapperClasses}>
+          <AppContext.Provider value={app}>
+            {mobile ? (
+              <React.Fragment>
+                <Fab
+                  color="primary"
+                  className="fab primary only-xs"
+                  aria-label="Menu"
+                  onClick={app.frontend.toggleMenu}
+                >
+                  {menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
+                </Fab>
+                <Navbar app={app} />
+              </React.Fragment>
+            ) : (
               <Navbar app={app} />
-            </React.Fragment>
-          ) : (
-            <Navbar app={app} />
-          )}
-          {layouts[pageLayout]}
-          <Notification
-            notification={notification}
-            closeNotification={closeNotification}
-            mobile={mobile}
-          />
-          <Loading loading={loading} />
-          {mobile && layout !== 'Draft' ? (
-            <div className="menu" onClick={app.frontend.closeNav}>
-              <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
-              {app.account.username ? (
-                <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
-              ) : (
-                <VisitorMenu />
-              )}
-              {mobileIcons}
-            </div>
-          ) : null}
-        </AppContext.Provider>
-        <Footer language={props.language} />
-      </div>
-    </MuiThemeProvider>
+            )}
+            {layouts[pageLayout]}
+            <Notification
+              notification={notification}
+              closeNotification={closeNotification}
+              mobile={mobile}
+            />
+            <Loading loading={loading}/>
+            {mobile && layout !== 'Draft' ? (
+              <div className="menu" onClick={app.frontend.closeNav}>
+                <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
+                {app.account.username ? (
+                  <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
+                ) : (
+                  <VisitorMenu />
+                )}
+                {mobileIcons}
+              </div>
+            ) : null}
+          </AppContext.Provider>
+          <Footer language={props.language} />
+        </div>
+      </MuiThemeProvider>
+    </ErrorBoundary>
   )
 }
 

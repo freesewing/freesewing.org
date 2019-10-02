@@ -8,7 +8,7 @@ const ShowcaseIndexTemplate = props => {
   const data = useStaticQuery(graphql`
     {
       allMdx(
-        filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/en.md/" } }
+        filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
@@ -27,7 +27,7 @@ const ShowcaseIndexTemplate = props => {
               img {
                 childImageSharp {
                   fluid(maxWidth: 400) {
-                    base64
+                    src
                     srcSet
                     sizes
                     presentationWidth
@@ -92,7 +92,7 @@ const ShowcaseIndexTemplate = props => {
               >
                 <figure style={style.figure}>
                   <img
-                    src={img.base64}
+                    src={img.src}
                     style={{ width: '100%' }}
                     srcSet={img.srcSet}
                     alt={frontmatter.caption}

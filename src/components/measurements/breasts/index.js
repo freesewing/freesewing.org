@@ -10,6 +10,7 @@ import highpointshouldertobust from './highpointshouldertobust.svg'
 import hipscircumference from './hipscircumference.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
 import inseam from './inseam.svg'
+import kneecircumference from './kneecircumference.svg'
 import naturalwaist from './naturalwaist.svg'
 import naturalwaisttofloor from './naturalwaisttofloor.svg'
 import naturalwaisttohip from './naturalwaisttohip.svg'
@@ -40,6 +41,7 @@ export default {
   hipscircumference,
   hipstoupperleg,
   inseam,
+  kneecircumference,
   naturalwaist,
   naturalwaisttofloor,
   naturalwaisttohip,

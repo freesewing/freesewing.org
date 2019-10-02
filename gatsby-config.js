@@ -1,7 +1,16 @@
 const searchData = require('./src/algolia')
+const languages = require('@freesewing/i18n').languages
 require('dotenv').config()
 
+const ignore = []
+for (let lang in languages) {
+  if (lang !== process.env.GATSBY_LANGUAGE) ignore.push(`**/${lang}.md`)
+}
+
 const plugins = [
+  // Automatically restores your cache and caches new files within the Netlify cache folder.
+  //   To reset the cache, hit the Clear build cache checkbox in the Netlify app.
+  'gatsby-plugin-netlify-cache',
   {
     resolve: 'gatsby-plugin-nprogress',
     options: {
@@ -12,11 +21,12 @@ const plugins = [
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/markdown/org`,
-      name: 'markdown'
+      name: 'markdown',
+      ignore: ignore
     }
   },
   {
-    resolve: 'gatsby-mdx',
+    resolve: 'gatsby-plugin-mdx',
     options: {
       extensions: ['.mdx', '.md'],
       // Plugins workaround. See: https://github.com/gatsbyjs/gatsby/issues/15486
@@ -53,6 +63,18 @@ const plugins = [
   'gatsby-plugin-styled-components',
   'gatsby-plugin-catch-links',
   'gatsby-plugin-react-helmet',
+  {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `FreeSewing`,
+      short_name: `FreeSewing`,
+      start_url: `/`,
+      background_color: `#ffffff`,
+      theme_color: `#212529`,
+      display: `standalone`,
+      icon: `src/images/logo.svg`
+    }
+  },
   'gatsby-plugin-netlify'
 ]
 
