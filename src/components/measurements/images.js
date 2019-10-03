@@ -10,7 +10,8 @@ const MeasurementImages = props => {
   const { measurement, intl, breasts } = props
 
   // Set tab to 0 with model that has breasts or 1 for no breasts
-  const [tab, setTab] = useState(breasts ? 0 : 1)
+  // Default to breasts
+  const [tab, setTab] = useState(breasts == false ? 1 : 0)
   const toggleTab = () => setTab(tab === 0 ? 1 : 0)
 
   const seated = ['seatdepth']
