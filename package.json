@@ -99,6 +99,8 @@
     "yaml": "1.6.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.2.0",
+    "@commitlint/config-conventional": "8.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "cypress": "3.4.1",
     "eslint": "6.5.1",
