@@ -128,36 +128,6 @@ const patternOptions = {
   '/docs/patterns/brian/options/sleevecaptopfactory/': brianSleevecap,
   '/docs/patterns/brian/options/sleevewidthguarantee/': brianSleevecap,
 }
-//  // Carton inherits all options from Carlita
-//  '/docs/patterns/carlita/options/acrossbackfactor/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/armholedepthfactor/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/beltwidth/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/bicepsease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/buttonspacinghorizontal/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/chestease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/chestpocketangle/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/chestpocketheight/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/chestpocketplacement/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/chestpocketwidth/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/collarflare/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/collarheight/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/collarspread/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/cuffease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/cufflength/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/hipsease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/length/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/pocketflapradius/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/pocketheight/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/pocketplacementhorizontal/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/pocketplacementvertical/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/pocketwidth/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/seatease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/shoulderease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/sleevebend/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/sleevecapease/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/sleevelengthbonus/': carlitaToCarlton,
-//  '/docs/patterns/carlita/options/waistease/': carlitaToCarlton,
-//}
 // Carton inherits (almost) all options from Carlita
 for (let option of options.carlita) {
   if (option !== "contour") {
@@ -190,7 +160,6 @@ const getDuplicates = () => {
   let dupes = {}
   for (let slug in patternOptions) {
     dupes[slug] = []
-    console.log(slug)
     for (let insert of patternOptions[slug].replace) {
       dupes[slug].push(slug.replace(patternOptions[slug].find, insert))
     }
