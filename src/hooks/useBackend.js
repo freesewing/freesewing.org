@@ -166,6 +166,16 @@ function useBackend(props) {
       .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
   }
 
+  const resendActivationEmail = (email, language, setResult) => {
+    backend
+      .resendActivationEmail(email, language)
+      .then(res => {
+        if (res.status === 200) setResult(true)
+        else setResult(false, res)
+      })
+      .catch((err, foo) => setResult(false, { error: err, data: err.response.data }))
+  }
+
   const createAccount = (confirmId, consent, setResult) => {
     props.startLoading()
     backend
@@ -507,6 +517,7 @@ function useBackend(props) {
     loginOauth,
     logout,
     recoverAccount,
+    resendActivationEmail,
     restrictAccount,
     removeModel,
     removeRecipe,
