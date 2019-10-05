@@ -106,6 +106,7 @@ const Account = props => {
       break
     case '/account/restrict':
       main = <AccountRestrict app={props.app} />
+      break
     case '/account/remove':
       main = <AccountRemove app={props.app} />
       break
