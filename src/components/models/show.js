@@ -14,7 +14,8 @@ import Blockquote from '@freesewing/components/Blockquote'
 import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import ValidIcon from '@material-ui/icons/CheckCircle'
-import InvalidIcon from '@material-ui/icons/Warning'
+import InvalidIcon from '@material-ui/icons/Help'
+import { Link } from "gatsby"
 
 const ShowModel = ({ app, model }) => {
   const styles = {
@@ -37,10 +38,20 @@ const ShowModel = ({ app, model }) => {
       overflow: 'hidden',
       textOverflow: 'ellipsis'
     },
-    buttonCell: {
-      padding: 0,
+    valueCell: {
+      padding: '1rem',
       borderTop: '1px solid #9993',
-      verticalAlign: 'middle'
+      verticalAlign: 'top',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      textAlign: 'right',
+      width: '150px'
+    },
+    buttonCell: {
+      padding: '0 0 0 1rem',
+      borderTop: '1px solid #9993',
+      verticalAlign: 'middle',
+      width: '48px'
     },
     title: {
       padding: '1rem',
@@ -129,27 +140,25 @@ const ShowModel = ({ app, model }) => {
       <tr className="hover">
         <td style={{ ...styles.title, ...missing }}>
           <FormattedMessage id={'measurements.' + name} />
+          {measurementInRange ? (
+            <ValidIcon size="small" style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="valid" />
+          ) : (
+            <Link to="/docs/about/your-measurements/estimates/">
+              <InvalidIcon size="small" style={{ fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="invalid" />
+            </Link>
+          )}
         </td>
-        <td style={{ ...styles.cell, ...missing, textAlign: 'right' }}>
+        <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
           {measurementEstimate && (
             <span
               dangerouslySetInnerHTML={{
-                __html: formatMm(Math.round(measurementEstimate), currentModel.units)
+                __html: formatMm(measurementEstimate, currentModel.units, 'html')
               }}
             />
           )}
         </td>
-        <td style={{ ...styles.cell, ...missing, textAlign: 'right' }}>
-          {value && (
-            <>
-              <span dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units) }} />{' '}
-              {measurementInRange ? (
-                <ValidIcon size="small" style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="valid" />
-              ) : (
-                <InvalidIcon size="small" style={{ color: 'orange', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="invalid" />
-              )}
-            </>
-          )}
+        <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
+          {value && <b><span dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units, 'html') }} /></b>}
         </td>
 
         <td style={styles.buttonCell}>
@@ -332,10 +341,10 @@ const ShowModel = ({ app, model }) => {
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
-            <td></td>
-            <td style={{textAlign: 'right'}}><FormattedMessage id="app.estimate"/></td>
-            <td style={{textAlign: 'right'}}><FormattedMessage id="app.actual"/></td>
-            <td></td>
+            <td style={{textAlign: 'right', padding: 'calc(1rem + 20px)'}}><b><FormattedMessage id="app.name"/></b></td>
+            <td style={styles.valueCell}><FormattedMessage id="app.estimate"/></td>
+            <td style={styles.valueCell}><b><FormattedMessage id="app.actual"/></b></td>
+            <td style={styles.buttonCell}></td>
           </tr>
           {currentModel.measurements &&
             Object.keys(currentModel.measurements).map(m => {

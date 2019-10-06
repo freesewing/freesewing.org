@@ -15,10 +15,8 @@ import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
 
 const EditMeasurement = props => {
-  console.log(props)
   const currentModel = props.app.models[props.model]
   const currentMeasurement = props.measurement
-  console.log(currentModel)
 
   if (!currentModel.measurements) {
     currentModel.measurements = {}
