@@ -8,8 +8,6 @@
   "repository": "https://github.com/freesewing/freesewing.org",
   "prettier": "@freesewing/prettier-config",
   "dependencies": {
-    "@bugsnag/js": "^6.4.0",
-    "@bugsnag/plugin-react": "^6.4.0",
     "@freesewing/aaron": "2.1.0-2.1.0-beta.0.0",
     "@freesewing/benjamin": "2.1.0-2.1.0-beta.0.0",
     "@freesewing/bent": "2.1.0-2.1.0-beta.0.0",
