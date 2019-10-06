@@ -8,26 +8,31 @@ import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
 import formatMm from '@freesewing/utils/formatMm'
 import { useStaticQuery, graphql } from 'gatsby'
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import MeasurementsImages from '../measurements/images'
+import neckstimate from '@freesewing/utils/neckstimate'
+import measurementDiffers from '@freesewing/utils/measurementDiffers'
 
 const EditMeasurement = props => {
+  const currentModel = props.app.models[props.model]
+  const currentMeasurement = props.measurement
+
+  if (!currentModel.measurements) {
+    currentModel.measurements = {}
+  }
+
   const [updated, setUpdated] = useState(false)
   const [mm, setMm] = useState('')
   const [value, setValue] = useState(
-    props.app.models[props.model].measurements
-      ? props.app.models[props.model].measurements[props.measurement]
-        ? formatMm(
-            props.app.models[props.model].measurements[props.measurement],
-            props.app.models[props.model].units,
-            'text'
-          )
+    currentModel.measurements
+      ? currentModel.measurements[currentMeasurement]
+        ? formatMm(currentModel.measurements[currentMeasurement], currentModel.units, 'text')
         : ''
       : ''
   )
   const [valid, setValid] = useState(
-    typeof measurementAsMm(value, props.app.models[props.model].units) === 'number' ? true : false
+    typeof measurementAsMm(value, currentModel.units) === 'number' ? true : false
   )
   const mdx = useStaticQuery(graphql`
     {
@@ -49,28 +54,27 @@ const EditMeasurement = props => {
     }
   `)
 
-  const { units, breasts } = props.app.models[props.model]
-
   const updateMeasurement = evt => {
     let value = evt.target.value
     setValue(evt.target.value)
-    let mm = measurementAsMm(value, units)
-    let valid = typeof measurementAsMm(value, units) === 'number' ? true : false
+    let mm = measurementAsMm(value, currentModel.units)
+    let valid = typeof measurementAsMm(value, currentModel.units) === 'number' ? true : false
     if (valid) {
       setMm(mm)
       setUpdated(true)
     }
     setValid(valid)
   }
+
   const saveMeasurement = () => {
     const data = {
       measurements: {}
     }
-    data.measurements[props.measurement] = mm
+    data.measurements[currentMeasurement] = mm
     props.app.backend.saveModel(
       props.model,
       data,
-      props.app.frontend.intl.formatMessage({ id: 'measurements.' + props.measurement }),
+      props.app.frontend.intl.formatMessage({ id: 'measurements.' + currentMeasurement }),
       '/models/' + props.model
     )
   }
@@ -78,7 +82,45 @@ const EditMeasurement = props => {
   let docs = null
   for (let node of Object.values(mdx.allMdx.edges)) {
     let m = node.node.parent.relativeDirectory.split('/').pop()
-    if (m === props.measurement.toLowerCase()) docs = node.node.body
+    if (m === currentMeasurement.toLowerCase()) docs = node.node.body
+  }
+  const label = props.app.frontend.intl.formatMessage({ id: 'measurements.' + currentMeasurement })
+
+  let measurementEstimate = false
+  let measurementInRange = value > 0
+  let helperText = () => null
+
+  if (currentModel.measurements.neckCircumference) {
+    measurementEstimate =
+      neckstimate(
+        currentModel.measurements.neckCircumference,
+        currentMeasurement,
+        currentModel.breasts
+      ) / 10
+    measurementInRange =
+      measurementDiffers(
+        currentModel.measurements.neckCircumference,
+        currentMeasurement,
+        value * 10,
+        currentModel.breasts
+      ) <= 2
+
+    // Only show measurementEstimate for non measurements.neckCircumference
+    helperText = () => {
+      if (currentMeasurement != 'measurements.neckCircumference') {
+        return (
+          <FormattedMessage
+            id="app.weEstimate"
+            defaultMessage="We estimate your {measurement} to be around {measurementEstimate} {unit}"
+            values={{
+              measurementEstimate: measurementEstimate,
+              unit: currentModel.units === 'imperial' ? '"' : 'cm',
+              measurement: label.toLowerCase()
+            }}
+          />
+        )
+      }
+    }
   }
 
   return (
@@ -86,22 +128,26 @@ const EditMeasurement = props => {
       <TextField
         data-test="measurement"
         fullWidth={true}
-        label={props.app.frontend.intl.formatMessage({ id: 'measurements.' + props.measurement })}
+        label={label}
         margin="normal"
         variant="outlined"
         value={value}
         type="text"
+        helperText={helperText()}
         onChange={updateMeasurement}
+        onKeyPress={event => {
+          if (event.key === 'Enter') saveMeasurement()
+        }}
         autoFocus={true}
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
-              {units === 'imperial' ? '"' : 'cm'}
+              {currentModel.units === 'imperial' ? '"' : 'cm'}
               &nbsp;
-              {typeof measurementAsMm(value, units) === 'number' ? (
+              {measurementInRange ? (
                 <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon color="error" data-test="invalid" />
+                <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
               )}
             </InputAdornment>
           )
@@ -132,7 +178,7 @@ const EditMeasurement = props => {
       <h5 data-test="howto">
         <FormattedMessage id="app.howToTakeMeasurements" />
       </h5>
-      <MeasurementsImages measurement={props.measurement} breasts={breasts} />
+      <MeasurementsImages measurement={currentMeasurement} breasts={currentModel.breasts} />
       <MDXProvider components={props.components}>
         <MDXRenderer>{docs}</MDXRenderer>
       </MDXProvider>

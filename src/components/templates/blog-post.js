@@ -3,6 +3,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from '@mdx-js/react'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
+import Blockquote from '@freesewing/components/Blockquote'
 
 const BlogTemplate = props => {
   useEffect(() => {
@@ -23,6 +24,17 @@ const BlogTemplate = props => {
     },
     figure: {
       marginTop: 0
+    }
+  }
+  const components = {
+    Note: ({ children }) => {
+      return <Blockquote type="note">{children}</Blockquote>
+    },
+    Tip: ({ children }) => {
+      return <Blockquote type="tip">{children}</Blockquote>
+    },
+    Warning: ({ children }) => {
+      return <Blockquote type="warning">{children}</Blockquote>
     }
   }
 
@@ -48,7 +60,7 @@ const BlogTemplate = props => {
         </a>
         <figcaption data-test="caption">{frontmatter.caption}</figcaption>
       </figure>
-      <MDXProvider components={props.components}>
+      <MDXProvider components={components}>
         <MDXRenderer>{props.pageContext.node.body}</MDXRenderer>
       </MDXProvider>
     </React.Fragment>

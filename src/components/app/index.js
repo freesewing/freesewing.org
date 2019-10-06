@@ -31,20 +31,9 @@ import UserMenu from '../user-menu'
 import VisitorMenu from '../visitor-menu'
 import MainPage from './main-page'
 import getLayout from './getLayout'
-import bugsnag from '@bugsnag/js'
-import bugsnagReact from '@bugsnag/plugin-react'
-import ErrorFallback from './error-fallback'
 import crumbsFromNavigation from './crumbsFromNavigation'
 
 /* This component is the root component for all pages */
-const bugsnagClient = bugsnag({
-  apiKey: '12eebb132933c355271140dcdc32bc20',
-  collectUserIp: false,
-  releaseStage: process.env.GATSBY_CONTEXT,
-  notifyReleaseStages: [ 'production' ],
-})
-bugsnagClient.use(bugsnagReact, React)
-const ErrorBoundary = bugsnagClient.getPlugin('react')
 
 const App = props => {
   // React hooks
@@ -199,7 +188,7 @@ const App = props => {
       </div>
     ),
     loading: (
-      <Loading loading={true} opaque>
+      <Loading loading={true} init>
         <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
       </Loading>
     )
@@ -210,7 +199,6 @@ const App = props => {
   wrapperClasses += ' layout' + pageLayout
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
         <Helmet>
           <title>{title}</title>
@@ -247,7 +235,7 @@ const App = props => {
               closeNotification={closeNotification}
               mobile={mobile}
             />
-            <Loading loading={loading} />
+            <Loading loading={loading}/>
             {mobile && layout !== 'Draft' ? (
               <div className="menu" onClick={app.frontend.closeNav}>
                 <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
@@ -263,7 +251,6 @@ const App = props => {
           <Footer language={props.language} />
         </div>
       </MuiThemeProvider>
-    </ErrorBoundary>
   )
 }
 

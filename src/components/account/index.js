@@ -14,6 +14,7 @@ import AccountPassword from './password'
 import AccountExport from './export'
 import AccountConsent from './consent'
 import AccountRestrict from './restrict'
+import AccountRemove from './remove'
 
 const Account = props => {
   useEffect(() => {
@@ -50,6 +51,10 @@ const Account = props => {
         break
       case '/account/restrict':
         props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.restrictProcessingOfYourData'}))
+        props.app.frontend.setCrumbs([crumbs.account])
+        break
+      case '/account/remove':
+        props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'account.removeYourAccount'}))
         props.app.frontend.setCrumbs([crumbs.account])
         break
       default:
@@ -101,6 +106,9 @@ const Account = props => {
       break
     case '/account/restrict':
       main = <AccountRestrict app={props.app} />
+      break
+    case '/account/remove':
+      main = <AccountRemove app={props.app} />
       break
     default:
       main = (

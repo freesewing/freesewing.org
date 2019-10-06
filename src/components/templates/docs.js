@@ -129,7 +129,6 @@ const DocumentationPage = props => {
     prefix = <ul>{children}</ul>
   }
   else if (props.slug === '/docs/sewing') {
-    //console.log(docs.sewing)
     let children = []
     for (let title of Object.keys(docs.sewing).sort()) {
       let to = docs.sewing[title]

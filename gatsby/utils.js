@@ -6,6 +6,15 @@ const patterns = require('@freesewing/pattern-info').list
 const  translate = key => i18n[process.env.GATSBY_LANGUAGE][key] || key
 
 const pageTitle = (slug, page) => {
+  if (typeof page === "undefined") {
+    throw "No page found for "+slug
+  }
+  else if (typeof page.frontmatter === "undefined") {
+    throw "No frontmatter found for "+slug+"\n"+JSON.stringify(page, null, 2)
+  }
+  else if (typeof page.frontmatter.title === "undefined") {
+    throw "No title found for "+slug+"\n"+JSON.stringify(page.frontmatter, null, 2)
+  }
   if (page.frontmatter.title === "") {
     let chunks = slug.split('/');
     // Perhaps a pattern option or sub page
