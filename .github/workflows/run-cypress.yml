@@ -22,7 +22,7 @@ jobs:
         env:
           CI: true
           CYPRESS_KEY: ${{ secrets.CYPRESS_KEY }}
-          LANGUAGE: en
+          GATSBY_LANGUAGE: en
           GATSBY_FRONTEND: 'http://localhost:8000/'
           GATSBY_BACKEND: 'https://test.backend.freesewing.org/'
           GATSBY_TILER: 'http://localhost:4000/'
