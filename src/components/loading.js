@@ -37,11 +37,12 @@ const Loading = props => {
     <div id="loader" style={style.wrapper}>
       <div className="dark" style={style.inner}>
         <Spinner size={400} />
+        { props.init ? (
         <h5 style={style.msg}>
           <FormattedMessage id='app.oneMomentPlease' />
           <br />
           <FormattedMessage id='app.loadingMagic' />
-        </h5>
+        </h5> ) : null }
       </div>
     </div>
     {props.children}

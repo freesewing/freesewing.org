@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
+import { Link } from 'gatsby'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -18,10 +19,19 @@ const Signup = ({ app, location }) => {
   const [reveal, setReveal] = useState(false)
   const [result, setResult] = useState(false)
   const [error, setError] = useState(false)
+  const [trouble, setTrouble] = useState(false)
+  useEffect(() => {
+    app.frontend.setTitle(app.frontend.intl.formatMessage({id:'app.signUp'}))
+  }, [location])
 
   const handleSignup = evt => {
     evt.preventDefault()
     app.backend.signup(email, password, process.env.GATSBY_LANGUAGE, handleResult)
+  }
+
+  const handleResend = evt => {
+    evt.preventDefault()
+    app.backend.resendActivationEmail(email, process.env.GATSBY_LANGUAGE, handleResult)
   }
 
   const handleResult = (backendResult, data = false) => {
@@ -48,11 +58,11 @@ const Signup = ({ app, location }) => {
 
   const success = (
     <React.Fragment>
-      <h1>
+      <h2>
         <FormattedMessage id="app.yay" />
         &nbsp;
         <FormattedMessage id="app.goodJob" />
-      </h1>
+      </h2>
       <p>
         <FormattedMessage id="app.checkInboxClickLinkInConfirmationEmail" />
       </p>
@@ -64,13 +74,13 @@ const Signup = ({ app, location }) => {
   )
 
   const form = (
-    <form onSubmit={handleSignup} style={styles.wrapper}>
-      <h1>
-        <FormattedMessage id="app.signUp" />
-      </h1>
+    <form onSubmit={trouble ? handleResend : handleSignup} style={styles.wrapper}>
       {!result && error ? <Blockquote type="warning">{error}</Blockquote> : null}
       <h6>
-        <FormattedMessage id="app.enterEmailPickPassword" />
+        { trouble
+        ? <FormattedMessage id="app.resendActivationEmailMessage" />
+        : <FormattedMessage id="app.enterEmailPickPassword" />
+        }
       </h6>
       <TextField
         id="email"
@@ -95,6 +105,7 @@ const Signup = ({ app, location }) => {
           )
         }}
       />
+      {!trouble && (
       <TextField
         id="password"
         fullWidth={true}
@@ -128,17 +139,32 @@ const Signup = ({ app, location }) => {
             </InputAdornment>
           )
         }}
-      />
+      />) }
       <Button
         type="submit"
         color="primary"
         size="large"
         variant="contained"
-        style={{ margin: '2rem 0' }}
-        disabled={!emailValid || password.length<1}
+        style={{ margin: '2rem 0 0.5rem' }}
+        disabled={!emailValid || (password.length<1 && !trouble)}
       >
-        <FormattedMessage id="app.signUp" />
+        {trouble
+          ? <FormattedMessage id="app.resendActivationEmail" />
+          : <FormattedMessage id="app.signUp" />
+        }
       </Button>
+      <div style={{margin: '1rem 0 2rem'}}>
+        <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test='trouble'>
+          {trouble
+            ? <FormattedMessage id='app.signUp' />
+            : <FormattedMessage id='app.resendActivationEmail' />
+          }
+        </a>
+        <span style={{ padding: '0 1rem' }}>|</span>
+        <Link to="/login" data-test='login'>
+          <FormattedMessage id="app.logIn" />
+        </Link>
+      </div>
       <Oauth app={app} />
     </form>
   )
