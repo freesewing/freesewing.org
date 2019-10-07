@@ -1,4 +1,4 @@
-name: Install, Build & Run Cypress
+name: Cypress
 
 on: [pull_request]
 
