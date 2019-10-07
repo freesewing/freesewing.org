@@ -121,8 +121,6 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "start:api": "node backend/build/main.js",
-    "serve:website-and-api": "start-test start:api 3000 serve",
-    "start-and-test": "start-test serve:website-and-api 9000 test:ci"
+    "start-and-test": "start-test serve 9000 test:ci"
   }
 }
