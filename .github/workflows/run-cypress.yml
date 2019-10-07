@@ -15,13 +15,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Packages
         run: yarn
-      - name: Install & Build Backend
-        run: |
-          git clone git@github.com:freesewing/backend
-          cd backend
-          yarn install
-          yarn global add backpack-core
-          yarn build
       - name: Build
         run: yarn build
       - name: Run Cypress
@@ -29,3 +22,8 @@ jobs:
         env:
           CYPRESS_KEY: ${{ secrets.CYPRESS_KEY }}
           LANGUAGE: en
+          GATSBY_FRONTEND: 'http://localhost:8000/'
+          GATSBY_BACKEND: 'https://test.backend.freesewing.org/'
+          GATSBY_TILER: 'http://localhost:4000/'
+          GATSBY_ALGOLIA_API_ID: 'MA0Y5A2PF0'
+          GATSBY_ALGOLIA_SEARCH_KEY: '278751992e7a54c20c49a3c04f1c80fe'
