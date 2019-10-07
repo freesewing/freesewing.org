@@ -17,6 +17,13 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
+        env:
+          GATSBY_LANGUAGE: en
+          GATSBY_FRONTEND: 'http://localhost:9000/'
+          GATSBY_BACKEND: 'https://test.backend.freesewing.org/'
+          GATSBY_TILER: 'http://localhost:4000/'
+          GATSBY_ALGOLIA_API_ID: 'MA0Y5A2PF0'
+          GATSBY_ALGOLIA_SEARCH_KEY: '278751992e7a54c20c49a3c04f1c80fe'
       - name: Run Cypress
         run: yarn start-and-test
         env:
