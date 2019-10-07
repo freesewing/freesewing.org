@@ -10,7 +10,9 @@ jobs:
         node-version: [12.x]
     steps:
       - uses: actions/checkout@v1
-      - run: ls
+      - run: ls markdown
+      - run: ls markdown/org
+      - run: pwd
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
