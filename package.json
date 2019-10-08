@@ -7,6 +7,11 @@
   "homepage": "https://freesewing.org/",
   "repository": "https://github.com/freesewing/freesewing.org",
   "prettier": "@freesewing/prettier-config",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
     "@freesewing/aaron": "2.1.0",
     "@freesewing/benjamin": "2.1.0",
@@ -108,6 +113,7 @@
     "eslint-plugin-chai-friendly": "^0.4.1",
     "eslint-plugin-cypress": "^2.6.1",
     "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.8",
     "start-server-and-test": "^1.10.3"
   },
   "keywords": [
