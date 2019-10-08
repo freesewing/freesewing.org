@@ -130,6 +130,6 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "start-and-test": "start-test serve 9000 test:ci"
+    "start-and-test": "start-test serve 9000 test:cli"
   }
 }
