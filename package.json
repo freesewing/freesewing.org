@@ -124,8 +124,8 @@
   "scripts": {
     "clean": "gatsby clean",
     "test": "cypress open --env LANGUAGE=$GATSBY_LANGUAGE",
-    "test:ci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY",
-    "test:cli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE",
+    "test:ci": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --record --key $CYPRESS_KEY --config baseUrl=http://localhost:9000",
+    "test:cli": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --config baseUrl=http://localhost:9000",
     "prettier": "npx prettier --write 'src/**'",
     "build": "gatsby build",
     "develop": "gatsby develop",
