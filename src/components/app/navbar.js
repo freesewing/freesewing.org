@@ -85,8 +85,15 @@ const Navbar = props => {
     delete navs.right.create
     delete navs.right.account
   }
-
-  return <NavbarBase navs={navs} home="/" />
+  const baseProps = {
+    navs,
+    home: '/'
+  }
+  if (props.app.frontend.tablet) {
+    baseProps.emblem = null
+    delete navs.left.docs
+  }
+  return <NavbarBase {...baseProps}/>
 }
 
 export default Navbar
