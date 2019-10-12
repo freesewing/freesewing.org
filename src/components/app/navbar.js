@@ -43,37 +43,37 @@ const Navbar = props => {
       patrons: {
         type: 'link',
         href: '/patrons',
-        text: <PatronIcon className="nav-icon" style={{color: '#e64980'}}/>,
+        text: <PatronIcon className="nav-icon" style={{color: '#e64980', maxWidth: '24px'}}/>,
         title: props.app.frontend.intl.formatMessage({id: 'app.ourPatrons'})
       },
       create: {
         type: 'link',
         href: '/create',
-        text: <AddIcon className="nav-icon" style={{color: '#40c057'}}/>,
+        text: <AddIcon className="nav-icon" style={{color: '#40c057', maxWidth: '24px'}}/>,
         title: props.app.frontend.intl.formatMessage({id: 'app.newPattern'}, {pattern: props.app.frontend.intl.formatMessage({id: 'app.pattern'})})
       },
       account: {
         type: 'link',
         href: '/account',
         title: props.app.frontend.intl.formatMessage({id: 'app.account' }),
-        text: <AccountIcon className="nav-icon" style={{color: '#74c0fc'}}/>
+        text: <AccountIcon className="nav-icon" style={{color: '#74c0fc', maxWidth: '24px'}}/>
       },
       search: {
         type: 'link',
         href: '/search',
-        text: <SearchIcon className="nav-icon" />,
+        text: <SearchIcon className="nav-icon" style={{maxWidth: '24px'}}/>,
         title: props.app.frontend.intl.formatMessage({id: 'app.search'})
       },
       language: {
         type: 'link',
         href: '/language',
-        text: <LanguageIcon className="nav-icon" />,
+        text: <LanguageIcon className="nav-icon" style={{maxWidth: '24px'}}/>,
         title: props.app.frontend.intl.formatMessage({id: 'account.languageTitle'})
       },
       theme: {
         type: 'button',
         onClick: props.app.frontend.toggleDarkMode,
-        text: <DarkModeIcon className="nav-icon moon" style={{color: '#ffd43b'}}/>,
+        text: <DarkModeIcon className="nav-icon moon" style={{color: '#ffd43b', maxWidth: '24px'}}/>,
         title: props.app.frontend.intl.formatMessage({id: 'app.darkMode'})
       }
     }
