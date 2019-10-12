@@ -1,11 +1,11 @@
+require('dotenv').config()
 const searchData = require('./src/algolia')
 const languages = require('@freesewing/i18n').languages
-require('dotenv').config()
-
 const ignore = []
 for (let lang in languages) {
   if (lang !== process.env.GATSBY_LANGUAGE) ignore.push(`**/${lang}.md`)
 }
+const jargon = require('@freesewing/i18n').jargon[process.env.GATSBY_LANGUAGE]
 
 const plugins = [
   // Automatically restores your cache and caches new files within the Netlify cache folder.
@@ -55,7 +55,11 @@ const plugins = [
         },
         'gatsby-remark-copy-linked-files',
         'gatsby-remark-autolink-headers',
-        'gatsby-remark-smartypants'
+        'gatsby-remark-smartypants',
+        {
+          resolve: 'gatsby-remark-jargon',
+          options: { jargon }
+        }
       ]
     }
   },
