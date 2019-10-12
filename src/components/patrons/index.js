@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Breadcrumbs from '../breadcrumbs'
@@ -7,26 +7,20 @@ import List from './list'
 import Thanks from './thanks'
 
 const PatronsIndex = props => {
-  if (props.slug === '/patrons') {
-    let theCrumbs = <Breadcrumbs crumbs={[]} pageTitle={<FormattedMessage id="app.ourPatrons" />} />
-    return (
-      <React.Fragment>
-        {theCrumbs}
-        <h1>
-          <FormattedMessage id="app.ourPatrons" />
-        </h1>
-        <List app={props.app} />
-        {theCrumbs}
-      </React.Fragment>
-    )
-  }
-  else if (props.slug === '/patrons/thanks') {
-    return (
-      <React.Fragment>
-        <Thanks app={props.app} />
-      </React.Fragment>
-    )
-  }
+  useEffect(() => {
+    if (props.slug === '/patrons') {
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id: "app.ourPatrons"}))
+    } else if (props.slug === "/patrons/thanks") {
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.thanksForYourSupport'}))
+      props.app.frontend.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
+    } else {
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.becomeAPatron'}))
+      props.app.frontend.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
+    }
+  }, [props.slug])
+
+  if (props.slug === '/patrons') return <List app={props.app} />
+  else if (props.slug === '/patrons/thanks') return  <Thanks app={props.app} />
 
   const styles = {
     header: {
@@ -67,13 +61,8 @@ const PatronsIndex = props => {
       fontSize: '125%'
     }
   }
-  let crumbs = [{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }]
-  let theCrumbs = (
-    <Breadcrumbs crumbs={crumbs} pageTitle={<FormattedMessage id="app.supportFreesewing" />} />
-  )
   return (
     <React.Fragment>
-      {theCrumbs}
       <div style={styles.stripe}>
         <div style={styles.innerHeader}>
           <h1 style={styles.h1}>
@@ -91,7 +80,6 @@ const PatronsIndex = props => {
         </div>
       </div>
       <Subscribe />
-      {theCrumbs}
     </React.Fragment>
   )
 }

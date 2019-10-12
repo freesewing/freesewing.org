@@ -44,7 +44,7 @@ const Navbar = props => {
         type: 'link',
         href: '/patrons',
         text: <PatronIcon className="nav-icon" style={{color: '#e64980'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'app.patrons'})
+        title: props.app.frontend.intl.formatMessage({id: 'app.ourPatrons'})
       },
       create: {
         type: 'link',
