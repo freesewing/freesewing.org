@@ -103,6 +103,9 @@ const DocumentationPage = props => {
     },
     Warning: ({ children }) => {
       return <Blockquote type="warning">{children}</Blockquote>
+    },
+    Fixme: ({ children }) => {
+      return <Blockquote type="fixme">{children}</Blockquote>
     }
   }
   const realMeasurementName = m => {

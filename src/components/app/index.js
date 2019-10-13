@@ -10,7 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import * as themes from '@freesewing/mui-theme'
 import Navbar from './navbar'
 import Footer from './footer'
-import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 import Breadcrumbs from '../breadcrumbs'
@@ -22,7 +22,7 @@ import Fab from '@material-ui/core/Fab'
 import '@freesewing/css-theme'
 import 'typeface-roboto-condensed'
 import 'typeface-permanent-marker'
-import { injectIntl } from 'react-intl'
+import { injectIntl, FormattedMessage } from 'react-intl'
 import Notification from '../notification'
 import PreviousNext from '../previous-next'
 import MainMenu from './main-menu'
@@ -32,6 +32,7 @@ import VisitorMenu from '../visitor-menu'
 import MainPage from './main-page'
 import getLayout from './getLayout'
 import crumbsFromNavigation from './crumbsFromNavigation'
+import PatronIcon from '@material-ui/icons/Favorite'
 
 /* This component is the root component for all pages */
 
@@ -125,21 +126,31 @@ const App = props => {
       ? props.location.pathname.slice(0, -1)
       : props.location.pathname
 
+  const mobileIconButton = {
+    fontSize: '64px'
+  }
   const mobileIcons = (
-    <p style={{ margin: '2rem 0 100px 0', textAlign: 'center' }}>
-      <IconButton href="/" color="primary" variant="contained">
-        <HomeIcon />
-      </IconButton>
-      <IconButton href="/search" color="primary" variant="contained">
-        <SearchIcon />
-      </IconButton>
-      <IconButton href="/language" color="primary" variant="contained">
-        <LanguageIcon />
-      </IconButton>
-      <IconButton onClick={app.frontend.toggleDarkMode} color="primary" variant="contained">
-        <DarkModeIcon style={{ transform: 'rotate(26deg)' }} />
-      </IconButton>
-    </p>
+    <div style={{margin: '2rem 0'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', margin: '2rem 0' }}>
+        <Button href="/" color="primary" style={mobileIconButton}>
+          <HomeIcon fontSize="inherit"/>
+        </Button>
+        <Button href="/patrons" color="primary" style={mobileIconButton}>
+          <PatronIcon fontSize="inherit" style={{color: '#e64980'}}/>
+        </Button>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', margin: '2rem 0' }}>
+        <Button href="/search" color="primary" style={mobileIconButton}>
+          <SearchIcon fontSize="inherit"/>
+        </Button>
+        <Button href="/language" color="primary" style={mobileIconButton}>
+          <LanguageIcon fontSize="inherit"/>
+        </Button>
+        <Button onClick={app.frontend.toggleDarkMode} color="primary" style={mobileIconButton}>
+          <DarkModeIcon fontSize="inherit" style={{ transform: 'rotate(26deg)', color: '#ffd43b'}} />
+        </Button>
+      </div>
+    </div>
   )
 
   let layout = getLayout(props.location.pathname)

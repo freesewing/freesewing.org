@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 import { measurements as allMeasurements } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
 import Avatar from '../avatar'
@@ -16,8 +18,16 @@ import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Help'
 import { Link } from "gatsby"
+import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
+import capitalize from '@freesewing/utils/capitalize'
 
 const ShowModel = ({ app, model }) => {
+  const [filter, setFilter] = useState(false)
+
+  const updateFilter = evt => {
+    setFilter(evt.target.value)
+  }
+
   const styles = {
     avatarWrapper: {
       width: '250px',
@@ -338,16 +348,34 @@ const ShowModel = ({ app, model }) => {
           </p>
         </Blockquote>
       )}
+      <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem'}}>
+        <Button
+          color="primary"
+          variant="outlined"
+          style={{
+            marginRight: '1rem',
+            padding: '0 1rem'
+          }}
+          disabled={filter ? false : true}
+          onClick={() => setFilter(false)}
+        ><FormattedMessage id="filter.resetFilter"/></Button>
+        <Select value={filter} onChange={updateFilter} variant="outlined" color="primary">
+          <MenuItem value={false}><FormattedMessage id="filter.byPattern" /></MenuItem>
+          { list.map(pattern => <MenuItem key={pattern} value={pattern}>{capitalize(pattern)}</MenuItem>) }
+        </Select>
+      </div>
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
-            <td style={{textAlign: 'right', padding: 'calc(1rem + 20px)'}}><b><FormattedMessage id="app.name"/></b></td>
+            <td style={{...styles.valueCell, textAlign: 'right', paddingRight: 'calc(1rem + 25px)'}}><b><FormattedMessage id="app.name"/></b></td>
             <td style={styles.valueCell}><FormattedMessage id="app.estimate"/></td>
             <td style={styles.valueCell}><b><FormattedMessage id="app.actual"/></b></td>
             <td style={styles.buttonCell}></td>
           </tr>
           {currentModel.measurements &&
             Object.keys(currentModel.measurements).map(m => {
+              if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
+
               let value = currentModel.measurements[m]
 
               if (value) {
@@ -367,7 +395,10 @@ const ShowModel = ({ app, model }) => {
                 return measurementRow(m, value, measurementEstimate, measurementInRange)
               } else return null
             })}
-          {remainingMeasurements().map(m => measurementRow(m))}
+          {remainingMeasurements().map(m => {
+            if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
+            else return measurementRow(m)
+          })}
         </tbody>
       </table>
       <p style={{ textAlign: 'right' }}>
