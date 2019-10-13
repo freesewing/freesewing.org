@@ -30,11 +30,12 @@ function useBackend(props) {
       })
   }
 
-  const login = (username, password) => {
+  const login = (username, password, language, setInactive) => {
     props.startLoading()
     backend
       .login(username, password)
       .then(res => {
+        console.log(res);
         if (res.status === 200) {
           props.stopLoading()
           props.showNotification(
@@ -50,7 +51,10 @@ function useBackend(props) {
       })
       .catch(err => {
         props.stopLoading()
-        console.log(err)
+        if(err.message.slice(-3) === '403') {
+          resendActivationEmail(username, language, setInactive)
+          //setInactive(true)
+        }
         props.showNotification('error', err)
       })
   }
