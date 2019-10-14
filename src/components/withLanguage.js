@@ -2,24 +2,17 @@ import React from 'react'
 import { IntlProvider } from 'react-intl'
 import { strings } from '@freesewing/i18n'
 
-const withLanguage = (WrappedComponent, lang = 'en', store = false) => {
+const withLanguage = (WrappedComponent, lang = 'en') => {
   return class extends React.Component {
     constructor(props) {
       super(props)
-      this.setLanguage = this.setLanguage.bind(this)
-      this.state = { language: lang }
-    }
-
-    setLanguage(l) {
-      this.setState({ language: l })
     }
 
     render() {
       return (
-        <IntlProvider locale={this.state.language} messages={strings[this.state.language]}>
+        <IntlProvider locale={lang} messages={strings[lang]}>
           <WrappedComponent
-            language={this.state.language}
-            setLanguage={this.setLanguage}
+            language={lang}
             {...this.props}
           />
         </IntlProvider>
