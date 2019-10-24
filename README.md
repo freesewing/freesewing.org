@@ -7,7 +7,7 @@
 
 ## What am I looking at? 🤔
 
-This repository holds the source code for the freesewing.org website.
+This repository holds the source code for the [freesewing.org](https://freesewing.org) website.
 
 ## About FreeSewing 💀
 
@@ -41,7 +41,7 @@ should [become a patron](https://freesewing.org/patrons/join).
 ## Links 👩‍💻
 
  - 💻 Makers website: [freesewing.org](https://freesewing.org)
- - 💻 Developers website: [freesewing.dev](https://freesewing.org)
+ - 💻 Developers website: [freesewing.dev](https://freesewing.dev)
  - 💬 Chat: [gitter.im/freesewing](https://gitter.im/freesewing/chat)
  - 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
  - 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
