@@ -5,9 +5,11 @@
   <a href="https://app.netlify.com/sites/fs-org-en/deploys"><img src="https://api.netlify.com/api/v1/badges/c87c4827-2039-4a65-b1c2-0ba6e12cbf0d/deploy-status" alt=Deploys by Netlify" /></a>
 </p>
 
+## What am I looking at? 🤔
+
 This repository holds the source code for the freesewing.org website.
 
-## About FreeSewing 🤔
+## About FreeSewing 💀
 
 Where the world of makers and developers collide, that's where you'll find FreeSewing.
 
