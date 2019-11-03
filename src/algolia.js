@@ -39,7 +39,7 @@ const getSearchData = language => {
     {
       query: getQuery(language),
       transformer: ({ data }) => flatten(data.allMdx.edges),
-      indexName: `${language}_freesewing_dev`,
+      indexName: `${language}_freesewing_org`,
       settings: {}
     }
   ]
