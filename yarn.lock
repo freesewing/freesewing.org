@@ -6612,7 +6612,7 @@ gatsby-cli@^2.7.54:
     ink "^2.4.0"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.12, gatsby-core-utils@^1.0.15, gatsby-core-utils@^1.0.17, gatsby-core-utils@^1.0.18:
+gatsby-core-utils@^1.0.12, gatsby-core-utils@^1.0.17, gatsby-core-utils@^1.0.18:
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.18.tgz#7be8ca6dd684baac7b546412b436cc145d70678a"
   integrity sha512-DaCWRYltwRjFlyDwCkHDizARZwosYMTyRS6cCBpZRC4CzHaKLpio1cKoxXhB0bUDxf+loHXWNMW1S3Z+GZ7FTw==
@@ -6745,12 +6745,12 @@ gatsby-plugin-netlify@2.1.22:
     lodash "^4.17.15"
     webpack-assets-manifest "^3.1.1"
 
-gatsby-plugin-nprogress@2.1.10:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.1.10.tgz#40fa3fd8471e12c792b123360eb8cafc56f826e0"
-  integrity sha512-LrMUGD5mATw82KgVOREXbc9hX9fcpM1UVtk7CQWAlvpgYx/01WScZ4Wkl/x+hd0TZXGU4l7fvLQroUUFhQjyrA==
+gatsby-plugin-nprogress@2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.1.13.tgz#a40d669caf3b67ee8da040ad6f8ae6c202de494e"
+  integrity sha512-mIVibXMO9qNkibNtIFp/2eK6+1BTMBI6zSC3sSFIUcE+gokzPT9S8iQryo8UKw86FaSnj95dUqswZZXPg4sZXA==
   dependencies:
-    "@babel/runtime" "^7.6.3"
+    "@babel/runtime" "^7.7.2"
     nprogress "^0.2.0"
 
 gatsby-plugin-offline@^3.0.17:
