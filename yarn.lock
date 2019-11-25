@@ -13155,10 +13155,10 @@ remark-html@10.0.0:
     mdast-util-to-hast "^6.0.0"
     xtend "^4.0.1"
 
-remark-jargon@2.1.5, remark-jargon@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.1.5.tgz#d256c3f721427afe2620d02eb9c4ba1d337c8ee6"
-  integrity sha512-IdWKZTW5+okxIS/h2g6FKxROk0TiS2psmdqa3doCuMQtd/HL7NsapkNY/ue2HslF+x/FAP1nl60BT7Cq5w2YXA==
+remark-jargon@2.1.6, remark-jargon@^2.1.5:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.1.6.tgz#266e39f53a1f1f2d9de706d8507b00f137a22361"
+  integrity sha512-pGM7MCdfkf2LIBq31Sc+e2cug0+pTAboWIms+BfgVKWw6QVzuFl9KSFChDYOH5iAQCuQfaCo70UxxNsnikzsIA==
   dependencies:
     unist-util-visit "^1.4.0"
 
