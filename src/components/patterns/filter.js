@@ -213,7 +213,7 @@ const PatternFilter = props => {
                       type === 'code' || type === 'design' ? (
                         value
                       ) : (
-                        <FormattedMessage id={'filter.' + type} />
+                        <FormattedMessage id={'filter.' + value} />
                       )
                     }
                     size="small"
