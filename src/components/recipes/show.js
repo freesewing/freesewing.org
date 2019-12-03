@@ -8,6 +8,8 @@ import ExportPattern from '../draft/export-pattern'
 import patterns from '../draft/patterns'
 
 const ShowRecipe = props => {
+  const { recipe, ownRecipe, app } = props
+
   const styles = {
     button: {
       marginLeft: '1rem'
@@ -19,7 +21,7 @@ const ShowRecipe = props => {
       color: '#fff'
     }
   }
-  if (props.ownRecipe)
+  if (ownRecipe)
     styles.draftButton = {
       marginLeft: '1rem',
       background: '#228be6',
@@ -27,55 +29,53 @@ const ShowRecipe = props => {
       color: '#fff'
     }
 
-  if (props.app.frontend.mobile) {
+  if (app.frontend.mobile) {
     styles.table.margin = '0 -1.5rem'
     styles.table.width = 'calc(100% + 3rem)'
   }
 
   return (
     <>
-      {typeof props.recipe.notes === 'undefined' || props.recipe.notes === '' ? null : (
-        <Markdown source={props.recipe.notes || ''} />
-      )}
+      {recipe.notes && <Markdown source={recipe.notes} />}
 
       <p style={{ textAlign: 'right' }}>
-        {props.ownRecipe ? (
+        {ownRecipe && (
           <Button
             color="inherit"
             style={styles.deleteButton}
             variant="outlined"
-            onClick={() => props.app.backend.removeRecipe(props.recipe.handle)}
+            onClick={() => app.backend.removeRecipe(recipe.handle)}
           >
             <FormattedMessage id="app.remove" />
           </Button>
-        ) : null}
+        )}
         <Button
           color="primary"
           style={styles.draftButton}
-          href={'/recreate/' + props.recipe.handle}
+          href={'/recreate/' + recipe.handle}
           variant="contained"
         >
           <FormattedMessage id="app.recreate" />
         </Button>
-        {props.ownRecipe ? (
+        {ownRecipe && (
           <Button
             color="primary"
             style={styles.button}
-            href={'/recipes/' + props.recipe.handle + '/edit'}
+            href={'/recipes/' + recipe.handle + '/edit'}
             variant="contained"
           >
             <FormattedMessage id="app.update" />
           </Button>
-        ) : null}
+        )}
       </p>
 
       <ExportPattern
-        app={props.app}
-        gist={props.recipe.recipe}
-        pattern={patterns[capitalize(props.recipe.recipe.pattern)]}
+        app={app}
+        gist={recipe.recipe}
+        pattern={patterns[capitalize(recipe.recipe.pattern)]}
       />
 
-      <RecipeCode recipe={props.recipe} />
+      <RecipeCode recipe={recipe} />
     </>
   )
 }
