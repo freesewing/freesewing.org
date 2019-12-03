@@ -27,7 +27,7 @@ import { withoutBreasts, withBreasts } from '@freesewing/models'
 import Blockquote from '@freesewing/components/Blockquote'
 import Icon from '@freesewing/components/Icon'
 import { useStaticQuery, graphql } from 'gatsby'
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import Robot from '@freesewing/components/Robot'
 
@@ -62,7 +62,7 @@ const DraftPage = props => {
     }
   }
   useEffect(() => {
-    props.updateGist((display === "export" ? false : true), 'settings', 'embed')
+    props.updateGist(display === 'export' ? false : true, 'settings', 'embed')
     if (props.recreate) {
       // Recreate from recipe
       props.app.backend.loadRecipe(props.recipe, handleRecipeResult)
@@ -82,7 +82,12 @@ const DraftPage = props => {
         measurements[m] = props.app.models[props.model].measurements[m]
       }
       props.updateGist(measurements, 'settings', 'measurements')
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id: "app.newPatternForModel"}, {pattern: capitalize(props.pattern), model: props.app.models[props.model].name }))
+      props.app.frontend.setTitle(
+        props.app.frontend.intl.formatMessage(
+          { id: 'app.newPatternForModel' },
+          { pattern: capitalize(props.pattern), model: props.app.models[props.model].name }
+        )
+      )
       setReady(true)
     }
   }, [props.pattern, props.model, props.recipe])
@@ -180,7 +185,7 @@ const DraftPage = props => {
 
   let pattern, error, patternProps
   try {
-    pattern = new patterns[(capitalize(design))](props.gist.settings).use(i18nPlugin, {
+    pattern = new patterns[capitalize(design)](props.gist.settings).use(i18nPlugin, {
       strings: patternTranslations
     })
     if (display === 'compare') {
@@ -265,7 +270,7 @@ const DraftPage = props => {
           style={styles.button}
           onClick={() => setFit(!fit)}
         >
-          {fit ? <ZoomInIcon data-test="zoomIn"/> : <ZoomOutIcon data-test="zoomOut"/>}
+          {fit ? <ZoomInIcon data-test="zoomIn" /> : <ZoomOutIcon data-test="zoomOut" />}
         </Button>
       )}
       <Button
@@ -315,8 +320,16 @@ const DraftPage = props => {
       variant="fullWidth"
       style={styles.tabs}
     >
-      <Tab icon={<SettingsIcon />} style={styles.tab[tab === 0 ? 'active' : 'inactive']} data-test="config-tab"/>
-      <Tab icon={<MenuIcon />} style={styles.tab[tab === 1 ? 'active' : 'inactive']} data-test="menu-tab"/>
+      <Tab
+        icon={<SettingsIcon />}
+        style={styles.tab[tab === 0 ? 'active' : 'inactive']}
+        data-test="config-tab"
+      />
+      <Tab
+        icon={<MenuIcon />}
+        style={styles.tab[tab === 1 ? 'active' : 'inactive']}
+        data-test="menu-tab"
+      />
     </Tabs>
   ]
   if (tab === 0)
@@ -344,14 +357,24 @@ const DraftPage = props => {
   let main, helpTitle
   if (display === 'export') {
     main = (
-      <ExportPattern setDisplay={setDisplay} app={props.app} gist={props.gist} pattern={patterns[capitalize(design)]} />
+      <ExportPattern
+        setDisplay={setDisplay}
+        app={props.app}
+        gist={props.gist}
+        pattern={patterns[capitalize(design)]}
+      />
     )
   } else if (display === 'save') {
     main = <SaveRecipe setDisplay={setDisplay} app={props.app} gist={props.gist} />
   } else if (display === 'help') {
     let close = (
       <div style={styles.buttons}>
-        <Button variant="contained" color="primary" onClick={() => setDisplay('draft')} data-test="back">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setDisplay('draft')}
+          data-test="back"
+        >
           <FormattedMessage id="app.back" />
         </Button>
       </div>
@@ -363,7 +386,7 @@ const DraftPage = props => {
     helpTitle = topicDocs[eventValue.toLowerCase()].title
     main = (
       <React.Fragment>
-        <div data-test='mdx'>
+        <div data-test="mdx">
           <MDXProvider components={props.components}>
             <MDXRenderer>{topicDocs[eventValue.toLowerCase()].body}</MDXRenderer>
           </MDXProvider>
@@ -373,7 +396,7 @@ const DraftPage = props => {
     )
   } else {
     main = error ? (
-      <div style={styles.errorWrapper} data-test='error'>
+      <div style={styles.errorWrapper} data-test="error">
         <Blockquote type="warning">
           {error.message === 'cannot scale this curve. Try reducing it first.' ? (
             <React.Fragment>

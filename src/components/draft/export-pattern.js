@@ -12,6 +12,8 @@ const ExportPattern = props => {
   const gist = { ...props.gist }
   delete gist.settings.embed
 
+  console.log(props)
+
   const tiler = useTiler({
     intl: props.app.frontend.intl,
     showNotification: props.app.frontend.showNotification,
@@ -23,7 +25,10 @@ const ExportPattern = props => {
       if (format === 'json') exportJsonRecipe(gist)
       else if (format === 'yaml') exportYamlRecipe(gist)
     } else {
-      const svg = new props.pattern({...props.gist.settings, embed: false})
+      const svg = new props.pattern({
+        ...props.gist.settings,
+        embed: false
+      })
         .use(theme)
         .use(i18n, {
           strings: patternTranslations
@@ -84,13 +89,18 @@ const ExportPattern = props => {
   if (props.app.frontend.tablet) styles.column.width = '45%'
   if (props.app.frontend.mobile) styles.column.width = '95%'
 
-  const cancel = (
+  const cancel = props.setDisplay ? (
     <p style={{ textAlign: 'right' }}>
-      <Button variant="outlined" color="primary" onClick={() => props.setDisplay('draft')} data-test="cancel">
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => props.setDisplay('draft')}
+        data-test="cancel"
+      >
         <FormattedMessage id="app.cancel" />
       </Button>
     </p>
-  )
+  ) : null
 
   const btnProps = {
     size: 'large',
@@ -104,7 +114,9 @@ const ExportPattern = props => {
       {cancel}
       <div style={styles.wrapper}>
         <div style={styles.column} data-test="printing">
-          <h5><FormattedMessage id="app.exportForPrinting" /></h5>
+          <h5>
+            <FormattedMessage id="app.exportForPrinting" />
+          </h5>
           {['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid'].map(size => (
             <Button {...btnProps} onClick={() => handleExport('tile', size)} data-test={size}>
               {size} PDF
@@ -112,7 +124,9 @@ const ExportPattern = props => {
           ))}
         </div>
         <div style={styles.column} data-test="editing">
-          <h5><FormattedMessage id="app.exportForEditing" /></h5>
+          <h5>
+            <FormattedMessage id="app.exportForEditing" />
+          </h5>
           {['svg', 'postscript', 'pdf'].map(format => (
             <Button {...btnProps} onClick={() => handleExport('raw', format)} data-test={format}>
               {format}
@@ -120,7 +134,9 @@ const ExportPattern = props => {
           ))}
         </div>
         <div style={styles.column} data-test="export">
-          <h5><FormattedMessage id="app.exportRecipe" /></h5>
+          <h5>
+            <FormattedMessage id="app.exportRecipe" />
+          </h5>
           {['json', 'yaml'].map(format => (
             <Button {...btnProps} onClick={() => handleExport('recipe', format)} data-test={format}>
               {format}

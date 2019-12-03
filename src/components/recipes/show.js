@@ -1,10 +1,13 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
+import capitalize from '@freesewing/utils/capitalize'
 import Markdown from 'react-markdown'
 import RecipeCode from './recipe'
+import ExportPattern from '../draft/export-pattern'
+import patterns from '../draft/patterns'
 
-const ShowRecipe = ( props) => {
+const ShowRecipe = props => {
   const styles = {
     button: {
       marginLeft: '1rem'
@@ -16,12 +19,13 @@ const ShowRecipe = ( props) => {
       color: '#fff'
     }
   }
-  if (props.ownRecipe) styles.draftButton = {
-    marginLeft: '1rem',
-    background: '#228be6',
-    borderColor: '#1971c2',
-    color: '#fff'
-  }
+  if (props.ownRecipe)
+    styles.draftButton = {
+      marginLeft: '1rem',
+      background: '#228be6',
+      borderColor: '#1971c2',
+      color: '#fff'
+    }
 
   if (props.app.frontend.mobile) {
     styles.table.margin = '0 -1.5rem'
@@ -29,15 +33,13 @@ const ShowRecipe = ( props) => {
   }
 
   return (
-    <React.Fragment>
-      {
-        typeof props.recipe.notes === 'undefined' ||
-        props.recipe.notes === '' ? null : (
-          <Markdown source={props.recipe.notes || ''} />
+    <>
+      {typeof props.recipe.notes === 'undefined' || props.recipe.notes === '' ? null : (
+        <Markdown source={props.recipe.notes || ''} />
       )}
-      <RecipeCode recipe={props.recipe} />
+
       <p style={{ textAlign: 'right' }}>
-        { props.ownRecipe ? (
+        {props.ownRecipe ? (
           <Button
             color="inherit"
             style={styles.deleteButton}
@@ -45,7 +47,8 @@ const ShowRecipe = ( props) => {
             onClick={() => props.app.backend.removeRecipe(props.recipe.handle)}
           >
             <FormattedMessage id="app.remove" />
-          </Button> ) : null }
+          </Button>
+        ) : null}
         <Button
           color="primary"
           style={styles.draftButton}
@@ -54,17 +57,26 @@ const ShowRecipe = ( props) => {
         >
           <FormattedMessage id="app.recreate" />
         </Button>
-        { props.ownRecipe ? (
-        <Button
-          color="primary"
-          style={styles.button}
-          href={'/recipes/' + props.recipe.handle + '/edit'}
-          variant="contained"
-        >
-          <FormattedMessage id="app.update" />
-          </Button> ) : null }
+        {props.ownRecipe ? (
+          <Button
+            color="primary"
+            style={styles.button}
+            href={'/recipes/' + props.recipe.handle + '/edit'}
+            variant="contained"
+          >
+            <FormattedMessage id="app.update" />
+          </Button>
+        ) : null}
       </p>
-    </React.Fragment>
+
+      <ExportPattern
+        app={props.app}
+        gist={props.recipe.recipe}
+        pattern={patterns[capitalize(props.recipe.recipe.pattern)]}
+      />
+
+      <RecipeCode recipe={props.recipe} />
+    </>
   )
 }
 
