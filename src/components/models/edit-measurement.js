@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
 import formatMm from '@freesewing/utils/formatMm'
@@ -96,7 +96,8 @@ const EditMeasurement = props => {
         currentModel.measurements.neckCircumference,
         currentMeasurement,
         currentModel.breasts
-      ) / 10
+      ) // Note: This is in mm
+    console.log('formatted', measurementEstimate, formatMm(measurementEstimate, currentModel.units))
     measurementInRange =
       measurementDiffers(
         currentModel.measurements.neckCircumference,
@@ -109,11 +110,16 @@ const EditMeasurement = props => {
     helperText = () => {
       if (currentMeasurement != 'measurements.neckCircumference') {
         return (
-          <FormattedMessage
-            id="app.weEstimate"
-            defaultMessage="We estimate your {measurement} to be around {measurementEstimate} {unit}"
+          <>
+            <FormattedMessage id="app.weEstimateYM2B" values={{measurement: label.toLowerCase()}}/>
+            <span dangerouslySetInnerHTML={{__html: formatMm(measurementEstimate, currentModel.units)}}/>
+          </>
+        )
+        return (
+          <FormattedHTMLMessage
+            id="app.weEstimateYM2B"
             values={{
-              measurementEstimate: measurementEstimate,
+              measurementEstimate: formatMm(measurementEstimate, currentModel.units),
               unit: currentModel.units === 'imperial' ? '"' : 'cm',
               measurement: label.toLowerCase()
             }}

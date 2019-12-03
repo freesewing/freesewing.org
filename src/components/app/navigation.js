@@ -29,7 +29,8 @@ const Navigation = props => {
 
   const styles = {
     icon: {
-      fontSize: '16px'
+      fontSize: '16px',
+      maxWidth: '16px'
     }
   }
 
