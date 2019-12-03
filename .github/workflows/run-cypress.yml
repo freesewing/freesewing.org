@@ -3,7 +3,7 @@ name: Cypress
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     env:
       CI: true
