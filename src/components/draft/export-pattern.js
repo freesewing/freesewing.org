@@ -12,8 +12,6 @@ const ExportPattern = props => {
   const gist = { ...props.gist }
   delete gist.settings.embed
 
-  console.log(props)
-
   const tiler = useTiler({
     intl: props.app.frontend.intl,
     showNotification: props.app.frontend.showNotification,
