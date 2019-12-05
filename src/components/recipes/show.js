@@ -34,8 +34,13 @@ const ShowRecipe = props => {
     styles.table.width = 'calc(100% + 3rem)'
   }
 
+  const model = app.models[recipe.recipe.model]
+
   return (
     <>
+      <h4>
+        <FormattedMessage id="app.model" />: {model.name}
+      </h4>
       {recipe.notes && <Markdown source={recipe.notes} />}
 
       <p style={{ textAlign: 'right' }}>
@@ -55,8 +60,18 @@ const ShowRecipe = props => {
           href={'/recreate/' + recipe.handle}
           variant="contained"
         >
-          <FormattedMessage id="app.recreate" />
+          <FormattedMessage id="app.duplicate" />
         </Button>
+        {/* {ownRecipe && (
+          <Button
+            color="primary"
+            style={styles.button}
+            href={'/recipes/' + recipe.handle + '/edit'}
+            variant="contained"
+          >
+            <FormattedMessage id="app.edit_pattern" />
+          </Button>
+        )} */}
         {ownRecipe && (
           <Button
             color="primary"
@@ -64,7 +79,7 @@ const ShowRecipe = props => {
             href={'/recipes/' + recipe.handle + '/edit'}
             variant="contained"
           >
-            <FormattedMessage id="app.update" />
+            <FormattedMessage id="app.edit_notes" />
           </Button>
         )}
       </p>
