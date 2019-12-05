@@ -23,16 +23,15 @@ const MainMenu = props => {
     }
     if (topics.indexOf('recipes') === -1) topics.push('recipes')
     navigation['/recipes/'] = {
-      title: props.app.frontend.intl.formatMessage({ id: 'app.recipes' }),
+      title: props.app.frontend.intl.formatMessage({ id: 'app.my_patterns' }),
       children: {}
     }
     if (typeof props.app.recipes !== 'undefined') {
       for (let r in props.app.recipes) {
         if (typeof props.app.recipes[r].recipe !== 'undefined') {
-          let pattern = props.app.recipes[r].recipe.pattern || 'FIXME';
+          let pattern = props.app.recipes[r].recipe.pattern || 'FIXME'
           navigation['/recipes/'].children['/recipes/' + r + '/'] = {
-            title:
-              capitalize(pattern) + ': ' + props.app.recipes[r].name
+            title: capitalize(pattern) + ': ' + props.app.recipes[r].name
           }
         }
       }
