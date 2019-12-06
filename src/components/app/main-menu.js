@@ -23,7 +23,7 @@ const MainMenu = props => {
     }
     if (topics.indexOf('recipes') === -1) topics.push('recipes')
     navigation['/recipes/'] = {
-      title: props.app.frontend.intl.formatMessage({ id: 'app.my_patterns' }),
+      title: props.app.frontend.intl.formatMessage({ id: 'app.myPatterns' }),
       children: {}
     }
     if (typeof props.app.recipes !== 'undefined') {
