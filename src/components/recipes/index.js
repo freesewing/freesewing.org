@@ -12,9 +12,9 @@ const RecipeIndex = props => {
 
   useEffect(() => {
     if (props.slug === '/recipes') {
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.my_patterns' }))
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.myPatterns' }))
     } else {
-      let recipesCrumb = { slug: '/recipes', title: <FormattedMessage id="app.my_patterns" /> }
+      let recipesCrumb = { slug: '/recipes', title: <FormattedMessage id="app.myPatterns" /> }
       let recipe = chunks[2]
       if (ownRecipe) {
         props.app.frontend.setTitle(props.app.recipes[recipe].name)
@@ -30,7 +30,7 @@ const RecipeIndex = props => {
         props.app.backend.loadRecipe(recipe, (result, data) => {
           if (result) setLoadedRecipe(data)
           props.app.frontend.setTitle(data.name)
-          let recipesCrumb = { slug: '/recipes', title: <FormattedMessage id="app.my_patterns" /> }
+          let recipesCrumb = { slug: '/recipes', title: <FormattedMessage id="app.myPatterns" /> }
           props.app.frontend.setCrumbs([recipesCrumb])
         })
       }
