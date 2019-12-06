@@ -4,12 +4,9 @@ import Button from '@material-ui/core/Button'
 import Icon from '@freesewing/components/Icon'
 import camelCase from '@freesewing/utils/camelCase'
 
-const defaultError = { message: "error" }
+const defaultError = { message: 'error' }
 
-const Error = ({
-    report = false,
-    err = defaultError
-  }) => {
+const Error = ({ report = false, err = defaultError }) => {
   if (report)
     return (
       <React.Fragment>

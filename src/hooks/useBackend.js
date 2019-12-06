@@ -35,7 +35,7 @@ function useBackend(props) {
     backend
       .login(username, password)
       .then(res => {
-        console.log(res);
+        console.log(res)
         if (res.status === 200) {
           props.stopLoading()
           props.showNotification(
@@ -51,7 +51,7 @@ function useBackend(props) {
       })
       .catch(err => {
         props.stopLoading()
-        if(err.message.slice(-3) === '403') {
+        if (err.message.slice(-3) === '403') {
           resendActivationEmail(username, language, setInactive)
           //setInactive(true)
         }
@@ -210,8 +210,7 @@ function useBackend(props) {
           saveAccountToStorage(res.data)
           navigate('/models/' + res.data.model.handle, { replace: true })
           refreshAccount()
-        } else
-          props.showNotification('error')
+        } else props.showNotification('error')
       })
       .catch((err, foo) => {
         props.showNotification('error', err)
@@ -421,7 +420,8 @@ function useBackend(props) {
 
   const adminSearch = (query, saveResult) => {
     props.startLoading()
-    backend.adminSearch(query, token)
+    backend
+      .adminSearch(query, token)
       .then(res => {
         if (res.status === 200) {
           props.stopLoading()
@@ -437,7 +437,8 @@ function useBackend(props) {
 
   const adminSetPatronStatus = (data, saveResult) => {
     props.startLoading()
-    backend.adminSetPatronStatus(data, token)
+    backend
+      .adminSetPatronStatus(data, token)
       .then(res => {
         props.stopLoading()
         if (res.status === 200) {
@@ -453,7 +454,8 @@ function useBackend(props) {
 
   const adminSetRole = (data, saveResult) => {
     props.startLoading()
-    backend.adminSetRole(data, token)
+    backend
+      .adminSetRole(data, token)
       .then(res => {
         props.stopLoading()
         if (res.status === 200) {
@@ -469,7 +471,8 @@ function useBackend(props) {
 
   const adminUnfreeze = (data, saveResult) => {
     props.startLoading()
-    backend.adminUnfreeze(data, token)
+    backend
+      .adminUnfreeze(data, token)
       .then(res => {
         props.stopLoading()
         if (res.status === 200) {
@@ -485,7 +488,8 @@ function useBackend(props) {
 
   const adminImpersonate = (data, saveResult) => {
     props.startLoading()
-    backend.adminImpersonate(data, token)
+    backend
+      .adminImpersonate(data, token)
       .then(res => {
         props.stopLoading()
         if (res.status === 200) {

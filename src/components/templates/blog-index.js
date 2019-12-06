@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 
 const BlogIndexTemplate = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:"app.blog"}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.blog' }))
   }, [])
   const data = useStaticQuery(graphql`
     {

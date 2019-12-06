@@ -9,18 +9,26 @@ import Thanks from './thanks'
 const PatronsIndex = props => {
   useEffect(() => {
     if (props.slug === '/patrons') {
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id: "app.ourPatrons"}))
-    } else if (props.slug === "/patrons/thanks") {
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.thanksForYourSupport'}))
-      props.app.frontend.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.ourPatrons' }))
+    } else if (props.slug === '/patrons/thanks') {
+      props.app.frontend.setTitle(
+        props.app.frontend.intl.formatMessage({ id: 'app.thanksForYourSupport' })
+      )
+      props.app.frontend.setCrumbs([
+        { slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }
+      ])
     } else {
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.becomeAPatron'}))
-      props.app.frontend.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
+      props.app.frontend.setTitle(
+        props.app.frontend.intl.formatMessage({ id: 'app.becomeAPatron' })
+      )
+      props.app.frontend.setCrumbs([
+        { slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }
+      ])
     }
   }, [props.slug])
 
   if (props.slug === '/patrons') return <List app={props.app} />
-  else if (props.slug === '/patrons/thanks') return  <Thanks app={props.app} />
+  else if (props.slug === '/patrons/thanks') return <Thanks app={props.app} />
 
   const styles = {
     header: {

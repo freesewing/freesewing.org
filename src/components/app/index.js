@@ -44,7 +44,13 @@ const App = props => {
   const [menu, setMenu] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState(props.storageData.notification || false)
-  const [crumbs, setCrumbs] = useState(crumbsFromNavigation(props.location.pathname, props.pageContext.navigation, props.pageContext.titles))
+  const [crumbs, setCrumbs] = useState(
+    crumbsFromNavigation(
+      props.location.pathname,
+      props.pageContext.navigation,
+      props.pageContext.titles
+    )
+  )
   const [title, setTitle] = useState('FreeSewing')
   const [description, setDescription] = useState(false)
   const [image, setImage] = useState(
@@ -130,24 +136,43 @@ const App = props => {
     fontSize: '64px'
   }
   const mobileIcons = (
-    <div style={{margin: '2rem 0'}}>
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', margin: '2rem 0' }}>
+    <div style={{ margin: '2rem 0' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+          margin: '2rem 0'
+        }}
+      >
         <Button href="/" color="primary" style={mobileIconButton}>
-          <HomeIcon fontSize="inherit"/>
+          <HomeIcon fontSize="inherit" />
         </Button>
         <Button href="/patrons" color="primary" style={mobileIconButton}>
-          <PatronIcon fontSize="inherit" style={{color: '#e64980'}}/>
+          <PatronIcon fontSize="inherit" style={{ color: '#e64980' }} />
         </Button>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', margin: '2rem 0' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+          margin: '2rem 0'
+        }}
+      >
         <Button href="/search" color="primary" style={mobileIconButton}>
-          <SearchIcon fontSize="inherit"/>
+          <SearchIcon fontSize="inherit" />
         </Button>
         <Button href="/language" color="primary" style={mobileIconButton}>
-          <LanguageIcon fontSize="inherit"/>
+          <LanguageIcon fontSize="inherit" />
         </Button>
         <Button onClick={app.frontend.toggleDarkMode} color="primary" style={mobileIconButton}>
-          <DarkModeIcon fontSize="inherit" style={{ transform: 'rotate(26deg)', color: '#ffd43b'}} />
+          <DarkModeIcon
+            fontSize="inherit"
+            style={{ transform: 'rotate(26deg)', color: '#ffd43b' }}
+          />
         </Button>
       </div>
     </div>
@@ -210,58 +235,58 @@ const App = props => {
   wrapperClasses += ' layout' + pageLayout
 
   return (
-      <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
-          <meta property="og:url" content={url} />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
-          <meta name="twitter:card" content="summary_large_image" />
-        </Helmet>
-        <div className={wrapperClasses}>
-          <AppContext.Provider value={app}>
-            {mobile ? (
-              <React.Fragment>
-                <Fab
-                  color="primary"
-                  className="fab primary only-xs"
-                  aria-label="Menu"
-                  onClick={app.frontend.toggleMenu}
-                >
-                  {menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
-                </Fab>
-                <Navbar app={app} />
-              </React.Fragment>
-            ) : (
+    <MuiThemeProvider theme={createMuiTheme(themes[theme])}>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+      <div className={wrapperClasses}>
+        <AppContext.Provider value={app}>
+          {mobile ? (
+            <React.Fragment>
+              <Fab
+                color="primary"
+                className="fab primary only-xs"
+                aria-label="Menu"
+                onClick={app.frontend.toggleMenu}
+              >
+                {menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
+              </Fab>
               <Navbar app={app} />
-            )}
-            {layouts[pageLayout]}
-            <Notification
-              notification={notification}
-              closeNotification={closeNotification}
-              mobile={mobile}
-            />
-            <Loading loading={loading}/>
-            {mobile && layout !== 'Draft' ? (
-              <div className="menu" onClick={app.frontend.closeNav}>
-                <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
-                {app.account.username ? (
-                  <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
-                ) : (
-                  <VisitorMenu />
-                )}
-                {mobileIcons}
-              </div>
-            ) : null}
-          </AppContext.Provider>
-          <Footer language={props.language} />
-        </div>
-      </MuiThemeProvider>
+            </React.Fragment>
+          ) : (
+            <Navbar app={app} />
+          )}
+          {layouts[pageLayout]}
+          <Notification
+            notification={notification}
+            closeNotification={closeNotification}
+            mobile={mobile}
+          />
+          <Loading loading={loading} />
+          {mobile && layout !== 'Draft' ? (
+            <div className="menu" onClick={app.frontend.closeNav}>
+              <MainMenu app={app} pageContext={props.pageContext} uri={uri} />
+              {app.account.username ? (
+                <UserMenu mobile={mobile} intl={props.intl} slug={uri} />
+              ) : (
+                <VisitorMenu />
+              )}
+              {mobileIcons}
+            </div>
+          ) : null}
+        </AppContext.Provider>
+        <Footer language={props.language} />
+      </div>
+    </MuiThemeProvider>
   )
 }
 

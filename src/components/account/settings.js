@@ -132,7 +132,11 @@ const AccountSettings = props => {
             </Button>
           )
 
-        return <div key={type} style={styles.wrapper}>{btns}</div>
+        return (
+          <div key={type} style={styles.wrapper}>
+            {btns}
+          </div>
+        )
       })}
     </React.Fragment>
   )

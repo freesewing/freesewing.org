@@ -28,7 +28,8 @@ const UserProfile = props => {
       {user.social && (
         <p style={{ textAlign: 'center' }}>
           <UserSocial accounts={user.social} size={36} />
-        </p> )}
+        </p>
+      )}
     </React.Fragment>
   )
 }

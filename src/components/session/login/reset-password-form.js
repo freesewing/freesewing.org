@@ -7,10 +7,10 @@ const ResetPasswordForm = props => (
   <React.Fragment>
     <div style={{ textAlign: 'left' }}>
       <ul>
-        <li data-test='trouble1'>
+        <li data-test="trouble1">
           <FormattedHTMLMessage id="app.emailWorksToo" />
         </li>
-        <li data-test='trouble2'>
+        <li data-test="trouble2">
           <FormattedHTMLMessage id="app.forgotLoginInstructions" />.
         </li>
       </ul>

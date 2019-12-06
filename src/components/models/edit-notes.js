@@ -33,7 +33,13 @@ const EditNotes = props => {
         onChange={updateNotes}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href={'/models/' + props.model} data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href={'/models/' + props.model}
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button

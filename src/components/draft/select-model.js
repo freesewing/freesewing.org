@@ -8,7 +8,7 @@ import capitalize from '@freesewing/utils/capitalize'
 
 const SelectPatternPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.chooseAModel'}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.chooseAModel' }))
     props.app.frontend.setCrumbs([
       {
         slug: '/create',
@@ -87,7 +87,11 @@ const SelectPatternPage = props => {
           count++
           return (
             <div style={styles.pattern} key={model.handle}>
-              <Link to={'/create/' + props.pattern + '/for/' + model.handle} title={model.name} data-test={"model"+count}>
+              <Link
+                to={'/create/' + props.pattern + '/for/' + model.handle}
+                title={model.name}
+                data-test={'model' + count}
+              >
                 <Avatar data={model} />
                 <h5 style={styles.name}>{model.name}</h5>
               </Link>

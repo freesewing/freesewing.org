@@ -37,7 +37,13 @@ const AccountLanguage = props => {
         })}
       </RadioGroup>
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button

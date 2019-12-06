@@ -6,11 +6,13 @@ import { info as patternInfo, measurements, options } from '@freesewing/pattern-
 import PatternMeasurements from '../docs/pattern-measurements'
 import PatternOptions from '../docs/pattern-options'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import LineDrawing from "@freesewing/components/LineDrawing"
+import LineDrawing from '@freesewing/components/LineDrawing'
 
 const PatternPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'patterns.' + props.pattern + '.title'}))
+    props.app.frontend.setTitle(
+      props.app.frontend.intl.formatMessage({ id: 'patterns.' + props.pattern + '.title' })
+    )
     props.app.frontend.setCrumbs([
       {
         slug: '/patterns',

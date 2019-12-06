@@ -50,7 +50,7 @@ const getStyles = (tablet, mobile) => {
     },
     box: {
       padding: '1.5rem',
-      maxWidth: 'calc(30% - 1.5rem)',
+      maxWidth: 'calc(30% - 1.5rem)'
     },
     solobox: {
       padding: '1.5rem',
@@ -114,7 +114,7 @@ const getStyles = (tablet, mobile) => {
       listStyleType: 'none',
       display: 'inline'
     },
-    h2Box: {},
+    h2Box: {}
   }
   if (tablet || mobile) {
     styles.boxes.display = 'block'
@@ -136,7 +136,7 @@ const getStyles = (tablet, mobile) => {
     styles.card.marginBottom = '2rem'
   }
 
-  return styles;
+  return styles
 }
 
-export default getStyles;
+export default getStyles

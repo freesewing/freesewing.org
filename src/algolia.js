@@ -19,8 +19,7 @@ const getQuery = language => `{
 
 const flatten = arr => {
   return arr.map(node => {
-    let it =
-    {
+    let it = {
       objectId: node.node.id,
       path: '/' + node.node.parent.relativeDirectory,
       title: node.node.frontmatter.title.split('|').pop(),
@@ -30,7 +29,7 @@ const flatten = arr => {
         .use(html)
         .processSync(node.node.rawBody).contents
     }
-    return it;
+    return it
   })
 }
 
@@ -44,7 +43,7 @@ const getSearchData = language => {
     }
   ]
 
-  return data;
+  return data
 }
 
 module.exports = getSearchData

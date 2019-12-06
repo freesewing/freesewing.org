@@ -1,17 +1,23 @@
-import React from "react";
+import React from 'react'
 
 const LanguageIcon = props => {
   const icons = {
     en: (
       <g transform="scale(0.6) translate(0, 5)">
         <clipPath id="t" key="clip">
-          <path d="M25,15 h25 v15 z v15 h-25 z h-25 v-15 z v-15 h25 z"/>
+          <path d="M25,15 h25 v15 z v15 h-25 z h-25 v-15 z v-15 h25 z" />
         </clipPath>
-        <path key="color1"d="M0,0 v30 h50 v-30 z" fill="#00247d"/>
-        <path key="color2"d="M0,0 L50,30 M50,0 L0,30" stroke="#fff" strokeWidth="6"/>
-        <path key="color3"d="M0,0 L50,30 M50,0 L0,30" clipPath="url(#t)" stroke="#cf142b" strokeWidth="4"/>
-        <path key="color4"d="M25,0 v30 M0,15 h50" stroke="#fff" strokeWidth="10"/>
-        <path key="color5"d="M25,0 v30 M0,15 h50" stroke="#cf142b" strokeWidth="6"/>
+        <path key="color1" d="M0,0 v30 h50 v-30 z" fill="#00247d" />
+        <path key="color2" d="M0,0 L50,30 M50,0 L0,30" stroke="#fff" strokeWidth="6" />
+        <path
+          key="color3"
+          d="M0,0 L50,30 M50,0 L0,30"
+          clipPath="url(#t)"
+          stroke="#cf142b"
+          strokeWidth="4"
+        />
+        <path key="color4" d="M25,0 v30 M0,15 h50" stroke="#fff" strokeWidth="10" />
+        <path key="color5" d="M25,0 v30 M0,15 h50" stroke="#cf142b" strokeWidth="6" />
       </g>
     ),
     de: (
@@ -41,7 +47,7 @@ const LanguageIcon = props => {
         <rect key="stripe2" width="32" height="8" fill="#21468b" x="0" y="16" />
         <rect key="stripe3" width="32" height="8" fill="#ae1c28" x="0" y="0" />
       </g>
-    ),
+    )
   }
 
   return (
@@ -57,5 +63,4 @@ const LanguageIcon = props => {
   )
 }
 
-export default LanguageIcon;
-
+export default LanguageIcon
