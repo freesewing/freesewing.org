@@ -1,4 +1,3 @@
-const patterns = require("@freesewing/pattern-info").list;
 const translate = require("./utils").translate
 
 const pageConfig =  {

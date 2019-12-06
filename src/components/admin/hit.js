@@ -1,20 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
 
 
 const SearchHit = props => {
   const [expand, setExpand] = useState(false)
   const [open, setOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const anchorRef = useRef(null)
 
   const handleAction = option => {
     if (option.slice(0,1) === 't') {

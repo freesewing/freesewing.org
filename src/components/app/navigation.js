@@ -4,7 +4,7 @@ import ExpandedIcon from '@material-ui/icons/KeyboardArrowDown'
 import CollapsedIcon from '@material-ui/icons/KeyboardArrowRight'
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
-import { list, options } from '@freesewing/pattern-info'
+import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
 const Navigation = props => {
@@ -29,7 +29,8 @@ const Navigation = props => {
 
   const styles = {
     icon: {
-      fontSize: '16px'
+      fontSize: '16px',
+      maxWidth: '16px'
     }
   }
 

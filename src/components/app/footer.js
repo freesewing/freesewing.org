@@ -1,6 +1,7 @@
 import React from 'react'
 import FooterBase from '@freesewing/components/Footer'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 const Footer = props => {
   const data = useStaticQuery(graphql`
@@ -44,20 +45,20 @@ const Footer = props => {
 
   const order = Object.keys(patrons)
   order.sort()
-  //const list = []
-  //order.map(username => {
-  //  let patron = patrons[username]
-  //  list.push(
-  //    <li key={patron.username} style={styles.li}>
-  //      <Link to={'/users/' + patron.username} title={patron.username}>
-  //        <img src={patron.pictureUris.xs} alt={patron.username} style={styles.img} />
-  //      </Link>
-  //    </li>
-  //  )
-  //  return null
-  //})
+  const list = []
+  order.map(username => {
+    let patron = patrons[username]
+    list.push(
+      <li key={patron.username} style={styles.li}>
+        <Link to={'/users/' + patron.username} title={patron.username}>
+          <img src={patron.pictureUris.xs} alt={patron.username} style={styles.img} />
+        </Link>
+      </li>
+    )
+    return null
+  })
 
-  //const allPatrons = <ul style={styles.ul}>{list}</ul>
+  const allPatrons = <ul style={styles.ul}>{list}</ul>
 
   const links = {
     left: {
@@ -72,7 +73,7 @@ const Footer = props => {
     }
   }
 
-  return <FooterBase language={props.language} links={links} home="/" />
+  return <FooterBase language={props.language} links={links} home="/" patrons={allPatrons} />
 }
 
 export default Footer

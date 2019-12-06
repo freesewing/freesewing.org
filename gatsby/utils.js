@@ -6,6 +6,15 @@ const patterns = require('@freesewing/pattern-info').list
 const  translate = key => i18n[process.env.GATSBY_LANGUAGE][key] || key
 
 const pageTitle = (slug, page) => {
+  if (typeof page === "undefined") {
+    throw "No page found for "+slug
+  }
+  else if (typeof page.frontmatter === "undefined") {
+    throw "No frontmatter found for "+slug+"\n"+JSON.stringify(page, null, 2)
+  }
+  else if (typeof page.frontmatter.title === "undefined") {
+    throw "No title found for "+slug+"\n"+JSON.stringify(page.frontmatter, null, 2)
+  }
   if (page.frontmatter.title === "") {
     let chunks = slug.split('/');
     // Perhaps a pattern option or sub page
@@ -18,14 +27,12 @@ const pageTitle = (slug, page) => {
       }
       if (chunks.length === 6) {
         // Perhaps a pattern subpage
-        for (let sub of ['options', 'measurements', 'needs', 'fabric', 'cutting', 'instructions']) {
-          if(chunks[4] === 'options') return translate('app.patternOptions')
-          if(chunks[4] === 'measurements') return translate('app.requiredMeasurements')
-          if(chunks[4] === 'needs') return translate('app.whatYouNeed')
-          if(chunks[4] === 'fabric') return translate('app.fabricOptions')
-          if(chunks[4] === 'cutting') return translate('app.cutting')
-          if(chunks[4] === 'instructions') return translate('app.instructions')
-        }
+        if(chunks[4] === 'options') return translate('app.patternOptions')
+        if(chunks[4] === 'measurements') return translate('app.requiredMeasurements')
+        if(chunks[4] === 'needs') return translate('app.whatYouNeed')
+        if(chunks[4] === 'fabric') return translate('app.fabricOptions')
+        if(chunks[4] === 'cutting') return translate('app.cutting')
+        if(chunks[4] === 'instructions') return translate('app.instructions')
       }
     }
   }

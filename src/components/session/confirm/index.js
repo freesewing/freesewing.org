@@ -22,7 +22,6 @@ const Confirm = props => {
     crumbs = [crumbLib.confirm]
     main = <SignupConfirmation app={props.app} confirmationId={confirmationId} />
   } else if (confirmationType === 'reset') {
-    console.log('this is a reset');
     props.app.frontend.startLoading();
     title = 'app.justAMoment'
     crumbs = [crumbLib.confirm]
