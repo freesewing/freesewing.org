@@ -7,6 +7,17 @@
   "homepage": "https://freesewing.org/",
   "repository": "https://github.com/freesewing/freesewing.org",
   "prettier": "@freesewing/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@freesewing/aaron": "2.1.6",
     "@freesewing/benjamin": "2.1.6",
@@ -113,7 +124,9 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-chai-friendly": "^0.5.0",
     "eslint-plugin-cypress": "^2.7.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^1.3.1",
+    "lint-staged": "^9.5.0"
   },
   "keywords": [
     "gatsby"
@@ -137,8 +150,9 @@
     "test:core": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/core.spec.js'",
     "test:showcase": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/showcase.spec.js'",
     "test:blog": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/blog.spec.js'",
-    "prettier": "npx prettier --write 'src/**'",
+    "prettier": "npx prettier --write '**/*.js'",
     "build": "gatsby build",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "precommit": "npm run pretty && lint-staged"
   }
 }
