@@ -77,4 +77,3 @@ const buildQuery = function(language) {
 }
 
 module.exports = buildQuery
-

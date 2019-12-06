@@ -1,11 +1,10 @@
-const patterns = require("@freesewing/pattern-info").list
-const options = require("@freesewing/pattern-info").options
+const patterns = require('@freesewing/pattern-info').list
+const options = require('@freesewing/pattern-info').options
 
 const carlitaToCarlton = {
   find: 'carlita',
   replace: ['carlton']
 }
-
 
 const brianSleevecap = {
   find: 'brian',
@@ -15,16 +14,7 @@ const brianSleevecap = {
 const patternOptions = {
   '/docs/patterns/brian/options/backneckcutout/': {
     find: 'brian',
-    replace: [
-      'bent',
-      'carlita',
-      'carlton',
-      'huey',
-      'hugo',
-      'jaeger',
-      'simon',
-      'sven'
-    ],
+    replace: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven']
   },
   '/docs/patterns/brian/options/frontarmholedeeper/': {
     find: 'brian',
@@ -126,12 +116,12 @@ const patternOptions = {
   '/docs/patterns/brian/options/sleevecapq4spread2/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecaptopfactorx/': brianSleevecap,
   '/docs/patterns/brian/options/sleevecaptopfactory/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevewidthguarantee/': brianSleevecap,
+  '/docs/patterns/brian/options/sleevewidthguarantee/': brianSleevecap
 }
 // Carton inherits (almost) all options from Carlita
 for (let option of options.carlita) {
-  if (option !== "contour") {
-    patternOptions['/docs/patterns/carlita/options/'+option.toLowerCase()+'/'] = {
+  if (option !== 'contour') {
+    patternOptions['/docs/patterns/carlita/options/' + option.toLowerCase() + '/'] = {
       find: 'carlita',
       replace: ['carlton']
     }
@@ -140,20 +130,23 @@ for (let option of options.carlita) {
 
 // Simone inherits all options from Simon
 for (let option of options.simon) {
-  patternOptions['/docs/patterns/simon/options/'+option.toLowerCase()+'/'] = {
+  patternOptions['/docs/patterns/simon/options/' + option.toLowerCase() + '/'] = {
     find: 'simon',
     replace: ['simone']
   }
 }
 
 const placeholderPages = {
-  '/docs/patterns/aaron/options/': { // This happens to be an empty page so we'll copy it
+  '/docs/patterns/aaron/options/': {
+    // This happens to be an empty page so we'll copy it
     find: '/docs/patterns/aaron/options/',
     replace: []
   }
 }
 for (let pattern of patterns) {
-  placeholderPages['/docs/patterns/aaron/options/'].replace.push(`/docs/patterns/${pattern}/measurements/`)
+  placeholderPages['/docs/patterns/aaron/options/'].replace.push(
+    `/docs/patterns/${pattern}/measurements/`
+  )
 }
 
 const getDuplicates = () => {
@@ -171,7 +164,7 @@ const getDuplicates = () => {
     }
   }
 
-  return dupes;
+  return dupes
 }
 
 module.exports = getDuplicates()
