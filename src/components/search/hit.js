@@ -1,6 +1,6 @@
-import React from "react"
-import { Highlight, Snippet } from "react-instantsearch-dom"
-import { Link } from "gatsby"
+import React from 'react'
+import { Highlight, Snippet } from 'react-instantsearch-dom'
+import { Link } from 'gatsby'
 
 const Hit = clickHandler => ({ hit }) => {
   return (

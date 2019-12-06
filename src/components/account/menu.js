@@ -89,17 +89,21 @@ const AccountMenu = props => {
               style={styles.button}
               variant="contained"
               className={type}
-              href={tile.to === "/logout" ? "#" : tile.to}
+              href={tile.to === '/logout' ? '#' : tile.to}
               size="large"
               data-test={tile.to}
-              onClick={tile.to === "/logout" ? tile.onClick : null}
+              onClick={tile.to === '/logout' ? tile.onClick : null}
             >
               {tile.icon}
               {typeof tile.title === 'string' ? <FormattedMessage id={tile.title} /> : tile.title}
             </Button>
           )
 
-        return <div key={type} style={styles.wrapper}>{btns}</div>
+        return (
+          <div key={type} style={styles.wrapper}>
+            {btns}
+          </div>
+        )
       })}
     </React.Fragment>
   )

@@ -11,7 +11,7 @@ const PatternList = props => {
   const [patterns, setPatterns] = useState(list)
   const [filter, setFilter] = useState(false)
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:"app.patterns"}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.patterns' }))
   }, [])
 
   const styles = {

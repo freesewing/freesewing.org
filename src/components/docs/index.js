@@ -66,9 +66,7 @@ const DocumentationIndexPage = props => {
             <FormattedMessage id="app.measurements" />
           </h2>
           <ul className="links">
-            {props.measurements.map(measurement =>
-              renderMeasurementDocs(measurement)
-            )}
+            {props.measurements.map(measurement => renderMeasurementDocs(measurement))}
           </ul>
         </div>
         <div style={styles.column}>

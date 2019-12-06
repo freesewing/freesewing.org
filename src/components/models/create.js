@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 
 const CreateModel = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.newModel'}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.newModel' }))
   }, [])
   const [units, setUnits] = useState(
     props.app.account
@@ -56,9 +56,9 @@ const CreateModel = props => {
           endAdornment: (
             <InputAdornment position="start">
               {name.length > 0 ? (
-                <ValidIcon style={{ color: '#40c057' }} data-test="valid"/>
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon color="error" data-test="invalid"/>
+                <InvalidIcon color="error" data-test="invalid" />
               )}
             </InputAdornment>
           )
@@ -71,7 +71,7 @@ const CreateModel = props => {
         {['metric', 'imperial'].map(type => {
           return (
             <FormControlLabel
-              control={<Radio color="primary" data-test={type}/>}
+              control={<Radio color="primary" data-test={type} />}
               value={type}
               checked={type === units ? true : false}
               label={props.app.frontend.intl.formatMessage({ id: 'app.' + type + 'Units' })}
@@ -104,7 +104,12 @@ const CreateModel = props => {
         {['true', 'false'].map(type => {
           return (
             <FormControlLabel
-              control={<Radio color="primary" data-test={type === 'true' ? 'withBreasts' : 'withoutBreasts'}/>}
+              control={
+                <Radio
+                  color="primary"
+                  data-test={type === 'true' ? 'withBreasts' : 'withoutBreasts'}
+                />
+              }
               value={type}
               checked={type === breasts ? true : false}
               label={props.app.frontend.intl.formatMessage({

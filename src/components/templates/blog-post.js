@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -45,13 +45,15 @@ const BlogTemplate = props => {
         <div>
           <FormattedMessage id="app.by" />
           &nbsp;
-          <Link to={'/users/' + frontmatter.author} data-test="author">{frontmatter.author}</Link>
+          <Link to={'/users/' + frontmatter.author} data-test="author">
+            {frontmatter.author}
+          </Link>
         </div>
       </div>
       <figure style={style.figure}>
         <a href={img.src}>
           <img
-            data-test='img'
+            data-test="img"
             src={img.src}
             style={{ width: '100%' }}
             srcSet={img.srcSet}

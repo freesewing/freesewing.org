@@ -21,7 +21,7 @@ const Signup = ({ app, location }) => {
   const [error, setError] = useState(false)
   const [trouble, setTrouble] = useState(false)
   useEffect(() => {
-    app.frontend.setTitle(app.frontend.intl.formatMessage({id:'app.signUp'}))
+    app.frontend.setTitle(app.frontend.intl.formatMessage({ id: 'app.signUp' }))
   }, [location])
 
   const handleSignup = evt => {
@@ -77,10 +77,11 @@ const Signup = ({ app, location }) => {
     <form onSubmit={trouble ? handleResend : handleSignup} style={styles.wrapper}>
       {!result && error ? <Blockquote type="warning">{error}</Blockquote> : null}
       <h6>
-        { trouble
-        ? <FormattedMessage id="app.resendActivationEmailMessage" />
-        : <FormattedMessage id="app.enterEmailPickPassword" />
-        }
+        {trouble ? (
+          <FormattedMessage id="app.resendActivationEmailMessage" />
+        ) : (
+          <FormattedMessage id="app.enterEmailPickPassword" />
+        )}
       </h6>
       <TextField
         id="email"
@@ -97,71 +98,74 @@ const Signup = ({ app, location }) => {
           endAdornment: (
             <InputAdornment position="start">
               {emailValid ? (
-                <ValidIcon style={{ color: '#40c057' }} data-test='email-valid'/>
+                <ValidIcon style={{ color: '#40c057' }} data-test="email-valid" />
               ) : (
-                <InvalidIcon color="error" data-test='email-invalid'/>
+                <InvalidIcon color="error" data-test="email-invalid" />
               )}
             </InputAdornment>
           )
         }}
       />
       {!trouble && (
-      <TextField
-        id="password"
-        fullWidth={true}
-        type={reveal ? 'text' : 'password'}
-        autoComplete="password"
-        label={app.frontend.intl.formatMessage({ id: 'account.password' })}
-        helperText={app.frontend.intl.formatMessage({ id: 'app.noPasswordPolicy' })}
-        margin="normal"
-        variant="outlined"
-        value={password}
-        onChange={evt => setPassword(evt.target.value)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <span
-                role="img"
-                aria-label="reveal"
-                onClick={() => setReveal(!reveal)}
-                className="poh"
-              >
-                {reveal ? (
-                  <span role="img" aria-label="show" data-test='show-password'>
-                    👀{' '}
-                  </span>
-                ) : (
-                  <span role="img" aria-label="show" data-test='hide-password'>
-                    🙈{' '}
-                  </span>
-                )}
-              </span>
-            </InputAdornment>
-          )
-        }}
-      />) }
+        <TextField
+          id="password"
+          fullWidth={true}
+          type={reveal ? 'text' : 'password'}
+          autoComplete="password"
+          label={app.frontend.intl.formatMessage({ id: 'account.password' })}
+          helperText={app.frontend.intl.formatMessage({ id: 'app.noPasswordPolicy' })}
+          margin="normal"
+          variant="outlined"
+          value={password}
+          onChange={evt => setPassword(evt.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <span
+                  role="img"
+                  aria-label="reveal"
+                  onClick={() => setReveal(!reveal)}
+                  className="poh"
+                >
+                  {reveal ? (
+                    <span role="img" aria-label="show" data-test="show-password">
+                      👀{' '}
+                    </span>
+                  ) : (
+                    <span role="img" aria-label="show" data-test="hide-password">
+                      🙈{' '}
+                    </span>
+                  )}
+                </span>
+              </InputAdornment>
+            )
+          }}
+        />
+      )}
       <Button
         type="submit"
         color="primary"
         size="large"
         variant="contained"
         style={{ margin: '2rem 0 0.5rem' }}
-        disabled={!emailValid || (password.length<1 && !trouble)}
+        disabled={!emailValid || (password.length < 1 && !trouble)}
       >
-        {trouble
-          ? <FormattedMessage id="app.resendActivationEmail" />
-          : <FormattedMessage id="app.signUp" />
-        }
+        {trouble ? (
+          <FormattedMessage id="app.resendActivationEmail" />
+        ) : (
+          <FormattedMessage id="app.signUp" />
+        )}
       </Button>
-      <div style={{margin: '1rem 0 2rem'}}>
-        <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test='trouble'>
-          {trouble
-            ? <FormattedMessage id='app.signUp' />
-            : <FormattedMessage id='app.resendActivationEmail' />
-          }
+      <div style={{ margin: '1rem 0 2rem' }}>
+        <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
+          {trouble ? (
+            <FormattedMessage id="app.signUp" />
+          ) : (
+            <FormattedMessage id="app.resendActivationEmail" />
+          )}
         </a>
         <span style={{ padding: '0 1rem' }}>|</span>
-        <Link to="/login" data-test='login'>
+        <Link to="/login" data-test="login">
           <FormattedMessage id="app.logIn" />
         </Link>
       </div>

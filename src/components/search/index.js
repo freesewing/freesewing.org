@@ -1,17 +1,11 @@
-import React, { useState } from "react"
-import {
-  InstantSearch,
-  Hits,
-  connectStateResults,
-  PoweredBy
-} from "react-instantsearch-dom"
-import algoliasearch from "algoliasearch/lite"
-import Hit from "./hit"
-import SearchBox from "./search-box"
+import React, { useState } from 'react'
+import { InstantSearch, Hits, connectStateResults, PoweredBy } from 'react-instantsearch-dom'
+import algoliasearch from 'algoliasearch/lite'
+import Hit from './hit'
+import SearchBox from './search-box'
 
-const Results = connectStateResults(
-  ({ searchState: state, searchResults: res, children }) =>
-    res && res.nbHits > 0 ? children : `No results for '${state.query}'`
+const Results = connectStateResults(({ searchState: state, searchResults: res, children }) =>
+  res && res.nbHits > 0 ? children : `No results for '${state.query}'`
 )
 
 export default function Search({ indices, collapse, hitsAsGrid, search }) {
@@ -24,17 +18,17 @@ export default function Search({ indices, collapse, hitsAsGrid, search }) {
   )
 
   const style = {
-    display: "flex",
-    flexDirection: "row",
-    placeContent: "center",
-    fontFamily: "Roboto Condensed",
-    marginTop: "40px"
+    display: 'flex',
+    flexDirection: 'row',
+    placeContent: 'center',
+    fontFamily: 'Roboto Condensed',
+    marginTop: '40px'
   }
 
   return (
     <InstantSearch
       searchClient={searchClient}
-      indexName={process.env.GATSBY_LANGUAGE+'_freesewing_org'}
+      indexName={process.env.GATSBY_LANGUAGE + '_freesewing_org'}
       onSearchStateChange={({ query }) => setQuery(query)}
     >
       <SearchBox {...{ collapse, focus }} search={search} />

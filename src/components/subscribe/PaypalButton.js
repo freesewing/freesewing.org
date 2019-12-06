@@ -41,11 +41,7 @@ const PaypalButton = props => {
         <input type="hidden" name="no_note" value="1" />
         <input type="hidden" name="no_shipping" value="2" />
         <input type="hidden" name="rm" value="1" />
-        <input
-          type="hidden"
-          name="return"
-          value='https://freesewing.org/patrons/thanks'
-        />
+        <input type="hidden" name="return" value="https://freesewing.org/patrons/thanks" />
         <input type="hidden" name="src" value="1" />
         <input type="hidden" name="a3" value={tier + '.00'} />
         <input type="hidden" name="p3" value="1" />
@@ -83,21 +79,13 @@ const PaypalButton = props => {
         <input type="hidden" name="no_note" value="1" />
         <input type="hidden" name="no_shipping" value="2" />
         <input type="hidden" name="rm" value="1" />
-        <input
-          type="hidden"
-          name="return"
-          value='https://freesewing.org/patrons/thanks'
-        />
+        <input type="hidden" name="return" value="https://freesewing.org/patrons/thanks" />
         <input type="hidden" name="src" value="1" />
         <input type="hidden" name="a3" value={tier * 12 + '.00'} />
         <input type="hidden" name="p3" value="1" />
         <input type="hidden" name="t3" value="Y" />
         <input type="hidden" name="currency_code" value="EUR" />
-        <input
-          type="hidden"
-          name="bn"
-          value='https://freesewing.org/patrons/thanks'
-        />
+        <input type="hidden" name="bn" value="https://freesewing.org/patrons/thanks" />
         <input
           type="hidden"
           name="image_url"

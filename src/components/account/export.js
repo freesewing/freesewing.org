@@ -12,7 +12,13 @@ const AccountExport = ({ app }) => (
       <FormattedMessage id="account.exportYourDataTitle" />
     </h6>
     <p style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
-      <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
+      <Button
+        size="large"
+        variant="outlined"
+        color="primary"
+        href="/account/settings"
+        data-test="cancel"
+      >
         <FormattedMessage id="app.cancel" />
       </Button>
       <Button

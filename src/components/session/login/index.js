@@ -14,7 +14,7 @@ const Login = ({ app, location }) => {
   const [inactive, setInactive] = useState(false)
 
   useEffect(() => {
-    app.frontend.setTitle(app.frontend.intl.formatMessage({id: "app.logIn"}))
+    app.frontend.setTitle(app.frontend.intl.formatMessage({ id: 'app.logIn' }))
   }, [])
 
   const handleLogin = evt => {
@@ -27,19 +27,28 @@ const Login = ({ app, location }) => {
     app.backend.recoverAccount(evt.target[0].value)
   }
 
-  if (inactive) return (
-    <Blockquote type="note">
-      <h5><FormattedMessage id="account.accountIsInactive" /></h5>
-      <p><FormattedMessage id="account.accountNeedsActivation" /></p>
-      <h6><FormattedMessage id="app.askForHelp" /></h6>
-      <p><FormattedMessage id="app.joinTheChatMsg" /></p>
-      <p style={{textAlign: 'right'}}>
-        <Button variant="contained" color="primary" href="https://gitter.im/freesewing/help">
+  if (inactive)
+    return (
+      <Blockquote type="note">
+        <h5>
+          <FormattedMessage id="account.accountIsInactive" />
+        </h5>
+        <p>
+          <FormattedMessage id="account.accountNeedsActivation" />
+        </p>
+        <h6>
           <FormattedMessage id="app.askForHelp" />
-        </Button>
-      </p>
-    </Blockquote>
-  )
+        </h6>
+        <p>
+          <FormattedMessage id="app.joinTheChatMsg" />
+        </p>
+        <p style={{ textAlign: 'right' }}>
+          <Button variant="contained" color="primary" href="https://gitter.im/freesewing/help">
+            <FormattedMessage id="app.askForHelp" />
+          </Button>
+        </p>
+      </Blockquote>
+    )
 
   const formProps = {
     intl: app.frontend.intl,
@@ -65,11 +74,11 @@ const Login = ({ app, location }) => {
         </Blockquote>
       ) : null}
       <div>{main}</div>
-      <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test='trouble'>
+      <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
         <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
       </a>
       <span style={{ padding: '0 1rem' }}>|</span>
-      <Link to="/signup" data-test='signup'>
+      <Link to="/signup" data-test="signup">
         <FormattedMessage id="app.signUpForAFreeAccount" />
       </Link>
       <div style={{ marginTop: '3rem', maxWidth: '500px' }}>

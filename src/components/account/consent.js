@@ -22,11 +22,7 @@ const AccountConsent = ({ app }) => {
     app.account ? (app.account.consent ? (app.account.consent.model ? true : false) : false) : false
   )
   const [openData, setOpenData] = useState(
-    app.account.consent
-      ? app.account.consent.model
-        ? true
-        : false
-      : false
+    app.account.consent ? (app.account.consent.model ? true : false) : false
   )
 
   const saveConsent = () => {
@@ -112,9 +108,9 @@ const AccountConsent = ({ app }) => {
           <FormattedMessage id="gdpr.modelWhatQuestion" />
         </td>
         <td style={styles.cell} data-test="modelWhatAnswer">
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswer"/>
+          <FormattedHTMLMessage id="gdpr.modelWhatAnswer" />
           <br />
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional"/>
+          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional" />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -230,7 +226,13 @@ const AccountConsent = ({ app }) => {
       )}
 
       <p style={{ textAlign: app.frontend.mobile ? 'left' : 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button

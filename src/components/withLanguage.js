@@ -11,10 +11,7 @@ const withLanguage = (WrappedComponent, lang = 'en') => {
     render() {
       return (
         <IntlProvider locale={lang} messages={strings[lang]}>
-          <WrappedComponent
-            language={lang}
-            {...this.props}
-          />
+          <WrappedComponent language={lang} {...this.props} />
         </IntlProvider>
       )
     }

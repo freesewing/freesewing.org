@@ -7,7 +7,7 @@ import { Link } from 'gatsby'
 import patternsImage from './patterns.jpg'
 import showcasesImage from './showcases.jpg'
 import blogpostsImage from './blogposts.jpg'
-import getStyles from "./styles"
+import getStyles from './styles'
 
 const HomePage = ({ app }) => {
   app.frontend.setLayout = 'home'

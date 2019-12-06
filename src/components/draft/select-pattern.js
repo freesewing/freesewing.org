@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import { list } from '@freesewing/pattern-info'
-import LineDrawing from "@freesewing/components/LineDrawing"
-import capitalize from "@freesewing/utils/capitalize";
+import LineDrawing from '@freesewing/components/LineDrawing'
+import capitalize from '@freesewing/utils/capitalize'
 
 const SelectPatternPage = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.chooseAPattern'}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.chooseAPattern' }))
     props.app.frontend.setCrumbs([
       {
         slug: '/create',
@@ -22,9 +22,9 @@ const SelectPatternPage = props => {
   }, [])
   const styles = {
     pattern: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
     },
     name: {
       wordWrap: 'anywhere',
@@ -37,7 +37,7 @@ const SelectPatternPage = props => {
       padding: 0
     },
     linedrawing: {
-      marginRight: "1rem",
+      marginRight: '1rem'
     }
   }
   const pageTitle = (
@@ -59,7 +59,9 @@ const SelectPatternPage = props => {
                 </div>
                 <div>
                   <h6 style={styles.name}>{capitalize(pattern)}</h6>
-                  <p style={styles.notes}><FormattedMessage id={'patterns.' + pattern + '.title'} /></p>
+                  <p style={styles.notes}>
+                    <FormattedMessage id={'patterns.' + pattern + '.title'} />
+                  </p>
                 </div>
               </div>
             </Link>

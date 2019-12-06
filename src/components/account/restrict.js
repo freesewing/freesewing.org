@@ -28,7 +28,13 @@ const AccountRestrict = props => {
       </Blockquote>
 
       <p style={{ textAlign: props.app.frontend.mobile ? 'left' : 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button

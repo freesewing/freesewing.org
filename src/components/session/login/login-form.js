@@ -47,11 +47,11 @@ const LoginForm = props => {
                   className="poh"
                 >
                   {reveal ? (
-                    <span role="img" aria-label="show" data-test='show-password'>
+                    <span role="img" aria-label="show" data-test="show-password">
                       👀{' '}
                     </span>
                   ) : (
-                    <span role="img" aria-label="show" data-test='hide-password'>
+                    <span role="img" aria-label="show" data-test="hide-password">
                       🙈{' '}
                     </span>
                   )}
@@ -65,7 +65,7 @@ const LoginForm = props => {
           color="primary"
           size="large"
           variant="contained"
-          disabled={props.loading || props.username.length<1 || props.password.length<1}
+          disabled={props.loading || props.username.length < 1 || props.password.length < 1}
           style={{ margin: '2rem 0' }}
         >
           <FormattedMessage id="app.logIn" />

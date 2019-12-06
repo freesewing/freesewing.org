@@ -32,49 +32,54 @@ const Navbar = props => {
         type: 'link',
         href: '/login',
         text: 'app.logIn',
-        title: props.app.frontend.intl.formatMessage({id: 'app.logIn'})
+        title: props.app.frontend.intl.formatMessage({ id: 'app.logIn' })
       },
       signup: {
         type: 'link',
         href: '/signup',
         text: 'app.signUp',
-        title: props.app.frontend.intl.formatMessage({id: 'app.signUp'})
+        title: props.app.frontend.intl.formatMessage({ id: 'app.signUp' })
       },
       patrons: {
         type: 'link',
         href: '/patrons',
-        text: <PatronIcon className="nav-icon" style={{color: '#e64980', maxWidth: '24px'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'app.ourPatrons'})
+        text: <PatronIcon className="nav-icon" style={{ color: '#e64980', maxWidth: '24px' }} />,
+        title: props.app.frontend.intl.formatMessage({ id: 'app.ourPatrons' })
       },
       create: {
         type: 'link',
         href: '/create',
-        text: <AddIcon className="nav-icon" style={{color: '#40c057', maxWidth: '24px'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'app.newPattern'}, {pattern: props.app.frontend.intl.formatMessage({id: 'app.pattern'})})
+        text: <AddIcon className="nav-icon" style={{ color: '#40c057', maxWidth: '24px' }} />,
+        title: props.app.frontend.intl.formatMessage(
+          { id: 'app.newPattern' },
+          { pattern: props.app.frontend.intl.formatMessage({ id: 'app.pattern' }) }
+        )
       },
       account: {
         type: 'link',
         href: '/account',
-        title: props.app.frontend.intl.formatMessage({id: 'app.account' }),
-        text: <AccountIcon className="nav-icon" style={{color: '#74c0fc', maxWidth: '24px'}}/>
+        title: props.app.frontend.intl.formatMessage({ id: 'app.account' }),
+        text: <AccountIcon className="nav-icon" style={{ color: '#74c0fc', maxWidth: '24px' }} />
       },
       search: {
         type: 'link',
         href: '/search',
-        text: <SearchIcon className="nav-icon" style={{maxWidth: '24px'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'app.search'})
+        text: <SearchIcon className="nav-icon" style={{ maxWidth: '24px' }} />,
+        title: props.app.frontend.intl.formatMessage({ id: 'app.search' })
       },
       language: {
         type: 'link',
         href: '/language',
-        text: <LanguageIcon className="nav-icon" style={{maxWidth: '24px'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'account.languageTitle'})
+        text: <LanguageIcon className="nav-icon" style={{ maxWidth: '24px' }} />,
+        title: props.app.frontend.intl.formatMessage({ id: 'account.languageTitle' })
       },
       theme: {
         type: 'button',
         onClick: props.app.frontend.toggleDarkMode,
-        text: <DarkModeIcon className="nav-icon moon" style={{color: '#ffd43b', maxWidth: '24px'}}/>,
-        title: props.app.frontend.intl.formatMessage({id: 'app.darkMode'})
+        text: (
+          <DarkModeIcon className="nav-icon moon" style={{ color: '#ffd43b', maxWidth: '24px' }} />
+        ),
+        title: props.app.frontend.intl.formatMessage({ id: 'app.darkMode' })
       }
     }
   }
@@ -93,7 +98,7 @@ const Navbar = props => {
     baseProps.emblem = null
     delete navs.left.docs
   }
-  return <NavbarBase {...baseProps}/>
+  return <NavbarBase {...baseProps} />
 }
 
 export default Navbar

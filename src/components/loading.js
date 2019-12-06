@@ -26,26 +26,26 @@ const Loading = props => {
     msg: {
       color: '#fff',
       textAlign: 'center',
-      margin: "-40px 0 0",
+      margin: '-40px 0 0',
       padding: 0
     }
-
   }
 
   return (
     <React.Fragment>
-    <div id="loader" style={style.wrapper}>
-      <div className="dark" style={style.inner}>
-        <Spinner size={400} />
-        { props.init ? (
-        <h5 style={style.msg}>
-          <FormattedMessage id='app.oneMomentPlease' />
-          <br />
-          <FormattedMessage id='app.loadingMagic' />
-        </h5> ) : null }
+      <div id="loader" style={style.wrapper}>
+        <div className="dark" style={style.inner}>
+          <Spinner size={400} />
+          {props.init ? (
+            <h5 style={style.msg}>
+              <FormattedMessage id="app.oneMomentPlease" />
+              <br />
+              <FormattedMessage id="app.loadingMagic" />
+            </h5>
+          ) : null}
+        </div>
       </div>
-    </div>
-    {props.children}
+      {props.children}
     </React.Fragment>
   )
 }
