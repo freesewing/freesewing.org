@@ -79,7 +79,7 @@ const ShowRecipe = props => {
             href={'/recipes/' + recipe.handle + '/edit'}
             variant="contained"
           >
-            <FormattedMessage id="app.edit_notes" />
+            <FormattedMessage id="app.editNotes" />
           </Button>
         )}
       </p>
