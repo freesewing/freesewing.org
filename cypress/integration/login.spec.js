@@ -1,16 +1,13 @@
-import { strings } from "@freesewing/i18n";
+import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Login flow', function() {
-
-  beforeEach(function () {
+  beforeEach(function() {
     cy.visit('/login')
-    cy.get('div.theme-wrapper')
-      .should('have.class', 'layoutdefault')
+    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
   })
 
   it('Verify login page translations', function() {
-
     // Title
     cy.get('h1').should('contain', i18n['app.logIn'])
 
@@ -30,17 +27,19 @@ describe('Login flow', function() {
     cy.get('article a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
 
     // Google Oauth button
-    cy.get('button[data-provider=google] span.MuiButton-label span')
-      .should('contain', i18n['app.loginWithProvider'].slice(0, 10))
+    cy.get('button[data-provider=google] span.MuiButton-label span').should(
+      'contain',
+      i18n['app.loginWithProvider'].slice(0, 10)
+    )
 
     // Github Oauth button
-    cy.get('button[data-provider=github] span.MuiButton-label span')
-      .should('contain', i18n['app.loginWithProvider'].slice(0, 10))
-
+    cy.get('button[data-provider=github] span.MuiButton-label span').should(
+      'contain',
+      i18n['app.loginWithProvider'].slice(0, 10)
+    )
   })
 
   it('Verify login state on load', function() {
-
     // (auto) focus on username
     cy.focused().should('have.attr', 'id', 'username')
 
@@ -50,11 +49,9 @@ describe('Login flow', function() {
     // Hidden password
     cy.get('[data-test=hide-password]').should('be.visible')
     cy.get('#password').should('have.attr', 'type', 'password')
-
   })
 
   it('Missing password should prevent submit', function() {
-
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -63,7 +60,6 @@ describe('Login flow', function() {
   })
 
   it('Missing username should prevent submit', function() {
-
     // Fill in username
     cy.get('#password').type('😇')
 
@@ -72,7 +68,6 @@ describe('Login flow', function() {
   })
 
   it('Username and password should enable submit', function() {
-
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -84,7 +79,6 @@ describe('Login flow', function() {
   })
 
   it.only('Form should submit via keyboard', function() {
-
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -92,11 +86,13 @@ describe('Login flow', function() {
     cy.get('#password').type('cypress{enter}')
 
     // Check error message
-    cy.get('[data-test=notification]').should('contain', i18n['errors.requestFailedWithStatusCode401'])
+    cy.get('[data-test=notification]').should(
+      'contain',
+      i18n['errors.requestFailedWithStatusCode401']
+    )
   })
 
   it('Password reveal icon should toggle password visibility', function() {
-
     let val = i18n['app.ohNo']
 
     // Enter password
@@ -119,11 +115,9 @@ describe('Login flow', function() {
 
     // Validate password is correct
     cy.get('#password').should('have.value', val)
-
   })
 
   it('Verify result on login/submit', function() {
-
     // Fill in username
     cy.get('#username').type('test_user')
 
@@ -134,12 +128,10 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').click()
 
     // Title should be translated
-    cy.get('h1')
-      .should('contain', i18n['app.account'])
+    cy.get('h1').should('contain', i18n['app.account'])
   })
 
   it('Verify trouble loggin in instructions are translated', function() {
-
     // Click trouble link
     cy.get('article a[data-test=trouble]').click()
 
@@ -148,7 +140,7 @@ describe('Login flow', function() {
 
     // Instructions
     cy.get('[data-test=trouble1]').contains(i18n['app.emailWorksToo'])
-    cy.get('[data-test=trouble2]').contains(i18n['app.forgotLoginInstructions'].slice(0,20))
+    cy.get('[data-test=trouble2]').contains(i18n['app.forgotLoginInstructions'].slice(0, 20))
 
     // Button
     cy.get('button[type=submit]').contains(i18n['app.resetPassword'])
@@ -174,7 +166,9 @@ describe('Login flow', function() {
     cy.get('#loader').should('be.visible')
 
     // Check notification
-    cy.get('[data-test=notification]')
-      .should('contain', i18n['app.checkInboxClickLinkInConfirmationEmail'])
+    cy.get('[data-test=notification]').should(
+      'contain',
+      i18n['app.checkInboxClickLinkInConfirmationEmail']
+    )
   })
 })

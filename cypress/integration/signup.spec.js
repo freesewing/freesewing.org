@@ -1,16 +1,13 @@
-import { strings } from "@freesewing/i18n";
+import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Signup flow', function() {
-
-  beforeEach(function () {
+  beforeEach(function() {
     cy.visit('/signup')
-    cy.get('div.theme-wrapper')
-      .should('have.class', 'layoutdefault')
+    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
   })
 
   it('Verify signup page translations', function() {
-
     // Title
     cy.get('h1').should('contain', i18n['app.signUp'])
 
@@ -33,17 +30,19 @@ describe('Signup flow', function() {
     cy.get('form button[type=submit]').should('contain', i18n['app.signUp'])
 
     // Google Oauth button
-    cy.get('button[data-provider=google] span.MuiButton-label span')
-      .should('contain', i18n['app.signupWithProvider'].slice(0, 10))
+    cy.get('button[data-provider=google] span.MuiButton-label span').should(
+      'contain',
+      i18n['app.signupWithProvider'].slice(0, 10)
+    )
 
     // Github Oauth button
-    cy.get('button[data-provider=github] span.MuiButton-label span')
-      .should('contain', i18n['app.signupWithProvider'].slice(0, 10))
-
+    cy.get('button[data-provider=github] span.MuiButton-label span').should(
+      'contain',
+      i18n['app.signupWithProvider'].slice(0, 10)
+    )
   })
 
   it('Verify signup state on load', function() {
-
     // (auto) focus on email
     cy.focused().should('have.attr', 'id', 'email')
 
@@ -56,11 +55,9 @@ describe('Signup flow', function() {
     // Hidden password
     cy.get('[data-test=hide-password]').should('be.visible')
     cy.get('#password').should('have.attr', 'type', 'password')
-
   })
 
   it('Invalid email address should prevent submit', function() {
-
     // Fill in invalid email address
     cy.get('#email').type('user.gmail.com')
 
@@ -69,11 +66,9 @@ describe('Signup flow', function() {
 
     // Email input should remain invalid
     cy.get('[data-test=email-invalid]').should('be.visible')
-
   })
 
   it('Valid email address alone should not enable submit', function() {
-
     // Fill in valid email address
     cy.get('#email').type('cypress@freesewing.org')
 
@@ -82,11 +77,9 @@ describe('Signup flow', function() {
 
     // Email input should be valid
     cy.get('[data-test=email-valid]').should('be.visible')
-
   })
 
   it('Valid email address and password should enable submit', function() {
-
     // Fill in valid email address
     cy.get('#email').type('cypress@freesewing.org')
 
@@ -98,11 +91,9 @@ describe('Signup flow', function() {
 
     // Email input should be valid
     cy.get('[data-test=email-valid]').should('be.visible')
-
   })
 
   it('Form should submit via keyboard', function() {
-
     // Fill in valid email address
     cy.get('#email').type('test_user@freesewing.org')
 
@@ -114,7 +105,6 @@ describe('Signup flow', function() {
   })
 
   it('Password reveal icon should toggle password visibility', function() {
-
     let val = i18n['app.ohNo']
 
     // Enter password
@@ -137,13 +127,11 @@ describe('Signup flow', function() {
 
     // Validate password is correct
     cy.get('#password').should('have.value', val)
-
   })
 
   it('Verify result on signup/submit', function() {
-
     // Fill in valid email address
-    cy.get('#email').type('cypress+'+Date.now()+'@freesewing.org')
+    cy.get('#email').type('cypress+' + Date.now() + '@freesewing.org')
 
     // Enter password
     cy.get('#password').type('cypress')
@@ -157,20 +145,19 @@ describe('Signup flow', function() {
       .should('contain', i18n['app.goodJob'])
 
     // First paragraph should be translated
-    cy.get('article p:first-of-type')
-      .should('contain', i18n['app.checkInboxClickLinkInConfirmationEmail'])
+    cy.get('article p:first-of-type').should(
+      'contain',
+      i18n['app.checkInboxClickLinkInConfirmationEmail']
+    )
 
     // Second (last) paragraph should be translated
-    cy.get('article p:last-of-type')
-      .should('contain', i18n['app.goAheadWeWillWait'])
+    cy.get('article p:last-of-type').should('contain', i18n['app.goAheadWeWillWait'])
 
     // Image should load
     cy.get('article img').should('be.visible')
-
   })
 
   it('Verify result for existing user', function() {
-
     // Fill in email address of existing user
     cy.get('#email').type('test_user@freesewing.org')
 
@@ -182,6 +169,5 @@ describe('Signup flow', function() {
 
     // Check error message
     cy.get('blockquote.warning').should('contain', i18n['errors.emailExists'])
-
   })
 })
