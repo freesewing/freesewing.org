@@ -91,12 +91,11 @@ const EditMeasurement = props => {
   let helperText = () => null
 
   if (currentModel.measurements.neckCircumference) {
-    measurementEstimate =
-      neckstimate(
-        currentModel.measurements.neckCircumference,
-        currentMeasurement,
-        currentModel.breasts
-      ) // Note: This is in mm
+    measurementEstimate = neckstimate(
+      currentModel.measurements.neckCircumference,
+      currentMeasurement,
+      currentModel.breasts
+    ) // Note: This is in mm
     console.log('formatted', measurementEstimate, formatMm(measurementEstimate, currentModel.units))
     measurementInRange =
       measurementDiffers(
@@ -111,8 +110,15 @@ const EditMeasurement = props => {
       if (currentMeasurement != 'measurements.neckCircumference') {
         return (
           <>
-            <FormattedMessage id="app.weEstimateYM2B" values={{measurement: label.toLowerCase()}}/>
-            <span dangerouslySetInnerHTML={{__html: formatMm(measurementEstimate, currentModel.units)}}/>
+            <FormattedMessage
+              id="app.weEstimateYM2B"
+              values={{ measurement: label.toLowerCase() }}
+            />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: formatMm(measurementEstimate, currentModel.units)
+              }}
+            />
           </>
         )
         return (

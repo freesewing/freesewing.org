@@ -22,7 +22,7 @@ const Navigation = props => {
   const isDescendant = (checkSlug, baseSlug) => {
     if (checkSlug.slice(-1) !== '/') checkSlug += '/'
     if (baseSlug.slice(-1) !== '/') baseSlug += '/'
-    if (baseSlug.slice(0,1) !== '/') baseSlug = '/'+baseSlug
+    if (baseSlug.slice(0, 1) !== '/') baseSlug = '/' + baseSlug
     if (checkSlug.slice(0, baseSlug.length) === baseSlug) return true
     return false
   }
@@ -37,7 +37,6 @@ const Navigation = props => {
   const renderSidebar = () => {
     let items = []
     for (let topic of topics) {
-
       let active = isDescendant(props.slug, topic) ? true : false
       items.push(
         <li key={topic} className={active ? 'topic active' : 'topic'}>
@@ -60,14 +59,14 @@ const Navigation = props => {
 
   const renderSidebarLevel = (level, data) => {
     // Don't bother if there's nothing to render
-    if (Object.keys(data).length === 0) return null;
+    if (Object.keys(data).length === 0) return null
     // Avoid too much recursion
     if (level > 4) return null
     if (level == 2) {
-      let slug = Object.keys(data)[0];
-      if (slug.slice(0,15) === "/docs/patterns/") {
+      let slug = Object.keys(data)[0]
+      if (slug.slice(0, 15) === '/docs/patterns/') {
         for (let slug of Object.keys(data)) {
-          let chunks = slug.split("/");
+          let chunks = slug.split('/')
           //data[slug].title = capitalize(chunks[3]);
           data[slug].title = <FormattedMessage id={`patterns.${chunks[3]}.title`} />
         }

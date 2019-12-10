@@ -29,10 +29,9 @@ const MainMenu = props => {
     if (typeof props.app.recipes !== 'undefined') {
       for (let r in props.app.recipes) {
         if (typeof props.app.recipes[r].recipe !== 'undefined') {
-          let pattern = props.app.recipes[r].recipe.pattern || 'FIXME';
+          let pattern = props.app.recipes[r].recipe.pattern || 'FIXME'
           navigation['/recipes/'].children['/recipes/' + r + '/'] = {
-            title:
-              capitalize(pattern) + ': ' + props.app.recipes[r].name
+            title: capitalize(pattern) + ': ' + props.app.recipes[r].name
           }
         }
       }

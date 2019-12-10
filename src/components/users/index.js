@@ -7,7 +7,8 @@ import LoginRequired from '../login-required'
 
 const UsersIndex = props => {
   useEffect(() => {
-    if (props.slug === '/users') props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.users'}))
+    if (props.slug === '/users')
+      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.users' }))
     else {
       props.app.frontend.setTitle(props.slug.split('/').pop())
       props.app.frontend.setCrumbs([

@@ -38,16 +38,22 @@ const AccountEmail = props => {
           endAdornment: (
             <InputAdornment position="start">
               {emailValid ? (
-                <ValidIcon style={{ color: '#40c057' }} data-test='valid'/>
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
               ) : (
-                <InvalidIcon color="error" data-test="invalid"/>
+                <InvalidIcon color="error" data-test="invalid" />
               )}
             </InputAdornment>
           )
         }}
       />
       <p style={{ textAlign: 'right' }}>
-        <Button size="large" variant="outlined" color="primary" href="/account/settings" data-test="cancel">
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
           <FormattedMessage id="app.cancel" />
         </Button>
         <Button

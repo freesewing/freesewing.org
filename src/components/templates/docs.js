@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'
 import MeasurementsImages from '../measurements/images'
@@ -92,7 +92,8 @@ const DocumentationPage = props => {
   }
   const measurementsList = sortMeasurements(measurements.womenswear)
 
-  if (props.slug === '/docs') return <DocsIndexPage {...props} docs={docs} measurements={measurementsList}/>
+  if (props.slug === '/docs')
+    return <DocsIndexPage {...props} docs={docs} measurements={measurementsList} />
 
   const components = {
     Note: ({ children }) => {
@@ -115,7 +116,7 @@ const DocumentationPage = props => {
     return m
   }
 
-  let noTitle = false; // For when title is not from markdown frontmatter
+  let noTitle = false // For when title is not from markdown frontmatter
   let prefix = null
   let suffix = null
   if (props.slug === '/docs/measurements') {
@@ -130,8 +131,7 @@ const DocumentationPage = props => {
       )
     }
     prefix = <ul>{children}</ul>
-  }
-  else if (props.slug === '/docs/sewing') {
+  } else if (props.slug === '/docs/sewing') {
     let children = []
     for (let title of Object.keys(docs.sewing).sort()) {
       let to = docs.sewing[title]
@@ -155,41 +155,40 @@ const DocumentationPage = props => {
           <li key={pattern}>
             <Link to={'/docs/patterns/' + pattern}>
               <FormattedMessage id={`patterns.${pattern}.title`} />
-          </Link>
+            </Link>
           </li>
         ))}
       </ul>
     )
   else if (chunks.length === 4 && chunks[1] === 'docs' && chunks[2] === 'patterns') {
     suffix = <PatternPage pattern={chunks[3]} {...props} />
-    noTitle = props.app.frontend.intl.formatMessage({id:`patterns.${chunks[3]}.title`})
-  }
-  else if (
-    chunks.length === 5 &&
-    chunks[1] === 'docs' &&
-    chunks[2] === 'patterns'
-  ) {
+    noTitle = props.app.frontend.intl.formatMessage({ id: `patterns.${chunks[3]}.title` })
+  } else if (chunks.length === 5 && chunks[1] === 'docs' && chunks[2] === 'patterns') {
     if (chunks[4] === 'options') {
       prefix = <PatternOptions pattern={chunks[3]} />
-      noTitle = props.app.frontend.intl.formatMessage({id:'app.patternOptions'})
-    }
-    else if (chunks[4] === 'measurements') {
-      noTitle = props.app.frontend.intl.formatMessage({id:'app.requiredMeasurements'})
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.patternOptions' })
+    } else if (chunks[4] === 'measurements') {
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.requiredMeasurements' })
       suffix = <PatternMeasurements pattern={chunks[3]} app={props.app} />
-    }
-    else if (chunks[4] === 'needs') noTitle = props.app.frontend.intl.formatMessage({id:'app.whatYouNeed'})
-    else if (chunks[4] === 'instructions') noTitle = props.app.frontend.intl.formatMessage({id:'app.instructions'})
-    else if (chunks[4] === 'fabric') noTitle = props.app.frontend.intl.formatMessage({id:'app.fabricOptions'})
-    else if (chunks[4] === 'cutting') noTitle = props.app.frontend.intl.formatMessage({id:'app.cutting'})
-  }
-  else if (
+    } else if (chunks[4] === 'needs')
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.whatYouNeed' })
+    else if (chunks[4] === 'instructions')
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.instructions' })
+    else if (chunks[4] === 'fabric')
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.fabricOptions' })
+    else if (chunks[4] === 'cutting')
+      noTitle = props.app.frontend.intl.formatMessage({ id: 'app.cutting' })
+  } else if (
     chunks.length === 6 &&
     chunks[1] === 'docs' &&
     chunks[2] === 'patterns' &&
     chunks[4] === 'options'
   ) {
     for (let option of options[chunks[3]]) {
-      if (option.toLowerCase() === chunks[5]) noTitle = props.app.frontend.intl.formatMessage({id:`options.${chunks[3]}.${option}.title`})
+      if (option.toLowerCase() === chunks[5])
+        noTitle = props.app.frontend.intl.formatMessage({
+          id: `options.${chunks[3]}.${option}.title`
+        })
     }
   }
 

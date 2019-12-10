@@ -25,7 +25,12 @@ const Notification = props => {
   else if (message instanceof Object) {
     // We seem to hit this (only) when testing headless with cypress
     // It most likely has something to do with the notification in localstorage
-    msg = <span key="message" dangerouslySetInnerHTML={{ __html: '<pre>FIXME: '+JSON.stringify(msg)+'</pre>' }} />
+    msg = (
+      <span
+        key="message"
+        dangerouslySetInnerHTML={{ __html: '<pre>FIXME: ' + JSON.stringify(msg) + '</pre>' }}
+      />
+    )
   }
 
   const styles = {
@@ -72,7 +77,7 @@ const Notification = props => {
       autoHideDuration={3000}
       onClose={props.closeNotification}
       children={children}
-      data-test='notification'
+      data-test="notification"
     />
   )
 }

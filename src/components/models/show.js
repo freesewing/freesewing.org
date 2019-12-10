@@ -17,7 +17,7 @@ import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Help'
-import { Link } from "gatsby"
+import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
@@ -151,10 +151,18 @@ const ShowModel = ({ app, model }) => {
         <td style={{ ...styles.title, ...missing }}>
           <FormattedMessage id={'measurements.' + name} />
           {measurementInRange ? (
-            <ValidIcon size="small" style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="valid" />
+            <ValidIcon
+              size="small"
+              style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }}
+              data-test="valid"
+            />
           ) : (
             <Link to="/docs/about/your-measurements/estimates/">
-              <InvalidIcon size="small" style={{ fontSize: '1.2rem', marginLeft: '0.5rem' }} data-test="invalid" />
+              <InvalidIcon
+                size="small"
+                style={{ fontSize: '1.2rem', marginLeft: '0.5rem' }}
+                data-test="invalid"
+              />
             </Link>
           )}
         </td>
@@ -168,7 +176,13 @@ const ShowModel = ({ app, model }) => {
           )}
         </td>
         <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
-          {value && <b><span dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units, 'html') }} /></b>}
+          {value && (
+            <b>
+              <span
+                dangerouslySetInnerHTML={{ __html: formatMm(value, currentModel.units, 'html') }}
+              />
+            </b>
+          )}
         </td>
 
         <td style={styles.buttonCell}>
@@ -348,7 +362,7 @@ const ShowModel = ({ app, model }) => {
           </p>
         </Blockquote>
       )}
-      <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem'}}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
         <Button
           color="primary"
           variant="outlined"
@@ -358,18 +372,38 @@ const ShowModel = ({ app, model }) => {
           }}
           disabled={filter ? false : true}
           onClick={() => setFilter(false)}
-        ><FormattedMessage id="filter.resetFilter"/></Button>
+        >
+          <FormattedMessage id="filter.resetFilter" />
+        </Button>
         <Select value={filter} onChange={updateFilter} variant="outlined" color="primary">
-          <MenuItem value={false}><FormattedMessage id="filter.byPattern" /></MenuItem>
-          { list.map(pattern => <MenuItem key={pattern} value={pattern}>{capitalize(pattern)}</MenuItem>) }
+          <MenuItem value={false}>
+            <FormattedMessage id="filter.byPattern" />
+          </MenuItem>
+          {list.map(pattern => (
+            <MenuItem key={pattern} value={pattern}>
+              {capitalize(pattern)}
+            </MenuItem>
+          ))}
         </Select>
       </div>
       <table style={styles.table} className="font-title">
         <tbody>
           <tr>
-            <td style={{...styles.valueCell, textAlign: 'right', paddingRight: 'calc(1rem + 25px)'}}><b><FormattedMessage id="app.name"/></b></td>
-            <td style={styles.valueCell}><FormattedMessage id="app.estimate"/></td>
-            <td style={styles.valueCell}><b><FormattedMessage id="app.actual"/></b></td>
+            <td
+              style={{ ...styles.valueCell, textAlign: 'right', paddingRight: 'calc(1rem + 25px)' }}
+            >
+              <b>
+                <FormattedMessage id="app.name" />
+              </b>
+            </td>
+            <td style={styles.valueCell}>
+              <FormattedMessage id="app.estimate" />
+            </td>
+            <td style={styles.valueCell}>
+              <b>
+                <FormattedMessage id="app.actual" />
+              </b>
+            </td>
             <td style={styles.buttonCell}></td>
           </tr>
           {currentModel.measurements &&

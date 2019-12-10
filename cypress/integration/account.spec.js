@@ -1,12 +1,10 @@
-import { strings } from "@freesewing/i18n";
+import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Account page', function() {
-
-  before(function () {
+  before(function() {
     cy.visit('/login')
-    cy.get('div.theme-wrapper')
-      .should('have.class', 'layoutdefault')
+    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
     cy.get('#username').type('test_user')
     cy.get('#password').type('test{enter}')
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
@@ -29,18 +27,24 @@ describe('Account page', function() {
 
     for (let button in buttons) {
       it(buttons[button], function() {
-        cy.get(`a[data-test="${button}"] > span.MuiButton-label > span`).should('contain', i18n[buttons[button]].slice(0,4))
+        cy.get(`a[data-test="${button}"] > span.MuiButton-label > span`).should(
+          'contain',
+          i18n[buttons[button]].slice(0, 4)
+        )
       })
     }
 
     it('app.home', function() {
-      cy.get('nav.breadcrumbs > ul > li:first-of-type > a > span').should('contain', i18n['app.home'])
+      cy.get('nav.breadcrumbs > ul > li:first-of-type > a > span').should(
+        'contain',
+        i18n['app.home']
+      )
     })
   })
 
   describe('Verify links', function() {
     for (let button in buttons) {
-      if (button !== "/logout") {
+      if (button !== '/logout') {
         it(button, function() {
           cy.get(`a[data-test="${button}"]`).should('have.attr', 'href', button)
         })
@@ -48,11 +52,10 @@ describe('Account page', function() {
     }
   })
 
-  after(function () {
+  after(function() {
     it('Log out flow', function() {
-      cy.get('a[data-test="/logout"]').click({force: true})
+      cy.get('a[data-test="/logout"]').click({ force: true })
       cy.get('div.theme-wrapper').should('have.class', 'layouthome')
     })
   })
-
 })

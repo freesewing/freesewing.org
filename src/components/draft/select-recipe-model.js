@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 const SelectRecipeModelPage = props => {
   const [recipe, setRecipe] = useState(false)
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:'app.recreate'}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.recreate' }))
     props.app.frontend.setCrumbs([
       {
         slug: '/recreate',
@@ -83,50 +83,52 @@ const SelectRecipeModelPage = props => {
       <h2 id="models">
         <FormattedMessage id="app.chooseAModel" />
       </h2>
-      {models
-        ? (
-          <React.Fragment>
-            <div style={styles.wrapper}>
-              {models.ok.map(model => {
-                return (
-                  <div style={styles.pattern} key={model.handle}>
-                    <Link to={'/recreate/' + props.recipe + '/for/' + model.handle} title={model.name}>
-                      <Avatar data={model} />
-                      <h5 style={styles.name}>{model.name}</h5>
-                    </Link>
-                  </div>
-                )
-              })}
-            </div>
-            <div style={styles.wrapper}>
-              {models.no.length > 0 ? (
-                <Blockquote type="note" style={{ width: '100%' }}>
-                  <h6>
-                    <FormattedMessage
-                      id="app.countModelsLackingForPattern"
-                      values={{
-                        count: models.no.length,
-                        pattern: capitalize(recipe.recipe.pattern)
-                      }}
-                    />
-                    :
-                  </h6>
-                  <ul className="links">
-                    {models.no.map(model => {
-                      return (
-                        <li key={model.handle}>
-                          <Link to={'/models/' + model.handle} title={model.name}>
-                            {model.name}
-                          </Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </Blockquote>
-              ) : null}
-            </div>
-          </React.Fragment>
-        ) : null }
+      {models ? (
+        <React.Fragment>
+          <div style={styles.wrapper}>
+            {models.ok.map(model => {
+              return (
+                <div style={styles.pattern} key={model.handle}>
+                  <Link
+                    to={'/recreate/' + props.recipe + '/for/' + model.handle}
+                    title={model.name}
+                  >
+                    <Avatar data={model} />
+                    <h5 style={styles.name}>{model.name}</h5>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+          <div style={styles.wrapper}>
+            {models.no.length > 0 ? (
+              <Blockquote type="note" style={{ width: '100%' }}>
+                <h6>
+                  <FormattedMessage
+                    id="app.countModelsLackingForPattern"
+                    values={{
+                      count: models.no.length,
+                      pattern: capitalize(recipe.recipe.pattern)
+                    }}
+                  />
+                  :
+                </h6>
+                <ul className="links">
+                  {models.no.map(model => {
+                    return (
+                      <li key={model.handle}>
+                        <Link to={'/models/' + model.handle} title={model.name}>
+                          {model.name}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </Blockquote>
+            ) : null}
+          </div>
+        </React.Fragment>
+      ) : null}
       <h2 id="replica">
         <FormattedMessage id="app.useRecipeModel" />
       </h2>

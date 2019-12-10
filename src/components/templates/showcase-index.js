@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 
 const ShowcaseIndexTemplate = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({id:"app.showcase"}))
+    props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.showcase' }))
   }, [])
   const data = useStaticQuery(graphql`
     {
