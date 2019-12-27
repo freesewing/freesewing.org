@@ -25,7 +25,6 @@ const BlogIndexPage = props => {
       justifyContent: 'center'
     }
   }
-  if (app.mobile || app.tablet) style.post.width = '100%'
 
   return (
     <AppWrapper app={app}>
