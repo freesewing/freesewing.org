@@ -31,7 +31,7 @@ import ModelGraph from '../../../components/model-graph.js'
 const ModelPage = props => {
   // Hooks
   const app = useApp()
-  console.log('new app', app.models.modela.notes)
+
   // State
   const [filter, setFilter] = useState(false)
   const [model, setModel] = useState({ ...useModel(app, props.model) })
@@ -319,7 +319,7 @@ const ModelPage = props => {
                   color="primary"
                   style={styles.iconButton}
                   size="medium"
-                  onClick={() => updateModel('breasts', !model.breasts, app.translate('app.chest'))}
+                  onClick={() => updateModel('breasts', !model.breasts)}
                 >
                   <RefreshIcon fontSize="inherit" style={styles.icon} />
                 </IconButton>
@@ -339,11 +339,7 @@ const ModelPage = props => {
                   style={styles.iconButton}
                   size="medium"
                   onClick={() =>
-                    updateModel(
-                      'units',
-                      model.units === 'imperial' ? 'metric' : 'imperial',
-                      app.translate('account.units')
-                    )
+                    updateModel('units', model.units === 'imperial' ? 'metric' : 'imperial')
                   }
                 >
                   <RefreshIcon fontSize="inherit" style={styles.icon} />

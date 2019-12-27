@@ -10,7 +10,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 import PatronStars from '../../components/patron-stars'
 import UserSocial from '../../components/user-social'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 const PatronPage = props => {
   // Hooks

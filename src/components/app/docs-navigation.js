@@ -3,9 +3,6 @@ import TableOfContents from '../TableOfContents'
 import ExpandedIcon from '@material-ui/icons/KeyboardArrowDown'
 import CollapsedIcon from '@material-ui/icons/KeyboardArrowRight'
 import { Link } from 'gatsby'
-import { FormattedMessage } from 'react-intl'
-import { list } from '@freesewing/pattern-info'
-import capitalize from '@freesewing/utils/capitalize'
 import useNavigation from '../../hooks/useNavigation'
 
 const Navigation = ({ app, slug, toc = null }) => {

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { navigate } from 'gatsby'
 import Backend from '@freesewing/utils/backend'
-import storage from '@freesewing/utils/storage'
 import { useIntl } from 'react-intl'
 
 import useLocalStorage from './useLocalStorage'
@@ -369,6 +368,8 @@ function useApp(slug = null) {
     setTheme,
     token,
     setToken,
+    notification,
+    setNotification,
 
     // React state
     crumbs,
@@ -381,10 +382,6 @@ function useApp(slug = null) {
     setLoading,
     menu,
     setMenu,
-    notification,
-    setNotification,
-    theme,
-    setTheme,
     title,
     setTitle,
 
@@ -416,7 +413,6 @@ function useApp(slug = null) {
     tablet,
 
     // Helper vars
-    theme,
     language
   }
 }

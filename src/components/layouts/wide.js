@@ -1,5 +1,4 @@
 import React from 'react'
-import ContentWrapper from '../wrappers/content'
 import BreadCrumbs from '../breadcrumbs'
 
 const WideLayout = ({ app, children, top = false, noTitle = false }) => {

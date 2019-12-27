@@ -14,12 +14,6 @@ const LogoutPage = props => {
     app.setTitle(app.translate('app.logOut'))
   }, [])
 
-  const styles = {
-    half: {
-      width: 'calc(50% - 1rem)'
-    }
-  }
-
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}>

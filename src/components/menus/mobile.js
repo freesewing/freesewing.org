@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import capitalize from '@freesewing/utils/capitalize'
-import { Link } from 'gatsby'
-import Button from '@material-ui/core/Button'
 import Logo from '@freesewing/components/Logo'
 import LightModeIcon from '@material-ui/icons/WbSunny'
 import DarkModeIcon from '@material-ui/icons/Brightness3'

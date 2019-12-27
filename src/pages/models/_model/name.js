@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import useModel from '../../../hooks/useModel'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
@@ -15,7 +14,6 @@ import Button from '@material-ui/core/Button'
 const ModelNamePage = props => {
   // Hooks
   const app = useApp()
-  const model = useModel(app, props.model)
 
   // State
   const [name, setName] = useState(app.models[props.model].name)

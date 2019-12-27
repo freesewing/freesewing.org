@@ -5,8 +5,6 @@ import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 import PostPreview from '../../components/post-preview'
 
-import { Link } from 'gatsby'
-import capitalize from '@freesewing/utils/capitalize'
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'

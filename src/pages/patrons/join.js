@@ -3,7 +3,6 @@ import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
-import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'

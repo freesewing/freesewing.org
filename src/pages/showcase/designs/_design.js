@@ -47,7 +47,7 @@ const ShowcaseIndexPage = props => {
       if (p === props.pageContext.design) posts.push(node.node)
     }
   }
-  const renderPosts = mdx => {
+  const renderPosts = () => {
     let showcases = []
     let i = 0
     for (let showcase of posts) {
@@ -78,7 +78,7 @@ const ShowcaseIndexPage = props => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        {renderPosts(posts)}
+        {renderPosts()}
         <div style={style.wrapper}></div>
       </WideLayout>
     </AppWrapper>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { list as patterns } from '@freesewing/pattern-info'
 import { FormattedMessage } from 'react-intl'
-import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import Button from '@material-ui/core/Button'
 

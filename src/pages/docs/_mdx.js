@@ -6,7 +6,7 @@ import AppWrapper from '../../components/app/wrapper'
 import DocsLayout from '../../components/layouts/docs'
 import crumbsFromNavigation from '../../components/app/crumbsFromNavigation'
 
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'

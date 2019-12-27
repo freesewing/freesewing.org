@@ -19,7 +19,6 @@ import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
-import Blockquote from '@freesewing/components/Blockquote'
 
 import DraftPreButtons from '../../../../components/draft/pre-buttons'
 import DraftPostButtons from '../../../../components/draft/post-buttons'
@@ -104,28 +103,6 @@ const CreatePatternForModelPage = props => {
   if (!ready) return null
 
   // Methods
-  const handleRecipeResult = (result, data) => {
-    if (result) {
-      setRecipe(data)
-      setDesign(design)
-      updatePatternData(data.recipe.design, 'design')
-      updatePatternData({ ...data.recipe.settings }, 'settings')
-      updatePatternData({ ...data.recipe.settings.options }, 'settings', 'options')
-      if (props.model === 'replica') updatePatternData(data.recipe.model, 'model')
-      else {
-        updatePatternData(model.handle, 'model')
-        let measurements = {}
-        for (let m of requiredMeasurements[data.recipe.design]) {
-          measurements[m] = model.measurements[m]
-        }
-        updatePatternData(measurements, 'settings', 'measurements')
-      }
-      setReady(true)
-    } else {
-      console.log(data)
-    }
-  }
-
   const raiseEvent = (type, data) => {
     if (type === 'showHelp') {
       // Clicking same help icon again will cancel it out
@@ -138,8 +115,6 @@ const CreatePatternForModelPage = props => {
       }
     }
   }
-
-  if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
 
   // Draft the pattern
   let draft, error, patternProps
@@ -172,7 +147,7 @@ const CreatePatternForModelPage = props => {
   )
 
   // Main render element
-  let main, helpTitle
+  let main
   if (display === 'export') {
     main = <ExportPattern setDisplay={setDisplay} app={app} data={patternData} pattern={Pattern} />
   } else if (display === 'save') {
@@ -192,18 +167,21 @@ const CreatePatternForModelPage = props => {
     else
       main = [
         <DraftPreButtons
+          key="pre-buttons"
           fit={fit}
           display={display}
           setFit={setFit}
           setDisplay={setDisplay}
           app={app}
         />,
-        <figure style={{ textAlign: 'center' }} key="figure" data-test="draft">
+        <figure key="pattern" style={{ textAlign: 'center' }} key="figure" data-test="draft">
           <Draft {...patternProps} />
         </figure>,
-        <DraftPostButtons display={display} setDisplay={setDisplay} app={app} />
+        <DraftPostButtons key="post-buttons" display={display} setDisplay={setDisplay} app={app} />
       ]
   }
+
+  if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
 
   return (
     <AppWrapper app={app}>

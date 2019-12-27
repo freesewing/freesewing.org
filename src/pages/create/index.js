@@ -68,7 +68,7 @@ const CreatePatternIndexPage = props => {
           {list.map(pattern => {
             let title = app.translate(`patterns.${pattern}.title`)
             return (
-              <div style={styles.post} className="shadow">
+              <div key={pattern} style={styles.post} className="shadow">
                 <Link
                   data-test="post-link"
                   to={`/create/${pattern}/`}

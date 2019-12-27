@@ -14,9 +14,6 @@ const EmailConfirmationPage = props => {
     app.confirmationLogin(props.confirmation)
   }, [])
 
-  // Confirmation from dynamic route
-  const confirmation = props.confirmation
-
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}></CenteredLayout>

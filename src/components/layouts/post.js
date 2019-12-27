@@ -38,7 +38,7 @@ const PostLayout = ({ app, frontmatter, children }) => {
   const tags = frontmatter.patterns
     ? frontmatter.patterns.map(pattern => {
         return (
-          <Link to={'/showcase/designs/' + pattern} style={{ marginRight: '8px' }}>
+          <Link to={'/showcase/designs/' + pattern} style={{ marginRight: '8px' }} key={pattern}>
             #{pattern}
           </Link>
         )

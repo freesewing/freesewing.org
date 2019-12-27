@@ -1,6 +1,5 @@
 const path = require('path')
 const designs = require('@freesewing/pattern-info').list
-const options = require('@freesewing/pattern-info').options
 const routes = require('./gatsby-routes')
 
 const slugFromFilePath = filePath => {
@@ -105,7 +104,7 @@ const createPerDesignPages = async function(createPage, language) {
   return Promise.all(promises)
 }
 
-const createDynamicPages = async function(createPage, graphql, language) {
+const createDynamicPages = async function(createPage) {
   let promises = []
   for (let match in routes.dynamic) {
     promises.push(
@@ -153,7 +152,7 @@ exports.createPages = async ({ actions, graphql }) => {
   await createMdxPages('docs', actions.createPage, graphql, language)
 
   await createPerDesignPages(actions.createPage, language)
-  await createDynamicPages(actions.createPage, language)
+  await createDynamicPages(actions.createPage)
 
   await createRedirects(actions.createRedirect)
 

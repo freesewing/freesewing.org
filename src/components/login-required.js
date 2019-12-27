@@ -1,4 +1,3 @@
-import React from 'react'
 import { navigate } from 'gatsby'
 
 const LoginRequired = ({ app, children }) => {

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 const Meta = ({ app }) => {
   let url = null
-  if (typeof window !== 'undefined') <meta property="og:url" content={window.location.href} />
+  if (typeof window !== 'undefined') url = <meta property="og:url" content={window.location.href} />
   return (
     <Helmet>
       <title>{app.title}</title>

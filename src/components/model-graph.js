@@ -44,7 +44,7 @@ const ModelGraph = props => {
     return model.measurements[m]
   }
 
-  const modelData = measurements => {
+  const modelData = () => {
     let data = {}
     for (let m of ver.concat(hor)) {
       if (own(m)) data[m] = model.measurements[m]
@@ -159,7 +159,7 @@ const ModelGraph = props => {
 
   // Get neck measurement, (estimated) model data, and default bar size
   const neck = model.measurements.neckCircumference
-  const data = modelData(model)
+  const data = modelData()
   const vd = barSize('neckCircumference')
 
   return (

@@ -8,8 +8,6 @@ import { FormattedMessage } from 'react-intl'
 import Robot from '@freesewing/components/Robot'
 import Blockquote from '@freesewing/components/Blockquote'
 
-import Profile from '../../components/users/profile'
-
 const UsersIndexPage = props => {
   const app = useApp()
   useEffect(() => {

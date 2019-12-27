@@ -1,8 +1,6 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
-import Button from '@material-ui/core/Button'
 
 const AccountMenu = ({ app }) => {
   const style = {
@@ -100,7 +98,7 @@ const AccountMenu = ({ app }) => {
         </h6>
         <ul className="links">
           {['avatar', 'bio', 'language', 'units', 'github', 'instagram', 'twitter'].map(setting => (
-            <li>
+            <li key={setting}>
               <Link to={`/account/settings/${setting}/`}>
                 <FormattedMessage id={`account.${setting}`} />
               </Link>

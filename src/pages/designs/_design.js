@@ -11,9 +11,8 @@ import Button from '@material-ui/core/Button'
 import { info as patternInfo, measurements, options } from '@freesewing/pattern-info'
 import PatternMeasurements from '../../components/docs/pattern-measurements'
 import PatternOptions from '../../components/docs/pattern-options'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import LineDrawing from '@freesewing/components/LineDrawing'
-import Blockquote from '@freesewing/components/Blockquote'
 
 const DesignPage = props => {
   // Design name is passed to page context in gatsby-node.js

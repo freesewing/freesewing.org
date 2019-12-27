@@ -5,7 +5,7 @@ import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 
 import PostPreview from '../../components/post-preview'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 const ShowcaseIndexPage = props => {
   // State

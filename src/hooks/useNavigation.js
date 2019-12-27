@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { list as patternList, options } from '@freesewing/pattern-info'
-import capitalize from '@freesewing/utils/capitalize'
 import { duplicates } from '../../gatsby-routes'
 
 /* this hook builds the documentation structure and navigation based on MDX content and pattern-info */
@@ -62,9 +60,8 @@ function useNavigation(app) {
       }
     }
     if (typeof page.frontmatter.linktitle !== 'undefined') return page.frontmatter.linktitle
-    if (typeof page.frontmatter.title !== 'undefined') return page.frontmatter.title
 
-    return slug
+    return page.frontmatter.title
   }
 
   const getTitlesAndPages = mdx => {
@@ -94,7 +91,7 @@ function useNavigation(app) {
     return { titles, pages }
   }
 
-  const getTree = (pages, titles) => {
+  const getTree = pages => {
     const tree = {
       '/docs/about/': {
         title: app.translate('app.docs'),
@@ -148,7 +145,7 @@ function useNavigation(app) {
   `)
 
   const { titles, pages } = getTitlesAndPages(mdx)
-  const tree = getTree(pages, titles)
+  const tree = getTree(pages)
 
   const getTitle = slug => titles[slug]
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Breadcrumbs from '../breadcrumbs'
 import Subscribe from '../subscribe'
 import List from './list'
 import Thanks from './thanks'

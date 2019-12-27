@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
@@ -11,8 +11,6 @@ import Button from '@material-ui/core/Button'
 const ExportAccountPage = props => {
   // Hooks
   const app = useApp()
-
-  // State
 
   // Effects
   useEffect(() => {

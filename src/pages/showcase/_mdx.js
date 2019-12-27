@@ -4,7 +4,7 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import PostLayout from '../../components/layouts/post'
 
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'

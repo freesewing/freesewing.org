@@ -1,11 +1,6 @@
 const patterns = require('@freesewing/pattern-info').list
 const options = require('@freesewing/pattern-info').options
 
-const carlitaToCarlton = {
-  find: 'carlita',
-  replace: ['carlton']
-}
-
 const brianSleevecap = {
   find: 'brian',
   replace: ['huey', 'simon', 'simone', 'sven']

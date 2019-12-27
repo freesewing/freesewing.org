@@ -52,7 +52,7 @@ const Template = props => {
           className="shadow"
           alt={user.username}
         />
-        {user.bio && user.bio !== '' && <Markdown source={user.bio} />}
+        {user.bio && <Markdown source={user.bio} />}
         {user.social && (
           <p style={{ textAlign: 'center' }}>
             <UserSocial accounts={user.social} size={36} />

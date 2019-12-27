@@ -1,6 +1,5 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import useNavigation from '../../hooks/useNavigation'
 

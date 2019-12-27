@@ -1,4 +1,3 @@
-import React from 'react'
 import aaron from '@freesewing/aaron'
 import benjamin from '@freesewing/benjamin'
 import bent from '@freesewing/bent'
