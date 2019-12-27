@@ -346,10 +346,7 @@ function useApp(slug = null) {
   const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const toggleMenu = () => setMenu(!menu)
   const closeNav = evt => {
-    if (typeof evt.target.classList === 'object') {
-      console.log(evt.target.classList.contains('MuiExpansionPanelSummary-content'))
-      if (!evt.target.classList.contains('MuiExpansionPanelSummary-content')) setMenu(false)
-    } else setMenu(false)
+    if (evt.target.className.indexOf('uiExpansionPanelSummary') === -1) setMenu(false)
   }
 
   // Media queries
