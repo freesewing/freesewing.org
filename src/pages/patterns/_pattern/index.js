@@ -7,11 +7,10 @@ import WideLayout from '../../../components/layouts/wide'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import capitalize from '@freesewing/utils/capitalize'
 import Markdown from 'react-markdown'
 import PatternData from '../../../components/patterns/data'
 import ExportPattern from '../../../components/draft/export-pattern'
-import { Link, navigate } from 'gatsby'
+import { navigate } from 'gatsby'
 
 const PatternPage = props => {
   // Hooks

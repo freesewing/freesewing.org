@@ -4,7 +4,7 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
 
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { list as patternList } from '@freesewing/pattern-info'
 
 const ShowcaseIndexPage = props => {
@@ -17,36 +17,6 @@ const ShowcaseIndexPage = props => {
     app.setCrumbs([{ title: app.translate('app.showcase'), slug: '/showcase/' }])
   }, [])
 
-  // Data
-  const data = useStaticQuery(graphql`
-    {
-      allMdx(
-        filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            parent {
-              ... on File {
-                relativeDirectory
-              }
-            }
-            frontmatter {
-              patterns
-              title
-              img {
-                childImageSharp {
-                  fixed(height: 300) {
-                    src
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
   const style = {
     wrapper: {
       display: 'flex',
@@ -73,12 +43,12 @@ const ShowcaseIndexPage = props => {
 
   const patterns = {}
   for (let p of patternList) patterns[p] = []
-  for (let node of data.allMdx.edges) {
+  for (let node of props.data.allMdx.edges) {
     for (let p of node.node.frontmatter.patterns) {
       patterns[p].push(node.node)
     }
   }
-  const renderPatterns = mdx => {
+  const renderPatterns = () => {
     let output = []
     for (let pattern in patterns) {
       let showcases = []
@@ -126,7 +96,7 @@ const ShowcaseIndexPage = props => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app}>
-        {renderPatterns(patterns)}
+        {renderPatterns()}
         <div style={style.wrapper}></div>
       </WideLayout>
     </AppWrapper>
@@ -134,3 +104,34 @@ const ShowcaseIndexPage = props => {
 }
 
 export default withLanguage(ShowcaseIndexPage)
+
+// See https://www.gatsbyjs.org/docs/page-query/
+export const pageQuery = graphql`
+  {
+    allMdx(
+      filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          parent {
+            ... on File {
+              relativeDirectory
+            }
+          }
+          frontmatter {
+            patterns
+            title
+            img {
+              childImageSharp {
+                fixed(height: 300) {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

@@ -174,7 +174,7 @@ const CreatePatternForModelPage = props => {
           setDisplay={setDisplay}
           app={app}
         />,
-        <figure key="pattern" style={{ textAlign: 'center' }} key="figure" data-test="draft">
+        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
           <Draft {...patternProps} />
         </figure>,
         <DraftPostButtons key="post-buttons" display={display} setDisplay={setDisplay} app={app} />
