@@ -73,14 +73,17 @@ export default function ButtonAppBar(props) {
     iconButton: {
       color: colors[props.app.theme]
     },
+    icon: {
+      maxWidth: '24px',
+      maxHeight: '24px'
+    },
     spacer: {
       flexGrow: 1
     },
     darkModeIcon: {
-      transform: 'rotate(26deg)'
-    },
-    lightModeIcon: {
-      transform: 'rotate(26deg)'
+      transform: 'rotate(26deg)',
+      maxWidth: '24px',
+      maxHeight: '24px'
     }
   }
 
@@ -195,7 +198,7 @@ export default function ButtonAppBar(props) {
             href="/search/"
             title={props.app.translate('app.search')}
           >
-            <SearchIcon />
+            <SearchIcon style={style.icon}/>
           </IconButton>
           <IconButton
             style={style.iconButton}
@@ -204,7 +207,7 @@ export default function ButtonAppBar(props) {
             href="/language/"
             title={props.app.translate(`i18n.${props.app.language}`)}
           >
-            <LanguageIcon />
+            <LanguageIcon style={style.icon}/>
           </IconButton>
           <IconButton
             style={style.darkModeButton}
@@ -217,7 +220,7 @@ export default function ButtonAppBar(props) {
             }
           >
             {props.app.theme === 'dark' ? (
-              <LightModeIcon style={style.lightModeIcon} />
+              <LightModeIcon style={style.icon} />
             ) : (
               <DarkModeIcon style={style.darkModeIcon} />
             )}
