@@ -1,10 +1,7 @@
-const mdxQuery = require('./gatsby/mdx-query')
-const buildNavigation = require('./gatsby/navigation')
-const utils = require('./gatsby/utils')
-const create = require('./gatsby/create')
-const nonMdxPages = require('./gatsby/non-mdx-pages')
-const duplicates = require('./gatsby/duplicates')
-const redirects = require('./gatsby/redirects')
+const path = require('path')
+const designs = require('@freesewing/pattern-info').list
+const options = require('@freesewing/pattern-info').options
+const routes = require('./gatsby-routes')
 
 const slugFromFilePath = filePath => {
   return (
@@ -16,27 +13,133 @@ const slugFromFilePath = filePath => {
   )
 }
 
-const getMdxPages = function(graphql, language) {
-  const query = mdxQuery(language)
-  return new Promise((resolve, reject) => {
-    graphql(query).then(res => {
-      if (typeof res.data === 'undefined') {
-        console.log('query failed', query, res)
-        reject()
-      } else {
-        let pages = {}
-        for (let type of ['docs', 'blog', 'showcase']) {
-          for (let page of res.data[type].edges) {
-            pages[slugFromFilePath(page.node.fileAbsolutePath)] = page.node
+const mdxQuery = function(type, language) {
+  return `{
+    allMdx(
+      filter: { fileAbsolutePath: { regex: "//${type}/[^.]*/${language}.md/" } }
+      sort: { fields: [fileAbsolutePath], order: DESC }
+    ) { edges { node { fileAbsolutePath } } }
+  }`
+}
+
+const createMdxPages = async function(type, createPage, graphql, language) {
+  let promises = []
+  const query = mdxQuery(type, language)
+  await graphql(query).then(res => {
+    if (typeof res.data === 'undefined') throw 'query failed ' + query
+    else {
+      for (let page of res.data.allMdx.edges) {
+        let slug = slugFromFilePath(page.node.fileAbsolutePath)
+        promises.push(
+          new Promise((resolve, reject) => {
+            createPage({
+              path: slug,
+              component: path.resolve(`./src/pages/${type}/_mdx.js`),
+              context: {
+                file: page.node.fileAbsolutePath
+              }
+            })
+            resolve(true)
+          })
+        )
+        // Handle duplicates in docs
+        if (type === 'docs' && typeof routes.duplicates[slug] !== 'undefined') {
+          for (let newSlug of routes.duplicates[slug]) {
+            promises.push(
+              new Promise((resolve, reject) => {
+                createPage({
+                  path: newSlug,
+                  component: path.resolve('./src/pages/docs/_mdx.js'),
+                  context: {
+                    file: page.node.fileAbsolutePath
+                  }
+                })
+                resolve(true)
+              })
+            )
           }
         }
-        for (let slug in duplicates) {
-          for (let dupe of duplicates[slug]) pages[dupe] = pages[slug]
-        }
-        resolve(pages)
       }
-    })
+    }
+
+    return Promise.all(promises)
   })
+}
+
+const createPerDesignPages = async function(createPage, language) {
+  let promises = []
+  for (let design of designs) {
+    for (let match in routes.perDesign.single) {
+      promises.push(
+        new Promise((resolve, reject) => {
+          createPage({
+            path: match.replace('_design', design),
+            component: path.resolve(`./src/pages/${routes.perDesign.single[match]}`),
+            context: { design }
+          })
+          resolve(true)
+        })
+      )
+    }
+    for (let m in routes.perDesign.multiple) {
+      let match = m.replace('_design', design)
+      promises.push(
+        new Promise((resolve, reject) => {
+          createPage({
+            path: match.slice(0, -1),
+            matchPath: match,
+            component: path.resolve(`./src/pages/${routes.perDesign.multiple[m]}`),
+            context: {
+              design,
+              // This is required because string interpolation is not allowed in page graphql queries
+              optionsMdxRegex: `//docs/patterns/${design}/options/[^/]*/${language}.md/`,
+              settingsMdxRegex: `//docs/draft/settings/${language}.md/`
+            }
+          })
+          resolve(true)
+        })
+      )
+    }
+  }
+
+  return Promise.all(promises)
+}
+
+const createDynamicPages = async function(createPage, graphql, language) {
+  let promises = []
+  for (let match in routes.dynamic) {
+    promises.push(
+      new Promise((resolve, reject) => {
+        createPage({
+          path: match.slice(0, -1),
+          matchPath: match,
+          component: path.resolve(`./src/pages/${routes.dynamic[match]}`)
+        })
+        resolve(true)
+      })
+    )
+  }
+
+  return Promise.all(promises)
+}
+
+const createRedirects = async function(createRedirect) {
+  let promises = []
+  for (let from in routes.redirect) {
+    promises.push(
+      new Promise((resolve, reject) => {
+        createRedirect({
+          fromPath: from,
+          toPath: routes.redirect[from],
+          isPermanent: true,
+          redirectInBrowser: true
+        })
+        resolve(true)
+      })
+    )
+  }
+
+  return Promise.all(promises)
 }
 
 exports.createPages = async ({ actions, graphql }) => {
@@ -45,12 +148,14 @@ exports.createPages = async ({ actions, graphql }) => {
   if (typeof language === 'undefined')
     throw new Error("You MUST set the GATSBY_LANGUAGE environment variable (to 'en' for example)")
 
-  const mdxPages = await getMdxPages(graphql, language)
-  const titles = utils.getTitles(mdxPages)
-  const navigation = buildNavigation(mdxPages, titles)
-  await create.mdxPages(mdxPages, navigation, titles, actions.createPage)
-  await create.otherPages(nonMdxPages, navigation, titles, actions.createPage)
-  await create.redirects(redirects, actions.createRedirect)
+  await createMdxPages('blog', actions.createPage, graphql, language)
+  await createMdxPages('showcase', actions.createPage, graphql, language)
+  await createMdxPages('docs', actions.createPage, graphql, language)
+
+  await createPerDesignPages(actions.createPage, language)
+  await createDynamicPages(actions.createPage, language)
+
+  await createRedirects(actions.createRedirect)
 
   return
 }

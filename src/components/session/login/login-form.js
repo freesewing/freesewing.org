@@ -7,15 +7,9 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 const LoginForm = props => {
   const [reveal, setReveal] = useState(false)
 
-  const styles = {
-    wrapper: {
-      maxWidth: '500px'
-    }
-  }
-
   return (
     <React.Fragment>
-      <form onSubmit={props.handleLogin} style={styles.wrapper}>
+      <form onSubmit={props.handleLogin}>
         <TextField
           id="username"
           autoFocus={true}

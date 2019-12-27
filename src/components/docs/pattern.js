@@ -16,8 +16,23 @@ const PatternIndexPage = props => {
       </h2>
       <ul className="links">
         <li>
-          <Link to={'/docs/patterns/' + props.pattern + '/instructions'}>
-            <FormattedMessage id="app.patternInstructions" />: {capitalize(props.pattern)}
+          <Link to={'/docs/patterns/' + props.pattern + '/cutting/'}>
+            {capitalize(props.pattern)} &raquo; <FormattedMessage id="app.cutting" />
+          </Link>
+        </li>
+        <li>
+          <Link to={'/docs/patterns/' + props.pattern + '/fabric/'}>
+            {capitalize(props.pattern)} &raquo; <FormattedMessage id="app.fabricOptions" />
+          </Link>
+        </li>
+        <li>
+          <Link to={'/docs/patterns/' + props.pattern + '/instructions/'}>
+            {capitalize(props.pattern)} &raquo; <FormattedMessage id="app.instructions" />
+          </Link>
+        </li>
+        <li>
+          <Link to={'/docs/patterns/' + props.pattern + '/needs/'}>
+            {capitalize(props.pattern)} &raquo; <FormattedMessage id="app.whatYouNeed" />
           </Link>
         </li>
       </ul>
