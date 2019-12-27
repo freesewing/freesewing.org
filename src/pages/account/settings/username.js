@@ -19,7 +19,7 @@ const UsernameSettingPage = props => {
   if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [username, setUsername] = useState(app.account.username || '')
+  const [username, setUsername] = useState(app.account.username)
   const [usernameValid, setUsernameValid] = useState(true)
 
   // Effects
