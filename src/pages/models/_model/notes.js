@@ -14,6 +14,8 @@ const ModelNotesPage = props => {
   // Hooks
   const app = useApp()
 
+  if (typeof app.models[props.model] === 'undefined') return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [notes, setNotes] = useState(app.models[props.model].notes || '')
 

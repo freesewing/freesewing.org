@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
 import PatternData from '../../../components/patterns/data'
 import ExportPattern from '../../../components/draft/export-pattern'
-import { navigate } from 'gatsby'
 
 const PatternPage = props => {
   // Hooks
@@ -29,8 +28,8 @@ const PatternPage = props => {
   }, [])
 
   if (!pattern) {
-    if (app.account.username) navigate('/patterns/')
-    else navigate('/')
+    if (app.account.username) app.navigate('/patterns/')
+    else app.navigate('/')
     return null
   }
 

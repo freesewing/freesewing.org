@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { navigate } from 'gatsby'
+import { navigate as gatsbyNavigate } from 'gatsby'
 import Backend from '@freesewing/utils/backend'
 import { useIntl } from 'react-intl'
 
@@ -33,6 +33,11 @@ function useApp(slug = null) {
   const [title, setTitle] = useState('FreeSewing')
 
   // Methods
+
+  // SSR-save navigate method
+  const navigate = slug => {
+    if (typeof window !== 'undefined') gatsbyNavigate(slug)
+  }
 
   // Error handling
   const showError = error => {
@@ -386,6 +391,7 @@ function useApp(slug = null) {
     setTitle,
 
     // Methods
+    navigate,
     refresh,
     login,
     confirmationLogin,

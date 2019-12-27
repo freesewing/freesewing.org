@@ -17,6 +17,8 @@ const RecreatePatternPage = props => {
   const app = useApp(props)
   const pattern = usePattern(app, props.pattern)
 
+  if (!pattern) return null // FIXME: Show something better than nothing in SSR
+
   // What design ?
   const design = pattern.data.design
 

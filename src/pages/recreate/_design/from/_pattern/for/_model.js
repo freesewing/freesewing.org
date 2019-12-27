@@ -52,6 +52,8 @@ const CreatePatternForModelPage = props => {
   const Pattern = useDesign(design)
   const docs = useDraftDocs(props.data)
 
+  if (!model) return null // FIXME: Return something better than null in SSR
+
   // Initial pattern data
   let initialPatternData = { ...usePattern(app, props.pattern).data }
   for (let m of requiredMeasurements[design]) {

@@ -15,6 +15,8 @@ const ModelNamePage = props => {
   // Hooks
   const app = useApp()
 
+  if (typeof app.models[props.model] === 'undefined') return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [name, setName] = useState(app.models[props.model].name)
 

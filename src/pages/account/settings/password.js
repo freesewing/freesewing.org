@@ -13,6 +13,8 @@ const PasswordSettingPage = props => {
   // Hooks
   const app = useApp()
 
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')

@@ -12,6 +12,9 @@ import Button from '@material-ui/core/Button'
 const AvatarSettingPage = props => {
   // Hooks
   const app = useApp()
+
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   const onDrop = useCallback(acceptedFiles => {
     const reader = new FileReader()
     reader.onload = () => {

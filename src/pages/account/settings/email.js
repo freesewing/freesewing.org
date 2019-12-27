@@ -18,6 +18,8 @@ const EmailSettingPage = props => {
   // Hooks
   const app = useApp()
 
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('account.email'))

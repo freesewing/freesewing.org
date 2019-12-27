@@ -16,6 +16,8 @@ const LanguageSettingPage = props => {
   // Hooks
   const app = useApp()
 
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [language, setLanguage] = useState(app.account.settings.language || 'en')
 

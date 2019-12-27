@@ -19,6 +19,8 @@ const EditPatternPage = props => {
   const app = useApp()
   const pattern = usePattern(app, props.pattern)
 
+  if (!pattern) return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [name, setName] = useState(pattern.name)
   const [notes, setNotes] = useState(pattern.notes || '')

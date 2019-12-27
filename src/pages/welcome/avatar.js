@@ -23,6 +23,8 @@ const WelcomeAvatarPage = props => {
     acceptedFiles.forEach(file => reader.readAsDataURL(file))
   }, [])
 
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [img, setImg] = useState(false)
   const { getRootProps, getInputProps } = useDropzone({ onDrop })

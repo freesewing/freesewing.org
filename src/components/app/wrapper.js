@@ -1,7 +1,6 @@
 import React from 'react'
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
-import AppContext from '../../context/app'
 import * as themes from '@freesewing/mui-theme'
 import Navbar from './navbar'
 import Footer from './footer'
@@ -26,35 +25,33 @@ const AppWrapper = ({ app, children }) => {
     <MuiThemeProvider theme={createMuiTheme(themes[app.theme])}>
       <Meta app={app} />
       <div className={wrapperClasses}>
-        <AppContext.Provider value={app}>
-          {app.mobile ? (
-            <React.Fragment>
-              <Fab
-                color="primary"
-                className="fab primary only-xs"
-                aria-label="Menu"
-                onClick={app.toggleMenu}
-              >
-                {app.menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
-              </Fab>
-              <Navbar app={app} />
-            </React.Fragment>
-          ) : (
+        {app.mobile ? (
+          <React.Fragment>
+            <Fab
+              color="primary"
+              className="fab primary only-xs"
+              aria-label="Menu"
+              onClick={app.toggleMenu}
+            >
+              {app.menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
+            </Fab>
             <Navbar app={app} />
-          )}
-          {children}
-          <Notification
-            notification={app.notification}
-            setNotification={app.setNotification}
-            mobile={app.mobile}
-          />
-          <Loading loading={app.loading} />
-          {app.mobile && (
-            <div className="menu" onClick={app.closeNav}>
-              <MobileMenu app={app} />
-            </div>
-          )}
-        </AppContext.Provider>
+          </React.Fragment>
+        ) : (
+          <Navbar app={app} />
+        )}
+        {children}
+        <Notification
+          notification={app.notification}
+          setNotification={app.setNotification}
+          mobile={app.mobile}
+        />
+        <Loading loading={app.loading} />
+        {app.mobile && (
+          <div className="menu" onClick={app.closeNav}>
+            <MobileMenu app={app} />
+          </div>
+        )}
         <Footer language={process.env.GATSBY_LANGUAGE} />
       </div>
     </MuiThemeProvider>

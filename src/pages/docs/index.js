@@ -76,7 +76,6 @@ const DocumentationIndexPage = props => {
       margin: '2rem auto'
     }
   }
-  const docs = tree['/docs/'].children
 
   return (
     <AppWrapper app={app}>
@@ -105,19 +104,19 @@ const DocumentationIndexPage = props => {
                 <FormattedMessage id="app.aboutFreesewing" />
               </Link>
             </h5>
-            {renderDocs(docs['/docs/about/'])}
+            {renderDocs(tree['/docs/about/'])}
             <h5 style={styles.subHeader}>
               <Link to="/docs/draft/">
                 <FormattedMessage id="app.draft" />
               </Link>
             </h5>
-            {renderDocs(docs['/docs/draft/'])}
+            {renderDocs(tree['/docs/draft/'])}
           </div>
           <div style={styles.column}>
             <h2>
               <FormattedMessage id="app.sewing" />
             </h2>
-            {renderDocs(docs['/docs/sewing/'])}
+            {renderDocs(tree['/docs/sewing/'])}
           </div>
         </div>
         <Blockquote style={styles.blockquote}>

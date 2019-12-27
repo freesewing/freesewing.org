@@ -14,6 +14,8 @@ const GithubSettingPage = props => {
   // Hooks
   const app = useApp()
 
+  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+
   // State
   const [github, setGithub] = useState(app.account.social ? app.account.social.github || '' : '')
 

@@ -75,19 +75,22 @@ const LoginPage = props => {
     handleLogin,
     handlePasswordReset
   }
+
+  let redirect = null
+  if (typeof window !== 'undefined' && location.state && location.state.intent) {
+    redirect = (
+      <Blockquote type="note">
+        <FormattedMessage id="app.loginRequiredRedirect" values={{ page: location.state.intent }} />
+      </Blockquote>
+    )
+  }
+
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}>
-        {location && location.state && location.state.intent ? (
-          <Blockquote type="note">
-            <FormattedMessage
-              id="app.loginRequiredRedirect"
-              values={{ page: location.state.intent }}
-            />
-          </Blockquote>
-        ) : null}
+        {redirect}
         <div>{main}</div>
         <div>
           <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">

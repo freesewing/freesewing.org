@@ -51,6 +51,8 @@ const CreatePatternForModelPage = props => {
   const Pattern = useDesign(design)
   const docs = useDraftDocs(props.data)
 
+  if (!model) return null // FIXME: Return something better than null in SSR
+
   // Initial pattern data
   let initialPatternData = {
     design,
@@ -59,7 +61,7 @@ const CreatePatternForModelPage = props => {
       complete: true,
       paperless: false,
       locale: app.language,
-      units: app.account.settings.units,
+      units: app.account.settings ? app.account.settings.units : 'metric',
       options: {},
       measurements: {}
     }

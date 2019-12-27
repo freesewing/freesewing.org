@@ -10,7 +10,10 @@ import Error from '../../../components/error'
 
 const LoginCallbackPage = props => {
   // Only accept valid callbacks
-  if (!props.confirmation || !props.validation) navigate('/login/')
+  if (!props.confirmation || !props.validation) {
+    if (typeof window !== 'undefined') navigate('/login/')
+    else return null
+  }
 
   // Hooks
   const app = useApp()

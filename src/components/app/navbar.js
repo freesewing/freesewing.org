@@ -113,7 +113,7 @@ export default function ButtonAppBar(props) {
           </Link>
           <Button
             aria-owns={patternsOpen ? 'patterns-popover' : undefined}
-            onMouseEnter={handlePatternOpen}
+            onClick={handlePatternOpen}
             {...buttonProps}
           >
             <FormattedMessage id="app.patterns" />
@@ -130,7 +130,7 @@ export default function ButtonAppBar(props) {
 
           <Button
             aria-owns={docsOpen ? 'docs-popover' : undefined}
-            onMouseEnter={handleDocsOpen}
+            onClick={handleDocsOpen}
             {...buttonProps}
           >
             <FormattedMessage id="app.docs" />
@@ -147,7 +147,7 @@ export default function ButtonAppBar(props) {
 
           <Button
             aria-owns={communityOpen ? 'docs-popover' : undefined}
-            onMouseEnter={handleCommunityOpen}
+            onClick={handleCommunityOpen}
             {...buttonProps}
           >
             <FormattedMessage id="app.community" />
@@ -168,7 +168,7 @@ export default function ButtonAppBar(props) {
             <>
               <Button
                 aria-owns={userOpen ? 'user-popover' : undefined}
-                onMouseEnter={handleUserOpen}
+                onClick={handleUserOpen}
                 {...buttonProps}
               >
                 <FormattedMessage id="app.account" />
