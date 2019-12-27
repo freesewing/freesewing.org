@@ -39,7 +39,10 @@ const CreatePatternPage = props => {
   }, [])
 
   // There's no point without models
-  if (typeof app.models === 'undefined' || Object.keys(app.models).length < 1) navigate('/models/')
+  if (typeof app.models === 'undefined' || Object.keys(app.models).length < 1) {
+    if (window) navigate('/models/')
+    else return null
+  }
 
   // Methods
   const hasRequiredMeasurements = (measurements, required) => {
