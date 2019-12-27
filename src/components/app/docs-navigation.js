@@ -29,7 +29,7 @@ const Navigation = ({ app, slug, toc = null }) => {
       let active = isDescendant(slug, topic) ? true : false
       items.push(
         <li key={topic} className={active ? 'topic active' : 'topic'}>
-          <Link className={active ? 'topic active' : 'topic'} to={'/' + topic}>
+          <Link className={active ? 'topic active' : 'topic'} to={topic}>
             {active ? (
               <ExpandedIcon fontSize="inherit" style={styles.icon} />
             ) : (
