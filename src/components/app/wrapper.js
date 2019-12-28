@@ -72,7 +72,7 @@ const AppWrapper = ({ app, children }) => {
           className="fab secondary"
           arial-label="Scroll to top"
           onClick={scrollToTop}
-          style={scrolledDown ? style.showStt : style.hideStt}
+          style={scrolledDown && !app.menu ? style.showStt : style.hideStt}
         >
           <UpIcon fontSize="inherit" />
         </Fab>
