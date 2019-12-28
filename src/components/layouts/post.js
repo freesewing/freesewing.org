@@ -1,20 +1,14 @@
 import React from 'react'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
-import ContentWrapper from '../wrappers/content'
 import BreadCrumbs from '../breadcrumbs'
+import BaseLayout from './base'
 
-const PostLayout = ({ app, frontmatter, children }) => {
-  const img = frontmatter.img.childImageSharp.fluid
+const PostLayout = props => {
+  const img = props.frontmatter.img.childImageSharp.fluid
   const style = {
-    wrapper: {
-      padding: '1rem',
-      minHeight: 'calc(100vh - 6rem)',
-      maxWidth: '1200px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      margin: 'auto'
+    base: {
+      maxWidth: '1200px'
     },
     meta: {
       display: 'flex',
@@ -35,8 +29,8 @@ const PostLayout = ({ app, frontmatter, children }) => {
       margin: 'auto'
     }
   }
-  const tags = frontmatter.patterns
-    ? frontmatter.patterns.map(pattern => {
+  const tags = props.frontmatter.patterns
+    ? props.frontmatter.patterns.map(pattern => {
         return (
           <Link to={'/showcase/designs/' + pattern} style={{ marginRight: '8px' }} key={pattern}>
             #{pattern}
@@ -46,18 +40,18 @@ const PostLayout = ({ app, frontmatter, children }) => {
     : null
 
   return (
-    <ContentWrapper>
-      <article style={style.wrapper}>
-        <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />
-        <h1>{app.title}</h1>
+    <BaseLayout {...props} style={style.base} noTitle top>
+      <article>
+        <BreadCrumbs crumbs={props.app.crumbs} pageTitle={props.app.title} />
+        <h1>{props.app.title}</h1>
         <div style={style.meta} data-test="meta">
-          <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
+          <FormattedDate value={props.frontmatter.date} year="numeric" month="long" day="2-digit" />
           <div>
             {tags}
             <FormattedMessage id="app.by" />
             &nbsp;
-            <Link to={'/users/' + frontmatter.author} data-test="author">
-              {frontmatter.author}
+            <Link to={'/users/' + props.frontmatter.author} data-test="author">
+              {props.frontmatter.author}
             </Link>
           </div>
         </div>
@@ -68,14 +62,14 @@ const PostLayout = ({ app, frontmatter, children }) => {
               src={img.src}
               style={{ width: '100%' }}
               srcSet={img.srcSet}
-              alt={frontmatter.caption}
+              alt={props.frontmatter.caption}
             />
           </a>
-          <figcaption data-test="caption">{frontmatter.caption}</figcaption>
+          <figcaption data-test="caption">{props.frontmatter.caption}</figcaption>
         </figure>
-        <div style={style.body}>{children}</div>
+        <div style={style.body}>{props.children}</div>
       </article>
-    </ContentWrapper>
+    </BaseLayout>
   )
 }
 

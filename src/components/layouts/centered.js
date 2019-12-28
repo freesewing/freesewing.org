@@ -1,31 +1,13 @@
 import React from 'react'
-import ContentWrapper from '../wrappers/content'
-import BreadCrumbs from '../breadcrumbs'
+import BaseLayout from './base'
 
-const CenteredLayout = ({ app, children, top = false, noTitle = false }) => {
+const CenteredLayout = props => {
   const style = {
     textAlign: 'center',
-    maxWidth: '600px',
-    margin: 'auto',
-    minHeight: noTitle ? undefined : 'calc(100vh - 6rem)',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: top ? 'top' : 'center'
+    maxWidth: '600px'
   }
 
-  return (
-    <ContentWrapper>
-      <div style={style}>
-        {!noTitle && (
-          <>
-            <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />
-            <h1>{app.title}</h1>
-          </>
-        )}
-        {children}
-      </div>
-    </ContentWrapper>
-  )
+  return <BaseLayout {...props} style={style} />
 }
 
 export default CenteredLayout
