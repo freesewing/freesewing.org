@@ -37,7 +37,8 @@ const MobileMenu = ({ app }) => {
     wrapper: {
       padding: '1rem',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width: 'calc(100% - 1rem + -2px)'
     },
     icons: {
       textAlign: 'center',

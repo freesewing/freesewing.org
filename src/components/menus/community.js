@@ -7,7 +7,7 @@ import HeartIcon from '@material-ui/icons/Favorite'
 const CommunityMenu = ({ app }) => {
   const style = {
     wrapper: {
-      padding: '0 1rem',
+      padding: app.mobile ? '0' : '0 1rem',
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -31,13 +31,6 @@ const CommunityMenu = ({ app }) => {
     },
     button: {
       marginTop: '1rem'
-    },
-    love: {
-      background: '#e64980',
-      padding: '0.5rem 1.5rem',
-      marginBottom: '1.5rem',
-      borderRadius: '4px',
-      color: '#fff'
     }
   }
 
@@ -89,27 +82,21 @@ const CommunityMenu = ({ app }) => {
         </ul>
       </div>
       <div style={style.col}>
-        <div style={style.love}>
-          <h6>
-            <FormattedMessage id="app.supportFreesewing" />
-          </h6>
-          <p>
-            <FormattedMessage id="app.patronPitch" />
-            <br />
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth={true}
-              size="large"
-              style={style.button}
-              href="/patrons/join/"
-            >
-              <HeartIcon style={{ marginRight: '1rem', color: '#e64980' }} />
-              <FormattedMessage id="app.becomeAPatron" />
-              <HeartIcon style={{ marginLeft: '1rem', color: '#e64980' }} />
-            </Button>
-          </p>
-        </div>
+        <h6>
+          <FormattedMessage id="app.supportFreesewing" />
+        </h6>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth={true}
+          size="large"
+          style={style.button}
+          href="/patrons/join/"
+        >
+          <HeartIcon style={{ marginRight: '1rem', color: '#e64980' }} />
+          <FormattedMessage id="app.becomeAPatron" />
+          <HeartIcon style={{ marginLeft: '1rem', color: '#e64980' }} />
+        </Button>
       </div>
     </div>
   )
