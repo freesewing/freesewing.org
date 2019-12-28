@@ -59,7 +59,7 @@ const DocumentationIndexPage = props => {
   // Data
   const styles = {
     wrapper: {
-      display: 'flex',
+      display: app.mobile ? 'block' : 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-evenly'
@@ -72,8 +72,7 @@ const DocumentationIndexPage = props => {
       margin: 0
     },
     blockquote: {
-      maxWidth: '500px',
-      margin: '2rem auto'
+      maxWidth: '500px'
     }
   }
 
