@@ -81,7 +81,7 @@ const AccountMenu = ({ app }) => {
         </h6>
         <ul className="links">
           <li>
-            <Link to="/logout/">
+            <Link to="/" onClick={app.logout}>
               <FormattedMessage id="app.logOut" />
             </Link>
           </li>
