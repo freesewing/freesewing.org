@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
 import * as themes from '@freesewing/mui-theme'
 import Navbar from './navbar'
 import Footer from './footer'
 import MenuIcon from '@material-ui/icons/Menu'
+import UpIcon from '@material-ui/icons/KeyboardArrowUp'
 import CloseIcon from '@material-ui/icons/Close'
 import Fab from '@material-ui/core/Fab'
 import '@freesewing/css-theme'
@@ -14,10 +15,34 @@ import Notification from '../notification'
 import Loading from '../loading'
 import Meta from './meta'
 import MobileMenu from '../menus/mobile'
+import useScrolledDown from '../../hooks/useScrolledDown'
 
 /* This component should wrap all page content */
 
 const AppWrapper = ({ app, children }) => {
+  const [scrolledDown, setScrolledDown] = useState(false)
+  useScrolledDown(s => setScrolledDown(s))
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
+  // Scroll to top style
+  let sttBase = {
+    right: app.mobile ? 'calc(1.5rem + 64px)' : '1rem',
+    transition: 'margin-bottom ease-in-out 0.1s'
+  }
+  const style = {
+    showStt: {
+      ...sttBase,
+      marginBottom: 0
+    },
+    hideStt: {
+      ...sttBase,
+      marginBottom: 'calc(-64px - 1rem)'
+    }
+  }
+
   let wrapperClasses = app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (app.menu) wrapperClasses += ' show-menu'
 
@@ -26,8 +51,9 @@ const AppWrapper = ({ app, children }) => {
       <Meta app={app} />
       <div className={wrapperClasses}>
         {app.mobile ? (
-          <React.Fragment>
+          <>
             <Fab
+              title={app.translate('app.menu')}
               color="primary"
               className="fab primary only-xs"
               aria-label="Menu"
@@ -36,10 +62,20 @@ const AppWrapper = ({ app, children }) => {
               {app.menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
             </Fab>
             <Navbar app={app} />
-          </React.Fragment>
+          </>
         ) : (
           <Navbar app={app} />
         )}
+        <Fab
+          title={app.translate('app.scrollToTop')}
+          color="primary"
+          className="fab secondary"
+          arial-label="Scroll to top"
+          onClick={scrollToTop}
+          style={scrolledDown ? style.showStt : style.hideStt}
+        >
+          <UpIcon fontSize="inherit" />
+        </Fab>
         {children}
         <Notification
           notification={app.notification}
