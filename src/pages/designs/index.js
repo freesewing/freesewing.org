@@ -33,7 +33,6 @@ const DesignListPage = props => {
       justifyContent: 'center'
     }
   }
-  if (app.mobile) styles.design.width = '48%'
 
   return (
     <AppWrapper app={app}>
