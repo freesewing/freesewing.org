@@ -4,16 +4,19 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
 
+import useModels from '../../../hooks/useModels'
 import Avatar from '../../../components/avatar'
 import { FormattedMessage } from 'react-intl'
 import { Link, navigate } from 'gatsby'
-import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
+import Button from '@material-ui/core/Button'
+import AccountNotFound from '../../../components/account-not-found'
 
 const CreatePatternPage = props => {
   // Hooks
   const app = useApp()
+  const models = useModels(app, props.pageContext.design)
 
   // Design is added to page context in gatsby-node
   const design = props.pageContext.design
@@ -38,39 +41,7 @@ const CreatePatternPage = props => {
     ])
   }, [])
 
-  // There's no point without models
-  if (typeof app.models === 'undefined' || Object.keys(app.models).length < 1) {
-    if (typeof window !== 'undefined') navigate('/models/')
-    else return null
-  }
-
-  // Methods
-  const hasRequiredMeasurements = (measurements, required) => {
-    for (let m of required) {
-      if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
-    }
-
-    return true
-  }
-
-  const checkModels = userModels => {
-    let models = {
-      ok: [],
-      no: []
-    }
-    for (let i in userModels) {
-      let model = userModels[i]
-      if (typeof model.measurements === 'undefined' || Object.keys(model.measurements).length < 1)
-        models.no.push(model)
-      else {
-        if (hasRequiredMeasurements(model.measurements, requiredMeasurements[design]))
-          models.ok.push(model)
-        else models.no.push(model)
-      }
-    }
-
-    return models
-  }
+  console.log(models)
 
   // Style
   const styles = {
@@ -88,64 +59,119 @@ const CreatePatternPage = props => {
     name: {
       margin: 0,
       wordWrap: 'anywhere'
+    },
+    sizes: {
+      listStyleType: 'none',
+      margin: 0,
+      padding: 0
+    },
+    size: {
+      marginRight: '0.5rem'
     }
   }
   if (app.tablet) styles.pattern.width = '150px'
   if (app.mobile) styles.pattern.width = '200px'
 
-  // Figure out what models have all required measurements
-  const models = checkModels(app.models)
-
-  // Keep track of whether we actuall have models that are ok
-  let count = 0
-
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <div style={styles.wrapper}>
-          {models.ok.map(model => {
-            count++
+        <h3>
+          <FormattedMessage id="app.madeToMeasure" />
+        </h3>
+        {app.account.username ? null : (
+          <>
+            <p>
+              <FormattedMessage id="app.accountRequired" />
+            </p>
+            <AccountNotFound />
+          </>
+        )}
+        {models.ok.user.length > 0 && (
+          <div style={styles.wrapper}>
+            {models.ok.user.map(model => {
+              return (
+                <div style={styles.model} key={model.handle}>
+                  <Link to={`/create/${design}/for/${model.handle}/`} title={model.name}>
+                    <Avatar data={model} />
+                    <h5 style={styles.name}>{model.name}</h5>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        )}
+        {models.no.user.length > 0 && (
+          <div style={styles.wrapper}>
+            {models.no.user.length > 0 ? (
+              <Blockquote type="note" style={{ maxWidth: '800px' }}>
+                <h6>
+                  <FormattedMessage
+                    id="app.countModelsLackingForPattern"
+                    values={{
+                      count: models.no.user.length,
+                      pattern: design
+                    }}
+                  />
+                  :
+                </h6>
+                <ul className="links">
+                  {models.no.user.map(model => {
+                    return (
+                      <li key={model.handle}>
+                        <Link to={'/models/' + model.handle} title={model.name}>
+                          {model.name}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </Blockquote>
+            ) : null}
+          </div>
+        )}
+        <h3>
+          <FormattedMessage id="app.sizes" />
+        </h3>
+        <h5>
+          <FormattedMessage id="app.withoutBreasts" />
+        </h5>
+        <ul style={styles.sizes}>
+          {Object.keys(models.ok.withoutBreasts).map(size => {
+            let m = models.ok.withoutBreasts[size]
             return (
-              <div style={styles.model} key={model.handle}>
-                <Link
-                  to={`/create/${design}/for/${model.handle}/`}
-                  title={model.name}
-                  data-test={`model${count}`}
-                >
-                  <Avatar data={model} />
-                  <h5 style={styles.name}>{model.name}</h5>
-                </Link>
-              </div>
+              <Button
+                style={styles.size}
+                href={`/create/${design}/for/size-${size}-without-breasts/`}
+                title={size}
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
+                {size}
+              </Button>
             )
           })}
-        </div>
-        <div style={styles.wrapper}>
-          {models.no.length > 0 ? (
-            <Blockquote type="note" style={{ maxWidth: '800px' }}>
-              <h6>
-                <FormattedMessage
-                  id="app.countModelsLackingForPattern"
-                  values={{
-                    count: models.no.length,
-                    pattern: design
-                  }}
-                />
-                :
-              </h6>
-              <ul className="links">
-                {models.no.map(model => {
-                  return (
-                    <li key={model.handle}>
-                      <Link to={'/models/' + model.handle} title={model.name}>
-                        {model.name}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </Blockquote>
-          ) : null}
-        </div>
+        </ul>
+        <h5>
+          <FormattedMessage id="app.withBreasts" />
+        </h5>
+        <ul style={styles.sizes}>
+          {Object.keys(models.ok.withBreasts).map(size => {
+            let m = models.ok.withBreasts[size]
+            return (
+              <Button
+                style={styles.size}
+                href={`/create/${design}/for/size-${size}-with-breasts/`}
+                title={size}
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
+                {size}
+              </Button>
+            )
+          })}
+        </ul>
       </WideLayout>
     </AppWrapper>
   )
