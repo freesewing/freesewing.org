@@ -346,7 +346,11 @@ function useApp(slug = null) {
   const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const toggleMenu = () => setMenu(!menu)
   const closeNav = evt => {
-    if (evt.target.className.indexOf('uiExpansionPanelSummary') === -1) setMenu(false)
+    if (
+      typeof evt.target.className !== 'string' ||
+      evt.target.className.indexOf('uiExpansionPanelSummary') === -1
+    )
+      setMenu(false)
   }
 
   // Media queries
