@@ -88,7 +88,7 @@ const AppWrapper = ({ app, children }) => {
             <MobileMenu app={app} />
           </div>
         )}
-        <Footer language={process.env.GATSBY_LANGUAGE} />
+        <Footer language={process.env.GATSBY_LANGUAGE} app={app} />
       </div>
     </MuiThemeProvider>
   )

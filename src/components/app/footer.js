@@ -1,7 +1,11 @@
 import React from 'react'
-import FooterBase from '@freesewing/components/Footer'
+import Logo from '@freesewing/components/Logo'
+import Icon from '@freesewing/components/Icon'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
+import IconButton from '@material-ui/core/IconButton'
+import { version } from '../../../package.json'
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
 const Footer = props => {
   const data = useStaticQuery(graphql`
@@ -37,6 +41,12 @@ const Footer = props => {
       background: '#000',
       margin: '2px',
       border: '1px solid #fff6'
+    },
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
     }
   }
 
@@ -60,20 +70,70 @@ const Footer = props => {
 
   const allPatrons = <ul style={styles.ul}>{list}</ul>
 
-  const links = {
-    left: {
-      blog: '/blog',
-      aboutFreesewing: '/docs/about',
-      faq: '/docs/faq'
-    },
-    right: {
-      becomeAPatron: '/patrons/join',
-      makerDocs: '/docs',
-      devDocs: 'https://' + props.language + '.freesewing.dev/'
-    }
+  const icons = {
+    gitter: 'https://gitter.im/freesewing/chat',
+    twitter: 'https://twitter.com/freesewing_org',
+    github: 'https://github.com/freesewing',
+    instagram: 'https://instagram.com/freesewing_org'
   }
 
-  return <FooterBase language={props.language} links={links} home="/" patrons={allPatrons} />
+  return (
+    <footer>
+      <Link to="/">
+        <Logo size={101} />
+      </Link>
+      <p>
+        {Object.keys(icons).map(i => (
+          <IconButton href={icons[i]} className={i} title={i} key={i}>
+            <Icon icon={i} />
+          </IconButton>
+        ))}
+      </p>
+      <p>
+        <FormattedHTMLMessage id="app.txt-footer" />:
+      </p>
+      {allPatrons}
+      <div style={styles.container}>
+        <ul>
+          <li>
+            <Link to="/docs/about/">
+              <FormattedMessage id="app.about" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/docs/about/faq/">
+              <FormattedMessage id="app.faq" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/sitemap/">
+              <FormattedMessage id="app.sitemap" />
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/patrons/join/">
+              <FormattedMessage id="app.becomeAPatron" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/fixme/">
+              <FormattedMessage id="app.contributeToThing" values={{ thing: 'FreeSewing' }} />
+            </Link>
+          </li>
+          <li>
+            <a href="https://freesewing.dev/">
+              <FormattedMessage id="app.devDocs" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <p className="version">
+        <a href={'https://github.com/freesewing/freesewing/releases/tag/v' + version}>v{version}</a>
+      </p>
+    </footer>
+  )
 }
 
 export default Footer
