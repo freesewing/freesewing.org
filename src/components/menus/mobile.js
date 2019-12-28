@@ -5,6 +5,7 @@ import LightModeIcon from '@material-ui/icons/WbSunny'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
+import MapIcon from '@material-ui/icons/Map'
 import IconButton from '@material-ui/core/IconButton'
 import PatternsMenu from './patterns'
 import DocsMenu from './docs'
@@ -16,6 +17,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { Link } from 'gatsby'
 
 const MobileMenu = ({ app }) => {
   // State
@@ -60,7 +62,7 @@ const MobileMenu = ({ app }) => {
       <div style={style.icons}>
         <IconButton
           style={style.iconButton}
-          aria-label="menu"
+          aria-label={app.translate('app.home')}
           color="inherit"
           href="/"
           title={app.translate('app.home')}
@@ -69,7 +71,16 @@ const MobileMenu = ({ app }) => {
         </IconButton>
         <IconButton
           style={style.iconButton}
-          aria-label="menu"
+          aria-label={app.translate('app.sitemap')}
+          color="inherit"
+          href="/sitemap/"
+          title={app.translate('app.sitemap')}
+        >
+          <MapIcon />
+        </IconButton>
+        <IconButton
+          style={style.iconButton}
+          aria-label={app.translate('app.search')}
           color="inherit"
           href="/search/"
           title={app.translate('app.search')}
@@ -78,16 +89,18 @@ const MobileMenu = ({ app }) => {
         </IconButton>
         <IconButton
           style={style.iconButton}
-          aria-label="menu"
+          aria-label={app.translate('account.language')}
           color="inherit"
           href="/language/"
-          title={app.translate(`i18n.${app.language}`)}
+          title={app.translate(`account.language`)}
         >
           <LanguageIcon />
         </IconButton>
         <IconButton
           style={style.darkModeButton}
-          aria-label="menu"
+          aria-label={
+            app.theme === 'dark' ? app.translate('app.lightMode') : app.translate('app.darkMode')
+          }
           onClick={app.toggleDarkMode}
           title={
             app.theme === 'dark' ? app.translate('app.lightMode') : app.translate('app.darkMode')
@@ -101,20 +114,32 @@ const MobileMenu = ({ app }) => {
         </IconButton>
       </div>
 
-      <ExpansionPanel expanded={expanded === 'account'} onChange={handleChange('account')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="account-content"
-          id="account-header"
-        >
-          <h5 style={style.h5}>
-            <FormattedMessage id="app.account" />
-          </h5>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <AccountMenu app={app} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+      {app.account.username ? (
+        <ExpansionPanel expanded={expanded === 'account'} onChange={handleChange('account')}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="account-content"
+            id="account-header"
+          >
+            <h5 style={style.h5}>
+              <FormattedMessage id="app.account" />
+            </h5>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <AccountMenu app={app} />
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      ) : (
+        <h5 style={{ ...style.h5, textAlign: 'center' }}>
+          <Link to="/login/">
+            <FormattedMessage id="app.logIn" />
+          </Link>
+          <span> / </span>
+          <Link to="/signup/">
+            <FormattedMessage id="app.signUp" />
+          </Link>
+        </h5>
+      )}
 
       <ExpansionPanel expanded={expanded === 'patterns'} onChange={handleChange('patterns')}>
         <ExpansionPanelSummary
