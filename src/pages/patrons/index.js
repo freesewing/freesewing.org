@@ -80,22 +80,22 @@ const PatronPage = props => {
   })
   return (
     <AppWrapper app={app}>
+      <CenteredLayout app={app} top noTitle>
+        <Blockquote type="note">
+          <h6>
+            <FormattedMessage id="app.supportFreesewing" />
+          </h6>
+          <p>
+            <FormattedMessage id="account.patronInfo" />
+          </p>
+          <p>
+            <Button variant="contained" color="primary" size="large" href="/patrons/join/">
+              <FormattedMessage id="app.becomeAPatron" />
+            </Button>
+          </p>
+        </Blockquote>
+      </CenteredLayout>
       <WideLayout app={app} top>
-        <CenteredLayout app={app} top noTitle>
-          <Blockquote type="note">
-            <h6>
-              <FormattedMessage id="app.supportFreesewing" />
-            </h6>
-            <p>
-              <FormattedMessage id="account.patronInfo" />
-            </p>
-            <p>
-              <Button variant="contained" color="primary" size="large" href="/patrons/join/">
-                <FormattedMessage id="app.becomeAPatron" />
-              </Button>
-            </p>
-          </Blockquote>
-        </CenteredLayout>
         <div style={styles.list}>{list}</div>
       </WideLayout>
     </AppWrapper>

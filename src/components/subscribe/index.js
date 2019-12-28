@@ -23,7 +23,8 @@ const Subscribe = props => {
   const useStyles = makeStyles({
     tier0: {
       ...sharedStyles,
-      color: '#212529'
+      color: props.app.theme === 'light' ? '#212529' : '#fff',
+      backgroundColor: props.app.theme === 'light' ? '#fff' : '#495057'
     },
     tier2: {
       ...sharedStyles,

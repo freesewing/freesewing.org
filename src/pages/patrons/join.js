@@ -83,7 +83,7 @@ const JoinPatronsPage = props => {
         </div>
       </div>
       <WideLayout app={app} top>
-        <Subscribe />
+        <Subscribe app={app} />
       </WideLayout>
     </AppWrapper>
   )

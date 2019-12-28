@@ -78,7 +78,7 @@ const PatronsIndex = props => {
           </Button>
         </div>
       </div>
-      <Subscribe />
+      <Subscribe app={app} />
     </React.Fragment>
   )
 }

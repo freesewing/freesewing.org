@@ -274,7 +274,7 @@ const HomePage = props => {
             <h3 style={{ textAlign: 'center', marginTop: '3rem' }}>
               <FormattedMessage id="app.pricing" />
             </h3>
-            <Subscribe showFree={true} />
+            <Subscribe showFree={true} app={app} />
           </div>
 
           <div style={styles.m1}>
