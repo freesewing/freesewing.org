@@ -11,26 +11,26 @@ import InvalidIcon from '@material-ui/icons/Warning'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const ModelNamePage = props => {
+const PersonNamePage = props => {
   // Hooks
   const app = useApp()
 
-  if (typeof app.models[props.model] === 'undefined') return null // FIXME: Show something better than nothing in SSR
+  if (typeof app.people[props.person] === 'undefined') return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [name, setName] = useState(app.models[props.model].name)
+  const [name, setName] = useState(app.people[props.person].name)
 
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.name'))
     app.setCrumbs([
       {
-        slug: '/models/',
-        title: app.translate('app.models')
+        slug: '/people/',
+        title: app.translate('app.people')
       },
       {
-        slug: '/models/' + props.model + '/',
-        title: app.models[props.model].name || props.model
+        slug: '/people/' + props.person + '/',
+        title: app.people[props.person].name || props.person
       }
     ])
   }, [])
@@ -67,16 +67,20 @@ const ModelNamePage = props => {
           <Button
             size="large"
             style={{ marginLeft: '1rem' }}
+            variant="outlined"
+            color="primary"
+            href={`/people/${props.person}/`}
+          >
+            <FormattedMessage id="app.cancel" />
+          </Button>
+          <Button
+            size="large"
+            style={{ marginLeft: '1rem' }}
             variant="contained"
             color="primary"
             disabled={name.length > 0 ? false : true}
             onClick={() =>
-              app.saveModel(
-                props.model,
-                { name },
-                app.translate('app.name'),
-                '/models/' + props.model + '/'
-              )
+              app.updatePerson(props.person, [name, 'name'], `/people/${props.person}/`)
             }
           >
             <FormattedMessage id="app.save" />
@@ -87,4 +91,4 @@ const ModelNamePage = props => {
   )
 }
 
-export default withLanguage(ModelNamePage)
+export default withLanguage(PersonNamePage)

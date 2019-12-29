@@ -1,7 +1,7 @@
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 
-export default function useModels(app, design) {
+export default function usePeople(app, design) {
   const hasRequiredMeasurements = (measurements, required) => {
     for (let m of required) {
       if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
@@ -9,15 +9,15 @@ export default function useModels(app, design) {
 
     return true
   }
-  const asSizes = models => {
+  const asSizes = people => {
     const sizes = {}
-    for (let s in models) sizes[s.slice(4)] = models[s]
+    for (let s in people) sizes[s.slice(4)] = people[s]
 
     return sizes
   }
 
   const required = requiredMeasurements[design]
-  const models = {
+  const people = {
     ok: {
       withBreasts: {},
       withoutBreasts: {},
@@ -30,12 +30,12 @@ export default function useModels(app, design) {
     }
   }
 
-  // User models
-  for (let model in app.models) {
-    if (hasRequiredMeasurements(app.models[model].measurements, required)) {
-      models.ok.user.push(app.models[model])
+  // People
+  for (let person in app.people) {
+    if (hasRequiredMeasurements(app.people[person].measurements, required)) {
+      people.ok.user.push(app.people[person])
     } else {
-      models.no.user.push(app.models[model])
+      people.no.user.push(app.people[person])
     }
   }
 
@@ -43,9 +43,9 @@ export default function useModels(app, design) {
   const sizes = { withBreasts, withoutBreasts }
   for (let build of ['withBreasts', 'withoutBreasts']) {
     if (hasRequiredMeasurements(sizes[build].size38, required))
-      models.ok[build] = asSizes(sizes[build])
-    else models.no[build] = asSizes(sizes[build])
+      people.ok[build] = asSizes(sizes[build])
+    else people.no[build] = asSizes(sizes[build])
   }
 
-  return models
+  return people
 }

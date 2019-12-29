@@ -104,7 +104,7 @@ const DesignPage = props => {
             size="large"
             href={'/create/' + design + '/'}
           >
-            <FormattedMessage id="app.newPattern" values={{ pattern: design }} />
+            <FormattedMessage id="app.newThing" values={{ thing: design }} />
           </Button>
           <Button
             data-test="docs"

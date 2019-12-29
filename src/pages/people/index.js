@@ -8,18 +8,18 @@ import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Avatar from '../../components/avatar'
-import MissingModels from '../../components/missing/models'
+import MissingPeople from '../../components/missing/people'
 import ModelGraph from '../../components/model-graph.js'
 
-const ModelsIndexPage = props => {
+const PeopleIndexPage = props => {
   const app = useApp()
   useEffect(() => {
-    app.setTitle(app.translate('app.models'))
+    app.setTitle(app.translate('app.people'))
   }, [])
 
   // Styles
   const styles = {
-    model: {
+    person: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center'
@@ -44,44 +44,40 @@ const ModelsIndexPage = props => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        {Object.keys(app.models).length > 0 ? (
+        {Object.keys(app.people).length > 0 ? (
           <>
-            {Object.keys(app.models).map((handle, model) => {
+            {Object.keys(app.people).map((handle, person) => {
               return (
                 <div className="box" key={handle}>
-                  <Link
-                    to={'/models/' + handle}
-                    title={app.models[handle].name}
-                    data-test="model-link"
-                  >
-                    <div style={styles.model}>
+                  <Link to={'/people/' + handle} title={app.people[handle].name}>
+                    <div style={styles.person}>
                       <div style={styles.avatar}>
-                        <Avatar variant="model" data={app.models[handle]} />
+                        <Avatar variant="model" data={app.people[handle]} />
                       </div>
                       <div>
-                        <h6 style={styles.name}>{app.models[handle].name}</h6>
-                        <p style={styles.notes}>{app.models[handle].notes}</p>
+                        <h6 style={styles.name}>{app.people[handle].name}</h6>
+                        <p style={styles.notes}>{app.people[handle].notes}</p>
                       </div>
                     </div>
                     <div>
-                      <ModelGraph model={app.models[handle]} intl={app.intl} />
+                      <ModelGraph model={app.people[handle]} intl={app.intl} />
                     </div>
                   </Link>
                 </div>
               )
             })}
             <p style={{ textAlign: 'right' }}>
-              <Button size="large" variant="contained" color="primary" href="/model">
-                <FormattedMessage id="app.newModel" />
+              <Button size="large" variant="contained" color="primary" href="/person/">
+                <FormattedMessage id="app.newPerson" />
               </Button>
             </p>
           </>
         ) : (
-          <MissingModels />
+          <MissingPeople />
         )}
       </WideLayout>
     </AppWrapper>
   )
 }
 
-export default withLanguage(ModelsIndexPage)
+export default withLanguage(PeopleIndexPage)

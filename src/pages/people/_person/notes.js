@@ -10,26 +10,26 @@ import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const ModelNotesPage = props => {
+const PersonNotesPage = props => {
   // Hooks
   const app = useApp()
 
-  if (typeof app.models[props.model] === 'undefined') return null // FIXME: Show something better than nothing in SSR
+  if (typeof app.people[props.person] === 'undefined') return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [notes, setNotes] = useState(app.models[props.model].notes || '')
+  const [notes, setNotes] = useState(app.people[props.person].notes || '')
 
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.notes'))
     app.setCrumbs([
       {
-        slug: '/models/',
-        title: app.translate('app.models')
+        slug: '/people/',
+        title: app.translate('app.people')
       },
       {
-        slug: '/models/' + props.model + '/',
-        title: app.models[props.model].name || props.model
+        slug: '/people/' + props.person + '/',
+        title: app.people[props.person].name || props.person
       }
     ])
   }, [])
@@ -66,7 +66,7 @@ const ModelNotesPage = props => {
             size="large"
             variant="outlined"
             color="primary"
-            href={'/models/' + props.model}
+            href={'/people/' + props.person}
             data-test="cancel"
           >
             <FormattedMessage id="app.cancel" />
@@ -78,12 +78,7 @@ const ModelNotesPage = props => {
             variant="contained"
             color="primary"
             onClick={() =>
-              app.saveModel(
-                props.model,
-                { notes },
-                app.translate('app.notes'),
-                '/models/' + props.model + '/'
-              )
+              app.updatePerson(props.person, [notes, 'notes'], `/people/${props.person}/`)
             }
           >
             <FormattedMessage id="app.save" />
@@ -103,4 +98,4 @@ const ModelNotesPage = props => {
   )
 }
 
-export default withLanguage(ModelNotesPage)
+export default withLanguage(PersonNotesPage)

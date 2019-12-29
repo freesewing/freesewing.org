@@ -9,8 +9,8 @@ import { FormattedMessage } from 'react-intl'
 import ProfileIcon from '@material-ui/icons/Fingerprint'
 import SettingsIcon from '@material-ui/icons/Tune'
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew'
-import ModelsIcon from '@material-ui/icons/PermContactCalendar'
-import NewModelIcon from '@material-ui/icons/PersonAdd'
+import PeopleIcon from '@material-ui/icons/PermContactCalendar'
+import NewPersonIcon from '@material-ui/icons/PersonAdd'
 import RecipesIcon from '@material-ui/icons/FolderOpen'
 import NewPatternIcon from '@material-ui/icons/NoteAdd'
 import Button from '@material-ui/core/Button'
@@ -43,23 +43,20 @@ const AccountPage = props => {
         to: '/create/',
         icon: <NewPatternIcon style={styles.icon} />,
         title: (
-          <FormattedMessage
-            id="app.newPattern"
-            values={{ pattern: app.translate('app.pattern') }}
-          />
+          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
         )
       },
       {
-        to: '/model/',
-        icon: <NewModelIcon style={styles.icon} />,
-        title: 'app.newModel'
+        to: '/people/',
+        icon: <NewPersonIcon style={styles.icon} />,
+        title: 'app.newPerson'
       }
     ],
     info: [
       {
-        to: '/models/',
-        icon: <ModelsIcon style={styles.icon} />,
-        title: 'app.models',
+        to: '/people/',
+        icon: <PeopleIcon style={styles.icon} />,
+        title: 'app.people',
         className: 'info'
       },
       {

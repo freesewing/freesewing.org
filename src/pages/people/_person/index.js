@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../../../../hooks/useApp'
-import useModel from '../../../../hooks/useModel'
-import withLanguage from '../../../../components/withLanguage'
-import AppWrapper from '../../../../components/app/wrapper'
-import CenteredLayout from '../../../../components/layouts/centered'
+import useApp from '../../../hooks/useApp'
+import usePerson from '../../../hooks/usePerson'
+import withLanguage from '../../../components/withLanguage'
+import AppWrapper from '../../../components/app/wrapper'
+import CenteredLayout from '../../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
@@ -25,26 +25,33 @@ import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
-import Avatar from '../../../../components/avatar'
-import ModelGraph from '../../../../components/model-graph.js'
+import Avatar from '../../../components/avatar'
+import ModelGraph from '../../../components/model-graph.js'
 
-const ModelPage = props => {
+const PersonPage = props => {
   // Hooks
   const app = useApp()
-  const model = useModel(app, props.model)
 
   // State
   const [filter, setFilter] = useState(false)
+  const [person, setPerson] = useState({ ...usePerson(app, props.person) })
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.models'))
+    app.setTitle(person.name)
+    app.setCrumbs([
+      {
+        slug: '/people/',
+        title: app.translate('app.people')
+      }
+    ])
   }, [])
 
   // Methods
   const updateFilter = evt => {
     setFilter(evt.target.value)
   }
+
   const sortMeasurements = measurements => {
     let sorted = []
     let translated = {}
@@ -98,7 +105,7 @@ const ModelPage = props => {
           {measurementEstimate && (
             <span
               dangerouslySetInnerHTML={{
-                __html: formatMm(measurementEstimate, model.units, 'html')
+                __html: formatMm(measurementEstimate, person.units, 'html')
               }}
             />
           )}
@@ -106,7 +113,7 @@ const ModelPage = props => {
         <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
           {value && (
             <b>
-              <span dangerouslySetInnerHTML={{ __html: formatMm(value, model.units, 'html') }} />
+              <span dangerouslySetInnerHTML={{ __html: formatMm(value, person.units, 'html') }} />
             </b>
           )}
         </td>
@@ -116,7 +123,7 @@ const ModelPage = props => {
             color="primary"
             style={styles.iconButton}
             size="medium"
-            href={'/models/' + props.model + '/measurements/' + name}
+            href={'/people/' + props.person + '/measurements/' + name.toLowerCase()}
             data-test={`add-${name}-measurement`}
           >
             {value ? (
@@ -198,41 +205,43 @@ const ModelPage = props => {
   }
 
   // Logic
-  const measurements = model.breasts
+  const measurements = person.breasts
     ? sortMeasurements(allMeasurements.womenswear)
     : sortMeasurements(allMeasurements.menswear)
 
   const remainingMeasurements = () => {
-    if (typeof model.measurements === 'undefined') return measurements
+    if (typeof person.measurements === 'undefined') return measurements
     let remaining = []
     for (let m of measurements) {
-      if (typeof model.measurements[m] === 'undefined' || model.measurements[m] === null)
+      if (typeof person.measurements[m] === 'undefined' || person.measurements[m] === null)
         remaining.push(m)
     }
 
     return remaining
   }
 
-  const blankSlate = !model.measurements || !model.measurements.neckCircumference
+  const blankSlate = !person.measurements || !person.measurements.neckCircumference
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}>
         <div style={styles.avatarWrapper}>
-          <Avatar data={model} />
+          <Link to={`/people/${props.person}/avatar/`}>
+            <Avatar data={person} />
+          </Link>
         </div>
-        {model.notes ? (
+        {person.notes ? (
           <>
             <h5 style={styles.heading} data-test="notes-title">
               <FormattedMessage id="app.notes" />
             </h5>
-            <Markdown source={model.notes} data-test="notes" />
+            <Markdown source={person.notes} data-test="notes" />
             <p style={{ textAlign: 'right' }}>
               <IconButton
                 data-test="edit-notes"
                 color="primary"
                 style={styles.iconButton}
                 size="medium"
-                href={'/models/' + model + '/notes'}
+                href={'/people/' + props.person + '/notes/'}
               >
                 <EditIcon fontSize="inherit" style={styles.icon} />
               </IconButton>
@@ -248,23 +257,23 @@ const ModelPage = props => {
               color="primary"
               style={styles.iconButton}
               size="medium"
-              href={'/models/' + model + '/notes'}
+              href={'/people/' + props.person + '/notes/'}
             >
               <AddIcon fontSize="inherit" style={styles.icon} />
             </IconButton>
           </h5>
         )}
 
-        <ModelGraph model={model} intl={app.intl} />
-
-        <Button
-          variant="outlined"
-          color="primary"
-          href="/docs/about/model-graph"
-          style={{ marginRight: '1rem' }}
-        >
-          <FormattedMessage id="app.docs" />
-        </Button>
+        {!blankSlate && (
+          <>
+            <ModelGraph model={person} intl={app.intl} />
+            <Link to="/docs/about/model-graph" style={{ marginBottom: '1rem' }}>
+              <small>
+                <FormattedMessage id="app.whatIsThis" />
+              </small>
+            </Link>
+          </>
+        )}
 
         <h5 style={styles.heading} data-test="settings-title">
           <FormattedMessage id="app.settings" />
@@ -276,13 +285,13 @@ const ModelPage = props => {
               <td style={styles.title}>
                 <FormattedMessage id="app.name" />
               </td>
-              <td style={styles.cell}>{model.name}</td>
+              <td style={styles.cell}>{person.name}</td>
               <td style={styles.buttonCell}>
                 <IconButton
                   color="primary"
                   style={styles.iconButton}
                   size="medium"
-                  href={'/models/' + model + '/name'}
+                  href={'/people/' + props.person + '/name/'}
                 >
                   <EditIcon fontSize="inherit" style={styles.icon} />
                 </IconButton>
@@ -294,19 +303,19 @@ const ModelPage = props => {
                 <FormattedMessage id="app.chest" />
               </td>
               <td style={styles.cell}>
-                <FormattedMessage id={'app.with' + (model.breasts ? '' : 'out') + 'Breasts'} />
+                <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
               </td>
               <td style={styles.buttonCell}>
                 <IconButton
                   color="primary"
                   style={styles.iconButton}
                   size="medium"
-                  onClick={() =>
-                    app.saveModel(
-                      model,
-                      { breasts: model.breasts ? 'false' : 'true' },
-                      app.translate('app.chest')
-                    )
+                  onClick={
+                    () =>
+                      app
+                        .updatePerson(props.person, [!person.breasts, 'breasts'])
+                        .then(res => setPerson(usePerson(app, props.person)))
+                    // We force a re-render here by setting state after the promise resolves
                   }
                 >
                   <RefreshIcon fontSize="inherit" style={styles.icon} />
@@ -319,19 +328,22 @@ const ModelPage = props => {
                 <FormattedMessage id="account.units" />
               </td>
               <td style={styles.cell}>
-                <FormattedMessage id={'app.' + model.units + 'Units'} />
+                <FormattedMessage id={'app.' + person.units + 'Units'} />
               </td>
               <td style={styles.buttonCell}>
                 <IconButton
                   color="primary"
                   style={styles.iconButton}
                   size="medium"
-                  onClick={() =>
-                    app.saveModel(
-                      model,
-                      { units: model.units === 'metric' ? 'imperial' : 'metric' },
-                      app.translsate('account.units')
-                    )
+                  onClick={
+                    () =>
+                      app
+                        .updatePerson(props.person, [
+                          person.units === 'metric' ? 'imperial' : 'metric',
+                          'units'
+                        ])
+                        .then(res => setPerson(usePerson(app, props.person)))
+                    // We force a re-render here by setting state after the promise resolves
                   }
                 >
                   <RefreshIcon fontSize="inherit" style={styles.icon} />
@@ -341,7 +353,7 @@ const ModelPage = props => {
           </tbody>
         </table>
         {/* measurements */}
-        <h5 style={styles.heading} data-test="measurements-title">
+        <h5 style={styles.heading} data-test="measurements-title" id="measurements">
           <FormattedMessage id="app.measurements" />
         </h5>
         {blankSlate && (
@@ -364,7 +376,7 @@ const ModelPage = props => {
               <Button
                 variant="contained"
                 color="primary"
-                href={`/models/${model}/measurements/neckCircumference`}
+                href={`/people/${props.person}/measurements/neckcircumference`}
                 data-test="add-neck-circumference"
               >
                 <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
@@ -421,24 +433,24 @@ const ModelPage = props => {
               </td>
               <td style={styles.buttonCell}></td>
             </tr>
-            {model.measurements &&
-              Object.keys(model.measurements).map(m => {
+            {person.measurements &&
+              Object.keys(person.measurements).map(m => {
                 if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
 
-                let value = model.measurements[m]
+                let value = person.measurements[m]
 
                 if (value) {
                   const measurementEstimate = neckstimate(
-                    model.measurements.neckCircumference || 360,
+                    person.measurements.neckCircumference || 360,
                     m,
-                    model.breasts
+                    person.breasts
                   )
                   const measurementInRange =
                     measurementDiffers(
-                      model.measurements.neckCircumference || 360,
+                      person.measurements.neckCircumference || 360,
                       m,
                       value,
-                      model.breasts
+                      person.breasts
                     ) <= 2
 
                   return measurementRow(m, value, measurementEstimate, measurementInRange)
@@ -450,15 +462,19 @@ const ModelPage = props => {
             })}
           </tbody>
         </table>
-        <p style={{ textAlign: 'right' }}>
+        <p style={{ textAlign: 'center' }}>
           <Button
             data-test="remove"
             className="danger"
             color="primary"
             variant="contained"
-            onClick={() => app.removeModel(model)}
+            onClick={() => app.removePerson(props.person)}
+            size="large"
           >
-            <FormattedMessage id="app.remove" />
+            <FormattedMessage
+              id="app.removeThing"
+              values={{ thing: app.translate('app.person') }}
+            />
           </Button>
         </p>
       </CenteredLayout>
@@ -466,4 +482,4 @@ const ModelPage = props => {
   )
 }
 
-export default withLanguage(ModelPage)
+export default withLanguage(PersonPage)

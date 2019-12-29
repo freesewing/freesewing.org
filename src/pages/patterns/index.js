@@ -77,8 +77,8 @@ const PatternsIndexPage = props => {
                 <p style={{ textAlign: 'right' }}>
                   <Button href="/create/" color="primary" variant="contained">
                     <FormattedMessage
-                      id="app.newPattern"
-                      values={{ pattern: app.translate('app.pattern') }}
+                      id="app.newThing"
+                      values={{ thing: app.translate('app.pattern') }}
                     />
                   </Button>
                 </p>

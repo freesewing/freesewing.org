@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../../hooks/useApp'
-import useModel from '../../../../hooks/useModel'
+import usePerson from '../../../../hooks/usePerson'
 import useDesign from '../../../../hooks/useDesign'
 import useDraftDocs from '../../../../hooks/useDraftDocs'
 import withLanguage from '../../../../components/withLanguage'
@@ -27,7 +27,7 @@ import DraftError from '../../../../components/draft/error'
 import ExportPattern from '../../../../components/draft/export-pattern'
 import SavePattern from '../../../../components/draft/save-pattern'
 
-const CreatePatternForModelPage = props => {
+const CreatePatternForPersonPage = props => {
   // FIXME: This should be shared yet also requires state
   const updatePatternData = (value, l1 = false, l2 = false, l3 = false) => {
     if (!l1) return
@@ -47,11 +47,11 @@ const CreatePatternForModelPage = props => {
 
   // Hooks
   const app = useApp()
-  const model = useModel(app, props.model)
+  const person = usePerson(app, props.person)
   const Pattern = useDesign(design)
   const docs = useDraftDocs(props.data)
 
-  if (!model) return null // FIXME: Return something better than null in SSR
+  if (!person) return null // FIXME: Return something better than null in SSR
 
   // Initial pattern data
   let initialPatternData = {
@@ -67,7 +67,7 @@ const CreatePatternForModelPage = props => {
     }
   }
   for (let m of requiredMeasurements[design]) {
-    initialPatternData.settings.measurements[m] = model.measurements[m]
+    initialPatternData.settings.measurements[m] = person.measurements[m]
   }
 
   // State
@@ -86,11 +86,11 @@ const CreatePatternForModelPage = props => {
     app.setCrumbs([
       {
         slug: '/create',
-        title: app.translate('app.newPattern', { pattern: app.translate('app.pattern') })
+        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
       },
       {
         slug: '/create/' + design,
-        title: app.translate('app.newPattern', { pattern: capitalize(design) })
+        title: app.translate('app.newThing', { thing: capitalize(design) })
       }
     ])
     setReady(true)
@@ -128,7 +128,7 @@ const CreatePatternForModelPage = props => {
       let compareWith = {}
       if (withBreastsPatterns.indexOf(design) === -1) compareWith = { ...withoutBreasts }
       else compareWith = { ...withBreasts }
-      compareWith.model = model.measurements
+      compareWith.model = person.measurements
       draft.sampleModels(compareWith, 'model')
     } else draft.draft()
     patternProps = draft.getRenderProps()
@@ -153,7 +153,9 @@ const CreatePatternForModelPage = props => {
   if (display === 'export') {
     main = <ExportPattern setDisplay={setDisplay} app={app} data={patternData} pattern={Pattern} />
   } else if (display === 'save') {
-    main = <SavePattern setDisplay={setDisplay} app={app} model={props.model} data={patternData} />
+    main = (
+      <SavePattern setDisplay={setDisplay} app={app} person={props.person} data={patternData} />
+    )
   } else if (display === 'help') {
     main = (
       <DraftHelp
@@ -194,7 +196,7 @@ const CreatePatternForModelPage = props => {
   )
 }
 
-export default withLanguage(CreatePatternForModelPage)
+export default withLanguage(CreatePatternForPersonPage)
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

@@ -4,7 +4,7 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
 
-import useModels from '../../../hooks/useModels'
+import usePeople from '../../../hooks/usePeople'
 import Avatar from '../../../components/avatar'
 import { FormattedMessage } from 'react-intl'
 import { Link, navigate } from 'gatsby'
@@ -12,37 +12,32 @@ import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Button from '@material-ui/core/Button'
 import MissingAccount from '../../../components/missing/account'
-import MissingModels from '../../../components/missing/models'
+import MissingPeople from '../../../components/missing/people'
 
 const CreatePatternPage = props => {
   // Hooks
   const app = useApp()
-  const models = useModels(app, props.pageContext.design)
+  const people = usePeople(app, props.pageContext.design)
 
   // Design is added to page context in gatsby-node
   const design = props.pageContext.design
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.chooseAModel'))
+    app.setTitle(app.translate('app.chooseAPerson'))
     app.setCrumbs([
       {
-        slug: '/create',
+        slug: '/create/',
         title: (
-          <FormattedMessage
-            id="app.newPattern"
-            values={{ pattern: app.translate('app.pattern') }}
-          />
+          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
         )
       },
       {
-        slug: '/create',
-        title: <FormattedMessage id="app.newPattern" values={{ pattern: capitalize(design) }} />
+        slug: '/create/',
+        title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
       }
     ])
   }, [])
-
-  console.log(models)
 
   // Style
   const styles = {
@@ -52,7 +47,7 @@ const CreatePatternPage = props => {
       flexWrap: 'wrap',
       justifyContent: 'center'
     },
-    model: {
+    person: {
       maxWidth: '300px',
       margin: '0.5rem',
       textAlign: 'center'
@@ -70,8 +65,6 @@ const CreatePatternPage = props => {
       marginRight: '0.5rem'
     }
   }
-  if (app.tablet) styles.pattern.width = '150px'
-  if (app.mobile) styles.pattern.width = '200px'
 
   return (
     <AppWrapper app={app}>
@@ -87,42 +80,42 @@ const CreatePatternPage = props => {
             <MissingAccount />
           </>
         )}
-        {models.ok.user.length > 0 ? (
+        {people.ok.user.length > 0 ? (
           <div style={styles.wrapper}>
-            {models.ok.user.map(model => {
+            {people.ok.user.map(person => {
               return (
-                <div style={styles.model} key={model.handle}>
-                  <Link to={`/create/${design}/for/${model.handle}/`} title={model.name}>
-                    <Avatar data={model} />
-                    <h5 style={styles.name}>{model.name}</h5>
+                <div style={styles.person} key={person.handle}>
+                  <Link to={`/create/${design}/for/${person.handle}/`} title={person.name}>
+                    <Avatar data={person} />
+                    <h5 style={styles.name}>{person.name}</h5>
                   </Link>
                 </div>
               )
             })}
           </div>
         ) : (
-          <MissingModels />
+          <MissingPeople />
         )}
-        {models.no.user.length > 0 && (
+        {people.no.user.length > 0 && (
           <div style={styles.wrapper}>
-            {models.no.user.length > 0 ? (
+            {people.no.user.length > 0 ? (
               <Blockquote type="note" style={{ maxWidth: '800px' }}>
                 <h6>
                   <FormattedMessage
                     id="app.countModelsLackingForPattern"
                     values={{
-                      count: models.no.user.length,
+                      count: people.no.user.length,
                       pattern: design
                     }}
                   />
                   :
                 </h6>
                 <ul className="links">
-                  {models.no.user.map(model => {
+                  {people.no.user.map(person => {
                     return (
-                      <li key={model.handle}>
-                        <Link to={'/models/' + model.handle} title={model.name}>
-                          {model.name}
+                      <li key={person.handle}>
+                        <Link to={'/people/' + person.handle} title={person.name}>
+                          {person.name}
                         </Link>
                       </li>
                     )
@@ -139,8 +132,8 @@ const CreatePatternPage = props => {
           <FormattedMessage id="app.withoutBreasts" />
         </h5>
         <ul style={styles.sizes}>
-          {Object.keys(models.ok.withoutBreasts).map(size => {
-            let m = models.ok.withoutBreasts[size]
+          {Object.keys(people.ok.withoutBreasts).map(size => {
+            let m = people.ok.withoutBreasts[size]
             return (
               <Button
                 style={styles.size}
@@ -159,8 +152,8 @@ const CreatePatternPage = props => {
           <FormattedMessage id="app.withBreasts" />
         </h5>
         <ul style={styles.sizes}>
-          {Object.keys(models.ok.withBreasts).map(size => {
-            let m = models.ok.withBreasts[size]
+          {Object.keys(people.ok.withBreasts).map(size => {
+            let m = people.ok.withBreasts[size]
             return (
               <Button
                 style={styles.size}

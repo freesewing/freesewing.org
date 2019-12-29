@@ -15,7 +15,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 
-const CreateModelPage = props => {
+const CreatePersonPage = props => {
   // State
   const app = useApp()
   const [units, setUnits] = useState(
@@ -31,15 +31,15 @@ const CreateModelPage = props => {
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.newModel'))
+    app.setTitle(app.translate('app.addThing', { thing: app.translate('app.person') }))
   }, [])
 
   // Methods
   const updateUnits = evt => setUnits(evt.target.value)
   const updateName = evt => setName(evt.target.value)
   const updateBreasts = evt => setBreasts(evt.target.value)
-  const createModel = () =>
-    app.createModel({
+  const createPerson = () =>
+    app.createPerson({
       name,
       units,
       breasts: breasts === 'true' ? true : false
@@ -137,9 +137,12 @@ const CreateModelPage = props => {
               variant="contained"
               color="primary"
               disabled={name.length > 0 ? false : true}
-              onClick={createModel}
+              onClick={createPerson}
             >
-              <FormattedMessage id="app.createModel" />
+              <FormattedMessage
+                id="app.addThing"
+                values={{ thing: <FormattedMessage id="app.person" /> }}
+              />
             </Button>
           </p>
         </div>
@@ -148,4 +151,4 @@ const CreateModelPage = props => {
   )
 }
 
-export default withLanguage(CreateModelPage)
+export default withLanguage(CreatePersonPage)

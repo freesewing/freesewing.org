@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
+import Button from '@material-ui/core/Button'
 
 const AccountMenu = ({ app }) => {
   const style = {
@@ -28,34 +29,28 @@ const AccountMenu = ({ app }) => {
       color: app.theme === 'dark' ? '#74c0fc' : '#228be6'
     },
     button: {
-      marginTop: '1rem'
+      margin: '1rem 4px 0',
+      maxWidth: 'calc(50% - 8px)',
+      textAlign: 'center'
     }
   }
 
   return (
     <div style={style.wrapper} className={`style-wrapper ${app.theme}`}>
+      <Button variant="contained" href="/create/" fullWidth style={style.button} color="primary">
+        <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+      </Button>
+      <Button
+        variant="contained"
+        href="/person/"
+        fullWidth
+        style={style.button}
+        color="primary"
+        className="info"
+      >
+        <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
+      </Button>
       <div style={style.col}>
-        <h6>
-          <FormattedMessage id="app.create" />
-        </h6>
-        <ul className="links">
-          <li>
-            <Link to="/create/">
-              <FormattedMessage
-                id="app.newPattern"
-                values={{ pattern: app.translate('app.pattern') }}
-              />
-            </Link>
-          </li>
-          <li>
-            <Link to="/model/">
-              <FormattedMessage
-                id="app.newModel"
-                values={{ pattern: app.translate('app.model') }}
-              />
-            </Link>
-          </li>
-        </ul>
         <h6>
           <FormattedMessage id="app.browse" />
         </h6>
@@ -66,8 +61,8 @@ const AccountMenu = ({ app }) => {
             </Link>
           </li>
           <li>
-            <Link to="/models/">
-              <FormattedMessage id="app.models" />
+            <Link to="/people/">
+              <FormattedMessage id="app.people" />
             </Link>
           </li>
           <li>

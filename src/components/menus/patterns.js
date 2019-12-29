@@ -70,8 +70,8 @@ const PatternMenu = ({ app }) => {
               <p>
                 <Button variant="contained" color="primary" style={style.button} href="/create/">
                   <FormattedMessage
-                    id="app.newPattern"
-                    values={{ pattern: app.translate('app.pattern') }}
+                    id="app.newThing"
+                    values={{ thing: app.translate('app.pattern') }}
                   />
                 </Button>
                 <Button
@@ -90,8 +90,8 @@ const PatternMenu = ({ app }) => {
               <br />
               <Button variant="contained" color="primary" style={style.button} href="/create/">
                 <FormattedMessage
-                  id="app.newPattern"
-                  values={{ pattern: app.translate('app.pattern') }}
+                  id="app.newThing"
+                  values={{ thing: app.translate('app.pattern') }}
                 />
               </Button>
             </p>

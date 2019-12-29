@@ -16,8 +16,11 @@ const MissingModels = props => (
       <FormattedMessage id="app.noModel2" />
     </p>
     <p>
-      <Button variant="contained" color="primary" size="large" href="/model/">
-        <FormattedMessage id="app.newModel" />
+      <Button variant="contained" color="primary" size="large" href="/person/">
+        <FormattedMessage
+          id="app.addThing"
+          values={{ thing: <FormattedMessage id="app.person" /> }}
+        />
       </Button>
     </p>
   </Blockquote>

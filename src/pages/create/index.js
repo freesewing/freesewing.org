@@ -17,7 +17,7 @@ const CreatePatternIndexPage = props => {
     app.setCrumbs([
       {
         slug: '/create',
-        title: app.translate('app.newPattern', { pattern: app.translate('app.pattern') })
+        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
       }
     ])
   }, [])
