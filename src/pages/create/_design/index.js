@@ -11,7 +11,8 @@ import { Link, navigate } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Button from '@material-ui/core/Button'
-import AccountNotFound from '../../../components/account-not-found'
+import MissingAccount from '../../../components/missing/account'
+import MissingModels from '../../../components/missing/models'
 
 const CreatePatternPage = props => {
   // Hooks
@@ -83,10 +84,10 @@ const CreatePatternPage = props => {
             <p>
               <FormattedMessage id="app.accountRequired" />
             </p>
-            <AccountNotFound />
+            <MissingAccount />
           </>
         )}
-        {models.ok.user.length > 0 && (
+        {models.ok.user.length > 0 ? (
           <div style={styles.wrapper}>
             {models.ok.user.map(model => {
               return (
@@ -99,6 +100,8 @@ const CreatePatternPage = props => {
               )
             })}
           </div>
+        ) : (
+          <MissingModels />
         )}
         {models.no.user.length > 0 && (
           <div style={styles.wrapper}>
