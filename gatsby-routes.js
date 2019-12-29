@@ -174,20 +174,25 @@ const routes = {
       '/recreate/_design/from/': 'create/_design/index.js'
     },
     multiple: {
-      '/create/_design/for/:model': 'create/_design/for/_model.js',
+      '/create/_design/for/:person': 'create/_design/for/_person.js',
       '/recreate/_design/from/:pattern': 'recreate/_design/from/_pattern/index.js',
       '/recreate/_design/from/:pattern/for': 'recreate/_design/from/_pattern/index.js',
-      '/recreate/_design/from/:pattern/for/:model': 'recreate/_design/from/_pattern/for/_model.js'
+      '/recreate/_design/from/:pattern/for/:person': 'recreate/_design/from/_pattern/for/_person.js'
+    }
+  },
+  perMeasurement: {
+    multiple: {
+      '/people/:person/measurements/_measurement': 'people/_person/measurements/_measurement.js'
     }
   },
   dynamic: {
     '/login/callback/:validation/:confirmation': 'login/callback/_index.js',
     '/patterns/:pattern': 'patterns/_pattern/index.js',
     '/patterns/:pattern/edit': 'patterns/_pattern/edit.js',
-    '/models/:model/': 'models/_model/index.js',
-    '/models/:model/notes/': 'models/_model/notes.js',
-    '/models/:model/name/': 'models/_model/name.js',
-    '/models/:model/measurements/:measurement': 'models/_model/measurements/_measurement.js',
+    '/people/:person/': 'people/_person/index.js',
+    '/people/:person/avatar/': 'people/_person/avatar.js',
+    '/people/:person/name/': 'people/_person/name.js',
+    '/people/:person/notes/': 'people/_person/notes.js',
     '/users/:user': 'users/_user.js',
     '/confirm/signup/:confirmation': 'confirm/signup/_confirmation.js',
     '/confirm/email/:confirmation': 'confirm/email/_confirmation.js',

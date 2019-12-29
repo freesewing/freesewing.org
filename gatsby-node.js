@@ -1,5 +1,6 @@
 const path = require('path')
 const designs = require('@freesewing/pattern-info').list
+const measurements = require('@freesewing/models').measurements.womenswear
 const routes = require('./gatsby-routes')
 
 const slugFromFilePath = filePath => {
@@ -104,6 +105,32 @@ const createPerDesignPages = async function(createPage, language) {
   return Promise.all(promises)
 }
 
+const createPerMeasurementPages = async function(createPage, language) {
+  let promises = []
+  for (let measurement of measurements) {
+    for (let m in routes.perMeasurement.multiple) {
+      let match = m.replace('_measurement', measurement).toLowerCase()
+      promises.push(
+        new Promise((resolve, reject) => {
+          createPage({
+            path: match.slice(0, -1),
+            matchPath: match,
+            component: path.resolve(`./src/pages/${routes.perMeasurement.multiple[m]}`),
+            context: {
+              measurement,
+              // This is required because string interpolation is not allowed in page graphql queries
+              measurementsMdxRegex: `//docs/measurements/${measurement.toLowerCase()}/${language}.md/`
+            }
+          })
+          resolve(true)
+        })
+      )
+    }
+  }
+
+  return Promise.all(promises)
+}
+
 const createDynamicPages = async function(createPage) {
   let promises = []
   for (let match in routes.dynamic) {
@@ -152,6 +179,7 @@ exports.createPages = async ({ actions, graphql }) => {
   await createMdxPages('docs', actions.createPage, graphql, language)
 
   await createPerDesignPages(actions.createPage, language)
+  await createPerMeasurementPages(actions.createPage, language)
   await createDynamicPages(actions.createPage)
 
   await createRedirects(actions.createRedirect)
