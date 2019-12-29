@@ -240,7 +240,7 @@ function useApp(slug = null) {
       .catch(error => showError(error))
   }
 
-  // Restrict (processin of) account (data)
+  // Restrict (processing of) account (data)
   const restrictAccount = () => {
     setLoading(true)
     backend
@@ -336,6 +336,30 @@ function useApp(slug = null) {
       })
   }
 
+  // Remove model
+  const removeModel = handle => {
+    setLoading(true)
+    let newModels = { ...models }
+    delete newModels[handle]
+    setModels(newModels)
+    return backend
+      .removeModel(handle, token)
+      .then(res => {
+        setLoading(false)
+        if (res.status === 204) {
+          setNotification({
+            type: 'success',
+            msg: translate('app.fieldRemoved', { field: translate('app.model') })
+          })
+          navigate('/models/')
+        }
+      })
+      .catch(error => {
+        setLoading(false)
+        showError(error)
+      })
+  }
+
   // Translate helper method
   const translate = (id, values = false) => {
     if (!values) return intl.formatMessage({ id })
@@ -362,20 +386,22 @@ function useApp(slug = null) {
     // Persistent state
     account,
     setAccount,
-    updateAccount,
-    saveAccount,
     models,
     setModels,
-    updateModels,
+    notification,
+    setNotification,
     patterns,
     setPatterns,
-    updatePatterns,
     theme,
     setTheme,
     token,
     setToken,
-    notification,
-    setNotification,
+
+    // Wrapper methods for persistent state
+    updateAccount,
+    saveAccount,
+    updateModels,
+    updatePatterns,
 
     // React state
     crumbs,
@@ -392,19 +418,20 @@ function useApp(slug = null) {
     setTitle,
 
     // Methods
-    navigate,
-    refresh,
-    login,
-    confirmationLogin,
+    removeModel,
     createAccount,
-    logout,
     isUsernameAvailable,
-    removeAccount,
-    exportAccount,
-    restrictAccount,
     createPattern,
     removePattern,
     updatePattern,
+    exportAccount,
+    restrictAccount,
+    removeAccount,
+    login,
+    logout,
+    confirmationLogin,
+    navigate,
+    refresh,
 
     // Toggles
     toggleDarkMode,
