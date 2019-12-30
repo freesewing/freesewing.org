@@ -2,7 +2,10 @@ import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 
 export default function usePeople(app, design) {
+  const required = requiredMeasurements[design]
+
   const hasRequiredMeasurements = (measurements, required) => {
+    if (typeof required === 'undefined') return true
     for (let m of required) {
       if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
     }
@@ -16,7 +19,6 @@ export default function usePeople(app, design) {
     return sizes
   }
 
-  const required = requiredMeasurements[design]
   const people = {
     ok: {
       withBreasts: {},

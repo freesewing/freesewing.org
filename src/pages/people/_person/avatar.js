@@ -21,6 +21,8 @@ const PersonAvatarPage = props => {
   }, [])
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
+  if (!app.account.username) return null // FIXME: Do something better for SSR
+
   // State
   const [img, setImg] = useState(false)
 
