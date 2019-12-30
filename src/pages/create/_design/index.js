@@ -48,9 +48,14 @@ const CreatePatternPage = props => {
       justifyContent: 'center'
     },
     person: {
-      maxWidth: '300px',
       margin: '0.5rem',
       textAlign: 'center'
+    },
+    avatar: {
+      width: '150px',
+      height: '150px',
+      margin: 'auto',
+      padding: 0
     },
     name: {
       margin: 0,
@@ -72,12 +77,13 @@ const CreatePatternPage = props => {
         <h3>
           <FormattedMessage id="app.madeToMeasure" />
         </h3>
-        {app.account.username ? null : (
+        {!app.account.username && (
           <>
             <p>
-              <FormattedMessage id="app.accountRequired" />
+              <Link to="/signup/">
+                <FormattedMessage id="app.accountRequired" />
+              </Link>
             </p>
-            <MissingAccount />
           </>
         )}
         {people.ok.user.length > 0 ? (
@@ -86,7 +92,9 @@ const CreatePatternPage = props => {
               return (
                 <div style={styles.person} key={person.handle}>
                   <Link to={`/create/${design}/for/${person.handle}/`} title={person.name}>
-                    <Avatar data={person} />
+                    <div style={styles.avatar}>
+                      <Avatar data={person} />
+                    </div>
                     <h5 style={styles.name}>{person.name}</h5>
                   </Link>
                 </div>
@@ -94,7 +102,7 @@ const CreatePatternPage = props => {
             })}
           </div>
         ) : (
-          <MissingPeople />
+          app.account.username && <MissingPeople />
         )}
         {people.no.user.length > 0 && (
           <div style={styles.wrapper}>
@@ -168,6 +176,7 @@ const CreatePatternPage = props => {
             )
           })}
         </ul>
+        {!app.account.username && <MissingAccount />}
       </WideLayout>
     </AppWrapper>
   )
