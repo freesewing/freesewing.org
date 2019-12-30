@@ -37,19 +37,29 @@ const AccountMenu = ({ app }) => {
 
   return (
     <div style={style.wrapper} className={`style-wrapper ${app.theme}`}>
-      <Button variant="contained" href="/create/" fullWidth style={style.button} color="primary">
-        <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-      </Button>
-      <Button
-        variant="contained"
-        href="/person/"
-        fullWidth
-        style={style.button}
-        color="primary"
-        className="info"
-      >
-        <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
-      </Button>
+      {!app.mobile && (
+        <>
+          <Button
+            variant="contained"
+            href="/create/"
+            fullWidth
+            style={style.button}
+            color="primary"
+          >
+            <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+          </Button>
+          <Button
+            variant="contained"
+            href="/person/"
+            fullWidth
+            style={style.button}
+            color="primary"
+            className="info"
+          >
+            <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
+          </Button>
+        </>
+      )}
       <div style={style.col}>
         <h6>
           <FormattedMessage id="app.browse" />

@@ -30,13 +30,30 @@ const PatternMenu = ({ app }) => {
       color: app.theme === 'dark' ? '#74c0fc' : '#228be6'
     },
     button: {
-      marginTop: '1rem'
+      margin: '0.5rem 0.5rem 0.5rem 0'
+    },
+    doubleButton: {
+      margin: '1.5rem 0.5rem 0.5rem',
+      width: 'calc(50% - 1rem)'
     }
   }
 
   return (
     <div style={style.wrapper} className={`style-wrapper ${app.theme}`}>
       <div style={style.col}>
+        {!app.mobile && (
+          <>
+            <Button variant="contained" color="primary" style={style.doubleButton} href="/create/">
+              <FormattedMessage
+                id="app.newThing"
+                values={{ thing: app.translate('app.pattern') }}
+              />
+            </Button>
+            <Button variant="outlined" color="primary" style={style.doubleButton} href="/designs/">
+              <FormattedMessage id="app.browseCollection" />
+            </Button>
+          </>
+        )}
         <h6>
           <FormattedMessage id="app.availablePatterns" />
         </h6>
@@ -49,9 +66,6 @@ const PatternMenu = ({ app }) => {
             </li>
           ))}
         </ul>
-        <Button variant="outlined" color="primary" style={style.button} href="/designs/">
-          <FormattedMessage id="app.browseCollection" />
-        </Button>
       </div>
       <div style={style.col}>
         <h6>
@@ -68,16 +82,10 @@ const PatternMenu = ({ app }) => {
                 ))}
               </ul>
               <p>
-                <Button variant="contained" color="primary" style={style.button} href="/create/">
-                  <FormattedMessage
-                    id="app.newThing"
-                    values={{ thing: app.translate('app.pattern') }}
-                  />
-                </Button>
                 <Button
                   variant="outlined"
                   color="primary"
-                  style={{ ...style.button, marginLeft: '1rem' }}
+                  style={{ ...style.button }}
                   href="/patterns/"
                 >
                   <FormattedMessage id="app.browseYourPatterns" />

@@ -6,6 +6,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
 import MapIcon from '@material-ui/icons/Map'
+import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import PatternsMenu from './patterns'
 import DocsMenu from './docs'
@@ -25,9 +26,37 @@ const MobileMenu = ({ app }) => {
     window && window.location.pathname.slice(0, 5) === '/docs' ? 'docs' : false
   )
 
+  // Add classes to expansion panel headers to prevent them from closing the navigation
+  // See the closeNav() method in the useApp hook
+  const noClose = {
+    classes: {
+      root: 'no-closenav',
+      content: 'no-closenav'
+    },
+    className: 'no-closenav'
+  }
+
   // Methods
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
+  }
+
+  const renderMenu = (type, title, menu) => {
+    return (
+      <ExpansionPanel expanded={expanded === type} onChange={handleChange(type)} {...noClose}>
+        <ExpansionPanelSummary
+          {...noClose}
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls={`${type}-content`}
+          id={`${type}-header`}
+        >
+          <h5 style={style.h5} {...noClose}>
+            {title}
+          </h5>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>{menu}</ExpansionPanelDetails>
+      </ExpansionPanel>
+    )
   }
 
   // Style
@@ -57,45 +86,47 @@ const MobileMenu = ({ app }) => {
   if (window && window.location.pathname.slice(0, 5) === '/docs')
     docsMenu = <DocsNavigation app={app} slug={window.location.pathname} />
 
+  // Icons
+  const icons = {
+    home: {
+      title: 'app.home',
+      link: '/',
+      icon: <Logo size={22} />
+    },
+    sitemap: {
+      title: 'app.sitemap',
+      link: '/sitemap/',
+      icon: <MapIcon />
+    },
+    search: {
+      title: 'app.search',
+      link: '/search/',
+      icon: <SearchIcon />
+    },
+    language: {
+      title: 'account.language',
+      link: '/language/',
+      icon: <LanguageIcon />
+    }
+  }
+
   return (
     <div style={style.wrapper}>
       <div style={style.icons}>
-        <IconButton
-          style={style.iconButton}
-          aria-label={app.translate('app.home')}
-          color="inherit"
-          href="/"
-          title={app.translate('app.home')}
-        >
-          <Logo size={22} />
-        </IconButton>
-        <IconButton
-          style={style.iconButton}
-          aria-label={app.translate('app.sitemap')}
-          color="inherit"
-          href="/sitemap/"
-          title={app.translate('app.sitemap')}
-        >
-          <MapIcon />
-        </IconButton>
-        <IconButton
-          style={style.iconButton}
-          aria-label={app.translate('app.search')}
-          color="inherit"
-          href="/search/"
-          title={app.translate('app.search')}
-        >
-          <SearchIcon />
-        </IconButton>
-        <IconButton
-          style={style.iconButton}
-          aria-label={app.translate('account.language')}
-          color="inherit"
-          href="/language/"
-          title={app.translate(`account.language`)}
-        >
-          <LanguageIcon />
-        </IconButton>
+        {Object.keys(icons).map(icon => {
+          return (
+            <IconButton
+              key={icon}
+              style={style.iconButton}
+              aria-label={icons[icon].title}
+              color="inherit"
+              href={icons[icon].link}
+              title={icons[icon].title}
+            >
+              {icons[icon].icon}
+            </IconButton>
+          )
+        })}
         <IconButton
           style={style.darkModeButton}
           aria-label={
@@ -115,20 +146,7 @@ const MobileMenu = ({ app }) => {
       </div>
 
       {app.account.username ? (
-        <ExpansionPanel expanded={expanded === 'account'} onChange={handleChange('account')}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="account-content"
-            id="account-header"
-          >
-            <h5 style={style.h5}>
-              <FormattedMessage id="app.account" />
-            </h5>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <AccountMenu app={app} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        renderMenu('account', app.translate('app.account'), <AccountMenu app={app} />)
       ) : (
         <h5 style={{ ...style.h5, textAlign: 'center' }}>
           <Link to="/login/">
@@ -140,45 +158,23 @@ const MobileMenu = ({ app }) => {
           </Link>
         </h5>
       )}
-
-      <ExpansionPanel expanded={expanded === 'patterns'} onChange={handleChange('patterns')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="patterns-content"
-          id="patterns-header"
+      {renderMenu('patterns', app.translate('app.patterns'), <PatternsMenu app={app} />)}
+      {renderMenu('docs', app.translate('app.docs'), docsMenu)}
+      {renderMenu('community', app.translate('app.community'), <CommunityMenu app={app} />)}
+      <Button variant="contained" color="primary" href="/create" style={{ marginTop: '1rem' }}>
+        <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+      </Button>
+      {app.account.username && (
+        <Button
+          variant="contained"
+          color="primary"
+          href="/create"
+          style={{ marginTop: '1rem', marginBottom: '2rem' }}
+          className="info"
         >
-          <h5 style={style.h5}>
-            <FormattedMessage id="app.patterns" />
-          </h5>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <PatternsMenu app={app} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-
-      <ExpansionPanel expanded={expanded === 'docs'} onChange={handleChange('docs')}>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <h5 style={style.h5}>
-            <FormattedMessage id="app.docs" />
-          </h5>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>{docsMenu}</ExpansionPanelDetails>
-      </ExpansionPanel>
-
-      <ExpansionPanel expanded={expanded === 'community'} onChange={handleChange('community')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="community-content"
-          id="community-header"
-        >
-          <h5 style={style.h5}>
-            <FormattedMessage id="app.community" />
-          </h5>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <CommunityMenu app={app} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+        </Button>
+      )}
     </div>
   )
 }
