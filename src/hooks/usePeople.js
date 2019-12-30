@@ -5,6 +5,7 @@ export default function usePeople(app, design) {
   const required = requiredMeasurements[design]
 
   const hasRequiredMeasurements = (measurements, required) => {
+    if (typeof measurements === 'undefined') return true
     if (typeof required === 'undefined') return true
     for (let m of required) {
       if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
@@ -32,12 +33,14 @@ export default function usePeople(app, design) {
     }
   }
 
-  // People
-  for (let person in app.people) {
-    if (hasRequiredMeasurements(app.people[person].measurements, required)) {
-      people.ok.user.push(app.people[person])
-    } else {
-      people.no.user.push(app.people[person])
+  // People for users only
+  if (app.account.username) {
+    for (let person in app.people) {
+      if (hasRequiredMeasurements(app.people[person].measurements, required)) {
+        people.ok.user.push(app.people[person])
+      } else {
+        people.no.user.push(app.people[person])
+      }
     }
   }
 
