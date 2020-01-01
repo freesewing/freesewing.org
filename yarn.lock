@@ -1290,10 +1290,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/shin/-/shin-2.1.7.tgz#4db7598e9af69b23683ef5458b7f01466ba56d4e"
   integrity sha512-Ax0AD7qMC+R6CqdcgSoC8CAiROtMSQ3IKlxaFhb95HQ7+tmx5ETc8N/ZisW7Zx3/IhBdvi9TWCr9qJFvT+TMCA==
 
-"@freesewing/simon@2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@freesewing/simon/-/simon-2.1.7.tgz#02bb3d3bf0a66ff7cec77ac5dbdd807ab1f731f3"
-  integrity sha512-pfP8URolwrUs5+sYF46G/pPaCBClOIb0MCAxLiEjbeRBGq8rLJIw1WM2WNpzzNRbHyB48XKFpuZMzkIJqaOFwQ==
+"@freesewing/simon@2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@freesewing/simon/-/simon-2.1.8.tgz#724aa82472753eadeaaeaa66ba67aa20426d0a23"
+  integrity sha512-zzC4yaKa2QowTJ5tpruOtcRIxWOUXFZMGFEk0gvQ6XAdpb4rJEQuF4cF7vDk1xcsck1EeTh+Z1gDRaeltVWdTw==
 
 "@freesewing/simone@2.1.7":
   version "2.1.7"
@@ -6930,12 +6930,12 @@ gatsby-react-router-scroll@^2.1.17:
     scroll-behavior "^0.9.10"
     warning "^3.0.0"
 
-gatsby-remark-autolink-headers@2.1.19:
-  version "2.1.19"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-2.1.19.tgz#5ba2a8b4a48973884cae0314b3a96d05ba5058c1"
-  integrity sha512-6FJSa0y1zsUKOy2TgwuWVLSySgOqxw8MHBXvs8jHfqqq1k5KM6ifXYvu6RKqOXTMogDMtYSvGT8ffPh1D3eNxw==
+gatsby-remark-autolink-headers@2.1.21:
+  version "2.1.21"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-2.1.21.tgz#12f4957b420009eacde771e178b1df63445a168c"
+  integrity sha512-2GvQrlmkxduU9ZFMoU7o2Psb1kAFN8Wh4Fhqdj3WSNJwWmIYgGXs5xl+W6dLotjKwfL9Zxv8zHnx2HDxum6WCg==
   dependencies:
-    "@babel/runtime" "^7.7.4"
+    "@babel/runtime" "^7.7.6"
     github-slugger "^1.2.1"
     lodash "^4.17.15"
     mdast-util-to-string "^1.0.7"
