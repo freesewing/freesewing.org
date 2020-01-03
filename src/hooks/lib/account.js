@@ -112,6 +112,23 @@ const accountMethods = ({
       .catch(error => showError(error))
   }
 
+  const recoverAccount = username => {
+    setLoading(true)
+    backend
+      .recoverAccount(username)
+      .then(res => {
+        setLoading(false)
+        if (res.status === 200) {
+          setNotification({
+            type: 'success',
+            msg: translate('app.checkInboxClickLinkInConfirmationEmail')
+          })
+        }
+      })
+      .catch(error => showError(error))
+  }
+
+  const signup = (email, password, language) => backend.signup(email, password, language)
   const saveAccount = data => backend.saveAccount(mergeData({}, data), token)
 
   return {
@@ -120,6 +137,8 @@ const accountMethods = ({
     exportAccount,
     removeAccount,
     restrictAccount,
+    recoverAccount,
+    signup,
     saveAccount
   }
 }

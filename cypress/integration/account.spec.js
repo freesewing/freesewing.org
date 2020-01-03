@@ -3,21 +3,18 @@ const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Account page', function() {
   before(function() {
-    cy.visit('/login')
-    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
+    cy.visit('/login/')
     cy.get('#username').type('test_user')
     cy.get('#password').type('test{enter}')
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
   })
 
   const buttons = {
-    '/create': 'app.newPattern',
-    '/model': 'app.newModel',
-    '/models': 'app.models',
-    '/recipes': 'app.recipes',
-    '/users/test_user': 'app.profile',
-    '/account/settings': 'app.settings',
-    '/logout': 'app.logOut'
+    '/people/': 'app.people',
+    '/patterns/': 'app.patterns',
+    '/users/test_user/': 'app.profile',
+    '/account/settings/': 'app.settings',
+    '/logout/': 'app.logOut'
   }
 
   describe('Verify translations', function() {
@@ -27,7 +24,7 @@ describe('Account page', function() {
 
     for (let button in buttons) {
       it(buttons[button], function() {
-        cy.get(`a[data-test="${button}"] > span.MuiButton-label > span`).should(
+        cy.get(`a[data-test="${button}"] > span.MuiButton-label`).should(
           'contain',
           i18n[buttons[button]].slice(0, 4)
         )
@@ -35,10 +32,7 @@ describe('Account page', function() {
     }
 
     it('app.home', function() {
-      cy.get('nav.breadcrumbs > ul > li:first-of-type > a > span').should(
-        'contain',
-        i18n['app.home']
-      )
+      cy.get('nav.breadcrumbs > ul > li:first-of-type > a').should('contain', i18n['app.home'])
     })
   })
 

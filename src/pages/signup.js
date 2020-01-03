@@ -37,7 +37,16 @@ const SignupPage = props => {
   // Methods
   const handleSignup = evt => {
     evt.preventDefault()
-    app.signup(email, password, process.env.GATSBY_LANGUAGE, handleResult)
+    app
+      .signup(email, password, process.env.GATSBY_LANGUAGE)
+      .then(res => {
+        if (res.status === 200) setResult(true)
+      })
+      .catch(err => {
+        if (err.toString().slice(-3) === '400')
+          setError(<FormattedMessage id="errors.emailExists" />)
+        else setError(<FormattedMessage id="errors.requestFailedWithStatusCode500" />)
+      })
   }
   const handleResend = evt => {
     evt.preventDefault()

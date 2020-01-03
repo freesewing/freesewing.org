@@ -49,7 +49,9 @@ const AccountPage = props => {
       {
         to: '/people/',
         icon: <NewPersonIcon style={styles.icon} />,
-        title: 'app.newPerson'
+        title: (
+          <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
+        )
       }
     ],
     info: [
@@ -68,7 +70,7 @@ const AccountPage = props => {
     ],
     accent: [
       {
-        to: '/users/' + app.account.username,
+        to: '/users/' + app.account.username + '/',
         icon: <ProfileIcon style={styles.icon} />,
         title: 'app.profile'
       },

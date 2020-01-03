@@ -76,10 +76,7 @@ const LanguageSettingPage = props => {
             variant="contained"
             color="primary"
             onClick={() =>
-              app.saveAccount(
-                { settings: { language: language } },
-                app.translate('account.language')
-              )
+              app.updateAccount([language, 'settings', 'language'], '/account/settings/')
             }
           >
             <FormattedMessage id="app.save" />

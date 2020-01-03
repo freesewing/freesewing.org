@@ -93,7 +93,12 @@ const LoginPage = props => {
         {redirect}
         <div>{main}</div>
         <div>
-          <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
+          <a
+            href="#trouble"
+            data-test="trouble"
+            onClick={() => setTrouble(!trouble)}
+            data-test="trouble"
+          >
             <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
           </a>
           <span style={{ padding: '0 1rem' }}>|</span>

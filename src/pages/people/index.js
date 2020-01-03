@@ -49,7 +49,7 @@ const PeopleIndexPage = props => {
             {Object.keys(app.people).map((handle, person) => {
               return (
                 <div className="box" key={handle}>
-                  <Link to={'/people/' + handle} title={app.people[handle].name}>
+                  <Link to={'/people/' + handle + '/'} title={app.people[handle].name}>
                     <div style={styles.person}>
                       <div style={styles.avatar}>
                         <Avatar variant="model" data={app.people[handle]} />
@@ -68,7 +68,7 @@ const PeopleIndexPage = props => {
             })}
             <p style={{ textAlign: 'right' }}>
               <Button size="large" variant="contained" color="primary" href="/person/">
-                <FormattedMessage id="app.newPerson" />
+                <FormattedMessage id="app.addPerson" />
               </Button>
             </p>
           </>

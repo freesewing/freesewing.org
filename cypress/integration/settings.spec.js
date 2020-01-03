@@ -3,8 +3,8 @@ const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Account settings', function() {
   beforeEach(function() {
-    cy.visit('/login')
-    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
+    cy.visit('/login/')
+    cy.get('div.theme-wrapper').should('have.class', 'light')
     // Logging in with email address because we'll change the username in our tests
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
@@ -24,14 +24,14 @@ describe('Account settings', function() {
   ]
 
   it('Verify translations and links', function() {
-    cy.visit('/account/settings')
+    cy.visit('/account/settings/')
     cy.get('h1').should('contain', i18n['app.settings'])
     for (let button of buttons)
-      cy.get(`a[href="/account/settings/${button}"]`).should('contain', i18n['account.' + button])
+      cy.get(`a[href="/account/settings/${button}/"]`).should('contain', i18n['account.' + button])
   })
 
   it('Avatar (translations only)', function() {
-    cy.visit('/account/settings/avatar')
+    cy.visit('/account/settings/avatar/')
     cy.get('h1').should('contain', i18n['account.avatar'])
     cy.get('blockquote.note').should('contain', i18n['account.avatarInfo'])
     cy.get('p[data-test=instructions]').should('contain', i18n['app.dragAndDropImageHere'])
@@ -42,19 +42,20 @@ describe('Account settings', function() {
   it('Bio', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
-    cy.visit('/account/settings/bio')
+    cy.visit('/account/settings/bio/')
     cy.get('h1').should('contain', i18n['account.bio'])
     cy.get('blockquote.note').should('contain', i18n['account.bioInfo'])
     cy.get('label[for=bio]').should('contain', i18n['account.bio'])
     cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
     cy.get('button[data-test=save]').should('contain', i18n['app.save'])
-    cy.get('article h6').should('contain', i18n['app.preview'])
+    cy.get('h6').should('contain', i18n['app.preview'])
     cy.get('#bio')
       .clear()
       .type(i18n['email.footerSlogan'])
     cy.get('[data-test=preview]').should('contain', i18n['email.footerSlogan'])
-    cy.get('button[data-test=save]').click()
+    cy.get('button[data-test=save]').click({ force: true })
     cy.wait('@save').then(xhr => {
+      console.log(xhr)
       expect(xhr.response.body.account.bio).to.equal(i18n['email.footerSlogan'])
     })
     cy.get('h1').should('contain', i18n['app.settings'])
@@ -65,7 +66,7 @@ describe('Account settings', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
     let newLanguage
-    cy.visit('/account/settings/language')
+    cy.visit('/account/settings/language/')
     cy.get('h1').should('contain', i18n['account.language'])
     cy.get('blockquote.note').should('contain', i18n['account.languageInfo'])
     cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
@@ -79,7 +80,7 @@ describe('Account settings', function() {
       cy.get('[data-test=nl]').click()
       newLanguage = 'nl'
     }
-    cy.get('button[data-test=save]').click()
+    cy.get('button[data-test=save]').click({ force: true })
     cy.wait('@save').then(xhr => {
       expect(xhr.response.body.account.settings.language).to.equal(newLanguage)
     })
@@ -91,7 +92,7 @@ describe('Account settings', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
     let newUnits
-    cy.visit('/account/settings/units')
+    cy.visit('/account/settings/units/')
     cy.get('h1').should('contain', i18n['account.units'])
     cy.get('blockquote.note').should('contain', i18n['account.unitsInfo'])
     cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
@@ -109,7 +110,7 @@ describe('Account settings', function() {
           newUnits = 'metric'
         }
       })
-    cy.get('button[data-test=save]').click()
+    cy.get('button[data-test=save]').click({ force: true })
     cy.wait('@save').then(xhr => {
       expect(xhr.response.body.account.settings.units).to.equal(newUnits)
     })
@@ -121,14 +122,14 @@ describe('Account settings', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
     for (let social of ['github', 'twitter', 'instagram']) {
-      cy.visit(`/account/settings/${social}`)
+      cy.visit(`/account/settings/${social}/`)
       cy.get('h1').should('contain', i18n[`account.${social}`])
       cy.get('blockquote.note').should('contain', i18n[`account.${social}Info`])
-      cy.get('label[for=social]').should('contain', i18n[`account.${social}`])
+      cy.get(`label[for=${social}]`).should('contain', i18n[`account.${social}`])
       cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
       cy.get('button[data-test=save]').should('contain', i18n['app.save'])
       let newSocial = Date.now() + '_' + social
-      cy.get('#social')
+      cy.get(`#${social}`)
         .clear()
         .type(newSocial)
       cy.get('button[data-test=save]').click()
@@ -143,7 +144,7 @@ describe('Account settings', function() {
   it('Email', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
-    cy.visit('/account/settings/email')
+    cy.visit('/account/settings/email/')
     cy.get('h1').should('contain', i18n['account.email'])
     cy.get('blockquote.note').should('contain', i18n['account.emailInfo'])
     cy.get('label[for=email]').should('contain', i18n['account.email'])
@@ -171,7 +172,7 @@ describe('Account settings', function() {
   it('Username', function() {
     cy.server()
     cy.route('PUT', '/account').as('save')
-    cy.visit(`/account/settings/username`)
+    cy.visit(`/account/settings/username/`)
     cy.get('h1').should('contain', i18n['account.username'])
     cy.get('blockquote.note').should('contain', i18n['account.usernameInfo'].slice(0, 20))
     cy.get('label[for=username]').should('contain', i18n['account.username'])
@@ -189,7 +190,7 @@ describe('Account settings', function() {
     cy.get('h1').should('contain', i18n['app.settings'])
     cy.get('[data-test=notification]').should('be.visible')
     // Restore username
-    cy.visit(`/account/settings/username`)
+    cy.visit(`/account/settings/username/`)
     cy.get('#username')
       .clear()
       .type('test_user')
@@ -202,7 +203,7 @@ describe('Account settings', function() {
   })
 
   it('Password', function() {
-    cy.visit(`/account/settings/password`)
+    cy.visit(`/account/settings/password/`)
     cy.get('h1').should('contain', i18n['account.password'])
     cy.get('label[for=newPassword]').should('contain', i18n['account.newPassword'])
     cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])

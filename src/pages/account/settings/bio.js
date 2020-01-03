@@ -80,7 +80,7 @@ const BioSettingPage = props => {
             style={{ marginLeft: '1rem' }}
             variant="contained"
             color="primary"
-            onClick={() => app.saveAccount({ bio: bio }, app.translate('account.bio'))}
+            onClick={() => app.updateAccount([bio, 'bio'], '/account/settings/')}
           >
             <FormattedMessage id="app.save" />
           </Button>

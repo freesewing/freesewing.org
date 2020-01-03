@@ -27,6 +27,7 @@ const ConsentPage = props => {
         : false
       : false
   )
+
   const [model, setModel] = useState(
     app.account ? (app.account.consent ? (app.account.consent.model ? true : false) : false) : false
   )

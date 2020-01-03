@@ -24,7 +24,7 @@ const UsernameSettingPage = props => {
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('account.avatar'))
+    app.setTitle(app.translate('account.username'))
     app.setCrumbs([
       {
         title: app.translate('app.account'),

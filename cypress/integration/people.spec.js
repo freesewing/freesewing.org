@@ -2,10 +2,10 @@ import { strings } from '@freesewing/i18n'
 
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Models', () => {
+describe('People', () => {
   beforeEach(() => {
     cy.visit('/login')
-    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
+    cy.get('div.theme-wrapper').should('have.class', 'light')
     // Logging in with email address because we'll change the username in our tests
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
@@ -14,8 +14,8 @@ describe('Models', () => {
   })
 
   it('create without breasts', () => {
-    cy.route('POST', '/models').as('save')
-    cy.visit('/model')
+    cy.route('POST', '/people').as('save')
+    cy.visit('/person/')
     cy.get('[data-test=name-title]').should('contain', i18n['app.name'])
     cy.get('[data-test=units-title]').should('contain', i18n['account.units'])
     cy.get('[data-test=chest-title]').should('contain', i18n['app.chest'])
@@ -38,8 +38,8 @@ describe('Models', () => {
   })
 
   it('create with breasts', () => {
-    cy.route('POST', '/models').as('save')
-    cy.visit('/model')
+    cy.route('POST', '/people').as('save')
+    cy.visit('/person/')
     cy.get('[data-test=name-title]').should('contain', i18n['app.name'])
     cy.get('[data-test=units-title]').should('contain', i18n['account.units'])
     cy.get('[data-test=chest-title]').should('contain', i18n['app.chest'])
@@ -63,7 +63,7 @@ describe('Models', () => {
   })
 
   it('add notes', () => {
-    cy.visit('/models')
+    cy.visit('/people/')
     cy.get('[data-test=model-link]')
       .last()
       .find('h6')
@@ -78,7 +78,7 @@ describe('Models', () => {
   })
 
   it('edit notes', () => {
-    cy.visit('/models')
+    cy.visit('/people/')
     cy.get('[data-test=model-link]')
       .first()
       .find('h6')
@@ -94,21 +94,17 @@ describe('Models', () => {
 
   context('when having no neck circomference set', () => {
     it.only('add measurement', () => {
-      cy.visit('/models')
-      cy.get('[data-test=model-link]')
+      cy.visit('/people/')
+      cy.get('div.box > a')
         .last()
         .find('h6')
-        .click()
+        .click({ force: true })
 
-      cy.get('h1').should('contain', 'This is model with breasts')
-      cy.get('[data-test=blank-slate]').should('be.visible')
-      cy.get('[data-test=add-bustSpan-measurement]').click()
-      cy.get('[data-test=invalid]').should('be.visible')
-      cy.get('[data-test=measurement] input').type('invalid')
-      cy.get('[data-test=invalid]').should('be.visible')
+      cy.get('h1').should('contain', 'Example person - With breasts')
+      cy.get('[data-test=add-bustSpan-measurement]').click({ force: true })
       cy.get('[data-test=measurement] input').clear()
       cy.get('[data-test=measurement] input').type('24{enter}')
-      cy.get('h1').should('contain', 'This is model with breasts')
+      cy.get('h1').should('contain', 'Example person - With breasts')
 
       // cy.route('PUT', `/models/${handle}`).as('update')
       // cy.get('[data-test=save]').click()
@@ -121,5 +117,5 @@ describe('Models', () => {
     })
   })
 
-  context('when having the neck circomference set', () => {})
+  context('when having the neck circumference set', () => {})
 })

@@ -3,15 +3,7 @@ import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Core pattern drafting for users', function() {
-  beforeEach(function() {
-    cy.visit('/login')
-    cy.get('div.theme-wrapper').should('have.class', 'light')
-    cy.get('#username').type('test_user')
-    cy.get('#password').type('test{enter}')
-    cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
-  })
-
+describe('Core pattern drafting for visitors', function() {
   const sizes = ['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid']
   const formats = ['svg', 'postscript', 'pdf']
   const exports = ['json', 'yaml']
@@ -21,7 +13,7 @@ describe('Core pattern drafting for users', function() {
     if (pattern === 'theo' || 1) {
       it('Draft ' + capitalize(pattern), function() {
         cy.visit('/create/' + pattern + '/')
-        cy.get('a[data-test=persa]').click({ force: true })
+        cy.get('a[data-test=size-36]').click({ force: true })
         cy.get('[data-test=draft] svg').should('be.visible')
         cy.get('[data-test=draft] svg').should('have.attr', 'style', 'max-height: 85vh;')
         cy.get('[data-test=zoom]').click({ force: true })

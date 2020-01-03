@@ -74,9 +74,7 @@ const UnitsSettingPage = props => {
             style={{ marginLeft: '1rem' }}
             variant="contained"
             color="primary"
-            onClick={() =>
-              app.saveAccount({ settings: { units: units } }, app.translate('account.units'))
-            }
+            onClick={() => app.updateAccount([units, 'settings', 'units'], '/account/settings/')}
           >
             <FormattedMessage id="app.save" />
           </Button>

@@ -3,8 +3,8 @@ const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Login flow', function() {
   beforeEach(function() {
-    cy.visit('/login')
-    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
+    cy.visit('/login/')
+    cy.get('div.theme-wrapper').should('have.class', 'light')
   })
 
   it('Verify login page translations', function() {
@@ -21,10 +21,10 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('contain', i18n['app.logIn'])
 
     // Trouble link (note the typo in the i18n key :| )
-    cy.get('article a[data-test=trouble]').should('contain', i18n['app.troubleLoggingIn'])
+    cy.get('a[data-test=trouble]').should('contain', i18n['app.troubleLoggingIn'])
 
     // Signup link
-    cy.get('article a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
+    cy.get('a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
 
     // Google Oauth button
     cy.get('button[data-provider=google] span.MuiButton-label span').should(
@@ -78,7 +78,7 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('not.have.attr', 'disabled')
   })
 
-  it.only('Form should submit via keyboard', function() {
+  it('Form should submit via keyboard', function() {
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -131,12 +131,12 @@ describe('Login flow', function() {
     cy.get('h1').should('contain', i18n['app.account'])
   })
 
-  it('Verify trouble loggin in instructions are translated', function() {
+  it('Verify trouble logging in instructions are translated', function() {
     // Click trouble link
-    cy.get('article a[data-test=trouble]').click()
+    cy.get('a[data-test=trouble]').click()
 
     // Title
-    cy.get('h1').should('contain', i18n['app.troubleLoggingIn'])
+    cy.get('h3[data-test=trouble]').should('contain', i18n['app.troubleLoggingIn'])
 
     // Instructions
     cy.get('[data-test=trouble1]').contains(i18n['app.emailWorksToo'])
@@ -146,24 +146,21 @@ describe('Login flow', function() {
     cy.get('button[type=submit]').contains(i18n['app.resetPassword'])
 
     // Login link
-    cy.get('article a[data-test=trouble]').should('contain', i18n['app.logIn'])
+    cy.get('a[data-test=trouble]').should('contain', i18n['app.logIn'])
 
     // Signup link
-    cy.get('article a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
+    cy.get('a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
   })
 
   it('Verify reset password handling', function() {
     // Click trouble link
-    cy.get('article a[data-test=trouble]').click()
+    cy.get('a[data-test=trouble]').click()
 
     // Enter email
     cy.get('#username').type('test@freesewing.org')
 
     // Submit form
     cy.get('form button[type=submit]').click()
-
-    // Check loader
-    cy.get('#loader').should('be.visible')
 
     // Check notification
     cy.get('[data-test=notification]').should(

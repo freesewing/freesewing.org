@@ -26,7 +26,7 @@ const sessionMethods = ({
           navigate('/account')
           setNotification({
             type: 'success',
-            msg: app.translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
           })
         } else return res.status
       })
@@ -48,7 +48,7 @@ const sessionMethods = ({
           navigate('/account')
           setNotification({
             type: 'success',
-            msg: app.translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
           })
         } else return res.status
       })

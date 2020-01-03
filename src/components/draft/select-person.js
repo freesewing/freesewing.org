@@ -61,6 +61,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
             return (
               <div style={styles.person} key={person.handle}>
                 <Link
+                  data-test={person.handle}
                   to={
                     recreate
                       ? `/recreate/${design}/from/${recreate}/for/${person.handle}/`
@@ -147,6 +148,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           return (
             <li key={'with-' + size} style={styles.li}>
               <Button
+                data-test={'size-' + size}
                 style={styles.size}
                 href={
                   recreate
