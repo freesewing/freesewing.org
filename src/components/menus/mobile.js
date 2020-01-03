@@ -46,7 +46,7 @@ const MobileMenu = ({ app }) => {
       <ExpansionPanel expanded={expanded === type} onChange={handleChange(type)} {...noClose}>
         <ExpansionPanelSummary
           {...noClose}
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon className="no-closenav" />}
           aria-controls={`${type}-content`}
           id={`${type}-header`}
         >
