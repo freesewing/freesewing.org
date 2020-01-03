@@ -2,10 +2,19 @@ import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
+import LoadingLayout from '../../../../components/layouts/loading'
 import DraftUi from '../../../../components/draft/ui'
 
 const CreatePatternForPersonPage = props => {
   const app = useApp()
+
+  // SSR
+  if (typeof props.person === 'undefined')
+    return (
+      <AppWrapper app={app}>
+        <LoadingLayout app={app} />
+      </AppWrapper>
+    )
 
   return (
     <AppWrapper app={app}>

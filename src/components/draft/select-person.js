@@ -8,7 +8,6 @@ import MissingAccount from '../missing/account'
 import Avatar from '../avatar'
 
 const SelectPerson = ({ app, design, people, recreate = false }) => {
-  console.log(recreate)
   // Style
   const styles = {
     wrapper: {

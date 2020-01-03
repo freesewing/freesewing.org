@@ -1,5 +1,6 @@
 import React from 'react'
 import useApp from '../hooks/useApp'
+import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
@@ -14,6 +15,7 @@ import showcasesImage from './showcases.jpg'
 import blogpostsImage from './blogposts.jpg'
 
 import Subscribe from '../components/subscribe'
+import Mdx from '../components/mdx'
 
 const getStyles = (tablet, mobile) => {
   const styles = {
@@ -156,8 +158,11 @@ const getStyles = (tablet, mobile) => {
 }
 
 const HomePage = props => {
+  // Hooks
   const app = useApp()
+  const uiMdx = useUiMdx()
 
+  // Style
   const styles = getStyles(app.tablet, app.mobile)
 
   let mainButton
@@ -225,30 +230,11 @@ const HomePage = props => {
         </div>
         <WideLayout app={app} noTitle>
           <div style={styles.boxes}>
-            <div style={styles.box} data-test="row1-1">
-              <h2 style={styles.h2Box}>
-                <FormattedMessage id="homepage.row1col1title" />
-              </h2>
-              <p>
-                <FormattedHTMLMessage id="homepage.row1col1text" />
-              </p>
-            </div>
-            <div style={styles.box} data-test="row1-2">
-              <h2 style={styles.h2Box}>
-                <FormattedMessage id="homepage.row1col2title" />
-              </h2>
-              <p>
-                <FormattedMessage id="homepage.row1col2text" />
-              </p>
-            </div>
-            <div style={styles.box} data-test="row1-3">
-              <h2 style={styles.h2Box}>
-                <FormattedMessage id="homepage.row1col3title" />
-              </h2>
-              <p>
-                <FormattedHTMLMessage id="homepage.row1col3text" />
-              </p>
-            </div>
+            {[1, 2, 3].map(id => (
+              <div style={styles.box}>
+                <Mdx node={uiMdx[`homepage/row-1/${id}`]} />
+              </div>
+            ))}
           </div>
         </WideLayout>
 
@@ -366,30 +352,11 @@ const HomePage = props => {
           </div>
 
           <div style={styles.boxes}>
-            <div style={styles.box} data-test="row2-1">
-              <h2>
-                <FormattedMessage id="homepage.row2col1title" />
-              </h2>
-              <p>
-                <FormattedHTMLMessage id="homepage.row2col1text" />
-              </p>
-            </div>
-            <div style={styles.box} data-test="row2-2">
-              <h2>
-                <FormattedMessage id="homepage.row2col2title" />
-              </h2>
-              <p>
-                <FormattedHTMLMessage id="homepage.row2col2text" />
-              </p>
-            </div>
-            <div style={styles.box} data-test="row2-3">
-              <h2>
-                <FormattedMessage id="homepage.row2col3title" />
-              </h2>
-              <p>
-                <FormattedHTMLMessage id="homepage.row2col3text" />
-              </p>
-            </div>
+            {[1, 2, 3].map(id => (
+              <div style={styles.box}>
+                <Mdx node={uiMdx[`homepage/row-2/${id}`]} />
+              </div>
+            ))}
           </div>
         </WideLayout>
       </div>

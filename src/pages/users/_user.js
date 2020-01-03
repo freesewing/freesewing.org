@@ -29,7 +29,6 @@ const Template = props => {
   // Methods
   const handleResult = (result, data) => {
     if (result) setUser(data)
-    else console.log(data)
   }
 
   // Styles
@@ -42,7 +41,6 @@ const Template = props => {
 
   if (!user) return null
 
-  console.log(user)
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>

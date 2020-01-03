@@ -103,7 +103,6 @@ const EditMeasurementPage = props => {
       measurement,
       person.breasts
     ) // Note: This is in mm
-    console.log('formatted', measurementEstimate, formatMm(measurementEstimate, person.units))
     measurementInRange =
       measurementDiffers(
         person.measurements.neckCircumference,

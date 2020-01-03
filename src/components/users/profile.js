@@ -10,7 +10,6 @@ const UserProfile = props => {
 
   const handleResult = (result, data) => {
     if (result) setUser(data)
-    else console.log(data)
   }
 
   const styles = {
