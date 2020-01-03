@@ -30,9 +30,9 @@ const CreatePatternIndexPage = props => {
       justifyContent: 'center'
     },
     post: {
-      maxWidth: '300px',
+      width: '200px',
       margin: '6px',
-      padding: '0.5rem',
+      padding: '1rem',
       textAlign: 'center',
       background: app.theme === 'light' ? '#f1f3f5' : '#343a40'
     },
@@ -61,6 +61,11 @@ const CreatePatternIndexPage = props => {
       width: '100%'
     }
   }
+  if (app.mobile) {
+    styles.post.width = '150px'
+    styles.post.padding = '0.5rem'
+  }
+
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>

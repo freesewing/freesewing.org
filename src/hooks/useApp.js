@@ -33,6 +33,7 @@ function useApp(slug = null) {
   const [image, setImage] = useState(`https://freesewing.org/share/language.wide.jpg`)
   const [loading, setLoading] = useState(false)
   const [menu, setMenu] = useState(false)
+  const [mobileAside, setMobileAside] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
 
   /*
@@ -103,6 +104,7 @@ function useApp(slug = null) {
   // Toggles
   const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const toggleMenu = () => setMenu(!menu)
+  const toggleMobileAside = () => setMobileAside(!mobileAside)
   const closeNav = evt => {
     if (typeof evt.target.className === 'object') {
       if (evt.target.className.baseVal.indexOf('o-closenav') === -1) return setMenu(false)
@@ -158,12 +160,15 @@ function useApp(slug = null) {
     setImage,
     menu,
     setMenu,
+    mobileAside,
+    setMobileAside,
     title,
     setTitle,
 
     // Toggles
     toggleDarkMode,
     toggleMenu,
+    toggleMobileAside,
     closeNav,
 
     // Translation

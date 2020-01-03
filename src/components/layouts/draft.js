@@ -1,5 +1,6 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
+import MobileAside from '../menus/mobile-aside'
 
 const DraftLayout = ({ app, children, aside }) => {
   return (
@@ -11,9 +12,13 @@ const DraftLayout = ({ app, children, aside }) => {
         </div>
         {children}
       </section>
-      <aside>
-        <div className="sticky">{aside}</div>
-      </aside>
+      {app.mobile ? (
+        <MobileAside app={app} content={aside} />
+      ) : (
+        <aside>
+          <div className="sticky">{aside}</div>
+        </aside>
+      )}
     </div>
   )
 }

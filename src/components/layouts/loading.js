@@ -9,8 +9,9 @@ const LoadingLayout = props => {
   }
 
   return (
-    <BaseLayout {...props} style={style}>
-      <Loading />
+    <BaseLayout {...props} style={style} top>
+      <Loading loading={true} />
+      {props.children}
     </BaseLayout>
   )
 }

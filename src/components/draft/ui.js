@@ -20,8 +20,7 @@ import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-import DraftPreButtons from './pre-buttons'
-import DraftPostButtons from './post-buttons'
+import DraftButtons from './buttons'
 import DraftHelp from './help'
 import DraftError from './error'
 import ExportPattern from '../pattern/export'
@@ -70,6 +69,30 @@ const DraftUi = props => {
 
     return initialData
   }
+  const getTitle = (recreate, thing, person) => {
+    if (recreate) return app.translate('app.recreateThingForPerson', { thing, person })
+    else return app.translate('app.newPatternForModel', { pattern: thing, model: person })
+  }
+  const getCrumbs = (recreate, handle, name) => {
+    if (recreate)
+      return [
+        {
+          slug: '/create',
+          title: (
+            <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+          )
+        },
+        {
+          slug: `/create/${design}/`,
+          title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
+        },
+        {
+          slug: `/patterns/${handle}/`,
+          title: app.translate('app.recreate') + ' ' + name
+        }
+      ]
+    else return []
+  }
 
   const { app, design, recreate = false } = props
 
@@ -92,8 +115,8 @@ const DraftUi = props => {
   // Effects
   useEffect(() => {
     if (props.recreate) {
+      // We're recreating an existing pattern
       /*
-       * We're recreating an existing pattern
        * The usePattern hook is used to load the base pattern
        *   - Patterns that are in localStorage return instantly
        *   - Patterns loaded from the backend return a promise
@@ -103,60 +126,26 @@ const DraftUi = props => {
         patternOrPromise.then(p => {
           setPattern(p)
           setData(getInitialData(p.data))
-          let title = app.translate('app.recreateThingForPerson', { thing: p.name, person: 'test' })
-          app.setTitle(title)
-          app.setCrumbs([
-            {
-              slug: '/create',
-              title: (
-                <FormattedMessage
-                  id="app.newThing"
-                  values={{ thing: app.translate('app.pattern') }}
-                />
-              )
-            },
-            {
-              slug: `/create/${design}/`,
-              title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
-            },
-            {
-              slug: `/patterns/${p.handle}/`,
-              title: app.translate('app.recreate') + ' ' + p.name
-            }
-          ])
+          app.setTitle(getTitle(true, p.name, person.name))
+          app.setCrumbs(getCrumbs(true, p.handle, p.name))
         })
       } else {
         setPattern(patternOrPromise)
         setData(getInitialData(patternOrPromise.data))
+        app.setTitle(getTitle(true, patternOrPromise.name, person.name))
+        app.setCrumbs(getCrumbs(true, patternOrPromise.handle, patternOrPromise.name))
       }
     } else {
-      /*
-       * We're creating a new pattern from scratch
-       */
-      let title = app.translate('app.newPatternForModel', {
-        pattern: capitalize(design),
-        model: person.name
-      })
-      if (person.notAPerson)
-        title = app.translate('app.newThing', {
-          thing: app.translate(`patterns.${design}.title`) + ' (' + person.name + ')'
-        })
-      app.setTitle(title)
-      app.setCrumbs([
-        {
-          slug: '/create',
-          title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
-        },
-        {
-          slug: '/create/' + design,
-          title: app.translate('app.newThing', { thing: capitalize(design) })
-        }
-      ])
+      // We're creating a new pattern from scratch
+      setPattern('')
+      setData(getInitialData(false))
+      app.setTitle(getTitle(false, design, person.name))
+      app.setCrumbs(getCrumbs(false, '', design))
     }
   }, [])
 
   // Allow usePattern promise to resolve
-  if (pattern === 'pending') return <LoadingLayout app={app} />
+  if (pattern === 'pending') return <LoadingLayout app={app}>{pattern}</LoadingLayout>
   else if (pattern === false) {
     if (app.account.username) app.navigate('/patterns/')
     else app.navigate('/')
@@ -254,18 +243,16 @@ const DraftUi = props => {
             </p>
           </Blockquote>
         ),
-        <DraftPreButtons
-          key="pre-buttons"
+        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+          <Draft {...patternProps} />
+        </figure>,
+        <DraftButtons
           fit={fit}
           display={display}
           setFit={setFit}
           setDisplay={setDisplay}
           app={app}
-        />,
-        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-          <Draft {...patternProps} />
-        </figure>,
-        <DraftPostButtons key="post-buttons" display={display} setDisplay={setDisplay} app={app} />
+        />
       ]
   }
 

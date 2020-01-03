@@ -38,8 +38,8 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       display: 'inline-block'
     }
   }
-  if (app.tablet) styles.pattern.width = '150px'
-  if (app.mobile) styles.pattern.width = '200px'
+  if (app.tablet) styles.person.width = '150px'
+  if (app.mobile) styles.person.width = '200px'
 
   return (
     <>
