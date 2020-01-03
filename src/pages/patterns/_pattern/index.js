@@ -1,33 +1,54 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
+import LoadingLayout from '../../../components/layouts/loading'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
-import PatternData from '../../../components/patterns/data'
-import ExportPattern from '../../../components/draft/export-pattern'
+import PatternData from '../../../components/pattern/data'
+import ExportPattern from '../../../components/pattern/export'
+import PatternShareLink from '../../../components/pattern/share'
+import PatternNotes from '../../../components/pattern/notes'
 
 const PatternPage = props => {
   // Hooks
   const app = useApp()
-  const pattern = usePattern(app, props.pattern)
+
+  // State
+  const [pattern, setPattern] = useState('pending')
 
   // Effects
   useEffect(() => {
-    app.setTitle(pattern.name)
-    app.setCrumbs([
-      {
-        title: app.translate('app.patterns'),
-        slug: '/patterns/'
-      }
-    ])
+    let patternOrPromise = usePattern(app, props.pattern)
+    if (patternOrPromise.then instanceof Function) {
+      patternOrPromise.then(p => {
+        setPattern(p)
+        app.setTitle(p.name)
+        app.setCrumbs([
+          {
+            title: app.translate('app.patterns'),
+            slug: '/patterns/'
+          }
+        ])
+      })
+    } else {
+      setPattern(patternOrPromise)
+      app.setTitle(patternOrPromise.name)
+      app.setCrumbs([
+        {
+          title: app.translate('app.patterns'),
+          slug: '/patterns/'
+        }
+      ])
+    }
   }, [])
 
-  if (!pattern) {
+  if (pattern === 'pending') return <LoadingLayout app={app} />
+  else if (pattern === false) {
     if (app.account.username) app.navigate('/patterns/')
     else app.navigate('/')
     return null
@@ -37,6 +58,19 @@ const PatternPage = props => {
   const styles = {
     button: {
       marginLeft: '0.5rem'
+    },
+    info: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
+    },
+    export: {
+      minWidth: '500px'
+    },
+    share: {
+      flexGrow: '1',
+      maxWidth: '800px'
     }
   }
 
@@ -46,14 +80,14 @@ const PatternPage = props => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        {pattern.notes && <Markdown source={pattern.notes} />}
-        <p style={{ textAlign: 'right' }}>
+        <p style={{ textAlign: 'center' }}>
           {ownPattern && (
             <>
               <Button
                 style={styles.button}
                 variant="contained"
                 color="primary"
+                size="large"
                 className="danger"
                 onClick={() => app.removePattern(pattern.handle)}
               >
@@ -62,6 +96,7 @@ const PatternPage = props => {
               <Button
                 style={styles.button}
                 variant="contained"
+                size="large"
                 color="primary"
                 className="info"
                 href={'/patterns/' + pattern.handle + '/edit'}
@@ -72,6 +107,7 @@ const PatternPage = props => {
           )}
           <Button
             color="primary"
+            size="large"
             style={styles.button}
             href={`/recreate/${pattern.data.design}/from/${pattern.handle}/`}
             variant="contained"
@@ -79,9 +115,19 @@ const PatternPage = props => {
             <FormattedMessage id="app.recreate" />
           </Button>
         </p>
-
-        <ExportPattern app={app} data={pattern.data} />
-
+        {pattern.notes && <PatternNotes notes={pattern.notes} app={app} />}
+        <div style={styles.info}>
+          <div style={styles.export}>
+            <ExportPattern app={app} data={pattern.data} />
+          </div>
+          <div style={styles.share}>
+            <h5 style={{ marginBottom: '-1rem' }}>
+              <FormattedMessage id="app.share" />
+            </h5>
+            <PatternShareLink app={app} pattern={props.pattern} />
+          </div>
+        </div>
+        <h5>YAML</h5>
         <PatternData data={pattern} />
       </WideLayout>
     </AppWrapper>

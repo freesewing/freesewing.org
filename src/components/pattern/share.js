@@ -6,25 +6,58 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 import Markdown from 'react-markdown'
+import useUiMdx from '../../hooks/useUiMdx'
+import Blockquote from '@freesewing/components/Blockquote'
+import Mdx from '../mdx'
 
 const SavePattern = props => {
+  // Hooks
+  const uiMdx = useUiMdx()
+
+  if (!props.app.account.username) {
+    let mdx = uiMdx['draft/sharing-patterns-requires-an-account']
+    let btnProps = {
+      style: {
+        margin: '0.5rem'
+      },
+      color: 'primary',
+      size: 'large'
+    }
+    return (
+      <Blockquote type="note">
+        <h4>{mdx.title}</h4>
+        <Mdx node={mdx} />
+        <p style={{ textAlign: 'right' }}>
+          <Button variant="outlined" onClick={() => props.setDisplay('draft')} {...btnProps}>
+            <FormattedMessage id="app.cancel" />
+          </Button>
+          <Button variant="contained" href="/signup/" {...btnProps}>
+            <FormattedMessage id="app.signUp" />
+          </Button>
+        </p>
+      </Blockquote>
+    )
+  }
+
+  // State
   const [name, setName] = useState('')
   const [notes, setNotes] = useState('')
 
+  // Pattern data
   const data = { ...props.data }
   delete data.settings.embed
 
+  // Methods
   const updateName = evt => {
     let value = evt.target.value
     setName(value)
   }
   const updateNotes = evt => setNotes(evt.target.value)
-
   const handleSave = () => {
     props.app
       .createPattern({
         name,
-        model: props.model,
+        person: props.person,
         notes,
         data
       })
@@ -33,6 +66,7 @@ const SavePattern = props => {
       })
   }
 
+  // Style
   const styles = {
     wrapper: {
       maxWidth: '42em',
@@ -57,7 +91,6 @@ const SavePattern = props => {
         type="text"
         onChange={updateName}
         InputProps={{
-          startAdornment: <InputAdornment position="start">{data.design + '/'}</InputAdornment>,
           endAdornment: (
             <InputAdornment position="start">
               {name.length > 0 ? (
@@ -104,9 +137,7 @@ const SavePattern = props => {
         <FormattedMessage id="app.preview" />
       </h6>
       <div style={styles.preview} className="shadow">
-        <h5>
-          <small>{props.data.design} /</small> {name}
-        </h5>
+        <h5>{name}</h5>
         <Markdown source={notes} />
       </div>
     </div>

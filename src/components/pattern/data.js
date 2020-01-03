@@ -1,5 +1,7 @@
 import React from 'react'
 import Prism from 'prismjs'
+import 'prismjs/components/prism-yaml'
+import yaml from 'yaml'
 
 /*
  * We're wrapping this in an extra diff to prevent
@@ -9,14 +11,14 @@ import Prism from 'prismjs'
 const PatternData = props => (
   <div>
     <div className="gatsby-highlight">
-      <pre className="language-json">
+      <pre className="language-yaml">
         <code
-          className="language-json"
+          className="language-yaml"
           dangerouslySetInnerHTML={{
             __html: Prism.highlight(
-              JSON.stringify(props.data || null, null, 2),
-              Prism.languages.javascript,
-              'javascript'
+              yaml.stringify(props.data || null),
+              Prism.languages.yaml,
+              'yaml'
             )
           }}
         />

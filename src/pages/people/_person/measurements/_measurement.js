@@ -14,10 +14,9 @@ import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
 import formatMm from '@freesewing/utils/formatMm'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { MDXProvider } from '@mdx-js/react'
 import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
+import Mdx from '../../../../components/mdx'
 
 import MeasurementsImages from '../../../../components/measurements/images'
 
@@ -91,7 +90,7 @@ const EditMeasurementPage = props => {
   let docs = null
   for (let node of Object.values(props.data.allMdx.edges)) {
     let m = node.node.parent.relativeDirectory.split('/').pop()
-    if (m === measurement.toLowerCase()) docs = node.node.body
+    if (m === measurement.toLowerCase()) docs = node.node
   }
 
   let measurementEstimate = false
@@ -200,9 +199,7 @@ const EditMeasurementPage = props => {
           <FormattedMessage id="app.howToTakeMeasurements" />
         </h5>
         <MeasurementsImages measurement={measurement} breasts={person.breasts} />
-        <MDXProvider components={props.components}>
-          <MDXRenderer>{docs}</MDXRenderer>
-        </MDXProvider>
+        <Mdx node={docs} />
       </CenteredLayout>
     </AppWrapper>
   )

@@ -1,6 +1,26 @@
+import { withBreasts, withoutBreasts } from '@freesewing/models'
+
+const sizes = {}
+sizes['with-breasts'] = withBreasts
+sizes['without-breasts'] = withoutBreasts
+
 export default function usePerson(app, handle) {
   if (app.people[handle]) return app.people[handle]
+  if (handle.slice(0, 5) === 'size-') {
+    // Standard sizes
+    let size = 'size' + handle.slice(5, 7)
+    let build = handle.slice(8)
+    if (typeof sizes[build][size] !== 'undefined')
+      return {
+        notAPerson: true,
+        name:
+          app.translate('app.size') +
+          ` ${handle.slice(5, 7)}, ` +
+          app.translate(build === 'with-breasts' ? 'app.withBreasts' : 'app.withoutBreasts'),
+        measurements: sizes[build][size]
+      }
+  }
 
-  //  FIXME: Load person data from backand if user === admin
+  //  FIXME: Load person data from backend if user === admin
   return false
 }

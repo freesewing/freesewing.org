@@ -11,7 +11,9 @@ const DraftLayout = ({ app, children, aside }) => {
         </div>
         {children}
       </section>
-      <aside>{aside}</aside>
+      <aside>
+        <div className="sticky">{aside}</div>
+      </aside>
     </div>
   )
 }

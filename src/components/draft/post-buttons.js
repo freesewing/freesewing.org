@@ -21,15 +21,18 @@ const DraftPostButtons = ({ app, setDisplay, display }) => {
   return (
     <div style={styles.buttons}>
       <Button
-        data-test="save"
+        data-test="share"
         variant="contained"
         color="primary"
         className="info"
         style={styles.button}
-        onClick={() => setDisplay('save')}
+        onClick={() => setDisplay('share')}
       >
         <SaveIcon style={styles.buttonIcon} />
-        <FormattedMessage id="app.savePattern" />
+        <FormattedMessage
+          id="app.shareThing"
+          values={{ thing: <FormattedMessage id="app.pattern" /> }}
+        />
       </Button>
       <Button
         data-test="export"

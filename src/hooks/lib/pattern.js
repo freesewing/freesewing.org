@@ -86,6 +86,17 @@ const patternMethods = ({
       })
   }
 
+  const loadPattern = handle => {
+    return backend
+      .loadPattern(handle, token)
+      .then(res => {
+        setLoading(false)
+        if (res.status === 200) return res.data
+        else return false
+      })
+      .catch(error => false)
+  }
+
   const savePattern = data => backend.savePattern(mergeData({}, data), token)
 
   const updatePatterns = (value, l1, l2, l3) =>
@@ -95,6 +106,7 @@ const patternMethods = ({
     createPattern,
     updatePattern,
     removePattern,
+    loadPattern,
     savePattern,
     updatePatterns
   }

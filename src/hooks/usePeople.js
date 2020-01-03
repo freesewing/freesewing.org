@@ -5,8 +5,8 @@ export default function usePeople(app, design) {
   const required = requiredMeasurements[design]
 
   const hasRequiredMeasurements = (measurements, required) => {
-    if (typeof measurements === 'undefined') return true
-    if (typeof required === 'undefined') return true
+    if (typeof measurements === 'undefined') return false
+    if (typeof required === 'undefined') return false
     for (let m of required) {
       if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
     }

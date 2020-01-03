@@ -47,6 +47,9 @@ const Footer = props => {
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'center'
+    },
+    links: {
+      margin: '0 1rem'
     }
   }
 
@@ -94,10 +97,10 @@ const Footer = props => {
       </p>
       {allPatrons}
       <div style={styles.container}>
-        <ul>
+        <ul style={styles.links}>
           <li>
             <Link to="/docs/about/">
-              <FormattedMessage id="app.about" />
+              <FormattedMessage id="app.aboutFreesewing" />
             </Link>
           </li>
           <li>
@@ -111,7 +114,7 @@ const Footer = props => {
             </Link>
           </li>
         </ul>
-        <ul>
+        <ul style={styles.links}>
           <li>
             <Link to="/patrons/join/">
               <FormattedMessage id="app.becomeAPatron" />

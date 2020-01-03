@@ -1,28 +1,29 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import fileSaver from 'file-saver'
 import YAML from 'yaml'
-import useTiler from '../../hooks/useTiler'
+import Button from '@material-ui/core/Button'
 import theme from '@freesewing/plugin-theme'
 import { plugin as strings } from '@freesewing/i18n'
 import i18n from '@freesewing/plugin-i18n'
 
-const ExportPattern = props => {
-  const data = { ...props.data }
+import useTiler from '../../hooks/useTiler'
+
+const ExportPattern = ({ app, data, pattern, setDisplay, setLoading }) => {
+  // Hooks
+  const tiler = useTiler(app.setNotification)
+
+  // Remove embed setting
   delete data.settings.embed
 
-  const tiler = useTiler({
-    intl: props.app.intl,
-    setNotification: props.app.setNotification,
-    setLoading: props.app.setLoading
-  })
+  // Methods
   const handleExport = (type, format) => {
     if (type === 'data') {
       if (format === 'json') exportJsonData(data)
       else if (format === 'yaml') exportYamlData(data)
     } else {
-      const svg = new props.pattern(data.settings)
+      setLoading(true)
+      const svg = new pattern(data.settings)
         .use(theme)
         .use(i18n, { strings })
         .draft()
@@ -34,32 +35,30 @@ const ExportPattern = props => {
       } else if (type === 'tile') convert(svg, 'pdf', format)
     }
   }
-
   const exportJsonData = data => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: 'application/json;charset=utf-8'
     })
     fileSaver.saveAs(blob, 'data.json')
   }
-
   const exportYamlData = data => {
     const blob = new Blob([YAML.stringify(data)], {
       type: 'application/x-yaml;charset=utf-8'
     })
     fileSaver.saveAs(blob, 'data.yaml')
   }
-
   const svgToFile = svg => {
     const blob = new Blob([svg], {
       type: 'image/svg+xml;charset=utf-8'
     })
+    setLoading(false)
     fileSaver.saveAs(blob, 'pattern.svg')
   }
-
   const convert = (svg, format, size = 'full') => {
     tiler.tile(svg, format, size)
   }
 
+  // Style
   const styles = {
     wrapper: {
       display: 'flex',
@@ -68,7 +67,8 @@ const ExportPattern = props => {
       justifyContent: 'space-around'
     },
     column: {
-      width: '30%'
+      width: '100%',
+      maxWidth: '200px'
     },
     button: {
       margin: '0.5rem',
@@ -78,15 +78,15 @@ const ExportPattern = props => {
       background: 'red'
     }
   }
-  if (props.app.tablet) styles.column.width = '45%'
-  if (props.app.mobile) styles.column.width = '95%'
+  if (app.tablet) styles.column.width = '45%'
+  if (app.mobile) styles.column.width = '95%'
 
-  const cancel = props.setDisplay ? (
+  const cancel = setDisplay ? (
     <p style={{ textAlign: 'right' }}>
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => props.setDisplay('draft')}
+        onClick={() => setDisplay('draft')}
         data-test="cancel"
       >
         <FormattedMessage id="app.cancel" />
@@ -134,8 +134,6 @@ const ExportPattern = props => {
               {format}
             </Button>
           ))}
-        </div>
-        <div style={styles.column} data-test="export">
           <h5>
             <FormattedMessage id="app.exportAsData" />
           </h5>

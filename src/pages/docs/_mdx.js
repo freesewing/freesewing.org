@@ -7,23 +7,8 @@ import DocsLayout from '../../components/layouts/docs'
 import crumbsFromNavigation from '../../components/app/crumbsFromNavigation'
 
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { MDXProvider } from '@mdx-js/react'
-import Blockquote from '@freesewing/components/Blockquote'
-
 import { options } from '@freesewing/pattern-info'
-
-const customComponents = {
-  Note: ({ children }) => {
-    return <Blockquote type="note">{children}</Blockquote>
-  },
-  Tip: ({ children }) => {
-    return <Blockquote type="tip">{children}</Blockquote>
-  },
-  Warning: ({ children }) => {
-    return <Blockquote type="warning">{children}</Blockquote>
-  }
-}
+import Mdx from '../../components/mdx'
 
 const DocsPage = props => {
   // State
@@ -42,7 +27,7 @@ const DocsPage = props => {
     return option
   }
 
-  let title = frontmatter.title || false
+  let title = props.data.allMdx.edges[0].node.frontmatter.title || false
   if (!title) {
     const chunks = props.location.pathname.split('/')
     if (chunks[2] === 'patterns') {
@@ -67,9 +52,7 @@ const DocsPage = props => {
   return (
     <AppWrapper app={app}>
       <DocsLayout app={app} slug={props.location.pathname}>
-        <MDXProvider components={customComponents}>
-          <MDXRenderer>{body}</MDXRenderer>
-        </MDXProvider>
+        <Mdx node={props.data.allMdx.edges[0].node} />
       </DocsLayout>
     </AppWrapper>
   )
