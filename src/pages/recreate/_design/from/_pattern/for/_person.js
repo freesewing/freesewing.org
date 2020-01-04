@@ -3,6 +3,7 @@ import useApp from '../../../../../../hooks/useApp'
 import withLanguage from '../../../../../../components/withLanguage'
 import AppWrapper from '../../../../../../components/app/wrapper'
 import DraftUi from '../../../../../../components/draft/ui'
+import { graphql } from 'gatsby'
 
 const CreatePatternForPersonPage = props => {
   const app = useApp(props)
