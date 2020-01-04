@@ -198,7 +198,7 @@ export default function ButtonAppBar(props) {
             href="/search/"
             title={props.app.translate('app.search')}
           >
-            <SearchIcon style={style.icon}/>
+            <SearchIcon style={style.icon} />
           </IconButton>
           <IconButton
             style={style.iconButton}
@@ -207,7 +207,7 @@ export default function ButtonAppBar(props) {
             href="/language/"
             title={props.app.translate(`i18n.${props.app.language}`)}
           >
-            <LanguageIcon style={style.icon}/>
+            <LanguageIcon style={style.icon} />
           </IconButton>
           <IconButton
             style={style.darkModeButton}

@@ -44,8 +44,7 @@ const PostPreview = ({
   if (app.mobile) {
     style.post.width = '100%'
     style.post.maxWidth = '100%'
-  }
-  else if (app.tablet) {
+  } else if (app.tablet) {
     style.post.width = 'calc(50% - 12px)'
     style.post.maxWidth = 'calc(50% - 12px)'
   }
