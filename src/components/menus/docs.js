@@ -51,13 +51,17 @@ const DocsMenu = ({ app }) => {
     <div style={style.wrapper} className={`style-wrapper ${app.theme}`}>
       <div style={style.col}>
         <h6>
-          <FormattedMessage id="app.aboutFreesewing" />
+          <Link to="/docs/about/">
+            <FormattedMessage id="app.aboutFreesewing" />
+          </Link>
         </h6>
         {renderDocs(tree['/docs/about/'])}
       </div>
       <div style={style.col}>
         <h6>
-          <FormattedMessage id="app.patternDocs" />
+          <Link to="/docs/patterns">
+            <FormattedMessage id="app.patternDocs" />
+          </Link>
         </h6>
         {renderDocs(tree['/docs/patterns/'])}
       </div>
