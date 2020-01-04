@@ -6,10 +6,6 @@ import CloseIcon from '@material-ui/icons/Close'
 
 const MobileAside = ({ app, content }) => {
   // Style
-  const colors = {
-    light: '#212529',
-    dark: '#f8f9fa'
-  }
   const style = {
     fab: {
       right: '1rem',
@@ -27,7 +23,7 @@ const MobileAside = ({ app, content }) => {
       background: app.theme === 'light' ? '#f8f9fa' : '#212529'
     }
   }
-  console.log(content)
+
   if (app.mobile)
     return (
       <>

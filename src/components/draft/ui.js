@@ -17,7 +17,7 @@ import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
 import DraftButtons from './buttons'
@@ -94,7 +94,7 @@ const DraftUi = props => {
     else return []
   }
 
-  const { app, design, recreate = false } = props
+  const { app, design } = props
 
   // Hooks
   const person = usePerson(app, props.person)
@@ -247,6 +247,7 @@ const DraftUi = props => {
           <Draft {...patternProps} />
         </figure>,
         <DraftButtons
+          key="buttons"
           fit={fit}
           display={display}
           setFit={setFit}

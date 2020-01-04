@@ -60,7 +60,6 @@ const sessionMethods = ({
   }
 
   const logout = () => {
-    setLoading(true)
     navigate('/')
     setNotification({
       type: 'success',

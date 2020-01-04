@@ -6,7 +6,6 @@ import CenteredLayout from '../../../components/layouts/centered'
 
 import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
-import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
 const PersonAvatarPage = props => {

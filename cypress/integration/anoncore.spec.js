@@ -1,7 +1,5 @@
-import { strings } from '@freesewing/i18n'
 import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
-const i18n = strings[Cypress.env('LANGUAGE')]
 
 describe('Core pattern drafting for visitors', function() {
   const sizes = ['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid']
@@ -10,7 +8,7 @@ describe('Core pattern drafting for visitors', function() {
 
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
-    if (pattern === 'theo' || 1) {
+    if (pattern === 'simon' || 1) {
       it('Draft ' + capitalize(pattern), function() {
         cy.visit('/create/' + pattern + '/')
         cy.get('a[data-test=size-36]').click({ force: true })

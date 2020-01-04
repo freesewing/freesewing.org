@@ -18,9 +18,6 @@ const DocsPage = props => {
   const app = useApp()
   const { tree, titles } = useNavigation(app)
 
-  // Data from page query
-  const { body, frontmatter } = props.data.allMdx.edges[0].node
-
   // Handle pages without title
   const patternOptionTitle = (pattern, option) => {
     for (let o of options[pattern]) {

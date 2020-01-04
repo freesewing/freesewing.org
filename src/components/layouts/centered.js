@@ -3,7 +3,7 @@ import BaseLayout from './base'
 
 const CenteredLayout = props => {
   const style = {
-    textAlign: 'center',
+    textAlign: props.left ? 'left' : 'center',
     maxWidth: '600px'
   }
 

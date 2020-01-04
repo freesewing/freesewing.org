@@ -127,16 +127,6 @@ const EditMeasurementPage = props => {
             />
           </>
         )
-        return (
-          <FormattedHTMLMessage
-            id="app.weEstimateYM2B"
-            values={{
-              measurementEstimate: formatMm(measurementEstimate, person.units),
-              unit: person.units === 'imperial' ? '"' : 'cm',
-              measurement: label.toLowerCase()
-            }}
-          />
-        )
       }
     }
   }

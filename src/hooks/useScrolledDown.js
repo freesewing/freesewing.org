@@ -1,9 +1,4 @@
-import { useRef, useLayoutEffect } from 'react'
-
-function getScrolledDown() {
-  if (typeof window === 'undefined') return false
-  return window.scrollY > 100 ? true : false
-}
+import { useLayoutEffect } from 'react'
 
 export default function useScrolledDown(effect) {
   const offset = 100 // Pixels to scroll before we condired scrolled to be true

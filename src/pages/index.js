@@ -7,7 +7,6 @@ import WideLayout from '../components/layouts/wide'
 
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'gatsby'
 
 import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
@@ -19,31 +18,6 @@ const HomePage = props => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
-
-  // Button in top header depends on visitor/patron/user
-  let mainButton = (
-    <Button href="/signup" {...mainBtnProps}>
-      <FormattedMessage id="app.signUp" />
-    </Button>
-  )
-  let mainBtnProps = {
-    size: 'large',
-    color: 'secondary',
-    variant: 'contained',
-    className: 'btn-primary'
-  }
-  if (app.account.patron)
-    mainButton = (
-      <Button href="/share" {...mainBtnProps}>
-        <FormattedMessage id="app.share" />
-      </Button>
-    )
-  else if (app.account.username)
-    mainButton = (
-      <Button href="/patrons/join" {...mainBtnProps}>
-        <FormattedMessage id="app.subscribe" />
-      </Button>
-    )
 
   return (
     <AppWrapper app={app}>
@@ -63,7 +37,27 @@ const HomePage = props => {
                   </small>
                 </small>
               </h2>
-              {mainButton}
+              <Button
+                size="large"
+                color="secondary"
+                variant="contained"
+                className="btn-primary"
+                href={
+                  app.account.patron
+                    ? '/share/'
+                    : app.account.username
+                    ? '/patrons/join/'
+                    : '/signup/'
+                }
+              >
+                {app.account.patron ? (
+                  <FormattedMessage id="app.share" />
+                ) : app.account.username ? (
+                  <FormattedMessage id="app.subscribe" />
+                ) : (
+                  <FormattedMessage id="app.signUp" />
+                )}
+              </Button>
             </div>
           </div>
         </header>
@@ -72,7 +66,7 @@ const HomePage = props => {
         <WideLayout app={app} noTitle>
           <div className="boxes">
             {[1, 2, 3].map(id => (
-              <div>
+              <div key={'row1-' + id}>
                 <Mdx node={uiMdx[`homepage/row-1/${id}`]} />
               </div>
             ))}
@@ -106,7 +100,7 @@ const HomePage = props => {
           {/* Second row of text boxes */}
           <div className="boxes">
             {[1, 2, 3].map(id => (
-              <div>
+              <div key={'row2-' + id}>
                 <Mdx node={uiMdx[`homepage/row-2/${id}`]} />
               </div>
             ))}

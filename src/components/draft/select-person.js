@@ -83,31 +83,29 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       )}
       {people.no.user.length > 0 && (
         <div style={styles.wrapper}>
-          {people.no.user.length > 0 ? (
-            <Blockquote type="note" style={{ maxWidth: '800px' }}>
-              <h6>
-                <FormattedMessage
-                  id="app.countModelsLackingForPattern"
-                  values={{
-                    count: people.no.user.length,
-                    pattern: design
-                  }}
-                />
-                :
-              </h6>
-              <ul className="links">
-                {people.no.user.map(person => {
-                  return (
-                    <li key={person.handle}>
-                      <Link to={'/people/' + person.handle} title={person.name}>
-                        {person.name}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </Blockquote>
-          ) : null}
+          <Blockquote type="note" style={{ maxWidth: '800px' }}>
+            <h6>
+              <FormattedMessage
+                id="app.countModelsLackingForPattern"
+                values={{
+                  count: people.no.user.length,
+                  pattern: design
+                }}
+              />
+              :
+            </h6>
+            <ul className="links">
+              {people.no.user.map(person => {
+                return (
+                  <li key={person.handle}>
+                    <Link to={'/people/' + person.handle} title={person.name}>
+                      {person.name}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </Blockquote>
         </div>
       )}
       <h3>
@@ -118,7 +116,6 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       </h5>
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withoutBreasts).map(size => {
-          let m = people.ok.withoutBreasts[size]
           return (
             <li key={'without-' + size} style={styles.li}>
               <Button
@@ -144,7 +141,6 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       </h5>
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withBreasts).map(size => {
-          let m = people.ok.withBreasts[size]
           return (
             <li key={'with-' + size} style={styles.li}>
               <Button

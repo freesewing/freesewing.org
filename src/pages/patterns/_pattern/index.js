@@ -8,7 +8,6 @@ import LoadingLayout from '../../../components/layouts/loading'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Markdown from 'react-markdown'
 import PatternData from '../../../components/pattern/data'
 import ExportPattern from '../../../components/pattern/export'
 import PatternShareLink from '../../../components/pattern/share'
