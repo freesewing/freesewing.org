@@ -163,6 +163,9 @@ const MobileMenu = ({ app }) => {
       <Button variant="contained" color="primary" href="/create/" style={{ marginTop: '1rem' }}>
         <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
       </Button>
+      <Button variant="outlined" color="primary" href="/designs/" style={{ marginTop: '1rem' }}>
+        <FormattedMessage id="app.browseCollection" />
+      </Button>
     </div>
   )
 }

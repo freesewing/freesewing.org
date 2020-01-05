@@ -62,7 +62,7 @@ const CreatePatternIndexPage = props => {
     }
   }
   if (app.mobile) {
-    styles.post.width = '150px'
+    styles.post.width = '125px'
     styles.post.padding = '0.5rem'
   }
 
