@@ -23,7 +23,9 @@ const Template = props => {
         title: app.translate('app.users')
       }
     ])
-    app.loadUserProfile(props.user, handleResult)
+    app.loadProfile(props.user).then(res => {
+      if (res.status === 200) setUser(res.data)
+    })
   }, [])
 
   // Methods

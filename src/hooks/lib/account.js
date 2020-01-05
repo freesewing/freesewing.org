@@ -128,6 +128,7 @@ const accountMethods = ({
       .catch(error => showError(error))
   }
 
+  const loadProfile = handle => backend.profile(handle, token)
   const signup = (email, password, language) => backend.signup(email, password, language)
   const saveAccount = data => backend.saveAccount(mergeData({}, data), token)
 
@@ -139,6 +140,7 @@ const accountMethods = ({
     restrictAccount,
     recoverAccount,
     signup,
+    loadProfile,
     saveAccount
   }
 }
