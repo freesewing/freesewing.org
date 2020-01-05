@@ -68,8 +68,7 @@ const MobileMenu = ({ app }) => {
     wrapper: {
       padding: '1rem',
       display: 'flex',
-      flexDirection: 'column',
-      width: 'calc(100% - 1rem + -2px)'
+      flexDirection: 'column'
     },
     icons: {
       textAlign: 'center',
@@ -161,20 +160,9 @@ const MobileMenu = ({ app }) => {
       {renderMenu('patterns', app.translate('app.patterns'), <PatternsMenu app={app} />)}
       {renderMenu('docs', app.translate('app.docs'), docsMenu)}
       {renderMenu('community', app.translate('app.community'), <CommunityMenu app={app} />)}
-      <Button variant="contained" color="primary" href="/create" style={{ marginTop: '1rem' }}>
+      <Button variant="contained" color="primary" href="/create/" style={{ marginTop: '1rem' }}>
         <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
       </Button>
-      {app.account.username && (
-        <Button
-          variant="contained"
-          color="primary"
-          href="/create"
-          style={{ marginTop: '1rem', marginBottom: '2rem' }}
-          className="info"
-        >
-          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-        </Button>
-      )}
     </div>
   )
 }
