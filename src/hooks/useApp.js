@@ -9,6 +9,7 @@ import accountMethods from './lib/account'
 import personMethods from './lib/person'
 import patternMethods from './lib/pattern'
 import sessionMethods from './lib/session'
+import adminMethods from './lib/admin'
 
 function useApp(slug = null) {
   // Environment
@@ -150,6 +151,7 @@ function useApp(slug = null) {
     ...personMethods(core),
     ...patternMethods(core),
     ...sessionMethods(core),
+    ...adminMethods(core),
 
     // React state
     crumbs,

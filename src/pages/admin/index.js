@@ -3,6 +3,7 @@ import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import CenteredLayout from '../../components/layouts/centered'
+import AuthRequired from '../../components/auth-required'
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -18,7 +19,15 @@ const AdminPage = props => {
   const [query, setQuery] = useState('')
   const [users, setUsers] = useState([])
 
-  const search = e => app.adminSearch(query, setUsers)
+  const search = e => {
+    app.adminSearch(query)
+      .then(res => {
+        if (res.status === 200) {
+          setUsers(res.data)
+        }
+      })
+      .catch(err => console.log(err))
+  }
   const revert = () => {
     let data = app.frontend.storageData.admin
     if (data.account) app.frontend.updateStorageData(data.account, 'account')
@@ -38,23 +47,25 @@ const AdminPage = props => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <TextField
-          variant="outlined"
-          fullWidth
-          type="text"
-          placeholder="Search by username, handle or (complete) email address"
-          aria-label="Search by username, handle or (complete) email address"
-          onChange={e => setQuery(e.target.value)}
-        />
-        <p style={{ textAlign: 'center' }}>
-          <Button onClick={search} variant="contained" color="primary" size="large">
-            Search
-          </Button>
-        </p>
-        {users.map(user => (
-          <SearchHit key={user.handle} user={user} search={search} app={props.app} />
-        ))}
+      <CenteredLayout app={app} top wide>
+        <AuthRequired app={app} admin>
+          <TextField
+            variant="outlined"
+            fullWidth
+            type="text"
+            placeholder="Search by username, handle or (complete) email address"
+            aria-label="Search by username, handle or (complete) email address"
+            onChange={e => setQuery(e.target.value)}
+          />
+          <p style={{ textAlign: 'center' }}>
+            <Button onClick={search} variant="contained" color="primary" size="large">
+              Search
+            </Button>
+          </p>
+          {users.map(user => (
+            <SearchHit key={user.handle} user={user} search={search} app={app} />
+          ))}
+        </AuthRequired>
       </CenteredLayout>
     </AppWrapper>
   )
