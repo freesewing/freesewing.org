@@ -21,6 +21,7 @@ function useApp(slug = null) {
   const intl = useIntl()
 
   // Persistent state
+  const [admin, setAdmin] = useLocalStorage('admin', null)
   const [account, setAccount] = useLocalStorage('account', { username: false })
   const [people, setPeople] = useLocalStorage('people', {})
   const [patterns, setPatterns] = useLocalStorage('patterns', {})
@@ -131,6 +132,8 @@ function useApp(slug = null) {
     loading,
     setLoading,
     // Persistent state
+    admin,
+    setAdmin,
     account,
     setAccount,
     people,
