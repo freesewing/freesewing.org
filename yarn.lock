@@ -1441,10 +1441,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/tutorial/-/tutorial-2.1.7.tgz#f1048b48d2074b692a061ffee2998288d3897998"
   integrity sha512-vvM6t4OJMIc5wcg5A7mIFttEENjO0HRjK1vKmMbhXbc6mjS/4vmImDmE2AYHgUe1qENOXek019Hj81zSa4HJyg==
 
-"@freesewing/utils@2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@freesewing/utils/-/utils-2.1.7.tgz#e508e60f83dbbb377c4875b54324452958fd3290"
-  integrity sha512-j+w6GE4NRLpLZsUo0OJiU4CyBCFCZJSLpV/nhRUpaYk38hZYUXBxXZBbOYAHnS1eWDBbaIFePH4HJsADVipFMg==
+"@freesewing/utils@2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@freesewing/utils/-/utils-2.1.8.tgz#07830d31a77bae2eba02a21401c71b2240ef0c12"
+  integrity sha512-0hvEw4+iZsxG2vyeCIAlE/UKx/ej6yGuW2PUpBSp98NHtyCjGB9+Ov7vI5Yef0wbP1tT3D3e/ybRLTNYhJL4mg==
 
 "@freesewing/wahid@2.1.7":
   version "2.1.7"
