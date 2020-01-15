@@ -116,7 +116,7 @@
     "yaml": "1.7.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.2.0",
+    "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "cypress": "3.8.1",
