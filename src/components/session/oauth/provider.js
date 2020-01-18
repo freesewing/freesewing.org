@@ -6,7 +6,7 @@ import Icon from '@freesewing/components/Icon'
 const OauthProvider = props => {
   let styles = {
     button: {
-      width: props.app.frontend.mobile ? '100%' : '48%',
+      width: props.app.mobile ? '100%' : '48%',
       marginBottom: '1rem'
     },
     icon: {

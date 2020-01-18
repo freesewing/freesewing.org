@@ -30,6 +30,7 @@ const UserSocial = props => {
     }
   }
 
+  if (typeof props.accounts === 'undefined' || props.accounts === null) return null
   return renderSocial(props.accounts)
 }
 

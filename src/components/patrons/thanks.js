@@ -5,9 +5,7 @@ import Button from '@material-ui/core/Button'
 
 const ThanksPatron = props => {
   useEffect(() => {
-    props.app.frontend.setTitle(
-      props.app.frontend.intl.formatMessage({ id: 'app.thanksForYourSupport' })
-    )
+    props.app.setTitle(props.app.translate('app.thanksForYourSupport'))
   }, [])
 
   return (

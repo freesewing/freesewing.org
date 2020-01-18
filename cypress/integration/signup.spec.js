@@ -4,7 +4,7 @@ const i18n = strings[Cypress.env('LANGUAGE')]
 describe('Signup flow', function() {
   beforeEach(function() {
     cy.visit('/signup')
-    cy.get('div.theme-wrapper').should('have.class', 'layoutdefault')
+    cy.get('div.theme-wrapper').should('have.class', 'light')
   })
 
   it('Verify signup page translations', function() {
@@ -140,21 +140,24 @@ describe('Signup flow', function() {
     cy.get('form button[type=submit]').click()
 
     // Title should be translated
-    cy.get('h1')
+    cy.get('h2')
       .should('contain', i18n['app.yay'])
       .should('contain', i18n['app.goodJob'])
 
     // First paragraph should be translated
-    cy.get('article p:first-of-type').should(
+    cy.get('div.theme-wrapper.light > div > p').should(
       'contain',
       i18n['app.checkInboxClickLinkInConfirmationEmail']
     )
 
     // Second (last) paragraph should be translated
-    cy.get('article p:last-of-type').should('contain', i18n['app.goAheadWeWillWait'])
+    cy.get('div.theme-wrapper.light > div > p:last-of-type').should(
+      'contain',
+      i18n['app.goAheadWeWillWait']
+    )
 
     // Image should load
-    cy.get('article img').should('be.visible')
+    cy.get('img[alt="Yay!"]').should('be.visible')
   })
 
   it('Verify result for existing user', function() {

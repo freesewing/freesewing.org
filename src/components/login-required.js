@@ -1,29 +1,19 @@
-import { useContext } from 'react'
-import AppContext from '../context/app'
 import { navigate } from 'gatsby'
 
-const LoginRequired = props => {
-  const app = useContext(AppContext)
-
-  const loggedIn = () => {
-    try {
-      if (app.account.status === 'active') return true
-    } catch (err) {
-      return false
+const LoginRequired = ({ app, children }) => {
+  if (app.account.username && app.account.status === 'active') return children
+  else {
+    if (typeof window !== 'undefined') {
+      // Only try this in the browser
+      navigate('/login', {
+        state: {
+          intent: props.page
+        }
+      })
     }
-  }
 
-  if (loggedIn()) return props.children
-  if (typeof window !== 'undefined') {
-    // Only try this in the browser
-    navigate('/login', {
-      state: {
-        intent: props.page
-      }
-    })
+    return null
   }
-
-  return null
 }
 
 export default LoginRequired
