@@ -75,7 +75,7 @@
     "gatsby-image": "2.2.38",
     "gatsby-link": "2.2.27",
     "gatsby-plugin-algolia": "0.5.0",
-    "gatsby-plugin-catch-links": "2.1.21",
+    "gatsby-plugin-catch-links": "2.1.24",
     "gatsby-plugin-manifest": "2.2.33",
     "gatsby-plugin-mdx": "1.0.64",
     "gatsby-plugin-netlify": "2.1.30",
@@ -85,7 +85,7 @@
     "gatsby-plugin-react-helmet": "3.1.21",
     "gatsby-plugin-sharp": "2.3.7",
     "gatsby-plugin-styled-components": "3.1.16",
-    "gatsby-remark-autolink-headers": "2.1.22",
+    "gatsby-remark-autolink-headers": "2.1.23",
     "gatsby-remark-copy-linked-files": "2.1.36",
     "gatsby-remark-images": "3.1.42",
     "gatsby-remark-jargon": "2.1.9",
@@ -94,7 +94,7 @@
     "gatsby-source-filesystem": "2.1.40",
     "gatsby-transformer-remark": "2.6.45",
     "gatsby-transformer-sharp": "2.3.9",
-    "prismjs": "1.17.1",
+    "prismjs": "1.19.0",
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0",
@@ -118,7 +118,7 @@
     "yaml": "1.7.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.2.0",
+    "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "cypress": "3.8.1",
@@ -127,7 +127,7 @@
     "eslint-plugin-chai-friendly": "^0.5.0",
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-import": "^2.20.0",
-    "husky": "^3.1.0",
+    "husky": "^4.0.10",
     "lint-staged": "^9.5.0"
   },
   "keywords": [
