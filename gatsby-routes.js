@@ -131,6 +131,14 @@ for (let option of options.simon) {
   }
 }
 
+// Breanna inherits all options from Brian
+for (let option of options.brian) {
+  patternOptions['/docs/patterns/brian/options/' + option.toLowerCase() + '/'] = {
+    find: 'brian',
+    replace: ['breanna']
+  }
+}
+
 const placeholderPages = {
   '/docs/patterns/aaron/options/': {
     // This happens to be an empty page so we'll copy it
