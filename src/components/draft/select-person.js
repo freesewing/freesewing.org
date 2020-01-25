@@ -5,6 +5,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
 import MissingAccount from '../missing/account'
+import MissingPeople from '../missing/people'
 import Avatar from '../avatar'
 
 const SelectPerson = ({ app, design, people, recreate = false }) => {
@@ -111,9 +112,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       <h3>
         <FormattedMessage id="app.sizes" />
       </h3>
-      <h5>
-        <FormattedMessage id="app.withoutBreasts" />
-      </h5>
+      {Object.keys(people.ok.withoutBreasts).length > 0 && <h5><FormattedMessage id="app.withoutBreasts" /></h5>}
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withoutBreasts).map(size => {
           return (
@@ -136,9 +135,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           )
         })}
       </ul>
-      <h5>
-        <FormattedMessage id="app.withBreasts" />
-      </h5>
+      {Object.keys(people.ok.withBreasts).length > 0 && <h5><FormattedMessage id="app.withBreasts" /></h5>}
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withBreasts).map(size => {
           return (
