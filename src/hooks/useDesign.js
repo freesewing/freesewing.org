@@ -1,6 +1,7 @@
 import aaron from '@freesewing/aaron'
 import benjamin from '@freesewing/benjamin'
 import bent from '@freesewing/bent'
+import breanna from '@freesewing/breanna'
 import brian from '@freesewing/brian'
 import bruce from '@freesewing/bruce'
 import carlton from '@freesewing/carlton'
@@ -26,6 +27,7 @@ const designs = {
   aaron,
   benjamin,
   bent,
+  breanna,
   brian,
   bruce,
   carlita,
