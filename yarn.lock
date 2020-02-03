@@ -1083,10 +1083,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/bent/-/bent-2.2.0-beta.4.tgz#0f5056332170bd9f332a405b2ebe0b3c3265c5c6"
   integrity sha512-FYB0xt2Pu46Ne35LTRTOUBFE+ysUa44lEtl2h8e4H2UBtg9LNPJS1wxAWgC+hT14VkjiyzPYZjoENqWaWo1DKw==
 
-"@freesewing/breanna@2.2.0-beta.4-1":
-  version "2.2.0-beta.4-1"
-  resolved "https://registry.yarnpkg.com/@freesewing/breanna/-/breanna-2.2.0-beta.4-1.tgz#c39f772a5d641e2798aa59c7ad35a88ec3617a49"
-  integrity sha512-28wOrpuijX+u8J3xzBdRbgZXaIKKPKLhYPJYqKxc0f+S7StMz/VbI0Jp1nMPtDTU+wkuOPs0p3PvjBzpjxJIcA==
+"@freesewing/breanna@2.2.0-beta.4":
+  version "2.2.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@freesewing/breanna/-/breanna-2.2.0-beta.4.tgz#6e5725e09add8562c889fa19e41f119abb720bc4"
+  integrity sha512-jPX5H0ZHrrcvbNeduf4L0zlkRq9VFGTKGQ6sMAK6bwfk3SiuPEyTuXNSEYHpPiH4cSZ+4FElCzRlxjweZToMKQ==
 
 "@freesewing/brian@2.2.0-beta.4":
   version "2.2.0-beta.4"
@@ -1740,10 +1740,10 @@
     unist-builder "1.0.4"
     unist-util-visit "2.0.1"
 
-"@mdx-js/react@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.1.tgz#e0a9dbdc03826198abd82b29dcee91d661faf8a5"
-  integrity sha512-eF05YysHqtyXerLId0kPKtxmJ3PE60GJJvx1gOguEQndbs94fUeYTVSfBlnXPPAAzvOmVKrZmktIYsBQlVjpOw==
+"@mdx-js/react@1.5.5":
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.5.tgz#0036e65ec59521059f33292f535b9ef0d67bd0e6"
+  integrity sha512-Qwvri4zyU9ZbhhXsH0wfSZ/J9b8mARRTB6GSCTnyKRffO2CaQXl9oLsvRAeQSLRei/onEARc+RexH+jMeNS1rw==
 
 "@mdx-js/util@^1.5.5":
   version "1.5.5"
@@ -6962,12 +6962,12 @@ gatsby-remark-prismjs@3.3.27:
     parse-numeric-range "^0.0.2"
     unist-util-visit "^1.4.1"
 
-gatsby-remark-smartypants@2.1.17:
-  version "2.1.17"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.1.17.tgz#fc36ecc696101d0bd3b61963aa8867960d5f1a84"
-  integrity sha512-KCzBWhdy2k4jJfNxcuet1ZwDblMlcFa6jaFIJ9XtDYXlGbSKmysgLXqweQw0MgHA03DkwvM9SjA4mr/4f0YwDA==
+gatsby-remark-smartypants@2.1.20:
+  version "2.1.20"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.1.20.tgz#d081d93d50b0f1b48dc2b4d660ef6c2b72c00f97"
+  integrity sha512-kvCW8GuXLoqmWp+JQeMuK5x4u+6ObrOInup+hVsxdv5J4FGYACXQYGGf+QgeC7vsBh15J+ha0ZIAOBwB/tSGSQ==
   dependencies:
-    "@babel/runtime" "^7.7.4"
+    "@babel/runtime" "^7.7.6"
     retext "^5.0.0"
     retext-smartypants "^3.0.3"
     unist-util-visit "^1.4.1"
