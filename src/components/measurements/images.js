@@ -17,7 +17,9 @@ const MeasurementImages = props => {
   const seated = ['seatdepth']
   const breastsOnly = [
     'bustspan',
+    'bustfront',
     'highbust',
+    'highbustfront',
     'highpointshouldertobust',
     'naturalwaisttounderbust',
     'underbust'
