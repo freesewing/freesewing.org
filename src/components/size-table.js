@@ -9,7 +9,6 @@ import {
 import formatMm from '@freesewing/utils/formatMm'
 
 const SizeTable = props => {
-
   const sizes = props.breasts ? allSizes.womenswear : allSizes.menswear
   const measurements = props.breasts ? allMeasurements.womenswear : allMeasurements.menswear
   const data = props.breasts ? withBreasts : withoutBreasts
@@ -17,37 +16,46 @@ const SizeTable = props => {
   const style = {
     wrapper: {
       overflowX: 'auto'
-    },
+    }
   }
 
   return [
     <div style={style.wrapper}>
-    <table className={'data ' + (props.breasts ? 'with-breasts' : 'without-breasts')}>
-      <thead>
-        <tr>
-          <th><FormattedMessage id={ props.breasts ? 'app.withBreasts' : 'app.withoutBreasts'}/></th>
-          {sizes.map( size => <th key={size}>{size}</th>)}
-        </tr>
-      </thead>
-      <tbody>
-        {measurements.map( m => <tr className={m.toLowerCase()}>
-            <td><FormattedMessage id={`measurements.${m}`} /></td>
-            {sizes.map( s => {
-              let val = data[`size${s}`][m]
-              return (
-                <td className={'size-'+s}>
-                  {formatMm(val, 'metric')}
-                  <br />
-                  <span dangerouslySetInnerHTML={{__html: formatMm(val, 'imperial')}} />
-                </td>
-              )
-            })}
-            <td><FormattedMessage id={`measurements.${m}`} /></td>
+      <table className={'data ' + (props.breasts ? 'with-breasts' : 'without-breasts')}>
+        <thead>
+          <tr>
+            <th>
+              <FormattedMessage id={props.breasts ? 'app.withBreasts' : 'app.withoutBreasts'} />
+            </th>
+            {sizes.map(size => (
+              <th key={size}>{size}</th>
+            ))}
           </tr>
-        )}
-      </tbody>
-    </table>
-    </div>,
+        </thead>
+        <tbody>
+          {measurements.map(m => (
+            <tr className={m.toLowerCase()}>
+              <td>
+                <FormattedMessage id={`measurements.${m}`} />
+              </td>
+              {sizes.map(s => {
+                let val = data[`size${s}`][m]
+                return (
+                  <td className={'size-' + s}>
+                    {formatMm(val, 'metric')}
+                    <br />
+                    <span dangerouslySetInnerHTML={{ __html: formatMm(val, 'imperial') }} />
+                  </td>
+                )
+              })}
+              <td>
+                <FormattedMessage id={`measurements.${m}`} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   ]
 }
 

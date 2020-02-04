@@ -112,7 +112,11 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
       <h3>
         <FormattedMessage id="app.sizes" />
       </h3>
-      {Object.keys(people.ok.withoutBreasts).length > 0 && <h5><FormattedMessage id="app.withoutBreasts" /></h5>}
+      {Object.keys(people.ok.withoutBreasts).length > 0 && (
+        <h5>
+          <FormattedMessage id="app.withoutBreasts" />
+        </h5>
+      )}
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withoutBreasts).map(size => {
           return (
@@ -135,7 +139,11 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           )
         })}
       </ul>
-      {Object.keys(people.ok.withBreasts).length > 0 && <h5><FormattedMessage id="app.withBreasts" /></h5>}
+      {Object.keys(people.ok.withBreasts).length > 0 && (
+        <h5>
+          <FormattedMessage id="app.withBreasts" />
+        </h5>
+      )}
       <ul style={styles.sizes}>
         {Object.keys(people.ok.withBreasts).map(size => {
           return (

@@ -21,19 +21,23 @@ const SizesPage = props => {
       <WideLayout app={app}>
         <ul>
           <li>
-            <a href='#with-breasts'>
-              <FormattedMessage id='app.withBreasts' />
+            <a href="#with-breasts">
+              <FormattedMessage id="app.withBreasts" />
             </a>
           </li>
           <li>
-            <a href='#without-breasts'>
-              <FormattedMessage id='app.withoutBreasts' />
+            <a href="#without-breasts">
+              <FormattedMessage id="app.withoutBreasts" />
             </a>
           </li>
         </ul>
-        <h2 id='with-breasts'><FormattedMessage id='app.withBreasts' /></h2>
+        <h2 id="with-breasts">
+          <FormattedMessage id="app.withBreasts" />
+        </h2>
         <SizingTable breasts={true} />
-        <h2 id='without-breasts'><FormattedMessage id='app.withoutBreasts' /></h2>
+        <h2 id="without-breasts">
+          <FormattedMessage id="app.withoutBreasts" />
+        </h2>
         <SizingTable breasts={false} />
       </WideLayout>
     </AppWrapper>

@@ -100,9 +100,15 @@ const SearchHit = props => {
           {props.user.username} ({props.user.handle})
         </h5>
         <ul>
-          <li><b>Email</b>: {props.user.email}</li>
-          <li><b>Login</b>: {props.user.time.login}</li>
-          <li><b>Patron</b>: {tier}</li>
+          <li>
+            <b>Email</b>: {props.user.email}
+          </li>
+          <li>
+            <b>Login</b>: {props.user.time.login}
+          </li>
+          <li>
+            <b>Patron</b>: {tier}
+          </li>
         </ul>
       </div>
       <p style={{ textAlign: 'right' }}>
