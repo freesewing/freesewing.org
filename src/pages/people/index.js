@@ -52,7 +52,7 @@ const PeopleIndexPage = props => {
                   <Link to={'/people/' + handle + '/'} title={app.people[handle].name}>
                     <div style={styles.person}>
                       <div style={styles.avatar}>
-                        <Avatar variant="model" data={app.people[handle]} />
+                        <Avatar variant="model" data={app.people[handle]} size='64px'/>
                       </div>
                       <div>
                         <h6 style={styles.name}>{app.people[handle].name}</h6>
@@ -68,7 +68,7 @@ const PeopleIndexPage = props => {
             })}
             <p style={{ textAlign: 'right' }}>
               <Button size="large" variant="contained" color="primary" href="/person/">
-                <FormattedMessage id="app.addPerson" />
+                <FormattedMessage id="app.addThing" values={{thing: app.translate('app.person')}} />
               </Button>
             </p>
           </>

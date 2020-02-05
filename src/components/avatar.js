@@ -3,8 +3,8 @@ import React from 'react'
 const Avatar = props => {
   const style = {
     borderRadius: '50%',
-    width: '150px',
-    height: '150px',
+    width: props.size || '150px',
+    height: props.size || '150px',
     display: 'inline-block',
     backgroundColor: '#000',
     backgroundImage: 'url("https://freesewing.org/avatar.svg")',
