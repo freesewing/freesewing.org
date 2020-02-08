@@ -28,6 +28,8 @@ function useApp(slug = null) {
   const [theme, setTheme] = useLocalStorage('theme', 'light')
   const [token, setToken] = useLocalStorage('token')
   const [notification, setNotification] = useLocalStorage('notification')
+  // Various stuff we may need to hold on to between page loads
+  const [vars, setVars] = useLocalStorage('vars', {})
 
   // React State
   const [crumbs, setCrumbs] = useState([])
@@ -70,6 +72,7 @@ function useApp(slug = null) {
     if (data.patterns) setPatterns(data.patterns)
     if (data.theme) setTheme(data.theme)
     if (data.token) setToken(data.token)
+    if (data.vars) setVar(data.vars)
   }
 
   // Refresh user data from backend
@@ -145,7 +148,9 @@ function useApp(slug = null) {
     token,
     setToken,
     theme,
-    setTheme
+    setTheme,
+    vars,
+    setVars
   }
 
   return {

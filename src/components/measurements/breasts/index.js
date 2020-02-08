@@ -1,6 +1,7 @@
 import acrossback from './acrossback.svg'
 import anklecircumference from './anklecircumference.svg'
 import bicepscircumference from './bicepscircumference.svg'
+import bustfront from './bustfront.svg'
 import bustspan from './bustspan.svg'
 import chestcircumference from './chestcircumference.svg'
 import headcircumference from './headcircumference.svg'
@@ -34,6 +35,7 @@ export default {
   acrossback,
   anklecircumference,
   bicepscircumference,
+  bustfront,
   bustspan,
   chestcircumference,
   headcircumference,

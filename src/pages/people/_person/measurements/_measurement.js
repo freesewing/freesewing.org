@@ -84,7 +84,7 @@ const EditMeasurementPage = props => {
   }
 
   const saveMeasurement = () => {
-    app.updatePerson(props.person, [mm, 'measurements', measurement], `/people/${props.person}/`)
+    app.updatePerson(props.person, [mm, 'measurements', measurement], `/people/${props.person}/#measurements`)
   }
 
   let docs = null
@@ -167,7 +167,7 @@ const EditMeasurementPage = props => {
             size="large"
             variant="outlined"
             color="primary"
-            href={`/people/${props.person}/`}
+            href={`/people/${props.person}/#measurements`}
             data-test="cancel"
           >
             <FormattedMessage id="app.cancel" />

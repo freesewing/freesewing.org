@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePerson from '../../../hooks/usePerson'
+import useMergeData from '../../../hooks/useMergeData'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
@@ -33,7 +34,7 @@ const PersonPage = props => {
   const app = useApp()
 
   // State
-  const [filter, setFilter] = useState(false)
+  const [filter, setFilter] = useState(app.vars.designFilter || false)
   const [person, setPerson] = useState({ ...usePerson(app, props.person) })
 
   // Effects
@@ -50,6 +51,10 @@ const PersonPage = props => {
   // Methods
   const updateFilter = evt => {
     setFilter(evt.target.value)
+    app.setVars({
+      ...app.vars,
+      designFilter: evt.target.value
+    })
   }
 
   const sortMeasurements = measurements => {
@@ -353,7 +358,7 @@ const PersonPage = props => {
           </tbody>
         </table>
         {/* measurements */}
-        <h5 style={styles.heading} data-test="measurements-title" id="measurements">
+        <h5 id='measurements' style={styles.heading} data-test="measurements-title" id="measurements">
           <FormattedMessage id="app.measurements" />
         </h5>
         {blankSlate && (
