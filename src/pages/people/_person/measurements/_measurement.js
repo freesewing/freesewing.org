@@ -84,7 +84,11 @@ const EditMeasurementPage = props => {
   }
 
   const saveMeasurement = () => {
-    app.updatePerson(props.person, [mm, 'measurements', measurement], `/people/${props.person}/#measurements`)
+    app.updatePerson(
+      props.person,
+      [mm, 'measurements', measurement],
+      `/people/${props.person}/#measurements`
+    )
   }
 
   let docs = null

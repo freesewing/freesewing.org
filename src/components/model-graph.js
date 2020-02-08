@@ -12,15 +12,12 @@ const ModelGraph = props => {
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
   ver.push('hpsToBust')
-  ver.push('hpsToHipsBack'),
-  ver.push('hpsToHipsFront'),
-  ver.push('shoulderSlope')
+  ver.push('hpsToHipsBack'), ver.push('hpsToHipsFront'), ver.push('shoulderSlope')
   ver.push('shoulderToElbow')
   ver.push('shoulderToWrist')
   if (model.breasts) ver.push('hpsToBust')
   if (model.breasts) ver.push('naturalWaistToUnderbust')
-  ver.push('naturalWaistToFloor'),
-  ver.push('naturalWaistToHip')
+  ver.push('naturalWaistToFloor'), ver.push('naturalWaistToHip')
   ver.push('naturalWaistToSeat')
   ver.push('naturalWaistToKnee')
   ver.push('hipsToUpperLeg')
