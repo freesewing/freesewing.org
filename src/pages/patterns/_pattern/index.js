@@ -10,8 +10,8 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import PatternData from '../../../components/pattern/data'
 import ExportPattern from '../../../components/pattern/export'
-import PatternShareLink from '../../../components/pattern/share'
 import PatternNotes from '../../../components/pattern/notes'
+import PatternShareLink from '../../../components/pattern/share-link'
 
 const PatternPage = props => {
   // Hooks
@@ -123,7 +123,7 @@ const PatternPage = props => {
             <h5 style={{ marginBottom: '-1rem' }}>
               <FormattedMessage id="app.share" />
             </h5>
-            <PatternShareLink app={app} pattern={props.pattern} />
+            <PatternShareLink pattern={props.pattern} app={app}/>
           </div>
         </div>
         <h5>YAML</h5>

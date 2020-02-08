@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import CenteredLayout from '../../components/layouts/centered'
 
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
@@ -43,7 +43,7 @@ const PeopleIndexPage = props => {
 
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <CenteredLayout app={app} top>
         {Object.keys(app.people).length > 0 ? (
           <>
             {Object.keys(app.people).map((handle, person) => {
@@ -78,7 +78,7 @@ const PeopleIndexPage = props => {
         ) : (
           <MissingPeople />
         )}
-      </WideLayout>
+      </CenteredLayout>
     </AppWrapper>
   )
 }
