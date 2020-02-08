@@ -19,6 +19,7 @@ import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
+import { version } from '../../../package.json'
 
 import DraftButtons from './buttons'
 import DraftHelp from './help'
@@ -52,6 +53,7 @@ const DraftUi = props => {
       ? initial
       : {
           design,
+          version,
           settings: {
             sa: 10,
             complete: true,
@@ -97,7 +99,9 @@ const DraftUi = props => {
   const { app, design } = props
 
   // Hooks
-  const person = usePerson(app, props.person)
+  const person = props.person === 'original'
+    ? {}
+    : usePerson(app, props.person)
   const Pattern = useDesign(design)
   const docs = useDraftDocs(props.data)
 
@@ -124,15 +128,23 @@ const DraftUi = props => {
       let patternOrPromise = usePattern(app, props.recreate)
       if (patternOrPromise.then instanceof Function) {
         patternOrPromise.then(p => {
+          if (props.person === 'original') {
+            person.measurements = p.data.settings.measurements
+            person.name = app.translate('app.model')
+            app.setTitle(app.translate('app.cloneThing', {thing: p.name}))
+          } else app.setTitle(getTitle(true, p.name, person.name))
           setPattern(p)
           setData(getInitialData(p.data))
-          app.setTitle(getTitle(true, p.name, person.name))
           app.setCrumbs(getCrumbs(true, p.handle, p.name))
         })
       } else {
+        if (props.person === 'original') {
+          person.measurements = patternOrPromise.data.settings.measurements
+          person.name = app.translate('app.model')
+          app.setTitle(app.translate('app.cloneThing', {thing: patternOrPromise.name}))
+        } else app.setTitle(getTitle(true, patternOrPromise.name, person.name))
         setPattern(patternOrPromise)
         setData(getInitialData(patternOrPromise.data))
-        app.setTitle(getTitle(true, patternOrPromise.name, person.name))
         app.setCrumbs(getCrumbs(true, patternOrPromise.handle, patternOrPromise.name))
       }
     } else {

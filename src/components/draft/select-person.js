@@ -37,16 +37,39 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
     size: {
       margin: '0 0.5rem 0.5rem 0',
       display: 'inline-block'
+    },
+    bq: {
+      maxWidth: '500px',
+      margin: '0',
     }
   }
   if (app.tablet) styles.person.width = '150px'
   if (app.mobile) styles.person.width = '200px'
 
+  let asIs = !recreate
+    ? null
+    : <>
+        <h2>
+          <FormattedMessage id="app.cloneThing" values={{thing: app.translate('app.pattern')}}/>
+        </h2>
+        <Blockquote type="note" style={styles.bq}>
+          <p>
+            <FormattedMessage id='app.cloneDescription' />
+          </p>
+        </Blockquote>
+        <p>
+          <Button color="primary" variant="outlined" size="large" href={`/recreate/${design}/from/${recreate}/for/original`}>
+            <FormattedMessage id="app.cloneThing" values={{thing: app.translate('app.pattern')}}/>
+          </Button>
+        </p>
+      </>
+
   return (
     <>
-      <h3>
+      {asIs}
+      <h2>
         <FormattedMessage id="app.madeToMeasure" />
-      </h3>
+      </h2>
       {!app.account.username && (
         <>
           <p>
@@ -109,9 +132,9 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           </Blockquote>
         </div>
       )}
-      <h3>
+      <h2>
         <FormattedMessage id="app.sizes" />
-      </h3>
+      </h2>
       {Object.keys(people.ok.withoutBreasts).length > 0 && (
         <h5>
           <FormattedMessage id="app.withoutBreasts" />
