@@ -11,11 +11,15 @@ const ModelGraph = props => {
 
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
-  ver.push('centerBackNeckToWaist')
+  ver.push('hpsToBust')
+  ver.push('hpsToHipsBack'),
+  ver.push('hpsToHipsFront'),
+  ver.push('shoulderSlope')
   ver.push('shoulderToElbow')
   ver.push('shoulderToWrist')
-  if (model.breasts) ver.push('highPointShoulderToBust')
+  if (model.breasts) ver.push('hpsToBust')
   if (model.breasts) ver.push('naturalWaistToUnderbust')
+  ver.push('naturalWaistToFloor'),
   ver.push('naturalWaistToHip')
   ver.push('naturalWaistToSeat')
   ver.push('naturalWaistToKnee')
@@ -23,15 +27,22 @@ const ModelGraph = props => {
   ver.push('seatDepth')
   ver.push('inseam')
   ver.push('naturalWaistToFloor')
+
   const hor = []
   hor.push('neckCircumference')
   hor.push('headCircumference')
   hor.push('shoulderToShoulder')
-  hor.push('shoulderSlope')
-  if (model.breasts) hor.push('highBust')
+  hor.push('bicepsCircumference')
+  if (model.breasts) {
+    hor.push('highBust')
+    hor.push('highBustFront')
+  }
   hor.push('chestCircumference')
-  if (model.breasts) hor.push('bustSpan')
-  if (model.breasts) hor.push('underbust')
+  if (model.breasts) {
+    hor.push('bustFront')
+    hor.push('bustSpan')
+    hor.push('underbust')
+  }
   hor.push('naturalWaist')
   hor.push('hipsCircumference')
   hor.push('seatCircumference')
