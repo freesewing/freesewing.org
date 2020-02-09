@@ -96,7 +96,7 @@ const HomePage = props => {
           <h3 className="pricing">
             <FormattedMessage id="app.pricing" />
           </h3>
-          <Subscribe showFree={true} app={app} />
+          <Subscribe showFree={false} app={app} />
           {/* Second row of text boxes */}
           <div className="boxes">
             {[1, 2, 3].map(id => (
