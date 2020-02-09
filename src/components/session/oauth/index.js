@@ -21,10 +21,6 @@ const Oauth = props => {
         }
       })
   }
-  const handleResult = (backendResult, provider, data = false) => {
-    if (backendResult) window.location = oauthConfig[provider] + data.state
-    else console.log(backendResult)
-  }
 
   const styles = {
     wrapper: {
