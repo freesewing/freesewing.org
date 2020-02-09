@@ -59,6 +59,30 @@ const sessionMethods = ({
       })
   }
 
+  const providerLogin = data => {
+    setLoading(true)
+    return backend
+      .providerLogin(data)
+      .then(res => {
+        setLoading(false)
+        if (res.status === 200) {
+          persist(res.data)
+          if (res.data.signup) navigate('/welcome/')
+          else {
+            navigate('/account/')
+            setNotification({
+              type: 'success',
+              msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            })
+          }
+        } else return res.status
+      })
+      .catch(error => {
+        showError(error)
+        if (error.response) return error.response.status
+        else return error
+      })
+  }
   const logout = () => {
     navigate('/')
     setNotification({
@@ -76,6 +100,7 @@ const sessionMethods = ({
   return {
     login,
     confirmationLogin,
+    providerLogin,
     logout
   }
 }

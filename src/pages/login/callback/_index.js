@@ -22,7 +22,7 @@ const LoginCallbackPage = props => {
   useEffect(() => {
     app.setTitle(app.translate('app.justAMoment'))
     app.setLoading(true)
-    app.loginOauth({ validation: props.validation, confirmation: props.confirmation }, handleResult)
+    app.providerLogin({ validation: props.validation, confirmation: props.confirmation })
   }, [])
 
   const [error, setError] = useState(false)
