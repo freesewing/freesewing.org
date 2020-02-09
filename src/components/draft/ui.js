@@ -99,9 +99,7 @@ const DraftUi = props => {
   const { app, design } = props
 
   // Hooks
-  const person = props.person === 'original'
-    ? {}
-    : usePerson(app, props.person)
+  const person = props.person === 'original' ? {} : usePerson(app, props.person)
   const Pattern = useDesign(design)
   const docs = useDraftDocs(props.data)
 
@@ -131,7 +129,7 @@ const DraftUi = props => {
           if (props.person === 'original') {
             person.measurements = p.data.settings.measurements
             person.name = app.translate('app.model')
-            app.setTitle(app.translate('app.cloneThing', {thing: p.name}))
+            app.setTitle(app.translate('app.cloneThing', { thing: p.name }))
           } else app.setTitle(getTitle(true, p.name, person.name))
           setPattern(p)
           setData(getInitialData(p.data))
@@ -141,7 +139,7 @@ const DraftUi = props => {
         if (props.person === 'original') {
           person.measurements = patternOrPromise.data.settings.measurements
           person.name = app.translate('app.model')
-          app.setTitle(app.translate('app.cloneThing', {thing: patternOrPromise.name}))
+          app.setTitle(app.translate('app.cloneThing', { thing: patternOrPromise.name }))
         } else app.setTitle(getTitle(true, patternOrPromise.name, person.name))
         setPattern(patternOrPromise)
         setData(getInitialData(patternOrPromise.data))

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {CopyToClipboard} from 'react-copy-to-clipboard'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 
@@ -10,27 +10,31 @@ import { FormattedMessage } from 'react-intl'
  */
 
 const PatternShareLink = props => {
-  const link = 'https://freesewing.org/patterns/'+props.pattern
+  const link = 'https://freesewing.org/patterns/' + props.pattern
 
   return (
     <div>
       <div className="gatsby-highlight">
         <pre className="language-html">
           <code>
-            <a href={link} style={{color: '#74c0fc'}}>{link}</a>
+            <a href={link} style={{ color: '#74c0fc' }}>
+              {link}
+            </a>
             <CopyToClipboard
               text={link}
-              onCopy={() => props.app.setNotification({
-                type: 'success',
-                msg: props.app.translate('app.copiedToClipboard')
-              })}
+              onCopy={() =>
+                props.app.setNotification({
+                  type: 'success',
+                  msg: props.app.translate('app.copiedToClipboard')
+                })
+              }
             >
               <Button
-                color={props.app.theme === 'light' ? "secondary" : "primary"}
-                variant='outlined'
-                style={{float: 'right'}}
+                color={props.app.theme === 'light' ? 'secondary' : 'primary'}
+                variant="outlined"
+                style={{ float: 'right' }}
               >
-                <FormattedMessage id="app.copy"/>
+                <FormattedMessage id="app.copy" />
               </Button>
             </CopyToClipboard>
           </code>

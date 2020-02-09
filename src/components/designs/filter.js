@@ -177,7 +177,7 @@ const PatternFilter = props => {
       display: 'inline',
       fontFamily: 'Roboto Condensed',
       fontWeight: 'bold'
-    },
+    }
   }
 
   return (
@@ -214,7 +214,7 @@ const PatternFilter = props => {
                 <li key={type + value} onClick={() => toggle(type, value)} style={styles.item}>
                   <Chip
                     color="primary"
-                    className={'chip-'+type}
+                    className={'chip-' + type}
                     label={
                       type === 'code' || type === 'design' ? (
                         value

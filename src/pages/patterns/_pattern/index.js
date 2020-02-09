@@ -123,7 +123,7 @@ const PatternPage = props => {
             <h5 style={{ marginBottom: '-1rem' }}>
               <FormattedMessage id="app.share" />
             </h5>
-            <PatternShareLink pattern={props.pattern} app={app}/>
+            <PatternShareLink pattern={props.pattern} app={app} />
           </div>
         </div>
         <h5>YAML</h5>

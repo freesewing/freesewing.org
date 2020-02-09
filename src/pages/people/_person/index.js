@@ -52,7 +52,7 @@ const PersonPage = props => {
   const updateFilter = evt => {
     if (evt === false) {
       setFilter(false)
-      let vars = {...app.vars}
+      let vars = { ...app.vars }
       delete vars.designFilter
       app.setVars(vars)
     } else {

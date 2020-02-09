@@ -40,29 +40,34 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
     },
     bq: {
       maxWidth: '500px',
-      margin: '0',
+      margin: '0'
     }
   }
   if (app.tablet) styles.person.width = '150px'
   if (app.mobile) styles.person.width = '200px'
 
-  let asIs = !recreate
-    ? null
-    : <>
-        <h2>
-          <FormattedMessage id="app.cloneThing" values={{thing: app.translate('app.pattern')}}/>
-        </h2>
-        <Blockquote type="note" style={styles.bq}>
-          <p>
-            <FormattedMessage id='app.cloneDescription' />
-          </p>
-        </Blockquote>
+  let asIs = !recreate ? null : (
+    <>
+      <h2>
+        <FormattedMessage id="app.cloneThing" values={{ thing: app.translate('app.pattern') }} />
+      </h2>
+      <Blockquote type="note" style={styles.bq}>
         <p>
-          <Button color="primary" variant="outlined" size="large" href={`/recreate/${design}/from/${recreate}/for/original`}>
-            <FormattedMessage id="app.cloneThing" values={{thing: app.translate('app.pattern')}}/>
-          </Button>
+          <FormattedMessage id="app.cloneDescription" />
         </p>
-      </>
+      </Blockquote>
+      <p>
+        <Button
+          color="primary"
+          variant="outlined"
+          size="large"
+          href={`/recreate/${design}/from/${recreate}/for/original`}
+        >
+          <FormattedMessage id="app.cloneThing" values={{ thing: app.translate('app.pattern') }} />
+        </Button>
+      </p>
+    </>
+  )
 
   return (
     <>
