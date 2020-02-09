@@ -47,19 +47,24 @@ const PatternFilter = props => {
   }
 
   const toggle = (type, item) => {
-    let list = []
     let f = Object.assign({}, filter)
-    if (typeof f[type] === 'undefined') list.push(item)
-    else {
-      list = f[type]
-      let pos = filter[type].indexOf(item)
-      if (pos === -1) list.push(item)
+    if (type === 'tags') {
+      let list = []
+      if (typeof f.tags === 'undefined') list.push(item)
       else {
-        if (list.length === 1) list = []
-        else list.splice(pos, 1)
+        list = f.tags
+        let pos = filter.tags.indexOf(item)
+        if (pos === -1) list.push(item)
+        else {
+          if (list.length === 1) list = []
+          else list.splice(pos, 1)
+        }
       }
+      f.tags = uniqueArray(list)
+    } else {
+      if (f[type].indexOf(item) === -1) f[type] = [item]
+      else f[type] = []
     }
-    f[type] = uniqueArray(list)
     setFilter(f, props.applyFilter(filteredPatternList(f, search)))
   }
 
@@ -172,7 +177,7 @@ const PatternFilter = props => {
       display: 'inline',
       fontFamily: 'Roboto Condensed',
       fontWeight: 'bold'
-    }
+    },
   }
 
   return (
@@ -181,7 +186,7 @@ const PatternFilter = props => {
         <TextField
           id="search-filter"
           fullWidth={true}
-          label={props.app.frontend.intl.formatMessage({ id: 'app.name' })}
+          label={props.app.translate('app.name')}
           margin="normal"
           variant="outlined"
           value={search}
@@ -209,6 +214,7 @@ const PatternFilter = props => {
                 <li key={type + value} onClick={() => toggle(type, value)} style={styles.item}>
                   <Chip
                     color="primary"
+                    className={'chip-'+type}
                     label={
                       type === 'code' || type === 'design' ? (
                         value
