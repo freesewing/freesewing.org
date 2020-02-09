@@ -194,7 +194,7 @@ const routes = {
     }
   },
   dynamic: {
-    '/login/callback/:validation/:confirmation': 'login/callback/_index.js',
+    '/login/callback/:confirmation/:validation': 'login/callback/_index.js',
     '/patterns/:pattern': 'patterns/_pattern/index.js',
     '/patterns/:pattern/edit': 'patterns/_pattern/edit.js',
     '/people/:person/': 'people/_person/index.js',
