@@ -50,11 +50,18 @@ const PersonPage = props => {
 
   // Methods
   const updateFilter = evt => {
-    setFilter(evt.target.value)
-    app.setVars({
-      ...app.vars,
-      designFilter: evt.target.value
-    })
+    if (evt === false) {
+      setFilter(false)
+      let vars = {...app.vars}
+      delete vars.designFilter
+      app.setVars(vars)
+    } else {
+      setFilter(evt.target.value)
+      app.setVars({
+        ...app.vars,
+        designFilter: evt.target.value
+      })
+    }
   }
 
   const sortMeasurements = measurements => {
@@ -404,7 +411,7 @@ const PersonPage = props => {
               padding: '0 1rem'
             }}
             disabled={filter ? false : true}
-            onClick={() => setFilter(false)}
+            onClick={() => updateFilter(false)}
           >
             <FormattedMessage id="filter.resetFilter" />
           </Button>
