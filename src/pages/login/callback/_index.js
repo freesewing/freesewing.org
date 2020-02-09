@@ -27,17 +27,6 @@ const LoginCallbackPage = props => {
 
   const [error, setError] = useState(false)
 
-  const handleResult = (result, signup) => {
-    if (result) {
-      if (signup) navigate('/welcome')
-      else navigate('/account')
-    } else {
-      setError(true)
-      app.setTitle(app.translate('app.ohNo'))
-      app.setLoading(false)
-    }
-  }
-
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}>

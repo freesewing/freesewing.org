@@ -8,7 +8,6 @@ import AuthRequired from '../../components/auth-required'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import SearchHit from '../../components/admin/hit'
-import { navigate } from 'gatsby'
 
 const AdminPage = props => {
   // Hooks

@@ -5,8 +5,6 @@ import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
 
 import { FormattedMessage } from 'react-intl'
-import { languages } from '@freesewing/i18n'
-import Button from '@material-ui/core/Button'
 
 import SizingTable from '../components/size-table'
 

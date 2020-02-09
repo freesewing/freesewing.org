@@ -28,11 +28,6 @@ const Template = props => {
     })
   }, [])
 
-  // Methods
-  const handleResult = (result, data) => {
-    if (result) setUser(data)
-  }
-
   // Styles
   const styles = {
     avatar: {

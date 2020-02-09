@@ -34,14 +34,14 @@ const SizeTable = props => {
         </thead>
         <tbody>
           {measurements.map(m => (
-            <tr className={m.toLowerCase()}>
+            <tr className={m.toLowerCase()} key={m}>
               <td>
                 <FormattedMessage id={`measurements.${m}`} />
               </td>
               {sizes.map(s => {
                 let val = data[`size${s}`][m]
                 return (
-                  <td className={'size-' + s}>
+                  <td className={'size-' + s} key={s}>
                     {formatMm(val, 'metric')}
                     <br />
                     <span dangerouslySetInnerHTML={{ __html: formatMm(val, 'imperial') }} />

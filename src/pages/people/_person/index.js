@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePerson from '../../../hooks/usePerson'
-import useMergeData from '../../../hooks/useMergeData'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
@@ -369,7 +368,6 @@ const PersonPage = props => {
           id="measurements"
           style={styles.heading}
           data-test="measurements-title"
-          id="measurements"
         >
           <FormattedMessage id="app.measurements" />
         </h5>

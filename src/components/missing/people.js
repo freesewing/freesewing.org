@@ -1,7 +1,6 @@
 import React from 'react'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
-import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
 const MissingModels = props => (
