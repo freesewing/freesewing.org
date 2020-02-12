@@ -50,7 +50,23 @@ const SignupPage = props => {
   }
   const handleResend = evt => {
     evt.preventDefault()
-    app.resendActivationEmail(email, process.env.GATSBY_LANGUAGE, handleResult)
+    app.backend.resendActivationEmail(email, process.env.GATSBY_LANGUAGE)
+      .then(result => {
+        if (result.status === 200) setResult(true)
+        else app.setNotification({
+          type: 'warning',
+          msg: app.translate('app.noSuchUser')
+        })
+      })
+      .catch((err, data) => {
+        let msg = 'errors.requestFailedWithStatusCode500'
+        if (err.response.status === 404) msg = 'app.accountRequired'
+        else if (err.response.status === 400) msg = 'errors.something'
+        app.setNotification({
+          type: err.response.status === 404 ? 'warning' : 'error',
+          msg: app.translate(msg)
+        })
+      })
   }
   const handleResult = (backendResult, data = false) => {
     if (!backendResult) {

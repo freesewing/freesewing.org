@@ -31,7 +31,7 @@ const sessionMethods = ({
         } else return res.status
       })
       .catch(error => {
-        showError(error)
+        setLoading(false)
         if (error.response) return error.response.status
         else return error
       })

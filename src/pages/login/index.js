@@ -27,8 +27,12 @@ const LoginPage = props => {
     evt.preventDefault()
     app.setLoading(true)
     app.login(username, password).then(res => {
-      if (res !== true) {
-        if (res === 403) setInactive(true)
+      if (res === 403) setInactive(true)
+      else {
+        app.setNotification({
+          type: 'error',
+          msg: app.translate(`errors.requestFailedWithStatusCode${res}`)
+        })
       }
     })
   }
@@ -37,25 +41,38 @@ const LoginPage = props => {
     evt.preventDefault()
     app.recoverAccount(evt.target[0].value)
   }
+
+  const handleResendActivationEmail = (evt=false) => {
+    if (evt) evt.preventDefault()
+    app.resendActivationEmail(username, process.env.GATSBY_LANGUAGE, handleResult)
+  }
+
   if (inactive)
     return (
       <AppWrapper app={app}>
         <CenteredLayout app={app}>
-          <Blockquote type="note">
+          <Blockquote type="warning">
             <h5>
               <FormattedMessage id="account.accountIsInactive" />
             </h5>
             <p>
               <FormattedMessage id="account.accountNeedsActivation" />
             </p>
+            <p>
+              <Button variant="contained" color="primary" onClick={handleResendActivationEmail} size='large'>
+                <FormattedMessage id="app.resendActivationEmail" />
+              </Button>
+            </p>
+          </Blockquote>
+          <Blockquote type="note">
             <h6>
               <FormattedMessage id="app.askForHelp" />
             </h6>
             <p>
               <FormattedMessage id="app.joinTheChatMsg" />
             </p>
-            <p style={{ textAlign: 'right' }}>
-              <Button variant="contained" color="primary" href="https://gitter.im/freesewing/help">
+            <p>
+              <Button variant="contained" color="primary" className='info' href="https://gitter.im/freesewing/help">
                 <FormattedMessage id="app.askForHelp" />
               </Button>
             </p>
