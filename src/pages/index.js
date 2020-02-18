@@ -24,8 +24,8 @@ const HomePage = props => {
       <div id="homepage">
         {/* Top banner */}
         <header>
-          <div>
-            <div>
+          <div className="banner">
+            <div className="text-block">
               <h1>FreeSewing</h1>
               <h2>
                 <FormattedMessage id="app.sewingPatternsForNonAveragePeople" />
@@ -47,7 +47,7 @@ const HomePage = props => {
                     ? '/share/'
                     : app.account.username
                     ? '/patrons/join/'
-                    : '/signup/'
+                    : '/create/'
                 }
               >
                 {app.account.patron ? (
@@ -55,7 +55,7 @@ const HomePage = props => {
                 ) : app.account.username ? (
                   <FormattedMessage id="app.subscribe" />
                 ) : (
-                  <FormattedMessage id="app.signUp" />
+                  <FormattedMessage id="app.browsePatterns" />
                 )}
               </Button>
             </div>
