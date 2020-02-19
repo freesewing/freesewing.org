@@ -27,7 +27,8 @@ const LoginPage = props => {
     evt.preventDefault()
     app.setLoading(true)
     app.login(username, password).then(res => {
-      if (res === 403) setInactive(true)
+      if (res === 200) {} // Handled in hook
+      else if (res === 403) setInactive(true)
       else {
         app.setNotification({
           type: 'error',
