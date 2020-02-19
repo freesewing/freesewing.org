@@ -68,14 +68,6 @@ const SignupPage = props => {
         })
       })
   }
-  const handleResult = (backendResult, data = false) => {
-    if (!backendResult) {
-      let msg = 'errors.requestFailedWithStatusCode500'
-      if (data.data === 'userExists') msg = 'errors.emailExists'
-      setError(<FormattedMessage id={msg} />)
-    }
-    setResult(backendResult)
-  }
   const updateEmail = evt => {
     let value = evt.target.value
     setEmail(value)
