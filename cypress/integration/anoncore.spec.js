@@ -8,7 +8,7 @@ describe('Core pattern drafting for visitors', function() {
 
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
-    if (pattern === 'simon' || 1) {
+    if (pattern === 'theo' || 1) {
       it('Draft ' + capitalize(pattern), function() {
         cy.visit('/create/' + pattern + '/')
         cy.get('a[data-test=size-36]').click({ force: true })

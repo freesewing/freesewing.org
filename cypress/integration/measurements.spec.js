@@ -5,7 +5,7 @@ describe('Measurement documentation', function() {
     it(measurement, function() {
       cy.visit('/docs/measurements/' + measurement.toLowerCase())
       cy.get('[data-test=measurement-image]').should('be.visible')
-      cy.get('article > div > p').should('be.visible')
+      cy.get('#mdx > p').should('be.visible')
     })
   }
 })
