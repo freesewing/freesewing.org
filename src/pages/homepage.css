@@ -95,4 +95,8 @@
     max-width: 100%;
     min-width: 200px;
   }
+  #homepage > header {
+    background-size: 350%;
+    background-position: 15% 95%;
+  }
 }
