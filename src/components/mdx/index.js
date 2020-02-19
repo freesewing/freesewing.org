@@ -20,9 +20,11 @@ const customComponents = {
 }
 
 const Mdx = ({ node }) => (
-  <MDXProvider components={customComponents}>
-    <MDXRenderer>{node.body}</MDXRenderer>
-  </MDXProvider>
+  <section id='mdx'>
+    <MDXProvider components={customComponents}>
+      <MDXRenderer>{node.body}</MDXRenderer>
+    </MDXProvider>
+  </section>
 )
 
 export default Mdx
