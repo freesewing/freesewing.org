@@ -50,13 +50,15 @@ const SignupPage = props => {
   }
   const handleResend = evt => {
     evt.preventDefault()
-    app.backend.resendActivationEmail(email, process.env.GATSBY_LANGUAGE)
+    app.backend
+      .resendActivationEmail(email, process.env.GATSBY_LANGUAGE)
       .then(result => {
         if (result.status === 200) setResult(true)
-        else app.setNotification({
-          type: 'warning',
-          msg: app.translate('app.noSuchUser')
-        })
+        else
+          app.setNotification({
+            type: 'warning',
+            msg: app.translate('app.noSuchUser')
+          })
       })
       .catch((err, data) => {
         let msg = 'errors.requestFailedWithStatusCode500'

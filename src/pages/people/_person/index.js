@@ -364,11 +364,7 @@ const PersonPage = props => {
           </tbody>
         </table>
         {/* measurements */}
-        <h5
-          id="measurements"
-          style={styles.heading}
-          data-test="measurements-title"
-        >
+        <h5 id="measurements" style={styles.heading} data-test="measurements-title">
           <FormattedMessage id="app.measurements" />
         </h5>
         {blankSlate && (

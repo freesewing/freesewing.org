@@ -42,7 +42,7 @@ const LoginPage = props => {
     app.recoverAccount(evt.target[0].value)
   }
 
-  const handleResendActivationEmail = (evt=false) => {
+  const handleResendActivationEmail = (evt = false) => {
     if (evt) evt.preventDefault()
     app.resendActivationEmail(username, process.env.GATSBY_LANGUAGE, handleResult)
   }
@@ -59,7 +59,12 @@ const LoginPage = props => {
               <FormattedMessage id="account.accountNeedsActivation" />
             </p>
             <p>
-              <Button variant="contained" color="primary" onClick={handleResendActivationEmail} size='large'>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleResendActivationEmail}
+                size="large"
+              >
                 <FormattedMessage id="app.resendActivationEmail" />
               </Button>
             </p>
@@ -72,7 +77,12 @@ const LoginPage = props => {
               <FormattedMessage id="app.joinTheChatMsg" />
             </p>
             <p>
-              <Button variant="contained" color="primary" className='info' href="https://gitter.im/freesewing/help">
+              <Button
+                variant="contained"
+                color="primary"
+                className="info"
+                href="https://gitter.im/freesewing/help"
+              >
                 <FormattedMessage id="app.askForHelp" />
               </Button>
             </p>
