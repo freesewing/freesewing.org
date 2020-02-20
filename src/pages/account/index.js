@@ -47,7 +47,7 @@ const AccountPage = props => {
         )
       },
       {
-        to: '/people/',
+        to: '/person/',
         icon: <NewPersonIcon style={styles.icon} />,
         title: (
           <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
@@ -56,7 +56,7 @@ const AccountPage = props => {
     ],
     info: [
       {
-        to: '/person/',
+        to: '/people/',
         icon: <PeopleIcon style={styles.icon} />,
         title: 'app.people',
         className: 'info'
