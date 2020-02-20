@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
+import usePerson from '../../hooks/usePerson'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
@@ -39,6 +40,13 @@ const PatternsIndexPage = props => {
     warning: {
       maxWidth: '42rem',
       margin: '0 auto'
+    },
+    prefix: {
+      display: 'block',
+      fontSize: '1rem',
+      color: (app.theme === 'dark')
+        ? '#dee2e6'
+        : '#868e96'
     }
   }
   return (
@@ -47,11 +55,16 @@ const PatternsIndexPage = props => {
         <div style={styles.wrapper}>
           {Object.keys(app.patterns).length > 0 ? (
             Object.keys(app.patterns).map((handle, pattern) => {
+
+              let person = usePerson(app, app.patterns[handle].person)
+              let personName = app.patterns[handle].person
+              if (person) personName = person.name
+              let title = <><span style={styles.prefix}>{personName}:</span> {app.patterns[handle].name}</>
               return (
                 <PostPreview
                   app={app}
                   key={handle}
-                  title={app.patterns[handle].name}
+                  title={title}
                   description={app.patterns[handle].notes}
                   link={'/patterns/' + handle}
                   width={app.mobile ? 92 : 164}
