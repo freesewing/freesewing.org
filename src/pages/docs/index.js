@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
+import ReadMore from '../../components/read-more'
 
 const DocumentationIndexPage = props => {
   // State
@@ -21,40 +22,6 @@ const DocumentationIndexPage = props => {
   useEffect(() => {
     app.setTitle(app.translate('app.docs'))
   }, [])
-
-  // Methods
-  const renderPatternDocs = pattern => {
-    return (
-      <li key={pattern}>
-        <Link to={'/docs/patterns/' + pattern}>{capitalize(pattern)}</Link>
-      </li>
-    )
-  }
-
-  const renderMeasurementDocs = m => {
-    return (
-      <li key={m}>
-        <Link to={'/docs/measurements/' + m.toLowerCase()}>
-          <FormattedMessage id={'measurements.' + m} />
-        </Link>
-      </li>
-    )
-  }
-
-  const renderDocs = branch => {
-    let list = []
-    let links = {}
-    for (let slug of Object.keys(branch.children)) links[titles[slug]] = slug
-    for (let title of Object.keys(links).sort()) {
-      let slug = links[title]
-      list.push(
-        <li key={slug}>
-          <Link to={slug}>{title}</Link>
-        </li>
-      )
-    }
-    return <ul className="links">{list}</ul>
-  }
 
   // Data
   const styles = {
@@ -82,40 +49,27 @@ const DocumentationIndexPage = props => {
         <div style={styles.wrapper}>
           <div style={styles.column}>
             <h2>
-              <FormattedMessage id="app.patterns" />
+              <Link to='/docs/about/'><FormattedMessage id="app.aboutFreesewing" /></Link>
             </h2>
-            <ul className="links">{patterns.map(pattern => renderPatternDocs(pattern))}</ul>
+            <ReadMore root='docs/about' recurse={true}/>
           </div>
           <div style={styles.column}>
             <h2>
-              <FormattedMessage id="app.measurements" />
+              <Link to='/docs/measurements/'><FormattedMessage id="app.measurements" /></Link>
             </h2>
-            <ul className="links">
-              {measurements.womenswear.map(measurement => renderMeasurementDocs(measurement))}
-            </ul>
+            <ReadMore root='docs/measurements' />
           </div>
           <div style={styles.column}>
             <h2>
-              <FormattedMessage id="app.various" />
+              <Link to='/docs/patterns/'><FormattedMessage id="app.patterns" /></Link>
             </h2>
-            <h5 style={styles.subHeader}>
-              <Link to="/docs/about/">
-                <FormattedMessage id="app.aboutFreesewing" />
-              </Link>
-            </h5>
-            {renderDocs(tree['/docs/about/'])}
-            <h5 style={styles.subHeader}>
-              <Link to="/docs/draft/">
-                <FormattedMessage id="app.draft" />
-              </Link>
-            </h5>
-            {renderDocs(tree['/docs/draft/'])}
+            <ReadMore root='docs/patterns' />
           </div>
           <div style={styles.column}>
             <h2>
-              <FormattedMessage id="app.sewing" />
+              <Link to='/docs/sewing/'><FormattedMessage id="app.sewing" /></Link>
             </h2>
-            {renderDocs(tree['/docs/sewing/'])}
+            <ReadMore root='docs/sewing' />
           </div>
         </div>
         <Blockquote style={styles.blockquote}>
