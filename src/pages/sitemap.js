@@ -7,7 +7,7 @@ import WideLayout from '../components/layouts/wide'
 import PatronStars from '../components/patron-stars'
 import { list as patterns } from '@freesewing/pattern-info'
 import { measurements } from '@freesewing/models'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
 const Sitemap = props => {

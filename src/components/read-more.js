@@ -15,7 +15,6 @@ const ReadMore = ({ root, recurse=false, link=false, box=false }) => {
     let chunks = root.split('/')
     if (chunks[0] === '') chunks.splice(0,1)
     if (chunks[-1] === '') chunks.splice(-1,1)
-    console.log(chunks)
     if (chunks.length === 2) return tree[`/`+chunks.join('/')+'/']
       .children
     if (chunks.length === 3) return tree[`/`+chunks.slice(0,2).join('/')+'/']
