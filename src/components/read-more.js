@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 
-// FIXME: This only handles second-level and third-level docs pages for now
+// FIXME: This only handles pages 2, 3, or 4 levels deep
 
 const ReadMore = ({ root, recurse=false, link=false, box=false }) => {
   const app = useApp()
@@ -15,8 +15,16 @@ const ReadMore = ({ root, recurse=false, link=false, box=false }) => {
     let chunks = root.split('/')
     if (chunks[0] === '') chunks.splice(0,1)
     if (chunks[-1] === '') chunks.splice(-1,1)
-    if (chunks.length === 2) return tree[`/`+chunks.join('/')+'/'].children
-    if (chunks.length === 3) return tree[`/`+chunks.slice(0,2).join('/')+'/'].children['/'+chunks.join('/')+'/'].children
+    console.log(chunks)
+    if (chunks.length === 2) return tree[`/`+chunks.join('/')+'/']
+      .children
+    if (chunks.length === 3) return tree[`/`+chunks.slice(0,2).join('/')+'/']
+      .children['/'+chunks.join('/')+'/']
+      .children
+    if (chunks.length === 4) return tree[`/`+chunks.slice(0,2).join('/')+'/']
+      .children['/'+chunks.slice(0,3).join('/')+'/']
+      .children['/'+chunks.join('/')+'/']
+      .children
 
     return {}
   }
