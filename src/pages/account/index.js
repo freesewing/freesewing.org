@@ -56,7 +56,7 @@ const AccountPage = props => {
     ],
     info: [
       {
-        to: '/people/',
+        to: '/person/',
         icon: <PeopleIcon style={styles.icon} />,
         title: 'app.people',
         className: 'info'
