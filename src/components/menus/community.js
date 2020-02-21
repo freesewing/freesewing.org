@@ -81,16 +81,22 @@ const CommunityMenu = ({ app }) => {
           </li>
         </ul>
       </div>
-      <div style={style.col}>
+      <div style={{
+        ...style.col,
+        width: '100%'
+      }}>
         <h6>
           <FormattedMessage id="app.supportFreesewing" />
         </h6>
         <Button
           variant="contained"
           color="primary"
-          fullWidth={true}
+          fullWidth
           size="large"
-          style={style.button}
+          style={{
+            ...style.button,
+            marginBottom: '1rem',
+          }}
           href="/patrons/join/"
         >
           <HeartIcon style={{ marginRight: '1rem', color: '#e64980' }} />
