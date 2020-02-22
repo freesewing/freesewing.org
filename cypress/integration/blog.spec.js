@@ -4,7 +4,7 @@ const posts = [
   '/blog/roundup-2019-01',
   '/blog/core-1-8-jaeger-across-back',
   '/blog/email-spam-problems',
-  '/blog/freesewing-goes-jamstack',
+  '/blog/freesewing-goes-jamstack'
 ]
 
 describe('Blog posts', function() {

@@ -28,8 +28,7 @@ const sessionMethods = ({
             type: 'success',
             msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
           })
-        }
-        else  console.log('res in hook', res)
+        } else console.log('res in hook', res)
         return res.status
       })
       .catch(error => {

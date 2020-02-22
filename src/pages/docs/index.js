@@ -45,27 +45,35 @@ const DocumentationIndexPage = props => {
         <div style={styles.wrapper}>
           <div style={styles.column}>
             <h2>
-              <Link to='/docs/about/'><FormattedMessage id="app.aboutFreesewing" /></Link>
+              <Link to="/docs/about/">
+                <FormattedMessage id="app.aboutFreesewing" />
+              </Link>
             </h2>
-            <ReadMore root='docs/about' recurse={true}/>
+            <ReadMore root="docs/about" recurse={true} />
           </div>
           <div style={styles.column}>
             <h2>
-              <Link to='/docs/measurements/'><FormattedMessage id="app.measurements" /></Link>
+              <Link to="/docs/measurements/">
+                <FormattedMessage id="app.measurements" />
+              </Link>
             </h2>
-            <ReadMore root='docs/measurements' />
+            <ReadMore root="docs/measurements" />
           </div>
           <div style={styles.column}>
             <h2>
-              <Link to='/docs/patterns/'><FormattedMessage id="app.patterns" /></Link>
+              <Link to="/docs/patterns/">
+                <FormattedMessage id="app.patterns" />
+              </Link>
             </h2>
-            <ReadMore root='docs/patterns' />
+            <ReadMore root="docs/patterns" />
           </div>
           <div style={styles.column}>
             <h2>
-              <Link to='/docs/sewing/'><FormattedMessage id="app.sewing" /></Link>
+              <Link to="/docs/sewing/">
+                <FormattedMessage id="app.sewing" />
+              </Link>
             </h2>
-            <ReadMore root='docs/sewing' />
+            <ReadMore root="docs/sewing" />
           </div>
         </div>
         <Blockquote style={styles.blockquote}>

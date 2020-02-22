@@ -81,10 +81,12 @@ const CommunityMenu = ({ app }) => {
           </li>
         </ul>
       </div>
-      <div style={{
-        ...style.col,
-        width: '100%'
-      }}>
+      <div
+        style={{
+          ...style.col,
+          width: '100%'
+        }}
+      >
         <h6>
           <FormattedMessage id="app.supportFreesewing" />
         </h6>
@@ -95,7 +97,7 @@ const CommunityMenu = ({ app }) => {
           size="large"
           style={{
             ...style.button,
-            marginBottom: '1rem',
+            marginBottom: '1rem'
           }}
           href="/patrons/join/"
         >

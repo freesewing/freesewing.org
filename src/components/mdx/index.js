@@ -14,7 +14,7 @@ const customComponents = {
 }
 
 const Mdx = ({ node }) => (
-  <section id='mdx'>
+  <section id="mdx">
     <MDXProvider components={customComponents}>
       <MDXRenderer>{node.body}</MDXRenderer>
     </MDXProvider>

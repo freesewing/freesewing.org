@@ -22,10 +22,7 @@ describe('Pattern documentation', function() {
       it(capitalize(pattern), function() {
         cy.visit('/designs/' + pattern)
         cy.get('h1').should('contain', i18n['patterns.' + pattern + '.title'])
-        cy.get(`#description`).should(
-          'contain',
-          i18n['patterns.' + pattern + '.description']
-        )
+        cy.get(`#description`).should('contain', i18n['patterns.' + pattern + '.description'])
         cy.get(`[data-test=measurements] h2`).should('contain', i18n['app.requiredMeasurements'])
         cy.get(`[data-test=options] h2`).should('contain', i18n['app.patternOptions'])
       })

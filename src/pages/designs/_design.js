@@ -118,8 +118,8 @@ const DesignPage = props => {
         </p>
         <div style={styles.wrapper}>
           <div style={styles.col}>
-            <p id='description'>
-            <FormattedMessage id={'patterns.' + design + '.description'} />
+            <p id="description">
+              <FormattedMessage id={'patterns.' + design + '.description'} />
             </p>
             <LineDrawing pattern={design} />
             <table style={styles.table}>

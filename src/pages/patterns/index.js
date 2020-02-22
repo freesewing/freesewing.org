@@ -44,9 +44,7 @@ const PatternsIndexPage = props => {
     prefix: {
       display: 'block',
       fontSize: '1rem',
-      color: (app.theme === 'dark')
-        ? '#dee2e6'
-        : '#868e96'
+      color: app.theme === 'dark' ? '#dee2e6' : '#868e96'
     }
   }
   return (
@@ -55,11 +53,14 @@ const PatternsIndexPage = props => {
         <div style={styles.wrapper}>
           {Object.keys(app.patterns).length > 0 ? (
             Object.keys(app.patterns).map((handle, pattern) => {
-
               let person = usePerson(app, app.patterns[handle].person)
               let personName = app.patterns[handle].person
               if (person) personName = person.name
-              let title = <><span style={styles.prefix}>{personName}:</span> {app.patterns[handle].name}</>
+              let title = (
+                <>
+                  <span style={styles.prefix}>{personName}:</span> {app.patterns[handle].name}
+                </>
+              )
               return (
                 <PostPreview
                   app={app}
