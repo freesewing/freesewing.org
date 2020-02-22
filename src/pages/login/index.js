@@ -27,13 +27,15 @@ const LoginPage = props => {
     evt.preventDefault()
     app.setLoading(true)
     app.login(username, password).then(res => {
-      if (res === 200) {} // Handled in hook
-      else if (res === 403) setInactive(true)
-      else {
-        app.setNotification({
-          type: 'error',
-          msg: app.translate(`errors.requestFailedWithStatusCode${res}`)
-        })
+      // 200 is handled in hook
+      if (res !== 200) {
+        if (res === 403) setInactive(true)
+        else {
+          app.setNotification({
+            type: 'error',
+            msg: app.translate(`errors.requestFailedWithStatusCode${res}`)
+          })
+        }
       }
     })
   }

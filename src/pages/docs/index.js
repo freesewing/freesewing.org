@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import useNavigation from '../../hooks/useNavigation'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 
-import { list as patterns } from '@freesewing/pattern-info'
 import { measurements } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
-import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 import ReadMore from '../../components/read-more'
@@ -16,7 +13,6 @@ import ReadMore from '../../components/read-more'
 const DocumentationIndexPage = props => {
   // State
   const app = useApp()
-  const { tree, titles } = useNavigation(app)
 
   // Effects
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { strings } from '@freesewing/i18n'
-import { list, options } from '@freesewing/pattern-info'
+import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
@@ -31,18 +31,4 @@ describe('Pattern documentation', function() {
       })
     }
   })
-
-  // Too slow, better to just check for dead links
-  //describe('Pattern options', function() {
-  //  for (let pattern of list) {
-  //    describe(capitalize(pattern), function() {
-  //      for (let option of options[pattern]) {
-  //        it(option, function() {
-  //          cy.visit('/docs/patterns/' + pattern + '/options/' + option.toLowerCase())
-  //          cy.get('#mdx]').should('be.visible')
-  //        })
-  //      }
-  //    })
-  //  }
-  //})
 })

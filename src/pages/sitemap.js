@@ -6,7 +6,6 @@ import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
 import PatronStars from '../components/patron-stars'
 import { list as patterns } from '@freesewing/pattern-info'
-import { measurements } from '@freesewing/models'
 import { Link, graphql } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
@@ -33,15 +32,6 @@ const Sitemap = props => {
     '#patrons': 'app.patrons',
     '#patterns': 'app.patterns',
     '#showcase': 'app.showcase',
-  }
-
-  // Handle pages without title
-  const patternOptionTitle = (pattern, option) => {
-    for (let o of options[pattern]) {
-      if (o.toLowerCase() === option) return app.translate(`options.${pattern}.${o}.title`)
-    }
-
-    return option
   }
 
   const renderDocs = () => {
@@ -230,7 +220,7 @@ const Sitemap = props => {
         <h2 id='patrons'><Link to='/patrons/'><FormattedMessage id='app.patrons' /></Link></h2>
         <ul className='links'>
           {[8,4,2].map(tier => (
-          <li>
+          <li key={tier}>
             <PatronStars tier={tier} />
             <ul className='links'>
               {props.data[`patrons${tier}`].edges.map( edge => (
