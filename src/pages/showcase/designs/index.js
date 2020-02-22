@@ -77,7 +77,7 @@ const ShowcaseIndexPage = props => {
       if (i > 0) {
         output.push(
           <h2 key={`h2-${pattern}`}>
-            <Link to={`/showcase/patterns/${pattern}/`}>
+            <Link to={`/showcase/designs/${pattern}/`}>
               {app.translate(`patterns.${pattern}.title`)}
             </Link>
           </h2>

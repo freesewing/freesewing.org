@@ -52,7 +52,7 @@ const PatternIndexPage = props => {
       </p>
       <ul className="links">
         <li>
-          <Link to={'/showcase/patterns/' + props.pattern}>
+          <Link to={'/showcase/designs/' + props.pattern}>
             <FormattedMessage id="app.showcase" /> / {capitalize(props.pattern)}
           </Link>
         </li>
