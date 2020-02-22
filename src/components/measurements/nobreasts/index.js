@@ -1,11 +1,11 @@
 import acrossback from './acrossback.svg'
 import anklecircumference from './anklecircumference.svg'
 import bicepscircumference from './bicepscircumference.svg'
-import centerbacknecktowaist from './centerbacknecktowaist.svg'
 import chestcircumference from './chestcircumference.svg'
 import headcircumference from './headcircumference.svg'
 import hipscircumference from './hipscircumference.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
+import hpstohipsback from './hpstohipsback.svg'
 import inseam from './inseam.svg'
 import kneecircumference from './kneecircumference.svg'
 import naturalwaist from './naturalwaist.svg'
@@ -27,11 +27,11 @@ export default {
   acrossback,
   anklecircumference,
   bicepscircumference,
-  centerbacknecktowaist,
   chestcircumference,
   headcircumference,
   hipscircumference,
   hipstoupperleg,
+  hpstohipsback,
   inseam,
   kneecircumference,
   naturalwaist,

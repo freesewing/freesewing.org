@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Breadcrumbs from '../breadcrumbs'
 import Subscribe from '../subscribe'
 import List from './list'
 import Thanks from './thanks'
@@ -9,21 +8,13 @@ import Thanks from './thanks'
 const PatronsIndex = props => {
   useEffect(() => {
     if (props.slug === '/patrons') {
-      props.app.frontend.setTitle(props.app.frontend.intl.formatMessage({ id: 'app.ourPatrons' }))
+      props.app.setTitle(props.app.translate('app.ourPatrons'))
     } else if (props.slug === '/patrons/thanks') {
-      props.app.frontend.setTitle(
-        props.app.frontend.intl.formatMessage({ id: 'app.thanksForYourSupport' })
-      )
-      props.app.frontend.setCrumbs([
-        { slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }
-      ])
+      props.app.setTitle(props.app.translate('app.thanksForYourSupport'))
+      props.app.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
     } else {
-      props.app.frontend.setTitle(
-        props.app.frontend.intl.formatMessage({ id: 'app.becomeAPatron' })
-      )
-      props.app.frontend.setCrumbs([
-        { slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }
-      ])
+      props.app.setTitle(props.app.translate('app.becomeAPatron'))
+      props.app.setCrumbs([{ slug: '/patrons', title: <FormattedMessage id="app.ourPatrons" /> }])
     }
   }, [props.slug])
 
@@ -87,7 +78,7 @@ const PatronsIndex = props => {
           </Button>
         </div>
       </div>
-      <Subscribe />
+      <Subscribe app={app} />
     </React.Fragment>
   )
 }

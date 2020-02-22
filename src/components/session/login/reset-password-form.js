@@ -5,6 +5,9 @@ import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
 const ResetPasswordForm = props => (
   <React.Fragment>
+    <h3 data-test="trouble">
+      <FormattedMessage id="app.troubleLoggingIn" />
+    </h3>
     <div style={{ textAlign: 'left' }}>
       <ul>
         <li data-test="trouble1">

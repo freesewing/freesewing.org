@@ -1,12 +1,15 @@
 import acrossback from './acrossback.svg'
 import anklecircumference from './anklecircumference.svg'
 import bicepscircumference from './bicepscircumference.svg'
+import bustfront from './bustfront.svg'
 import bustspan from './bustspan.svg'
-import centerbacknecktowaist from './centerbacknecktowaist.svg'
 import chestcircumference from './chestcircumference.svg'
 import headcircumference from './headcircumference.svg'
 import highbust from './highbust.svg'
-import highpointshouldertobust from './highpointshouldertobust.svg'
+import highbustfront from './highbustfront.svg'
+import hpstobust from './hpstobust.svg'
+import hpstohipsback from './hpstohipsback.svg'
+import hpstohipsfront from './hpstohipsfront.svg'
 import hipscircumference from './hipscircumference.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
 import inseam from './inseam.svg'
@@ -32,12 +35,15 @@ export default {
   acrossback,
   anklecircumference,
   bicepscircumference,
+  bustfront,
   bustspan,
-  centerbacknecktowaist,
   chestcircumference,
   headcircumference,
   highbust,
-  highpointshouldertobust,
+  highbustfront,
+  hpstobust,
+  hpstohipsback,
+  hpstohipsfront,
   hipscircumference,
   hipstoupperleg,
   inseam,

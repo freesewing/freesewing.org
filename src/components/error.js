@@ -20,7 +20,7 @@ const Error = ({ report = false, err = defaultError }) => {
             href="https://github.com/freesewing/website/issues/new"
             target="_BLANK"
           >
-            <Icon icon="github" />
+            <Icon icon="github" style={{ marginRight: '0.5rem' }} />
             <FormattedMessage id="app.reportThisOnGithub" />
           </Button>
         </p>
