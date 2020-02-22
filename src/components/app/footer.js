@@ -40,7 +40,9 @@ const Footer = props => {
       borderRadius: '50%',
       background: '#000',
       margin: '2px',
-      border: '1px solid #fff6'
+      border: '1px solid #fff6',
+      display: 'inline-block',
+      overflow: 'hidden'
     },
     container: {
       display: 'flex',
