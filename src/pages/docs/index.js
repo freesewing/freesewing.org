@@ -4,7 +4,6 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 
-import { measurements } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
