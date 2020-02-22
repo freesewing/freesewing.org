@@ -78,11 +78,11 @@ const PageNotFound = props => {
             style={styles.button}
             variant="outlined"
             color="primary"
-            href="https://github.com/freesewing/freesewing.dev/issues/new?title=Broken%20link%20on%20freesewing.dev&body=Please%20include%20the%20URL%20of%20the%20page%20that%20has%20the%20broken%20link%20on%20it"
+            href="https://github.com/freesewing/freesewing.org/issues/new?title=Broken%20link%20on%20freesewing.org&body=Please%20include%20the%20URL%20of%20the%20page%20that%20has%20the%20broken%20link%20on%20it"
             size="large"
           >
             <Icon type="github" />
-            <FormattedMessage id="app.reportBrokenLink" />
+            <FormattedMessage id="app.reportThisOnGithub" />
           </Button>
         </div>
       </CenteredLayout>
