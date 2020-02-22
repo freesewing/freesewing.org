@@ -8,7 +8,7 @@ import { injectIntl } from 'react-intl'
 
 const MeasurementImages = props => {
   const { measurement, intl, breasts } = props
-
+  if (!measurement) return null
   // Set tab to 0 with model that has breasts or 1 for no breasts
   // Default to breasts
   const [tab, setTab] = useState(breasts == false ? 1 : 0)
@@ -17,7 +17,9 @@ const MeasurementImages = props => {
   const seated = ['seatdepth']
   const breastsOnly = [
     'bustspan',
+    'bustfront',
     'highbust',
+    'highbustfront',
     'highpointshouldertobust',
     'naturalwaisttounderbust',
     'underbust'

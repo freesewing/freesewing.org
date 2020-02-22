@@ -4,18 +4,22 @@ import oauthConfig from '../../../config/oauth'
 
 const Oauth = props => {
   const handleSignup = provider => {
-    props.app.frontend.startLoading()
-    props.app.backend.initOauth(
-      {
+    props.app.setLoading(true)
+    props.app.backend
+      .initOauth({
         provider: provider,
         language: process.env.GATSBY_LANGUAGE
-      },
-      handleResult
-    )
-  }
-  const handleResult = (backendResult, provider, data = false) => {
-    if (backendResult) window.location = oauthConfig[provider] + data.state
-    else console.log(backendResult)
+      })
+      .then(result => {
+        if (result.status === 200) window.location = oauthConfig[provider] + result.data.state
+        else {
+          props.app.setLoading(false)
+          props.app.setNotification({
+            type: 'error',
+            msg: props.app.translate('errors.something')
+          })
+        }
+      })
   }
 
   const styles = {

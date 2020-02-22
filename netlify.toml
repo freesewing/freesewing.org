@@ -1,10 +1,124 @@
 [build]
   command = "gatsby build"
   [build.environment]
-    GATSBY_BACKEND = "https://backend.freesewing.org/"
     GATSBY_TILER = "https://tiler.freesewing.org/"
-    GATSBY_GITHUB_CLIENT_ID = "6b998e4616d5851b098b"
-    GATSBY_GOOGLE_CLIENT_ID = "316708420427-4spj1rj2ekgke887ng5dsi1bsu8bcg8j.apps.googleusercontent.com"
     GATSBY_ALGOLIA_API_ID = "MA0Y5A2PF0"
     GATSBY_ALGOLIA_SEARCH_KEY = "278751992e7a54c20c49a3c04f1c80fe"
     GATSBY_CONTEXT = "production"
+
+[[redirects]]
+  from = "/contact*"
+  to = "/docs/about/contact/"
+
+[[redirects]]
+  from = "/faq*"
+  to = "/docs/about/faq/"
+
+[[redirects]]
+  from = "/share*"
+  to = "/docs/about/share/"
+
+[[redirects]]
+  from = "/pledge*"
+  to = "/docs/about/pledge/"
+
+[[redirects]]
+  from = "/privacy*"
+  to = "/docs/about/privacy/"
+
+[[redirects]]
+  from = "/rights*"
+  to = "/docs/about/rights/"
+
+[[redirects]]
+  from = "/patterns/aaron*"
+  to = "/designs/aaron/"
+
+[[redirects]]
+  from = "/patterns/benjamin*"
+  to = "/designs/benjamin/"
+
+[[redirects]]
+  from = "/patterns/bent*"
+  to = "/designs/bent/"
+
+[[redirects]]
+  from = "/patterns/breanna*"
+  to = "/designs/breanna/"
+
+[[redirects]]
+  from = "/patterns/brian*"
+  to = "/designs/brian/"
+
+[[redirects]]
+  from = "/patterns/carlita*"
+  to = "/designs/carlita/"
+
+[[redirects]]
+  from = "/patterns/carlton*"
+  to = "/designs/carlton/"
+
+[[redirects]]
+  from = "/patterns/cathrin*"
+  to = "/designs/cathrin/"
+
+[[redirects]]
+  from = "/patterns/florent*"
+  to = "/designs/florent/"
+
+[[redirects]]
+  from = "/patterns/huey*"
+  to = "/designs/huey/"
+
+[[redirects]]
+  from = "/patterns/hugo*"
+  to = "/designs/hugo/"
+
+[[redirects]]
+  from = "/patterns/jaeger*"
+  to = "/designs/jaeger/"
+
+[[redirects]]
+  from = "/patterns/penelope*"
+  to = "/designs/penelope/"
+
+[[redirects]]
+  from = "/patterns/shin*"
+  to = "/designs/shin/"
+
+[[redirects]]
+  from = "/patterns/simone*"
+  to = "/designs/simone/"
+
+[[redirects]]
+  from = "/patterns/simon*"
+  to = "/designs/simon/"
+
+[[redirects]]
+  from = "/patterns/sven*"
+  to = "/designs/sven/"
+
+[[redirects]]
+  from = "/patterns/tamiko*"
+  to = "/designs/tamiko/"
+
+[[redirects]]
+  from = "/patterns/theo*"
+  to = "/designs/theo/"
+
+[[redirects]]
+  from = "/patterns/trayvon*"
+  to = "/designs/trayvon/"
+
+[[redirects]]
+  from = "/patterns/wahid*"
+  to = "/designs/wahid/"
+
+[[redirects]]
+  from = "/patterns/waralee*"
+  to = "/designs/waralee/"
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200

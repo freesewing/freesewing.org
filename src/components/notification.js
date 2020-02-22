@@ -6,10 +6,11 @@ import ErrorIcon from '@material-ui/icons/Error'
 import InfoIcon from '@material-ui/icons/Info'
 import ErrorMsg from './error'
 
-const Notification = props => {
-  if (typeof props.notification.type === 'undefined') return null
+const Notification = ({ notification, setNotification, mobile }) => {
+  // Do nothing most of the time
+  if (!notification) return null
 
-  let { type, message } = props.notification
+  let { type, msg } = notification
   const typeIcon = {
     success: CheckCircleIcon,
     warning: WarningIcon,
@@ -18,13 +19,13 @@ const Notification = props => {
   }
   const Icon = typeIcon[type]
 
-  let msg = message
-  if (message instanceof Error) msg = <ErrorMsg err={message} />
-  else if (message instanceof String)
+  if (msg instanceof Error) msg = <ErrorMsg err={msg} />
+  else if (msg instanceof String)
     msg = <span key="message" dangerouslySetInnerHTML={{ __html: msg }} />
-  else if (message instanceof Object) {
+  else if (msg instanceof Object) {
     // We seem to hit this (only) when testing headless with cypress
     // It most likely has something to do with the notification in localstorage
+    console.log({ msg })
     msg = (
       <span
         key="message"
@@ -70,12 +71,12 @@ const Notification = props => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: props.mobile ? 'top' : 'bottom',
+        vertical: mobile ? 'top' : 'bottom',
         horizontal: 'right'
       }}
       open={true}
       autoHideDuration={3000}
-      onClose={props.closeNotification}
+      onClose={() => setNotification(false)}
       children={children}
       data-test="notification"
     />

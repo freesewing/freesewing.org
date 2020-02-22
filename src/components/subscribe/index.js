@@ -23,7 +23,8 @@ const Subscribe = props => {
   const useStyles = makeStyles({
     tier0: {
       ...sharedStyles,
-      color: '#212529'
+      color: props.app.theme === 'light' ? '#212529' : '#fff',
+      backgroundColor: props.app.theme === 'light' ? '#fff' : '#495057'
     },
     tier2: {
       ...sharedStyles,
@@ -60,7 +61,7 @@ const Subscribe = props => {
   return (
     <React.Fragment>
       {showFree && (
-        <Grid item sm="12" md>
+        <Grid item sm={12} md>
           <Card className={useStyles().tier0} data-test="tier-0">
             <CardContent className={useStyles().content}>
               <h3>
@@ -76,8 +77,8 @@ const Subscribe = props => {
           </Card>
         </Grid>
       )}
-      <Grid id="tiers" container spacing="2" alignItems="stretch">
-        <Grid item sm="12" md>
+      <Grid id="tiers" container spacing={2} alignItems="stretch">
+        <Grid item sm={12} md>
           <Card className={useStyles().tier2} data-test="tier-2">
             <CardContent className={useStyles().content}>
               <h3>
@@ -93,7 +94,7 @@ const Subscribe = props => {
             <PaypalButton tier={2} />
           </Card>
         </Grid>
-        <Grid item sm="12" md>
+        <Grid item sm={12} md>
           <Card className={useStyles().tier4} data-test="tier-4">
             <CardContent className={useStyles().content}>
               <h3>
@@ -109,7 +110,7 @@ const Subscribe = props => {
             <PaypalButton tier={4} />
           </Card>
         </Grid>
-        <Grid item sm="12" md>
+        <Grid item sm={12} md>
           <Card className={useStyles().tier8} data-test="tier-8">
             <CardContent className={useStyles().content}>
               <h3>

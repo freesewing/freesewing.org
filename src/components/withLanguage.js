@@ -2,7 +2,7 @@ import React from 'react'
 import { IntlProvider } from 'react-intl'
 import { strings } from '@freesewing/i18n'
 
-const withLanguage = (WrappedComponent, lang = 'en') => {
+const withLanguage = WrappedComponent => {
   return class extends React.Component {
     constructor(props) {
       super(props)
@@ -10,8 +10,11 @@ const withLanguage = (WrappedComponent, lang = 'en') => {
 
     render() {
       return (
-        <IntlProvider locale={lang} messages={strings[lang]}>
-          <WrappedComponent language={lang} {...this.props} />
+        <IntlProvider
+          locale={process.env.GATSBY_LANGUAGE}
+          messages={strings[process.env.GATSBY_LANGUAGE]}
+        >
+          <WrappedComponent language={process.env.GATSBY_LANGUAGE} {...this.props} />
         </IntlProvider>
       )
     }

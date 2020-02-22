@@ -1,0 +1,102 @@
+#homepage {
+  flex-grow: 2;
+}
+#homepage > header {
+  background-image: url('/horizon.jpg');
+  background-size: cover;
+  background-position: bottom;
+}
+#homepage > header > div.banner {
+  min-height: 300px;
+  padding: 3rem 2rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  position: relative;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    349deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.2) 35%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0.9;
+}
+#homepage > header > div.banner > div.text-block {
+  padding: 1rem 2rem;
+}
+
+#homepage > header > div.banner > div.text-block h1 {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  font-weight: 900;
+  color: #fff;
+}
+#homepage > header > div.banner > div.text-block h2 {
+  border-color: rgba(255, 255, 255, 0.25);
+  margin: 0 0 1rem 0;
+  color: #fff;
+}
+#homepage div.boxes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
+}
+#homepage div.boxes > div {
+  padding: 1.5rem;
+  max-width: calc(30% - 1.5rem);
+}
+#homepage .btn-primary {
+  background: #fff;
+  border-color: #fff;
+  color: #212529;
+  margin: 0.5rem;
+}
+#homepage .btn-secondary {
+  background: rgba(255, 255, 255, 0.5);
+  color: #212529;
+  border-color: #fff;
+}
+#homepage div.stripe {
+  background-image: url('/support.jpg');
+  background-size: cover;
+  background-position: bottom;
+  min-height: 300px;
+  padding: 3rem 2rem;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+#homepage div.stripe > div {
+  max-width: 500px;
+  padding: 1rem 2rem;
+}
+#homepage div.stripe p {
+  font-size: 125%;
+}
+#homepage h3.pricing {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* mobile and tablet */
+@media (max-width: 959px) {
+  #homepage div.boxes {
+    display: block;
+  }
+  #homepage div.boxes > div {
+    max-width: 666px;
+    margin: 0 auto;
+  }
+}
+
+/* mobile */
+@media (max-width: 599px) {
+  #homepage div.boxes > div {
+    max-width: 100%;
+    min-width: 200px;
+  }
+  #homepage > header {
+    background-size: 350%;
+    background-position: 15% 95%;
+  }
+}

@@ -1,25 +1,30 @@
 import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
+import Avatar from '../avatar'
 
 const SearchHit = props => {
   const [expand, setExpand] = useState(false)
   const [open, setOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [tier, setTier] = useState(props.user.patron || 0)
+  const [role, setRole] = useState(props.user.role)
+  const [frozen, setFrozen] = useState(props.user.status === 'frozen' ? true : false)
 
   const handleAction = option => {
     if (option.slice(0, 1) === 't') {
-      props.app.backend.adminSetPatronStatus(
-        { handle: props.user.handle, patron: option.slice(1) },
-        props.search
-      )
+      props.app.adminSetPatronStatus(props.user.handle, option.slice(1))
+      setTier(option.slice(1))
     } else if (option === 'imp') {
-      props.app.backend.adminImpersonate({ handle: props.user.handle })
+      props.app.adminImpersonate(props.user.handle)
     } else if (option === 'uf') {
-      props.app.backend.adminUnfreeze({ handle: props.user.handle }, props.search)
+      props.app.adminUnfreeze(props.user.handle)
+      setFrozen(false)
     } else if (option === 'admin') {
-      props.app.backend.adminSetRole({ handle: props.user.handle, role: 'admin' }, props.search)
+      props.app.adminSetRole(props.user.handle, 'admin')
+      setRole('admin')
     } else if (option === 'user') {
-      props.app.backend.adminSetRole({ handle: props.user.handle, role: 'user' }, props.search)
+      props.app.adminSetRole(props.user.handle, 'user')
+      setRole('user')
     }
   }
 
@@ -54,41 +59,58 @@ const SearchHit = props => {
     }
   }
 
-  delete options['t' + props.user.patron]
-  if (props.user.role === 'admin') delete options.admin
+  delete options['t' + tier]
+  if (role === 'admin') delete options.admin
   else delete options.user
-  if (props.user.status !== 'frozen') delete options.uf
+  if (!frozen) delete options.uf
 
   const styles = {
     wrapper: {
-      margin: '2rem auto',
-      borderBottom: '1px solid #666'
+      margin: '2rem 0',
+      borderBottom: '1px solid #666',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
     },
-    avatar: {
-      width: '150px',
-      height: '150px',
-      float: 'left',
-      margin: '0 1rem 1rem 0'
+    data: {
+      flexGrow: 2,
+      textAlign: 'left',
+      padding: '0 1rem'
     },
     buttons: {
       textAlign: 'center'
     },
     button: {
       margin: '0.5rem'
+    },
+    heading: {
+      margin: 0
+    },
+    json: {
+      width: '100%'
     }
   }
 
   return (
     <div style={styles.wrapper}>
-      <img src={props.user.pictureUris.m} alt="avatar" style={styles.avatar} />
-      <h5>
-        {props.user.username} ({props.user.handle})
-      </h5>
-      <ul>
-        <li>Email: {props.user.email}</li>
-        <li>Login: {props.user.time.login}</li>
-        <li>Patron: {props.user.patron}</li>
-      </ul>
+      <Avatar data={props.app.account} alt="avatar" />
+      <div style={styles.data}>
+        <h5 style={styles.heading}>
+          {props.user.username} ({props.user.handle})
+        </h5>
+        <ul>
+          <li>
+            <b>Email</b>: {props.user.email}
+          </li>
+          <li>
+            <b>Login</b>: {props.user.time.login}
+          </li>
+          <li>
+            <b>Patron</b>: {tier}
+          </li>
+        </ul>
+      </div>
       <p style={{ textAlign: 'right' }}>
         <Button size="large" onClick={() => setExpand(!expand)} variant="outlined" color="primary">
           {expand ? 'Collapse' : 'Expand'}
@@ -120,10 +142,12 @@ const SearchHit = props => {
               </Button>
             ))}
           </div>
-          <div className="gatsby-highlight">
-            <pre className="language-json">
-              <code className="language-json">{JSON.stringify(props.user, null, 2)}</code>
-            </pre>
+          <div style={styles.json}>
+            <div className="gatsby-highlight">
+              <pre className="language-json">
+                <code className="language-json">{JSON.stringify(props.user, null, 2)}</code>
+              </pre>
+            </div>
           </div>
         </>
       )}
