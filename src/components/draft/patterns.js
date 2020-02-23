@@ -7,6 +7,7 @@ import Carlton from '@freesewing/carlton'
 import Carlita from '@freesewing/carlita'
 import Cathrin from '@freesewing/cathrin'
 import Florent from '@freesewing/florent'
+import Holmes from '@freesewing/holmes'
 import Huey from '@freesewing/huey'
 import Hugo from '@freesewing/hugo'
 import Jaeger from '@freesewing/jaeger'
@@ -32,6 +33,7 @@ const patterns = {
   Carlton,
   Cathrin,
   Florent,
+  Holmes,
   Huey,
   Hugo,
   Jaeger,

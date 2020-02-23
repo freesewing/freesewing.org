@@ -278,7 +278,7 @@ const PersonPage = props => {
         {!blankSlate && (
           <>
             <ModelGraph model={person} intl={app.intl} />
-            <Link to="/docs/about/model-graph" style={{ marginBottom: '1rem' }}>
+            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
               <small>
                 <FormattedMessage id="app.whatIsThis" />
               </small>
