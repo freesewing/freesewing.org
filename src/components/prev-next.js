@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { getChildren, getSiblings, getParents } from '../utils'
 
-const PreviousNext = ({slug, tree, titles}) => {
+const PreviousNext = ({ slug, tree, titles }) => {
   const children = getChildren(slug, tree)
   const siblings = getSiblings(slug, tree)
   const parents = getParents(slug, tree)
@@ -10,9 +10,13 @@ const PreviousNext = ({slug, tree, titles}) => {
   const findNextParent = childSlug => {
     let rents = Object.keys(getParents(childSlug, tree))
     if (rents.length < 2) return false
-    let rent = childSlug.split('/').slice(0, -2).join('/')+'/'
+    let rent =
+      childSlug
+        .split('/')
+        .slice(0, -2)
+        .join('/') + '/'
     let pos = rents.indexOf(rent)
-    if (pos+1 < rents.length) return rents[pos+1]
+    if (pos + 1 < rents.length) return rents[pos + 1]
     else return findNextParent(rent)
   }
 
@@ -21,7 +25,7 @@ const PreviousNext = ({slug, tree, titles}) => {
     else {
       let sibs = Object.keys(siblings)
       let pos = sibs.indexOf(slug)
-      if (pos+1 < sibs.length) return sibs[pos+1]
+      if (pos + 1 < sibs.length) return sibs[pos + 1]
       else return findNextParent(slug)
     }
   }
@@ -29,21 +33,24 @@ const PreviousNext = ({slug, tree, titles}) => {
   const findParent = childSlug => {
     let rents = Object.keys(getParents(childSlug, tree))
     if (rents.length < 1) return false
-    return childSlug.split('/').slice(0, -2).join('/')+'/'
+    return (
+      childSlug
+        .split('/')
+        .slice(0, -2)
+        .join('/') + '/'
+    )
   }
 
   const findPrevious = () => {
     let sibs = Object.keys(siblings)
     let pos = sibs.indexOf(slug)
-    if (pos > 0) return sibs[pos-1]
+    if (pos > 0) return sibs[pos - 1]
     else return findParent(slug)
   }
 
   // Previous/Next navigation
   const renderLink = side => {
-    let to = (side === 'next')
-      ? findNext()
-      : findPrevious()
+    let to = side === 'next' ? findNext() : findPrevious()
 
     if (!to) return <span>&nbsp;</span>
 
@@ -64,11 +71,11 @@ const PreviousNext = ({slug, tree, titles}) => {
       alignContent: 'center',
       justifyContent: 'space-between',
       borderRadius: '4px',
-      padding: '9px',
+      padding: '9px'
     }
   }
   return (
-    <div style={styles.wrapper} className='shadow'>
+    <div style={styles.wrapper} className="shadow">
       {renderLink('prev')}
       {renderLink('next')}
     </div>

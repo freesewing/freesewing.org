@@ -11,18 +11,16 @@ export const getChildren = (slug, tree) => {
   let chunks = slugToChunks(slug)
   let base = getBase(chunks)
   try {
-    if (chunks.length === 2)
-      return tree[base].children
+    if (chunks.length === 2) return tree[base].children
     if (chunks.length === 3) return tree[base].children['/' + chunks.join('/') + '/'].children
     if (chunks.length === 4)
-      return tree[base].children['/' + chunks.slice(0, 3).join('/') + '/']
-        .children['/' + chunks.join('/') + '/'].children
+      return tree[base].children['/' + chunks.slice(0, 3).join('/') + '/'].children[
+        '/' + chunks.join('/') + '/'
+      ].children
     if (chunks.length === 5)
-      return tree[base]
-        .children['/' + chunks.slice(0, 3).join('/') + '/']
-        .children['/' + chunks.slice(0, 4).join('/') + '/']
-        .children['/' + chunks.join('/') + '/']
-        .children
+      return tree[base].children['/' + chunks.slice(0, 3).join('/') + '/'].children[
+        '/' + chunks.slice(0, 4).join('/') + '/'
+      ].children['/' + chunks.join('/') + '/'].children
   } catch (err) {
     // Avoid SSR noise when building site
     if (typeof window !== 'undefined') console.log('Could not get children', { err, chunks, slug })
@@ -40,10 +38,9 @@ export const getSiblings = (slug, tree) => {
     if (chunks.length === 4)
       return tree[base].children['/' + chunks.slice(0, 3).join('/') + '/'].children
     if (chunks.length === 5)
-      return tree[base]
-        .children['/' + chunks.slice(0, 3).join('/') + '/']
-        .children['/' + chunks.slice(0, 4).join('/') + '/']
-        .children
+      return tree[base].children['/' + chunks.slice(0, 3).join('/') + '/'].children[
+        '/' + chunks.slice(0, 4).join('/') + '/'
+      ].children
   } catch (err) {
     // Avoid SSR noise when building site
     if (typeof window !== 'undefined') console.log('Could not get siblings', { err, chunks, slug })
@@ -57,14 +54,13 @@ export const getParents = (slug, tree) => {
   let base = getBase(chunks)
   try {
     if (chunks.length === 3) return tree
-    if (chunks.length === 4)
-      return tree[base].children
+    if (chunks.length === 4) return tree[base].children
     if (chunks.length === 5)
       return tree[base].children[`/` + chunks.slice(0, 3).join('/') + '/'].children
     if (chunks.length === 6)
-      return tree[base]
-        .children[`/` + chunks.slice(0, 3).join('/') + '/']
-        .children[`/` + chunks.slice(0, 4).join('/') + '/']
+      return tree[base].children[`/` + chunks.slice(0, 3).join('/') + '/'].children[
+        `/` + chunks.slice(0, 4).join('/') + '/'
+      ]
   } catch (err) {
     // Avoid SSR noise when building site
     if (typeof window !== 'undefined') console.log('Could not get parents', { err, chunks, slug })
@@ -72,4 +68,3 @@ export const getParents = (slug, tree) => {
 
   return {}
 }
-
