@@ -1,7 +1,6 @@
 import React from 'react'
 
 const YouTube = props => {
-  console.log(props)
   return(
   <div
     className="video"
