@@ -9,6 +9,7 @@ import crumbsFromNavigation from '../../components/app/crumbsFromNavigation'
 import { graphql } from 'gatsby'
 import { options } from '@freesewing/pattern-info'
 import Mdx from '../../components/mdx'
+import PrevNext from '../../components/prev-next'
 
 import { measurements } from '@freesewing/models'
 import MeasurementImage from '../../components/measurements/images'
@@ -66,6 +67,7 @@ const DocsPage = props => {
       <DocsLayout app={app} slug={props.path}>
         {measurementImage}
         <Mdx node={props.data.allMdx.edges[0].node} />
+        <PrevNext slug={props.path} tree={tree} titles={titles} />
       </DocsLayout>
     </AppWrapper>
   )
