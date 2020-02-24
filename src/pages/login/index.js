@@ -19,6 +19,7 @@ const LoginPage = props => {
   const [password, setPassword] = useState('')
   const [trouble, setTrouble] = useState(false)
   const [inactive, setInactive] = useState(false)
+  const [resend, setResend] = useState(false)
   useEffect(() => {
     app.setTitle(app.translate('app.logIn'))
   }, [])
@@ -47,30 +48,61 @@ const LoginPage = props => {
 
   const handleResendActivationEmail = (evt = false) => {
     if (evt) evt.preventDefault()
-    app.resendActivationEmail(username, process.env.GATSBY_LANGUAGE, handleResult)
+    app.setLoading(true)
+    app.backend
+      .resendActivationEmail(username, process.env.GATSBY_LANGUAGE)
+      .then(result => {
+        app.setLoading(false)
+        if (result.status === 200) setResend(true)
+        else {
+          app.setNotification({
+            type: 'warning',
+            msg: app.translate('app.noSuchUser')
+          })
+        }
+      })
+      .catch((err, data) => {
+        app.setLoading(false)
+        console.log({err, data})
+        let msg = 'errors.requestFailedWithStatusCode500'
+        if (err.response.status === 404) msg = 'app.accountRequired'
+        else if (err.response.status === 400) msg = 'errors.something'
+        app.setNotification({
+          type: err.response.status === 404 ? 'warning' : 'error',
+          msg: app.translate(msg)
+        })
+      })
   }
 
   if (inactive)
     return (
       <AppWrapper app={app}>
         <CenteredLayout app={app}>
-          <Blockquote type="warning">
+          <Blockquote type={resend ? "note" : "warning"}>
             <h5>
-              <FormattedMessage id="account.accountIsInactive" />
+              <FormattedMessage id={ resend
+                ? "app.checkInboxClickLinkInConfirmationEmail"
+                : "account.accountNeedsActivation"
+              }/>
             </h5>
             <p>
-              <FormattedMessage id="account.accountNeedsActivation" />
+              <FormattedMessage id={ resend
+                ? "app.goAheadWeWillWait"
+                : "account.accountNeedsActivation"
+              }/>
             </p>
-            <p>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleResendActivationEmail}
-                size="large"
-              >
-                <FormattedMessage id="app.resendActivationEmail" />
-              </Button>
-            </p>
+            {!resend && (
+              <p>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleResendActivationEmail}
+                  size="large"
+                >
+                  <FormattedMessage id="app.resendActivationEmail" />
+                </Button>
+              </p>
+            )}
           </Blockquote>
           <Blockquote type="note">
             <h6>
