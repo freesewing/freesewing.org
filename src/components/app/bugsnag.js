@@ -13,10 +13,21 @@ if (typeof window !== 'undefined') {
   }
 }
 
+// Only report when it matters
+let releaseStage = 'develop'
+if (process.env.GATSBY_NETLIFY) {
+  if (process.env.GATSBY_NETLIFY_CONTEXT === 'production') {
+    if (process.env.GATSBY_NETLIFY_BRANCH === 'master') releaseStage = 'production'
+    else if (process.env.GATSBY_NETLIFY_BRANCH === 'develop') releaseStage = 'next'
+  }
+}
+
 const bugsnagClient = bugsnag({
   apiKey: '12eebb132933c355271140dcdc32bc20',
-  appVersion: version,
+  appVersion: version + '@' + process.env.GATSBY_NETLIFY_COMMIT_REF,
+  releaseStage,
   collectUserIp: false,
+  notifyReleaseStages: [ 'production', 'next' ],
   beforeSend: report => {
     report.user = { id: user }
   }
