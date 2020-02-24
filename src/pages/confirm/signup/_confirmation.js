@@ -33,7 +33,7 @@ const SignupConfirmationPage = props => {
         model,
         openData
       }
-      app.createAccount(props.confirmation, consent, setResult)
+      app.createAccount(props.confirmation, consent)
     }
   }
 

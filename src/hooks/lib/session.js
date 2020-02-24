@@ -23,7 +23,7 @@ const sessionMethods = ({
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
-          navigate('/account')
+          navigate('/account/')
           setNotification({
             type: 'success',
             msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })

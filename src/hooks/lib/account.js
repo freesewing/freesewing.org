@@ -17,7 +17,7 @@ const accountMethods = ({
 }) => {
   const createAccount = (confirmId, consent) => {
     setLoading(true)
-    return backend
+    backend
       .createAccount(confirmId, consent)
       .then(res => {
         setLoading(false)
@@ -26,7 +26,7 @@ const accountMethods = ({
           navigate('/account')
           setNotification({
             type: 'success',
-            msg: translate('app.accountCreated') + ' 🙌  ' + tranlate('app.welcomeAboard') + ' 🎉'
+            msg: translate('app.accountCreated') + ' 🙌  ' + translate('app.welcomeAboard') + ' 🎉'
           })
         } else return res.status
       })
