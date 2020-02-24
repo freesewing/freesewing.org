@@ -3,6 +3,30 @@ const designs = require('@freesewing/pattern-info').list
 const measurements = require('@freesewing/models').measurements.womenswear
 const routes = require('./gatsby-routes')
 
+// Expose some variables set by Netlify to send to Bugsnag
+process.env.GATSBY_NETLIFY = process.env.NETLIFY
+process.env.GATSBY_NETLIFY_BUILD_ID = process.env.BUILD_ID
+process.env.GATSBY_NETLIFY_CONTEXT = process.env.CONTEXT
+process.env.GATSBY_NETLIFY_REPOSITORY_URL = process.env.REPOSITORY_URL
+process.env.GATSBY_NETLIFY_BRANCH = process.env.BRANCH
+process.env.GATSBY_NETLIFY_COMMIT_REF = process.env.COMMIT_REF
+
+const meta = {
+  build: {
+    netlify: process.env.NETLIFY,
+    id: process.env.BUILD_ID,
+    context: process.env.CONTEXT,
+  },
+  git: {
+    repo: process.env.REPOSITORY_URL,
+    branch: process.env.BRANCH,
+    commit: process.env.COMMIT_REF,
+  },
+  language: process.env.GATSBY_LANGUAGE
+}
+
+
+
 const slugFromFilePath = filePath => {
   return (
     '/' +

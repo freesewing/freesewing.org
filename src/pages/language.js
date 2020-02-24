@@ -11,6 +11,15 @@ import Button from '@material-ui/core/Button'
 import LanguageIcon from '../components/language-icon'
 
 const Language = props => {
+  console.log({
+    NETLIFY: process.env.GATSBY_NETLIFY,
+    BUILD_ID: process.env.GATSBY_NETLIFY_BUILD_ID,
+    CONTEXT: process.env.GATSBY_NETLIFY_CONTEXT,
+    REPO: process.env.GATSBY_NETLIFY_REPOSITORY_URL,
+    BRANCH: process.env.GATSBY_NETLIFY_BRANCH,
+    COMMIT: process.env.GATSBY_NETLIFY_COMMIT_REF
+  })
+
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('account.language'))
