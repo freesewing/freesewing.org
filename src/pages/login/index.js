@@ -127,7 +127,7 @@ const LoginPage = props => {
     )
 
   const formProps = {
-    intl: app.intl,
+    translate: app.translate,
     username,
     password,
     setUsername,

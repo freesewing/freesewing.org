@@ -15,7 +15,7 @@ const LoginForm = props => {
           autoFocus={true}
           fullWidth={true}
           autoComplete="username"
-          label={props.intl.formatMessage({ id: 'account.username' })}
+          label={props.translate('account.username')}
           margin="normal"
           variant="outlined"
           value={props.username}
@@ -26,7 +26,7 @@ const LoginForm = props => {
           fullWidth={true}
           type={reveal ? 'text' : 'password'}
           autoComplete="password"
-          label={props.intl.formatMessage({ id: 'account.password' })}
+          label={props.translate('account.password')}
           margin="normal"
           variant="outlined"
           value={props.password}

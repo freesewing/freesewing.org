@@ -25,7 +25,7 @@ const ResetPasswordForm = props => (
         autoFocus={true}
         fullWidth={true}
         autoComplete="username"
-        label={props.intl.formatMessage({ id: 'account.email' })}
+        label={props.translate('account.email')}
         margin="normal"
         variant="outlined"
       />
