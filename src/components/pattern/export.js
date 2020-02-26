@@ -7,11 +7,16 @@ import theme from '@freesewing/plugin-theme'
 import { plugin as strings } from '@freesewing/i18n'
 import i18n from '@freesewing/plugin-i18n'
 
+import useDesign from '../../hooks/useDesign'
 import useTiler from '../../hooks/useTiler'
 
-const ExportPattern = ({ app, data, pattern, setDisplay, setLoading }) => {
+const ExportPattern = ({ app, data, pattern=false, setDisplay }) => {
   // Hooks
   const tiler = useTiler(app.setNotification)
+  // Fixme: Sometimes we pass the constructure, sometimes not
+  // we need to streamling this, but for now I have a bug to fix
+  const Pattern = useDesign(pattern ? false : data.design)
+  if (!pattern) pattern = Pattern
 
   // Remove embed setting
   delete data.settings.embed
@@ -22,7 +27,7 @@ const ExportPattern = ({ app, data, pattern, setDisplay, setLoading }) => {
       if (format === 'json') exportJsonData(data)
       else if (format === 'yaml') exportYamlData(data)
     } else {
-      setLoading(true)
+      app.setLoading(true)
       const svg = new pattern(data.settings)
         .use(theme)
         .use(i18n, { strings })
@@ -51,7 +56,7 @@ const ExportPattern = ({ app, data, pattern, setDisplay, setLoading }) => {
     const blob = new Blob([svg], {
       type: 'image/svg+xml;charset=utf-8'
     })
-    setLoading(false)
+    app.setLoading(false)
     fileSaver.saveAs(blob, 'pattern.svg')
   }
   const convert = (svg, format, size = 'full') => {

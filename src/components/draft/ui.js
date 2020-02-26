@@ -204,7 +204,6 @@ const DraftUi = props => {
     main = (
       <ExportPattern
         setDisplay={setDisplay}
-        setLoading={app.setLoading}
         app={app}
         data={data}
         pattern={Pattern}
