@@ -4,16 +4,16 @@ function useTiler(setNotification) {
   const tiler = new Tiler()
 
   const tile = (svg, format, size) => {
-    tiler
+    return tiler
       .tile(svg, format, size)
       .then(res => {
-        if (res.status === 200) {
-          if (typeof window !== 'undefined') window.location = res.data.link
-        }
+        if (res.status === 200) return res.data.link
+        return false
       })
       .catch(err => {
         console.log(err)
         setNotification('error', err)
+        return false
       })
   }
 

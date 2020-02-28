@@ -6,7 +6,7 @@ import ExportIcon from '@material-ui/icons/GetApp'
 import SaveIcon from '@material-ui/icons/CloudUpload'
 import { FormattedMessage } from 'react-intl'
 
-const DraftPreButtons = ({ app, setFit, fit, setDisplay, display }) => {
+const DraftPreButtons = ({ app, setFit, fit, setDisplay, display, setDialog, dialog }) => {
   const styles = {
     buttons: {
       textAlign: app.mobile ? 'center' : 'right',
@@ -29,6 +29,7 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display }) => {
           color="primary"
           style={styles.button}
           onClick={() => setFit(!fit)}
+          size='large'
         >
           {fit ? <ZoomInIcon data-test="zoomIn" /> : <ZoomOutIcon data-test="zoomOut" />}
         </Button>
@@ -37,37 +38,22 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display }) => {
         data-test="compare"
         variant="contained"
         color="primary"
-        className="accent"
-        style={styles.button}
-        onClick={() => setDisplay(display === 'compare' ? 'draft' : 'compare')}
-      >
-        {app.translate(display === 'compare' ? 'app.preview' : 'app.compare')}
-      </Button>
-      <Button
-        data-test="share"
-        variant="contained"
-        color="primary"
         className="info"
         style={styles.button}
-        onClick={() => setDisplay('share')}
+        onClick={() => setDisplay(display === 'compare' ? 'draft' : 'compare')}
+        size='large'
       >
-        <SaveIcon style={styles.buttonIcon} />
-        <FormattedMessage id="app.save" />
-        <span>&nbsp;/&nbsp;</span>
-        <FormattedMessage
-          id="app.shareThing"
-          values={{ thing: app.translate('app.pattern') }}
-        />
+        {app.translate(display === 'compare' ? 'app.preview' : 'app.compare')}
       </Button>
       <Button
         data-test="export"
         variant="contained"
         color="primary"
         style={styles.button}
-        onClick={() => setDisplay('export')}
+        onClick={() => setDialog(true)}
+        size='large'
       >
-        <ExportIcon style={styles.buttonIcon} />
-        <FormattedMessage id="app.exportPattern" />
+        Save / Export pattern
       </Button>
     </div>
   )

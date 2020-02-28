@@ -46,6 +46,9 @@ const AppWrapper = ({ app, children }) => {
   let wrapperClasses = app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (app.menu) wrapperClasses += ' show-menu'
   if (app.mobileAside) wrapperClasses += ' show-mobile-aside'
+  if (app.tablet) wrapperClasses += ' tablet'
+  if (app.mobile) wrapperClasses += ' mobile'
+  if (!app.mobile && !app.tablet) wrapperClasses += ' desktop'
 
   return (
     <Bugsnag>

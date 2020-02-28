@@ -28,6 +28,9 @@ import ExportPattern from '../pattern/export'
 import SharePattern from '../pattern/share'
 import capitalize from '@freesewing/utils/capitalize'
 
+import Dialog from './dialog'
+import './ui.css'
+
 const DraftUi = props => {
   // Methods
   const raiseEvent = (type, data) => {
@@ -112,6 +115,7 @@ const DraftUi = props => {
   const [eventType, setEventType] = useState('')
   const [eventValue, setEventValue] = useState('')
   const [visitorUnits, setVisitorUnits] = useState('metric')
+  const [dialog, setDialog] = useState(false)
   const [data, setData, mergeData] = useMergeData() // Special state + update method to merge data
 
   // Effects
@@ -262,8 +266,20 @@ const DraftUi = props => {
           display={display}
           setFit={setFit}
           setDisplay={setDisplay}
+          setDialog={setDialog}
           app={app}
-        />
+        />,
+        <div id='pattern-mask' className={dialog ? 'show' : ''} onClick={() => setDialog(false)}/>,
+        <div id='pattern-dialog' className={dialog ? 'show shadow' : ''}>
+          <Dialog
+            setDisplay={setDisplay}
+            app={app}
+            person={person.handle}
+            data={data}
+            setDialog={setDialog}
+            recreate={props.recreate || false}
+          />
+        </div>
       ]
   }
 
