@@ -139,31 +139,12 @@ for (let option of options.brian) {
   }
 }
 
-const placeholderPages = {
-  '/docs/patterns/aaron/options/': {
-    // This happens to be an empty page so we'll copy it
-    find: '/docs/patterns/aaron/options/',
-    replace: []
-  }
-}
-for (let pattern of patterns) {
-  placeholderPages['/docs/patterns/aaron/options/'].replace.push(
-    `/docs/patterns/${pattern}/measurements/`
-  )
-}
-
 const getDuplicates = () => {
   let dupes = {}
   for (let slug in patternOptions) {
     dupes[slug] = []
     for (let insert of patternOptions[slug].replace) {
       dupes[slug].push(slug.replace(patternOptions[slug].find, insert))
-    }
-  }
-  for (let slug in placeholderPages) {
-    dupes[slug] = []
-    for (let insert of placeholderPages[slug].replace) {
-      dupes[slug].push(slug.replace(placeholderPages[slug].find, insert))
     }
   }
 
