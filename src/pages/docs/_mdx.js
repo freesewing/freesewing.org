@@ -41,6 +41,7 @@ const DocsPage = props => {
         else if (chunks[4] === 'instructions') title = app.translate('app.instructions')
         else if (chunks[4] === 'needs') title = app.translate('app.whatYouNeed')
         else if (chunks[4] === 'options') title = app.translate('app.patternOptions')
+        else if (chunks[4] === 'measurements') title = app.translate('app.requiredMeasurements')
       } else if (chunks.length === 7 && chunks[4] === 'options')
         title = patternOptionTitle(chunks[3], chunks[5])
     }
