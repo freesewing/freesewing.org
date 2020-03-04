@@ -234,19 +234,27 @@ const PersonPage = props => {
   const blankSlate = !person.measurements || !person.measurements.neckCircumference
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <CenteredLayout app={app} wide left>
         <div style={styles.avatarWrapper}>
           <Link to={`/people/${props.person}/avatar/`}>
             <Avatar data={person} />
           </Link>
         </div>
+        {!blankSlate && (
+          <>
+            <ModelGraph model={person} intl={app.intl} />
+            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
+              <small>
+                <FormattedMessage id="app.whatIsThis" />
+              </small>
+            </Link>
+          </>
+        )}
+
         {person.notes ? (
           <>
             <h5 style={styles.heading} data-test="notes-title">
               <FormattedMessage id="app.notes" />
-            </h5>
-            <Markdown source={person.notes} data-test="notes" />
-            <p style={{ textAlign: 'right' }}>
               <IconButton
                 data-test="edit-notes"
                 color="primary"
@@ -256,7 +264,8 @@ const PersonPage = props => {
               >
                 <EditIcon fontSize="inherit" style={styles.icon} />
               </IconButton>
-            </p>
+            </h5>
+            <Markdown source={person.notes} data-test="notes" />
           </>
         ) : (
           <h5 style={styles.heading} data-test="notes-title">
@@ -273,17 +282,6 @@ const PersonPage = props => {
               <AddIcon fontSize="inherit" style={styles.icon} />
             </IconButton>
           </h5>
-        )}
-
-        {!blankSlate && (
-          <>
-            <ModelGraph model={person} intl={app.intl} />
-            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
-              <small>
-                <FormattedMessage id="app.whatIsThis" />
-              </small>
-            </Link>
-          </>
         )}
 
         <h5 style={styles.heading} data-test="settings-title">
