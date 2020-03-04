@@ -73,11 +73,11 @@ const CommunityMenu = ({ app }) => {
             <a href="https://instagram.com/freesewing_org">&nbsp;@freesewing_org</a>
           </li>
           <li>
-            Gitter chat rooms: &nbsp; <a href="https://gitter.im/freesewing.org/chat">chat</a>
-            &nbsp; <a href="https://gitter.im/freesewing.org/help">help</a>
-            &nbsp; <a href="https://gitter.im/freesewing.org/development">development</a>
-            &nbsp; <a href="https://gitter.im/freesewing.org/translation">translation</a>
-            &nbsp; <a href="https://gitter.im/freesewing.org/design">design</a>
+            Gitter chat rooms: &nbsp; <a href="https://gitter.im/freesewing/chat">chat</a>
+            &nbsp; <a href="https://gitter.im/freesewing/help">help</a>
+            &nbsp; <a href="https://gitter.im/freesewing/development">development</a>
+            &nbsp; <a href="https://gitter.im/freesewing/translation">translation</a>
+            &nbsp; <a href="https://gitter.im/freesewing/design">design</a>
           </li>
         </ul>
       </div>
