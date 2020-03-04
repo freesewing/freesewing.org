@@ -10,7 +10,7 @@ import i18n from '@freesewing/plugin-i18n'
 import useDesign from '../../hooks/useDesign'
 import useTiler from '../../hooks/useTiler'
 
-const ExportPattern = ({ app, data, pattern=false, setDisplay }) => {
+const ExportPattern = ({ app, data, pattern = false, setDisplay }) => {
   // Hooks
   const tiler = useTiler(app.setNotification)
   // Fixme: Sometimes we pass the constructure, sometimes not

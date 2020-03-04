@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button'
 import LanguageIcon from '../components/language-icon'
 
 const Language = props => {
-
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('account.language'))

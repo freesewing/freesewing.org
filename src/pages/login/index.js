@@ -63,7 +63,7 @@ const LoginPage = props => {
       })
       .catch((err, data) => {
         app.setLoading(false)
-        console.log({err, data})
+        console.log({ err, data })
         let msg = 'errors.requestFailedWithStatusCode500'
         if (err.response.status === 404) msg = 'app.accountRequired'
         else if (err.response.status === 400) msg = 'errors.something'
@@ -78,18 +78,20 @@ const LoginPage = props => {
     return (
       <AppWrapper app={app}>
         <CenteredLayout app={app}>
-          <Blockquote type={resend ? "note" : "warning"}>
+          <Blockquote type={resend ? 'note' : 'warning'}>
             <h5>
-              <FormattedMessage id={ resend
-                ? "app.checkInboxClickLinkInConfirmationEmail"
-                : "account.accountNeedsActivation"
-              }/>
+              <FormattedMessage
+                id={
+                  resend
+                    ? 'app.checkInboxClickLinkInConfirmationEmail'
+                    : 'account.accountNeedsActivation'
+                }
+              />
             </h5>
             <p>
-              <FormattedMessage id={ resend
-                ? "app.goAheadWeWillWait"
-                : "account.accountNeedsActivation"
-              }/>
+              <FormattedMessage
+                id={resend ? 'app.goAheadWeWillWait' : 'account.accountNeedsActivation'}
+              />
             </p>
             {!resend && (
               <p>

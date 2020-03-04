@@ -201,14 +201,7 @@ const DraftUi = props => {
   // Main render element
   let main
   if (display === 'export') {
-    main = (
-      <ExportPattern
-        setDisplay={setDisplay}
-        app={app}
-        data={data}
-        pattern={Pattern}
-      />
-    )
+    main = <ExportPattern setDisplay={setDisplay} app={app} data={data} pattern={Pattern} />
   } else if (display === 'share') {
     main = <SharePattern setDisplay={setDisplay} app={app} person={props.person} data={data} />
   } else if (display === 'help') {
