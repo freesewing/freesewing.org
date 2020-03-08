@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
+import usePerson from '../../../hooks/usePerson'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
@@ -12,6 +13,36 @@ import PatternData from '../../../components/pattern/data'
 import ExportPattern from '../../../components/pattern/export'
 import PatternNotes from '../../../components/pattern/notes'
 import PatternShareLink from '../../../components/pattern/share-link'
+import { navigate } from 'gatsby'
+
+import PatternPreview from '../../../components/pattern/preview'
+import './index.css'
+
+import PatternFabs from '../../../components/pattern/fabs'
+import Dialog from '../../../components/pattern/dialog'
+
+// Style
+const styles = {
+  info: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  export: {
+    minWidth: '500px'
+  },
+  share: {
+    flexGrow: '1',
+    maxWidth: '800px'
+  },
+  wrapper: {
+    display: 'flex'
+  },
+  col: {
+    maxwidth: '400px'
+  }
+}
 
 const PatternPage = props => {
   // Hooks
@@ -19,10 +50,14 @@ const PatternPage = props => {
 
   // State
   const [pattern, setPattern] = useState('pending')
+  const [person, setPerson] = useState('pending')
+  const [dialog, setDialog] = useState(false)
+  const [dialogAction, setDialogAction] = useState('pick')
 
   // Effects
   useEffect(() => {
     let patternOrPromise = usePattern(app, props.pattern)
+    //let personOrPromise = usePerson(app, props.pattern)
     if (patternOrPromise.then instanceof Function) {
       patternOrPromise.then(p => {
         setPattern(p)
@@ -53,82 +88,64 @@ const PatternPage = props => {
     return null
   }
 
-  // Style
-  const styles = {
-    button: {
-      marginLeft: '0.5rem'
-    },
-    info: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center'
-    },
-    export: {
-      minWidth: '500px'
-    },
-    share: {
-      flexGrow: '1',
-      maxWidth: '800px'
-    }
-  }
-
   // Own pattern ?
   const ownPattern = typeof app.patterns[props.pattern] === 'undefined' ? false : true
+
+  const openDialog = action => {
+    setDialogAction(action)
+    setDialog(true)
+  }
+
+  // Note that the fabs order does not matter, it will be enforced by the PatternFabs component
+  const fabs = ['export', 'details', 'edit', 'recreate']
+  if (app.account.username) {
+    fabs.push('saveAs')
+  }
 
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <p style={{ textAlign: 'center' }}>
-          {ownPattern && (
-            <>
-              <Button
-                style={styles.button}
-                variant="contained"
-                color="primary"
-                size="large"
-                className="danger"
-                onClick={() => app.removePattern(pattern.handle)}
-              >
-                <FormattedMessage id="app.remove" />
-              </Button>
-              <Button
-                style={styles.button}
-                variant="contained"
-                size="large"
-                color="primary"
-                className="info"
-                href={'/patterns/' + pattern.handle + '/edit'}
-              >
-                <FormattedMessage id="app.update" />
-              </Button>
-            </>
+        <PatternFabs
+          app={app}
+          fabs={fabs}
+          openDialog={openDialog}
+          pattern={props.pattern}
+          design={pattern.data.design}
+        />
+        <div className="pwrap">
+          <div>
+            <h3>Preview</h3>
+            <div className="preview shadow">
+              <PatternPreview data={pattern.data} app={app} />
+            </div>
+          </div>
+          {pattern.notes && (
+            <div>
+              <h3>Notes</h3>
+              <PatternNotes notes={pattern.notes} app={app} />
+            </div>
           )}
-          <Button
-            color="primary"
-            size="large"
-            style={styles.button}
-            href={`/recreate/${pattern.data.design}/from/${pattern.handle}/`}
-            variant="contained"
-          >
-            <FormattedMessage id="app.recreate" />
-          </Button>
-        </p>
-        {pattern.notes && <PatternNotes notes={pattern.notes} app={app} />}
-        <div style={styles.info}>
-          <div style={styles.export}>
-            <ExportPattern app={app} data={pattern.data} />
-          </div>
-          <div style={styles.share}>
-            <h5 style={{ marginBottom: '-1rem' }}>
-              <FormattedMessage id="app.share" />
-            </h5>
-            <PatternShareLink pattern={props.pattern} app={app} />
-          </div>
         </div>
-        <h5>YAML</h5>
+        <h3>Data</h3>
         <PatternData data={pattern} />
       </WideLayout>
+      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />,
+      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
+        <Dialog
+          mode="view"
+          owner={ownPattern}
+          data={pattern.data}
+          pattern={props.pattern}
+          person={pattern.person}
+          setPattern={setPattern}
+          setPerson={setPerson}
+          setDialog={setDialog}
+          app={app}
+          action={dialogAction}
+          setAction={setDialogAction}
+          fabs={fabs}
+        />
+      </div>
     </AppWrapper>
   )
 }

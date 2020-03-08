@@ -4,7 +4,10 @@ import Button from '@material-ui/core/Button'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
 const AccountNotFound = props => (
-  <Blockquote type="note" style={{ maxWidth: '800px', textAlign: 'center' }}>
+  <Blockquote
+    type="note"
+    style={{ maxWidth: '800px', textAlign: 'center', margin: props.left ? 0 : 'auto' }}
+  >
     <h5>
       <FormattedMessage id="app.mtmIsOurJam" />
     </h5>

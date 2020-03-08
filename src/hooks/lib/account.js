@@ -128,6 +128,29 @@ const accountMethods = ({
       .catch(error => showError(error))
   }
 
+  const refreshAccount = () => {
+    setLoading(true)
+    return backend
+      .account(token)
+      .then(res => {
+        setLoading(false)
+        if (res.status === 200) {
+          persist(res.data)
+          navigate('/account/')
+          setNotification({
+            type: 'success',
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+          })
+        } else console.log('res in hook', res)
+        return res.status
+      })
+      .catch(error => {
+        setLoading(false)
+        if (error.response) return error.response.status
+        else return error
+      })
+  }
+
   const loadProfile = handle => backend.profile(handle, token)
   const signup = (email, password, language) => backend.signup(email, password, language)
   const saveAccount = data => backend.saveAccount(mergeData({}, data), token)
@@ -139,6 +162,7 @@ const accountMethods = ({
     removeAccount,
     restrictAccount,
     recoverAccount,
+    refreshAccount,
     signup,
     loadProfile,
     saveAccount
