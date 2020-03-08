@@ -13,11 +13,36 @@ import PatternData from '../../../components/pattern/data'
 import ExportPattern from '../../../components/pattern/export'
 import PatternNotes from '../../../components/pattern/notes'
 import PatternShareLink from '../../../components/pattern/share-link'
+import { navigate } from 'gatsby'
 
 import PatternPreview from '../../../components/pattern/preview'
 import './index.css'
 
+import PatternFabs from '../../../components/pattern/fabs'
 import Dialog from '../../../components/pattern/dialog'
+
+// Style
+const styles = {
+  info: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  export: {
+    minWidth: '500px'
+  },
+  share: {
+    flexGrow: '1',
+    maxWidth: '800px'
+  },
+  wrapper: {
+    display: 'flex'
+  },
+  col: {
+    maxwidth: '400px'
+  }
+}
 
 const PatternPage = props => {
   // Hooks
@@ -27,6 +52,7 @@ const PatternPage = props => {
   const [pattern, setPattern] = useState('pending')
   const [person, setPerson] = useState('pending')
   const [dialog, setDialog] = useState(false)
+  const [dialogAction, setDialogAction] = useState('pick')
 
   // Effects
   useEffect(() => {
@@ -35,7 +61,6 @@ const PatternPage = props => {
     if (patternOrPromise.then instanceof Function) {
       patternOrPromise.then(p => {
         setPattern(p)
-        console.log({p})
         app.setTitle(p.name)
         app.setCrumbs([
           {
@@ -63,49 +88,24 @@ const PatternPage = props => {
     return null
   }
 
-  // Style
-  const styles = {
-    button: {
-      marginLeft: '0.5rem'
-    },
-    info: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center'
-    },
-    export: {
-      minWidth: '500px'
-    },
-    share: {
-      flexGrow: '1',
-      maxWidth: '800px'
-    },
-    wrapper: {
-      display: 'flex'
-    },
-    col: {
-      maxwidth: '400px'
-    }
-  }
-
   // Own pattern ?
   const ownPattern = typeof app.patterns[props.pattern] === 'undefined' ? false : true
+
+  const openDialog = action => {
+    setDialogAction(action)
+    setDialog(true)
+  }
+
+  // Note that the fabs order does not matter, it will be enforced by the PatternFabs component
+  const fabs = ['export', 'details', 'edit', 'recreate']
+  if (app.account.username) {
+    fabs.push('saveAs')
+  }
 
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <p style={{textAlign: 'center'}}>
-              <Button
-                style={styles.button}
-                variant="contained"
-                color="primary"
-                size="large"
-                onClick={() => setDialog(true)}
-              >
-                Open pattern menu
-              </Button>
-        </p>
+        <PatternFabs app={app} fabs={fabs} openDialog={openDialog} pattern={props.pattern} design={pattern.data.design}/>
         <div className='pwrap'>
           <div>
             <h3>Preview</h3>
@@ -126,9 +126,18 @@ const PatternPage = props => {
       <div id='pattern-mask' className={dialog ? 'show' : ''} onClick={() => setDialog(false)}/>,
       <div id='pattern-dialog' className={dialog ? 'show shadow' : ''}>
         <Dialog
-          app={app}
+          mode='view'
+          owner={ownPattern}
           data={pattern.data}
+          pattern={props.pattern}
+          person={pattern.person}
+          setPattern={setPattern}
+          setPerson={setPerson}
           setDialog={setDialog}
+          app={app}
+          action={dialogAction}
+          setAction={setDialogAction}
+          fabs={fabs}
         />
       </div>
     </AppWrapper>

@@ -64,7 +64,6 @@ const ExportPattern = ({ app, data, setAction }) => {
     const blob = new Blob([svg], {
       type: 'image/svg+xml;charset=utf-8'
     })
-    app.setLoading(false)
     fileSaver.saveAs(blob, 'pattern.svg')
   }
   const convert = (svg, format, size = 'full') => tiler.tile(svg, format, size)
@@ -123,8 +122,17 @@ const ExportPattern = ({ app, data, setAction }) => {
                 <h5>Your export is ready</h5>
                 <p>You can download your exported pattern from the following link:</p>
                 <p style={styles.link}><a href={link} target='_BLANK'>{link}</a></p>
+                <p style={{textAlign: 'right'}}>
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => setLink(false)}
+                    className='info'
+                  >
+                    <FormattedMessage id='app.back' />
+                  </Button>
+                </p>
               </Blockquote>
-
             </div>
           ): (
             <>

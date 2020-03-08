@@ -1,4 +1,5 @@
 const useDraftDocs = function(data) {
+  if (!data) return null
   let docs = {
     options: {},
     settings: {}

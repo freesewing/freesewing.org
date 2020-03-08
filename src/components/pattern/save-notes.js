@@ -3,53 +3,37 @@ import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import TextField from '@material-ui/core/TextField'
 import Blockquote from '@freesewing/components/Blockquote'
+import Loading from '../loading'
 
-const SavePattern = props => {
-  console.log(props)
-
+const SavePatternNotes = props => {
+console.log('sn', props)
   // State
-  const [name, setName] = useState('')
-  const [notes, setNotes] = useState('')
-
-  // Pattern data
-  const data = { ...props.data }
-  delete data.settings.embed
+  const [name, setName] = useState(props.name)
+  const [notes, setNotes] = useState(props.notes)
+  const [loading, setLoading] = useState(props.notes)
 
   // Methods
   const updateName = evt => setName(evt.target.value)
   const updateNotes = evt => setNotes(evt.target.value)
   const handleSave = () => {
+    setLoading(true)
     let nameVal = name
-    if (name === '') nameVal = 'This is an example'
-    let notesVal = notes
-    if (notes === '') notesVal = 'These are the notes'
+    if (name === '') nameVal = props.pattern
     props.app
-      .createPattern({
+      .updatePattern(props.pattern, {
         name: nameVal,
-        notes: notesVal,
-        person: props.person,
-        data: props.data
+        notes
       })
       .then(res => {
-        console.log(res)
+        setLoading(false)
+        props.setDialog(false)
       })
   }
 
-  // Style
-  const styles = {
-    wrapper: {
-      maxWidth: '42em',
-      margin: 'auto'
-    },
-    preview: {
-      margin: '1rem 0',
-      borderRadius: '6px',
-      padding: '1rem 2rem'
-    }
-  }
-
+  if (loading) return <Loading loading={true} />
   return (
-    <div style={styles.wrapper}>
+    <>
+      <h3><FormattedMessage id='app.saveThing' values={{thing: props.app.translate('app.notes')}}/></h3>
       <TextField
         id="name"
         fullWidth={true}
@@ -79,15 +63,11 @@ const SavePattern = props => {
           color="primary"
           onClick={handleSave}
         >
-          <FormattedMessage id="app.saveThing" values={{thing: props.app.translate('app.pattern')}}/>
+          <FormattedMessage id="app.saveThing" values={{thing: props.app.translate('app.notes')}}/>
         </Button>
       </p>
-      <Blockquote type="note">
-        <h6>Name and Notes are optional</h6>
-        <p>A name can help you tell your patterns apart. Notes can be handy too.</p>
-      </Blockquote>
-    </div>
+    </>
   )
 }
 
-export default SavePattern
+export default SavePatternNotes
