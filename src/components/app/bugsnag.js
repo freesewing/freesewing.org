@@ -27,7 +27,7 @@ const bugsnagClient = bugsnag({
   appVersion: version + '@' + process.env.GATSBY_NETLIFY_COMMIT_REF,
   releaseStage,
   collectUserIp: false,
-  notifyReleaseStages: [ 'production', 'next' ],
+  notifyReleaseStages: ['production', 'next'],
   beforeSend: report => {
     report.user = { id: user }
   }

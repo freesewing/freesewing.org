@@ -29,7 +29,7 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display, setDialog, dia
           color="primary"
           style={styles.button}
           onClick={() => setFit(!fit)}
-          size='large'
+          size="large"
         >
           {fit ? <ZoomInIcon data-test="zoomIn" /> : <ZoomOutIcon data-test="zoomOut" />}
         </Button>
@@ -41,7 +41,7 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display, setDialog, dia
         className="info"
         style={styles.button}
         onClick={() => setDisplay(display === 'compare' ? 'draft' : 'compare')}
-        size='large'
+        size="large"
       >
         {app.translate(display === 'compare' ? 'app.preview' : 'app.compare')}
       </Button>
@@ -51,7 +51,7 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display, setDialog, dia
         color="primary"
         style={styles.button}
         onClick={() => setDialog(true)}
-        size='large'
+        size="large"
       >
         Save / Export pattern
       </Button>

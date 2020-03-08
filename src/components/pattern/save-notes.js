@@ -6,7 +6,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 
 const SavePatternNotes = props => {
-console.log('sn', props)
+  console.log('sn', props)
   // State
   const [name, setName] = useState(props.name)
   const [notes, setNotes] = useState(props.notes)
@@ -33,7 +33,9 @@ console.log('sn', props)
   if (loading) return <Loading loading={true} />
   return (
     <>
-      <h3><FormattedMessage id='app.saveThing' values={{thing: props.app.translate('app.notes')}}/></h3>
+      <h3>
+        <FormattedMessage id="app.saveThing" values={{ thing: props.app.translate('app.notes') }} />
+      </h3>
       <TextField
         id="name"
         fullWidth={true}
@@ -56,14 +58,11 @@ console.log('sn', props)
         onChange={updateNotes}
       />
       <p>
-        <Button
-          size="large"
-          fullWidth
-          variant="contained"
-          color="primary"
-          onClick={handleSave}
-        >
-          <FormattedMessage id="app.saveThing" values={{thing: props.app.translate('app.notes')}}/>
+        <Button size="large" fullWidth variant="contained" color="primary" onClick={handleSave}>
+          <FormattedMessage
+            id="app.saveThing"
+            values={{ thing: props.app.translate('app.notes') }}
+          />
         </Button>
       </p>
     </>

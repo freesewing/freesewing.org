@@ -76,10 +76,8 @@ const SignupPage = props => {
     setEmail(value)
     let valid = (validateEmail(value) && validateTld(value)) || false
     setEmailValid(valid)
-    if (
-      value.slice(-3).toLowerCase() === '.fr' ||
-      value.slice(-11).toLowerCase() === 'laposte.net'
-    ) setFrance(true)
+    if (value.slice(-3).toLowerCase() === '.fr' || value.slice(-11).toLowerCase() === 'laposte.net')
+      setFrance(true)
     else setFrance(false)
   }
 
@@ -105,10 +103,20 @@ const SignupPage = props => {
     <form onSubmit={trouble ? handleResend : handleSignup}>
       {!result && error ? <Blockquote type="warning">{error}</Blockquote> : null}
       {france && (
-        <Blockquote type='warning'>
-          <h5><FormattedMessage id='app.franceWarning' /></h5>
-          <p><FormattedMessage id='app.franceWarning-txt' /></p>
-          <p><small><a href='https://gitter.im/freesewing/help'><FormattedMessage id='app.emailNotReceived' /></a></small></p>
+        <Blockquote type="warning">
+          <h5>
+            <FormattedMessage id="app.franceWarning" />
+          </h5>
+          <p>
+            <FormattedMessage id="app.franceWarning-txt" />
+          </p>
+          <p>
+            <small>
+              <a href="https://gitter.im/freesewing/help">
+                <FormattedMessage id="app.emailNotReceived" />
+              </a>
+            </small>
+          </p>
         </Blockquote>
       )}
       <h6>
@@ -191,7 +199,15 @@ const SignupPage = props => {
           <FormattedMessage id="app.signUp" />
         )}
       </Button>
-      {trouble && <p><small><a href='https://gitter.im/freesewing/help'><FormattedMessage id='app.emailNotReceived' /></a></small></p>}
+      {trouble && (
+        <p>
+          <small>
+            <a href="https://gitter.im/freesewing/help">
+              <FormattedMessage id="app.emailNotReceived" />
+            </a>
+          </small>
+        </p>
+      )}
       <div style={{ margin: '1rem 0 2rem' }}>
         <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
           {trouble ? (

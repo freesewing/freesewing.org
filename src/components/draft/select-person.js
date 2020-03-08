@@ -167,7 +167,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           )
         })}
       </ul>
-      {!app.account.username && <MissingAccount  />}
+      {!app.account.username && <MissingAccount />}
     </>
   )
 }

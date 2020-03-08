@@ -21,25 +21,31 @@ const CreatePatternForPersonPage = props => {
 
   // State
   const [pattern, setPattern] = useState(null)
-  const [person, setPerson] = useState(props.person === 'original' ? null : usePerson(app, props.person))
+  const [person, setPerson] = useState(
+    props.person === 'original' ? null : usePerson(app, props.person)
+  )
   const [design, setDesign] = useState(null)
 
   // Methods
   const applyCrumbs = (design, name) => {
-   app.setCrumbs([
-     {
-       slug: `/create/`,
-       title: app.translate('app.newThing', { thing: app.translate('app.pattern')})
-     },
-     {
-       slug: `/create/${design}/`,
-       title: app.translate('app.recreateThing', { thing: app.translate(`patterns.${design}.title`)})
-     },
-     {
-       slug: `/recreate/${design}/from/${props.pattern}/`,
-       title: app.translate('app.recreateThing', { thing: name + ' (' + app.translate(`patterns.${design}.title`) + ')' })
-     },
-   ])
+    app.setCrumbs([
+      {
+        slug: `/create/`,
+        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+      },
+      {
+        slug: `/create/${design}/`,
+        title: app.translate('app.recreateThing', {
+          thing: app.translate(`patterns.${design}.title`)
+        })
+      },
+      {
+        slug: `/recreate/${design}/from/${props.pattern}/`,
+        title: app.translate('app.recreateThing', {
+          thing: name + ' (' + app.translate(`patterns.${design}.title`) + ')'
+        })
+      }
+    ])
   }
   const extractPerson = pattern => {
     setPerson({
@@ -76,13 +82,14 @@ const CreatePatternForPersonPage = props => {
       let name = person ? person.name : 'original'
       if (pop.data.settings.metadata) name = pop.data.settings.metadata.for
       if (props.person === 'original') extractPerson(pop)
-      app.setTitle(app.translate('app.recreateThingForPerson', {
-        thing: pop.name + ' (' + app.translate(`patterns.${pop.data.design}.title`) + ')',
-        person: name
-      }))
+      app.setTitle(
+        app.translate('app.recreateThingForPerson', {
+          thing: pop.name + ' (' + app.translate(`patterns.${pop.data.design}.title`) + ')',
+          person: name
+        })
+      )
     }
-  }, [props.person, props.pattern]
-  )
+  }, [props.person, props.pattern])
 
   const fabs = ['zoom', 'compare', 'export', 'details']
   if (app.account.username) fabs.push('saveAs')
@@ -97,7 +104,7 @@ const CreatePatternForPersonPage = props => {
   return (
     <AppWrapper app={app}>
       <DraftUi
-        mode='recreate'
+        mode="recreate"
         app={app}
         data={pattern.data}
         person={person}
@@ -110,4 +117,3 @@ const CreatePatternForPersonPage = props => {
 }
 
 export default withLanguage(CreatePatternForPersonPage)
-

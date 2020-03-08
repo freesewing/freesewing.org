@@ -7,7 +7,17 @@ import ExportPattern from '../pattern/export'
 import SavePattern from '../pattern/save'
 import { Link } from 'gatsby'
 
-const Dialog = ({ setDialog, app, data, Pattern, person, setDisplay, setLoading, recreate=false, edit=false }) => {
+const Dialog = ({
+  setDialog,
+  app,
+  data,
+  Pattern,
+  person,
+  setDisplay,
+  setLoading,
+  recreate = false,
+  edit = false
+}) => {
   // State
   const [action, setAction] = useState('pick')
   const styles = {
@@ -36,92 +46,114 @@ const Dialog = ({ setDialog, app, data, Pattern, person, setDisplay, setLoading,
 
   return (
     <>
-      { (action === 'pick') && (
+      {action === 'pick' && (
         <>
           <h3>Save pattern</h3>
-          {app.account.username
-            ? (
-              <>
-              <p>Store this pattern in your FreeSewing account where you can retrieve it later, or share with others.</p>
+          {app.account.username ? (
+            <>
               <p>
-                <Button variant='contained' color='primary' size='large' onClick={() => setAction('save')}>
-                <SaveIcon style={styles.buttonIcon} />
-                  <FormattedMessage id='app.save'/> pattern
+                Store this pattern in your FreeSewing account where you can retrieve it later, or
+                share with others.
+              </p>
+              <p>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={() => setAction('save')}
+                >
+                  <SaveIcon style={styles.buttonIcon} />
+                  <FormattedMessage id="app.save" /> pattern
                 </Button>
               </p>
-              </>
-            ) : (
-              <p>
-                <Link to="/signup/">
-                  <FormattedMessage id="app.accountRequired" />
-                </Link>
-              </p>
-            )
-          }
+            </>
+          ) : (
+            <p>
+              <Link to="/signup/">
+                <FormattedMessage id="app.accountRequired" />
+              </Link>
+            </p>
+          )}
           {edit && (
             <>
               <h3>Save as</h3>
               <p>Stores your changes as a new a new pattern in your FreeSewing account.</p>
               <p>
-                <Button variant='contained' color='primary' size='large' onClick={() => setAction('saveAs')}>
-                <SaveIcon style={styles.buttonIcon} />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={() => setAction('saveAs')}
+                >
+                  <SaveIcon style={styles.buttonIcon} />
                   Save as new pattern
                 </Button>
               </p>
             </>
           )}
-          <h3><FormattedMessage id='app.export'/> Pattern</h3>
+          <h3>
+            <FormattedMessage id="app.export" /> Pattern
+          </h3>
           <p>Save this pattern to your device in the format of your choice.</p>
           <p>
-            <Button variant='contained' color='primary' size='large' onClick={() => setAction('export')}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={() => setAction('export')}
+            >
               <ExportIcon style={styles.buttonIcon} />
               Export pattern
             </Button>
           </p>
-      </>
-    )}
-    { (action === 'export') && (
-      <>
-      <h3><FormattedMessage id='app.export'/> Pattern</h3>
-      <ExportPattern
-        setAction={setAction}
-        setLoading={app.setLoading}
-        app={app}
-        data={data}
-        pattern={Pattern}
-      />
-      </>
-    )}
-    { (action === 'save') && (
-      <>
-      <h3><FormattedMessage id='app.saveThing' values={{ thing: app.translate('app.pattern')}}/></h3>
-      <SavePattern
-        setAction={setAction}
-        setLoading={app.setLoading}
-        app={app}
-        data={data}
-        person={person}
-      />
-      </>
-    )}
+        </>
+      )}
+      {action === 'export' && (
+        <>
+          <h3>
+            <FormattedMessage id="app.export" /> Pattern
+          </h3>
+          <ExportPattern
+            setAction={setAction}
+            setLoading={app.setLoading}
+            app={app}
+            data={data}
+            pattern={Pattern}
+          />
+        </>
+      )}
+      {action === 'save' && (
+        <>
+          <h3>
+            <FormattedMessage id="app.saveThing" values={{ thing: app.translate('app.pattern') }} />
+          </h3>
+          <SavePattern
+            setAction={setAction}
+            setLoading={app.setLoading}
+            app={app}
+            data={data}
+            person={person}
+          />
+        </>
+      )}
       <p>
-        { (action !== 'pick') && (
+        {action !== 'pick' && (
           <Button
             onClick={() => setAction('pick')}
-            variant='outlined'
-            color='primary'
-            size='large'
-            style={{marginTop: '2rem', marginRight: '1rem'}}
+            variant="outlined"
+            color="primary"
+            size="large"
+            style={{ marginTop: '2rem', marginRight: '1rem' }}
           >
             Cancel
           </Button>
         )}
         <Button
           onClick={close}
-          variant='outlined'
-          color='primary'
-          size='large'
-          style={{marginTop: '2rem'}}
+          variant="outlined"
+          color="primary"
+          size="large"
+          style={{ marginTop: '2rem' }}
         >
           Close
         </Button>

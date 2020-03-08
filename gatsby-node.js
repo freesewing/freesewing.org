@@ -15,17 +15,15 @@ const meta = {
   build: {
     netlify: process.env.NETLIFY,
     id: process.env.BUILD_ID,
-    context: process.env.CONTEXT,
+    context: process.env.CONTEXT
   },
   git: {
     repo: process.env.REPOSITORY_URL,
     branch: process.env.BRANCH,
-    commit: process.env.COMMIT_REF,
+    commit: process.env.COMMIT_REF
   },
   language: process.env.GATSBY_LANGUAGE
 }
-
-
 
 const slugFromFilePath = filePath => {
   return (

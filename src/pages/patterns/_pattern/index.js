@@ -105,28 +105,34 @@ const PatternPage = props => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <PatternFabs app={app} fabs={fabs} openDialog={openDialog} pattern={props.pattern} design={pattern.data.design}/>
-        <div className='pwrap'>
+        <PatternFabs
+          app={app}
+          fabs={fabs}
+          openDialog={openDialog}
+          pattern={props.pattern}
+          design={pattern.data.design}
+        />
+        <div className="pwrap">
           <div>
             <h3>Preview</h3>
-            <div className='preview shadow'>
+            <div className="preview shadow">
               <PatternPreview data={pattern.data} app={app} />
             </div>
           </div>
-        {pattern.notes && (
-          <div>
-            <h3>Notes</h3>
-            <PatternNotes notes={pattern.notes} app={app} />
-          </div>
-    )}
+          {pattern.notes && (
+            <div>
+              <h3>Notes</h3>
+              <PatternNotes notes={pattern.notes} app={app} />
+            </div>
+          )}
         </div>
-            <h3>Data</h3>
-            <PatternData data={pattern} />
+        <h3>Data</h3>
+        <PatternData data={pattern} />
       </WideLayout>
-      <div id='pattern-mask' className={dialog ? 'show' : ''} onClick={() => setDialog(false)}/>,
-      <div id='pattern-dialog' className={dialog ? 'show shadow' : ''}>
+      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />,
+      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
         <Dialog
-          mode='view'
+          mode="view"
           owner={ownPattern}
           data={pattern.data}
           pattern={props.pattern}

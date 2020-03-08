@@ -18,7 +18,6 @@ import Button from '@material-ui/core/Button'
  */
 
 const CreatePatternForPersonPage = props => {
-
   const app = useApp()
 
   // State
@@ -36,16 +35,16 @@ const CreatePatternForPersonPage = props => {
 
   // Methods
   const applyCrumbs = (handle, title) => {
-   app.setCrumbs([
-     {
-       slug: `/patterns/`,
-       title: app.translate('app.patterns')
-     },
-     {
-       slug: `/patterns/${handle}/`,
-       title
-     },
-   ])
+    app.setCrumbs([
+      {
+        slug: `/patterns/`,
+        title: app.translate('app.patterns')
+      },
+      {
+        slug: `/patterns/${handle}/`,
+        title
+      }
+    ])
   }
 
   // Effects
@@ -73,45 +72,54 @@ const CreatePatternForPersonPage = props => {
       setPattern(pop)
       applyCrumbs(props.pattern, pop.name)
     }
-    app.setTitle(app.translate('app.editThing', {thing: app.translate('app.pattern')}))
+    app.setTitle(app.translate('app.editThing', { thing: app.translate('app.pattern') }))
   }, [props.pattern])
 
   const fabs = ['zoom', 'compare', 'notes', 'save', 'saveAs', 'export', 'details']
 
   return (
     <AppWrapper app={app}>
-      {(person && pattern && design)
-        ? (
-          <DraftUi
-            mode='edit'
-            app={app}
-            design={design}
-            person={person}
-            pattern={pattern}
-            data={pattern.data}
-            fabs={fabs}
-          />
-        ) : (person === false)
-              ? (
-                <CenteredLayout app={app} top>
-                  <Blockquote type='note'>
-                    <h4><FormattedMessage id='app.recreatePattern'/></h4>
-                    <p><FormattedMessage id='app.recreatePattern-txt'/></p>
-                    <p>
-                      <Button variant='contained' color='primary' href={`/recreate/${design}/from/${pattern.handle}/`}>
-                        <FormattedMessage id='app.recreatePattern'/>
-                      </Button>
-                    </p>
-                  </Blockquote>
-                  <Blockquote type='warning'>
-                    <h6><FormattedMessage id='app.editOwnPatternsOnly'/></h6>
-                    <p><FormattedMessage id='app.editOwnPatternsOnly-txt'/></p>
-                  </Blockquote>
-                </CenteredLayout>
-              ) : <LoadingLayout app={app} />
-
-
-      }
+      {person && pattern && design ? (
+        <DraftUi
+          mode="edit"
+          app={app}
+          design={design}
+          person={person}
+          pattern={pattern}
+          data={pattern.data}
+          fabs={fabs}
+        />
+      ) : person === false ? (
+        <CenteredLayout app={app} top>
+          <Blockquote type="note">
+            <h4>
+              <FormattedMessage id="app.recreatePattern" />
+            </h4>
+            <p>
+              <FormattedMessage id="app.recreatePattern-txt" />
+            </p>
+            <p>
+              <Button
+                variant="contained"
+                color="primary"
+                href={`/recreate/${design}/from/${pattern.handle}/`}
+              >
+                <FormattedMessage id="app.recreatePattern" />
+              </Button>
+            </p>
+          </Blockquote>
+          <Blockquote type="warning">
+            <h6>
+              <FormattedMessage id="app.editOwnPatternsOnly" />
+            </h6>
+            <p>
+              <FormattedMessage id="app.editOwnPatternsOnly-txt" />
+            </p>
+          </Blockquote>
+        </CenteredLayout>
+      ) : (
+        <LoadingLayout app={app} />
+      )}
     </AppWrapper>
   )
 }

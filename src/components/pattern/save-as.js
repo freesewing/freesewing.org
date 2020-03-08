@@ -25,7 +25,8 @@ const SavePatternAs = props => {
     let nameVal = name
     if (name === '') nameVal = `${data.design} / ${data.settings.metadata.for}`
     let notesVal = notes
-    if (notes === '') notesVal = `
+    if (notes === '')
+      notesVal = `
 - 👕 : [${data.design}](/designs/${data.design}/)
 - 🧑 : [${data.settings.metadata.for}](/people/${props.person.handle}/)
 - 📅 : ${new Date().toISOString()}`
@@ -48,42 +49,40 @@ const SavePatternAs = props => {
 
   return (
     <>
-      <h3><FormattedMessage id='app.saveAsNewPattern' /></h3>
-      { loading
-        ? <div style={{textAlign: 'center', margin: 'auto'}}><Loading loading={true} embed size={250}/></div>
-        : (
-          <>
-            <TextField
-              id="name"
-              fullWidth={true}
-              label={props.app.translate('app.name')}
-              margin="normal"
-              variant="outlined"
-              value={name}
-              type="text"
-              onChange={updateName}
-            />
-            <TextField
-              multiline={true}
-              rows="4"
-              rowsMax="12"
-              fullWidth={true}
-              label={props.app.translate('app.notes')}
-              margin="normal"
-              variant="outlined"
-              value={notes}
-              onChange={updateNotes}
-            />
-          </>
-        )}
+      <h3>
+        <FormattedMessage id="app.saveAsNewPattern" />
+      </h3>
+      {loading ? (
+        <div style={{ textAlign: 'center', margin: 'auto' }}>
+          <Loading loading={true} embed size={250} />
+        </div>
+      ) : (
+        <>
+          <TextField
+            id="name"
+            fullWidth={true}
+            label={props.app.translate('app.name')}
+            margin="normal"
+            variant="outlined"
+            value={name}
+            type="text"
+            onChange={updateName}
+          />
+          <TextField
+            multiline={true}
+            rows="4"
+            rowsMax="12"
+            fullWidth={true}
+            label={props.app.translate('app.notes')}
+            margin="normal"
+            variant="outlined"
+            value={notes}
+            onChange={updateNotes}
+          />
+        </>
+      )}
       <p>
-        <Button
-          size="large"
-          fullWidth
-          variant="contained"
-          color="primary"
-          onClick={handleSave}
-        >
+        <Button size="large" fullWidth variant="contained" color="primary" onClick={handleSave}>
           <FormattedMessage id="app.saveAsNewPattern" />
         </Button>
       </p>

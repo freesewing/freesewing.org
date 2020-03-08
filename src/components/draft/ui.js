@@ -34,7 +34,6 @@ import PatternFabs from '../pattern/fabs'
 import './ui.css'
 
 const DraftUi = props => {
-
   const { app, person, pattern, design } = props
   const Pattern = useDesign(design)
 
@@ -64,13 +63,14 @@ const DraftUi = props => {
   // Hooks
   //const docs = useDraftDocs(props.data)
 
-  if (!person || !design) return (
-    <>
-      <p>This should never happen. Please report this.</p>
-      <pre>{JSON.stringify(design, null, 2)}</pre>
-      <pre>{JSON.stringify(person, null, 2)}</pre>
-    </>
-  )
+  if (!person || !design)
+    return (
+      <>
+        <p>This should never happen. Please report this.</p>
+        <pre>{JSON.stringify(design, null, 2)}</pre>
+        <pre>{JSON.stringify(person, null, 2)}</pre>
+      </>
+    )
 
   // State
   const [display, setDisplay] = useState('draft')
@@ -139,7 +139,8 @@ const DraftUi = props => {
     )
   } else {
     if (error) main = <DraftError error={error} updatePatternData={mergeData} />
-    else main = (
+    else
+      main = (
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
           <Draft {...patternProps} />
         </figure>
@@ -164,8 +165,8 @@ const DraftUi = props => {
         />
         {main}
       </article>
-      <div id='pattern-mask' className={dialog ? 'show' : ''} onClick={() => setDialog(false)}/>
-      <div id='pattern-dialog' className={dialog ? 'show shadow' : ''}>
+      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
+      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
         <Dialog
           mode={props.recreate ? 'recreate' : 'create'}
           fabs={props.fabs}

@@ -38,10 +38,9 @@ const ExportPattern = ({ app, data, setAction }) => {
         .render()
       if (type === 'raw') {
         if (format === 'svg') svgToFile(svg)
-        else if (format === 'postscript') convert(svg, 'ps', 'full').then( url => ready(url) )
-        else if (format === 'pdf') convert(svg, 'pdf', 'full').then( url => ready(url) )
-      }
-      else if (type === 'tile') convert(svg, 'pdf', format).then( url => ready(url))
+        else if (format === 'postscript') convert(svg, 'ps', 'full').then(url => ready(url))
+        else if (format === 'pdf') convert(svg, 'pdf', 'full').then(url => ready(url))
+      } else if (type === 'tile') convert(svg, 'pdf', format).then(url => ready(url))
     }
   }
   const ready = url => {
@@ -98,7 +97,6 @@ const ExportPattern = ({ app, data, setAction }) => {
       fontFamily: "'Roboto Condensed', sans-serif",
       fontWeight: 'bold',
       marginLeft: '2rem'
-
     }
   }
   if (app.tablet) styles.column.width = '45%'
@@ -111,31 +109,39 @@ const ExportPattern = ({ app, data, setAction }) => {
     style: styles.button
   }
 
-  if (loading) return <div style={styles.loader}><Loading loading={true} embed size={250}/></div>
+  if (loading)
+    return (
+      <div style={styles.loader}>
+        <Loading loading={true} embed size={250} />
+      </div>
+    )
   return (
     <React.Fragment>
       <div style={styles.wrapper}>
-        { link
-          ? (
-            <div style={styles.download}>
-              <Blockquote type='note'>
-                <h5>Your export is ready</h5>
-                <p>You can download your exported pattern from the following link:</p>
-                <p style={styles.link}><a href={link} target='_BLANK'>{link}</a></p>
-                <p style={{textAlign: 'right'}}>
-                  <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => setLink(false)}
-                    className='info'
-                  >
-                    <FormattedMessage id='app.back' />
-                  </Button>
-                </p>
-              </Blockquote>
-            </div>
-          ): (
-            <>
+        {link ? (
+          <div style={styles.download}>
+            <Blockquote type="note">
+              <h5>Your export is ready</h5>
+              <p>You can download your exported pattern from the following link:</p>
+              <p style={styles.link}>
+                <a href={link} target="_BLANK">
+                  {link}
+                </a>
+              </p>
+              <p style={{ textAlign: 'right' }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => setLink(false)}
+                  className="info"
+                >
+                  <FormattedMessage id="app.back" />
+                </Button>
+              </p>
+            </Blockquote>
+          </div>
+        ) : (
+          <>
             <div style={styles.column} data-test="printing">
               <h5>
                 <FormattedMessage id="app.exportForPrinting" />
@@ -179,10 +185,9 @@ const ExportPattern = ({ app, data, setAction }) => {
                 </Button>
               ))}
             </div>
-            </>
-
-  )}
-          </div>
+          </>
+        )}
+      </div>
     </React.Fragment>
   )
 }

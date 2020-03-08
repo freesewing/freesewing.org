@@ -34,11 +34,11 @@ const styles = {
     fontWeight: 'normal',
     fontSize: '1.25rem',
     padding: '0 1rem'
-  },
+  }
 }
 
 const Dialog = React.memo(props => {
-  if(!props.mode) throw new Error("Mode is not set in pattern dialog")
+  if (!props.mode) throw new Error('Mode is not set in pattern dialog')
 
   const handleSave = () => {
     props.app
@@ -67,26 +67,27 @@ const Dialog = React.memo(props => {
 
   const titles = {
     compare: props.app.translate('app.comparePattern'),
-    edit: props.app.translate('app.editThing', {thing: props.app.translate('app.pattern')}),
-    notes: props.app.translate('app.editThing', {thing: props.app.translate('app.notes')}),
+    edit: props.app.translate('app.editThing', { thing: props.app.translate('app.pattern') }),
+    notes: props.app.translate('app.editThing', { thing: props.app.translate('app.notes') }),
     recreate: props.app.translate('app.recreatePattern'),
-    export: props.app.translate('app.printPattern') + ' / ' + props.app.translate('app.exportPattern'),
-    save: props.app.translate('app.saveThing', {thing: props.app.translate('app.pattern')}),
+    export:
+      props.app.translate('app.printPattern') + ' / ' + props.app.translate('app.exportPattern'),
+    save: props.app.translate('app.saveThing', { thing: props.app.translate('app.pattern') }),
     saveAs: props.app.translate('app.saveAsNewPattern'),
     units: props.app.translate('account.units'),
-    zoom: props.app.translate('app.zoom'),
+    zoom: props.app.translate('app.zoom')
   }
 
   const colors = {
-    compare: (props.display === 'draft') ? 'primary' : 'secondary',
+    compare: props.display === 'draft' ? 'primary' : 'secondary',
     edit: 'primary',
     notes: 'primary',
     recreate: 'primary',
     export: 'primary',
     save: 'primary',
     saveAs: 'primary',
-    units: (props.units === 'metric') ? 'primary' : 'secondary',
-    zoom: (props.fit) ? 'primary' : 'secondary'
+    units: props.units === 'metric' ? 'primary' : 'secondary',
+    zoom: props.fit ? 'primary' : 'secondary'
   }
 
   const info = {
@@ -98,22 +99,26 @@ const Dialog = React.memo(props => {
     save: 'app.savePattern-txt',
     saveAs: 'app.saveAsNewPattern-txt',
     units: 'account.unitsInfo',
-    zoom: 'app.zoom-txt',
+    zoom: 'app.zoom-txt'
   }
 
-  const icons= {
-    compare: <CompareIcon style={styles.buttonIcon}/>,
-    edit: <EditIcon style={styles.buttonIcon}/>,
-    notes: <NotesIcon style={styles.buttonIcon}/>,
-    recreate: <RecreateIcon style={styles.buttonIcon}/>,
-    export: <ExportIcon style={styles.buttonIcon}/>,
-    save: <SaveIcon style={styles.buttonIcon}/>,
-    saveAs: <SaveAsIcon style={styles.buttonIcon}/>,
+  const icons = {
+    compare: <CompareIcon style={styles.buttonIcon} />,
+    edit: <EditIcon style={styles.buttonIcon} />,
+    notes: <NotesIcon style={styles.buttonIcon} />,
+    recreate: <RecreateIcon style={styles.buttonIcon} />,
+    export: <ExportIcon style={styles.buttonIcon} />,
+    save: <SaveIcon style={styles.buttonIcon} />,
+    saveAs: <SaveAsIcon style={styles.buttonIcon} />,
     units: <span style={styles.buttonIcon}>{props.units === 'metric' ? '10 cm' : '4"'}</span>,
-    zoom: props.fit ? <ZoomInIcon style={styles.buttonIcon}/> : <ZoomOutIcon style={styles.buttonIcon}/>,
+    zoom: props.fit ? (
+      <ZoomInIcon style={styles.buttonIcon} />
+    ) : (
+      <ZoomOutIcon style={styles.buttonIcon} />
+    )
   }
 
-  const actions= {
+  const actions = {
     compare: () => {
       props.setDisplay(props.display === 'draft' ? 'compare' : 'draft')
       props.setDialog(false)
@@ -126,8 +131,7 @@ const Dialog = React.memo(props => {
     save: handleSave,
     saveAs: () => props.setAction('saveAs'),
     units: () => {
-      props.toggleUnits(),
-      props.setDialog(false)
+      props.toggleUnits(), props.setDialog(false)
     },
     zoom: () => {
       props.setFit(!props.fit)
@@ -140,28 +144,32 @@ const Dialog = React.memo(props => {
     return (
       <>
         <h3>{titles[type]}</h3>
-        <p><FormattedMessage id={info[type]} /></p>
         <p>
-          <Button
-            variant='contained'
-            color={colors[type]}
-            size='large'
-            onClick={actions[type]}
-          >
+          <FormattedMessage id={info[type]} />
+        </p>
+        <p>
+          <Button variant="contained" color={colors[type]} size="large" onClick={actions[type]}>
             {icons[type]}
             {titles[type]}
           </Button>
         </p>
-
       </>
     )
   }
 
   return (
     <>
-      {props.action === 'pick' && fabsOrder.map( fab => (props.fabs.indexOf(fab) !== -1) ? getInfo(fab) : null )}
-      {props.action === 'notes' && <SavePatternNotes {...sharedProps} name={props.pattern.name} notes={props.pattern.notes} pattern={props.pattern.handle} /> }
-      {props.action === 'saveAs' && <SavePatternAs {...sharedProps} /> }
+      {props.action === 'pick' &&
+        fabsOrder.map(fab => (props.fabs.indexOf(fab) !== -1 ? getInfo(fab) : null))}
+      {props.action === 'notes' && (
+        <SavePatternNotes
+          {...sharedProps}
+          name={props.pattern.name}
+          notes={props.pattern.notes}
+          pattern={props.pattern.handle}
+        />
+      )}
+      {props.action === 'saveAs' && <SavePatternAs {...sharedProps} />}
       {props.action === 'export' && (
         <>
           <h3>{titles.export}</h3>
@@ -170,16 +178,18 @@ const Dialog = React.memo(props => {
       )}
       <Button
         onClick={close}
-        variant='outlined'
-        color='primary'
-        size='large'
-        style={{margin: '2rem 0'}}
-        key='close'
+        variant="outlined"
+        color="primary"
+        size="large"
+        style={{ margin: '2rem 0' }}
+        key="close"
       >
-        <MenuOpenIcon style={{
-          marginRight: '0.5rem',
-          transform: 'rotate(180deg)'
-        }}/>
+        <MenuOpenIcon
+          style={{
+            marginRight: '0.5rem',
+            transform: 'rotate(180deg)'
+          }}
+        />
         Close
       </Button>
     </>

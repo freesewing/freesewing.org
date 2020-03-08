@@ -74,11 +74,12 @@ const DraftPreview = ({ app, design, person, data }) => {
   // Main render element
   let main
   if (error) return <DraftError error={error} updatePatternData={mergeData} />
-  else return (
-    <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-      <Draft {...patternProps} />
-    </figure>
-  )
+  else
+    return (
+      <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+        <Draft {...patternProps} />
+      </figure>
+    )
 }
 
 export default DraftPreview

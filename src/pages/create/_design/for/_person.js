@@ -9,13 +9,13 @@ import { graphql } from 'gatsby'
 import usePerson from '../../../../hooks/usePerson'
 import CenteredLayout from '../../../../components/layouts/centered'
 import Blockquote from '@freesewing/components/Blockquote'
-import { measurements as requiredMeasurements, } from '@freesewing/pattern-info'
+import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
 const CreatePatternForPersonPage = props => {
   const app = useApp()
   const person = usePerson(app, props.person)
-  console.log({person})
+  console.log({ person })
 
   // SSR
   if (typeof props.person === 'undefined')
@@ -28,22 +28,24 @@ const CreatePatternForPersonPage = props => {
   // Effects
   useEffect(() => {
     app.setCrumbs([
-     {
-       slug: `/create/`,
-       title: app.translate('app.newThing', { thing: app.translate('app.pattern')})
-     },
-     {
-       slug: `/create/${props.pageContext.design}/`,
-       title: app.translate('app.newThing', { thing: app.translate(`patterns.${props.pageContext.design}.title`)})
-     },
+      {
+        slug: `/create/`,
+        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+      },
+      {
+        slug: `/create/${props.pageContext.design}/`,
+        title: app.translate('app.newThing', {
+          thing: app.translate(`patterns.${props.pageContext.design}.title`)
+        })
+      }
     ])
-    app.setTitle(app.translate('app.newPatternForModel', {
-      pattern: app.translate(`patterns.${props.pageContext.design}.title`),
-      model: person.name || props.person
-    }))
-
-  }, [props.person]
-  )
+    app.setTitle(
+      app.translate('app.newPatternForModel', {
+        pattern: app.translate(`patterns.${props.pageContext.design}.title`),
+        model: person.name || props.person
+      })
+    )
+  }, [props.person])
 
   // Initial pattern data
   const data = {
@@ -58,9 +60,9 @@ const CreatePatternForPersonPage = props => {
       options: {},
       measurements: {},
       metadata: {
-        for: person.name || props.person,
+        for: person.name || props.person
       }
-    },
+    }
   }
   for (let m of requiredMeasurements[props.pageContext.design]) {
     data.settings.measurements[m] = person.measurements[m]
@@ -72,7 +74,7 @@ const CreatePatternForPersonPage = props => {
   return (
     <AppWrapper app={app}>
       <DraftUi
-        mode='create'
+        mode="create"
         app={app}
         person={person}
         design={props.pageContext.design}

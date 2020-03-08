@@ -71,7 +71,9 @@ const PatternsIndexPage = props => {
                   width={app.mobile ? 92 : 164}
                   imgComponent={
                     <LineDrawing
-                      pattern={app.patterns[handle].data ? app.patterns[handle].data.design : 'aaron'}
+                      pattern={
+                        app.patterns[handle].data ? app.patterns[handle].data.design : 'aaron'
+                      }
                       color={app.theme === 'dark' ? '#f8f9fa' : '#212529'}
                       size={app.mobile ? 92 : 164}
                     />
