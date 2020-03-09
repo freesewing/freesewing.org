@@ -16,6 +16,7 @@ import NotesIcon from '@material-ui/icons/RateReview'
 import CompareIcon from '@material-ui/icons/SupervisorAccount'
 import ZoomInIcon from '@material-ui/icons/ZoomIn'
 import ZoomOutIcon from '@material-ui/icons/ZoomOut'
+import DeleteIcon from '@material-ui/icons/DeleteForever'
 import MenuOpenIcon from '@material-ui/icons/MenuOpen'
 import fabsOrder from './fabsorder'
 
@@ -54,6 +55,15 @@ const Dialog = React.memo(props => {
       })
   }
 
+  const handleDelete = () => {
+    props.app
+      .removePattern(props.pattern.handle)
+      .catch(err => {
+        console.log(err)
+      })
+    props.setDialog(false)
+  }
+
   const close = () => props.setDialog(false)
 
   const sharedProps = {
@@ -67,6 +77,7 @@ const Dialog = React.memo(props => {
 
   const titles = {
     compare: props.app.translate('app.comparePattern'),
+    delete: props.app.translate('app.removeThing', { thing: props.app.translate('app.pattern') }),
     edit: props.app.translate('app.editThing', { thing: props.app.translate('app.pattern') }),
     notes: props.app.translate('app.editThing', { thing: props.app.translate('app.notes') }),
     recreate: props.app.translate('app.recreatePattern'),
@@ -80,6 +91,7 @@ const Dialog = React.memo(props => {
 
   const colors = {
     compare: props.display === 'draft' ? 'primary' : 'secondary',
+    delete: 'primary',
     edit: 'primary',
     notes: 'primary',
     recreate: 'primary',
@@ -92,6 +104,7 @@ const Dialog = React.memo(props => {
 
   const info = {
     compare: 'app.comparePattern-txt',
+    delete: 'app.proceedWithCaution',
     edit: 'app.editPattern-txt',
     notes: 'app.updateNotes-txt',
     recreate: 'app.recreatePattern-txt',
@@ -104,6 +117,7 @@ const Dialog = React.memo(props => {
 
   const icons = {
     compare: <CompareIcon style={styles.buttonIcon} />,
+    delete: <DeleteIcon style={styles.buttonIcon} />,
     edit: <EditIcon style={styles.buttonIcon} />,
     notes: <NotesIcon style={styles.buttonIcon} />,
     recreate: <RecreateIcon style={styles.buttonIcon} />,
@@ -123,6 +137,7 @@ const Dialog = React.memo(props => {
       props.setDisplay(props.display === 'draft' ? 'compare' : 'draft')
       props.setDialog(false)
     },
+    delete: handleDelete,
     details: () => props.openDialog('pick'),
     edit: () => navigate(`/patterns/${props.pattern}/edit/`),
     notes: () => props.setAction('notes'),
@@ -148,7 +163,7 @@ const Dialog = React.memo(props => {
           <FormattedMessage id={info[type]} />
         </p>
         <p>
-          <Button variant="contained" color={colors[type]} size="large" onClick={actions[type]}>
+          <Button variant="contained" color={colors[type]} size="large" onClick={actions[type]} className={type==='delete' ? 'danger' : ''}>
             {icons[type]}
             {titles[type]}
           </Button>

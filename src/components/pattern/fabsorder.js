@@ -8,5 +8,6 @@ export default [
   'save',
   'saveAs',
   'export',
-  'details'
+  'details',
+  'delete'
 ]

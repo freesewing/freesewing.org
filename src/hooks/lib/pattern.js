@@ -52,7 +52,6 @@ const patternMethods = ({
             type: 'success',
             msg: translate('app.fieldSaved', { field: translate('app.pattern') })
           })
-          //navigate(`/patterns/${handle}/`)
         }
       })
       .catch(error => {
@@ -72,7 +71,7 @@ const patternMethods = ({
         if (res.status === 204) {
           setNotification({
             type: 'success',
-            msg: translate('app.fieldRemoved', { field: app.transate('app.pattern') })
+            msg: translate('app.fieldRemoved', { field: translate('app.pattern') })
           })
           navigate('/patterns/')
         }

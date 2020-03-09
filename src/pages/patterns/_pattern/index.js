@@ -100,6 +100,7 @@ const PatternPage = props => {
   const fabs = ['export', 'details', 'edit', 'recreate']
   if (app.account.username) {
     fabs.push('saveAs')
+    if (ownPattern) fabs.push('delete')
   }
 
   return (

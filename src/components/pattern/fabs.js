@@ -7,6 +7,7 @@ import SaveAsIcon from '@material-ui/icons/NoteAdd'
 import ExportIcon from '@material-ui/icons/GetApp'
 import EditIcon from '@material-ui/icons/Edit'
 import ZoomIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/DeleteForever'
 import NotesIcon from '@material-ui/icons/RateReview'
 import CompareIcon from '@material-ui/icons/SupervisorAccount'
 import MenuOpenIcon from '@material-ui/icons/MenuOpen'
@@ -38,8 +39,17 @@ const PatternFabs = props => {
       })
   }
 
+  const handleDelete = () => {
+    props.app
+      .removePattern(props.pattern)
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   const titles = {
     compare: props.app.translate('app.compare'),
+    delete: props.app.translate('app.removeThing', { thing: props.app.translate('app.pattern') }),
     details: props.app.translate('app.showDetails'),
     edit: props.app.translate('app.editThing', { thing: props.app.translate('app.pattern') }),
     notes: props.app.translate('app.editThing', { thing: props.app.translate('app.notes') }),
@@ -53,6 +63,7 @@ const PatternFabs = props => {
   }
   const icons = {
     compare: <CompareIcon />,
+    delete: <DeleteIcon />,
     details: [
       <MenuOpenIcon />,
       <span
@@ -77,6 +88,7 @@ const PatternFabs = props => {
   }
   const actions = {
     compare: () => props.setDisplay(props.display === 'draft' ? 'compare' : 'draft'),
+    delete: handleDelete,
     details: () => props.openDialog('pick'),
     edit: () => navigate(`/patterns/${props.pattern}/edit/`),
     notes: () => props.openDialog('notes'),
@@ -90,6 +102,7 @@ const PatternFabs = props => {
   const colors = {
     compare: props.display === 'compare' ? 'secondary' : 'primary',
     details: 'primary',
+    delete: 'primary',
     edit: 'primary',
     notes: 'primary',
     recreate: 'primary',
@@ -99,15 +112,19 @@ const PatternFabs = props => {
     units: props.units === 'metric' ? 'primary' : 'secondary',
     zoom: props.fit ? 'primary' : 'secondary'
   }
+  const red = {
+    backgroundColor: '#fa5252',
+    marginLeft: '0.5rem'
+  }
   const getFab = type => (
     <Fab
       color={colors[type]}
-      style={{ marginLeft: '0.5rem' }}
       title={titles[type]}
       aria-label={titles[type]}
       onClick={actions[type]}
       variant={type === 'details' ? 'extended' : 'round'}
       size={type === 'details' ? 'large' : 'medium'}
+      style={type === 'delete' ? red : {marginLeft: '0.5rem'}}
     >
       {icons[type]}
     </Fab>
