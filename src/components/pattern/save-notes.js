@@ -6,17 +6,16 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 
 const SavePatternNotes = props => {
-  console.log('sn', props)
+
   // State
   const [name, setName] = useState(props.name)
   const [notes, setNotes] = useState(props.notes)
-  const [loading, setLoading] = useState(props.notes)
 
   // Methods
   const updateName = evt => setName(evt.target.value)
   const updateNotes = evt => setNotes(evt.target.value)
   const handleSave = () => {
-    setLoading(true)
+    props.setDialog(false)
     let nameVal = name
     if (name === '') nameVal = props.pattern
     props.app
@@ -24,13 +23,9 @@ const SavePatternNotes = props => {
         name: nameVal,
         notes
       })
-      .then(res => {
-        setLoading(false)
-        props.setDialog(false)
-      })
+      .catch(err => console.log(err))
   }
 
-  if (loading) return <Loading loading={true} />
   return (
     <>
       <h3>
