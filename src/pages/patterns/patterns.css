@@ -11,13 +11,17 @@ div.pattern-list div.pattern {
   border-radius: 4px;
   text-align: left;
 }
+div.pattern-list div.pattern > a {
+  text-align: center;
+}
 div.pattern-list div.pattern > div {
   padding: 0.5rem 0 0 1rem;
   text-align: left;
   width: 100%;
 }
 div.pattern-list div.pattern > div h5 {
-  margin: 0
+  margin: 0;
+  line-height: 1.2;
 }
 div.pattern-list div.pattern > div h5 span {
   word-wrap: anywhere;

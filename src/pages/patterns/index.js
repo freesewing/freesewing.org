@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import { Link } from 'gatsby'
 import Markdown from 'react-markdown'
+import capitalize from '@freesewing/utils/capitalize'
 
 import './patterns.css'
 
@@ -41,6 +42,7 @@ const PatternsIndexPage = props => {
                     color={app.theme === 'dark' ? '#f8f9fa' : '#212529'}
                     size={app.mobile ? 92 : 164}
                   />
+                  {capitalize(app.patterns[handle].data.design)}
                 </Link>
                 <div>
                   <h5>
