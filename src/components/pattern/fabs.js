@@ -118,6 +118,7 @@ const PatternFabs = props => {
   }
   const getFab = type => (
     <Fab
+      data-test={type}
       color={colors[type]}
       title={titles[type]}
       aria-label={titles[type]}
