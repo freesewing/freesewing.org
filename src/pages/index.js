@@ -15,10 +15,13 @@ import { graphql, Link } from 'gatsby'
 // Style
 import './homepage.css'
 
-
 const renderBlogPost = node => (
-  <div className='post'>
-    <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.linktitle} className='image'>
+  <div className="post">
+    <Link
+      to={`/${node.node.parent.relativeDirectory}/`}
+      title={node.node.frontmatter.linktitle}
+      className="image"
+    >
       <figure>
         <img
           src={node.node.frontmatter.img.childImageSharp.fluid.src}
@@ -28,7 +31,11 @@ const renderBlogPost = node => (
         />
       </figure>
     </Link>
-    <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.linktitle} className='text'>
+    <Link
+      to={`/${node.node.parent.relativeDirectory}/`}
+      title={node.node.frontmatter.linktitle}
+      className="text"
+    >
       <h3>{node.node.frontmatter.title}</h3>
       <p>{node.node.excerpt}</p>
     </Link>
@@ -96,22 +103,19 @@ const HomePage = props => {
         </WideLayout>
 
         {/* Latest blog posts */}
-        <div id='blog'>
-          <div className='single'>
-            {renderBlogPost(props.data.allMdx.edges[0])}
-          </div>
-          <div className='many'>
+        <div id="blog">
+          <div className="single">{renderBlogPost(props.data.allMdx.edges[0])}</div>
+          <div className="many">
             {renderBlogPost(props.data.allMdx.edges[1])}
             {renderBlogPost(props.data.allMdx.edges[2])}
             {renderBlogPost(props.data.allMdx.edges[3])}
-            <h3 style={{textAlign: 'right', padding: '0 1rem'}}>
-              <Link to='/blog/' className='more'>
-                <FormattedMessage id='app.browseBlogposts' /> &raquo;
+            <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
+              <Link to="/blog/" className="more">
+                <FormattedMessage id="app.browseBlogposts" /> &raquo;
               </Link>
             </h3>
           </div>
         </div>
-
 
         {/* Support banner */}
         <div className="stripe">
@@ -157,7 +161,7 @@ export default withLanguage(HomePage)
 export const pageQuery = graphql`
   {
     allMdx(
-      limit: 4,
+      limit: 4
       filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -191,4 +195,3 @@ export const pageQuery = graphql`
     }
   }
 `
-

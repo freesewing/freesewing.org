@@ -40,11 +40,9 @@ const PatternFabs = props => {
   }
 
   const handleDelete = () => {
-    props.app
-      .removePattern(props.pattern)
-      .catch(err => {
-        console.log(err)
-      })
+    props.app.removePattern(props.pattern).catch(err => {
+      console.log(err)
+    })
   }
 
   const titles = {
@@ -125,7 +123,7 @@ const PatternFabs = props => {
       onClick={actions[type]}
       variant={type === 'details' ? 'extended' : 'round'}
       size={type === 'details' ? 'large' : 'medium'}
-      style={type === 'delete' ? red : {marginLeft: '0.5rem'}}
+      style={type === 'delete' ? red : { marginLeft: '0.5rem' }}
     >
       {icons[type]}
     </Fab>

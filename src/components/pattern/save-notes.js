@@ -6,7 +6,6 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 
 const SavePatternNotes = props => {
-
   // State
   const [name, setName] = useState(props.name)
   const [notes, setNotes] = useState(props.notes)

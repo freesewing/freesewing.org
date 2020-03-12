@@ -56,11 +56,9 @@ const Dialog = React.memo(props => {
   }
 
   const handleDelete = () => {
-    props.app
-      .removePattern(props.pattern.handle)
-      .catch(err => {
-        console.log(err)
-      })
+    props.app.removePattern(props.pattern.handle).catch(err => {
+      console.log(err)
+    })
     props.setDialog(false)
   }
 
@@ -163,7 +161,13 @@ const Dialog = React.memo(props => {
           <FormattedMessage id={info[type]} />
         </p>
         <p>
-          <Button variant="contained" color={colors[type]} size="large" onClick={actions[type]} className={type==='delete' ? 'danger' : ''}>
+          <Button
+            variant="contained"
+            color={colors[type]}
+            size="large"
+            onClick={actions[type]}
+            className={type === 'delete' ? 'danger' : ''}
+          >
             {icons[type]}
             {titles[type]}
           </Button>
