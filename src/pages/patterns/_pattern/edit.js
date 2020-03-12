@@ -1,124 +1,127 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import usePattern from '../../../hooks/usePattern'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import DraftUi from '../../../components/draft/ui'
+import { graphql } from 'gatsby'
 
-import TextField from '@material-ui/core/TextField'
+import usePattern from '../../../hooks/usePattern'
+import usePerson from '../../../hooks/usePerson'
+import LoadingLayout from '../../../components/layouts/loading'
+import CenteredLayout from '../../../components/layouts/centered'
+import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Markdown from 'react-markdown'
-import Blockquote from '@freesewing/components/Blockquote'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import ValidIcon from '@material-ui/icons/CheckCircle'
-import InvalidIcon from '@material-ui/icons/Warning'
 
-const EditPatternPage = props => {
-  // Hooks
+/*
+ * This page allows you to edit your own patterns
+ */
+
+const CreatePatternForPersonPage = props => {
   const app = useApp()
-  const pattern = usePattern(app, props.pattern)
-
-  if (!pattern) return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [name, setName] = useState(pattern.name)
-  const [notes, setNotes] = useState(pattern.notes || '')
+  const [pattern, setPattern] = useState(null)
+  const [person, setPerson] = useState(null)
+  const [design, setDesign] = useState(null)
+
+  // SSR
+  if (typeof props.pattern === 'undefined')
+    return (
+      <AppWrapper app={app}>
+        <LoadingLayout app={app} />
+      </AppWrapper>
+    )
+
+  // Methods
+  const applyCrumbs = (handle, title) => {
+    app.setCrumbs([
+      {
+        slug: `/patterns/`,
+        title: app.translate('app.patterns')
+      },
+      {
+        slug: `/patterns/${handle}/`,
+        title
+      }
+    ])
+  }
 
   // Effects
   useEffect(() => {
-    app.setTitle(pattern.name)
-    app.setCrumbs([
-      {
-        title: app.translate('app.patterns'),
-        slug: '/patterns/'
-      },
-      {
-        title: pattern.name,
-        slug: `/patterns/${props.pattern}/`
-      }
-    ])
-  }, [])
-
-  // Methods
-  const updateNotes = evt => setNotes(evt.target.value)
-  const updateName = evt => setName(evt.target.value)
-
-  // Style
-  const styles = {
-    preview: {
-      margin: '1rem 0',
-      borderRadius: '6px',
-      padding: '1rem 2rem'
+    /*
+     * The usePattern hook is used to load the pattern
+     *
+     *   - Patterns that are in localStorage return instantly
+     *   - Patterns loaded from the backend return a promise
+     *
+     *  pop = patternOrPromise
+     */
+    let pop = usePattern(app, props.pattern)
+    if (pop.then instanceof Function) {
+      // Pending promise
+      pop.then(p => {
+        setPattern(p)
+        setPerson(usePerson(app, p.person))
+        setDesign(p.data.design)
+        applyCrumbs(props.pattern, p.name)
+      })
+    } else {
+      setDesign(pop.data.design)
+      setPerson(usePerson(app, pop.person))
+      setPattern(pop)
+      applyCrumbs(props.pattern, pop.name)
     }
-  }
+    app.setTitle(app.translate('app.editThing', { thing: app.translate('app.pattern') }))
+  }, [props.pattern])
+
+  const fabs = ['zoom', 'compare', 'notes', 'save', 'saveAs', 'export', 'details']
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <TextField
-          fullWidth={true}
-          label={app.translate('app.name')}
-          margin="normal"
-          variant="outlined"
-          value={name}
-          type="text"
-          onChange={updateName}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {name.length > 0 ? (
-                  <ValidIcon style={{ color: '#40c057' }} />
-                ) : (
-                  <InvalidIcon color="error" />
-                )}
-              </InputAdornment>
-            )
-          }}
+      {person && pattern && design ? (
+        <DraftUi
+          mode="edit"
+          app={app}
+          design={design}
+          person={person}
+          pattern={pattern}
+          data={pattern.data}
+          fabs={fabs}
         />
-        <TextField
-          multiline={true}
-          rows="8"
-          rowsMax="16"
-          fullWidth={true}
-          label={app.translate('app.notes')}
-          margin="normal"
-          variant="outlined"
-          value={notes}
-          onChange={updateNotes}
-        />
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href={'/patterns/' + props.pattern}
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          <Button
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            onClick={() => app.updatePattern(props.pattern, { notes, name })}
-          >
-            <FormattedMessage id="app.save" />
-          </Button>
-        </p>
-        <h6>
-          <FormattedMessage id="app.preview" />
-        </h6>
-        <div style={styles.preview} className="shadow">
-          <h1>{name}</h1>
-          <Markdown source={notes} />
-        </div>
-        <Blockquote type="note">
-          <FormattedMessage id="app.thisFieldSupportsMarkdown" />
-        </Blockquote>
-      </CenteredLayout>
+      ) : person === false ? (
+        <CenteredLayout app={app} top>
+          <Blockquote type="note">
+            <h4>
+              <FormattedMessage id="app.recreatePattern" />
+            </h4>
+            <p>
+              <FormattedMessage id="app.recreatePattern-txt" />
+            </p>
+            <p>
+              <Button
+                variant="contained"
+                color="primary"
+                href={`/recreate/${design}/from/${pattern.handle}/`}
+              >
+                <FormattedMessage id="app.recreatePattern" />
+              </Button>
+            </p>
+          </Blockquote>
+          <Blockquote type="warning">
+            <h6>
+              <FormattedMessage id="app.editOwnPatternsOnly" />
+            </h6>
+            <p>
+              <FormattedMessage id="app.editOwnPatternsOnly-txt" />
+            </p>
+          </Blockquote>
+        </CenteredLayout>
+      ) : (
+        <LoadingLayout app={app} />
+      )}
     </AppWrapper>
   )
 }
 
-export default withLanguage(EditPatternPage)
+export default withLanguage(CreatePatternForPersonPage)

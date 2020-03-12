@@ -50,6 +50,7 @@ const DesignListPage = props => {
         <div style={style.wrapper}>
           {designs.map(design => (
             <PostPreview
+              designs
               key={design}
               app={app}
               img={{

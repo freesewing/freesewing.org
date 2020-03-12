@@ -25,7 +25,7 @@ describe('Core pattern drafting for visitors', function() {
         for (let size of sizes) cy.get(`[data-test=${size}]`).should('be.visible')
         for (let format of formats) cy.get(`[data-test=${format}]`).should('be.visible')
         for (let exp of exports) cy.get(`[data-test=${exp}]`).should('be.visible')
-        cy.get('[data-test=cancel]:first-of-type').click({ force: true, multiple: true })
+        cy.get('#pattern-mask').click({ force: true, multiple: true })
       })
     }
   }

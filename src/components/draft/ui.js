@@ -28,7 +28,15 @@ import ExportPattern from '../pattern/export'
 import SharePattern from '../pattern/share'
 import capitalize from '@freesewing/utils/capitalize'
 
+import Dialog from '../pattern/dialog'
+import PatternFabs from '../pattern/fabs'
+
+import './ui.css'
+
 const DraftUi = props => {
+  const { app, person, pattern, design } = props
+  const Pattern = useDesign(design)
+
   // Methods
   const raiseEvent = (type, data) => {
     if (type === 'showHelp') {
@@ -42,128 +50,47 @@ const DraftUi = props => {
       }
     }
   }
+  const openDialog = action => {
+    setDialogAction(action)
+    setDialog(true)
+  }
   const toggleUnits = () => {
     let newUnits = visitorUnits === 'metric' ? 'imperial' : 'metric'
     setVisitorUnits(newUnits)
     mergeData(newUnits, 'settings', 'units')
   }
-  const getInitialData = (initial = false) => {
-    // Initial pattern data
-    let initialData = initial
-      ? initial
-      : {
-          design,
-          version,
-          settings: {
-            sa: 10,
-            complete: true,
-            paperless: false,
-            locale: app.language,
-            units: app.account.settings ? app.account.settings.units : 'metric',
-            options: {},
-            measurements: {}
-          }
-        }
-
-    for (let m of requiredMeasurements[design]) {
-      initialData.settings.measurements[m] = person.measurements[m]
-    }
-
-    return initialData
-  }
-  const getTitle = (recreate, thing, person) => {
-    if (recreate) return app.translate('app.recreateThingForPerson', { thing, person })
-    else return app.translate('app.newPatternForModel', { pattern: thing, model: person })
-  }
-  const getCrumbs = (recreate, handle, name) => {
-    if (recreate)
-      return [
-        {
-          slug: '/create',
-          title: (
-            <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-          )
-        },
-        {
-          slug: `/create/${design}/`,
-          title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
-        },
-        {
-          slug: `/patterns/${handle}/`,
-          title: app.translate('app.recreate') + ' ' + name
-        }
-      ]
-    else return []
-  }
-
-  const { app, design } = props
 
   // Hooks
-  const person = props.person === 'original' ? {} : usePerson(app, props.person)
-  const Pattern = useDesign(design)
-  const docs = useDraftDocs(props.data)
+  //const docs = useDraftDocs(props.data)
 
-  if (!person) return <p>This should never happen. Please report this.</p>
+  if (!person || !design)
+    return (
+      <>
+        <p>This should never happen. Please report this.</p>
+        <pre>{JSON.stringify(design, null, 2)}</pre>
+        <pre>{JSON.stringify(person, null, 2)}</pre>
+      </>
+    )
 
   // State
-  const [pattern, setPattern] = useState('pending')
   const [display, setDisplay] = useState('draft')
   const [fit, setFit] = useState('false')
   const [eventType, setEventType] = useState('')
   const [eventValue, setEventValue] = useState('')
   const [visitorUnits, setVisitorUnits] = useState('metric')
-  const [data, setData, mergeData] = useMergeData() // Special state + update method to merge data
-
-  // Effects
-  useEffect(() => {
-    if (props.recreate) {
-      // We're recreating an existing pattern
-      /*
-       * The usePattern hook is used to load the base pattern
-       *   - Patterns that are in localStorage return instantly
-       *   - Patterns loaded from the backend return a promise
-       */
-      let patternOrPromise = usePattern(app, props.recreate)
-      if (patternOrPromise.then instanceof Function) {
-        patternOrPromise.then(p => {
-          if (props.person === 'original') {
-            person.measurements = p.data.settings.measurements
-            person.name = app.translate('app.model')
-            app.setTitle(app.translate('app.cloneThing', { thing: p.name }))
-          } else app.setTitle(getTitle(true, p.name, person.name))
-          setPattern(p)
-          setData(getInitialData(p.data))
-          app.setCrumbs(getCrumbs(true, p.handle, p.name))
-        })
-      } else {
-        if (props.person === 'original') {
-          person.measurements = patternOrPromise.data.settings.measurements
-          person.name = app.translate('app.model')
-          app.setTitle(app.translate('app.cloneThing', { thing: patternOrPromise.name }))
-        } else app.setTitle(getTitle(true, patternOrPromise.name, person.name))
-        setPattern(patternOrPromise)
-        setData(getInitialData(patternOrPromise.data))
-        app.setCrumbs(getCrumbs(true, patternOrPromise.handle, patternOrPromise.name))
-      }
-    } else {
-      // We're creating a new pattern from scratch
-      setPattern('')
-      setData(getInitialData(false))
-      app.setTitle(getTitle(false, design, person.name))
-      app.setCrumbs(getCrumbs(false, '', design))
-    }
-  }, [])
+  const [data, setData, mergeData] = useMergeData(props.data) // Special state + update method to merge data
+  const [dialog, setDialog] = useState(false)
+  const [dialogAction, setDialogAction] = useState('pick')
 
   // Allow usePattern promise to resolve
-  if (pattern === 'pending') return <LoadingLayout app={app}>{pattern}</LoadingLayout>
-  else if (pattern === false) {
-    if (app.account.username) app.navigate('/patterns/')
-    else app.navigate('/')
-    return null
-  }
+  //if (pattern === false) {
+  //  if (app.account.username) app.navigate('/patterns/')
+  //  else app.navigate('/')
+  //  return null
+  //}
 
   // Make sure state updates are completed
-  if (typeof data === 'undefined') return <LoadingLayout app={app} />
+  //if (typeof data === 'undefined') return <LoadingLayout app={app} />
 
   // Draft the pattern
   let draft, error, patternProps
@@ -200,11 +127,7 @@ const DraftUi = props => {
 
   // Main render element
   let main
-  if (display === 'export') {
-    main = <ExportPattern setDisplay={setDisplay} app={app} data={data} pattern={Pattern} />
-  } else if (display === 'share') {
-    main = <SharePattern setDisplay={setDisplay} app={app} person={props.person} data={data} />
-  } else if (display === 'help') {
+  if (display === 'help') {
     main = (
       <DraftHelp
         docs={docs}
@@ -217,51 +140,51 @@ const DraftUi = props => {
   } else {
     if (error) main = <DraftError error={error} updatePatternData={mergeData} />
     else
-      main = [
-        !app.account.username && (
-          <Blockquote type="note" key="unitsnote">
-            <h6>
-              <FormattedMessage id="app.metricUnits" />
-              <span> / </span>
-              <FormattedMessage id="app.imperialUnits" />
-            </h6>
-            <p>
-              <FormattedMessage id="account.unitsInfo" />
-              &nbsp;
-              <FormattedMessage id="account.unitsTitle" />.
-            </p>
-            <p style={{ textAlign: 'right' }}>
-              <Button onClick={toggleUnits} variant="outlined" color="primary">
-                <FormattedMessage
-                  id="app.switchToThing"
-                  values={{
-                    thing:
-                      visitorUnits === 'metric'
-                        ? app.translate('app.imperialUnits')
-                        : app.translate('app.metricUnits')
-                  }}
-                />
-              </Button>
-            </p>
-          </Blockquote>
-        ),
+      main = (
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
           <Draft {...patternProps} />
-        </figure>,
-        <DraftButtons
-          key="buttons"
-          fit={fit}
-          display={display}
-          setFit={setFit}
-          setDisplay={setDisplay}
-          app={app}
-        />
-      ]
+        </figure>
+      )
   }
 
   return (
     <DraftLayout app={app} aside={aside}>
-      <article>{main}</article>
+      <article>
+        <PatternFabs
+          app={app}
+          fabs={props.fabs}
+          openDialog={openDialog}
+          pattern={props.pattern}
+          toggleUnits={toggleUnits}
+          units={visitorUnits}
+          fit={fit}
+          display={display}
+          setDisplay={setDisplay}
+          setFit={setFit}
+          data={data}
+        />
+        {main}
+      </article>
+      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
+      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
+        <Dialog
+          mode={props.recreate ? 'recreate' : 'create'}
+          fabs={props.fabs}
+          data={data}
+          pattern={props.pattern}
+          person={props.person}
+          setDialog={setDialog}
+          app={app}
+          action={dialogAction}
+          setAction={setDialogAction}
+          setFit={setFit}
+          fit={fit}
+          display={display}
+          setDisplay={setDisplay}
+          toggleUnits={toggleUnits}
+          units={visitorUnits}
+        />
+      </div>
     </DraftLayout>
   )
 }

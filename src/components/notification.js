@@ -8,7 +8,7 @@ import ErrorMsg from './error'
 
 const Notification = ({ notification, setNotification, mobile }) => {
   // Do nothing most of the time
-  if (!notification) return null
+  if (!notification || typeof notification === 'string') return null
 
   let { type, msg } = notification
   const typeIcon = {

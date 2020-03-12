@@ -9,7 +9,8 @@ const PostPreview = ({
   caption = '',
   width = 400,
   img = false,
-  imgComponent = false
+  imgComponent = false,
+  designs = false
 }) => {
   const style = {
     post: {
@@ -42,8 +43,13 @@ const PostPreview = ({
     }
   }
   if (app.mobile) {
-    style.post.width = '100%'
-    style.post.maxWidth = '100%'
+    if (designs) {
+      style.post.width = 'calc(50% - 12px)'
+      style.post.maxWidth = 'calc(50% - 12px)'
+    } else {
+      style.post.width = '100%'
+      style.post.maxWidth = '100%'
+    }
   } else if (app.tablet) {
     style.post.width = 'calc(50% - 12px)'
     style.post.maxWidth = 'calc(50% - 12px)'

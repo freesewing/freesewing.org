@@ -10,11 +10,40 @@ import { FormattedMessage } from 'react-intl'
 
 import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
+import { graphql, Link } from 'gatsby'
 
 // Style
 import './homepage.css'
 
+const renderBlogPost = node => (
+  <div className="post">
+    <Link
+      to={`/${node.node.parent.relativeDirectory}/`}
+      title={node.node.frontmatter.linktitle}
+      className="image"
+    >
+      <figure>
+        <img
+          src={node.node.frontmatter.img.childImageSharp.fluid.src}
+          srcSet={node.node.frontmatter.img.childImageSharp.fluid.srcSet || ''}
+          alt={node.node.frontmatter.title}
+          className="shadow"
+        />
+      </figure>
+    </Link>
+    <Link
+      to={`/${node.node.parent.relativeDirectory}/`}
+      title={node.node.frontmatter.linktitle}
+      className="text"
+    >
+      <h3>{node.node.frontmatter.title}</h3>
+      <p>{node.node.excerpt}</p>
+    </Link>
+  </div>
+)
+
 const HomePage = props => {
+  console.log(props.data)
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -73,6 +102,21 @@ const HomePage = props => {
           </div>
         </WideLayout>
 
+        {/* Latest blog posts */}
+        <div id="blog">
+          <div className="single">{renderBlogPost(props.data.allMdx.edges[0])}</div>
+          <div className="many">
+            {renderBlogPost(props.data.allMdx.edges[1])}
+            {renderBlogPost(props.data.allMdx.edges[2])}
+            {renderBlogPost(props.data.allMdx.edges[3])}
+            <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
+              <Link to="/blog/" className="more">
+                <FormattedMessage id="app.browseBlogposts" /> &raquo;
+              </Link>
+            </h3>
+          </div>
+        </div>
+
         {/* Support banner */}
         <div className="stripe">
           <div>
@@ -112,3 +156,42 @@ const HomePage = props => {
 }
 
 export default withLanguage(HomePage)
+
+// See https://www.gatsbyjs.org/docs/page-query/
+export const pageQuery = graphql`
+  {
+    allMdx(
+      limit: 4
+      filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          parent {
+            ... on File {
+              relativeDirectory
+            }
+          }
+          excerpt(pruneLength: 100)
+          frontmatter {
+            title
+            date
+            linktitle
+            author
+            img {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                  presentationWidth
+                  presentationHeight
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
