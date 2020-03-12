@@ -15,7 +15,6 @@ import { version } from '../../../../../package.json'
 const CreatePatternForPersonPage = props => {
   const app = useApp()
   const person = usePerson(app, props.person)
-  console.log({ person })
 
   // SSR
   if (typeof props.person === 'undefined')
