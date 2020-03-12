@@ -13000,14 +13000,7 @@ remark-html@10.0.0:
     mdast-util-to-hast "^6.0.0"
     xtend "^4.0.1"
 
-remark-jargon@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.4.0.tgz#5a7e74deab9b2d31f9bcd67c5b84c5634d336880"
-  integrity sha512-Wf53NwbBsi1PriSt3PwWx5tgXmBjixOPy5Gts8+zJeg9UoFVxX8X6F3Ze9OU9oWlcPZqb/P+oxZTO6JxQ0v6nQ==
-  dependencies:
-    unist-util-visit "^1.4.0"
-
-remark-jargon@^2.4.2:
+remark-jargon@2.4.2, remark-jargon@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.4.2.tgz#3c394b3e7220fd5ff4d03f8a139b6b638aefe79e"
   integrity sha512-xIxL509PvFeIAN3oQUROqkirz9pT1tcksEjhZoT7PjFAiknd+qyMhcg6Fl1gthROKoR60VbduvvpwTPHoCshzg==
