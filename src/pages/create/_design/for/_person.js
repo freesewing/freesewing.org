@@ -69,6 +69,7 @@ const CreatePatternForPersonPage = props => {
 
   const fabs = ['zoom', 'compare', 'export', 'details']
   if (app.account.username) fabs.push('saveAs')
+  else fabs.push('units')
 
   return (
     <AppWrapper app={app}>
