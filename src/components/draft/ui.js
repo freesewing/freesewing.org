@@ -174,6 +174,7 @@ const DraftUi = props => {
           pattern={props.pattern}
           person={props.person}
           setDialog={setDialog}
+          openDialog={openDialog}
           app={app}
           action={dialogAction}
           setAction={setDialogAction}
