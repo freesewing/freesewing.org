@@ -7,6 +7,8 @@ import PostPreview from '../../components/post-preview'
 
 import { FormattedMessage } from 'react-intl'
 import StarIcon from '@material-ui/icons/Star'
+import PlayIcon from '@material-ui/icons/PlayArrow'
+import DocsIcon from '@material-ui/icons/ImportContacts'
 import Button from '@material-ui/core/Button'
 import { info as patternInfo, measurements, options } from '@freesewing/pattern-info'
 import PatternMeasurements from '../../components/docs/pattern-measurements'
@@ -104,7 +106,8 @@ const DesignPage = props => {
             size="large"
             href={'/create/' + design + '/'}
           >
-            <FormattedMessage id="app.newThing" values={{ thing: design }} />
+            <PlayIcon style={{marginRight: '1rem'}}/>
+            <FormattedMessage id="app.newThing" values={{ thing: design + ' ' + app.translate('app.pattern') }} />
           </Button>
           <Button
             data-test="docs"
@@ -113,6 +116,7 @@ const DesignPage = props => {
             size="large"
             href={'/docs/patterns/' + design + '/'}
           >
+            <DocsIcon style={{marginRight: '1rem'}}/>
             <FormattedMessage id="app.docs" />
           </Button>
         </p>
