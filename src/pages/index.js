@@ -113,6 +113,7 @@ const HomePage = props => {
                 this way for the face mask pattern and instructions
               </a>, no account required.
             </p>
+            <p>PS: You can still <a href="/patrons/join/">become a patron</a>  ❤️</p>
           </Blockquote>
           </div>
         </WideLayout>
