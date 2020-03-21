@@ -4,9 +4,11 @@ import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
+import CenteredLayout from '../components/layouts/centered'
 
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
+import Blockquote from '@freesewing/components/Blockquote'
 
 import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
@@ -43,7 +45,6 @@ const renderBlogPost = node => (
 )
 
 const HomePage = props => {
-  console.log(props.data)
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -91,6 +92,30 @@ const HomePage = props => {
           </div>
         </header>
 
+        <WideLayout app={app} noTitle>
+          <div style={{maxWidth: '800px', margin: '0 auto'}}>
+          <Blockquote type='note'>
+            <h4>COVID-19: Facemask pattern is available, but registration is impeded</h4>
+            <p>
+              Due to the high influx of people looking
+              for <a href="/blog/facebmask-frenzy/">our facemask pattern</a> we
+              haven blown through our outgoing email budget.
+              As a result, signup confirmation emails are not delivered right now.
+            </p>
+            <p>
+              We are looking to buy more capacity, but in the meanwhile: Everything else is up and running,
+              it's just not possible to activate a new account right now.
+            </p>
+            <p>
+              Thanks again for your understanding, and once again:
+              <br />
+              <a href="/blog/facemask-frenzy/">
+                this way for the face mask pattern and instructions
+              </a>, no account required.
+            </p>
+          </Blockquote>
+          </div>
+        </WideLayout>
         {/* First row of text boxes */}
         <WideLayout app={app} noTitle>
           <div className="boxes">
