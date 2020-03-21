@@ -227,8 +227,31 @@ const SignupPage = props => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>{result ? success : form}</CenteredLayout>
-      <pre>{JSON.stringify(france, null, 2)}</pre>
+          <div style={{maxWidth: '800px', margin: '0 auto'}}>
+          <Blockquote type='note'>
+            <h4>COVID-19: Facemask pattern is available, but registration is impeded</h4>
+            <p>
+              Due to the high influx of people looking
+              for <a href="/blog/facebmask-frenzy/">our facemask pattern</a> we
+              haven blown through our outgoing email budget.
+              As a result, signup confirmation emails are not delivered right now.
+            </p>
+            <p>
+              We are looking to buy more capacity, but in the meanwhile: Everything else is up and running,
+              it's just not possible to activate a new account right now.
+            </p>
+            <p>
+              Thanks again for your understanding, and once again:
+              <br />
+              <a href="/blog/facemask-frenzy/">
+                this way for the face mask pattern and instructions
+              </a>, no account required.
+            </p>
+          </Blockquote>
+          </div>
+      <CenteredLayout app={app} top>
+      {result ? success : form}
+      </CenteredLayout>
     </AppWrapper>
   )
 }
