@@ -377,7 +377,7 @@ const PersonPage = props => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/docs/about/model-graph"
+                href="/docs/about/your-measurements/model-graph"
                 style={{ marginRight: '1rem' }}
               >
                 <FormattedMessage id="app.docs" />
