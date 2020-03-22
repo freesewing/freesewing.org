@@ -95,25 +95,18 @@ const HomePage = props => {
         <WideLayout app={app} noTitle>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
           <Blockquote type='note'>
-            <h4>COVID-19: Facemask pattern is available, but registration is impeded</h4>
+            <h4>COVID-19: Facemask pattern</h4>
             <p>
-              Due to the high influx of people looking
-              for <a href="/blog/facebmask-frenzy/">our facemask pattern</a> we
-              haven blown through our outgoing email budget.
-              As a result, signup confirmation emails are not delivered right now.
+              If you're here looking for a facemask pattern, this is the link you're looking for:<br />
             </p>
-            <p>
-              We are looking to buy more capacity, but in the meanwhile: Everything else is up and running,
-              it's just not possible to activate a new account right now.
-            </p>
-            <p>
-              Thanks again for your understanding, and once again:
-              <br />
-              <a href="/blog/facemask-frenzy/">
-                this way for the face mask pattern and instructions
-              </a>, no account required.
-            </p>
-            <p>PS: You can still <a href="/patrons/join/">become a patron</a>  ❤️</p>
+            <ul>
+              <li>
+                <a href="/blog/facemask-frenzy/">
+                  <b>face mask pattern and instructions</b>
+                </a>.
+              </li>
+            </ul>
+            <p>PS: You can support us by <a href="/patrons/join/">becoming a patron</a>  ❤️</p>
           </Blockquote>
           </div>
         </WideLayout>
