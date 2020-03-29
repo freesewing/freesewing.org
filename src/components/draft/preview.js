@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import useDesign from '../../hooks/useDesign'
 
-import {
-  measurements as requiredMeasurements,
-  withBreasts as withBreastsPatterns
-} from '@freesewing/pattern-info'
+import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
 import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
-import { version } from '../../../package.json'
 
 const DraftPreview = ({ app, design, person, data }) => {
   // Hooks

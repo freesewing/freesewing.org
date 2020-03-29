@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import useDesign from '../../hooks/useDesign'
-import usePattern from '../../hooks/usePattern'
 import useMergeData from '../../hooks/useMergeData'
 import DraftLayout from '../layouts/draft'
 
@@ -10,8 +9,6 @@ import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
-import Button from '@material-ui/core/Button'
-import { version } from '../../../package.json'
 
 import DraftHelp from './help'
 import DraftError from './error'
