@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const WelcomeSocialPage = props => {
+const WelcomeSocialPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -36,9 +36,9 @@ const WelcomeSocialPage = props => {
   }, [])
 
   // Methods
-  const updateGithub = evt => setGithub(evt.target.value)
-  const updateTwitter = evt => setTwitter(evt.target.value)
-  const updateInstagram = evt => setInstagram(evt.target.value)
+  const updateGithub = (evt) => setGithub(evt.target.value)
+  const updateTwitter = (evt) => setTwitter(evt.target.value)
+  const updateInstagram = (evt) => setInstagram(evt.target.value)
 
   return (
     <AppWrapper app={app}>

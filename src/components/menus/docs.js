@@ -32,7 +32,7 @@ const DocsMenu = ({ app }) => {
     }
   }
 
-  const renderDocs = branch => {
+  const renderDocs = (branch) => {
     let list = []
     let links = {}
     for (let slug of Object.keys(branch.children)) links[titles[slug]] = slug

@@ -12,7 +12,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-const LanguageSettingPage = props => {
+const LanguageSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -37,7 +37,7 @@ const LanguageSettingPage = props => {
   }, [])
 
   // Methods
-  const updateLanguage = evt => setLanguage(evt.target.value)
+  const updateLanguage = (evt) => setLanguage(evt.target.value)
 
   return (
     <AppWrapper app={app}>

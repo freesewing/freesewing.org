@@ -33,7 +33,7 @@ import PatternFabs from '../pattern/fabs'
 
 import './ui.css'
 
-const DraftUi = props => {
+const DraftUi = (props) => {
   const { app, person, pattern, design } = props
   const Pattern = useDesign(design)
 
@@ -50,7 +50,7 @@ const DraftUi = props => {
       }
     }
   }
-  const openDialog = action => {
+  const openDialog = (action) => {
     setDialogAction(action)
     setDialog(true)
   }

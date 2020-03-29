@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 
 import SizingTable from '../components/size-table'
 
-const SizesPage = props => {
+const SizesPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.sizes'))

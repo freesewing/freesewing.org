@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import neckstimate from '@freesewing/utils/neckstimate'
 import formatMm from '@freesewing/utils/formatMm'
 
-const ModelGraph = props => {
+const ModelGraph = (props) => {
   const [text, setText] = useState('')
   const [highlight, setHighlight] = useState(false)
   const { model } = props
@@ -50,7 +50,7 @@ const ModelGraph = props => {
   hor.push('kneeCircumference')
   hor.push('ankleCircumference')
 
-  const own = m => {
+  const own = (m) => {
     return model.measurements[m]
   }
 
@@ -80,10 +80,10 @@ const ModelGraph = props => {
     } else setText('')
   }
 
-  const absSize = size => size * 20 - 500
-  const pieSize = m => (data[m] / neckstimate(neck, m, model.breasts)) * neck * 2 - 500
+  const absSize = (size) => size * 20 - 500
+  const pieSize = (m) => (data[m] / neckstimate(neck, m, model.breasts)) * neck * 2 - 500
   //const pieSize = m => (data[m] / neckstimate(neck, m, model.breasts)) * neck
-  const barSize = m => 4 * pieSize(m)
+  const barSize = (m) => 4 * pieSize(m)
   const rotate = (x, y, angle) => {
     // Radians please
     angle = (angle * Math.PI) / 180
@@ -93,7 +93,7 @@ const ModelGraph = props => {
     }
   }
 
-  const renderHorizontalMeasurements = data => {
+  const renderHorizontalMeasurements = (data) => {
     let angle = 180
     let points = []
     let output = []
@@ -137,7 +137,7 @@ const ModelGraph = props => {
     return output
   }
 
-  const renderVerticalMeasurements = data => {
+  const renderVerticalMeasurements = (data) => {
     let output = []
     let x = 0
     let y = -320
@@ -179,12 +179,12 @@ const ModelGraph = props => {
       viewBox="-500 -500 3000 1000"
     >
       {renderVerticalMeasurements(data)}
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <circle cx="0" cy="0" r={absSize(size)} className="sizebg" key={size} />
       ))}
       {renderHorizontalMeasurements(data)}
       <circle cx="0" cy="0" r="50" className="shape center" />
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <circle cx="0" cy="0" r={absSize(size)} className="size" key={size} />
       ))}
       <path d={`M ${vd} -350 l 0 700`} className="vdefault" />

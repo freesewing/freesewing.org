@@ -7,9 +7,9 @@ const posts = [
   '/blog/freesewing-goes-jamstack'
 ]
 
-describe('Blog posts', function() {
+describe('Blog posts', function () {
   for (let post of posts) {
-    it(post, function() {
+    it(post, function () {
       if (1 || post === '/blog/roundup-2017-09') {
         cy.visit(post)
         cy.get('h1').should('not.be.empty')
@@ -18,9 +18,7 @@ describe('Blog posts', function() {
         cy.get('article img').should('have.attr', 'alt')
         cy.get('article img').each(($el, index, $list) => {
           if ($el.attr('src').slice(0, 4) !== 'data') {
-            cy.request($el.attr('src'))
-              .its('status')
-              .should('equal', 200)
+            cy.request($el.attr('src')).its('status').should('equal', 200)
           }
         })
       }

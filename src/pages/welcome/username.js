@@ -15,7 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
-const WelcomeUsernamePage = props => {
+const WelcomeUsernamePage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -37,10 +37,10 @@ const WelcomeUsernamePage = props => {
   }, [])
 
   // Methods
-  const updateUsername = evt => {
+  const updateUsername = (evt) => {
     let value = evt.target.value
     setUsername(value)
-    app.isUsernameAvailable(value).then(result => setUsernameValid(result))
+    app.isUsernameAvailable(value).then((result) => setUsernameValid(result))
   }
 
   return (

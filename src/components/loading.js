@@ -2,7 +2,7 @@ import React from 'react'
 import Spinner from '@freesewing/components/Spinner'
 import { FormattedMessage } from 'react-intl'
 
-const Loading = props => {
+const Loading = (props) => {
   if (!props.loading) return null
   if (props.embed) return <Spinner size={props.size || 400} />
   const style = {

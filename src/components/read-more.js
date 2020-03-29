@@ -28,7 +28,7 @@ const ReadMore = ({ root, recurse = false, link = false, box = false }) => {
   //    return {}
   //  }
 
-  const renderDocs = root => {
+  const renderDocs = (root) => {
     let children = getChildren(root, tree)
     let links = []
     for (let slug in children) links.push(renderDocsLevel(slug, children[slug]))

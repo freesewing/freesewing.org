@@ -8,7 +8,7 @@ import {
 } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
 
-const SizeTable = props => {
+const SizeTable = (props) => {
   const sizes = props.breasts ? allSizes.womenswear : allSizes.menswear
   const measurements = props.breasts ? allMeasurements.womenswear : allMeasurements.menswear
   const data = props.breasts ? withBreasts : withoutBreasts
@@ -27,18 +27,18 @@ const SizeTable = props => {
             <th>
               <FormattedMessage id={props.breasts ? 'app.withBreasts' : 'app.withoutBreasts'} />
             </th>
-            {sizes.map(size => (
+            {sizes.map((size) => (
               <th key={size}>{size}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {measurements.map(m => (
+          {measurements.map((m) => (
             <tr className={m.toLowerCase()} key={m}>
               <td>
                 <FormattedMessage id={`measurements.${m}`} />
               </td>
-              {sizes.map(s => {
+              {sizes.map((s) => {
                 let val = data[`size${s}`][m]
                 return (
                   <td className={'size-' + s} key={s}>

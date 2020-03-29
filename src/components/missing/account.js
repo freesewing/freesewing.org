@@ -3,7 +3,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
-const AccountNotFound = props => (
+const AccountNotFound = (props) => (
   <Blockquote
     type="note"
     style={{ maxWidth: '800px', textAlign: 'center', margin: props.left ? 0 : 'auto' }}

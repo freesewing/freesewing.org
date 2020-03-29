@@ -8,7 +8,7 @@ import yaml from 'yaml'
  * flexbox messing with the ::before content added via CSS
  */
 
-const PatternData = props => (
+const PatternData = (props) => (
   <div>
     <div className="gatsby-highlight">
       <pre className="language-yaml">

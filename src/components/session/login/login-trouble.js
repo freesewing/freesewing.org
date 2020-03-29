@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import ButtonSpinner from '../../ButtonSpinner'
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   return (
     <React.Fragment>
       <p>Here?</p>
@@ -19,7 +19,7 @@ const LoginForm = props => {
           margin="normal"
           variant="outlined"
           value={props.username}
-          onChange={evt => props.setUsername(evt.target.value)}
+          onChange={(evt) => props.setUsername(evt.target.value)}
         />
         <TextField
           id="password"
@@ -30,7 +30,7 @@ const LoginForm = props => {
           margin="normal"
           variant="outlined"
           value={props.password}
-          onChange={evt => props.setPassword(evt.target.value)}
+          onChange={(evt) => props.setPassword(evt.target.value)}
         />
         <Button
           type="submit"

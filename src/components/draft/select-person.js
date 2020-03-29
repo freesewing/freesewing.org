@@ -57,7 +57,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
           </h3>
           {people.ok.user.length > 0 ? (
             <div style={styles.wrapper}>
-              {people.ok.user.map(person => {
+              {people.ok.user.map((person) => {
                 return (
                   <div style={styles.person} key={person.handle}>
                     <Link
@@ -95,7 +95,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
                   :
                 </h6>
                 <ul className="links">
-                  {people.no.user.map(person => {
+                  {people.no.user.map((person) => {
                     return (
                       <li key={person.handle}>
                         <Link to={'/people/' + person.handle} title={person.name}>
@@ -119,7 +119,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
         </h5>
       )}
       <ul style={styles.sizes}>
-        {Object.keys(people.ok.withoutBreasts).map(size => {
+        {Object.keys(people.ok.withoutBreasts).map((size) => {
           return (
             <li key={'without-' + size} style={styles.li}>
               <Button
@@ -145,7 +145,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
         </h5>
       )}
       <ul style={styles.sizes}>
-        {Object.keys(people.ok.withBreasts).map(size => {
+        {Object.keys(people.ok.withBreasts).map((size) => {
           return (
             <li key={'with-' + size} style={styles.li}>
               <Button

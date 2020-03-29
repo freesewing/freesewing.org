@@ -2,7 +2,7 @@ import React from 'react'
 import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 
-const NoRecipe = props => {
+const NoRecipe = (props) => {
   return (
     <Blockquote type="note">
       <h6>

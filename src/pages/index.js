@@ -17,7 +17,7 @@ import { graphql, Link } from 'gatsby'
 // Style
 import './homepage.css'
 
-const renderBlogPost = node => (
+const renderBlogPost = (node) => (
   <div className="post">
     <Link
       to={`/${node.node.parent.relativeDirectory}/`}
@@ -44,7 +44,7 @@ const renderBlogPost = node => (
   </div>
 )
 
-const HomePage = props => {
+const HomePage = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -93,16 +93,16 @@ const HomePage = props => {
         </header>
 
         <WideLayout app={app} noTitle>
-          <div style={{maxWidth: '800px', margin: '0 auto'}}>
-          <Blockquote type='note'>
-            <Mdx node={uiMdx[`covid`]} />
-          </Blockquote>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <Blockquote type="note">
+              <Mdx node={uiMdx[`covid`]} />
+            </Blockquote>
           </div>
         </WideLayout>
         {/* First row of text boxes */}
         <WideLayout app={app} noTitle>
           <div className="boxes">
-            {[1, 2, 3].map(id => (
+            {[1, 2, 3].map((id) => (
               <div key={'row1-' + id}>
                 <Mdx node={uiMdx[`homepage/row-1/${id}`]} />
               </div>
@@ -151,7 +151,7 @@ const HomePage = props => {
           <Subscribe showFree={false} app={app} />
           {/* Second row of text boxes */}
           <div className="boxes">
-            {[1, 2, 3].map(id => (
+            {[1, 2, 3].map((id) => (
               <div key={'row2-' + id}>
                 <Mdx node={uiMdx[`homepage/row-2/${id}`]} />
               </div>

@@ -20,7 +20,7 @@ import Mdx from '../../../../components/mdx'
 
 import MeasurementsImages from '../../../../components/measurements/images'
 
-const EditMeasurementPage = props => {
+const EditMeasurementPage = (props) => {
   // Provided by pageContext
   const measurement = props.pageContext.measurement
 
@@ -71,7 +71,7 @@ const EditMeasurementPage = props => {
   if (typeof person.measurements === 'undefined') return null
 
   // Methods
-  const updateMeasurement = evt => {
+  const updateMeasurement = (evt) => {
     let value = evt.target.value
     setValue(evt.target.value)
     let mm = measurementAsMm(value, person.units)
@@ -148,7 +148,7 @@ const EditMeasurementPage = props => {
           type="text"
           helperText={helperText()}
           onChange={updateMeasurement}
-          onKeyPress={event => {
+          onKeyPress={(event) => {
             if (event.key === 'Enter') saveMeasurement()
           }}
           autoFocus={true}

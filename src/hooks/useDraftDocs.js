@@ -1,4 +1,4 @@
-const useDraftDocs = function(data) {
+const useDraftDocs = function (data) {
   if (!data) return null
   let docs = {
     options: {},

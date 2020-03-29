@@ -11,7 +11,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-const UnitsSettingPage = props => {
+const UnitsSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -36,7 +36,7 @@ const UnitsSettingPage = props => {
   }, [])
 
   // Methods
-  const updateUnits = evt => setUnits(evt.target.value)
+  const updateUnits = (evt) => setUnits(evt.target.value)
 
   return (
     <AppWrapper app={app}>
@@ -45,7 +45,7 @@ const UnitsSettingPage = props => {
           <FormattedMessage id="account.unitsInfo" />
         </Blockquote>
         <RadioGroup name="units" onChange={updateUnits} value={units}>
-          {['metric', 'imperial'].map(type => {
+          {['metric', 'imperial'].map((type) => {
             return (
               <FormControlLabel
                 data-test={type}

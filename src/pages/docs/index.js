@@ -9,7 +9,7 @@ import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 import ReadMore from '../../components/read-more'
 
-const DocumentationIndexPage = props => {
+const DocumentationIndexPage = (props) => {
   // State
   const app = useApp()
 

@@ -19,10 +19,7 @@ function useUiMdx() {
   `)
   let uiMdx = {}
   for (let node of data.allMdx.edges) {
-    let id = node.node.fileAbsolutePath
-      .split('markdown/org/ui/')
-      .pop()
-      .slice(0, -6)
+    let id = node.node.fileAbsolutePath.split('markdown/org/ui/').pop().slice(0, -6)
     uiMdx[id] = {
       title: node.node.frontmatter.title,
       body: node.node.body

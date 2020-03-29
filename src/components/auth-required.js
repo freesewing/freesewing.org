@@ -5,7 +5,7 @@ import Robot from '@freesewing/components/Robot'
 import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from './mdx'
 
-const AuthRequired = props => {
+const AuthRequired = (props) => {
   const uiMdx = useUiMdx()
 
   if (!props.app.account.username)

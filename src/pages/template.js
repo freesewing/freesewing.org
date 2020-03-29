@@ -3,7 +3,7 @@ import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 
-const Template = props => {
+const Template = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.template'))

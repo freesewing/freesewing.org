@@ -44,7 +44,7 @@ const styles = {
   }
 }
 
-const PatternPage = props => {
+const PatternPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -59,7 +59,7 @@ const PatternPage = props => {
     let patternOrPromise = usePattern(app, props.pattern)
     //let personOrPromise = usePerson(app, props.pattern)
     if (patternOrPromise.then instanceof Function) {
-      patternOrPromise.then(p => {
+      patternOrPromise.then((p) => {
         setPattern(p)
         app.setTitle(p.name)
         app.setCrumbs([
@@ -91,7 +91,7 @@ const PatternPage = props => {
   // Own pattern ?
   const ownPattern = typeof app.patterns[props.pattern] === 'undefined' ? false : true
 
-  const openDialog = action => {
+  const openDialog = (action) => {
     setDialogAction(action)
     setDialog(true)
   }

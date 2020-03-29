@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from '@freesewing/components/Icon'
 
-const UserSocial = props => {
+const UserSocial = (props) => {
   const renderIcon = (handle, service, size) => {
     if (handle === '') return <Icon icon={service} style={styles.mutedIcon} size={size || 24} />
     else
@@ -12,7 +12,7 @@ const UserSocial = props => {
       )
   }
 
-  const renderSocial = social => {
+  const renderSocial = (social) => {
     return [
       renderIcon(social.twitter, 'twitter', props.size),
       renderIcon(social.instagram, 'instagram', props.size),

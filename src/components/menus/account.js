@@ -102,13 +102,15 @@ const AccountMenu = ({ app }) => {
           <FormattedMessage id="app.settings" />
         </h6>
         <ul className="links">
-          {['avatar', 'bio', 'language', 'units', 'github', 'instagram', 'twitter'].map(setting => (
-            <li key={setting}>
-              <Link to={`/account/settings/${setting}/`}>
-                <FormattedMessage id={`account.${setting}`} />
-              </Link>
-            </li>
-          ))}
+          {['avatar', 'bio', 'language', 'units', 'github', 'instagram', 'twitter'].map(
+            (setting) => (
+              <li key={setting}>
+                <Link to={`/account/settings/${setting}/`}>
+                  <FormattedMessage id={`account.${setting}`} />
+                </Link>
+              </li>
+            )
+          )}
         </ul>
       </div>
       <div style={style.col}></div>

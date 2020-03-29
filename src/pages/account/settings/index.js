@@ -19,7 +19,7 @@ import ConsentIcon from '@material-ui/icons/DoneAll'
 import RemoveIcon from '@material-ui/icons/DeleteForever'
 import Button from '@material-ui/core/Button'
 
-const SettingsPage = props => {
+const SettingsPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -137,7 +137,7 @@ const SettingsPage = props => {
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
-        {Object.keys(tiles).map(type => {
+        {Object.keys(tiles).map((type) => {
           let btns = []
           for (let tile of tiles[type])
             btns.push(

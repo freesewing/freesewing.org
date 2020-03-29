@@ -16,11 +16,11 @@ const patternMethods = ({
   setPatterns,
   setPeople
 }) => {
-  const createPattern = data => {
+  const createPattern = (data) => {
     setLoading(true)
     return backend
       .createPattern(data, token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           updatePatterns(res.data, res.data.handle)
@@ -31,7 +31,7 @@ const patternMethods = ({
           return res.data
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         showError(error)
       })
@@ -46,7 +46,7 @@ const patternMethods = ({
     setPatterns(newPatterns)
     return backend
       .savePattern(handle, data, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setNotification({
             type: 'success',
@@ -54,19 +54,19 @@ const patternMethods = ({
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         showError(error)
       })
   }
 
-  const removePattern = handle => {
+  const removePattern = (handle) => {
     setLoading(true)
     let newPatterns = { ...patterns }
     delete newPatterns[handle]
     setPatterns(newPatterns)
     return backend
       .removePattern(handle, token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 204) {
           setNotification({
@@ -76,24 +76,24 @@ const patternMethods = ({
           navigate('/patterns/')
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         showError(error)
       })
   }
 
-  const loadPattern = handle => {
+  const loadPattern = (handle) => {
     return backend
       .loadPattern(handle, token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) return res.data
         else return false
       })
-      .catch(error => false)
+      .catch((error) => false)
   }
 
-  const savePattern = data => backend.savePattern(mergeData({}, data), token)
+  const savePattern = (data) => backend.savePattern(mergeData({}, data), token)
 
   const updatePatterns = (value, l1, l2, l3) =>
     setPatterns(mergeData(patterns, [value, l1, l2, l3]))

@@ -26,10 +26,7 @@ const DraftPreview = ({ app, data }) => {
   // Draft the pattern
   let error, patternProps
   try {
-    patternProps = new Pattern(data.settings)
-      .use(i18nPlugin, { strings })
-      .draft()
-      .getRenderProps()
+    patternProps = new Pattern(data.settings).use(i18nPlugin, { strings }).draft().getRenderProps()
     return (
       <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
         <Draft {...patternProps} />

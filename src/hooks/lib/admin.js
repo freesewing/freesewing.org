@@ -18,13 +18,13 @@ const adminMethods = ({
   setAdmin,
   admin
 }) => {
-  const adminSearch = query => backend.adminSearch(query, token)
+  const adminSearch = (query) => backend.adminSearch(query, token)
 
   const adminSetPatronStatus = (handle, patron) => {
     setLoading(true)
     backend
       .adminSetPatronStatus({ handle, patron }, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setLoading(false)
           setNotification({
@@ -38,7 +38,7 @@ const adminMethods = ({
           })
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setLoading(false)
         setNotification({
           type: 'error',
@@ -51,7 +51,7 @@ const adminMethods = ({
     setLoading(true)
     backend
       .adminSetRole({ handle, role }, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setLoading(false)
           setNotification({
@@ -65,7 +65,7 @@ const adminMethods = ({
           })
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setLoading(false)
         setNotification({
           type: 'error',
@@ -74,11 +74,11 @@ const adminMethods = ({
       })
   }
 
-  const adminUnfreeze = handle => {
+  const adminUnfreeze = (handle) => {
     setLoading(true)
     backend
       .adminUnfreeze({ handle }, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setLoading(false)
           setNotification({
@@ -92,7 +92,7 @@ const adminMethods = ({
           })
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setLoading(false)
         setNotification({
           type: 'error',
@@ -101,11 +101,11 @@ const adminMethods = ({
       })
   }
 
-  const adminImpersonate = handle => {
+  const adminImpersonate = (handle) => {
     setLoading(true)
     backend
       .adminImpersonate({ handle }, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           // Save current user data to admin.user
           setAdmin({ account, patterns, people, token })
@@ -125,7 +125,7 @@ const adminMethods = ({
           })
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setLoading(false)
         setNotification({
           type: 'error',

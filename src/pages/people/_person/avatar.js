@@ -8,15 +8,15 @@ import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const PersonAvatarPage = props => {
+const PersonAvatarPage = (props) => {
   // Hooks
   const app = useApp()
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
     reader.onload = () => {
       setImg(reader.result)
     }
-    acceptedFiles.forEach(file => reader.readAsDataURL(file))
+    acceptedFiles.forEach((file) => reader.readAsDataURL(file))
   }, [])
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 

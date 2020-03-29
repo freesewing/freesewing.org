@@ -15,7 +15,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 
-const CreatePersonPage = props => {
+const CreatePersonPage = (props) => {
   // State
   const app = useApp()
   const [units, setUnits] = useState(
@@ -35,9 +35,9 @@ const CreatePersonPage = props => {
   }, [])
 
   // Methods
-  const updateUnits = evt => setUnits(evt.target.value)
-  const updateName = evt => setName(evt.target.value)
-  const updateBreasts = evt => setBreasts(evt.target.value)
+  const updateUnits = (evt) => setUnits(evt.target.value)
+  const updateName = (evt) => setName(evt.target.value)
+  const updateBreasts = (evt) => setBreasts(evt.target.value)
   const createPerson = () =>
     app.createPerson({
       name,
@@ -77,7 +77,7 @@ const CreatePersonPage = props => {
             <FormattedMessage id="account.units" />
           </h5>
           <RadioGroup name="units" onChange={updateUnits} value={units} data-test="units">
-            {['metric', 'imperial'].map(type => {
+            {['metric', 'imperial'].map((type) => {
               return (
                 <FormControlLabel
                   control={<Radio color="primary" data-test={type} />}
@@ -110,7 +110,7 @@ const CreatePersonPage = props => {
             </Blockquote>
           ) : null}
           <RadioGroup name="breasts" onChange={updateBreasts} value={breasts}>
-            {['true', 'false'].map(type => {
+            {['true', 'false'].map((type) => {
               return (
                 <FormControlLabel
                   control={

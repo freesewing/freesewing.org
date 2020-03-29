@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import SelectPerson from '../../../../../components/draft/select-person'
 import capitalize from '@freesewing/utils/capitalize'
 
-const RecreatePatternPage = props => {
+const RecreatePatternPage = (props) => {
   // Page context
   const design = props.pageContext.design
 
@@ -26,7 +26,7 @@ const RecreatePatternPage = props => {
   useEffect(() => {
     let patternOrPromise = usePattern(app, props.pattern)
     if (patternOrPromise.then instanceof Function) {
-      patternOrPromise.then(p => {
+      patternOrPromise.then((p) => {
         setPattern(p)
         app.setTitle(app.translate('app.recreate') + ' ' + p.name)
         app.setCrumbs([

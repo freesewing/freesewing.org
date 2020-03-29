@@ -64,10 +64,7 @@ describe('People', () => {
 
   it('add notes', () => {
     cy.visit('/people/')
-    cy.get('[data-test=model-link]')
-      .last()
-      .find('h6')
-      .click()
+    cy.get('[data-test=model-link]').last().find('h6').click()
     cy.get('[data-test=add-notes]').click()
     cy.get('h1').should('contain', i18n['app.notes'])
     cy.get('[data-test=cancel]').should('contain', i18n['app.cancel'])
@@ -79,10 +76,7 @@ describe('People', () => {
 
   it('edit notes', () => {
     cy.visit('/people/')
-    cy.get('[data-test=model-link]')
-      .first()
-      .find('h6')
-      .click()
+    cy.get('[data-test=model-link]').first().find('h6').click()
     cy.get('[data-test=edit-notes]').click()
     cy.get('h1').should('contain', i18n['app.notes'])
     cy.get('[data-test=cancel]').should('contain', i18n['app.cancel'])
@@ -95,10 +89,7 @@ describe('People', () => {
   context('when having no neck circomference set', () => {
     it.only('add measurement', () => {
       cy.visit('/people/')
-      cy.get('div.box > a')
-        .last()
-        .find('h6')
-        .click({ force: true })
+      cy.get('div.box > a').last().find('h6').click({ force: true })
 
       cy.get('h1').should('contain', 'Example person - With breasts')
       cy.get('[data-test=add-bustSpan-measurement]').click({ force: true })

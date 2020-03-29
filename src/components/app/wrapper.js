@@ -21,7 +21,7 @@ import Bugsnag from './bugsnag'
 /* This component should wrap all page content */
 const AppWrapper = ({ app, children }) => {
   const [scrolledDown, setScrolledDown] = useState(false)
-  useScrolledDown(s => setScrolledDown(s))
+  useScrolledDown((s) => setScrolledDown(s))
 
   const scrollToTop = () => {
     window.scrollTo(0, 0)

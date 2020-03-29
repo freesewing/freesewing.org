@@ -6,7 +6,7 @@ import CenteredLayout from '../../components/layouts/centered'
 import { FormattedMessage } from 'react-intl'
 import successGif from '../../components/session/signup/success.gif'
 
-const SignupCallbackPage = props => {
+const SignupCallbackPage = (props) => {
   // State
   const app = useApp()
 

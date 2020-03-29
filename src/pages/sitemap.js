@@ -9,7 +9,7 @@ import { list as patterns } from '@freesewing/pattern-info'
 import { Link, graphql } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
-const Sitemap = props => {
+const Sitemap = (props) => {
   const app = useApp()
   const { tree, titles } = useNavigation(app)
   useEffect(() => {
@@ -63,7 +63,7 @@ const Sitemap = props => {
     <AppWrapper app={app}>
       <WideLayout app={app} top>
         <ul className="links">
-          {Object.keys(main).map(i => (
+          {Object.keys(main).map((i) => (
             <li key={i}>
               <a href={i}>{app.translate(main[i])}</a>
             </li>
@@ -221,7 +221,7 @@ const Sitemap = props => {
           </Link>
         </h2>
         <ul className="links">
-          {props.data.blog.edges.map(edge => (
+          {props.data.blog.edges.map((edge) => (
             <li key={edge.node.parent.relativeDirectory}>
               <Link to={`/${edge.node.parent.relativeDirectory}/`}>
                 {edge.node.frontmatter.title}
@@ -244,11 +244,11 @@ const Sitemap = props => {
           </Link>
         </h2>
         <ul className="links">
-          {[8, 4, 2].map(tier => (
+          {[8, 4, 2].map((tier) => (
             <li key={tier}>
               <PatronStars tier={tier} />
               <ul className="links">
-                {props.data[`patrons${tier}`].edges.map(edge => (
+                {props.data[`patrons${tier}`].edges.map((edge) => (
                   <li key={edge.node.patron.username}>
                     <Link to={`/users/${edge.node.patron.username}/`}>
                       {edge.node.patron.username}
@@ -267,7 +267,7 @@ const Sitemap = props => {
           </Link>
         </h2>
         <ul className="links">
-          {patterns.map(p => (
+          {patterns.map((p) => (
             <li key={p}>
               <Link to={`/designs/${p}`}>
                 {app.translate(`patterns.${p}.title`)}
@@ -283,7 +283,7 @@ const Sitemap = props => {
           </Link>
         </h2>
         <ul className="links">
-          {props.data.showcase.edges.map(edge => (
+          {props.data.showcase.edges.map((edge) => (
             <li key={edge.node.parent.relativeDirectory}>
               <Link to={`/${edge.node.parent.relativeDirectory}/`}>
                 {edge.node.frontmatter.title}

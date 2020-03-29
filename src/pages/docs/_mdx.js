@@ -14,7 +14,7 @@ import PrevNext from '../../components/prev-next'
 import { measurements } from '@freesewing/models'
 import MeasurementImage from '../../components/measurements/images'
 
-const DocsPage = props => {
+const DocsPage = (props) => {
   // State
   const app = useApp()
   const { tree, titles } = useNavigation(app)

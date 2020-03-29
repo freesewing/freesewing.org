@@ -8,7 +8,7 @@ import usePattern from '../../../../../../hooks/usePattern'
 import usePerson from '../../../../../../hooks/usePerson'
 import LoadingLayout from '../../../../../../components/layouts/loading'
 
-const CreatePatternForPersonPage = props => {
+const CreatePatternForPersonPage = (props) => {
   const app = useApp(props)
 
   // SSR
@@ -47,7 +47,7 @@ const CreatePatternForPersonPage = props => {
       }
     ])
   }
-  const extractPerson = pattern => {
+  const extractPerson = (pattern) => {
     setPerson({
       name: pattern.data.settings.metadata ? pattern.data.settings.metadata : pattern.person,
       measurements: { ...pattern.data.settings.measurements }
@@ -67,7 +67,7 @@ const CreatePatternForPersonPage = props => {
     let pop = usePattern(app, props.pattern)
     if (pop.then instanceof Function) {
       // Pending promise
-      pop.then(p => {
+      pop.then((p) => {
         setPattern(p)
         setDesign(p.data.design)
         applyCrumbs(p.data.design, p.name)

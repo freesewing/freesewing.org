@@ -25,7 +25,7 @@ const meta = {
   language: process.env.GATSBY_LANGUAGE
 }
 
-const slugFromFilePath = filePath => {
+const slugFromFilePath = (filePath) => {
   return (
     '/' +
     filePath
@@ -35,7 +35,7 @@ const slugFromFilePath = filePath => {
   )
 }
 
-const mdxQuery = function(type, language) {
+const mdxQuery = function (type, language) {
   return `{
     allMdx(
       filter: { fileAbsolutePath: { regex: "//${type}/[^.]*/${language}.md/" } }
@@ -44,10 +44,10 @@ const mdxQuery = function(type, language) {
   }`
 }
 
-const createMdxPages = async function(type, createPage, graphql, language) {
+const createMdxPages = async function (type, createPage, graphql, language) {
   let promises = []
   const query = mdxQuery(type, language)
-  await graphql(query).then(res => {
+  await graphql(query).then((res) => {
     if (typeof res.data === 'undefined') throw 'query failed ' + query
     else {
       for (let page of res.data.allMdx.edges) {
@@ -88,7 +88,7 @@ const createMdxPages = async function(type, createPage, graphql, language) {
   })
 }
 
-const createPerDesignPages = async function(createPage, language) {
+const createPerDesignPages = async function (createPage, language) {
   let promises = []
   for (let design of designs) {
     for (let match in routes.perDesign.single) {
@@ -127,7 +127,7 @@ const createPerDesignPages = async function(createPage, language) {
   return Promise.all(promises)
 }
 
-const createPerMeasurementPages = async function(createPage, language) {
+const createPerMeasurementPages = async function (createPage, language) {
   let promises = []
   for (let measurement of measurements) {
     for (let m in routes.perMeasurement.multiple) {
@@ -153,7 +153,7 @@ const createPerMeasurementPages = async function(createPage, language) {
   return Promise.all(promises)
 }
 
-const createDynamicPages = async function(createPage) {
+const createDynamicPages = async function (createPage) {
   let promises = []
   for (let match in routes.dynamic) {
     promises.push(
@@ -171,7 +171,7 @@ const createDynamicPages = async function(createPage) {
   return Promise.all(promises)
 }
 
-const createRedirects = async function(createRedirect) {
+const createRedirects = async function (createRedirect) {
   let promises = []
   for (let from in routes.redirect) {
     promises.push(
@@ -219,8 +219,8 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
   const result = await axios.get(process.env.GATSBY_BACKEND + 'patrons')
   // Create patron nodes.
   let i = 0
-  Object.keys(result.data).forEach(tier => {
-    result.data[tier].map(patron => {
+  Object.keys(result.data).forEach((tier) => {
+    result.data[tier].map((patron) => {
       const patronNode = {
         id: createNodeId(patron.handle),
         parent: null,

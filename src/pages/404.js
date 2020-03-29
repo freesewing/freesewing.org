@@ -11,7 +11,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import Icon from '@freesewing/components/Icon'
 import { FormattedMessage } from 'react-intl'
 
-const PageNotFound = props => {
+const PageNotFound = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('errors.404'))

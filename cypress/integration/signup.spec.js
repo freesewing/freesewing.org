@@ -1,13 +1,13 @@
 import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Signup flow', function() {
-  beforeEach(function() {
+describe('Signup flow', function () {
+  beforeEach(function () {
     cy.visit('/signup')
     cy.get('div.theme-wrapper').should('have.class', 'light')
   })
 
-  it('Verify signup page translations', function() {
+  it('Verify signup page translations', function () {
     // Title
     cy.get('h1').should('contain', i18n['app.signUp'])
 
@@ -42,7 +42,7 @@ describe('Signup flow', function() {
     )
   })
 
-  it('Verify signup state on load', function() {
+  it('Verify signup state on load', function () {
     // (auto) focus on email
     cy.focused().should('have.attr', 'id', 'email')
 
@@ -57,7 +57,7 @@ describe('Signup flow', function() {
     cy.get('#password').should('have.attr', 'type', 'password')
   })
 
-  it('Invalid email address should prevent submit', function() {
+  it('Invalid email address should prevent submit', function () {
     // Fill in invalid email address
     cy.get('#email').type('user.gmail.com')
 
@@ -68,7 +68,7 @@ describe('Signup flow', function() {
     cy.get('[data-test=email-invalid]').should('be.visible')
   })
 
-  it('Valid email address alone should not enable submit', function() {
+  it('Valid email address alone should not enable submit', function () {
     // Fill in valid email address
     cy.get('#email').type('cypress@freesewing.org')
 
@@ -79,7 +79,7 @@ describe('Signup flow', function() {
     cy.get('[data-test=email-valid]').should('be.visible')
   })
 
-  it('Valid email address and password should enable submit', function() {
+  it('Valid email address and password should enable submit', function () {
     // Fill in valid email address
     cy.get('#email').type('cypress@freesewing.org')
 
@@ -93,7 +93,7 @@ describe('Signup flow', function() {
     cy.get('[data-test=email-valid]').should('be.visible')
   })
 
-  it('Form should submit via keyboard', function() {
+  it('Form should submit via keyboard', function () {
     // Fill in valid email address
     cy.get('#email').type('test_user@freesewing.org')
 
@@ -104,7 +104,7 @@ describe('Signup flow', function() {
     cy.get('blockquote.warning').should('contain', i18n['errors.emailExists'])
   })
 
-  it('Password reveal icon should toggle password visibility', function() {
+  it('Password reveal icon should toggle password visibility', function () {
     let val = i18n['app.ohNo']
 
     // Enter password
@@ -129,7 +129,7 @@ describe('Signup flow', function() {
     cy.get('#password').should('have.value', val)
   })
 
-  it('Verify result on signup/submit', function() {
+  it('Verify result on signup/submit', function () {
     // Fill in valid email address
     cy.get('#email').type('cypress+' + Date.now() + '@freesewing.org')
 
@@ -140,9 +140,7 @@ describe('Signup flow', function() {
     cy.get('form button[type=submit]').click()
 
     // Title should be translated
-    cy.get('h2')
-      .should('contain', i18n['app.yay'])
-      .should('contain', i18n['app.goodJob'])
+    cy.get('h2').should('contain', i18n['app.yay']).should('contain', i18n['app.goodJob'])
 
     // First paragraph should be translated
     cy.get('div.theme-wrapper.light > div > p').should(
@@ -160,7 +158,7 @@ describe('Signup flow', function() {
     cy.get('img[alt="Yay!"]').should('be.visible')
   })
 
-  it('Verify result for existing user', function() {
+  it('Verify result for existing user', function () {
     // Fill in email address of existing user
     cy.get('#email').type('test_user@freesewing.org')
 

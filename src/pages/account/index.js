@@ -15,7 +15,7 @@ import RecipesIcon from '@material-ui/icons/FolderOpen'
 import NewPatternIcon from '@material-ui/icons/NoteAdd'
 import Button from '@material-ui/core/Button'
 
-const AccountPage = props => {
+const AccountPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.account'))
@@ -93,7 +93,7 @@ const AccountPage = props => {
     <LoginRequired app={app}>
       <AppWrapper app={app}>
         <CenteredLayout app={app}>
-          {Object.keys(tiles).map(type => {
+          {Object.keys(tiles).map((type) => {
             let btns = []
             for (let tile of tiles[type])
               btns.push(

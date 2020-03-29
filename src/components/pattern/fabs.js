@@ -27,20 +27,20 @@ const styles = {
     marginLeft: '0.5rem'
   }
 }
-const PatternFabs = props => {
+const PatternFabs = (props) => {
   const handleSave = () => {
     props.app
       .updatePattern(props.pattern.handle, {
         person: props.pattern.person,
         data: props.data
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
       })
   }
 
   const handleDelete = () => {
-    props.app.removePattern(props.pattern).catch(err => {
+    props.app.removePattern(props.pattern).catch((err) => {
       console.log(err)
     })
   }
@@ -114,7 +114,7 @@ const PatternFabs = props => {
     backgroundColor: '#fa5252',
     marginLeft: '0.5rem'
   }
-  const getFab = type => (
+  const getFab = (type) => (
     <Fab
       data-test={type}
       color={colors[type]}
@@ -131,7 +131,7 @@ const PatternFabs = props => {
 
   return (
     <div style={styles.wrapper}>
-      {fabsOrder.map(fab => (props.fabs.indexOf(fab) !== -1 ? getFab(fab) : null))}
+      {fabsOrder.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getFab(fab) : null))}
     </div>
   )
 }

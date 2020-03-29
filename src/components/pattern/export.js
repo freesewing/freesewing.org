@@ -31,35 +31,31 @@ const ExportPattern = ({ app, data, setAction }) => {
       else if (format === 'yaml') exportYamlData(data)
     } else {
       if (format !== 'svg') setLoading(true)
-      const svg = new Pattern(data.settings)
-        .use(theme)
-        .use(i18n, { strings })
-        .draft()
-        .render()
+      const svg = new Pattern(data.settings).use(theme).use(i18n, { strings }).draft().render()
       if (type === 'raw') {
         if (format === 'svg') svgToFile(svg)
-        else if (format === 'postscript') convert(svg, 'ps', 'full').then(url => ready(url))
-        else if (format === 'pdf') convert(svg, 'pdf', 'full').then(url => ready(url))
-      } else if (type === 'tile') convert(svg, 'pdf', format).then(url => ready(url))
+        else if (format === 'postscript') convert(svg, 'ps', 'full').then((url) => ready(url))
+        else if (format === 'pdf') convert(svg, 'pdf', 'full').then((url) => ready(url))
+      } else if (type === 'tile') convert(svg, 'pdf', format).then((url) => ready(url))
     }
   }
-  const ready = url => {
+  const ready = (url) => {
     setLink(url)
     setLoading(false)
   }
-  const exportJsonData = data => {
+  const exportJsonData = (data) => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: 'application/json;charset=utf-8'
     })
     fileSaver.saveAs(blob, 'data.json')
   }
-  const exportYamlData = data => {
+  const exportYamlData = (data) => {
     const blob = new Blob([YAML.stringify(data)], {
       type: 'application/x-yaml;charset=utf-8'
     })
     fileSaver.saveAs(blob, 'data.yaml')
   }
-  const svgToFile = svg => {
+  const svgToFile = (svg) => {
     const blob = new Blob([svg], {
       type: 'image/svg+xml;charset=utf-8'
     })
@@ -146,7 +142,7 @@ const ExportPattern = ({ app, data, setAction }) => {
               <h5>
                 <FormattedMessage id="app.exportForPrinting" />
               </h5>
-              {['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid'].map(size => (
+              {['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid'].map((size) => (
                 <Button
                   {...btnProps}
                   onClick={() => handleExport('tile', size)}
@@ -161,7 +157,7 @@ const ExportPattern = ({ app, data, setAction }) => {
               <h5>
                 <FormattedMessage id="app.exportForEditing" />
               </h5>
-              {['svg', 'postscript', 'pdf'].map(format => (
+              {['svg', 'postscript', 'pdf'].map((format) => (
                 <Button
                   {...btnProps}
                   onClick={() => handleExport('raw', format)}
@@ -174,7 +170,7 @@ const ExportPattern = ({ app, data, setAction }) => {
               <h5>
                 <FormattedMessage id="app.exportAsData" />
               </h5>
-              {['json', 'yaml'].map(format => (
+              {['json', 'yaml'].map((format) => (
                 <Button
                   {...btnProps}
                   onClick={() => handleExport('data', format)}

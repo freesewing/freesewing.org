@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const PersonNotesPage = props => {
+const PersonNotesPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -35,7 +35,7 @@ const PersonNotesPage = props => {
   }, [])
 
   // Methods
-  const updateNotes = evt => setNotes(evt.target.value)
+  const updateNotes = (evt) => setNotes(evt.target.value)
 
   // Styles
   const styles = {

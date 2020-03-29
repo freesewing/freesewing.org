@@ -4,7 +4,7 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
 
-const PasswordResetConfirmationPage = props => {
+const PasswordResetConfirmationPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.justAMoment'))

@@ -58,7 +58,7 @@ const PatternMenu = ({ app }) => {
           <FormattedMessage id="app.availablePatterns" />
         </h6>
         <ul style={style.patterns}>
-          {patterns.map(pattern => (
+          {patterns.map((pattern) => (
             <li key={pattern} style={style.pattern}>
               <Link to={`/designs/${pattern}/`} title={app.translate(`patterns.${pattern}.title`)}>
                 {app.translate(`patterns.${pattern}.title`)}
@@ -75,7 +75,7 @@ const PatternMenu = ({ app }) => {
           Object.keys(app.patterns).length > 0 ? (
             <>
               <ul style={style.patterns}>
-                {Object.keys(app.patterns).map(handle => (
+                {Object.keys(app.patterns).map((handle) => (
                   <li key={handle} style={style.pattern}>
                     <Link to={`/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
                   </li>

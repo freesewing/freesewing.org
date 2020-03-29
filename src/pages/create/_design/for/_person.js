@@ -12,7 +12,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
-const CreatePatternForPersonPage = props => {
+const CreatePatternForPersonPage = (props) => {
   const app = useApp()
   const person = usePerson(app, props.person)
 

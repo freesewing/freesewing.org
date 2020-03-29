@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import PaypalButton from './PaypalButton'
 
-const Subscribe = props => {
+const Subscribe = (props) => {
   const { showFree } = props
 
   const sharedStyles = {

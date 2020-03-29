@@ -19,7 +19,7 @@ const accountMethods = ({
     setLoading(true)
     backend
       .createAccount(confirmId, consent)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
@@ -30,7 +30,7 @@ const accountMethods = ({
           })
         } else return res.status
       })
-      .catch(error => {
+      .catch((error) => {
         showError(error)
         if (error.response) return error.response.status
         else return error
@@ -40,7 +40,7 @@ const accountMethods = ({
   const updateAccount = (data, to = false) => {
     setLoading(true)
     saveAccount(data)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) setAccount(mergeData(account, data))
         else console.log('Could not save account', res)
         setLoading(false)
@@ -52,27 +52,27 @@ const accountMethods = ({
           msg: translate('app.fieldSaved', { field })
         })
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
   const exportAccount = () => {
     setLoading(true)
     backend
       .export(token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           if (typeof window !== 'undefined') window.location.href = res.data.export
         }
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
   const removeAccount = () => {
     setLoading(true)
     backend
       .remove(token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           persist({
             account: { username: false },
@@ -87,14 +87,14 @@ const accountMethods = ({
           navigate('/')
         }
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
   const restrictAccount = () => {
     setLoading(true)
     backend
       .restrict(token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           persist({
             account: { username: false },
@@ -109,14 +109,14 @@ const accountMethods = ({
           navigate('/')
         }
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
-  const recoverAccount = username => {
+  const recoverAccount = (username) => {
     setLoading(true)
     backend
       .recoverAccount(username)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           setNotification({
@@ -125,14 +125,14 @@ const accountMethods = ({
           })
         }
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
   const refreshAccount = () => {
     setLoading(true)
     return backend
       .account(token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
@@ -144,16 +144,16 @@ const accountMethods = ({
         } else console.log('res in hook', res)
         return res.status
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         if (error.response) return error.response.status
         else return error
       })
   }
 
-  const loadProfile = handle => backend.profile(handle, token)
+  const loadProfile = (handle) => backend.profile(handle, token)
   const signup = (email, password, language) => backend.signup(email, password, language)
-  const saveAccount = data => backend.saveAccount(mergeData({}, data), token)
+  const saveAccount = (data) => backend.saveAccount(mergeData({}, data), token)
 
   return {
     createAccount,

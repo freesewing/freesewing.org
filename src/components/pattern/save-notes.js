@@ -5,14 +5,14 @@ import TextField from '@material-ui/core/TextField'
 import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 
-const SavePatternNotes = props => {
+const SavePatternNotes = (props) => {
   // State
   const [name, setName] = useState(props.name)
   const [notes, setNotes] = useState(props.notes)
 
   // Methods
-  const updateName = evt => setName(evt.target.value)
-  const updateNotes = evt => setNotes(evt.target.value)
+  const updateName = (evt) => setName(evt.target.value)
+  const updateNotes = (evt) => setNotes(evt.target.value)
   const handleSave = () => {
     props.setDialog(false)
     let nameVal = name
@@ -22,7 +22,7 @@ const SavePatternNotes = props => {
         name: nameVal,
         notes
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
 
   return (
