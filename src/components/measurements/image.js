@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MeasurementImage = props => (
+const MeasurementImage = (props) => (
   <img
     data-test="measurement-image"
     className="shadow"

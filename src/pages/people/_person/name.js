@@ -11,7 +11,7 @@ import InvalidIcon from '@material-ui/icons/Warning'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const PersonNamePage = props => {
+const PersonNamePage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -36,7 +36,7 @@ const PersonNamePage = props => {
   }, [])
 
   // Methods
-  const updateName = evt => setName(evt.target.value)
+  const updateName = (evt) => setName(evt.target.value)
 
   // Styles
 

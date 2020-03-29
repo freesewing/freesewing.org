@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LanguageIcon = props => {
+const LanguageIcon = (props) => {
   const icons = {
     en: (
       <g transform="scale(0.6) translate(0, 5)">

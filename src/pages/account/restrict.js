@@ -8,7 +8,7 @@ import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
-const RestrictProcessingPage = props => {
+const RestrictProcessingPage = (props) => {
   // Hooks
   const app = useApp()
 

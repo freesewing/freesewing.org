@@ -6,7 +6,7 @@ import CenteredLayout from '../components/layouts/centered'
 
 import Search from '../components/search'
 
-const SearchPage = props => {
+const SearchPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.search'))

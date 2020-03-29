@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import BreadCrumbs from '../breadcrumbs'
 import BaseLayout from './base'
 
-const PostLayout = props => {
+const PostLayout = (props) => {
   const img = props.frontmatter.img.childImageSharp.fluid
   const style = {
     base: {
@@ -30,7 +30,7 @@ const PostLayout = props => {
     }
   }
   const tags = props.frontmatter.patterns
-    ? props.frontmatter.patterns.map(pattern => {
+    ? props.frontmatter.patterns.map((pattern) => {
         return (
           <Link to={'/showcase/designs/' + pattern} style={{ marginRight: '8px' }} key={pattern}>
             #{pattern}

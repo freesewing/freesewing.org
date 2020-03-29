@@ -3,7 +3,7 @@ import { FormattedHTMLMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Icon from '@freesewing/components/Icon'
 
-const OauthProvider = props => {
+const OauthProvider = (props) => {
   let styles = {
     button: {
       width: props.app.mobile ? '100%' : '48%',

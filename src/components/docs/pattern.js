@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import PatternOptions from './pattern-options'
 import PatternMeasurements from './pattern-measurements'
 
-const PatternIndexPage = props => {
+const PatternIndexPage = (props) => {
   return (
     <React.Fragment>
       <p>

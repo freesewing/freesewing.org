@@ -1,8 +1,8 @@
 import { strings, languages } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Account settings', function() {
-  beforeEach(function() {
+describe('Account settings', function () {
+  beforeEach(function () {
     cy.visit('/login/')
     cy.get('div.theme-wrapper').should('have.class', 'light')
     // Logging in with email address because we'll change the username in our tests
@@ -23,14 +23,14 @@ describe('Account settings', function() {
     'username'
   ]
 
-  it('Verify translations and links', function() {
+  it('Verify translations and links', function () {
     cy.visit('/account/settings/')
     cy.get('h1').should('contain', i18n['app.settings'])
     for (let button of buttons)
       cy.get(`a[href="/account/settings/${button}/"]`).should('contain', i18n['account.' + button])
   })
 
-  it('Avatar (translations only)', function() {
+  it('Avatar (translations only)', function () {
     cy.visit('/account/settings/avatar/')
     cy.get('h1').should('contain', i18n['account.avatar'])
     cy.get('blockquote.note').should('contain', i18n['account.avatarInfo'])
@@ -39,7 +39,7 @@ describe('Account settings', function() {
     cy.get('[data-test=cancel]').should('contain', i18n['app.cancel'])
   })
 
-  it('Bio', function() {
+  it('Bio', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     cy.visit('/account/settings/bio/')
@@ -49,12 +49,10 @@ describe('Account settings', function() {
     cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
     cy.get('button[data-test=save]').should('contain', i18n['app.save'])
     cy.get('h6').should('contain', i18n['app.preview'])
-    cy.get('#bio')
-      .clear()
-      .type(i18n['email.footerSlogan'])
+    cy.get('#bio').clear().type(i18n['email.footerSlogan'])
     cy.get('[data-test=preview]').should('contain', i18n['email.footerSlogan'])
     cy.get('button[data-test=save]').click({ force: true })
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       console.log(xhr)
       expect(xhr.response.body.account.bio).to.equal(i18n['email.footerSlogan'])
     })
@@ -62,7 +60,7 @@ describe('Account settings', function() {
     cy.get('[data-test=notification]').should('be.visible')
   })
 
-  it('Language', function() {
+  it('Language', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     let newLanguage
@@ -81,14 +79,14 @@ describe('Account settings', function() {
       newLanguage = 'nl'
     }
     cy.get('button[data-test=save]').click({ force: true })
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       expect(xhr.response.body.account.settings.language).to.equal(newLanguage)
     })
     cy.get('h1').should('contain', i18n['app.settings'])
     cy.get('[data-test=notification]').should('be.visible')
   })
 
-  it('Units', function() {
+  it('Units', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     let newUnits
@@ -101,7 +99,7 @@ describe('Account settings', function() {
     cy.get('[data-test=imperial]').should('contain', i18n['app.imperialUnits'])
     cy.get('input[name=units][checked]')
       .invoke('val')
-      .then(value => {
+      .then((value) => {
         if (value === 'metric') {
           newUnits = 'imperial'
           cy.get('[data-test=imperial]').click()
@@ -111,14 +109,14 @@ describe('Account settings', function() {
         }
       })
     cy.get('button[data-test=save]').click({ force: true })
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       expect(xhr.response.body.account.settings.units).to.equal(newUnits)
     })
     cy.get('h1').should('contain', i18n['app.settings'])
     cy.get('[data-test=notification]').should('be.visible')
   })
 
-  it('Social', function() {
+  it('Social', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     for (let social of ['github', 'twitter', 'instagram']) {
@@ -129,11 +127,9 @@ describe('Account settings', function() {
       cy.get('a[data-test=cancel]').should('contain', i18n['app.cancel'])
       cy.get('button[data-test=save]').should('contain', i18n['app.save'])
       let newSocial = Date.now() + '_' + social
-      cy.get(`#${social}`)
-        .clear()
-        .type(newSocial)
+      cy.get(`#${social}`).clear().type(newSocial)
       cy.get('button[data-test=save]').click()
-      cy.wait('@save').then(xhr => {
+      cy.wait('@save').then((xhr) => {
         expect(xhr.response.body.account.social[social]).to.equal(newSocial)
       })
       cy.get('h1').should('contain', i18n['app.settings'])
@@ -141,7 +137,7 @@ describe('Account settings', function() {
     }
   })
 
-  it('Email', function() {
+  it('Email', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     cy.visit('/account/settings/email/')
@@ -155,13 +151,13 @@ describe('Account settings', function() {
     let newEmail = 'test+' + Date.now() + '@freesewing.org'
     cy.get('#email')
       .invoke('val')
-      .then(email => (oldEmail = email))
+      .then((email) => (oldEmail = email))
     cy.get('#email').clear()
     cy.get('[data-test=invalid]').should('be.visible')
     cy.get('#email').type(newEmail)
     cy.get('[data-test=valid]').should('be.visible')
     cy.get('button[data-test=save]').click()
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       // Email change requires confirmation, so it's still the old value
       expect(xhr.response.body.account.email).to.equal(oldEmail)
     })
@@ -169,7 +165,7 @@ describe('Account settings', function() {
     cy.get('[data-test=notification]').should('be.visible')
   })
 
-  it('Username', function() {
+  it('Username', function () {
     cy.server()
     cy.route('PUT', '/account').as('save')
     cy.visit(`/account/settings/username/`)
@@ -184,25 +180,23 @@ describe('Account settings', function() {
     cy.get('[data-test=invalid]').should('be.visible')
     cy.get('#username').type(newUsername)
     cy.get('button[data-test=save]').click()
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       expect(xhr.response.body.account.username).to.equal(newUsername)
     })
     cy.get('h1').should('contain', i18n['app.settings'])
     cy.get('[data-test=notification]').should('be.visible')
     // Restore username
     cy.visit(`/account/settings/username/`)
-    cy.get('#username')
-      .clear()
-      .type('test_user')
+    cy.get('#username').clear().type('test_user')
     cy.get('button[data-test=save]').click()
-    cy.wait('@save').then(xhr => {
+    cy.wait('@save').then((xhr) => {
       expect(xhr.response.body.account.username).to.equal('test_user')
     })
     cy.get('h1').should('contain', i18n['app.settings'])
     cy.get('[data-test=notification]').should('be.visible')
   })
 
-  it('Password', function() {
+  it('Password', function () {
     cy.visit(`/account/settings/password/`)
     cy.get('h1').should('contain', i18n['account.password'])
     cy.get('label[for=newPassword]').should('contain', i18n['account.newPassword'])

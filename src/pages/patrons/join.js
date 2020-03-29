@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Subscribe from '../../components/subscribe'
 
-const JoinPatronsPage = props => {
+const JoinPatronsPage = (props) => {
   // Hooks
   const app = useApp()
 

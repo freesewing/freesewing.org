@@ -7,7 +7,7 @@ import CenteredLayout from '../../components/layouts/centered'
 import Markdown from 'react-markdown'
 import UserSocial from '../../components/user-social'
 
-const Template = props => {
+const Template = (props) => {
   // Hooks
   const app = useApp()
 
@@ -23,7 +23,7 @@ const Template = props => {
         title: app.translate('app.users')
       }
     ])
-    app.loadProfile(props.user).then(res => {
+    app.loadProfile(props.user).then((res) => {
       if (res.status === 200) setUser(res.data)
     })
   }, [])

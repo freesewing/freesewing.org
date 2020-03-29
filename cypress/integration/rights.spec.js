@@ -1,8 +1,8 @@
 import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('User rights', function() {
-  beforeEach(function() {
+describe('User rights', function () {
+  beforeEach(function () {
     cy.visit('/login/')
     cy.get('div.theme-wrapper').should('have.class', 'light')
     cy.get('#username').type('test_user')
@@ -17,14 +17,14 @@ describe('User rights', function() {
     remove: 'removeYourAccount'
   }
 
-  it('Verify translations and links', function() {
+  it('Verify translations and links', function () {
     cy.visit('/account/settings/')
     cy.get('h1').should('contain', i18n['app.settings'])
     for (let button in buttons)
       cy.get(`a[href="/account/${button}/"]`).should('contain', i18n['account.' + buttons[button]])
   })
 
-  it('Export (translation only)', function() {
+  it('Export (translation only)', function () {
     cy.visit('/account/export')
     cy.get('h1').should('contain', i18n['account.exportYourData'])
     cy.get('blockquote.note').should('contain', i18n['account.exportYourDataInfo'].slice(0, 10))
@@ -33,7 +33,7 @@ describe('User rights', function() {
     cy.get('h6').should('contain', i18n['account.exportYourDataTitle'])
   })
 
-  it('Consent (translation only)', function() {
+  it('Consent (translation only)', function () {
     cy.visit('/account/consent')
     cy.get('h1').should('contain', i18n['account.reviewYourConsent'])
     cy.get('[data-test=details]').click({ force: true })
@@ -80,7 +80,7 @@ describe('User rights', function() {
     cy.get('button[data-test=save]').should('contain', i18n['app.save'])
   })
 
-  it('Restrict (translation only)', function() {
+  it('Restrict (translation only)', function () {
     cy.visit('/account/restrict')
     cy.get('h1').should('contain', i18n['account.restrictProcessingOfYourData'])
     cy.get('blockquote.note').should(

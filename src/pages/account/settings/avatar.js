@@ -9,18 +9,18 @@ import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
-const AvatarSettingPage = props => {
+const AvatarSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
   if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
 
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
     reader.onload = () => {
       setImg(reader.result)
     }
-    acceptedFiles.forEach(file => reader.readAsDataURL(file))
+    acceptedFiles.forEach((file) => reader.readAsDataURL(file))
   }, [])
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 

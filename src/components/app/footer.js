@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton'
 import { version } from '../../../package.json'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
-const Footer = props => {
+const Footer = (props) => {
   const data = useStaticQuery(graphql`
     {
       allFsPatron {
@@ -56,12 +56,12 @@ const Footer = props => {
   }
 
   const patrons = {}
-  data.allFsPatron.edges.map(node => (patrons[node.node.patron.username] = node.node.patron))
+  data.allFsPatron.edges.map((node) => (patrons[node.node.patron.username] = node.node.patron))
 
   const order = Object.keys(patrons)
   order.sort()
   const list = []
-  order.map(username => {
+  order.map((username) => {
     let patron = patrons[username]
     list.push(
       <li key={patron.username} style={styles.li}>
@@ -88,7 +88,7 @@ const Footer = props => {
         <Logo size={101} />
       </Link>
       <p>
-        {Object.keys(icons).map(i => (
+        {Object.keys(icons).map((i) => (
           <IconButton href={icons[i]} className={i} title={i} key={i}>
             <Icon icon={i} />
           </IconButton>

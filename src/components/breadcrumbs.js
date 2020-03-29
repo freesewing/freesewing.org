@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
 const Breadcrumbs = ({ pageTitle, suffix, crumbs = [] }) => {
-  const renderCrumb = crumb => {
+  const renderCrumb = (crumb) => {
     return (
       <li key={crumb.slug}>
         <Link to={crumb.slug}>{crumb.title}</Link>
@@ -18,7 +18,7 @@ const Breadcrumbs = ({ pageTitle, suffix, crumbs = [] }) => {
             <FormattedMessage id="app.home" />
           </Link>
         </li>
-        {crumbs.map(crumb => renderCrumb(crumb))}
+        {crumbs.map((crumb) => renderCrumb(crumb))}
         <li>
           {pageTitle}
           {suffix ? suffix : null}

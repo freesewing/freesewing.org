@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
-import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import useApp from '../../hooks/useApp'
+import withLanguage from '../../components/withLanguage'
+import AppWrapper from '../../components/app/wrapper'
+import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -15,10 +15,10 @@ import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import Blockquote from '@freesewing/components/Blockquote'
 
-import successGif from '../components/session/signup/success.gif'
-import Oauth from '../components/session/oauth/'
+import successGif from '../../components/session/signup/success.gif'
+import Oauth from '../../components/session/oauth/'
 
-const SignupPage = props => {
+const SignupPage = (props) => {
   // State
   const app = useApp()
   const [email, setEmail] = useState('')
@@ -36,24 +36,24 @@ const SignupPage = props => {
   }, [])
 
   // Methods
-  const handleSignup = evt => {
+  const handleSignup = (evt) => {
     evt.preventDefault()
     app
       .signup(email, password, process.env.GATSBY_LANGUAGE)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) setResult(true)
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.toString().slice(-3) === '400')
           setError(<FormattedMessage id="errors.emailExists" />)
         else setError(<FormattedMessage id="errors.requestFailedWithStatusCode500" />)
       })
   }
-  const handleResend = evt => {
+  const handleResend = (evt) => {
     evt.preventDefault()
     app.backend
       .resendActivationEmail(email, process.env.GATSBY_LANGUAGE)
-      .then(result => {
+      .then((result) => {
         if (result.status === 200) setResult(true)
         else
           app.setNotification({
@@ -71,7 +71,7 @@ const SignupPage = props => {
         })
       })
   }
-  const updateEmail = evt => {
+  const updateEmail = (evt) => {
     let value = evt.target.value
     setEmail(value)
     let valid = (validateEmail(value) && validateTld(value)) || false
@@ -160,7 +160,7 @@ const SignupPage = props => {
           margin="normal"
           variant="outlined"
           value={password}
-          onChange={evt => setPassword(evt.target.value)}
+          onChange={(evt) => setPassword(evt.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -228,7 +228,7 @@ const SignupPage = props => {
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
-      {result ? success : form}
+        {result ? success : form}
       </CenteredLayout>
     </AppWrapper>
   )

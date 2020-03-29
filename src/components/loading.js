@@ -1,8 +1,7 @@
 import React from 'react'
 import Spinner from '@freesewing/components/Spinner'
-import { FormattedMessage } from 'react-intl'
 
-const Loading = props => {
+const Loading = (props) => {
   if (!props.loading) return null
   if (props.embed) return <Spinner size={props.size || 400} />
   const style = {
@@ -32,14 +31,14 @@ const Loading = props => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div id="loader" style={style.wrapper}>
         <div className="dark" style={style.inner}>
           <Spinner size={400} />
         </div>
       </div>
       {props.children}
-    </React.Fragment>
+    </>
   )
 }
 

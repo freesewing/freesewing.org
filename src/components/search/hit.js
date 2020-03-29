@@ -2,7 +2,7 @@ import React from 'react'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
 import { Link } from 'gatsby'
 
-const Hit = clickHandler => ({ hit }) => {
+const Hit = (clickHandler) => ({ hit }) => {
   return (
     <div className="search-hit">
       <h2>

@@ -3,8 +3,8 @@ import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Core pattern drafting for users', function() {
-  beforeEach(function() {
+describe('Core pattern drafting for users', function () {
+  beforeEach(function () {
     cy.visit('/login')
     cy.get('div.theme-wrapper').should('have.class', 'light')
     cy.get('#username').type('test_user')
@@ -19,7 +19,7 @@ describe('Core pattern drafting for users', function() {
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
     if (pattern === 'waralee' || 0) {
-      it('Draft ' + capitalize(pattern), function() {
+      it('Draft ' + capitalize(pattern), function () {
         cy.visit('/create/' + pattern + '/')
         cy.get('a[data-test=persb]').click({ force: true })
         cy.get('[data-test=draft] svg').should('be.visible')

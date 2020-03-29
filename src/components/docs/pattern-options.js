@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import { optionGroups } from '@freesewing/pattern-info'
 
-const PatternOptions = props => {
+const PatternOptions = (props) => {
   const renderOptions = () => {
     const groups = optionGroups[props.pattern]
     const list = []

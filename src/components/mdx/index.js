@@ -11,7 +11,7 @@ const customComponents = {
   Tip: ({ children }) => <Blockquote type="tip">{children}</Blockquote>,
   Warning: ({ children }) => <Blockquote type="warning">{children}</Blockquote>,
   Fixme: ({ children }) => <Blockquote type="fixme">{children}</Blockquote>,
-  ReadMore: props => <ReadMore {...props} />,
+  ReadMore: (props) => <ReadMore {...props} />,
   YouTube
 }
 

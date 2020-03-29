@@ -10,7 +10,7 @@ import { list } from '@freesewing/pattern-info'
 import LineDrawing from '@freesewing/components/LineDrawing'
 import capitalize from '@freesewing/utils/capitalize'
 
-const CreatePatternIndexPage = props => {
+const CreatePatternIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.chooseAPattern'))
@@ -70,7 +70,7 @@ const CreatePatternIndexPage = props => {
     <AppWrapper app={app}>
       <WideLayout app={app} top>
         <div style={styles.wrapper}>
-          {list.map(pattern => {
+          {list.map((pattern) => {
             let title = app.translate(`patterns.${pattern}.title`)
             return (
               <div key={pattern} style={styles.post} className="shadow">

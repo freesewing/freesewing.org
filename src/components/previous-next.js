@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const PreviousNext = props => {
+const PreviousNext = (props) => {
   // Previous/Next navigation
-  const renderLink = side => {
+  const renderLink = (side) => {
     const slug = props.pageContext.slug
     let to = false
     let title = false

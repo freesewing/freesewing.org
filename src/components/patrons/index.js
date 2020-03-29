@@ -5,7 +5,7 @@ import Subscribe from '../subscribe'
 import List from './list'
 import Thanks from './thanks'
 
-const PatronsIndex = props => {
+const PatronsIndex = (props) => {
   useEffect(() => {
     if (props.slug === '/patrons') {
       props.app.setTitle(props.app.translate('app.ourPatrons'))

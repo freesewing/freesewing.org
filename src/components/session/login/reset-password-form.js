@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 
-const ResetPasswordForm = props => (
+const ResetPasswordForm = (props) => (
   <React.Fragment>
     <h3 data-test="trouble">
       <FormattedMessage id="app.troubleLoggingIn" />

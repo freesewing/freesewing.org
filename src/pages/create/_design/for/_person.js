@@ -5,14 +5,11 @@ import AppWrapper from '../../../../components/app/wrapper'
 
 import LoadingLayout from '../../../../components/layouts/loading'
 import DraftUi from '../../../../components/draft/ui'
-import { graphql } from 'gatsby'
 import usePerson from '../../../../hooks/usePerson'
-import CenteredLayout from '../../../../components/layouts/centered'
-import Blockquote from '@freesewing/components/Blockquote'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
-const CreatePatternForPersonPage = props => {
+const CreatePatternForPersonPage = (props) => {
   const app = useApp()
   const person = usePerson(app, props.person)
 

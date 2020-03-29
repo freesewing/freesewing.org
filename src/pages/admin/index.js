@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import SearchHit from '../../components/admin/hit'
 
-const AdminPage = props => {
+const AdminPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -26,15 +26,15 @@ const AdminPage = props => {
   }, [])
 
   // Methods
-  const search = e => {
+  const search = (e) => {
     app
       .adminSearch(query)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setUsers(res.data)
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
   const revert = () => {
     app.setLoading(true)
@@ -68,14 +68,14 @@ const AdminPage = props => {
               type="text"
               placeholder="Search by username, handle or (complete) email address"
               aria-label="Search by username, handle or (complete) email address"
-              onChange={e => setQuery(e.target.value)}
+              onChange={(e) => setQuery(e.target.value)}
             />
             <p style={{ textAlign: 'center' }}>
               <Button onClick={search} variant="contained" color="primary" size="large">
                 Search
               </Button>
             </p>
-            {users.map(user => (
+            {users.map((user) => (
               <SearchHit key={user.handle} user={user} search={search} app={app} />
             ))}
           </AuthRequired>

@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
-const WelcomeUnitsPage = props => {
+const WelcomeUnitsPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -35,7 +35,7 @@ const WelcomeUnitsPage = props => {
   }, [])
 
   // Methods
-  const handleUnitsChange = evt => {
+  const handleUnitsChange = (evt) => {
     setUnits(evt.target.value)
   }
 

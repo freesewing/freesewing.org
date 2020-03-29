@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Robot from '@freesewing/components/Robot'
 
-const Logout = props => {
+const Logout = (props) => {
   const styles = {
     wrapper: {
       display: 'flex',

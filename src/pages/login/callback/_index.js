@@ -8,7 +8,7 @@ import { navigate } from 'gatsby'
 import Robot from '@freesewing/components/Robot'
 import Error from '../../../components/error'
 
-const LoginCallbackPage = props => {
+const LoginCallbackPage = (props) => {
   // Only accept valid callbacks
   if (!props.confirmation || !props.validation) {
     if (typeof window !== 'undefined') navigate('/login/')

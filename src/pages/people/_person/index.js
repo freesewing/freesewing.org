@@ -28,7 +28,7 @@ import capitalize from '@freesewing/utils/capitalize'
 import Avatar from '../../../components/avatar'
 import ModelGraph from '../../../components/model-graph.js'
 
-const PersonPage = props => {
+const PersonPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -48,7 +48,7 @@ const PersonPage = props => {
   }, [])
 
   // Methods
-  const updateFilter = evt => {
+  const updateFilter = (evt) => {
     if (evt === false) {
       setFilter(false)
       let vars = { ...app.vars }
@@ -63,7 +63,7 @@ const PersonPage = props => {
     }
   }
 
-  const sortMeasurements = measurements => {
+  const sortMeasurements = (measurements) => {
     let sorted = []
     let translated = {}
     for (let m of measurements) {
@@ -323,7 +323,7 @@ const PersonPage = props => {
                     () =>
                       app
                         .updatePerson(props.person, [!person.breasts, 'breasts'])
-                        .then(res => setPerson(usePerson(app, props.person)))
+                        .then((res) => setPerson(usePerson(app, props.person)))
                     // We force a re-render here by setting state after the promise resolves
                   }
                 >
@@ -351,7 +351,7 @@ const PersonPage = props => {
                           person.units === 'metric' ? 'imperial' : 'metric',
                           'units'
                         ])
-                        .then(res => setPerson(usePerson(app, props.person)))
+                        .then((res) => setPerson(usePerson(app, props.person)))
                     // We force a re-render here by setting state after the promise resolves
                   }
                 >
@@ -411,7 +411,7 @@ const PersonPage = props => {
             <MenuItem value={false}>
               <FormattedMessage id="filter.byPattern" />
             </MenuItem>
-            {list.map(pattern => (
+            {list.map((pattern) => (
               <MenuItem key={pattern} value={pattern}>
                 {capitalize(pattern)}
               </MenuItem>
@@ -443,7 +443,7 @@ const PersonPage = props => {
               <td style={styles.buttonCell}></td>
             </tr>
             {person.measurements &&
-              Object.keys(person.measurements).map(m => {
+              Object.keys(person.measurements).map((m) => {
                 if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
 
                 let value = person.measurements[m]
@@ -465,7 +465,7 @@ const PersonPage = props => {
                   return measurementRow(m, value, measurementEstimate, measurementInRange)
                 } else return null
               })}
-            {remainingMeasurements().map(m => {
+            {remainingMeasurements().map((m) => {
               if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
               else return measurementRow(m)
             })}

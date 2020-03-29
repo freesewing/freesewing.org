@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-const WelcomePage = props => {
+const WelcomePage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -27,7 +27,7 @@ const WelcomePage = props => {
             <FormattedMessage id="welcome.walkYouThrough" />
           </p>
           <ol>
-            {['units', 'username', 'avatar', 'bio', 'social'].map(step => (
+            {['units', 'username', 'avatar', 'bio', 'social'].map((step) => (
               <li key={step}>{app.translate(`welcome.${step}`)}</li>
             ))}
           </ol>

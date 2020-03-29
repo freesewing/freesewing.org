@@ -7,7 +7,7 @@ import WideLayout from '../../../components/layouts/wide'
 import { graphql, Link } from 'gatsby'
 import { list as patternList } from '@freesewing/pattern-info'
 
-const ShowcaseIndexPage = props => {
+const ShowcaseIndexPage = (props) => {
   // State
   const app = useApp()
 

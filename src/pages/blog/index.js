@@ -7,7 +7,7 @@ import WideLayout from '../../components/layouts/wide'
 import { graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
 
-const BlogIndexPage = props => {
+const BlogIndexPage = (props) => {
   // State
   const app = useApp()
 
@@ -30,7 +30,7 @@ const BlogIndexPage = props => {
     <AppWrapper app={app}>
       <WideLayout app={app}>
         <div style={style.wrapper}>
-          {props.data.allMdx.edges.map(node => (
+          {props.data.allMdx.edges.map((node) => (
             <PostPreview
               key={node.node.parent.relativeDirectory}
               app={app}

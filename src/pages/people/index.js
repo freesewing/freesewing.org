@@ -11,7 +11,7 @@ import Avatar from '../../components/avatar'
 import MissingPeople from '../../components/missing/people'
 import ModelGraph from '../../components/model-graph.js'
 
-const PeopleIndexPage = props => {
+const PeopleIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.people'))

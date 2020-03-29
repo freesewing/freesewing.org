@@ -10,7 +10,7 @@ import useUiMdx from '../../hooks/useUiMdx'
 import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from '../mdx'
 
-const SavePattern = props => {
+const SavePattern = (props) => {
   // Hooks
   const uiMdx = useUiMdx()
 
@@ -48,11 +48,11 @@ const SavePattern = props => {
   delete data.settings.embed
 
   // Methods
-  const updateName = evt => {
+  const updateName = (evt) => {
     let value = evt.target.value
     setName(value)
   }
-  const updateNotes = evt => setNotes(evt.target.value)
+  const updateNotes = (evt) => setNotes(evt.target.value)
   const handleSave = () => {
     props.app
       .createPattern({
@@ -61,7 +61,7 @@ const SavePattern = props => {
         notes,
         data
       })
-      .then(res => {
+      .then((res) => {
         console.log(res)
       })
   }

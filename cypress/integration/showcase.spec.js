@@ -6,9 +6,9 @@ const posts = [
   '/showcase/linnen-theo/'
 ]
 
-describe('Showcase posts', function() {
+describe('Showcase posts', function () {
   for (let post of posts) {
-    it(post, function() {
+    it(post, function () {
       if (1 || post === '/showcase/theo-by-theodore/') {
         cy.visit(post)
         cy.get('h1').should('not.be.empty')
@@ -18,9 +18,7 @@ describe('Showcase posts', function() {
         cy.get('article img').should('have.attr', 'alt')
         cy.get('article img').each(($el, index, $list) => {
           if ($el.attr('src').slice(0, 4) !== 'data') {
-            cy.request($el.attr('src'))
-              .its('status')
-              .should('equal', 200)
+            cy.request($el.attr('src')).its('status').should('equal', 200)
           }
         })
       }

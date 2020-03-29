@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Markdown from 'react-markdown'
 
-const WelcomeBioPage = props => {
+const WelcomeBioPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -34,7 +34,7 @@ const WelcomeBioPage = props => {
   }, [])
 
   // Methods
-  const updateBio = evt => setBio(evt.target.value)
+  const updateBio = (evt) => setBio(evt.target.value)
 
   // Style
   const styles = {

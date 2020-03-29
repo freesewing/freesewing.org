@@ -28,7 +28,7 @@ const bugsnagClient = bugsnag({
   releaseStage,
   collectUserIp: false,
   notifyReleaseStages: ['production', 'next'],
-  beforeSend: report => {
+  beforeSend: (report) => {
     report.user = { id: user }
   }
 })

@@ -4,7 +4,6 @@ import usePerson from '../../hooks/usePerson'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import CenteredLayout from '../../components/layouts/centered'
-import PostPreview from '../../components/post-preview'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -16,7 +15,7 @@ import capitalize from '@freesewing/utils/capitalize'
 
 import './patterns.css'
 
-const PatternsIndexPage = props => {
+const PatternsIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.patterns'))

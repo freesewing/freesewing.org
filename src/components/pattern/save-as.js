@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import TextField from '@material-ui/core/TextField'
-import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 import { navigate } from 'gatsby'
 
-const SavePatternAs = props => {
+const SavePatternAs = (props) => {
   console.log('save as', props)
   // State
   const [name, setName] = useState('')
@@ -18,8 +17,8 @@ const SavePatternAs = props => {
   delete data.settings.embed
 
   // Methods
-  const updateName = evt => setName(evt.target.value)
-  const updateNotes = evt => setNotes(evt.target.value)
+  const updateName = (evt) => setName(evt.target.value)
+  const updateNotes = (evt) => setNotes(evt.target.value)
   const handleSave = () => {
     setLoading(true)
     let nameVal = name
@@ -37,7 +36,7 @@ const SavePatternAs = props => {
         person: props.person.handle,
         data: props.data
       })
-      .then(data => {
+      .then((data) => {
         setLoading(false)
         navigate(`/patterns/${data.handle}/`)
         //props.app.setTitle(nameVal)

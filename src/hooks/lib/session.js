@@ -19,7 +19,7 @@ const sessionMethods = ({
     setLoading(true)
     return backend
       .login(username, password)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
@@ -31,18 +31,18 @@ const sessionMethods = ({
         } else console.log('res in hook', res)
         return res.status
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         if (error.response) return error.response.status
         else return error
       })
   }
 
-  const confirmationLogin = id => {
+  const confirmationLogin = (id) => {
     setLoading(true)
     return backend
       .confirmationLogin(id)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
@@ -53,18 +53,18 @@ const sessionMethods = ({
           })
         } else return res.status
       })
-      .catch(error => {
+      .catch((error) => {
         showError(error)
         if (error.response) return error.response.status
         else return error
       })
   }
 
-  const providerLogin = data => {
+  const providerLogin = (data) => {
     setLoading(true)
     return backend
       .providerLogin(data)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
@@ -78,7 +78,7 @@ const sessionMethods = ({
           }
         } else return res.status
       })
-      .catch(error => {
+      .catch((error) => {
         showError(error)
         if (error.response) return error.response.status
         else return error

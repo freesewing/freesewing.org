@@ -1,13 +1,13 @@
 import { strings } from '@freesewing/i18n'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Login flow', function() {
-  beforeEach(function() {
+describe('Login flow', function () {
+  beforeEach(function () {
     cy.visit('/login/')
     cy.get('div.theme-wrapper').should('have.class', 'light')
   })
 
-  it('Verify login page translations', function() {
+  it('Verify login page translations', function () {
     // Title
     cy.get('h1').should('contain', i18n['app.logIn'])
 
@@ -39,7 +39,7 @@ describe('Login flow', function() {
     )
   })
 
-  it('Verify login state on load', function() {
+  it('Verify login state on load', function () {
     // (auto) focus on username
     cy.focused().should('have.attr', 'id', 'username')
 
@@ -51,7 +51,7 @@ describe('Login flow', function() {
     cy.get('#password').should('have.attr', 'type', 'password')
   })
 
-  it('Missing password should prevent submit', function() {
+  it('Missing password should prevent submit', function () {
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -59,7 +59,7 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('have.attr', 'disabled')
   })
 
-  it('Missing username should prevent submit', function() {
+  it('Missing username should prevent submit', function () {
     // Fill in username
     cy.get('#password').type('😇')
 
@@ -67,7 +67,7 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('have.attr', 'disabled')
   })
 
-  it('Username and password should enable submit', function() {
+  it('Username and password should enable submit', function () {
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -78,7 +78,7 @@ describe('Login flow', function() {
     cy.get('form button[type=submit]').should('not.have.attr', 'disabled')
   })
 
-  it('Form should submit via keyboard', function() {
+  it('Form should submit via keyboard', function () {
     // Fill in username
     cy.get('#username').type('😇')
 
@@ -92,7 +92,7 @@ describe('Login flow', function() {
     )
   })
 
-  it('Password reveal icon should toggle password visibility', function() {
+  it('Password reveal icon should toggle password visibility', function () {
     let val = i18n['app.ohNo']
 
     // Enter password
@@ -117,7 +117,7 @@ describe('Login flow', function() {
     cy.get('#password').should('have.value', val)
   })
 
-  it('Verify result on login/submit', function() {
+  it('Verify result on login/submit', function () {
     // Fill in username
     cy.get('#username').type('test_user')
 
@@ -131,7 +131,7 @@ describe('Login flow', function() {
     cy.get('h1').should('contain', i18n['app.account'])
   })
 
-  it('Verify trouble logging in instructions are translated', function() {
+  it('Verify trouble logging in instructions are translated', function () {
     // Click trouble link
     cy.get('a[data-test=trouble]').click()
 
@@ -152,7 +152,7 @@ describe('Login flow', function() {
     cy.get('a[data-test=signup]').should('contain', i18n['app.signUpForAFreeAccount'])
   })
 
-  it('Verify reset password handling', function() {
+  it('Verify reset password handling', function () {
     // Click trouble link
     cy.get('a[data-test=trouble]').click()
 

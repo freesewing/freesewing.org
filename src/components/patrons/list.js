@@ -5,7 +5,7 @@ import PatronStars from '../patron-stars'
 import UserSocial from '../user-social'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 
-const JoinPatrons = props => {
+const JoinPatrons = (props) => {
   const data = useStaticQuery(graphql`
     {
       allFsPatron {
@@ -56,12 +56,12 @@ const JoinPatrons = props => {
     }
   }
   const patrons = {}
-  data.allFsPatron.edges.map(node => (patrons[node.node.patron.username] = node.node.patron))
+  data.allFsPatron.edges.map((node) => (patrons[node.node.patron.username] = node.node.patron))
 
   const order = Object.keys(patrons)
   order.sort()
   const list = []
-  order.map(username => {
+  order.map((username) => {
     let patron = patrons[username]
     list.push(
       <div key={patron.handle} style={styles.patron}>

@@ -3,7 +3,7 @@ import Robot from '@freesewing/components/Robot'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const ThanksPatron = props => {
+const ThanksPatron = (props) => {
   useEffect(() => {
     props.app.setTitle(props.app.translate('app.thanksForYourSupport'))
   }, [])

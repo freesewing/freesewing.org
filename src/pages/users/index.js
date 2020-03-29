@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 import Robot from '@freesewing/components/Robot'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const UsersIndexPage = props => {
+const UsersIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.users'))

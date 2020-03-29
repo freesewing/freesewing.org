@@ -8,7 +8,7 @@ import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
-const RemoveAccountPage = props => {
+const RemoveAccountPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -24,7 +24,7 @@ const RemoveAccountPage = props => {
   }, [])
 
   // Methods
-  const handleRemove = key => {
+  const handleRemove = (key) => {
     app.removeAccount()
   }
 

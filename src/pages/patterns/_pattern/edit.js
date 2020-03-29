@@ -3,7 +3,6 @@ import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import DraftUi from '../../../components/draft/ui'
-import { graphql } from 'gatsby'
 
 import usePattern from '../../../hooks/usePattern'
 import usePerson from '../../../hooks/usePerson'
@@ -17,7 +16,7 @@ import Button from '@material-ui/core/Button'
  * This page allows you to edit your own patterns
  */
 
-const CreatePatternForPersonPage = props => {
+const CreatePatternForPersonPage = (props) => {
   const app = useApp()
 
   // State
@@ -60,7 +59,7 @@ const CreatePatternForPersonPage = props => {
     let pop = usePattern(app, props.pattern)
     if (pop.then instanceof Function) {
       // Pending promise
-      pop.then(p => {
+      pop.then((p) => {
         setPattern(p)
         setPerson(usePerson(app, p.person))
         setDesign(p.data.design)

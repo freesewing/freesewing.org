@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-const SignupConfirmationPage = props => {
+const SignupConfirmationPage = (props) => {
   // Hooks
   const app = useApp()
 

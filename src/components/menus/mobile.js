@@ -37,7 +37,7 @@ const MobileMenu = ({ app }) => {
   }
 
   // Methods
-  const handleChange = panel => (event, isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
 
@@ -112,7 +112,7 @@ const MobileMenu = ({ app }) => {
   return (
     <div style={style.wrapper}>
       <div style={style.icons}>
-        {Object.keys(icons).map(icon => {
+        {Object.keys(icons).map((icon) => {
           return (
             <IconButton
               key={icon}

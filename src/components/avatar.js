@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Avatar = props => {
+const Avatar = (props) => {
   const style = {
     borderRadius: '50%',
     width: props.size || '150px',

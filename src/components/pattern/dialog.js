@@ -4,14 +4,12 @@ import { FormattedMessage } from 'react-intl'
 import ExportPattern from '../pattern/export'
 import SavePatternNotes from '../pattern/save-notes'
 import SavePatternAs from '../pattern/save-as'
-import { Link, navigate } from 'gatsby'
-import Blockquote from '@freesewing/components/Blockquote'
+import { navigate } from 'gatsby'
 import SaveIcon from '@material-ui/icons/Save'
 import SaveAsIcon from '@material-ui/icons/CloudUpload'
 import ExportIcon from '@material-ui/icons/GetApp'
 import EditIcon from '@material-ui/icons/Edit'
 import RecreateIcon from '@material-ui/icons/Replay'
-import ZoomIcon from '@material-ui/icons/Edit'
 import NotesIcon from '@material-ui/icons/RateReview'
 import CompareIcon from '@material-ui/icons/SupervisorAccount'
 import ZoomInIcon from '@material-ui/icons/ZoomIn'
@@ -38,7 +36,7 @@ const styles = {
   }
 }
 
-const Dialog = React.memo(props => {
+const Dialog = React.memo((props) => {
   if (!props.mode) throw new Error('Mode is not set in pattern dialog')
 
   const handleSave = () => {
@@ -47,16 +45,16 @@ const Dialog = React.memo(props => {
         person: props.pattern.person,
         data: props.data
       })
-      .then(err => {
+      .then((err) => {
         props.setDialog(false)
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
       })
   }
 
   const handleDelete = () => {
-    props.app.removePattern(props.pattern.handle).catch(err => {
+    props.app.removePattern(props.pattern.handle).catch((err) => {
       console.log(err)
     })
     props.setDialog(false)
@@ -152,7 +150,7 @@ const Dialog = React.memo(props => {
     }
   }
 
-  const getInfo = type => {
+  const getInfo = (type) => {
     if (!titles[type]) return null
     return (
       <>
@@ -179,7 +177,7 @@ const Dialog = React.memo(props => {
   return (
     <>
       {props.action === 'pick' &&
-        fabsOrder.map(fab => (props.fabs.indexOf(fab) !== -1 ? getInfo(fab) : null))}
+        fabsOrder.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getInfo(fab) : null))}
       {props.action === 'notes' && (
         <SavePatternNotes
           {...sharedProps}

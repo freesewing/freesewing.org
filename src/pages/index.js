@@ -4,7 +4,6 @@ import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
-import CenteredLayout from '../components/layouts/centered'
 
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
@@ -17,7 +16,7 @@ import { graphql, Link } from 'gatsby'
 // Style
 import './homepage.css'
 
-const renderBlogPost = node => (
+const renderBlogPost = (node) => (
   <div className="post">
     <Link
       to={`/${node.node.parent.relativeDirectory}/`}
@@ -44,7 +43,7 @@ const renderBlogPost = node => (
   </div>
 )
 
-const HomePage = props => {
+const HomePage = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -93,27 +92,16 @@ const HomePage = props => {
         </header>
 
         <WideLayout app={app} noTitle>
-          <div style={{maxWidth: '800px', margin: '0 auto'}}>
-          <Blockquote type='note'>
-            <h4>COVID-19: Facemask pattern</h4>
-            <p>
-              If you're here looking for a facemask pattern, this is the link you're looking for:<br />
-            </p>
-            <ul>
-              <li>
-                <a href="/blog/facemask-frenzy/">
-                  <b>face mask pattern and instructions</b>
-                </a>.
-              </li>
-            </ul>
-            <p>PS: You can support us by <a href="/patrons/join/">becoming a patron</a>  ❤️</p>
-          </Blockquote>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <Blockquote type="note">
+              <Mdx node={uiMdx[`covid`]} />
+            </Blockquote>
           </div>
         </WideLayout>
         {/* First row of text boxes */}
         <WideLayout app={app} noTitle>
           <div className="boxes">
-            {[1, 2, 3].map(id => (
+            {[1, 2, 3].map((id) => (
               <div key={'row1-' + id}>
                 <Mdx node={uiMdx[`homepage/row-1/${id}`]} />
               </div>
@@ -162,7 +150,7 @@ const HomePage = props => {
           <Subscribe showFree={false} app={app} />
           {/* Second row of text boxes */}
           <div className="boxes">
-            {[1, 2, 3].map(id => (
+            {[1, 2, 3].map((id) => (
               <div key={'row2-' + id}>
                 <Mdx node={uiMdx[`homepage/row-2/${id}`]} />
               </div>

@@ -3,7 +3,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 
-const MissingModels = props => (
+const MissingModels = (props) => (
   <Blockquote type="note" style={{ textAlign: 'center', maxWidth: '800px' }}>
     <h6>
       <FormattedMessage id="app.modelFirst" />

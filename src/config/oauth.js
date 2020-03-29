@@ -6,7 +6,7 @@ export default {
     '&redirect_uri=' +
     `${process.env.GATSBY_BACKEND}oauth/callback/from/github` +
     '&scope=' +
-    'read:user' +
+    'read:user user:email' +
     '&state=',
   google:
     'https://accounts.google.com/o/oauth2/v2/auth' +

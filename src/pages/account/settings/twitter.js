@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const TwitterSettingPage = props => {
+const TwitterSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -35,7 +35,7 @@ const TwitterSettingPage = props => {
   }, [])
 
   // Methods
-  const updateTwitter = evt => setTwitter(evt.target.value)
+  const updateTwitter = (evt) => setTwitter(evt.target.value)
 
   return (
     <AppWrapper app={app}>

@@ -9,7 +9,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const PatronThanksPage = props => {
+const PatronThanksPage = (props) => {
   // Hooks
   const app = useApp()
 

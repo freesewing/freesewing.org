@@ -14,7 +14,7 @@ import validateTld from '@freesewing/utils/validateTld'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
-const EmailSettingPage = props => {
+const EmailSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -40,7 +40,7 @@ const EmailSettingPage = props => {
   const [emailValid, setEmailValid] = useState(true)
 
   // Methods
-  const updateEmail = evt => {
+  const updateEmail = (evt) => {
     let value = evt.target.value
     setEmail(value)
     let valid = (validateEmail(value) && validateTld(value)) || false

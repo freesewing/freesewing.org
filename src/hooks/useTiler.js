@@ -6,11 +6,11 @@ function useTiler(setNotification) {
   const tile = (svg, format, size) => {
     return tiler
       .tile(svg, format, size)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) return res.data.link
         return false
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         setNotification('error', err)
         return false

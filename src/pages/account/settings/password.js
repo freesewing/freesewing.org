@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const PasswordSettingPage = props => {
+const PasswordSettingPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -37,7 +37,7 @@ const PasswordSettingPage = props => {
   }, [])
 
   // Methods
-  const updateNewPassword = evt => setNewPassword(evt.target.value)
+  const updateNewPassword = (evt) => setNewPassword(evt.target.value)
 
   return (
     <AppWrapper app={app}>
