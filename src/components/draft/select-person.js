@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button'
 import MissingAccount from '../missing/account'
 import MissingPeople from '../missing/people'
 import Avatar from '../avatar'
-import Fab from '@material-ui/core/Fab'
 
 const SelectPerson = ({ app, design, people, recreate = false }) => {
   // Style
@@ -79,7 +78,7 @@ const SelectPerson = ({ app, design, people, recreate = false }) => {
               })}
             </div>
           ) : (
-            app.account.username && people.no.user.length < 1 && <MissingPeople />
+            people.no.user.length < 1 && <MissingPeople />
           )}
           {people.no.user.length > 0 && (
             <div style={styles.wrapper}>

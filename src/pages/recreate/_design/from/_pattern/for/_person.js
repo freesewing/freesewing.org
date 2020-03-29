@@ -9,7 +9,7 @@ import usePerson from '../../../../../../hooks/usePerson'
 import LoadingLayout from '../../../../../../components/layouts/loading'
 
 const CreatePatternForPersonPage = (props) => {
-  const app = useApp(props)
+  const app = useApp()
 
   // SSR
   if (typeof props.person === 'undefined')

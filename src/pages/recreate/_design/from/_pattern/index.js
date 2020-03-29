@@ -16,7 +16,7 @@ const RecreatePatternPage = (props) => {
   const design = props.pageContext.design
 
   // Hooks
-  const app = useApp(props)
+  const app = useApp()
   const people = usePeople(app, props.pageContext.design)
 
   // State

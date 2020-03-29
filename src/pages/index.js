@@ -4,7 +4,6 @@ import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
-import CenteredLayout from '../components/layouts/centered'
 
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'

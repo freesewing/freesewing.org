@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import TextField from '@material-ui/core/TextField'
-import Blockquote from '@freesewing/components/Blockquote'
 import Loading from '../loading'
 import { navigate } from 'gatsby'
 

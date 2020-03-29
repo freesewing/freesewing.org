@@ -1,48 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
-import usePerson from '../../../hooks/usePerson'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
 import LoadingLayout from '../../../components/layouts/loading'
 
-import { FormattedMessage } from 'react-intl'
-import Button from '@material-ui/core/Button'
 import PatternData from '../../../components/pattern/data'
-import ExportPattern from '../../../components/pattern/export'
 import PatternNotes from '../../../components/pattern/notes'
-import PatternShareLink from '../../../components/pattern/share-link'
-import { navigate } from 'gatsby'
 
 import PatternPreview from '../../../components/pattern/preview'
 import './index.css'
 
 import PatternFabs from '../../../components/pattern/fabs'
 import Dialog from '../../../components/pattern/dialog'
-
-// Style
-const styles = {
-  info: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
-  },
-  export: {
-    minWidth: '500px'
-  },
-  share: {
-    flexGrow: '1',
-    maxWidth: '800px'
-  },
-  wrapper: {
-    display: 'flex'
-  },
-  col: {
-    maxwidth: '400px'
-  }
-}
 
 const PatternPage = (props) => {
   // Hooks

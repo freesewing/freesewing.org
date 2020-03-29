@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useDesign from '../../hooks/useDesign'
 import usePattern from '../../hooks/usePattern'
-import usePerson from '../../hooks/usePerson'
-import useDraftDocs from '../../hooks/useDraftDocs'
 import useMergeData from '../../hooks/useMergeData'
 import DraftLayout from '../layouts/draft'
-import LoadingLayout from '../layouts/loading'
 
-import {
-  measurements as requiredMeasurements,
-  withBreasts as withBreastsPatterns
-} from '@freesewing/pattern-info'
-import Blockquote from '@freesewing/components/Blockquote'
+import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
 import DraftConfigurator from '@freesewing/components/DraftConfigurator'
 import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
-import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import { version } from '../../../package.json'
 
-import DraftButtons from './buttons'
 import DraftHelp from './help'
 import DraftError from './error'
-import ExportPattern from '../pattern/export'
-import SharePattern from '../pattern/share'
-import capitalize from '@freesewing/utils/capitalize'
 
 import Dialog from '../pattern/dialog'
 import PatternFabs from '../pattern/fabs'
@@ -34,7 +22,7 @@ import PatternFabs from '../pattern/fabs'
 import './ui.css'
 
 const DraftUi = (props) => {
-  const { app, person, pattern, design } = props
+  const { app, person, design } = props
   const Pattern = useDesign(design)
 
   // Methods
@@ -81,16 +69,6 @@ const DraftUi = (props) => {
   const [data, setData, mergeData] = useMergeData(props.data) // Special state + update method to merge data
   const [dialog, setDialog] = useState(false)
   const [dialogAction, setDialogAction] = useState('pick')
-
-  // Allow usePattern promise to resolve
-  //if (pattern === false) {
-  //  if (app.account.username) app.navigate('/patterns/')
-  //  else app.navigate('/')
-  //  return null
-  //}
-
-  // Make sure state updates are completed
-  //if (typeof data === 'undefined') return <LoadingLayout app={app} />
 
   // Draft the pattern
   let draft, error, patternProps
