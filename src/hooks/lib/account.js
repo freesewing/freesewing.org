@@ -23,7 +23,7 @@ const accountMethods = ({
         setLoading(false)
         if (res.status === 200) {
           persist(res.data)
-          navigate('/account')
+          navigate('/welcome/')
           setNotification({
             type: 'success',
             msg: translate('app.accountCreated') + ' 🙌  ' + translate('app.welcomeAboard') + ' 🎉'

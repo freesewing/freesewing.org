@@ -95,18 +95,7 @@ const HomePage = props => {
         <WideLayout app={app} noTitle>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
           <Blockquote type='note'>
-            <h4>COVID-19: Facemask pattern</h4>
-            <p>
-              If you're here looking for a facemask pattern, this is the link you're looking for:<br />
-            </p>
-            <ul>
-              <li>
-                <a href="/blog/facemask-frenzy/">
-                  <b>face mask pattern and instructions</b>
-                </a>.
-              </li>
-            </ul>
-            <p>PS: You can support us by <a href="/patrons/join/">becoming a patron</a>  ❤️</p>
+            <Mdx node={uiMdx[`covid`]} />
           </Blockquote>
           </div>
         </WideLayout>

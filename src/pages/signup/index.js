@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
-import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import useApp from '../../hooks/useApp'
+import withLanguage from '../../components/withLanguage'
+import AppWrapper from '../../components/app/wrapper'
+import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -15,8 +15,8 @@ import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import Blockquote from '@freesewing/components/Blockquote'
 
-import successGif from '../components/session/signup/success.gif'
-import Oauth from '../components/session/oauth/'
+import successGif from '../../components/session/signup/success.gif'
+import Oauth from '../../components/session/oauth/'
 
 const SignupPage = props => {
   // State

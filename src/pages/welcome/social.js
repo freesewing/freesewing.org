@@ -20,9 +20,9 @@ const WelcomeSocialPage = props => {
   if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [github, setGithub] = useState('')
-  const [twitter, setTwitter] = useState('')
-  const [instagram, setInstagram] = useState('')
+  const [github, setGithub] = useState(app.account.social.github || '')
+  const [twitter, setTwitter] = useState(app.account.social.twitter || '')
+  const [instagram, setInstagram] = useState(app.account.social.instragram || '')
 
   // Effects
   useEffect(() => {
