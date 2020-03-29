@@ -46,7 +46,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
-            year: date(formatString: "YYYY")
+            year: date
             linktitle
             caption
             author
