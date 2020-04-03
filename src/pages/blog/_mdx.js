@@ -7,7 +7,7 @@ import PostLayout from '../../components/layouts/post'
 import { graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
 
-const BlogPostPage = props => {
+const BlogPostPage = (props) => {
   // State
   const app = useApp()
 
@@ -46,7 +46,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
-            year: date(formatString: "YYYY")
+            year: date
             linktitle
             caption
             author

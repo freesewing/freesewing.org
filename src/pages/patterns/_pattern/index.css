@@ -1,0 +1,18 @@
+div.pwrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+div.pwrap > div {
+  width: calc(50% - 2rem);
+  margin: 0 1rem;
+}
+div.preview {
+  padding: 1rem;
+}
+
+.theme-wrapper.tablet div.pwrap > div,
+.theme-wrapper.mobile div.pwrap > div {
+  width: calc(100% - 2rem);
+}
+

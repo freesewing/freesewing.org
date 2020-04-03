@@ -1,7 +1,7 @@
 import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
-describe('Core pattern drafting for visitors', function() {
+describe('Core pattern drafting for visitors', function () {
   const sizes = ['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'tabloid']
   const formats = ['svg', 'postscript', 'pdf']
   const exports = ['json', 'yaml']
@@ -9,7 +9,7 @@ describe('Core pattern drafting for visitors', function() {
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
     if (pattern === 'theo' || 1) {
-      it('Draft ' + capitalize(pattern), function() {
+      it('Draft ' + capitalize(pattern), function () {
         cy.visit('/create/' + pattern + '/')
         cy.get('a[data-test=size-36]').click({ force: true })
         cy.get('[data-test=draft] svg').should('be.visible')
@@ -25,7 +25,7 @@ describe('Core pattern drafting for visitors', function() {
         for (let size of sizes) cy.get(`[data-test=${size}]`).should('be.visible')
         for (let format of formats) cy.get(`[data-test=${format}]`).should('be.visible')
         for (let exp of exports) cy.get(`[data-test=${exp}]`).should('be.visible')
-        cy.get('[data-test=cancel]:first-of-type').click({ force: true, multiple: true })
+        cy.get('#pattern-mask').click({ force: true, multiple: true })
       })
     }
   }

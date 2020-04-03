@@ -13,16 +13,16 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const WelcomeSocialPage = props => {
+const WelcomeSocialPage = (props) => {
   // Hooks
   const app = useApp()
 
   if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
 
   // State
-  const [github, setGithub] = useState('')
-  const [twitter, setTwitter] = useState('')
-  const [instagram, setInstagram] = useState('')
+  const [github, setGithub] = useState((app.account.social) ? (app.account.social.github || '') : '')
+  const [twitter, setTwitter] = useState((app.account.social) ? (app.account.social.twitter || '') : '')
+  const [instagram, setInstagram] = useState((app.account.social) ? (app.account.social.instagram || '') : '')
 
   // Effects
   useEffect(() => {
@@ -36,9 +36,9 @@ const WelcomeSocialPage = props => {
   }, [])
 
   // Methods
-  const updateGithub = evt => setGithub(evt.target.value)
-  const updateTwitter = evt => setTwitter(evt.target.value)
-  const updateInstagram = evt => setInstagram(evt.target.value)
+  const updateGithub = (evt) => setGithub(evt.target.value)
+  const updateTwitter = (evt) => setTwitter(evt.target.value)
+  const updateInstagram = (evt) => setInstagram(evt.target.value)
 
   return (
     <AppWrapper app={app}>

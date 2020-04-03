@@ -13,7 +13,7 @@ export default function usePeople(app, design) {
 
     return true
   }
-  const asSizes = people => {
+  const asSizes = (people) => {
     const sizes = {}
     for (let s in people) sizes[s.slice(4)] = people[s]
 

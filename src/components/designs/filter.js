@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import { info } from '@freesewing/pattern-info'
 import Chip from '@material-ui/core/Chip'
 
-const PatternFilter = props => {
+const PatternFilter = (props) => {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState({
     department: [],
@@ -22,8 +22,8 @@ const PatternFilter = props => {
     props.closeFilter()
   }
 
-  const uniqueArray = array => {
-    return array.filter(function(value, index, self) {
+  const uniqueArray = (array) => {
+    return array.filter(function (value, index, self) {
       return self.indexOf(value) === index
     })
   }
@@ -40,7 +40,7 @@ const PatternFilter = props => {
     props.applyFilter(filteredPatternList(clear, ''))
   }
 
-  const searchUpdate = evt => {
+  const searchUpdate = (evt) => {
     let value = evt.target.value
     setSearch(value)
     props.applyFilter(filteredPatternList(filter, value))
@@ -201,7 +201,7 @@ const PatternFilter = props => {
           }}
         />
       </form>
-      {Object.keys(filterTypes).map(type => {
+      {Object.keys(filterTypes).map((type) => {
         return (
           <ul style={styles.list} key={type}>
             <li style={styles.key}>

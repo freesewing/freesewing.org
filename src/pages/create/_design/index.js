@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
 import SelectPerson from '../../../components/draft/select-person'
 
-const CreatePatternPage = props => {
+const CreatePatternPage = (props) => {
   // Hooks
   const app = useApp()
   const people = usePeople(app, props.pageContext.design)

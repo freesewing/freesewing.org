@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useApp from '../../../../hooks/useApp'
 import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
+
 import LoadingLayout from '../../../../components/layouts/loading'
 import DraftUi from '../../../../components/draft/ui'
-import { graphql } from 'gatsby'
+import usePerson from '../../../../hooks/usePerson'
+import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
+import { version } from '../../../../../package.json'
 
-const CreatePatternForPersonPage = props => {
+const CreatePatternForPersonPage = (props) => {
   const app = useApp()
+  const person = usePerson(app, props.person)
 
   // SSR
   if (typeof props.person === 'undefined')
@@ -17,79 +21,65 @@ const CreatePatternForPersonPage = props => {
       </AppWrapper>
     )
 
+  // Effects
+  useEffect(() => {
+    app.setCrumbs([
+      {
+        slug: `/create/`,
+        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+      },
+      {
+        slug: `/create/${props.pageContext.design}/`,
+        title: app.translate('app.newThing', {
+          thing: app.translate(`patterns.${props.pageContext.design}.title`)
+        })
+      }
+    ])
+    app.setTitle(
+      app.translate('app.newPatternForModel', {
+        pattern: app.translate(`patterns.${props.pageContext.design}.title`),
+        model: person.name || props.person
+      })
+    )
+  }, [props.person])
+
+  // Initial pattern data
+  const data = {
+    design: props.pageContext.design,
+    version,
+    settings: {
+      sa: 10,
+      complete: true,
+      paperless: false,
+      locale: app.language,
+      units: app.account.settings ? app.account.settings.units : 'metric',
+      options: {},
+      measurements: {},
+      metadata: {
+        for: person.name || props.person
+      }
+    }
+  }
+  for (let m of requiredMeasurements[props.pageContext.design]) {
+    data.settings.measurements[m] = person.measurements[m]
+  }
+
+  const fabs = ['zoom', 'compare', 'export', 'details']
+  if (app.account.username) fabs.push('saveAs')
+  else fabs.push('units')
+
   return (
     <AppWrapper app={app}>
       <DraftUi
+        mode="create"
         app={app}
-        data={props.data}
-        person={props.person}
+        person={person}
         design={props.pageContext.design}
+        data={data}
+        fabs={fabs}
       />
     </AppWrapper>
   )
 }
 
 export default withLanguage(CreatePatternForPersonPage)
-
-// See https://www.gatsbyjs.org/docs/page-query/
-export const pageQuery = graphql`
-  query DraftDocsCreate($optionsMdxRegex: String, $settingsMdxRegex: String) {
-    options: allMdx(
-      filter: { fileAbsolutePath: { regex: $optionsMdxRegex } }
-      sort: { fields: [frontmatter___title], order: DESC }
-    ) {
-      edges {
-        node {
-          body
-          parent {
-            ... on File {
-              relativeDirectory
-              name
-            }
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-    settings: allMdx(
-      filter: { fileAbsolutePath: { regex: $settingsMdxRegex } }
-      sort: { fields: [frontmatter___title], order: DESC }
-    ) {
-      edges {
-        node {
-          body
-          parent {
-            ... on File {
-              relativeDirectory
-              name
-            }
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-    ui: allMdx(
-      filter: { fileAbsolutePath: { regex: "//ui/save-pattern-requires-an-account/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___title], order: DESC }
-    ) {
-      edges {
-        node {
-          body
-          parent {
-            ... on File {
-              relativeDirectory
-              name
-            }
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  }
-`

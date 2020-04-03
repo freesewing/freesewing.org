@@ -11,15 +11,18 @@ export default function usePerson(app, handle = false) {
     // Standard sizes
     let size = 'size' + handle.slice(5, 7)
     let build = handle.slice(8)
-    if (typeof sizes[build][size] !== 'undefined')
+    if (typeof sizes[build][size] !== 'undefined') {
+      let name =
+        app.translate('app.size') +
+        ` ${handle.slice(5, 7)}, ` +
+        app.translate(build === 'with-breasts' ? 'app.withBreasts' : 'app.withoutBreasts')
       return {
         notAPerson: true,
-        name:
-          app.translate('app.size') +
-          ` ${handle.slice(5, 7)}, ` +
-          app.translate(build === 'with-breasts' ? 'app.withBreasts' : 'app.withoutBreasts'),
+        handle: name,
+        name,
         measurements: sizes[build][size]
       }
+    }
   }
 
   //  FIXME: Load person data from backend if user === admin

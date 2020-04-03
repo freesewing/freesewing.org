@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 import PostPreview from '../../components/post-preview'
 
-const DesignListPage = props => {
+const DesignListPage = (props) => {
   const app = useApp()
 
   // State
@@ -48,8 +48,9 @@ const DesignListPage = props => {
           </p>
         )}
         <div style={style.wrapper}>
-          {designs.map(design => (
+          {designs.map((design) => (
             <PostPreview
+              designs
               key={design}
               app={app}
               img={{

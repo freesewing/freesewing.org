@@ -6,7 +6,7 @@ import WideLayout from '../../../components/layouts/wide'
 
 import { graphql, Link } from 'gatsby'
 
-const ShowcaseIndexPage = props => {
+const ShowcaseIndexPage = (props) => {
   // State
   const app = useApp()
 

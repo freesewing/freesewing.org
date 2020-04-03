@@ -21,7 +21,7 @@ import Bugsnag from './bugsnag'
 /* This component should wrap all page content */
 const AppWrapper = ({ app, children }) => {
   const [scrolledDown, setScrolledDown] = useState(false)
-  useScrolledDown(s => setScrolledDown(s))
+  useScrolledDown((s) => setScrolledDown(s))
 
   const scrollToTop = () => {
     window.scrollTo(0, 0)
@@ -46,6 +46,9 @@ const AppWrapper = ({ app, children }) => {
   let wrapperClasses = app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (app.menu) wrapperClasses += ' show-menu'
   if (app.mobileAside) wrapperClasses += ' show-mobile-aside'
+  if (app.tablet) wrapperClasses += ' tablet'
+  if (app.mobile) wrapperClasses += ' mobile'
+  if (!app.mobile && !app.tablet) wrapperClasses += ' desktop'
 
   return (
     <Bugsnag>

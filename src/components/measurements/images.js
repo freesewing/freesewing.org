@@ -6,7 +6,7 @@ import nobreastsImages from './nobreasts/'
 import MeasurementImage from './image'
 import { injectIntl } from 'react-intl'
 
-const MeasurementImages = props => {
+const MeasurementImages = (props) => {
   const { measurement, intl, breasts } = props
   if (!measurement) return null
   // Set tab to 0 with model that has breasts or 1 for no breasts

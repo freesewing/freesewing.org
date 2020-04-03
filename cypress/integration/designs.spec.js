@@ -3,8 +3,8 @@ import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 const i18n = strings[Cypress.env('LANGUAGE')]
 
-describe('Pattern documentation', function() {
-  it('Designs overview page', function() {
+describe('Pattern documentation', function () {
+  it('Designs overview page', function () {
     cy.visit('/designs/')
     cy.get('h1').should('contain', i18n['app.designs'])
     for (let pattern of list) {
@@ -17,9 +17,9 @@ describe('Pattern documentation', function() {
     }
   })
 
-  describe('Design pages', function() {
+  describe('Design pages', function () {
     for (let pattern of list) {
-      it(capitalize(pattern), function() {
+      it(capitalize(pattern), function () {
         cy.visit('/designs/' + pattern)
         cy.get('h1').should('contain', i18n['patterns.' + pattern + '.title'])
         cy.get(`#description`).should('contain', i18n['patterns.' + pattern + '.description'])

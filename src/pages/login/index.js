@@ -13,7 +13,7 @@ import LoginForm from '../../components/session/login/login-form'
 import ResetPasswordForm from '../../components/session/login/reset-password-form'
 import Oauth from '../../components/session/oauth/'
 
-const LoginPage = props => {
+const LoginPage = (props) => {
   const app = useApp()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -24,10 +24,10 @@ const LoginPage = props => {
     app.setTitle(app.translate('app.logIn'))
   }, [])
 
-  const handleLogin = evt => {
+  const handleLogin = (evt) => {
     evt.preventDefault()
     app.setLoading(true)
-    app.login(username, password).then(res => {
+    app.login(username, password).then((res) => {
       // 200 is handled in hook
       if (res !== 200) {
         if (res === 403) setInactive(true)
@@ -41,7 +41,7 @@ const LoginPage = props => {
     })
   }
 
-  const handlePasswordReset = evt => {
+  const handlePasswordReset = (evt) => {
     evt.preventDefault()
     app.recoverAccount(evt.target[0].value)
   }
@@ -51,7 +51,7 @@ const LoginPage = props => {
     app.setLoading(true)
     app.backend
       .resendActivationEmail(username, process.env.GATSBY_LANGUAGE)
-      .then(result => {
+      .then((result) => {
         app.setLoading(false)
         if (result.status === 200) setResend(true)
         else {
@@ -63,7 +63,7 @@ const LoginPage = props => {
       })
       .catch((err, data) => {
         app.setLoading(false)
-        console.log({err, data})
+        console.log({ err, data })
         let msg = 'errors.requestFailedWithStatusCode500'
         if (err.response.status === 404) msg = 'app.accountRequired'
         else if (err.response.status === 400) msg = 'errors.something'
@@ -78,18 +78,20 @@ const LoginPage = props => {
     return (
       <AppWrapper app={app}>
         <CenteredLayout app={app}>
-          <Blockquote type={resend ? "note" : "warning"}>
+          <Blockquote type={resend ? 'note' : 'warning'}>
             <h5>
-              <FormattedMessage id={ resend
-                ? "app.checkInboxClickLinkInConfirmationEmail"
-                : "account.accountNeedsActivation"
-              }/>
+              <FormattedMessage
+                id={
+                  resend
+                    ? 'app.checkInboxClickLinkInConfirmationEmail'
+                    : 'account.accountNeedsActivation'
+                }
+              />
             </h5>
             <p>
-              <FormattedMessage id={ resend
-                ? "app.goAheadWeWillWait"
-                : "account.accountNeedsActivation"
-              }/>
+              <FormattedMessage
+                id={resend ? 'app.goAheadWeWillWait' : 'account.accountNeedsActivation'}
+              />
             </p>
             {!resend && (
               <p>

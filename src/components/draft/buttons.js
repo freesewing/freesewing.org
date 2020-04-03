@@ -54,10 +54,7 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display }) => {
         <SaveIcon style={styles.buttonIcon} />
         <FormattedMessage id="app.save" />
         <span>&nbsp;/&nbsp;</span>
-        <FormattedMessage
-          id="app.shareThing"
-          values={{ thing: app.translate('app.pattern') }}
-        />
+        <FormattedMessage id="app.shareThing" values={{ thing: app.translate('app.pattern') }} />
       </Button>
       <Button
         data-test="export"

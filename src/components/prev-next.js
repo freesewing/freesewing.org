@@ -5,16 +5,11 @@ import { getChildren, getSiblings, getParents } from '../utils'
 const PreviousNext = ({ slug, tree, titles }) => {
   const children = getChildren(slug, tree)
   const siblings = getSiblings(slug, tree)
-  const parents = getParents(slug, tree)
 
-  const findNextParent = childSlug => {
+  const findNextParent = (childSlug) => {
     let rents = Object.keys(getParents(childSlug, tree))
     if (rents.length < 2) return false
-    let rent =
-      childSlug
-        .split('/')
-        .slice(0, -2)
-        .join('/') + '/'
+    let rent = childSlug.split('/').slice(0, -2).join('/') + '/'
     let pos = rents.indexOf(rent)
     if (pos + 1 < rents.length) return rents[pos + 1]
     else return findNextParent(rent)
@@ -30,15 +25,10 @@ const PreviousNext = ({ slug, tree, titles }) => {
     }
   }
 
-  const findParent = childSlug => {
+  const findParent = (childSlug) => {
     let rents = Object.keys(getParents(childSlug, tree))
     if (rents.length < 1) return false
-    return (
-      childSlug
-        .split('/')
-        .slice(0, -2)
-        .join('/') + '/'
-    )
+    return childSlug.split('/').slice(0, -2).join('/') + '/'
   }
 
   const findPrevious = () => {
@@ -49,7 +39,7 @@ const PreviousNext = ({ slug, tree, titles }) => {
   }
 
   // Previous/Next navigation
-  const renderLink = side => {
+  const renderLink = (side) => {
     let to = side === 'next' ? findNext() : findPrevious()
 
     if (!to) return <span>&nbsp;</span>

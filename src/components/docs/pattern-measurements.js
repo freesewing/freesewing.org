@@ -4,9 +4,9 @@ import { Link } from 'gatsby'
 import { measurements } from '@freesewing/pattern-info'
 import { useIntl } from 'react-intl'
 
-const PatternMeasurements = props => {
+const PatternMeasurements = (props) => {
   const intl = useIntl()
-  const sortMeasurements = measurements => {
+  const sortMeasurements = (measurements) => {
     if (typeof measurements === 'undefined') return []
     let sorted = []
     let translated = {}
@@ -23,7 +23,7 @@ const PatternMeasurements = props => {
 
   return (
     <ul className="links">
-      {sortMeasurements(measurements[props.pattern]).map(m => (
+      {sortMeasurements(measurements[props.pattern]).map((m) => (
         <li key={m}>
           <Link to={'/docs/measurements/' + m.toLowerCase()}>
             <FormattedMessage id={'measurements.' + m} />

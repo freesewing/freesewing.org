@@ -15,7 +15,7 @@ function useLocalStorage(key, initialValue) {
     }
   })
 
-  const setValue = value => {
+  const setValue = (value) => {
     if (typeof window === 'undefined') return null // SSR has no window object
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value

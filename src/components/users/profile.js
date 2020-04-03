@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Markdown from 'react-markdown'
 import UserSocial from '../user-social'
 
-const UserProfile = props => {
+const UserProfile = (props) => {
   const [user, setUser] = useState(false)
   useEffect(() => {
     props.app.backend.loadProfile(props.user, handleResult)

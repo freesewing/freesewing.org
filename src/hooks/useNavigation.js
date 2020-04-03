@@ -6,7 +6,7 @@ import { duplicates } from '../../gatsby-routes'
 
 function useNavigation(app) {
   // Gets the web URL slug from file path
-  const slugFromFilePath = filePath => {
+  const slugFromFilePath = (filePath) => {
     return (
       '/' +
       filePath
@@ -17,7 +17,7 @@ function useNavigation(app) {
   }
 
   // Gets the web URL slug fro part of a path
-  const slugFor = function(a, b, c, d, e) {
+  const slugFor = function (a, b, c, d, e) {
     let chunks = []
     if (a) chunks.push(a)
     if (b) chunks.push(b)
@@ -64,7 +64,7 @@ function useNavigation(app) {
     return page.frontmatter.title
   }
 
-  const getTitlesAndPages = mdx => {
+  const getTitlesAndPages = (mdx) => {
     let titles = {}
     let pages = {
       docs: {}
@@ -91,7 +91,7 @@ function useNavigation(app) {
     return { titles, pages }
   }
 
-  const getTree = pages => {
+  const getTree = (pages) => {
     const tree = {
       '/docs/about/': {
         title: app.translate('app.docs'),
@@ -108,7 +108,7 @@ function useNavigation(app) {
     return tree['/docs/'].children
   }
 
-  const addToTree = function(slug, page, tree) {
+  const addToTree = function (slug, page, tree) {
     let [a, b, c, d, e] = slug.slice(1, -1).split('/')
     let target
     if (e) {
@@ -147,7 +147,7 @@ function useNavigation(app) {
   const { titles, pages } = getTitlesAndPages(mdx)
   const tree = getTree(pages)
 
-  const getTitle = slug => titles[slug]
+  const getTitle = (slug) => titles[slug]
 
   return {
     titles,

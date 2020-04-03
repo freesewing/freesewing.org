@@ -78,6 +78,66 @@
   margin-top: 3rem;
 }
 
+#blog {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: 5rem auto;
+}
+#blog figure { margin: 0 auto }
+#blog a:hover { text-decoration: none; }
+
+#blog > div {
+  width: calc(50% - 2rem);
+  padding: 1rem;
+}
+#blog > div.many {
+  display: flex;
+  flex-direction: column;
+}
+#blog div.many div.post {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 2rem;
+}
+
+#blog div.many a.image {
+  width: 30%;
+  margin: 0;
+  padding: 0;
+}
+#blog div.single h3 {
+  margin: 0;
+  line-height: 1.25;
+}
+#blog div.single p {
+  margin: 0;
+}
+#blog div.many h3 {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+#blog div.many p {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-size: 1rem;
+}
+
+
+
+.theme-wrapper.light #blog a.text,
+.theme-wrapper.light #blog a.image {
+  color: #212529;
+}
+.theme-wrapper.dark #blog a.text,
+.theme-wrapper.dark #blog a.image {
+  color: #f8f9fa;
+}
+
 /* mobile and tablet */
 @media (max-width: 959px) {
   #homepage div.boxes {
@@ -98,5 +158,16 @@
   #homepage > header {
     background-size: 350%;
     background-position: 15% 95%;
+  }
+  #blog > div {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+  #blog div.many a.image {
+    display: none;
+  }
+  #blog div.many a.text h3,
+  #blog div.many a.text p {
+    padding: 0;
   }
 }

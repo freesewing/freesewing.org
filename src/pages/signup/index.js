@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
-import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import useApp from '../../hooks/useApp'
+import withLanguage from '../../components/withLanguage'
+import AppWrapper from '../../components/app/wrapper'
+import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -15,10 +15,10 @@ import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import Blockquote from '@freesewing/components/Blockquote'
 
-import successGif from '../components/session/signup/success.gif'
-import Oauth from '../components/session/oauth/'
+import successGif from '../../components/session/signup/success.gif'
+import Oauth from '../../components/session/oauth/'
 
-const SignupPage = props => {
+const SignupPage = (props) => {
   // State
   const app = useApp()
   const [email, setEmail] = useState('')
@@ -28,6 +28,7 @@ const SignupPage = props => {
   const [result, setResult] = useState(false)
   const [error, setError] = useState(false)
   const [trouble, setTrouble] = useState(false)
+  const [france, setFrance] = useState(false)
 
   // Effects
   useEffect(() => {
@@ -35,24 +36,24 @@ const SignupPage = props => {
   }, [])
 
   // Methods
-  const handleSignup = evt => {
+  const handleSignup = (evt) => {
     evt.preventDefault()
     app
       .signup(email, password, process.env.GATSBY_LANGUAGE)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) setResult(true)
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.toString().slice(-3) === '400')
           setError(<FormattedMessage id="errors.emailExists" />)
         else setError(<FormattedMessage id="errors.requestFailedWithStatusCode500" />)
       })
   }
-  const handleResend = evt => {
+  const handleResend = (evt) => {
     evt.preventDefault()
     app.backend
       .resendActivationEmail(email, process.env.GATSBY_LANGUAGE)
-      .then(result => {
+      .then((result) => {
         if (result.status === 200) setResult(true)
         else
           app.setNotification({
@@ -70,11 +71,14 @@ const SignupPage = props => {
         })
       })
   }
-  const updateEmail = evt => {
+  const updateEmail = (evt) => {
     let value = evt.target.value
     setEmail(value)
     let valid = (validateEmail(value) && validateTld(value)) || false
     setEmailValid(valid)
+    if (value.slice(-3).toLowerCase() === '.fr' || value.slice(-11).toLowerCase() === 'laposte.net')
+      setFrance(true)
+    else setFrance(false)
   }
 
   // Data
@@ -98,6 +102,23 @@ const SignupPage = props => {
   const form = (
     <form onSubmit={trouble ? handleResend : handleSignup}>
       {!result && error ? <Blockquote type="warning">{error}</Blockquote> : null}
+      {france && (
+        <Blockquote type="warning">
+          <h5>
+            <FormattedMessage id="app.franceWarning" />
+          </h5>
+          <p>
+            <FormattedMessage id="app.franceWarning-txt" />
+          </p>
+          <p>
+            <small>
+              <a href="https://gitter.im/freesewing/help">
+                <FormattedMessage id="app.emailNotReceived" />
+              </a>
+            </small>
+          </p>
+        </Blockquote>
+      )}
       <h6>
         {trouble ? (
           <FormattedMessage id="app.resendActivationEmailMessage" />
@@ -139,7 +160,7 @@ const SignupPage = props => {
           margin="normal"
           variant="outlined"
           value={password}
-          onChange={evt => setPassword(evt.target.value)}
+          onChange={(evt) => setPassword(evt.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -178,6 +199,15 @@ const SignupPage = props => {
           <FormattedMessage id="app.signUp" />
         )}
       </Button>
+      {trouble && (
+        <p>
+          <small>
+            <a href="https://gitter.im/freesewing/help">
+              <FormattedMessage id="app.emailNotReceived" />
+            </a>
+          </small>
+        </p>
+      )}
       <div style={{ margin: '1rem 0 2rem' }}>
         <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
           {trouble ? (
@@ -197,7 +227,9 @@ const SignupPage = props => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>{result ? success : form}</CenteredLayout>
+      <CenteredLayout app={app} top>
+        {result ? success : form}
+      </CenteredLayout>
     </AppWrapper>
   )
 }

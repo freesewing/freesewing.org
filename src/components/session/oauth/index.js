@@ -2,15 +2,15 @@ import React from 'react'
 import Provider from './provider'
 import oauthConfig from '../../../config/oauth'
 
-const Oauth = props => {
-  const handleSignup = provider => {
+const Oauth = (props) => {
+  const handleSignup = (provider) => {
     props.app.setLoading(true)
     props.app.backend
       .initOauth({
         provider: provider,
         language: process.env.GATSBY_LANGUAGE
       })
-      .then(result => {
+      .then((result) => {
         if (result.status === 200) window.location = oauthConfig[provider] + result.data.state
         else {
           props.app.setLoading(false)

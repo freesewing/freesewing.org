@@ -3,7 +3,7 @@ const recommended = require('remark-preset-lint-recommended')
 const html = require('remark-html')
 const frontmatter = require('remark-frontmatter')
 
-const getQuery = language => `{
+const getQuery = (language) => `{
   allMdx(filter: {fileAbsolutePath: {regex: "/${language}.md/"}}) {
   	edges {
   	  node {
@@ -17,23 +17,20 @@ const getQuery = language => `{
   }
 }`
 
-const flatten = arr => {
-  return arr.map(node => {
+const flatten = (arr) => {
+  return arr.map((node) => {
     let it = {
       objectId: node.node.id,
       path: '/' + node.node.parent.relativeDirectory,
       title: node.node.frontmatter.title.split('|').pop(),
-      content: remark()
-        .use(recommended)
-        .use(frontmatter)
-        .use(html)
-        .processSync(node.node.rawBody).contents
+      content: remark().use(recommended).use(frontmatter).use(html).processSync(node.node.rawBody)
+        .contents
     }
     return it
   })
 }
 
-const getSearchData = language => {
+const getSearchData = (language) => {
   const data = [
     {
       query: getQuery(language),

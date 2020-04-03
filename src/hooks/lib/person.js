@@ -17,11 +17,11 @@ const personMethods = ({
   setPatterns,
   setPeople
 }) => {
-  const createPerson = data => {
+  const createPerson = (data) => {
     setLoading(true)
     return backend
       .createPerson(data, token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 200) {
           updatePeople(res.data.person, res.data.person.handle)
@@ -32,7 +32,7 @@ const personMethods = ({
           navigate(`/people/${res.data.person.handle}/`)
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         showError(error)
       })
@@ -50,12 +50,12 @@ const personMethods = ({
     }
     field = translate(field)
     return savePerson(handle, data)
-      .then(res => {
+      .then((res) => {
         if (!avatar) setLoading(false)
         if (res.status === 200) {
           if (avatar) {
             // This is more complex, so just fetch the entire account from the backend
-            refresh().then(res => {
+            refresh().then((res) => {
               setLoading(false)
               if (to) navigate(to)
             })
@@ -75,17 +75,17 @@ const personMethods = ({
           })
         }
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
-  const removePerson = handle => {
+  const removePerson = (handle) => {
     setLoading(true)
     let newPeople = { ...people }
     delete newPeople[handle]
     setPeople(newPeople)
     return backend
       .removePerson(handle, token)
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         if (res.status === 204) {
           setNotification({
@@ -95,20 +95,20 @@ const personMethods = ({
           navigate('/people/')
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false)
         showError(error)
       })
   }
 
-  const isUsernameAvailable = username => {
+  const isUsernameAvailable = (username) => {
     return backend
       .availableUsername({ username }, token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) return true
         else return false
       })
-      .catch(error => console.log('Invalid username'))
+      .catch((error) => console.log('Invalid username'))
   }
 
   const savePerson = (handle, data) => backend.savePerson(handle, mergeData({}, data), token)

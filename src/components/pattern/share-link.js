@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
  * flexbox messing with the ::before content added via CSS
  */
 
-const PatternShareLink = props => {
+const PatternShareLink = (props) => {
   const link = 'https://freesewing.org/patterns/' + props.pattern
 
   return (

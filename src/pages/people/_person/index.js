@@ -28,7 +28,7 @@ import capitalize from '@freesewing/utils/capitalize'
 import Avatar from '../../../components/avatar'
 import ModelGraph from '../../../components/model-graph.js'
 
-const PersonPage = props => {
+const PersonPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -48,7 +48,7 @@ const PersonPage = props => {
   }, [])
 
   // Methods
-  const updateFilter = evt => {
+  const updateFilter = (evt) => {
     if (evt === false) {
       setFilter(false)
       let vars = { ...app.vars }
@@ -63,7 +63,7 @@ const PersonPage = props => {
     }
   }
 
-  const sortMeasurements = measurements => {
+  const sortMeasurements = (measurements) => {
     let sorted = []
     let translated = {}
     for (let m of measurements) {
@@ -234,19 +234,27 @@ const PersonPage = props => {
   const blankSlate = !person.measurements || !person.measurements.neckCircumference
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <CenteredLayout app={app} wide left>
         <div style={styles.avatarWrapper}>
           <Link to={`/people/${props.person}/avatar/`}>
             <Avatar data={person} />
           </Link>
         </div>
+        {!blankSlate && (
+          <>
+            <ModelGraph model={person} intl={app.intl} />
+            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
+              <small>
+                <FormattedMessage id="app.whatIsThis" />
+              </small>
+            </Link>
+          </>
+        )}
+
         {person.notes ? (
           <>
             <h5 style={styles.heading} data-test="notes-title">
               <FormattedMessage id="app.notes" />
-            </h5>
-            <Markdown source={person.notes} data-test="notes" />
-            <p style={{ textAlign: 'right' }}>
               <IconButton
                 data-test="edit-notes"
                 color="primary"
@@ -256,7 +264,8 @@ const PersonPage = props => {
               >
                 <EditIcon fontSize="inherit" style={styles.icon} />
               </IconButton>
-            </p>
+            </h5>
+            <Markdown source={person.notes} data-test="notes" />
           </>
         ) : (
           <h5 style={styles.heading} data-test="notes-title">
@@ -273,17 +282,6 @@ const PersonPage = props => {
               <AddIcon fontSize="inherit" style={styles.icon} />
             </IconButton>
           </h5>
-        )}
-
-        {!blankSlate && (
-          <>
-            <ModelGraph model={person} intl={app.intl} />
-            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
-              <small>
-                <FormattedMessage id="app.whatIsThis" />
-              </small>
-            </Link>
-          </>
         )}
 
         <h5 style={styles.heading} data-test="settings-title">
@@ -325,7 +323,7 @@ const PersonPage = props => {
                     () =>
                       app
                         .updatePerson(props.person, [!person.breasts, 'breasts'])
-                        .then(res => setPerson(usePerson(app, props.person)))
+                        .then((res) => setPerson(usePerson(app, props.person)))
                     // We force a re-render here by setting state after the promise resolves
                   }
                 >
@@ -353,7 +351,7 @@ const PersonPage = props => {
                           person.units === 'metric' ? 'imperial' : 'metric',
                           'units'
                         ])
-                        .then(res => setPerson(usePerson(app, props.person)))
+                        .then((res) => setPerson(usePerson(app, props.person)))
                     // We force a re-render here by setting state after the promise resolves
                   }
                 >
@@ -379,7 +377,7 @@ const PersonPage = props => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/docs/about/model-graph"
+                href="/docs/about/your-measurements/model-graph"
                 style={{ marginRight: '1rem' }}
               >
                 <FormattedMessage id="app.docs" />
@@ -413,7 +411,7 @@ const PersonPage = props => {
             <MenuItem value={false}>
               <FormattedMessage id="filter.byPattern" />
             </MenuItem>
-            {list.map(pattern => (
+            {list.map((pattern) => (
               <MenuItem key={pattern} value={pattern}>
                 {capitalize(pattern)}
               </MenuItem>
@@ -445,7 +443,7 @@ const PersonPage = props => {
               <td style={styles.buttonCell}></td>
             </tr>
             {person.measurements &&
-              Object.keys(person.measurements).map(m => {
+              Object.keys(person.measurements).map((m) => {
                 if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
 
                 let value = person.measurements[m]
@@ -467,7 +465,7 @@ const PersonPage = props => {
                   return measurementRow(m, value, measurementEstimate, measurementInRange)
                 } else return null
               })}
-            {remainingMeasurements().map(m => {
+            {remainingMeasurements().map((m) => {
               if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
               else return measurementRow(m)
             })}

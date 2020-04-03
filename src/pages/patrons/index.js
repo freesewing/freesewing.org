@@ -12,7 +12,7 @@ import PatronStars from '../../components/patron-stars'
 import UserSocial from '../../components/user-social'
 import { graphql, Link } from 'gatsby'
 
-const PatronPage = props => {
+const PatronPage = (props) => {
   // Hooks
   const app = useApp()
 
@@ -50,12 +50,14 @@ const PatronPage = props => {
 
   // Preprocess data
   const patrons = {}
-  props.data.allFsPatron.edges.map(node => (patrons[node.node.patron.username] = node.node.patron))
+  props.data.allFsPatron.edges.map(
+    (node) => (patrons[node.node.patron.username] = node.node.patron)
+  )
 
   const order = Object.keys(patrons)
   order.sort()
   const list = []
-  order.map(username => {
+  order.map((username) => {
     let patron = patrons[username]
     list.push(
       <div key={patron.handle} style={styles.patron}>

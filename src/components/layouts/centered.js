@@ -1,7 +1,7 @@
 import React from 'react'
 import BaseLayout from './base'
 
-const CenteredLayout = props => {
+const CenteredLayout = (props) => {
   const style = {
     textAlign: props.left ? 'left' : 'center',
     maxWidth: '900px'

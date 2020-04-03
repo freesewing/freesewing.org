@@ -1,11 +1,11 @@
-const slugToChunks = slug => {
+const slugToChunks = (slug) => {
   if (slug[0] === '/') slug = slug.slice(1)
   if (slug.slice(-1) === '/') slug = slug.slice(0, -1)
 
   return slug.split('/')
 }
 
-const getBase = chunks => '/' + chunks.slice(0, 2).join('/') + '/'
+const getBase = (chunks) => '/' + chunks.slice(0, 2).join('/') + '/'
 
 export const getChildren = (slug, tree) => {
   let chunks = slugToChunks(slug)

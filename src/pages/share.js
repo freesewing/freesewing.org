@@ -6,7 +6,7 @@ import AppWrapper from '../components/app/wrapper'
 import CenteredLayout from '../components/layouts/centered'
 import Mdx from '../components/mdx'
 
-const SharePage = props => {
+const SharePage = (props) => {
   const app = useApp()
   const uiMdx = useUiMdx()
 

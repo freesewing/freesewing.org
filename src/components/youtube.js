@@ -1,6 +1,6 @@
 import React from 'react'
 
-const YouTube = props => {
+const YouTube = (props) => {
   return (
     <div
       className="video"
@@ -22,7 +22,7 @@ const YouTube = props => {
         src={
           props.playlist
             ? `https://www.youtube.com/embed/videoseries?list=${props.id}`
-            : `https://www.youtube.com/embed/${props.id}`
+            : `https://www.youtube.com/embed/${props.id}?${props.params || ''}`
         }
         frameBorder="0"
       />

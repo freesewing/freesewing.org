@@ -11,7 +11,7 @@ import patternMethods from './lib/pattern'
 import sessionMethods from './lib/session'
 import adminMethods from './lib/admin'
 
-function useApp(slug = null) {
+function useApp() {
   // Environment
 
   // Backend
@@ -66,7 +66,7 @@ function useApp(slug = null) {
   }
 
   // Persist user data to local storage
-  const persist = data => {
+  const persist = (data) => {
     if (data.account) setAccount(data.account)
     if (data.people) setPeople(data.people)
     if (data.patterns) setPatterns(data.patterns)
@@ -79,15 +79,15 @@ function useApp(slug = null) {
   const refresh = () => {
     return backend
       .account(token)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) persist(res.data)
         else console.log('Loading account data did not return 200', res)
       })
-      .catch(error => showError(error))
+      .catch((error) => showError(error))
   }
 
   // SSR-save navigate method
-  const navigate = slug => {
+  const navigate = (slug) => {
     if (typeof window !== 'undefined') gatsbyNavigate(slug)
   }
 
@@ -98,7 +98,7 @@ function useApp(slug = null) {
   }
 
   // Error handling
-  const showError = error => {
+  const showError = (error) => {
     setLoading(false)
     setNotification({
       type: 'error',
@@ -110,7 +110,7 @@ function useApp(slug = null) {
   const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const toggleMenu = () => setMenu(!menu)
   const toggleMobileAside = () => setMobileAside(!mobileAside)
-  const closeNav = evt => {
+  const closeNav = (evt) => {
     if (typeof evt.target.className === 'object') {
       if (evt.target.className.baseVal.indexOf('o-closenav') === -1) return setMenu(false)
     } else if (evt.target.className.indexOf('o-closenav') === -1) return setMenu(false)

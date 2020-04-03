@@ -7,7 +7,7 @@ import PostLayout from '../../components/layouts/post'
 import { graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
 
-const ShowcasePostPage = props => {
+const ShowcasePostPage = (props) => {
   // State
   const app = useApp()
 

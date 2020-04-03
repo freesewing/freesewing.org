@@ -27,10 +27,10 @@ export default function ButtonAppBar(props) {
   const [communityAnchor, setCommunityAnchor] = useState(null)
   const [userAnchor, setUserAnchor] = useState(null)
 
-  const handlePatternOpen = event => setPatternAnchor(event.currentTarget)
-  const handleDocsOpen = event => setDocsAnchor(event.currentTarget)
-  const handleCommunityOpen = event => setCommunityAnchor(event.currentTarget)
-  const handleUserOpen = event => setUserAnchor(event.currentTarget)
+  const handlePatternOpen = (event) => setPatternAnchor(event.currentTarget)
+  const handleDocsOpen = (event) => setDocsAnchor(event.currentTarget)
+  const handleCommunityOpen = (event) => setCommunityAnchor(event.currentTarget)
+  const handleUserOpen = (event) => setUserAnchor(event.currentTarget)
 
   const handlePopoverClose = () => {
     setPatternAnchor(null)

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import Avatar from '../avatar'
 
-const SearchHit = props => {
+const SearchHit = (props) => {
   const [expand, setExpand] = useState(false)
   const [open, setOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -10,7 +10,7 @@ const SearchHit = props => {
   const [role, setRole] = useState(props.user.role)
   const [frozen, setFrozen] = useState(props.user.status === 'frozen' ? true : false)
 
-  const handleAction = option => {
+  const handleAction = (option) => {
     if (option.slice(0, 1) === 't') {
       props.app.adminSetPatronStatus(props.user.handle, option.slice(1))
       setTier(option.slice(1))
@@ -128,7 +128,7 @@ const SearchHit = props => {
       {expand && (
         <>
           <div style={styles.buttons}>
-            {Object.keys(options).map(option => (
+            {Object.keys(options).map((option) => (
               <Button
                 size="large"
                 key={option}

@@ -10,8 +10,7 @@ import Button from '@material-ui/core/Button'
 
 import LanguageIcon from '../components/language-icon'
 
-const Language = props => {
-
+const Language = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('account.language'))
@@ -41,7 +40,7 @@ const Language = props => {
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app}>
-        {Object.keys(languages).map(lang => {
+        {Object.keys(languages).map((lang) => {
           let current = lang === process.env.GATSBY_LANGUAGE ? true : false
           return (
             <Button

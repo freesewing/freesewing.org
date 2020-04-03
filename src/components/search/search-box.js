@@ -9,7 +9,7 @@ export default connectSearchBox(({ refine, search = 'Search', ...rest }) => (
     type="text"
     placeholder={search}
     aria-label={search}
-    onChange={e => refine(e.target.value)}
+    onChange={(e) => refine(e.target.value)}
     {...rest}
   />
 ))

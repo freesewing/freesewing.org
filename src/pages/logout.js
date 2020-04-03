@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Robot from '@freesewing/components/Robot'
 
-const LogoutPage = props => {
+const LogoutPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.logOut'))
