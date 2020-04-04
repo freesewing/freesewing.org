@@ -1719,10 +1719,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/hugo/-/hugo-2.4.6.tgz#3b641b976565a57aca0474b0687910fec7775b94"
   integrity sha512-VzIbed+ntmbralPP08am8lSKCPDyvV4D6DUcuwAdUuYIxmT6s297WK11+IiNsqYVzXMjyd2jLzHG0Aq9i1gigQ==
 
-"@freesewing/i18n@2.4.6-1":
-  version "2.4.6-1"
-  resolved "https://registry.yarnpkg.com/@freesewing/i18n/-/i18n-2.4.6-1.tgz#d6c8601f738ec3a4b935bfedf75db368916d4313"
-  integrity sha512-aGkPn7vV04o6sVLmMi8CE2kWwNczQndtBkSwvFIM41k/cVFERTXspBPlxwBc3J+23tmY6ls6TAzDhAaQp8mfYw==
+"@freesewing/i18n@2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@freesewing/i18n/-/i18n-2.4.6.tgz#6bc5bc8cff7150b61fd7f160d88f15392a9fda07"
+  integrity sha512-Gw6RwQMxSIK2ZPyxJMjq63ja1WYpdIatcvxP7VcRC2hVzzD01we01Llj0PKnogGFWdW2Knrw2j/6fJqXwF0Gww==
 
 "@freesewing/jaeger@2.4.6":
   version "2.4.6"
