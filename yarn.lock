@@ -8467,21 +8467,21 @@ hast-util-to-html@^4.0.1:
     unist-util-is "^2.0.0"
     xtend "^4.0.1"
 
-hast-util-to-html@^6.0.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/hast-util-to-html/-/hast-util-to-html-6.1.0.tgz#86bcd19c3bd46af456984f8f34db16298c2b10b0"
-  integrity sha512-IlC+LG2HGv0Y8js3wqdhg9O2sO4iVpRDbHOPwXd7qgeagpGsnY49i8yyazwqS35RA35WCzrBQE/n0M6GG/ewxA==
+hast-util-to-html@^7.0.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/hast-util-to-html/-/hast-util-to-html-7.1.0.tgz#aa580e7b846438ee1e7af2bee6a650062eb0c3ec"
+  integrity sha512-RjvNL41bYnxTOA+s8W8mjhVxH1J0dXza9hlakVHbghFsfj3JO/lsq3DsR/Md2HbynS8y89/LA7k0lhtnYJ1Yzw==
   dependencies:
     ccount "^1.0.0"
-    comma-separated-tokens "^1.0.1"
+    comma-separated-tokens "^1.0.0"
     hast-util-is-element "^1.0.0"
     hast-util-whitespace "^1.0.0"
     html-void-elements "^1.0.0"
-    property-information "^5.2.0"
+    property-information "^5.0.0"
     space-separated-tokens "^1.0.0"
-    stringify-entities "^2.0.0"
-    unist-util-is "^3.0.0"
-    xtend "^4.0.1"
+    stringify-entities "^3.0.0"
+    unist-util-is "^4.0.0"
+    xtend "^4.0.0"
 
 hast-util-to-parse5@^4.0.1:
   version "4.0.1"
@@ -10724,6 +10724,13 @@ mdast-util-definitions@^1.2.0, mdast-util-definitions@^1.2.5:
   dependencies:
     unist-util-visit "^1.0.0"
 
+mdast-util-definitions@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-definitions/-/mdast-util-definitions-2.0.1.tgz#2c931d8665a96670639f17f98e32c3afcfee25f3"
+  integrity sha512-Co+DQ6oZlUzvUR7JCpP249PcexxygiaKk9axJh+eRzHDZJk2julbIdKB4PXHVxdBuLzvJ1Izb+YDpj2deGMOuA==
+  dependencies:
+    unist-util-visit "^2.0.0"
+
 mdast-util-heading-style@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/mdast-util-heading-style/-/mdast-util-heading-style-1.0.5.tgz#81b2e60d76754198687db0e8f044e42376db0426"
@@ -10761,22 +10768,20 @@ mdast-util-to-hast@^3.0.4:
     unist-util-visit "^1.1.0"
     xtend "^4.0.1"
 
-mdast-util-to-hast@^6.0.0:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-6.0.2.tgz#24a8791b7c624118637d70f03a9d29116e4311cf"
-  integrity sha512-GjcOimC9qHI0yNFAQdBesrZXzUkRdFleQlcoU8+TVNfDW6oLUazUx8MgUoTaUyCJzBOnE5AOgqhpURrSlf0QwQ==
+mdast-util-to-hast@^8.0.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-8.2.0.tgz#adf9f824defcd382e53dd7bace4282a45602ac67"
+  integrity sha512-WjH/KXtqU66XyTJQ7tg7sjvTw1OQcVV0hKdFh3BgHPwZ96fSBCQ/NitEHsN70Mmnggt+5eUUC7pCnK+2qGQnCA==
   dependencies:
     collapse-white-space "^1.0.0"
     detab "^2.0.0"
-    mdast-util-definitions "^1.2.0"
-    mdurl "^1.0.1"
-    trim "0.0.1"
+    mdast-util-definitions "^2.0.0"
+    mdurl "^1.0.0"
     trim-lines "^1.0.0"
-    unist-builder "^1.0.1"
-    unist-util-generated "^1.1.0"
+    unist-builder "^2.0.0"
+    unist-util-generated "^1.0.0"
     unist-util-position "^3.0.0"
-    unist-util-visit "^1.1.0"
-    xtend "^4.0.1"
+    unist-util-visit "^2.0.0"
 
 mdast-util-to-nlcst@^3.2.0:
   version "3.2.3"
@@ -10821,7 +10826,7 @@ mdn-data@2.0.4:
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.4.tgz#699b3c38ac6f1d728091a64650b65d388502fd5b"
   integrity sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
 
-mdurl@^1.0.1:
+mdurl@^1.0.0, mdurl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
@@ -12872,7 +12877,7 @@ property-information@^4.0.0:
   dependencies:
     xtend "^4.0.1"
 
-property-information@^5.0.0, property-information@^5.2.0, property-information@^5.3.0:
+property-information@^5.0.0, property-information@^5.3.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-5.4.0.tgz#16e08f13f4e5c4a7be2e4ec431c01c4f8dba869a"
   integrity sha512-nmMWAm/3vKFGmmOWOcdLjgq/Hlxa+hsuR/px1Lp/UGEyc5A22A6l78Shc2C0E71sPmAqglni+HrS7L7VJ7AUCA==
@@ -13664,14 +13669,14 @@ remark-frontmatter@1.3.3:
     fault "^1.0.1"
     xtend "^4.0.1"
 
-remark-html@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/remark-html/-/remark-html-10.0.0.tgz#927047c16845ec47e2c361e1d7f7c32ab72c63c7"
-  integrity sha512-TbSQuedRFjAhXSk1NAbfaTqDK0jKAjfgn82D2ZYFFT8XpJ80uwXc8yVwK/Tl2eqboTMPxzNzCIss4kIucE5M8w==
+remark-html@11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/remark-html/-/remark-html-11.0.1.tgz#fe12671be9dd67e75dd90dfb4d78c9d42f2e11ec"
+  integrity sha512-bz7tSu9kDbaRNaiqQWrgXITkqJsZXoc2fjau+ms7WA4vflDoB+xMdY0QfNhUpGgmAv4SdDD1m+3BxWRHLizmiQ==
   dependencies:
     hast-util-sanitize "^2.0.0"
-    hast-util-to-html "^6.0.0"
-    mdast-util-to-hast "^6.0.0"
+    hast-util-to-html "^7.0.0"
+    mdast-util-to-hast "^8.0.0"
     xtend "^4.0.1"
 
 remark-jargon@2.4.6, remark-jargon@^2.4.6:
@@ -15287,6 +15292,17 @@ stringify-entities@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/stringify-entities/-/stringify-entities-2.0.0.tgz#fa7ca6614b355fb6c28448140a20c4ede7462827"
   integrity sha512-fqqhZzXyAM6pGD9lky/GOPq6V4X0SeTAFBl0iXb/BzOegl40gpf/bV3QQP7zULNYvjr6+Dx8SCaDULjVoOru0A==
+  dependencies:
+    character-entities-html4 "^1.0.0"
+    character-entities-legacy "^1.0.0"
+    is-alphanumerical "^1.0.0"
+    is-decimal "^1.0.2"
+    is-hexadecimal "^1.0.0"
+
+stringify-entities@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/stringify-entities/-/stringify-entities-3.0.0.tgz#455abe501f8b7859ba5726a25a8872333c65b0a7"
+  integrity sha512-h7NJJIssprqlyjHT2eQt2W1F+MCcNmwPGlKb0bWEdET/3N44QN3QbUF/ueKCgAssyKRZ3Br9rQ7FcXjHr0qLHw==
   dependencies:
     character-entities-html4 "^1.0.0"
     character-entities-legacy "^1.0.0"
