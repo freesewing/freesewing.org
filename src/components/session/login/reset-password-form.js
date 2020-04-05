@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 const ResetPasswordForm = (props) => (
   <React.Fragment>
@@ -11,10 +11,12 @@ const ResetPasswordForm = (props) => (
     <div style={{ textAlign: 'left' }}>
       <ul>
         <li data-test="trouble1">
-          <FormattedHTMLMessage id="app.emailWorksToo" />
+          <FormattedMessage id="app.emailWorksToo" />
         </li>
         <li data-test="trouble2">
-          <FormattedHTMLMessage id="app.forgotLoginInstructions" />.
+          <FormattedMessage id="app.forgotLoginInstructions" values={{
+            b: (...chunks) => <strong>{chunks}</strong>
+          }}/>.
         </li>
       </ul>
     </div>

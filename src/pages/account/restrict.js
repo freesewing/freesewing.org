@@ -4,7 +4,7 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import CenteredLayout from '../../components/layouts/centered'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
@@ -27,7 +27,7 @@ const RestrictProcessingPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedHTMLMessage id="account.restrictProcessingOfYourDataInfo" />
+          <FormattedMessage id="account.restrictProcessingOfYourDataInfo" values={{ em: (...chunks) => <em>{chunks}</em> }} />
         </Blockquote>
         <Blockquote type="warning">
           <h4>
@@ -62,7 +62,7 @@ const RestrictProcessingPage = (props) => {
             color="primary"
             onClick={app.restrictAccount}
           >
-            <FormattedHTMLMessage id="account.restrictProcessingOfYourData" />
+            <FormattedMessage id="account.restrictProcessingOfYourData" />
           </Button>
         </p>
       </CenteredLayout>

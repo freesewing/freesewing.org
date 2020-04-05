@@ -120,6 +120,7 @@ function useApp() {
   const mobile = useMediaQuery('(max-width:599px)')
   const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
 
+
   // These are user in other methods
   let core = {
     // Helper methods

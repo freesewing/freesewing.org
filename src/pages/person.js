@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
-import { FormattedHTMLMessage, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -105,7 +105,7 @@ const CreatePersonPage = (props) => {
           {help ? (
             <Blockquote type="note">
               <p>
-                <FormattedHTMLMessage id="app.chestInfo" />
+                <FormattedMessage id="app.chestInfo" />
               </p>
             </Blockquote>
           ) : null}

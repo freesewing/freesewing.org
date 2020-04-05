@@ -4,7 +4,7 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import CenteredLayout from '../../components/layouts/centered'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -69,6 +69,11 @@ const ConsentPage = (props) => {
     }
   }
 
+  // react-i18n can be a real pain sometimes
+  const bold = {
+    b: (...chunks) => <strong>{chunks}</strong>
+  }
+
   // Detailed info
   const profileDetails = [
     <h2 key="profileTitle" data-test="consentForProfileData">
@@ -77,12 +82,12 @@ const ConsentPage = (props) => {
     <table style={styles.table} className="font-title" key="profileTable">
       <tr style={styles.row}>
         <td style={{ ...styles.cell, ...styles.question }} data-test="profileWhatQuestion">
-          <FormattedMessage id="gdpr.profileWhatQuestion" />
+          <FormattedMessage id="gdpr.profileWhatQuestion" values={bold} />
         </td>
         <td style={styles.cell} data-test="profileWhatAnswer">
-          <FormattedHTMLMessage id="gdpr.profileWhatAnswer" />
+          <FormattedMessage id="gdpr.profileWhatAnswer" values={bold} />
           <br />
-          <FormattedHTMLMessage id="gdpr.profileWhatAnswerOptional" />
+          <FormattedMessage id="gdpr.profileWhatAnswerOptional" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -90,7 +95,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
         <td style={styles.cell} data-test="profileWhyAnswer">
-          <FormattedHTMLMessage id="gdpr.profileWhyAnswer" />
+          <FormattedMessage id="gdpr.profileWhyAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -98,7 +103,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
         <td style={styles.cell} data-test="profileTimingAnswer">
-          <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
+          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -106,7 +111,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
         <td style={styles.cell} data-test="profileShareAnswer">
-          <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
+          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
         </td>
       </tr>
     </table>
@@ -121,9 +126,9 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.modelWhatQuestion" />
         </td>
         <td style={styles.cell} data-test="modelWhatAnswer">
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswer" />
+          <FormattedMessage id="gdpr.modelWhatAnswer" values={bold} />
           <br />
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional" />
+          <FormattedMessage id="gdpr.modelWhatAnswerOptional" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -131,7 +136,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
         <td style={styles.cell} data-test="modelWhyAnswer">
-          <FormattedHTMLMessage id="gdpr.modelWhyAnswer" />
+          <FormattedMessage id="gdpr.modelWhyAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -139,7 +144,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
         <td style={styles.cell} data-test="profileTimingAnswer">
-          <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
+          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -147,7 +152,7 @@ const ConsentPage = (props) => {
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
         <td style={styles.cell} data-test="profileShareAnswer">
-          <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
+          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
           <br />
           <small data-test="openData">
             <FormattedMessage id="gdpr.openData" />
@@ -165,7 +170,7 @@ const ConsentPage = (props) => {
             <FormattedMessage id="gdpr.compliant" />
           </p>
           <p data-test="consentWhyAnswer">
-            <FormattedHTMLMessage id="gdpr.consentWhyAnswer" />
+            <FormattedMessage id="gdpr.consentWhyAnswer" />
           </p>
         </Blockquote>
         {details ? profileDetails : null}

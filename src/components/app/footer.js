@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
 import IconButton from '@material-ui/core/IconButton'
 import { version } from '../../../package.json'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 const Footer = (props) => {
   const data = useStaticQuery(graphql`
@@ -94,9 +94,7 @@ const Footer = (props) => {
           </IconButton>
         ))}
       </p>
-      <p>
-        <FormattedHTMLMessage id="app.txt-footer" />:
-      </p>
+      <p dangerouslySetInnerHTML={{ __html: props.app.translate('app.txt-footer')+':'}} />
       {allPatrons}
       <div style={styles.container}>
         <ul style={styles.links}>

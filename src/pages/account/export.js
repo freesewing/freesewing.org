@@ -4,7 +4,7 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import CenteredLayout from '../../components/layouts/centered'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
@@ -27,7 +27,7 @@ const ExportAccountPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedHTMLMessage id="account.exportYourDataInfo" />
+          <FormattedMessage id="account.exportYourDataInfo" values={{ em: (...chunks) => <em>{chunks}</em> }} />
         </Blockquote>
         <h6 style={{ textAlign: 'center' }}>
           <FormattedMessage id="account.exportYourDataTitle" />

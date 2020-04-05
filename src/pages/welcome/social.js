@@ -7,7 +7,7 @@ import CenteredLayout from '../../components/layouts/centered'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -47,9 +47,7 @@ const WelcomeSocialPage = (props) => {
       <CenteredLayout app={app} top>
         <div style={{ textAlign: 'left' }}>
           <Blockquote type="note">
-            <p>
-              <FormattedHTMLMessage id="account.socialInfo" />
-            </p>
+            <p dangerouslySetInnerHTML={{ __html: app.translate("account.socialInfo") }} />
           </Blockquote>
           <h5>Github</h5>
           <TextField

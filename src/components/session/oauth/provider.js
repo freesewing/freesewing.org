@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Icon from '@freesewing/components/Icon'
 
@@ -25,11 +25,10 @@ const OauthProvider = (props) => {
       data-provider={props.provider}
     >
       <Icon icon={props.provider} style={styles.icon} />
-      {props.login ? (
-        <FormattedHTMLMessage id={'app.loginWithProvider'} values={{ provider: props.provider }} />
-      ) : (
-        <FormattedHTMLMessage id={'app.signupWithProvider'} values={{ provider: props.provider }} />
-      )}
+        <span dangerouslySetInnerHTML={{__html: props.app.translate(props.login
+          ? 'app.loginWithProvider'
+          : 'app.signupWithProvider'
+          , { provider: props.provider }) }} />
     </Button>
   )
 }

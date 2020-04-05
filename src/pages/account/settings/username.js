@@ -4,7 +4,7 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -48,7 +48,7 @@ const UsernameSettingPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedHTMLMessage id={'account.usernameInfo'} />
+          <FormattedMessage id={'account.usernameInfo'} values={{ em: (...chunks) => <em>{chunks}</em> }} />
         </Blockquote>
         {JSON.stringify(usernameValid, null, 2)}
         <TextField

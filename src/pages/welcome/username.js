@@ -7,7 +7,7 @@ import CenteredLayout from '../../components/layouts/centered'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -49,7 +49,7 @@ const WelcomeUsernamePage = (props) => {
         <div style={{ textAlign: 'left' }}>
           <Blockquote type="note">
             <p>
-              <FormattedHTMLMessage id="account.usernameInfo" />
+              <FormattedMessage id="account.usernameInfo" values={{ em: (...chunks) => <em>{chunks}</em> }} />
             </p>
           </Blockquote>
           <TextField

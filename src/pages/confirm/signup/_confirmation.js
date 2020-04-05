@@ -4,7 +4,7 @@ import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import CenteredLayout from '../../../components/layouts/centered'
 
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -61,6 +61,11 @@ const SignupConfirmationPage = (props) => {
     }
   }
 
+  // react-i18n can be a real pain sometimes
+  const bold = {
+    b: (...chunks) => <strong>{chunks}</strong>
+  }
+
   // Content
   const profileDetails = [
     <h2 key="pdtitle">
@@ -72,9 +77,9 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.profileWhatQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileWhatAnswer" />
+          <FormattedMessage id="gdpr.profileWhatAnswer" values={bold} />
           <br />
-          <FormattedHTMLMessage id="gdpr.profileWhatAnswerOptional" />
+          <FormattedMessage id="gdpr.profileWhatAnswerOptional" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -82,7 +87,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileWhyAnswer" />
+          <FormattedMessage id="gdpr.profileWhyAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -90,7 +95,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
+          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -98,7 +103,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
+          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
         </td>
       </tr>
     </table>
@@ -113,9 +118,9 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.modelWhatQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswer" />
+          <FormattedMessage id="gdpr.modelWhatAnswer" values={bold} />
           <br />
-          <FormattedHTMLMessage id="gdpr.modelWhatAnswerOptional" />
+          <FormattedMessage id="gdpr.modelWhatAnswerOptional" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -123,7 +128,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.whyQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.modelWhyAnswer" />
+          <FormattedMessage id="gdpr.modelWhyAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -131,7 +136,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.timingQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileTimingAnswer" />
+          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
         </td>
       </tr>
       <tr style={styles.row}>
@@ -139,7 +144,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.shareQuestion" />
         </td>
         <td style={styles.cell}>
-          <FormattedHTMLMessage id="gdpr.profileShareAnswer" />
+          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
           <br />
           <small>
             <FormattedMessage id="gdpr.openData" />
@@ -155,7 +160,7 @@ const SignupConfirmationPage = (props) => {
           <FormattedMessage id="gdpr.compliant" />
         </p>
         <p>
-          <FormattedHTMLMessage id="gdpr.consentWhyAnswer" />
+          <FormattedMessage id="gdpr.consentWhyAnswer" />
         </p>
         {details ? profileDetails : null}
         <h5>

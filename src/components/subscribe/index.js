@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -71,7 +71,7 @@ const Subscribe = (props) => {
                 </span>
               </h3>
               <p>
-                <FormattedHTMLMessage id={'app.txt-tier0'} />
+                <FormattedMessage id={'app.txt-tier0'} />
               </p>
             </CardContent>
           </Card>
@@ -88,7 +88,7 @@ const Subscribe = (props) => {
                 </span>
               </h3>
               <p>
-                <FormattedHTMLMessage id={'app.txt-tier2'} />
+                <FormattedMessage id={'app.txt-tier2'} />
               </p>
             </CardContent>
             <PaypalButton tier={2} />
@@ -104,7 +104,7 @@ const Subscribe = (props) => {
                 </span>
               </h3>
               <p>
-                <FormattedHTMLMessage id={'app.txt-tier4'} />
+                <FormattedMessage id={'app.txt-tier4'} />
               </p>
             </CardContent>
             <PaypalButton tier={4} />
@@ -120,7 +120,7 @@ const Subscribe = (props) => {
                 </span>
               </h3>
               <p>
-                <FormattedHTMLMessage id={'app.txt-tier8'} />
+                <FormattedMessage id={'app.txt-tier8'} />
               </p>
             </CardContent>
             <PaypalButton tier={8} />
