@@ -18,7 +18,7 @@ import './patterns.css'
 const PatternsIndexPage = props => {
   const app = useApp()
   useEffect(() => {
-    app.setTitle(app.translate('app.your_patterns'))
+    app.setTitle(app.translate('app.yourPatterns'))
   }, [])
 
   const newPatternButton = (
