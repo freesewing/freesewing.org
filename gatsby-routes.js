@@ -5,7 +5,6 @@ const addDupe = (option, from, to) => {
   let slug = `/docs/patterns/${from}/options/${option.toLowerCase()}/`
   if (!patternOptions[slug]) patternOptions[slug] = { find: from, replace: [to] }
   else patternOptions[slug].replace.push(to)
-
 }
 
 // this will be populated by addDupe()
@@ -40,59 +39,66 @@ const dupes = {
     },
     {
       options: ['backneckcutout', 'frontarmholedeeper', 'shoulderslopereduction'],
-      to: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven'],
+      to: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven']
     },
     {
       options: ['sleevelengthbonus'],
-      to: ['huey', 'hugo'],
+      to: ['huey', 'hugo']
     },
     {
       options: ['sleevecapheight'],
-      to: ['carlita', 'carlton', 'jaeger'],
+      to: ['carlita', 'carlton', 'jaeger']
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo'],
+      to: ['bent', 'diana', 'huey', 'hugo']
     },
     {
       options: ['armholedepthfactor'],
-      to: ['bent', 'huey', 'sven', 'wahid'],
+      to: ['bent', 'huey', 'sven', 'wahid']
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo'],
+      to: ['bent', 'diana', 'huey', 'hugo']
     },
     {
       options: ['bicepsease'],
-      to: ['bent', 'huey', 'hugo', 'jaeger'],
+      to: ['bent', 'huey', 'hugo', 'jaeger']
     },
     {
       options: ['chestease', 'cuffease', 'lengthbonus'],
-      to: ['bent', 'huey', 'hugo'],
+      to: ['bent', 'huey', 'hugo']
     },
     {
       options: ['collarease'],
-      to: ['bent', 'huey', 'jaeger', 'sven'],
+      to: ['bent', 'huey', 'jaeger', 'sven']
     },
     {
       options: ['shoulderease'],
-      to: ['bent', 'huey', 'jaeger', 'simon'],
-    },
+      to: ['bent', 'huey', 'jaeger', 'simon']
+    }
   ],
   huey: [
     {
       options: ['ribbingheight'],
-      to: ['hugo'],
+      to: ['hugo']
     }
   ],
   carlita: [
     {
-      options: ['frontoverlap', 'pocketradius', 'innerpocketdepth', 'innerpocketplacement', 'innerpocketweltheight', 'innerpocketwidth', 'lapelreduction'],
-      to: ['carlton', 'jaeger'],
+      options: [
+        'frontoverlap',
+        'pocketradius',
+        'innerpocketdepth',
+        'innerpocketplacement',
+        'innerpocketweltheight',
+        'innerpocketwidth',
+        'lapelreduction'
+      ],
+      to: ['carlton', 'jaeger']
     }
-  ],
+  ]
 }
-
 
 for (let from in dupes) {
   for (let set of dupes[from]) {
@@ -104,10 +110,8 @@ for (let from in dupes) {
 
 // Breanna inherits almost all options from Brian
 for (let option of options.brian) {
-  if ([
-    'lengthBonus',
-    'sleeveWidthGuarantee',
-  ].indexOf(option) === -1) addDupe(option, 'brian', 'breanna')
+  if (['lengthBonus', 'sleeveWidthGuarantee'].indexOf(option) === -1)
+    addDupe(option, 'brian', 'breanna')
 }
 
 // Carton inherits almost all options from Carlita
@@ -117,7 +121,6 @@ for (let option of options.carlita) {
 
 // Simone inherits all options from Simon
 for (let option of options.simon) addDupe(option, 'simon', 'simone')
-
 
 const getDuplicates = () => {
   let dupes = {}
