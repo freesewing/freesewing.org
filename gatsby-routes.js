@@ -1,143 +1,126 @@
 const patterns = require('@freesewing/pattern-info').list
 const options = require('@freesewing/pattern-info').options
 
-const brianSleevecap = {
-  find: 'brian',
-  replace: ['huey', 'simon', 'simone', 'sven']
+const addDupe = (option, from, to) => {
+  let slug = `/docs/patterns/${from}/options/${option.toLowerCase()}/`
+  if (!patternOptions[slug]) patternOptions[slug] = { find: from, replace: [to] }
+  else patternOptions[slug].replace.push(to)
 }
 
-const patternOptions = {
-  '/docs/patterns/brian/options/backneckcutout/': {
-    find: 'brian',
-    replace: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven']
-  },
-  '/docs/patterns/brian/options/frontarmholedeeper/': {
-    find: 'brian',
-    replace: ['carlita', 'carlton', 'huey', 'jaeger', 'simon', 'sven', 'bent']
-  },
-  '/docs/patterns/brian/options/shoulderslopereduction/': {
-    find: 'brian',
-    replace: ['carlita', 'carlton', 'simon', 'huey', 'bent']
-  },
-  '/docs/patterns/brian/options/sleevelengthbonus/': {
-    find: 'brian',
-    replace: ['huey', 'hugo']
-  },
-  '/docs/patterns/bent/options/sleevecapheight/': {
-    find: 'bent',
-    replace: ['carlita', 'carlton', 'jaeger']
-  },
-  '/docs/patterns/brian/options/acrossbackfactor/': {
-    find: 'brian',
-    replace: ['huey', 'hugo', 'bent']
-  },
-  '/docs/patterns/brian/options/armholedepthfactor/': {
-    find: 'brian',
-    replace: ['huey', 'sven', 'wahid', 'bent']
-  },
-  '/docs/patterns/brian/options/bicepsease/': {
-    find: 'brian',
-    replace: ['huey', 'hugo', 'jaeger', 'bent']
-  },
-  '/docs/patterns/brian/options/chestease/': {
-    find: 'brian',
-    replace: ['huey', 'hugo', 'bent']
-  },
-  '/docs/patterns/brian/options/collarease/': {
-    find: 'brian',
-    replace: ['huey', 'jaeger', 'sven', 'bent']
-  },
-  '/docs/patterns/brian/options/cuffease/': {
-    find: 'brian',
-    replace: ['huey', 'hugo', 'bent']
-  },
-  '/docs/patterns/brian/options/lengthbonus/': {
-    find: 'brian',
-    replace: ['huey', 'hugo', 'bent']
-  },
-  '/docs/patterns/brian/options/shoulderease/': {
-    find: 'brian',
-    replace: ['huey', 'jaeger', 'simon', 'bent']
-  },
-  '/docs/patterns/huey/options/ribbingheight/': {
-    find: 'huey',
-    replace: ['hugo']
-  },
-  '/docs/patterns/carlita/options/frontoverlap/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/pocketradius/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/innerpocketdepth/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/innerpocketplacement/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/innerpocketweltheight/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/innerpocketwidth/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  '/docs/patterns/carlita/options/lapelreduction/': {
-    find: 'carlita',
-    replace: ['carlton', 'jaeger']
-  },
-  // Brian sleevecap options are available in multiple patterns
-  '/docs/patterns/brian/options/sleevecapbackfactorx/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapbackfactory/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapease/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapfrontfactorx/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapfrontfactory/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq1offset/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq1spread1/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq1spread2/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq2offset/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq2spread1/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq2spread2/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq3offset/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq3spread1/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq3spread2/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq4offset/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq4spread1/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecapq4spread2/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecaptopfactorx/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevecaptopfactory/': brianSleevecap,
-  '/docs/patterns/brian/options/sleevewidthguarantee/': brianSleevecap
+// this will be populated by addDupe()
+const patternOptions = {}
+
+const dupes = {
+  brian: [
+    {
+      options: [
+        'sleevecapbackfactorx',
+        'sleevecapbackfactory',
+        'sleevecapease',
+        'sleevecapfrontfactorx',
+        'sleevecapfrontfactory',
+        'sleevecapq1offset',
+        'sleevecapq1spread1',
+        'sleevecapq1spread2',
+        'sleevecapq2offset',
+        'sleevecapq2spread1',
+        'sleevecapq2spread2',
+        'sleevecapq3offset',
+        'sleevecapq3spread1',
+        'sleevecapq3spread2',
+        'sleevecapq4offset',
+        'sleevecapq4spread1',
+        'sleevecapq4spread2',
+        'sleevecaptopfactorx',
+        'sleevecaptopfactory',
+        'sleevewidthguarantee'
+      ],
+      to: ['huey', 'simon', 'simone', 'sven', 'diana']
+    },
+    {
+      options: ['backneckcutout', 'frontarmholedeeper', 'shoulderslopereduction'],
+      to: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven']
+    },
+    {
+      options: ['sleevelengthbonus'],
+      to: ['huey', 'hugo']
+    },
+    {
+      options: ['sleevecapheight'],
+      to: ['carlita', 'carlton', 'jaeger']
+    },
+    {
+      options: ['acrossbackfactor'],
+      to: ['bent', 'diana', 'huey', 'hugo']
+    },
+    {
+      options: ['armholedepthfactor'],
+      to: ['bent', 'huey', 'sven', 'wahid']
+    },
+    {
+      options: ['acrossbackfactor'],
+      to: ['bent', 'diana', 'huey', 'hugo']
+    },
+    {
+      options: ['bicepsease'],
+      to: ['bent', 'huey', 'hugo', 'jaeger']
+    },
+    {
+      options: ['chestease', 'cuffease', 'lengthbonus'],
+      to: ['bent', 'huey', 'hugo']
+    },
+    {
+      options: ['collarease'],
+      to: ['bent', 'huey', 'jaeger', 'sven']
+    },
+    {
+      options: ['shoulderease'],
+      to: ['bent', 'huey', 'jaeger', 'simon']
+    }
+  ],
+  huey: [
+    {
+      options: ['ribbingheight'],
+      to: ['hugo']
+    }
+  ],
+  carlita: [
+    {
+      options: [
+        'frontoverlap',
+        'pocketradius',
+        'innerpocketdepth',
+        'innerpocketplacement',
+        'innerpocketweltheight',
+        'innerpocketwidth',
+        'lapelreduction'
+      ],
+      to: ['carlton', 'jaeger']
+    }
+  ]
 }
-// Carton inherits (almost) all options from Carlita
-for (let option of options.carlita) {
-  if (option !== 'contour') {
-    patternOptions['/docs/patterns/carlita/options/' + option.toLowerCase() + '/'] = {
-      find: 'carlita',
-      replace: ['carlton']
+
+for (let from in dupes) {
+  for (let set of dupes[from]) {
+    for (let to of set.to) {
+      for (let option of set.options) addDupe(option, from, to)
     }
   }
 }
 
-// Simone inherits all options from Simon
-for (let option of options.simon) {
-  patternOptions['/docs/patterns/simon/options/' + option.toLowerCase() + '/'] = {
-    find: 'simon',
-    replace: ['simone']
-  }
+// Breanna inherits almost all options from Brian
+for (let option of options.brian) {
+  if (['lengthBonus', 'sleeveWidthGuarantee'].indexOf(option) === -1)
+    addDupe(option, 'brian', 'breanna')
 }
 
-// Breanna inherits all options from Brian
-for (let option of options.brian) {
-  patternOptions['/docs/patterns/brian/options/' + option.toLowerCase() + '/'] = {
-    find: 'brian',
-    replace: ['breanna']
-  }
+// Carton inherits almost all options from Carlita
+for (let option of options.carlita) {
+  if (option !== 'contour') addDupe(option, 'carlita', 'carlton')
 }
+
+// Simone inherits all options from Simon
+for (let option of options.simon) addDupe(option, 'simon', 'simone')
 
 const getDuplicates = () => {
   let dupes = {}
