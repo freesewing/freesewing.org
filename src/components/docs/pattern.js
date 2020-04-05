@@ -4,13 +4,40 @@ import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import PatternOptions from './pattern-options'
 import PatternMeasurements from './pattern-measurements'
+import Button from '@material-ui/core/Button'
+import PlayIcon from '@material-ui/icons/PlayArrow'
 
 const PatternIndexPage = (props) => {
   return (
-    <React.Fragment>
-      <p>
-        <FormattedMessage id={'patterns.' + props.pattern + '.description'} />
-      </p>
+    <>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        marginTop: '1rem'
+      }}>
+        <p>
+          <FormattedMessage id={'patterns.' + props.pattern + '.description'} />
+        </p>
+        <Button
+          style={{ marginRight: '1rem' }}
+          color="primary"
+          variant="contained"
+          size='large'
+          href={'/create/' + props.pattern + '/'}
+        >
+          <PlayIcon style={{ marginRight: '1rem' }} />
+          <FormattedMessage
+            id="app.newThing"
+            values={{ thing: [
+              capitalize(props.pattern),
+              ' ',
+              <FormattedMessage id={`app.pattern`} />
+            ]}}
+          />
+        </Button>
+      </div>
       <h2>
         <FormattedMessage id="app.patternInstructions" />
       </h2>
@@ -57,7 +84,7 @@ const PatternIndexPage = (props) => {
           </Link>
         </li>
       </ul>
-    </React.Fragment>
+    </>
   )
 }
 
