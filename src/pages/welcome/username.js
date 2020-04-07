@@ -49,7 +49,10 @@ const WelcomeUsernamePage = (props) => {
         <div style={{ textAlign: 'left' }}>
           <Blockquote type="note">
             <p>
-              <FormattedMessage id="account.usernameInfo" values={{ em: (...chunks) => <em>{chunks}</em> }} />
+              <FormattedMessage
+                id="account.usernameInfo"
+                values={{ em: (...chunks) => <em>{chunks}</em> }}
+              />
             </p>
           </Blockquote>
           <TextField

@@ -20,10 +20,9 @@ const RefreshAccountPage = (props) => {
     app.refreshAccount()
   }, [])
 
-  return     (
+  return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-      </CenteredLayout>
+      <CenteredLayout app={app} top></CenteredLayout>
     </AppWrapper>
   )
 }

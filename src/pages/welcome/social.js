@@ -47,7 +47,7 @@ const WelcomeSocialPage = (props) => {
       <CenteredLayout app={app} top>
         <div style={{ textAlign: 'left' }}>
           <Blockquote type="note">
-            <p dangerouslySetInnerHTML={{ __html: app.translate("account.socialInfo") }} />
+            <p dangerouslySetInnerHTML={{ __html: app.translate('account.socialInfo') }} />
           </Blockquote>
           <h5>Github</h5>
           <TextField

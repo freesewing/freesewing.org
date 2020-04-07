@@ -32,7 +32,10 @@ const RemoveAccountPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedMessage id="account.removeYourAccountInfo" values={{ em: (...chunks) => <em>{chunks}</em> }}/>
+          <FormattedMessage
+            id="account.removeYourAccountInfo"
+            values={{ em: (...chunks) => <em>{chunks}</em> }}
+          />
         </Blockquote>
         <Blockquote type="warning">
           <h4>

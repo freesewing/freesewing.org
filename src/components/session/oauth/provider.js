@@ -25,10 +25,14 @@ const OauthProvider = (props) => {
       data-provider={props.provider}
     >
       <Icon icon={props.provider} style={styles.icon} />
-        <span dangerouslySetInnerHTML={{__html: props.app.translate(props.login
-          ? 'app.loginWithProvider'
-          : 'app.signupWithProvider'
-          , { provider: props.provider }) }} />
+      <span
+        dangerouslySetInnerHTML={{
+          __html: props.app.translate(
+            props.login ? 'app.loginWithProvider' : 'app.signupWithProvider',
+            { provider: props.provider }
+          )
+        }}
+      />
     </Button>
   )
 }

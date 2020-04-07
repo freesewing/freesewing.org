@@ -14,9 +14,13 @@ const ResetPasswordForm = (props) => (
           <FormattedMessage id="app.emailWorksToo" />
         </li>
         <li data-test="trouble2">
-          <FormattedMessage id="app.forgotLoginInstructions" values={{
-            b: (...chunks) => <strong>{chunks}</strong>
-          }}/>.
+          <FormattedMessage
+            id="app.forgotLoginInstructions"
+            values={{
+              b: (...chunks) => <strong>{chunks}</strong>
+            }}
+          />
+          .
         </li>
       </ul>
     </div>

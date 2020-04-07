@@ -48,7 +48,10 @@ const UsernameSettingPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedMessage id={'account.usernameInfo'} values={{ em: (...chunks) => <em>{chunks}</em> }} />
+          <FormattedMessage
+            id={'account.usernameInfo'}
+            values={{ em: (...chunks) => <em>{chunks}</em> }}
+          />
         </Blockquote>
         {JSON.stringify(usernameValid, null, 2)}
         <TextField

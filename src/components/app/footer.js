@@ -94,7 +94,7 @@ const Footer = (props) => {
           </IconButton>
         ))}
       </p>
-      <p dangerouslySetInnerHTML={{ __html: props.app.translate('app.txt-footer')+':'}} />
+      <p dangerouslySetInnerHTML={{ __html: props.app.translate('app.txt-footer') + ':' }} />
       {allPatrons}
       <div style={styles.container}>
         <ul style={styles.links}>

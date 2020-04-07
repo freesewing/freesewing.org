@@ -27,7 +27,10 @@ const ExportAccountPage = (props) => {
     <AppWrapper app={app}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
-          <FormattedMessage id="account.exportYourDataInfo" values={{ em: (...chunks) => <em>{chunks}</em> }} />
+          <FormattedMessage
+            id="account.exportYourDataInfo"
+            values={{ em: (...chunks) => <em>{chunks}</em> }}
+          />
         </Blockquote>
         <h6 style={{ textAlign: 'center' }}>
           <FormattedMessage id="account.exportYourDataTitle" />

@@ -10,13 +10,15 @@ import PlayIcon from '@material-ui/icons/PlayArrow'
 const PatternIndexPage = (props) => {
   return (
     <>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        marginTop: '1rem'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          marginTop: '1rem'
+        }}
+      >
         <p>
           <FormattedMessage id={'patterns.' + props.pattern + '.description'} />
         </p>
@@ -24,17 +26,15 @@ const PatternIndexPage = (props) => {
           style={{ marginRight: '1rem' }}
           color="primary"
           variant="contained"
-          size='large'
+          size="large"
           href={'/create/' + props.pattern + '/'}
         >
           <PlayIcon style={{ marginRight: '1rem' }} />
           <FormattedMessage
             id="app.newThing"
-            values={{ thing: [
-              capitalize(props.pattern),
-              ' ',
-              <FormattedMessage id={`app.pattern`} />
-            ]}}
+            values={{
+              thing: [capitalize(props.pattern), ' ', <FormattedMessage id={`app.pattern`} />]
+            }}
           />
         </Button>
       </div>

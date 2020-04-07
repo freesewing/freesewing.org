@@ -15,7 +15,7 @@ import capitalize from '@freesewing/utils/capitalize'
 
 import './patterns.css'
 
-const PatternsIndexPage = props => {
+const PatternsIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.yourPatterns'))
