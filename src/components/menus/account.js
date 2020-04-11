@@ -2,69 +2,48 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Button from '@material-ui/core/Button'
+import './menu.scss'
 
-const AccountMenu = ({ app }) => {
-  const style = {
-    wrapper: {
-      padding: '0 1rem',
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      maxWidth: '600px'
-    },
-    col: {
-      padding: '0 0.5rem'
-    },
-    patterns: {
-      margin: 0,
-      padding: 0,
-      listStyleType: 'none'
-    },
-    pattern: {
-      padding: '0 0.5rem 0 0',
-      display: 'inline-block'
-    },
-    link: {
-      textDecoration: 'none',
-      color: app.theme === 'dark' ? '#74c0fc' : '#228be6'
-    },
-    button: {
-      margin: '1rem 4px 0',
-      maxWidth: 'calc(50% - 8px)',
-      textAlign: 'center'
-    }
-  }
-
-  return (
-    <div style={style.wrapper} className={`style-wrapper ${app.theme}`}>
-      {!app.mobile && (
-        <>
-          <Button
-            variant="contained"
-            href="/create/"
-            fullWidth
-            style={style.button}
-            color="primary"
-          >
+const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
+  <div className={`style-wrapper ${app.theme} menu-instance wrapper ${className}`}>
+    {!app.mobile && !settingsOnly && (
+      <>
+        <Button className="button" variant="contained" href="/create/" color="primary">
+          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+        </Button>
+        <Button className="button" variant="outlined" href="/person/" color="primary">
+          <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
+        </Button>
+        <Button className="button" onClick={app.logout} href="/" color="primary">
+          <FormattedMessage id="app.logOut" />
+        </Button>
+      </>
+    )}
+    {app.mobile && (
+      <ul className="inline">
+        <li>
+          <Link to="/create/">
             <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-          </Button>
-          <Button
-            variant="contained"
-            href="/person/"
-            fullWidth
-            style={style.button}
-            color="primary"
-            className="info"
-          >
+          </Link>
+        </li>
+        <li>
+          <Link to="/person/">
             <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
-          </Button>
-        </>
-      )}
-      <div style={style.col}>
+          </Link>
+        </li>
+        <li>
+          <Link to="/" onClick={app.logout}>
+            <FormattedMessage id="app.logOut" />
+          </Link>
+        </li>
+      </ul>
+    )}
+    {!settingsOnly && (
+      <>
         <h6>
           <FormattedMessage id="app.browse" />
         </h6>
-        <ul className="links">
+        <ul className="inline">
           <li>
             <Link to="/patterns/">
               <FormattedMessage id="app.patterns" />
@@ -81,41 +60,59 @@ const AccountMenu = ({ app }) => {
             </Link>
           </li>
         </ul>
-        <h6>
-          <FormattedMessage id="app.various" />
-        </h6>
-        <ul className="links">
-          <li>
-            <Link to="/" onClick={app.logout}>
-              <FormattedMessage id="app.logOut" />
-            </Link>
-          </li>
-          <li>
-            <Link to="/account/">
-              <FormattedMessage id="app.account" />
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div style={style.col}>
-        <h6>
-          <FormattedMessage id="app.settings" />
-        </h6>
-        <ul className="links">
-          {['avatar', 'bio', 'language', 'units', 'github', 'instagram', 'twitter'].map(
-            (setting) => (
-              <li key={setting}>
-                <Link to={`/account/settings/${setting}/`}>
-                  <FormattedMessage id={`account.${setting}`} />
-                </Link>
-              </li>
-            )
-          )}
-        </ul>
-      </div>
-      <div style={style.col}></div>
-    </div>
-  )
-}
+      </>
+    )}
+    <h6>
+      <Link to="/account/settings/">
+        <FormattedMessage id="app.settings" />
+      </Link>
+    </h6>
+    <ul className="inline">
+      {[
+        'avatar',
+        'bio',
+        'language',
+        'units',
+        'github',
+        'instagram',
+        'twitter',
+        'email',
+        'username',
+        'password'
+      ].map((setting) => (
+        <li key={setting}>
+          <Link to={`/account/settings/${setting}/`}>
+            <FormattedMessage id={`account.${setting}`} />
+          </Link>
+        </li>
+      ))}
+    </ul>
+    <h6>
+      <FormattedMessage id="app.actions" />
+    </h6>
+    <ul className="inline">
+      <li>
+        <Link to="/account/export/">
+          <FormattedMessage id="account.exportYourData" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/consent/">
+          <FormattedMessage id="account.reviewYourConsent" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/restrict/">
+          <FormattedMessage id="account.restrictProcessingOfYourData" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/remove/">
+          <FormattedMessage id="account.removeYourAccount" />
+        </Link>
+      </li>
+    </ul>
+  </div>
+)
 
 export default AccountMenu

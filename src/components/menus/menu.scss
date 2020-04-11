@@ -1,0 +1,39 @@
+@import '../../../node_modules/open-color/open-color.scss';
+div.menu-instance.wrapper {
+  padding: 1.5rem 2rem;
+  max-width: 600px;
+  ul.inline {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      padding: 0 0.5rem 0 0;
+      display: inline-block;
+    }
+    li::after {
+      content: ', ';
+    }
+    li:last-of-type::after {
+      content: '';
+    }
+  }
+  .button {
+    margin: 1rem 1rem 1rem 0;
+  }
+  h6 a {
+    color: inherit !important;
+  }
+}
+
+div.menu-instance.wrapper.dark {
+  background: $oc-gray-8;
+}
+div.menu-instance.wrapper.light {
+  background: #fff;
+}
+div.menu-instance.wrapper.transparent {
+  background: transparent;
+}
+div.mobile div.menu-instance.wrapper {
+  font-size: 80%;
+}

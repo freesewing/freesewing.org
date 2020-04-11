@@ -13,50 +13,29 @@ import DocsMenu from './docs'
 import CommunityMenu from './community'
 import AccountMenu from './account'
 import DocsNavigation from '../app/docs-navigation'
-
-import ExpansionPanel from '@material-ui/core/ExpansionPanel'
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Link } from 'gatsby'
+import ShowIcon from '@material-ui/icons/ExpandMore'
+import HideIcon from '@material-ui/icons/ExpandLess'
 
 const MobileMenu = ({ app }) => {
   // State
-  const [expanded, setExpanded] = useState(
-    window && window.location.pathname.slice(0, 5) === '/docs' ? 'docs' : false
-  )
+  const [account, setAccount] = useState(false)
+  const [docs, setDocs] = useState(false)
+  const [community, setCommunity] = useState(false)
+  const [patterns, setPatterns] = useState(false)
 
-  // Add classes to expansion panel headers to prevent them from closing the navigation
-  // See the closeNav() method in the useApp hook
-  const noClose = {
-    classes: {
-      root: 'no-closenav',
-      content: 'no-closenav'
-    },
-    className: 'no-closenav'
-  }
-
-  // Methods
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
-  }
-
-  const renderMenu = (type, title, menu) => {
-    return (
-      <ExpansionPanel expanded={expanded === type} onChange={handleChange(type)} {...noClose}>
-        <ExpansionPanelSummary
-          {...noClose}
-          expandIcon={<ExpandMoreIcon className="no-closenav" />}
-          aria-controls={`${type}-content`}
-          id={`${type}-header`}
-        >
-          <h5 style={style.h5} {...noClose}>
-            {title}
-          </h5>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>{menu}</ExpansionPanelDetails>
-      </ExpansionPanel>
-    )
+  const toggle = (type) => {
+    let state = { account, docs, community, patterns }
+    let methods = {
+      account: setAccount,
+      docs: setDocs,
+      community: setCommunity,
+      patterns: setPatterns
+    }
+    // Close all
+    for (let method in methods) methods[method](false)
+    // Open 1 if needed
+    if (!state[type]) methods[type](true)
   }
 
   // Style
@@ -66,22 +45,30 @@ const MobileMenu = ({ app }) => {
   }
   const style = {
     wrapper: {
-      padding: '1rem',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      justifyContent: 'center',
+      minHeight: '100vh'
     },
     icons: {
       textAlign: 'center',
-      marginBottom: '1rem'
+      margin: '1rem auto'
     },
     iconButton: {
       color: colors[app.theme]
     },
-    h5: {}
+    toggle: {
+      display: 'flex',
+      flexDirection: 'row',
+      color: 'inherit',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '0 1.5rem'
+    }
   }
 
   // Figure out where we are
-  let docsMenu = <DocsMenu app={app} />
+  let docsMenu = <DocsMenu app={app} className="transparent" />
   if (window && window.location.pathname.slice(0, 5) === '/docs')
     docsMenu = <DocsNavigation app={app} slug={window.location.pathname} />
 
@@ -143,29 +130,47 @@ const MobileMenu = ({ app }) => {
           )}
         </IconButton>
       </div>
-
-      {app.account.username ? (
-        renderMenu('account', app.translate('app.account'), <AccountMenu app={app} />)
-      ) : (
-        <h5 style={{ ...style.h5, textAlign: 'center' }}>
-          <Link to="/login/">
-            <FormattedMessage id="app.logIn" />
-          </Link>
-          <span> / </span>
-          <Link to="/signup/">
-            <FormattedMessage id="app.signUp" />
-          </Link>
-        </h5>
+      {app.account.username && (
+        <>
+          <h5>
+            <a role="button" style={style.toggle} onClick={() => toggle('account')} className="poh">
+              <FormattedMessage id="app.account" />
+              {account ? <HideIcon /> : <ShowIcon />}
+            </a>
+          </h5>
+          <div className={account ? '' : 'collapsed'}>
+            <AccountMenu app={app} className="transparent" />
+          </div>
+        </>
       )}
-      {renderMenu('patterns', app.translate('app.patterns'), <PatternsMenu app={app} />)}
-      {renderMenu('docs', app.translate('app.docs'), docsMenu)}
-      {renderMenu('community', app.translate('app.community'), <CommunityMenu app={app} />)}
-      <Button variant="contained" color="primary" href="/create/" style={{ marginTop: '1rem' }}>
-        <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-      </Button>
-      <Button variant="outlined" color="primary" href="/designs/" style={{ marginTop: '1rem' }}>
-        <FormattedMessage id="app.browseCollection" />
-      </Button>
+
+      <h5>
+        <a role="button" style={style.toggle} onClick={() => toggle('patterns')} className="poh">
+          <FormattedMessage id="app.patterns" />
+          {patterns ? <HideIcon /> : <ShowIcon />}
+        </a>
+      </h5>
+      <div className={patterns ? '' : 'collapsed'}>
+        <PatternsMenu app={app} className="transparent" />
+      </div>
+
+      <h5>
+        <a role="button" style={style.toggle} onClick={() => toggle('docs')} className="poh">
+          <FormattedMessage id="app.docs" />
+          {docs ? <HideIcon /> : <ShowIcon />}
+        </a>
+      </h5>
+      <div className={docs ? '' : 'collapsed'}>{docsMenu}</div>
+
+      <h5>
+        <a role="button" style={style.toggle} onClick={() => toggle('community')} className="poh">
+          <FormattedMessage id="app.community" />
+          {docs ? <HideIcon /> : <ShowIcon />}
+        </a>
+      </h5>
+      <div className={community ? '' : 'collapsed'}>
+        <CommunityMenu app={app} className="transparent" />
+      </div>
     </div>
   )
 }
