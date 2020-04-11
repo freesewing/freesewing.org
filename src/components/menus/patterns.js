@@ -7,14 +7,11 @@ import Button from '@material-ui/core/Button'
 const PatternMenu = ({ app }) => {
   const style = {
     wrapper: {
-      padding: '0 1rem',
+      padding: '1.5rem 2rem',
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       maxWidth: '600px'
-    },
-    col: {
-      padding: '0 0.5rem'
     },
     patterns: {
       margin: 0,
@@ -25,15 +22,8 @@ const PatternMenu = ({ app }) => {
       padding: '0 0.5rem 0 0',
       display: 'inline-block'
     },
-    link: {
-      textDecoration: 'none',
-      color: app.theme === 'dark' ? '#74c0fc' : '#228be6'
-    },
-    button: {
-      margin: '0.5rem 0.5rem 0.5rem 0'
-    },
     topButtons: {
-      margin: '2rem 0.5rem 0.5rem 0.5rem'
+      margin: '1rem 1rem 1rem 0'
     }
   }
 
