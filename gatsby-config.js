@@ -8,6 +8,7 @@ for (let lang in languages) {
 const jargon = require('@freesewing/i18n').jargon[process.env.GATSBY_LANGUAGE]
 
 const plugins = [
+  `gatsby-plugin-sass`,
   // Automatically restores your cache and caches new files within the Netlify cache folder.
   //   To reset the cache, hit the Clear build cache checkbox in the Netlify app.
   'gatsby-plugin-netlify-cache',

@@ -1,0 +1,36 @@
+@import '../../../node_modules/open-color/open-color.scss';
+div.menu.wrapper {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 600px;
+  ul.inline {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  li.link {
+    padding: 0 0.5rem 0 0;
+    display: inline-block;
+  }
+  li.link::after {
+    content: ', ';
+  }
+  li.link:last-of-type::after {
+    content: '';
+  }
+  .button {
+    margin: 1rem 1rem 1rem 0;
+  }
+  h6 a {
+    color: inherit !important;
+  }
+}
+
+div.menu.wrapper.dark {
+  background: $oc-gray-8;
+}
+div.menu.wrapper.light {
+  background: #fff;
+}
