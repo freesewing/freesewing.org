@@ -6,6 +6,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Button from '@material-ui/core/Button'
 import { info } from '@freesewing/pattern-info'
 import Chip from '@material-ui/core/Chip'
+import StarIcon from '@material-ui/icons/Star'
 
 const PatternFilter = (props) => {
   const [search, setSearch] = useState('')
@@ -14,7 +15,8 @@ const PatternFilter = (props) => {
     type: [],
     tags: [],
     design: [],
-    code: []
+    code: [],
+    difficulty: []
   })
 
   const closeFilter = () => {
@@ -34,7 +36,8 @@ const PatternFilter = (props) => {
       type: [],
       tags: [],
       design: [],
-      code: []
+      code: [],
+      difficulty: []
     }
     setFilter(clear)
     props.applyFilter(filteredPatternList(clear, ''))
@@ -61,6 +64,10 @@ const PatternFilter = (props) => {
         }
       }
       f.tags = uniqueArray(list)
+    } else if (type === 'difficulty') {
+      f.difficulty = [1, 2, 3, 4, 5].filter((dif) => {
+        return dif <= item
+      })
     } else {
       if (f[type].indexOf(item) === -1) f[type] = [item]
       else f[type] = []
@@ -131,6 +138,13 @@ const PatternFilter = (props) => {
         }
       }
     }
+    if (filtered.difficulty.length > 0) {
+      const maxDifficulty = Math.max(...filtered.difficulty)
+
+      for (let pattern in patterns) {
+        if (patterns[pattern].difficulty > maxDifficulty) delete patterns[pattern]
+      }
+    }
     return Object.keys(patterns)
   }
 
@@ -144,7 +158,7 @@ const PatternFilter = (props) => {
 
   for (let p in info) {
     for (let f in filterTypes) {
-      if (f === 'tags' || f === 'code' || f === 'design') {
+      if (['tags', 'code', 'design', 'difficulty'].includes(f)) {
         if (typeof info[p][f] === 'string') filterTypes[f].push(info[p][f])
         else {
           for (let tag of info[p][f]) filterTypes[f].push(tag)
@@ -156,6 +170,8 @@ const PatternFilter = (props) => {
   for (let f in filterTypes) {
     filterTypes[f] = uniqueArray(filterTypes[f])
   }
+
+  filterTypes.difficulty = [1, 2, 3, 4, 5]
 
   const item = {
     display: 'inline',
@@ -210,18 +226,31 @@ const PatternFilter = (props) => {
               </span>
             </li>
             {filterTypes[type].map((value, index) => {
+              const filterLabel = () => {
+                if (['code', 'design'].includes(type)) {
+                  return value
+                } else if (type == 'difficulty') {
+                  const difficulty = []
+                  for (let i = 1; i <= value; i++)
+                    difficulty.push(
+                      <span style={styles.star}>
+                        <StarIcon />
+                      </span>
+                    )
+                  return difficulty
+                } else {
+                  {
+                    return <FormattedMessage id={'filter.' + value} />
+                  }
+                }
+              }
+
               return (
                 <li key={type + value} onClick={() => toggle(type, value)} style={styles.item}>
                   <Chip
                     color="primary"
                     className={'chip-' + type}
-                    label={
-                      type === 'code' || type === 'design' ? (
-                        value
-                      ) : (
-                        <FormattedMessage id={'filter.' + value} />
-                      )
-                    }
+                    label={filterLabel()}
                     size="small"
                     variant={isSelected(type, value) ? 'default' : 'outlined'}
                     clickable={true}
