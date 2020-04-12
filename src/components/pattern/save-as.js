@@ -6,7 +6,6 @@ import Loading from '../loading'
 import { navigate } from 'gatsby'
 
 const SavePatternAs = (props) => {
-  console.log('save as', props)
   // State
   const [name, setName] = useState('')
   const [notes, setNotes] = useState('')

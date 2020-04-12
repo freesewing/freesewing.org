@@ -67,7 +67,7 @@ const CreatePatternForPersonPage = (props) => {
       })
     } else {
       setDesign(pop.data.design)
-      setPerson(usePerson(app, pop.person))
+      setPerson(usePerson(app, pop.data.settings.metadata.forHandle))
       setPattern(pop)
       applyCrumbs(props.pattern, pop.name)
     }
