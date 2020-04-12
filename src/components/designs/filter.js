@@ -138,6 +138,13 @@ const PatternFilter = (props) => {
         }
       }
     }
+    if (filtered.difficulty.length > 0) {
+      const maxDifficulty = Math.max(...filtered.difficulty)
+
+      for (let pattern in patterns) {
+        if (patterns[pattern].difficulty > maxDifficulty) delete patterns[pattern]
+      }
+    }
     return Object.keys(patterns)
   }
 
