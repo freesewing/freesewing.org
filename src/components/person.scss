@@ -1,0 +1,121 @@
+@import '../../node_modules/open-color/open-color.scss';
+div.person {
+  border: 1px solid $oc-gray-3;
+  width: 400px;
+  border-radius: 3px;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0.5rem;
+  div.top {
+    background-image: url('/horizon.jpg');
+    background-size: cover;
+    background-position-y: bottom;
+    width: calc(100% - 2rem - 125px);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: $oc-gray-1;
+    padding: 0 1rem;
+    padding-left: calc(1rem + 125px);
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    h5 {
+      margin: 0;
+      line-height: 1;
+      text-shadow: 0 0 2px #000c;
+    }
+  }
+  div.bottom {
+    width: calc(100% - 1.5rem - 125px);
+    padding: 0.5rem;
+    padding-left: calc(1rem + 125px);
+    background: $oc-gray-2;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    min-height: calc(75px - 2rem);
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-family: 'Roboto Condensed';
+      line-height: 1;
+      font-size: 0.9rem;
+      li {
+        padding-bottom: 0.25rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        svg {
+          padding-right: 0.5rem;
+        }
+      }
+    }
+  }
+  div.avatar {
+    position: absolute;
+    left: 1rem;
+    top: calc(6rem - 50px);
+    width: 100px;
+    margin: 0;
+    flex-shrink: 0;
+    img {
+      border: 3px solid $oc-gray-2;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: $oc-gray-5;
+    }
+  }
+  a.link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.theme-wrapper.dark {
+  div.person {
+    border: 1px solid $oc-gray-7;
+    div.bottom {
+      background: $oc-gray-8;
+    }
+    div.avatar img {
+      border-color: $oc-gray-8;
+    }
+  }
+}
+@media (max-width: 599px) {
+  div.person {
+    width: 100%;
+    max-width: 400px;
+    div.top {
+      width: calc(100% - 3rem - 50px);
+      padding-left: calc(2rem + 50px);
+      height: 4.5rem;
+      h5 {
+        font-size: 90%;
+      }
+    }
+    div.bottom {
+      padding-left: calc(2rem + 50px);
+      width: calc(100% - 2.5rem - 50px);
+      ul li {
+        padding: 0;
+        font-size: 95%;
+      }
+    }
+    div.avatar {
+      img {
+        width: 50px;
+        height: 50px;
+        top: 6rem;
+      }
+    }
+  }
+}

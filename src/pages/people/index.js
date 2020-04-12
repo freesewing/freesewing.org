@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import WideLayout from '../../components/layouts/wide'
 
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button'
 import Avatar from '../../components/avatar'
 import MissingPeople from '../../components/missing/people'
 import ModelGraph from '../../components/model-graph.js'
+
+import Person from '../../components/person'
 
 const PeopleIndexPage = (props) => {
   const app = useApp()
@@ -19,6 +21,11 @@ const PeopleIndexPage = (props) => {
 
   // Styles
   const styles = {
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap'
+    },
     person: {
       display: 'flex',
       flexDirection: 'row',
@@ -41,44 +48,35 @@ const PeopleIndexPage = (props) => {
     }
   }
 
+  const add = (
+    <p>
+      <Button variant="contained" color="primary" href="/person/">
+        <FormattedMessage id="app.addThing" values={{ thing: app.translate('app.person') }} />
+      </Button>
+    </p>
+  )
+
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <WideLayout app={app} top>
+        {add}
         {Object.keys(app.people).length > 0 ? (
           <>
-            {Object.keys(app.people).map((handle, person) => {
-              return (
-                <div className="box" key={handle}>
-                  <Link to={'/people/' + handle + '/'} title={app.people[handle].name}>
-                    <div style={styles.person}>
-                      <div style={styles.avatar}>
-                        <Avatar variant="model" data={app.people[handle]} size="64px" />
-                      </div>
-                      <div>
-                        <h6 style={styles.name}>{app.people[handle].name}</h6>
-                        <p style={styles.notes}>{app.people[handle].notes}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <ModelGraph model={app.people[handle]} intl={app.intl} />
-                    </div>
-                  </Link>
-                </div>
-              )
-            })}
-            <p style={{ textAlign: 'right' }}>
-              <Button size="large" variant="contained" color="primary" href="/person/">
-                <FormattedMessage
-                  id="app.addThing"
-                  values={{ thing: app.translate('app.person') }}
+            <div style={styles.wrapper}>
+              {Object.keys(app.people).map((handle) => (
+                <Person
+                  data={app.people[handle]}
+                  link={`/people/${handle}/`}
+                  translate={app.translate}
                 />
-              </Button>
-            </p>
+              ))}
+            </div>
           </>
         ) : (
           <MissingPeople />
         )}
-      </CenteredLayout>
+        {app.people && Object.keys(app.people).length > 3 && add}
+      </WideLayout>
     </AppWrapper>
   )
 }
