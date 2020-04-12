@@ -48,7 +48,8 @@ const MobileMenu = ({ app }) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      minHeight: '100vh'
+      minHeight: '(calc 100vh - 4rem)',
+      paddingBottom: '4rem'
     },
     icons: {
       textAlign: 'center',
