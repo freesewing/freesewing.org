@@ -7,7 +7,7 @@ const CenteredLayout = (props) => {
     maxWidth: props.wide ? '900px' : '600px'
   }
 
-  return <BaseLayout {...props} style={style} />
+  return <BaseLayout {...props} style={style} name="centered" />
 }
 
 export default CenteredLayout

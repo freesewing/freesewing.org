@@ -11,7 +11,7 @@ const DocsLayout = ({ app, slug, children }) => {
   }
 
   return (
-    <div className="fs-sa">
+    <div className="fs-sa" dataLayout="docs">
       <section>
         <article style={style.text}>
           <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />

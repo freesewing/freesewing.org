@@ -40,7 +40,7 @@ const PostLayout = (props) => {
     : null
 
   return (
-    <BaseLayout {...props} style={style.base} noTitle top>
+    <BaseLayout {...props} style={style.base} noTitle top name="post">
       <article>
         <BreadCrumbs crumbs={props.app.crumbs} pageTitle={props.app.title} />
         <h1>{props.app.title}</h1>

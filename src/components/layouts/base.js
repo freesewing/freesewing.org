@@ -1,7 +1,7 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
 
-const BaseLayout = ({ app, children, style = {}, top = false, noTitle = false }) => {
+const BaseLayout = ({ app, children, style = {}, top = false, noTitle = false, name = 'base' }) => {
   const baseStyle = {
     margin: '0 auto',
     minHeight: noTitle ? undefined : 'calc(100vh - 6rem)',
@@ -14,7 +14,7 @@ const BaseLayout = ({ app, children, style = {}, top = false, noTitle = false })
   }
 
   return (
-    <div style={baseStyle}>
+    <div style={baseStyle} dataLayout={name}>
       {!noTitle && (
         <>
           <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />

@@ -3,7 +3,7 @@ import useApp from '../../../../hooks/useApp'
 import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import LoadingLayout from '../../../../components/layouts/loading'
+import DraftLoadingLayout from '../../../../components/layouts/draft-loading'
 import DraftUi from '../../../../components/draft/ui'
 import usePerson from '../../../../hooks/usePerson'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
@@ -17,7 +17,7 @@ const CreatePatternForPersonPage = (props) => {
   if (typeof props.person === 'undefined')
     return (
       <AppWrapper app={app}>
-        <LoadingLayout app={app} />
+        <DraftLoadingLayout app={app} />
       </AppWrapper>
     )
 

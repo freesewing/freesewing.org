@@ -9,7 +9,7 @@ const LoadingLayout = (props) => {
   }
 
   return (
-    <BaseLayout {...props} style={style} top>
+    <BaseLayout {...props} style={style} top name="loading">
       <Loading loading={true} />
       {props.children}
     </BaseLayout>
