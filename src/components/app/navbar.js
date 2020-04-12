@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
@@ -19,10 +19,17 @@ export default function ButtonAppBar(props) {
   // Don't show on mobile
   if (props.app.mobile) return null
 
+  // Use of effect to avoid SSR issues
+  // Effects
+  useEffect(() => {
+    if (props.app.account.username) setLoggedIn(true)
+  }, [props.app.account])
+
   const [patternAnchor, setPatternAnchor] = useState(null)
   const [docsAnchor, setDocsAnchor] = useState(null)
   const [communityAnchor, setCommunityAnchor] = useState(null)
   const [userAnchor, setUserAnchor] = useState(null)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const handlePatternOpen = (event) => setPatternAnchor(event.currentTarget)
   const handleDocsOpen = (event) => setDocsAnchor(event.currentTarget)
@@ -164,7 +171,7 @@ export default function ButtonAppBar(props) {
 
           <span style={style.spacer} />
 
-          {props.app.account.username ? (
+          {loggedIn ? (
             <>
               <Button
                 aria-owns={userOpen ? 'user-popover' : undefined}
