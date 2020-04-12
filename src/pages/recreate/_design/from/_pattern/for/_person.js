@@ -18,7 +18,6 @@ const CreatePatternForPersonPage = (props) => {
         <LoadingLayout app={app} />
       </AppWrapper>
     )
-
   // State
   const [pattern, setPattern] = useState(null)
   const [person, setPerson] = useState(
@@ -80,8 +79,8 @@ const CreatePatternForPersonPage = (props) => {
       applyCrumbs(pop.data.design, pop.name)
       // Do we need to pull the person info from the original pattern?
       let name = person ? person.name : 'original'
-      if (pop.data.settings.metadata) name = pop.data.settings.metadata.for
-      if (props.person === 'original') extractPerson(pop)
+      if (!person && pop.data.settings.metadata) name = pop.data.settings.metadata.for
+      if (!person) extractPerson(pop)
       app.setTitle(
         app.translate('app.recreateThingForPerson', {
           thing: pop.name + ' (' + app.translate(`patterns.${pop.data.design}.title`) + ')',
@@ -101,12 +100,19 @@ const CreatePatternForPersonPage = (props) => {
         <LoadingLayout app={app} />
       </AppWrapper>
     )
+
   return (
     <AppWrapper app={app}>
       <DraftUi
         mode="recreate"
         app={app}
-        data={pattern.data}
+        data={{
+          ...pattern.data,
+          settings: {
+            ...pattern.data.settings,
+            measurements: person.measurements
+          }
+        }}
         person={person}
         design={pattern.data.design}
         recreate={props.pattern}
