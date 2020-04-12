@@ -6,10 +6,6 @@ import IconButton from '@material-ui/core/IconButton'
 
 import Logo from '@freesewing/components/Logo'
 import { Link } from 'gatsby'
-import LightModeIcon from '@material-ui/icons/WbSunny'
-import DarkModeIcon from '@material-ui/icons/Brightness3'
-import LanguageIcon from '@material-ui/icons/Translate'
-import SearchIcon from '@material-ui/icons/Search'
 import { FormattedMessage } from 'react-intl'
 
 import Popover from '@material-ui/core/Popover'
@@ -17,6 +13,7 @@ import PatternMenu from '../menus/patterns'
 import DocsMenu from '../menus/docs'
 import CommunityMenu from '../menus/community'
 import AccountMenu from '../menus/account'
+import NavbarIcons from './navbar-icons'
 
 export default function ButtonAppBar(props) {
   // Don't show on mobile
@@ -191,40 +188,12 @@ export default function ButtonAppBar(props) {
               <FormattedMessage id="app.logIn" />
             </Button>
           )}
-          <IconButton
-            style={style.iconButton}
-            aria-label="menu"
-            color="inherit"
-            href="/search/"
-            title={props.app.translate('app.search')}
-          >
-            <SearchIcon style={style.icon} />
-          </IconButton>
-          <IconButton
-            style={style.iconButton}
-            aria-label="menu"
-            color="inherit"
-            href="/language/"
-            title={props.app.translate(`i18n.${props.app.language}`)}
-          >
-            <LanguageIcon style={style.icon} />
-          </IconButton>
-          <IconButton
-            style={style.darkModeButton}
-            aria-label="menu"
-            onClick={props.app.toggleDarkMode}
-            title={
-              props.app.theme === 'dark'
-                ? props.app.translate('app.lightMode')
-                : props.app.translate('app.darkMode')
-            }
-          >
-            {props.app.theme === 'dark' ? (
-              <LightModeIcon style={style.icon} />
-            ) : (
-              <DarkModeIcon style={style.darkModeIcon} />
-            )}
-          </IconButton>
+          <NavbarIcons
+            translate={props.app.translate}
+            toggleDarkMode={props.app.toggleDarkMode}
+            theme={props.app.theme}
+            language={props.app.language}
+          />
         </Toolbar>
       </AppBar>
     </div>
