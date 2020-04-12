@@ -25,7 +25,7 @@ const Person = (props) => (
       </ul>
     </div>
     <div className="avatar">
-      <img src="https://static.freesewing.org/users/j/joost/joost.jpg" />
+      <img src={props.data.pictureUris.m} />
     </div>
     <Link to={props.link} className="link" />
   </div>
