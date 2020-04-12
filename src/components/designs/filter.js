@@ -15,7 +15,8 @@ const PatternFilter = (props) => {
     type: [],
     tags: [],
     design: [],
-    code: []
+    code: [],
+    difficulty: []
   })
 
   const closeFilter = () => {
@@ -33,10 +34,10 @@ const PatternFilter = (props) => {
     let clear = {
       department: [],
       type: [],
-      difficulty: [],
       tags: [],
       design: [],
-      code: []
+      code: [],
+      difficulty: []
     }
     setFilter(clear)
     props.applyFilter(filteredPatternList(clear, ''))
@@ -63,6 +64,10 @@ const PatternFilter = (props) => {
         }
       }
       f.tags = uniqueArray(list)
+    } else if (type === 'difficulty') {
+      f.difficulty = [1, 2, 3, 4, 5].filter((dif) => {
+        return dif <= item
+      })
     } else {
       if (f[type].indexOf(item) === -1) f[type] = [item]
       else f[type] = []
