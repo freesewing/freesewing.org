@@ -7,10 +7,7 @@ import WideLayout from '../../components/layouts/wide'
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Avatar from '../../components/avatar'
 import MissingPeople from '../../components/missing/people'
-import ModelGraph from '../../components/model-graph.js'
-
 import Person from '../../components/person'
 
 const PeopleIndexPage = (props) => {
@@ -25,26 +22,6 @@ const PeopleIndexPage = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap'
-    },
-    person: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center'
-    },
-    name: {
-      wordWrap: 'anywhere',
-      margin: 0,
-      padding: 0
-    },
-    notes: {
-      wordWrap: 'anywhere',
-      margin: 0,
-      padding: 0
-    },
-    avatar: {
-      height: '64px',
-      width: '64px',
-      padding: '8px'
     }
   }
 

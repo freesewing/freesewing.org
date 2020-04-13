@@ -1,7 +1,15 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
 
-const BaseLayout = ({ app, children, style = {}, top = false, noTitle = false, name = 'base' }) => {
+const BaseLayout = ({
+  app,
+  children,
+  style = {},
+  top = false,
+  noTitle = false,
+  crumbsOnly = false,
+  name = 'base'
+}) => {
   const baseStyle = {
     margin: '0 auto',
     minHeight: noTitle ? undefined : 'calc(100vh - 6rem)',
@@ -15,10 +23,10 @@ const BaseLayout = ({ app, children, style = {}, top = false, noTitle = false, n
 
   return (
     <div style={baseStyle} dataLayout={name}>
-      {!noTitle && (
+      {(crumbsOnly || !noTitle) && (
         <>
           <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />
-          <h1>{app.title}</h1>
+          {!crumbsOnly && <h1>{app.title}</h1>}
         </>
       )}
       {children}
