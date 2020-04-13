@@ -1,8 +1,9 @@
 import { withBreasts, withoutBreasts } from '@freesewing/models'
 
-const sizes = {}
-sizes['with-breasts'] = withBreasts
-sizes['without-breasts'] = withoutBreasts
+const sizes = {
+  a: withoutBreasts,
+  b: withBreasts
+}
 
 export default function usePerson(app, handle = false) {
   if (!handle) return false
@@ -15,7 +16,7 @@ export default function usePerson(app, handle = false) {
       let name =
         app.translate('app.size') +
         ` ${handle.slice(5, 7)}, ` +
-        app.translate(build === 'with-breasts' ? 'app.withBreasts' : 'app.withoutBreasts')
+        app.translate(build === 'b' ? 'app.withBreasts' : 'app.withoutBreasts')
       return {
         notAPerson: true,
         handle: name,

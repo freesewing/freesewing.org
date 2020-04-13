@@ -7,6 +7,8 @@ import {
   withoutBreasts
 } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
+import Icon from '@freesewing/components/Icon'
+import convertSize from '@freesewing/utils/convertSize'
 
 const SizeTable = (props) => {
   const sizes = props.breasts ? allSizes.womenswear : allSizes.menswear
@@ -15,20 +17,30 @@ const SizeTable = (props) => {
 
   const style = {
     wrapper: {
-      overflowX: 'auto'
+      overflowX: 'auto',
+      marginBottom: '1rem'
+    },
+    th: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   }
 
+  const icon = <Icon icon={props.breasts ? 'withBreasts' : 'withoutBreasts'} />
   return [
     <div style={style.wrapper}>
       <table className={'data ' + (props.breasts ? 'with-breasts' : 'without-breasts')}>
         <thead>
           <tr>
-            <th>
-              <FormattedMessage id={props.breasts ? 'app.withBreasts' : 'app.withoutBreasts'} />
-            </th>
+            <th>{icon}</th>
             {sizes.map((size) => (
-              <th key={size}>{size}</th>
+              <th key={size}>
+                <div style={style.th}>
+                  {icon} {convertSize(size, props.breasts)}
+                </div>
+              </th>
             ))}
           </tr>
         </thead>

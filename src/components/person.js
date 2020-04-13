@@ -4,7 +4,7 @@ import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
 
 const Person = (props) => (
-  <div className="person">
+  <div className={`person ${props.data.breasts ? 'breasts' : 'no-breasts'}`}>
     <div className="top">
       <h5>{props.data.name}</h5>
     </div>

@@ -8,7 +8,7 @@ import WideLayout from '../../../../../components/layouts/wide'
 import LoadingLayout from '../../../../../components/layouts/loading'
 
 import { FormattedMessage } from 'react-intl'
-import SelectPerson from '../../../../../components/draft/select-person'
+import SelectSize from '../../../../../components/draft/select-size'
 import capitalize from '@freesewing/utils/capitalize'
 
 const RecreatePatternPage = (props) => {
@@ -74,7 +74,7 @@ const RecreatePatternPage = (props) => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <SelectPerson app={app} design={design} people={people} recreate={props.pattern} />
+        <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
       </WideLayout>
     </AppWrapper>
   )

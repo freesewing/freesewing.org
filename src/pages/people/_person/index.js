@@ -25,8 +25,8 @@ import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
-import Avatar from '../../../components/avatar'
 import ModelGraph from '../../../components/model-graph.js'
+import Person from '../../../components/person'
 
 const PersonPage = (props) => {
   // Hooks
@@ -156,11 +156,11 @@ const PersonPage = (props) => {
       margin: 'auto'
     },
     table: {
-      padding: 0,
+      padding: '0.5rem',
       borderCollapse: 'collapse',
-      width: '100%',
       tableLayout: 'fixed',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      margin: '0 auto'
     },
     cell: {
       padding: '1rem',
@@ -207,6 +207,12 @@ const PersonPage = (props) => {
     heading: {
       margin: 0,
       padding: '1rem'
+    },
+    row: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'center'
     }
   }
 
@@ -234,23 +240,88 @@ const PersonPage = (props) => {
   const blankSlate = !person.measurements || !person.measurements.neckCircumference
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} wide left>
-        <div style={styles.avatarWrapper}>
-          <Link to={`/people/${props.person}/avatar/`}>
-            <Avatar data={person} />
-          </Link>
+      <CenteredLayout app={app} wide left crumbsOnly>
+        <div style={styles.row}>
+          <Person
+            data={app.people[props.person]}
+            link={`/people/${props.person}/`}
+            translate={app.translate}
+          />
+          <table style={styles.table} className="font-title">
+            <tbody>
+              {/* name */}
+              <tr className="hover">
+                <td style={styles.title}>
+                  <FormattedMessage id="app.name" />
+                </td>
+                <td style={styles.cell}>{person.name}</td>
+                <td style={styles.buttonCell}>
+                  <IconButton
+                    color="primary"
+                    style={styles.iconButton}
+                    size="medium"
+                    href={'/people/' + props.person + '/name/'}
+                  >
+                    <EditIcon fontSize="inherit" style={styles.icon} />
+                  </IconButton>
+                </td>
+              </tr>
+              {/* chest */}
+              <tr className="hover">
+                <td style={styles.title}>
+                  <FormattedMessage id="app.chest" />
+                </td>
+                <td style={styles.cell}>
+                  <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
+                </td>
+                <td style={styles.buttonCell}>
+                  <IconButton
+                    color="primary"
+                    style={styles.iconButton}
+                    size="medium"
+                    onClick={
+                      () =>
+                        app
+                          .updatePerson(props.person, [!person.breasts, 'breasts'])
+                          .then((res) => setPerson(usePerson(app, props.person)))
+                      // We force a re-render here by setting state after the promise resolves
+                    }
+                  >
+                    <RefreshIcon fontSize="inherit" style={styles.icon} />
+                  </IconButton>
+                </td>
+              </tr>
+              {/* units */}
+              <tr className="hover">
+                <td style={styles.title}>
+                  <FormattedMessage id="account.units" />
+                </td>
+                <td style={styles.cell}>
+                  <FormattedMessage id={'app.' + person.units + 'Units'} />
+                </td>
+                <td style={styles.buttonCell}>
+                  <IconButton
+                    color="primary"
+                    style={styles.iconButton}
+                    size="medium"
+                    onClick={
+                      () =>
+                        app
+                          .updatePerson(props.person, [
+                            person.units === 'metric' ? 'imperial' : 'metric',
+                            'units'
+                          ])
+                          .then((res) => setPerson(usePerson(app, props.person)))
+                      // We force a re-render here by setting state after the promise resolves
+                    }
+                  >
+                    <RefreshIcon fontSize="inherit" style={styles.icon} />
+                  </IconButton>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        {!blankSlate && (
-          <>
-            <ModelGraph model={person} intl={app.intl} />
-            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
-              <small>
-                <FormattedMessage id="app.whatIsThis" />
-              </small>
-            </Link>
-          </>
-        )}
-
         {person.notes ? (
           <>
             <h5 style={styles.heading} data-test="notes-title">
@@ -284,83 +355,6 @@ const PersonPage = (props) => {
           </h5>
         )}
 
-        <h5 style={styles.heading} data-test="settings-title">
-          <FormattedMessage id="app.settings" />
-        </h5>
-        <table style={styles.table} className="font-title">
-          <tbody>
-            {/* name */}
-            <tr className="hover">
-              <td style={styles.title}>
-                <FormattedMessage id="app.name" />
-              </td>
-              <td style={styles.cell}>{person.name}</td>
-              <td style={styles.buttonCell}>
-                <IconButton
-                  color="primary"
-                  style={styles.iconButton}
-                  size="medium"
-                  href={'/people/' + props.person + '/name/'}
-                >
-                  <EditIcon fontSize="inherit" style={styles.icon} />
-                </IconButton>
-              </td>
-            </tr>
-            {/* chest */}
-            <tr className="hover">
-              <td style={styles.title}>
-                <FormattedMessage id="app.chest" />
-              </td>
-              <td style={styles.cell}>
-                <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
-              </td>
-              <td style={styles.buttonCell}>
-                <IconButton
-                  color="primary"
-                  style={styles.iconButton}
-                  size="medium"
-                  onClick={
-                    () =>
-                      app
-                        .updatePerson(props.person, [!person.breasts, 'breasts'])
-                        .then((res) => setPerson(usePerson(app, props.person)))
-                    // We force a re-render here by setting state after the promise resolves
-                  }
-                >
-                  <RefreshIcon fontSize="inherit" style={styles.icon} />
-                </IconButton>
-              </td>
-            </tr>
-            {/* units */}
-            <tr className="hover">
-              <td style={styles.title}>
-                <FormattedMessage id="account.units" />
-              </td>
-              <td style={styles.cell}>
-                <FormattedMessage id={'app.' + person.units + 'Units'} />
-              </td>
-              <td style={styles.buttonCell}>
-                <IconButton
-                  color="primary"
-                  style={styles.iconButton}
-                  size="medium"
-                  onClick={
-                    () =>
-                      app
-                        .updatePerson(props.person, [
-                          person.units === 'metric' ? 'imperial' : 'metric',
-                          'units'
-                        ])
-                        .then((res) => setPerson(usePerson(app, props.person)))
-                    // We force a re-render here by setting state after the promise resolves
-                  }
-                >
-                  <RefreshIcon fontSize="inherit" style={styles.icon} />
-                </IconButton>
-              </td>
-            </tr>
-          </tbody>
-        </table>
         {/* measurements */}
         <h5 id="measurements" style={styles.heading} data-test="measurements-title">
           <FormattedMessage id="app.measurements" />
@@ -394,7 +388,7 @@ const PersonPage = (props) => {
             </p>
           </Blockquote>
         )}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
           <Button
             color="primary"
             variant="outlined"
@@ -471,6 +465,16 @@ const PersonPage = (props) => {
             })}
           </tbody>
         </table>
+        {!blankSlate && (
+          <div style={{ margin: '0 auto' }}>
+            <ModelGraph model={person} intl={app.intl} />
+            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
+              <small>
+                <FormattedMessage id="app.whatIsThis" />
+              </small>
+            </Link>
+          </div>
+        )}
         <p style={{ textAlign: 'center' }}>
           <Button
             data-test="remove"
