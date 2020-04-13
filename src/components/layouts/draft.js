@@ -8,7 +8,6 @@ const DraftLayout = ({ app, children, aside }) => {
       <section>
         <div style={{ padding: '1rem 1rem 0 1rem' }}>
           <BreadCrumbs crumbs={app.crumbs} pageTitle={app.title} />
-          <h1>{app.title}</h1>
         </div>
         {children}
       </section>

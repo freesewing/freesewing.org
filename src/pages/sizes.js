@@ -3,6 +3,7 @@ import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
+import Icon from '@freesewing/components/Icon'
 
 import { FormattedMessage } from 'react-intl'
 
@@ -17,25 +18,7 @@ const SizesPage = (props) => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app}>
-        <ul>
-          <li>
-            <a href="#with-breasts">
-              <FormattedMessage id="app.withBreasts" />
-            </a>
-          </li>
-          <li>
-            <a href="#without-breasts">
-              <FormattedMessage id="app.withoutBreasts" />
-            </a>
-          </li>
-        </ul>
-        <h2 id="with-breasts">
-          <FormattedMessage id="app.withBreasts" />
-        </h2>
         <SizingTable breasts={true} />
-        <h2 id="without-breasts">
-          <FormattedMessage id="app.withoutBreasts" />
-        </h2>
         <SizingTable breasts={false} />
       </WideLayout>
     </AppWrapper>

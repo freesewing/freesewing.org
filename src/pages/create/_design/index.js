@@ -7,7 +7,7 @@ import WideLayout from '../../../components/layouts/wide'
 import usePeople from '../../../hooks/usePeople'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
-import SelectPerson from '../../../components/draft/select-person'
+import SelectSize from '../../../components/draft/select-size'
 
 const CreatePatternPage = (props) => {
   // Hooks
@@ -19,7 +19,7 @@ const CreatePatternPage = (props) => {
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.chooseAPerson'))
+    app.setTitle(app.translate('app.chooseASize'))
     app.setCrumbs([
       {
         slug: '/create/',
@@ -37,7 +37,7 @@ const CreatePatternPage = (props) => {
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <SelectPerson app={app} design={design} people={people} />
+        <SelectSize app={app} design={design} people={people} />
       </WideLayout>
     </AppWrapper>
   )

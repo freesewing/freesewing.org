@@ -1,7 +1,7 @@
 @import '../../node_modules/open-color/open-color.scss';
-div.person {
+div.size {
   border: 1px solid $oc-gray-3;
-  width: 400px;
+  width: 140px;
   border-radius: 3px;
   padding: 0;
   text-align: left;
@@ -9,66 +9,42 @@ div.person {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 0.5rem auto;
+  margin: 0.5rem;
   div.top {
-    border-bottom: 4px solid transparent;
     background-image: url('/horizon.jpg');
     background-size: cover;
     background-position-y: bottom;
-    width: calc(100% - 2rem - 125px);
+    width: calc(100% - 4rem);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     color: $oc-gray-1;
-    padding: 0 1rem;
-    padding-left: calc(1rem + 125px);
-    height: 6rem;
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
+    border-bottom: 4px solid transparent;
     h5 {
-      margin: 0;
+      text-align: center;
+      margin: 0 auto;
       line-height: 1;
       text-shadow: 0 0 2px #000c;
-    }
-  }
-  div.bottom {
-    width: calc(100% - 1.5rem - 125px);
-    padding: 0.5rem;
-    padding-left: calc(1rem + 125px);
-    background: $oc-gray-2;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    min-height: calc(75px - 2rem);
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-      font-family: 'Roboto Condensed';
-      line-height: 1;
-      font-size: 0.9rem;
-      li {
-        padding-bottom: 0.25rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        svg {
-          padding-right: 0.5rem;
-        }
+      span.prefix {
+        font-size: 1rem;
+      }
+      span.size {
+        font-size: 3rem;
       }
     }
   }
-  div.avatar {
-    position: absolute;
-    left: 1rem;
-    top: calc(6rem - 50px);
-    width: 100px;
-    margin: 0;
-    flex-shrink: 0;
-    img {
-      border: 3px solid $oc-gray-2;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: $oc-gray-5;
+  div.bottom {
+    background: $oc-gray-2;
+    font-family: 'Roboto Condensed';
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    width: calc(100% - 1rem);
+    min-height: 3rem;
+    span.val {
+      padding: 0 0.5rem;
     }
   }
   a.link {
@@ -79,10 +55,10 @@ div.person {
     height: 100%;
   }
 }
-div.person.breasts > div.top {
+div.size.breasts > div.top {
   border-color: $oc-teal-6;
 }
-div.person.no-breasts > div.top {
+div.size.no-breasts > div.top {
   border-color: $oc-violet-6;
 }
 
