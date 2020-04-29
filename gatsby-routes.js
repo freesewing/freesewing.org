@@ -177,7 +177,9 @@ const routes = {
     '/share/': '/docs/about/share/',
     '/pledge/': '/docs/about/pledge/',
     '/privary/': '/docs/about/privacy/',
-    '/rights/': '/docs/about/rights/'
+    '/rights/': '/docs/about/rights/',
+    '/designs/fu/': '/designs/florence/',
+    '/docs/patterns/fu/': '/docs/patterns/florence/'
   }
 }
 
