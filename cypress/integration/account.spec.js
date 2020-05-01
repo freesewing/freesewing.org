@@ -9,25 +9,33 @@ describe('Account page', function () {
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
   })
 
-  const buttons = {
-    '/people/': 'app.people',
+  const links = {
     '/patterns/': 'app.patterns',
+    '/people/': 'app.people',
     '/users/test_user/': 'app.profile',
-    '/account/settings/': 'app.settings',
-    '/logout/': 'app.logOut'
+    '/account/settings/avatar/': 'account.avatar',
+    '/account/settings/bio/': 'account.bio',
+    '/account/settings/language/': 'account.language',
+    '/account/settings/units/': 'account.units',
+    '/account/settings/github/': 'account.github',
+    '/account/settings/instagram/': 'account.instagram',
+    '/account/settings/email/': 'account.email',
+    '/account/settings/username/': 'account.username',
+    '/account/settings/password/': 'account.password',
+    '/account/export/': 'account.exportYourData',
+    '/account/consent/': 'account.reviewYourConsent',
+    '/account/restrict/': 'account.restrictProcessingOfYourData',
+    '/account/remove/': 'account.removeYourAccount'
   }
 
-  describe('Verify translations', function () {
-    it('app.account', function () {
+  describe('Verify links & translations', function () {
+    it('Should be translated', function () {
       cy.get('h1').should('contain', i18n['app.account'])
     })
 
-    for (let button in buttons) {
-      it(buttons[button], function () {
-        cy.get(`a[data-test="${button}"] > span.MuiButton-label`).should(
-          'contain',
-          i18n[buttons[button]].slice(0, 4)
-        )
+    for (let link in links) {
+      it(`${links[link]} should be translated and point to ${link}`, function () {
+        cy.get(`a[href="${link}"]`).should('contain', i18n[links[link]].slice(0, 4))
       })
     }
 
@@ -36,19 +44,9 @@ describe('Account page', function () {
     })
   })
 
-  describe('Verify links', function () {
-    for (let button in buttons) {
-      if (button !== '/logout') {
-        it(button, function () {
-          cy.get(`a[data-test="${button}"]`).should('have.attr', 'href', button)
-        })
-      }
-    }
-  })
-
   after(function () {
     it('Log out flow', function () {
-      cy.get('a[data-test="/logout"]').click({ force: true })
+      cy.get('a[href="/logout"]').click({ force: true })
       cy.get('div.theme-wrapper').should('have.class', 'layouthome')
     })
   })

@@ -26,7 +26,11 @@ const Size = (props) => (
         }}
       />
     </div>
-    <Link to={props.link} className="link" />
+    <Link
+      to={props.link}
+      className="link"
+      data-test={`size-${props.size}-${props.breasts ? 'b' : 'a'}`}
+    />
   </div>
 )
 
