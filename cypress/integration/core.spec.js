@@ -18,10 +18,10 @@ describe('Core pattern drafting for users', function () {
 
   for (let pattern of list) {
     // If you're working on these, you might want to limit this to 1 pattern
-    if (pattern === 'waralee' || 0) {
+    if (pattern === 'waralee' || 1) {
       it('Draft ' + capitalize(pattern), function () {
         cy.visit('/create/' + pattern + '/')
-        cy.get('a[data-test=persb]').click({ force: true })
+        cy.get(`a[href='/create/${pattern}/for/persb/']`).click({ force: true })
         cy.get('[data-test=draft] svg').should('be.visible')
         cy.get('[data-test=draft] svg').should('have.attr', 'style', 'max-height: 85vh;')
         cy.get('[data-test=zoom]').click({ force: true })

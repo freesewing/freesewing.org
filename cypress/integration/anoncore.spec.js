@@ -11,7 +11,7 @@ describe('Core pattern drafting for visitors', function () {
     if (pattern === 'theo' || 1) {
       it('Draft ' + capitalize(pattern), function () {
         cy.visit('/create/' + pattern + '/')
-        cy.get('a[data-test=size-36]').click({ force: true })
+        cy.get('a[data-test=size-36-b]').click({ force: true })
         cy.get('[data-test=draft] svg').should('be.visible')
         cy.get('[data-test=draft] svg').should('have.attr', 'style', 'max-height: 85vh;')
         cy.get('[data-test=zoom]').click({ force: true })
