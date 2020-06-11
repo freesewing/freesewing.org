@@ -32,7 +32,7 @@ const SavePatternAs = (props) => {
       .createPattern({
         name: nameVal,
         notes: notesVal,
-        person: props.person.handle,
+        person: typeof props.person === 'string' ? props.person : props.person.handle,
         data: props.data
       })
       .then((data) => {
