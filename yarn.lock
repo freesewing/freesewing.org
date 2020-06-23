@@ -9598,12 +9598,12 @@ gatsby-remark-prismjs@3.4.1:
     parse-numeric-range "^0.0.2"
     unist-util-visit "^1.4.1"
 
-gatsby-remark-smartypants@2.1.22:
-  version "2.1.22"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.1.22.tgz#cc45f9f06a37a00ad1eec469fe60c70527c74f7d"
-  integrity sha512-aqQwdpBJ7dmLaFoFVz6IWURDMajJUt77BuOYd/hSD9YL9p/0QrNP2EdIB1tUjhJgjaAivcpGidwn+L81Pxzduw==
+gatsby-remark-smartypants@2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.3.5.tgz#23f791b5379d89a6a6901fe66b2b46bdc69c8ddd"
+  integrity sha512-k0yVBCsYkQ2kUO3QSOPRCgUPLw5eaG2hxz77e+ZYDXqD2RscrURrkyrDfI4MoHVGG7yeeFmT/HS3ARN4vzFsJA==
   dependencies:
-    "@babel/runtime" "^7.7.6"
+    "@babel/runtime" "^7.10.2"
     retext "^5.0.0"
     retext-smartypants "^3.0.3"
     unist-util-visit "^1.4.1"
