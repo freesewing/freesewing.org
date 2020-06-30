@@ -15,7 +15,7 @@ const Size = (props) => (
       </h5>
     </div>
     <div className="bottom">
-      {props.translate('measurements.neckCircumference')}
+      {props.translate('measurements.neck')}
       <br />
       <span className="val">{props.size}cm</span>
       |

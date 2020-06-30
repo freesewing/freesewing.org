@@ -7,7 +7,7 @@ const ModelGraph = (props) => {
   const [highlight, setHighlight] = useState(false)
   const { model } = props
 
-  if (!model || !model.measurements || !model.measurements.neckCircumference) return null
+  if (!model || !model.measurements || !model.measurements.neck) return null
 
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
@@ -28,27 +28,27 @@ const ModelGraph = (props) => {
   ver.push('naturalWaistToFloor')
 
   const hor = []
-  hor.push('neckCircumference')
-  hor.push('headCircumference')
+  hor.push('neck')
+  hor.push('head')
   hor.push('shoulderToShoulder')
-  hor.push('bicepsCircumference')
+  hor.push('biceps')
   if (model.breasts) {
     hor.push('highBust')
     hor.push('highBustFront')
   }
-  hor.push('chestCircumference')
+  hor.push('chest')
   if (model.breasts) {
     hor.push('bustFront')
     hor.push('bustSpan')
     hor.push('underbust')
   }
   hor.push('naturalWaist')
-  hor.push('hipsCircumference')
-  hor.push('seatCircumference')
-  hor.push('upperLegCircumference')
-  hor.push('wristCircumference')
-  hor.push('kneeCircumference')
-  hor.push('ankleCircumference')
+  hor.push('hips')
+  hor.push('seat')
+  hor.push('upperLeg')
+  hor.push('wrist')
+  hor.push('knee')
+  hor.push('ankle')
 
   const own = (m) => {
     return model.measurements[m]
@@ -168,9 +168,9 @@ const ModelGraph = (props) => {
   }
 
   // Get neck measurement, (estimated) model data, and default bar size
-  const neck = model.measurements.neckCircumference
+  const neck = model.measurements.neck
   const data = modelData()
-  const vd = barSize('neckCircumference')
+  const vd = barSize('neck')
 
   return (
     <svg
