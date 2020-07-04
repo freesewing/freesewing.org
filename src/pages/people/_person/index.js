@@ -15,6 +15,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import { measurements as allMeasurements } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
+import isDegMeasurement from '@freesewing/utils/isDegMeasurement'
 import Markdown from 'react-markdown'
 import Blockquote from '@freesewing/components/Blockquote'
 import neckstimate from '@freesewing/utils/neckstimate'
@@ -116,7 +117,9 @@ const PersonPage = (props) => {
           {measurementEstimate && (
             <span
               dangerouslySetInnerHTML={{
-                __html: formatMm(measurementEstimate, person.units, 'html')
+                __html: isDegMeasurement(name)
+                  ? Math.round(measurementEstimate * 10) / 10 + '°'
+                  : formatMm(measurementEstimate, person.units, 'html')
               }}
             />
           )}
@@ -124,7 +127,13 @@ const PersonPage = (props) => {
         <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
           {value && (
             <b>
-              <span dangerouslySetInnerHTML={{ __html: formatMm(value, person.units, 'html') }} />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: isDegMeasurement(name)
+                    ? Math.round(value * 10) / 10 + '°'
+                    : formatMm(value, person.units, 'html')
+                }}
+              />
             </b>
           )}
         </td>
@@ -237,7 +246,7 @@ const PersonPage = (props) => {
     return remaining
   }
 
-  const blankSlate = !person.measurements || !person.measurements.neckCircumference
+  const blankSlate = !person.measurements || !person.measurements.neck
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app} wide left crumbsOnly>
@@ -379,11 +388,11 @@ const PersonPage = (props) => {
               <Button
                 variant="contained"
                 color="primary"
-                href={`/people/${props.person}/measurements/neckcircumference`}
-                data-test="add-neck-circumference"
+                href={`/people/${props.person}/measurements/neck`}
+                data-test="add-neck"
               >
                 <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
-                <FormattedMessage id="measurements.neckCircumference" />
+                <FormattedMessage id="measurements.neck" />
               </Button>
             </p>
           </Blockquote>
@@ -444,17 +453,13 @@ const PersonPage = (props) => {
 
                 if (value) {
                   const measurementEstimate = neckstimate(
-                    person.measurements.neckCircumference || 360,
+                    person.measurements.neck || 360,
                     m,
                     person.breasts
                   )
                   const measurementInRange =
-                    measurementDiffers(
-                      person.measurements.neckCircumference || 360,
-                      m,
-                      value,
-                      person.breasts
-                    ) <= 2
+                    measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <=
+                    2
 
                   return measurementRow(m, value, measurementEstimate, measurementInRange)
                 } else return null

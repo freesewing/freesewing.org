@@ -101,23 +101,14 @@ const EditMeasurementPage = (props) => {
   let measurementInRange = value > 0
   let helperText = () => null
 
-  if (person.measurements.neckCircumference) {
-    measurementEstimate = neckstimate(
-      person.measurements.neckCircumference,
-      measurement,
-      person.breasts
-    ) // Note: This is in mm
+  if (person.measurements.neck) {
+    measurementEstimate = neckstimate(person.measurements.neck, measurement, person.breasts) // Note: This is in mm
     measurementInRange =
-      measurementDiffers(
-        person.measurements.neckCircumference,
-        measurement,
-        value * 10,
-        person.breasts
-      ) <= 2
+      measurementDiffers(person.measurements.neck, measurement, value * 10, person.breasts) <= 2
 
-    // Only show measurementEstimate for non measurements.neckCircumference
+    // Only show measurementEstimate for non measurements.neck
     helperText = () => {
-      if (measurement != 'measurements.neckCircumference') {
+      if (measurement != 'measurements.neck') {
         return (
           <>
             <FormattedMessage
