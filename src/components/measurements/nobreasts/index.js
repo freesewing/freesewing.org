@@ -2,10 +2,13 @@ import acrossback from './acrossback.svg'
 import ankle from './ankle.svg'
 import biceps from './biceps.svg'
 import chest from './chest.svg'
+import crossseam from './crossseam.svg'
+import crossseamfront from './crossseamfront.svg'
+import crotchdepth from './crotchdepth.svg'
 import head from './head.svg'
 import hips from './hips.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
-import hpstohipsback from './hpstohipsback.svg'
+import hpstowaistback from './hpstowaistback.svg'
 import inseam from './inseam.svg'
 import knee from './knee.svg'
 import naturalwaist from './naturalwaist.svg'
@@ -15,7 +18,6 @@ import naturalwaisttoknee from './naturalwaisttoknee.svg'
 import naturalwaisttoseat from './naturalwaisttoseat.svg'
 import neck from './neck.svg'
 import seat from './seat.svg'
-import seatdepth from './seatdepth.svg'
 import shoulderslope from './shoulderslope.svg'
 import shouldertoelbow from './shouldertoelbow.svg'
 import shouldertoshoulder from './shouldertoshoulder.svg'
@@ -28,10 +30,13 @@ export default {
   ankle,
   biceps,
   chest,
+  crossseam,
+  crossseamfront,
+  crotchdepth,
   head,
   hips,
   hipstoupperleg,
-  hpstohipsback,
+  hpstowaistback,
   inseam,
   knee,
   naturalwaist,
@@ -41,7 +46,6 @@ export default {
   naturalwaisttoseat,
   neck,
   seat,
-  seatdepth,
   shoulderslope,
   shouldertoelbow,
   shouldertoshoulder,

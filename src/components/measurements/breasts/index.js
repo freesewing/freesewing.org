@@ -4,12 +4,15 @@ import biceps from './biceps.svg'
 import bustfront from './bustfront.svg'
 import bustspan from './bustspan.svg'
 import chest from './chest.svg'
+import crossseam from './crossseam.svg'
+import crossseamfront from './crossseamfront.svg'
+import crotchdepth from './crotchdepth.svg'
 import head from './head.svg'
 import highbust from './highbust.svg'
 import highbustfront from './highbustfront.svg'
 import hpstobust from './hpstobust.svg'
-import hpstohipsback from './hpstohipsback.svg'
-import hpstohipsfront from './hpstohipsfront.svg'
+import hpstowaistback from './hpstowaistback.svg'
+import hpstowaistfront from './hpstowaistfront.svg'
 import hips from './hips.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
 import inseam from './inseam.svg'
@@ -22,7 +25,6 @@ import naturalwaisttoseat from './naturalwaisttoseat.svg'
 import naturalwaisttounderbust from './naturalwaisttounderbust.svg'
 import neck from './neck.svg'
 import seat from './seat.svg'
-import seatdepth from './seatdepth.svg'
 import shoulderslope from './shoulderslope.svg'
 import shouldertoelbow from './shouldertoelbow.svg'
 import shouldertoshoulder from './shouldertoshoulder.svg'
@@ -38,12 +40,15 @@ export default {
   bustfront,
   bustspan,
   chest,
+  crossseam,
+  crossseamfront,
+  crotchdepth,
   head,
   highbust,
   highbustfront,
   hpstobust,
-  hpstohipsback,
-  hpstohipsfront,
+  hpstowaistback,
+  hpstowaistfront,
   hips,
   hipstoupperleg,
   inseam,
@@ -56,7 +61,6 @@ export default {
   naturalwaisttounderbust,
   neck,
   seat,
-  seatdepth,
   shoulderslope,
   shouldertoelbow,
   shouldertoshoulder,
