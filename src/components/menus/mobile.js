@@ -12,7 +12,6 @@ import DocsMenu from './docs'
 import CommunityMenu from './community'
 import AccountMenu from './account'
 import DocsNavigation from '../app/docs-navigation'
-import { Link } from 'gatsby'
 import HideIcon from '@material-ui/icons/ExpandLess'
 import ShowIcon from '@material-ui/icons/ExpandMore'
 
