@@ -11,11 +11,12 @@ import hipstoupperleg from './hipstoupperleg.svg'
 import hpstowaistback from './hpstowaistback.svg'
 import inseam from './inseam.svg'
 import knee from './knee.svg'
-import naturalwaist from './naturalwaist.svg'
-import naturalwaisttofloor from './naturalwaisttofloor.svg'
-import naturalwaisttohip from './naturalwaisttohip.svg'
-import naturalwaisttoknee from './naturalwaisttoknee.svg'
-import naturalwaisttoseat from './naturalwaisttoseat.svg'
+import waist from './waist.svg'
+import waisttofloor from './waisttofloor.svg'
+import waisttohips from './waisttohips.svg'
+import waisttoknee from './waisttoknee.svg'
+import waisttoseat from './waisttoseat.svg'
+import waisttoupperleg from './waisttoupperleg.svg'
 import neck from './neck.svg'
 import seat from './seat.svg'
 import shoulderslope from './shoulderslope.svg'
@@ -39,11 +40,12 @@ export default {
   hpstowaistback,
   inseam,
   knee,
-  naturalwaist,
-  naturalwaisttofloor,
-  naturalwaisttohip,
-  naturalwaisttoknee,
-  naturalwaisttoseat,
+  waist,
+  waisttofloor,
+  waisttohips,
+  waisttoknee,
+  waisttoseat,
+  waisttoupperleg,
   neck,
   seat,
   shoulderslope,

@@ -21,7 +21,8 @@ const MeasurementImages = (props) => {
     'highbust',
     'highbustfront',
     'highpointshouldertobust',
-    'naturalwaisttounderbust',
+    'hpstobust',
+    'waisttounderbust',
     'underbust'
   ]
   const bg =
