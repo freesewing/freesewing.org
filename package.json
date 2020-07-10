@@ -121,7 +121,7 @@
     "yaml": "1.10.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.3.5",
+    "@commitlint/cli": "9.0.1",
     "@commitlint/config-conventional": "8.3.4",
     "babel-plugin-apply-mdx-type-prop": "^1.6.6",
     "babel-plugin-styled-components": "^1.10.7",
