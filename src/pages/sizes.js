@@ -3,9 +3,6 @@ import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
-import Icon from '@freesewing/components/Icon'
-
-import { FormattedMessage } from 'react-intl'
 
 import SizingTable from '../components/size-table'
 

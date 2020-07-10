@@ -4,7 +4,6 @@ import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 
-import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import MissingPeople from '../../components/missing/people'
@@ -42,6 +41,7 @@ const PeopleIndexPage = (props) => {
             <div style={styles.wrapper}>
               {Object.keys(app.people).map((handle) => (
                 <Person
+                  key={handle}
                   data={app.people[handle]}
                   link={`/people/${handle}/`}
                   translate={app.translate}
