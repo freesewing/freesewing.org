@@ -1390,297 +1390,297 @@
   dependencies:
     emojis-list "^3.0.0"
 
-"@freesewing/aaron@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/aaron/-/aaron-2.7.0-beta.1.tgz#f94c25cc606bcd38009e47d496cac89a09b562e8"
-  integrity sha512-w5rGqaW077fqkJMnEPPIv/sG5g2NgcWFs+0c7Bc8OaKOI1Wp1MvCX5BC3VmV7NLYZEDLa9AjhdmMmr6IZRfRKg==
+"@freesewing/aaron@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/aaron/-/aaron-2.7.0-beta.2.tgz#1079bd31480d87fdcc4e0864af0b238668ec3a7b"
+  integrity sha512-yBDzZAgWZfvrBaGoNkDbD7/Inac2nLUcgkoW94mpDlGMVeLJnDLEi6kcfM6rDYeyzOQ2t8VjtwIdr0qYZcsflw==
 
-"@freesewing/benjamin@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/benjamin/-/benjamin-2.7.0-beta.1.tgz#fb2bff181a159d3cc62c369567773c263113b7e1"
-  integrity sha512-1tLAmHKid5Fh8TW4rrCi367lOb8GnrVDVYqgYzl0ajDOHSVazF+BC0KXGp71S/OijaWZINrceWvfVnGwjyj/vA==
+"@freesewing/benjamin@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/benjamin/-/benjamin-2.7.0-beta.2.tgz#b682e8f528abfddc329caf4918448896072929fd"
+  integrity sha512-V9g5ileEQDtpwTvJG/nFf+1c3Cdgf3VhB/BM5QhacUtm6rcDPxgYmnUYdn+LW/88obRTFZbwBDwEdVWQWuZHYw==
 
-"@freesewing/bent@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/bent/-/bent-2.7.0-beta.1.tgz#0cb9c825f50177b2e790362ad25c80f2c778b46f"
-  integrity sha512-zMK7UPsCaZHlHwBRvSuxGgUxF9/1XRXE+G5OPXsMRyvhej1RCJIO3MM7ZYQZ9ZBBf0hN3QRuNb+I2b7LIYL4Uw==
+"@freesewing/bent@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/bent/-/bent-2.7.0-beta.2.tgz#3ef08557c38cbaaba54fd3f01e32a39f7082e9df"
+  integrity sha512-4UuIlDttNKOloZVBqAGHQ12dDUyaPkCOcMiOag6qlUWA5kq1hel8L5m4m1rtH5BVJuTnRLb5dg4DhnoiUAuz2g==
 
-"@freesewing/breanna@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/breanna/-/breanna-2.7.0-beta.1.tgz#4470e2b79711dd8853b91bd0b56246038e54d6ff"
-  integrity sha512-ZhSfVyM7mF9W/v6VKrQyqPUadBHld15w34ha6KODN1YNZPN0VgVmb7yjby5dWjcftRQiCEHQCNG5A/vpbf2yZg==
+"@freesewing/breanna@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/breanna/-/breanna-2.7.0-beta.2.tgz#d9d8bdefe152a0c61baa629364ffbbcf45679d85"
+  integrity sha512-nsHngVPdXiDJiPtx0Bjjs+USesvYXodYYm/iKxfceyd8Q8/VWN9vVBNm9fUdUdM4XtzOgNIx4HGhZR3blFMiuA==
 
-"@freesewing/brian@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/brian/-/brian-2.7.0-beta.1.tgz#3905a311d52039b36808e2d3e3abef98e22e8c30"
-  integrity sha512-vUkKh/b2njFDc3SwaiLwBwVbYfuOovacpawrPNcODWPDZf5uedd7PUSpp6ig9FdlK5vjMT1puE9NVtXjAvxtoQ==
+"@freesewing/brian@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/brian/-/brian-2.7.0-beta.2.tgz#215056682fc130e69c24dbef629ea4c2d34f8b87"
+  integrity sha512-Si7cu6zqlW2FbsuYptFNLiYcUutSpJBgtkRiJKJULOg7cAvW7w5LggmJvefVplAl4An+VwJcBzjLd9C6scYHPw==
 
-"@freesewing/bruce@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/bruce/-/bruce-2.7.0-beta.1.tgz#d829412b3bcf11bd29106763f8bed9a13c8a01e2"
-  integrity sha512-6zdwBYZJi+wMUctuQ/3XVsT3sxzNY207rFgMwG+9bqftz7ik67lO9yFKFRVIrhWwBiXBzZ57TgRHeqh0pmIkkQ==
+"@freesewing/bruce@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/bruce/-/bruce-2.7.0-beta.2.tgz#744a8f6f466183886ad2ae77c3322530c04ce45b"
+  integrity sha512-0yWMkVhjoTG/OJbQHtPAhSfeYzVP+yvVc+7PGYzLi2ko7z5+wBjBlEb09eJ/zlFBq+2j/mDP31/9HfDTZ0OPNg==
 
-"@freesewing/carlita@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/carlita/-/carlita-2.7.0-beta.1.tgz#fedb277af7b0086d98fa3cef69db4745f1589e33"
-  integrity sha512-JC8iGM9XUwMtbPqLHcI1Egyw7Glbri6MTv3AVM2MKG++o8Vu8brwnI6qQeUvIZDvuvE8ELU392TGyrzCFdxS7A==
+"@freesewing/carlita@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/carlita/-/carlita-2.7.0-beta.2.tgz#8906ac1f04ce3715db5aed14fec5787c5021eb64"
+  integrity sha512-oGQiLamC+7Ifi6DCkJe2QHrkb0TiEUyiCk+zi1yM3eII+IgFdn7D80bCqssF9/ePGvg9YnCOea8EqhMQBvgqyw==
 
-"@freesewing/carlton@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/carlton/-/carlton-2.7.0-beta.1.tgz#d534e63fbbd46abf5b52d705d11ac696cec22e27"
-  integrity sha512-m52Iw/rjO3kkfQrQj2xjk3QFC5s24evhHfttBluiJac1wowikss0Cyk+vOPE3DcKkELkNEMXb9Q0pO315JBkDA==
+"@freesewing/carlton@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/carlton/-/carlton-2.7.0-beta.2.tgz#07d4e2213d4712528febabaf568b3963e1b1092d"
+  integrity sha512-ChZTMaIN6bgcNl42oYXQ7hPHoYAer6aaAjdZFBOF9ngMY7dKS1HrZRYa/YDcDOOhIagPYPD0hV3okTm0/GG1Tg==
 
-"@freesewing/cathrin@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/cathrin/-/cathrin-2.7.0-beta.1.tgz#672b002e63b187a7c0064bcb0947f7f49cd3a59d"
-  integrity sha512-61nQJTdrekcMB+A/CpmGfxiLWRGxqXX2tDGMBDXCmzYz0TRu7pmEIKCXL6vBl6LPFWvMAA03jendoZmrUzF+Gg==
+"@freesewing/cathrin@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/cathrin/-/cathrin-2.7.0-beta.2.tgz#12dc73a449422a0ee1fb2e6a444e3839ecbe5984"
+  integrity sha512-I51ZrwKTcuYj6Ycm3ckp5AdTgGesbN80y0bH7WXSDdjDxV5rRIk8aOj163bVlXv9PBl3SaHHOdT1nihCHW0PWw==
 
-"@freesewing/components@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.7.0-beta.1.tgz#b16209bbad0cdead7c53a367201d48a1a47e1514"
-  integrity sha512-LB2Qm4Yu5/QkqZ1Iqp3N004vhlHWX+riAwAAxIi6PG6ZLbOJWFsjNiQQjCdSuOCWqNUju2EDErh9usSQ6XtSrQ==
+"@freesewing/components@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.7.0-beta.2.tgz#e5cb2a32c3d12a60aabb83e1830637fcebf6a4a3"
+  integrity sha512-QxgTZO4aUOCTFR90ruCq98p42r1MENFQbu1MOtUav+PG1HPmz23TvflwoOeiIokyTeLyu88pMuj0lLU3VuCp5g==
 
-"@freesewing/core@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/core/-/core-2.7.0-beta.1.tgz#23b5ded5e7ac00c5cb9bf2055d99708d2de14ae8"
-  integrity sha512-MYRDTUdU6CofMVil649Z0VzRvCK9qiXgRIEEV0mJcfzRcwyh/eOI2ZA4sNgdpaBIxTEA7Ney4+fFKmlpicKP9A==
+"@freesewing/core@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/core/-/core-2.7.0-beta.2.tgz#831f386e5bf4d2ddd186728628302e0067f7adc0"
+  integrity sha512-+K5zf/WcPnd1DtRJJIxcostpce4CADQTHgX8z6Q98GfglcbJWgw20jpuVjWV5i0jR1g+CUdCWak40oDtEAfqKw==
   dependencies:
     bezier-js "^2.4.6"
     bin-pack "1.0.2"
     hooks "^0.3.2"
 
-"@freesewing/css-theme@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.7.0-beta.1.tgz#9b70998f892b7b355de339f879545cc4287abbdf"
-  integrity sha512-8942wMeEIlRVDecvKyymU/rJ87ycXsZSBx77RMKj0pBMU40tHFskx9o0W8Zuj6EeOsGn/DJnIpjEYEF5yHSmJQ==
+"@freesewing/css-theme@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.7.0-beta.2.tgz#a1b66dd5e71c019b928197dc3c5ea06eddaad6cd"
+  integrity sha512-mOMKFtcYbBlck/5T2dL7zcgUbuZWaByAKJL0N1GAMEV1v3QKkjM5l08UuAmGGwuLtUPXa2lNasHg8o6Z0DcM4A==
   dependencies:
     open-color "1.6.3"
 
-"@freesewing/diana@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/diana/-/diana-2.7.0-beta.1.tgz#61606d062854170aa11d95672a53a8d45a3f3353"
-  integrity sha512-csjbbVkFAPxtzg7WrJhAWi6UPRY6f+iqA85x80KvJ2eXtdZuAASageWWtZGSOe6psBuvdV00p6szUvdN9sXdCA==
+"@freesewing/diana@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/diana/-/diana-2.7.0-beta.2.tgz#0f1cb52950b355c53fa3651f977ac4a864ae05ec"
+  integrity sha512-xUiJbIP8hxS96AdFgnd0VEEgcEm+UcZ6kpZIInb8KlxInRwVdTrjLZYLUjhx4KpRRu9VpAHUcCJsgFQLpAX8ug==
 
-"@freesewing/examples@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/examples/-/examples-2.7.0-beta.1.tgz#9f31c61662407a8d7961aed33a477657368a0940"
-  integrity sha512-mSGAeNcM+f+c+A/DeR3sS9T+2xV9nDJijRgkSnZ8ebhlO5SselYlafUalM61LX6WlB1CzKiGQj679sY4T+uzDg==
+"@freesewing/examples@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/examples/-/examples-2.7.0-beta.2.tgz#bbb64a1be0d4e7416bf6030e57139f0a8f4c65b2"
+  integrity sha512-S98HyAOr4aMNGsUr4IVjEZFCV7miMYzWRQoVgseXhu2h8gZlwPZ7ZpII2W2dMmnbQ/Megx7c31+URO7gQKwcSQ==
 
-"@freesewing/florence@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/florence/-/florence-2.7.0-beta.1.tgz#953d893366f2dcff37a8dd1561bd58ce0c81b6e7"
-  integrity sha512-w+CapT8zytowU4CPF0MnmC1SgVKIzlKhkd6aUAx8fHZZclI59hji0HyimA9FPooLH9qrFtRaAJ2/FQrZR3ymaA==
+"@freesewing/florence@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/florence/-/florence-2.7.0-beta.2.tgz#919572b63727c88f8986acc29596851055c1c502"
+  integrity sha512-q46dEW6gDyYFz/WwG1/65QTNcikbzOVVPNW8IfycddtpGGNuLC7kjr6d8oF58LzGjyHFUtaWB/PwqCTUl/4zFg==
 
-"@freesewing/florent@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/florent/-/florent-2.7.0-beta.1.tgz#a82ff23c9e6900048130ac06345e8a71378433d4"
-  integrity sha512-MiQ0SFGxVONRKm14qfUt7Ht7MrOz9j4qvdqNc/WQZ4juItXAbEP/MAta6grH5jI7nOmdRl9HQvwwh99ycxvLJA==
+"@freesewing/florent@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/florent/-/florent-2.7.0-beta.2.tgz#f92937626e88b1e558797aa5054e674c2e358c15"
+  integrity sha512-+9hSdpgKcpptgH4mSTRCGIS8Q1H8L0f6ASsROQ3KZ9K7l3xgrtDKD0VRMHn5mXgRRiiw+h+sUzCvk36qGl+jcw==
 
-"@freesewing/holmes@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/holmes/-/holmes-2.7.0-beta.1.tgz#66a210cbad6de0f0bea9790ce8d89fbf4f2433fc"
-  integrity sha512-oV8xV2wdMMzqcJYsRZmyGtWdTyXWoCTAr/iZe99sIPbR+4gJl4M/2yg6qfQ7X1MEQVbfSSUHjK2ydYEgNrcvwA==
+"@freesewing/holmes@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/holmes/-/holmes-2.7.0-beta.2.tgz#e04f3a19daf452c5781afd46473c0b627bc271ed"
+  integrity sha512-sIFtG4RI5iykHpzb7KLz3/g3xMqQ1Xqn1Tb0szdg5GayfHPoOkqd8htM2QHn/TdIYDQergca/VNoeUSJ7QATPA==
   dependencies:
-    "@freesewing/plugin-gore" "^2.7.0-beta.1"
+    "@freesewing/plugin-gore" "^2.7.0-beta.2"
 
-"@freesewing/huey@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/huey/-/huey-2.7.0-beta.1.tgz#557bda207dcc63e453b9df4c5fd51451cbdc32d0"
-  integrity sha512-xt35exWhWvTv5S19cNreDLqSXi4XCb52RQUVbCMAD70WdGuquL8lcwJzwizOEy820WmvUDBsyjWxEUngv1/Klg==
+"@freesewing/huey@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/huey/-/huey-2.7.0-beta.2.tgz#b38095c789408df47a043bc609a33a81cb092a3b"
+  integrity sha512-47u9k5Ai47wRubDVWDT0ugI1S1JWAR8kPS9jRxK8FNdqMsVUP5WqCJOMEoHnIgYasc9Hzh4d+W9nn26tAyoQYQ==
 
-"@freesewing/hugo@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/hugo/-/hugo-2.7.0-beta.1.tgz#9e325465a291b052105608a1e5b049d351bacaa8"
-  integrity sha512-1cUlix4vjzdimY/XYIKkNOUDs4CWuEBBES47xZfbPb5/0Q3Ry+yLbQSggH9cO/Nknm5ysiswIzYkYbnnuTmsJw==
+"@freesewing/hugo@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/hugo/-/hugo-2.7.0-beta.2.tgz#2e2abbcb7f1f7f63c0348d34b89f74e0d0d37add"
+  integrity sha512-sm4jIuZW3LPMDG+Kzvsw6ShQdxbhRJPoqpDPSjW5ArOg7RXrt/pKOQx3hphSTXz0BKFxWcuOAQkG680uWpqCww==
 
-"@freesewing/i18n@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/i18n/-/i18n-2.7.0-beta.1.tgz#7643a1600505f41185a7916df77abe4130b47ba0"
-  integrity sha512-la8eKM6KF4fll5p11DRDIwy0hE+npmcsEH0ITaR46U9WLYkdF6fcVKuBRWumKozvjp/cjKHtiYmRdu6PAKcM2A==
+"@freesewing/i18n@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/i18n/-/i18n-2.7.0-beta.2.tgz#e1387114621260a011188c5365e7bed233389371"
+  integrity sha512-DzWKLTXKmQzDH5ZEoNbQOTkOE86xI5XprllOcSYCTsnnTg5p1y0+IhFrTyNC8iBMc7e4GQiGGzN8Mm7zW400WQ==
 
-"@freesewing/jaeger@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/jaeger/-/jaeger-2.7.0-beta.1.tgz#538370d82efcda0757743936e8fd88fe43d176de"
-  integrity sha512-TbEBeG6cC7tfdxAN57YZl2vsXOmlOGmTAoKN82O/AypTzwm96ZAXc7d0wF6Yhq1TSIijZVMDrE7deBlhprXpQQ==
+"@freesewing/jaeger@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/jaeger/-/jaeger-2.7.0-beta.2.tgz#d0a6e796b5748df85d5f2534f2ba2b59acca9bc3"
+  integrity sha512-K170/Y3gunbS1K+5b64PsywIhHOelAi9Oie1icGA8P07YhCtJtJB+i2a9t5ZbzsXHJV31VyUxWjEcbfuqXPGGQ==
 
-"@freesewing/models@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/models/-/models-2.7.0-beta.1.tgz#5c5c5480a461e7e8060391aca65733b8b3c736b8"
-  integrity sha512-fGvzTc+goh3sB/nMRB9wDckaDD+J76jM+GBj2oiIZc/EuWBWu7Ly/VLU/XUrS7x20txEFuAWaAXYP57a02C4rw==
+"@freesewing/models@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/models/-/models-2.7.0-beta.2.tgz#4fd41c89b40de7eeb5462d30074e4c18916553fb"
+  integrity sha512-RNUVXLDMSvXQtvstaaoXN5+EDOJ+1dBmiUR6YutmXD0x5d4LFqDDDvR0mOQ4lMGhhrSw8TRynyr8rsRjnuDS7w==
 
-"@freesewing/mui-theme@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.7.0-beta.1.tgz#3f28b84738d2236f952e043746fea83ec8cbd7d8"
-  integrity sha512-PBaLW2GWVq+ZMoKRM76QdEBY98qdjKInqBJoHVVDoiIKzAd15XnrI338yyeOWkoQnMfBCd0gwkXcnt1FsKMNMw==
+"@freesewing/mui-theme@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.7.0-beta.2.tgz#b176b1a31c4d6cf526216cb5359d7d3a261dfa10"
+  integrity sha512-kCo/fI+mlMNfqgtxWOk7ijSXmzaHwMH/8qhcrGgZG2eMqGZCwbXu6q2Cqa1QMC8P+K/kcdEyZ+c9WxFvE3GSuw==
 
-"@freesewing/pattern-info@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/pattern-info/-/pattern-info-2.7.0-beta.1.tgz#740ab11f4763facf3ca283df78edca9866790c20"
-  integrity sha512-YdAraXB9d0NkDNkBf11tcpaOy3qKcz2MszeMGuJ3sguoNOMyu8Zrl7ir4TCFWm4VFZJ/hrYUEOR470Jyj0vhqA==
+"@freesewing/pattern-info@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/pattern-info/-/pattern-info-2.7.0-beta.2.tgz#0b35d6515f2f93f5cf54068da69ca69b2a830eab"
+  integrity sha512-5e+4hzsO+xVOgpeMeUuhk+ym6XYiCh556FkfJZug5DVFCcxU1hrN85Q0h+C/Pwhs2Nw9G2x5FRbxgjzKL2Li8Q==
 
-"@freesewing/penelope@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/penelope/-/penelope-2.7.0-beta.1.tgz#f5af56d094eb33725f627b0b4a371a65cda4da8b"
-  integrity sha512-s7OQlcfIQGHgn9uOO+Piv2ov+kRWUIflTjEGEGSCwHDRYv3ErJsorebPzBRcTrPEpKzgTLvBjOFC+LT40abvNg==
+"@freesewing/penelope@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/penelope/-/penelope-2.7.0-beta.2.tgz#0c3a4890fb0f3e3c1c47c602fc22d64db4943463"
+  integrity sha512-h81uLjRrwsHn+ksctRNDEByJS3aEJBVdegnbYjlkxgB/L7+nc9uixdJfh0HJBbyL1RVzbCX+dKj1/E4maBcqsQ==
 
-"@freesewing/plugin-bundle@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.7.0-beta.1.tgz#b2e93d5370d403a5030270df306f74fdd75b8a3f"
-  integrity sha512-btWHJVUWfcjtZ2HPFCdyGvAH7cO7TfLEDbWF3KCzJG0bsbNCtEucAJm3WeNTgn+SlOV6+2yZLE3ZJhaUcRhhTg==
+"@freesewing/plugin-bundle@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.7.0-beta.2.tgz#5608f5b557f222e75e500d117d680428248ae29c"
+  integrity sha512-hOcBJcxATGC04OgxSna6Ds30UAg4eQOY6SWqyUdhBrHI3UMiJljXTrG4vzKEftJuvJ8j/Vu16rVBOmkq20X1YA==
   dependencies:
-    "@freesewing/plugin-cutonfold" "^2.7.0-beta.1"
-    "@freesewing/plugin-dimension" "^2.7.0-beta.1"
-    "@freesewing/plugin-grainline" "^2.7.0-beta.1"
-    "@freesewing/plugin-logo" "^2.7.0-beta.1"
-    "@freesewing/plugin-round" "^2.7.0-beta.1"
-    "@freesewing/plugin-scalebox" "^2.7.0-beta.1"
-    "@freesewing/plugin-sprinkle" "^2.7.0-beta.1"
-    "@freesewing/plugin-title" "^2.7.0-beta.1"
+    "@freesewing/plugin-cutonfold" "^2.7.0-beta.2"
+    "@freesewing/plugin-dimension" "^2.7.0-beta.2"
+    "@freesewing/plugin-grainline" "^2.7.0-beta.2"
+    "@freesewing/plugin-logo" "^2.7.0-beta.2"
+    "@freesewing/plugin-round" "^2.7.0-beta.2"
+    "@freesewing/plugin-scalebox" "^2.7.0-beta.2"
+    "@freesewing/plugin-sprinkle" "^2.7.0-beta.2"
+    "@freesewing/plugin-title" "^2.7.0-beta.2"
 
-"@freesewing/plugin-bust@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.7.0-beta.1.tgz#7dcf348cbc2d2abd477a25a89b98eca8576adb2f"
-  integrity sha512-38FuQyB9XuXt7flUJVfjH21UxAqcNhe+a69ZmqUzqNROcpkBX1Cvxp+TEEjYe8Iq18GJmZKbO6KCG+OjQIGFyA==
+"@freesewing/plugin-bust@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.7.0-beta.2.tgz#5a33ec9c56b04971cfc1303003988ad5197aa19b"
+  integrity sha512-NhLso3jtqT2uIC5Et6g3HEMtOhp+yBHQm4ZHDcftkZY1wEiRQOnfbfJsI9KOGu8yaTuZQIVxVeKsWOlFIov+Lw==
 
-"@freesewing/plugin-buttons@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.7.0-beta.1.tgz#63bed36c2fe9485ab37b608d726d9adb2c16d093"
-  integrity sha512-FhXj8OUqMM76X7CEkCyYoP1z90lUsEcpuYP4HTueonhwypfp4HR2E/S/QKzMnr2HWOpTjcagjgq0bmz1jbQM1g==
+"@freesewing/plugin-buttons@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.7.0-beta.2.tgz#6462ab4a7888b2567686bfbe9a7e3d9f6af7bca9"
+  integrity sha512-HbjWFmsIBvBHc7QSQU0udPl27A1dLGQUrAz8aAQHsEZbLcTWAAdVaUhVoWxzGSafrB6/Bq5R2T9wtDJI0f2/iw==
 
-"@freesewing/plugin-cutonfold@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-cutonfold/-/plugin-cutonfold-2.7.0-beta.1.tgz#5fbb8f18876caa8f3bf868429400b639b77066ba"
-  integrity sha512-nvqrxc94PAg0OXh3aoxrRicnGV1uxyIr3WAg921PTm6yFLE1Xa2fefw9khrf0fankz+W7yq2QULA96Y9d4On7w==
+"@freesewing/plugin-cutonfold@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-cutonfold/-/plugin-cutonfold-2.7.0-beta.2.tgz#af109a40d95cd2ef0618467bf9176621aeed7878"
+  integrity sha512-gtsmR4D5mQVJ75qpu53MtIsHari6/PhHwJPjYJKGOLltb7D++dnpi+gy+2uAGbmfQUSvKkqfJ0PW5HkXcanyEQ==
 
-"@freesewing/plugin-dimension@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-dimension/-/plugin-dimension-2.7.0-beta.1.tgz#4ba47bc04034f56d1f97eb46949621cbb5f3b412"
-  integrity sha512-jzNRQtHqdDQlUswFu0XmK4PSwfxT6YaBl03g4LU2Z+X5Ow7CzxikAcEuEZKfxBR/ZeVDNF9RRKeo4ndB8k6CFw==
+"@freesewing/plugin-dimension@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-dimension/-/plugin-dimension-2.7.0-beta.2.tgz#d255455f6222c0bd6c3e4a4abe5ca2eb6a48858a"
+  integrity sha512-HC+232A3DRBunEWub6nhMzaFD4mu5L/BXjRQ9LeQc4nqcQg/59jgw+jvZPAbzgELpYDNwuo6PEzjRoHrt+fCEg==
 
-"@freesewing/plugin-flip@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.7.0-beta.1.tgz#027820c502ead690bbff075360036eb5acf0db0b"
-  integrity sha512-HTYprvqVKH+I5glPW6c6oMlE/PiSrS420sIRhcDqsMIWKNW8x4rmD9RJm00rLwsXGacj8xWWvTDWZMXtLet0ng==
+"@freesewing/plugin-flip@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.7.0-beta.2.tgz#b55f9d955059c5d23af415d8f65e4e6bfb6d936e"
+  integrity sha512-AmktqTU372xFZWM1lO/HI44cwFr2jVrgb0SmrZ+nv2mZhIqOySkQOAzRVnIDuaATSfqH0aemqy72O8YttNq5Ew==
 
-"@freesewing/plugin-gore@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-gore/-/plugin-gore-2.7.0-beta.1.tgz#63206ddda6e51f2af6eeed990fc631478a5b5e6d"
-  integrity sha512-78WQMCPPwVG1BGm/z8VF7M1NTLaO81BNI0EbMZsahYLFWNeTQHJug0l0ip1AJG3GCOvzibMNtOe4G6nmPve6Kg==
+"@freesewing/plugin-gore@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-gore/-/plugin-gore-2.7.0-beta.2.tgz#aef32cf3a056079e123e2a53f31ed160172d3e94"
+  integrity sha512-J/P9x5jxfpJx2AD8iODWMdexeKAjWmRsFfrk2PJDpQQMaAiDnECvVAUXPZy9DUqDxK1ELpg2/4Fvsr+7OZgbPQ==
 
-"@freesewing/plugin-grainline@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-grainline/-/plugin-grainline-2.7.0-beta.1.tgz#86443ae894ca06cd74d081d6414aeb883aaf58c5"
-  integrity sha512-a8PTTHE22fiKMPCzzlPKhBsQwMF2S+PDJaOIheCxioRV4qaDjCLaVAUoobzYnzFQ3/3TQTKte4NN+3YJZsZI5g==
+"@freesewing/plugin-grainline@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-grainline/-/plugin-grainline-2.7.0-beta.2.tgz#a6d0ae714e916d8ae89922a9b36b1ac0bd0fb01c"
+  integrity sha512-tCrxQhtS/L6jCIt8d/cC2MXLDSLC7QgBW9AF4MACPrhhZ9yxrY2peivNngWjN//ka8pNJw5fH4wUDAnwzYbeeQ==
 
-"@freesewing/plugin-i18n@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-i18n/-/plugin-i18n-2.7.0-beta.1.tgz#e7dc6e4eba5380a1e14416ea16efbd8aa29642e4"
-  integrity sha512-/YysZ5T/55Enh/4e5AoXAc5R3sKmHULlrq6VD8jTPxJQvZ8Ppw6d6jkVDZzGtq/h0buGZT6ZVmQFtQLB9l5/Yg==
+"@freesewing/plugin-i18n@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-i18n/-/plugin-i18n-2.7.0-beta.2.tgz#d5a24aff0ceba0fb9b13ec0470a80835b7c557fb"
+  integrity sha512-bsXip3s4isam6g91VPaXmHVVBFW9DxjbcWqd7SUweTQbvKHfR1prADSiEUcko124rmvwYGSL9OgKbVyIeV10Hw==
 
-"@freesewing/plugin-logo@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-logo/-/plugin-logo-2.7.0-beta.1.tgz#e8669b4c73778c3990b796c82151b7858c594cb9"
-  integrity sha512-q/rqxNpbQdtTO4GqFXbhZdp9FyeHVxSvP/pomcdVruEHz4K3n/VLMDVGTHDGigql82ow7kjHejueRrXiyA6JIw==
+"@freesewing/plugin-logo@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-logo/-/plugin-logo-2.7.0-beta.2.tgz#cfe4706bad182572b8f53176ba57b772a2f6c176"
+  integrity sha512-TbMiNuP47Xjb9TeDo3Uv/zTHhrLdsI2M3xwzURk20Ypb/nlMZah3zIslGMmqskE48CXBPuWcZyfD+Gr75/0baQ==
 
-"@freesewing/plugin-round@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-round/-/plugin-round-2.7.0-beta.1.tgz#13736e3df2d58b78746029be33465d9c7aa3d273"
-  integrity sha512-croLxeTrYS65Pg/qpwrr0dGT/OqW5W0dm/1LK4ja0H/o57vlNeVzgSY7y95AV/5K+O689/DyyTj/HoDuR50dZw==
+"@freesewing/plugin-round@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-round/-/plugin-round-2.7.0-beta.2.tgz#e142f6fa45972041555d65a33d3603f75a43a61d"
+  integrity sha512-kYt01s2MotPIObTYYeHkd113jKQ/j3FP9GzzUw5/DEE2q8zSG+qnFEa+VpALez4JrI6YSh36NVcsB89p89UTYQ==
 
-"@freesewing/plugin-scalebox@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-scalebox/-/plugin-scalebox-2.7.0-beta.1.tgz#1998fed4eb40b8f26cf572b3e1b995eed99b8771"
-  integrity sha512-0Byswfs6Kgpmdr2+qwFnXm0KNdzTSJegjtwsl52nenjVDf7C03Z+b901TtfNNCGY1kdX/GoFqBWM8nW4d9TuiQ==
+"@freesewing/plugin-scalebox@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-scalebox/-/plugin-scalebox-2.7.0-beta.2.tgz#37210943e8751617d60dec15aec3b4c0672858e0"
+  integrity sha512-cx8LhjSyIAywDLLOo+GiVbhSe6G+z+VE7t63bjrOhsOTcqNseAiTgGW0IvZMbl3lALJEOxkOUEuawOBRAnckKg==
 
-"@freesewing/plugin-sprinkle@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-sprinkle/-/plugin-sprinkle-2.7.0-beta.1.tgz#99f3d18ba1779d27d279d6dc8c3e7fdafab6d3df"
-  integrity sha512-Q1Yc3lsFdJZlZCYIv5pJ5Fppy1bFl2qo2HSIXspjncq6tjomYEm53bS4E+zjN/Ht2g40mVYj/fJ+/5aYerxGoA==
+"@freesewing/plugin-sprinkle@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-sprinkle/-/plugin-sprinkle-2.7.0-beta.2.tgz#74e851582a5783b4c8c407c9d743b5eb4a9d5e48"
+  integrity sha512-xQcRUl6nHZsPvKsG4Pbs8vb9/s+M94nfIwHaKgMmPgr1eFf9JyWPZ0d1FMClpxLwFV8lVwDY39xalCgsSoWeQw==
 
-"@freesewing/plugin-theme@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-theme/-/plugin-theme-2.7.0-beta.1.tgz#9413ee86a41aa629574b55c4c2f4105141c726f0"
-  integrity sha512-jlKl9ZgbhR5HA/I8g33rQCKoZjvPw1obHlgWlNEM2CQzAJQ2Xqs0H4E1rtuPwEWQZzM7tshR7hw9i/rXQfvv4g==
+"@freesewing/plugin-theme@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-theme/-/plugin-theme-2.7.0-beta.2.tgz#6c7f7fa84706c40225bfdb03defcbbcca147ade2"
+  integrity sha512-OtTqNLML4r2szk32PQRYhdwLTZOnlrNBGhB+hkr/myIOQAexN7VkvYE6+PGnFUCvtQ5MO8xl7M4BOKLwngSjWQ==
 
-"@freesewing/plugin-title@^2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-title/-/plugin-title-2.7.0-beta.1.tgz#8ee615031bf13e6920d3676f042dd5a1c49f65fb"
-  integrity sha512-Ia1cl8+KYe+AEs1gMhAg7p3zvoxXJjsHLlYKV4fv+oy0lNSLRg7FtPdYLrBOfU0qbkxP0Azx2hhoxY+a3RtkHw==
+"@freesewing/plugin-title@^2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-title/-/plugin-title-2.7.0-beta.2.tgz#59fbb544e2262dd4063aa61e422c5278cf932a15"
+  integrity sha512-Ugy9faGDHqU3dPitwSYcO3giT2bGxk6eBE6osU8PsaFk9W9CTDeHTur6fJi4rA95fUGmX2jxJq+SQC8rSdcMlw==
 
-"@freesewing/prettier-config@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.7.0-beta.1.tgz#6447c7a628864f3f20ad245470031a76e2cb3d62"
-  integrity sha512-Xkd6eb/YBzYxlXLOg50xgRESZPcbZGHLsysG2mmsPyerAWPrGBxFbZUR14qKeDM9j9kJ9UQlo3YfudXACwpAZw==
+"@freesewing/prettier-config@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.7.0-beta.2.tgz#4e39a35f8280b25185901c323b735597f70d4c30"
+  integrity sha512-H4j6hdPXMjxKPdbe9+4cNeBnW6YUvpq/PHCbKfHve42clenfON6KjQaQmXUmCGcWTRECugGyBAJZrL/cMJTqzQ==
 
-"@freesewing/rendertest@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/rendertest/-/rendertest-2.7.0-beta.1.tgz#108f38131446e3a85787fc8e5ae99d46e926c735"
-  integrity sha512-qWvUNDbLPptXsxVFOZto/D0QDTlwb2nIhqa2dKAiDZtZSDt5PN8yahpYsGmydA0ytmg2Av5QPFq6S1GHFq5C9Q==
+"@freesewing/rendertest@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/rendertest/-/rendertest-2.7.0-beta.2.tgz#d26927c0496a0546631125cb2d80238dc09888c9"
+  integrity sha512-Bllaw0bDafimLZJ1gZCEbprJpFBhc8eBut40HGNne8dVSmka13270RUEVv4Rf2pXalY2v4RPBfaartYIMV70yA==
 
-"@freesewing/sandy@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/sandy/-/sandy-2.7.0-beta.1.tgz#26ffb8b143110f182975c35a395f66bb48596783"
-  integrity sha512-2MIXL2XqEaDaP9IzDdfaZWtXPyHZnumg1LrwRe6pBTRb9ux77fAzaeUCIGcG2TPuhWaLU60IwIAvo6qdNOXwWg==
+"@freesewing/sandy@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/sandy/-/sandy-2.7.0-beta.2.tgz#8607f24cacfd856c8ac9b60b065e6a17dd5f138a"
+  integrity sha512-P9TliWljL+/0sMvEE4rBxkAGDqbRu7eXhS3kwRInwSwfjNlbDFXgYy8b0XzsUBxBa+lmM9WNirKhWXTKPRh2wQ==
 
-"@freesewing/shin@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/shin/-/shin-2.7.0-beta.1.tgz#cdd2ff0946228c944ba146d4a5c4198d8bba0162"
-  integrity sha512-pJpNWTnzE/lexSL8E7O6lYWoHMn1ihT8ri5EsdmIcP5YertBwenAtjCoaZKHmLuYUHicJTh29oOYhf+F8gyDvA==
+"@freesewing/shin@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/shin/-/shin-2.7.0-beta.2.tgz#a08c9d76ac471dd890037c07f1438c5074e4cdbe"
+  integrity sha512-m0uXLqpPiEGg61ruD43vrZYfUtxmUkRCghuiEQ4Nc0ZnooKAIAXRS9/9P9iX3+xOYK5tYgHUBOEb3chie2YU/Q==
 
-"@freesewing/simon@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/simon/-/simon-2.7.0-beta.1.tgz#99365e02d224648964237ac2cb5d7202d039df38"
-  integrity sha512-DfLjbTkRQPu6O4IK5pznaMSj+39gZWZG0gGBjkarzW8CIuj33HzDt0pnUsFif8C6gsQ0UrFVhJ35gf0kcJzrSA==
+"@freesewing/simon@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/simon/-/simon-2.7.0-beta.2.tgz#9b1c912470efaf217fd1dc37862979c5c1458393"
+  integrity sha512-5bPQOx957Ei/z+PZPXjbWFqRYpO0yUjIbDLmZgWvoH6PmHLqM0E+6LKJz7m6cNyGk0i+OC4McdRJ/z1PsyFkYA==
 
-"@freesewing/simone@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/simone/-/simone-2.7.0-beta.1.tgz#0795155c27527f1c1e4a1130bc5beaa08a6875fc"
-  integrity sha512-+1x/4neieDOTOmN0i4EvPG4YAr1jTowdQkFQYiwSznlNM6NJEABCDGY1ZLEc/uy0z+4XclRaVFvTTfGeTZMkBA==
+"@freesewing/simone@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/simone/-/simone-2.7.0-beta.2.tgz#0c63ec168b881c02fc0562243c93828b72620997"
+  integrity sha512-8Vo+kARAHn28YjGiGjYvFomo2QcB23tsfjRf88kQzrxKjZVZU8XY/88agclfQ+yaH9dAlL1CDy6iXSJzbqGxPQ==
 
-"@freesewing/sven@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/sven/-/sven-2.7.0-beta.1.tgz#cce2c410df82aa841e68a262c4d45d8f2988d7ec"
-  integrity sha512-krHyWpFWkzEPRLSyugM7dd3zY/kl2PDswGoG6YGJpTgzNunC4UUAFMGHkMJcTqPgXPFbuivscjYBkrEkTEsU1A==
+"@freesewing/sven@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/sven/-/sven-2.7.0-beta.2.tgz#2f6a249fa904c661d37ac669343fdf33079856cb"
+  integrity sha512-xJ7iIEk/GbelDbKmBH2Vwrg3wzeyXeRq/Xp3M3cT8Nt01KAZckImDho9ajHFZNxJecQeDkCQpu3q98YWmvygyg==
 
-"@freesewing/tamiko@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/tamiko/-/tamiko-2.7.0-beta.1.tgz#87d74296436fb0f040f708b36049e0cc5826ee55"
-  integrity sha512-ohB9v5QZZ+vE4tYNTlEjWBedNtDFPtjTkrmxyzxWC24FD9I6sJdSneZMa0j8eTMNLFFSqSLbPY3Nos2xo+fy/w==
+"@freesewing/tamiko@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/tamiko/-/tamiko-2.7.0-beta.2.tgz#54725010c6452e24ace7ec4ccd0cf01877397e14"
+  integrity sha512-qbSnLnyTrngKmCBlBY+NxOcCetoWN8ivOvn9IvyIvx5qLn67O/6qUCPjDHd9YcCn8auu77SSQQMxk2HAYOS16g==
 
-"@freesewing/theo@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/theo/-/theo-2.7.0-beta.1.tgz#2a11eaf4fb81a44c083b2cadde038ed3626773d0"
-  integrity sha512-mKT5or3dRIxqwXsj+oqHLdCpKGO4WOo2Fa/sFovoyX8JsmboOa2gqKTE/U76aqIu24vb58oih8pAJ3O49Qq+8g==
+"@freesewing/theo@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/theo/-/theo-2.7.0-beta.2.tgz#c0119a4d0c5d7861e4916e460d2a4eb8cc8e3847"
+  integrity sha512-nuUJHy61gkpPW7aAxHjN5xd+1pg0l+1lfs9mz2tAUjIEbzVh34GiEgoNu8O5kHO6HZ78Ci2jN8iFi4mqOCAhmA==
 
-"@freesewing/titan@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/titan/-/titan-2.7.0-beta.1.tgz#12390652855d94c3c4965ab839841f9f1a413dcd"
-  integrity sha512-526k4k+KkJof0a7uV8OAroABnLH44BKwPvjT3ca88tagjfJ6Y1p/MkHNXQRGpUaWXUt++JSUL6BhdNyR4tQRAg==
+"@freesewing/titan@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/titan/-/titan-2.7.0-beta.2.tgz#91c007219bf31da4274fd0cba5616291f1d97fc7"
+  integrity sha512-a6lvstl3wvkO4Wy56Ls++qORPlAvi0Y4P4lNxREJ0+7XiY8Bw0Uf+7DLJRTRFFHHwb99GRrfrygERY1tUwokeA==
 
-"@freesewing/trayvon@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/trayvon/-/trayvon-2.7.0-beta.1.tgz#9e534bb514f377c41a3a88f8505de65010afdbed"
-  integrity sha512-kN5C4wUJIwgeE6/HjryrcX3byeoCFd4N2Ua5zxEvgRPAHcGShTxoNt+YbsVdFVAL8OSmCXL69f6tVVyFWeYYbg==
+"@freesewing/trayvon@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/trayvon/-/trayvon-2.7.0-beta.2.tgz#89803b039f11954337ba880b0dcac6a7690aa88e"
+  integrity sha512-NZm9tdvtd5KSkGIsocKUCql8vKwtPWb7EaA+JI1ozkpfFDW7pdJKkFPjINLwiEl4IMOWoxva5Znvxay3YcIxew==
 
-"@freesewing/tutorial@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/tutorial/-/tutorial-2.7.0-beta.1.tgz#79a72d6716a2fd1ed4727aa66ce18d9cab653cf6"
-  integrity sha512-yhroCxRzRyTUtHhXkGkCJgXOrcxUuR2S999yrOLpA8w3ljJX9QlVUQ9/DGva0W1cREv1QvunKYDL12hxtCwV6Q==
+"@freesewing/tutorial@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/tutorial/-/tutorial-2.7.0-beta.2.tgz#39982fb716b651e08d3c9d3f0ec8cf5e577efb16"
+  integrity sha512-cgQOC1SBkFkj5tW1DbTTpDwRovcbm/VV2xra8v0Bibs/zdHXbwOAL8TySLjtfJVP3WZs9VjehpT5zivHKyXWYQ==
 
-"@freesewing/utils@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/utils/-/utils-2.7.0-beta.1.tgz#4aba9269be73effe3a012f524d6b9cca73c6630c"
-  integrity sha512-JQKCwtJO6vZ8Wo6wjFuBeXkGcPrvn3gC+oB0Ncg8/ctO9Rp5OmwYqLy3RvIUnC+nM2srNeOU2aoxmdqVzxSVNw==
+"@freesewing/utils@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/utils/-/utils-2.7.0-beta.2.tgz#1e74ea4b55df977fb7816feb8a4aef4a6272a828"
+  integrity sha512-ICkO+X2+byOaJ+wP/ViZDvkzU5KS4iO779BETKtTUeKMR5R4733V5lXf6PJbbM2GRa6PjrgEnuHF+dgh6auaYQ==
 
-"@freesewing/wahid@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/wahid/-/wahid-2.7.0-beta.1.tgz#e3fc969254e4ee7ab97f99eaca1e1c53bbf94a58"
-  integrity sha512-zkvAv/b8qoJwOBiwjvmhHdKIZ8NuZowV6A8OHGE/FR6Aysj2uqTmWRhLnUvwlxtmJqiPPQ90SHFSDMuiz58f1w==
+"@freesewing/wahid@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/wahid/-/wahid-2.7.0-beta.2.tgz#9fcc86886209dd5d35b3b60a3f22ee289c91b74d"
+  integrity sha512-t3LtrAp2v8f8TMSUIfkQIWa7oEoL73m62WV/+YzLJGcyX0PjbDPqlzn6aKFE0vqYxBwud4UAxj5Zpwn0kLwSyw==
 
-"@freesewing/waralee@2.7.0-beta.1":
-  version "2.7.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.7.0-beta.1.tgz#430e2d5f8be687a4204df8f545cb8092c150c70f"
-  integrity sha512-RNKBDPVnUDK4VeDlJ/2X6kZX9U9oYWGs4dXv2hwY1ooOaw0gGl9M2FOouMSbs7Sp7H3oH4EmPaVmQPRd+zJdfw==
+"@freesewing/waralee@2.7.0-beta.2":
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.7.0-beta.2.tgz#c52c2fc4a0558159f5909f1daf5516c24d146e13"
+  integrity sha512-Mv9TEk3tE2LqqPQu9EyrYT/OZEuPmKwQSt/cszIcaBjUJh3FQeKsgqU8rY/eQGKzaqOgIU+ltoozoilF7wQEag==
 
 "@graphql-tools/schema@^6.0.11":
   version "6.0.12"
@@ -14028,7 +14028,14 @@ remark-html@11.0.2:
     mdast-util-to-hast "^8.2.0"
     xtend "^4.0.1"
 
-remark-jargon@2.7.0-beta.1, remark-jargon@^2.7.0-beta.0:
+remark-jargon@2.7.0-beta.2:
+  version "2.7.0-beta.2"
+  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.7.0-beta.2.tgz#4ba9e3ba73be8122bf9ccfb0f6eadcec9f91812b"
+  integrity sha512-tVrBAZr5CCJAA3h8YMZttGUUBfvddT8T30efyWbwiyl+dQQ7zJVHuGCUObAjqalAiLSvdsDIgkzrZsZ8kAodKA==
+  dependencies:
+    unist-util-visit "^1.4.0"
+
+remark-jargon@^2.7.0-beta.0:
   version "2.7.0-beta.1"
   resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.7.0-beta.1.tgz#7c081917d87b779398be7bd6581e78f487efc471"
   integrity sha512-JPej8NB86ZAGTRjAzH1EQQwW1Dh7tm2LdAaBeg7yq4y1dFC8vKMiS2OdLS74ViK9hwZL2AENVvtbyyAC5arqow==
