@@ -11,6 +11,7 @@ import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 
 import DraftError from './error'
+import DraftEvents from './events/'
 
 import Dialog from '../pattern/dialog'
 import PatternFabs from '../pattern/fabs'
@@ -36,9 +37,6 @@ const DraftUi = (props) => {
     setVisitorUnits(newUnits)
     mergeData(newUnits, 'settings', 'units')
   }
-
-  // Hooks
-  //const docs = useDraftDocs(props.data)
 
   if (!person || !design)
     return (
@@ -69,7 +67,6 @@ const DraftUi = (props) => {
         compareWith = { ...withBreasts }
         breasts = true
       } else {
-        console.log(props.person.handle)
         if (props.person.notAPerson && props.person.handle.indexOf('ith breasts') !== -1) {
           // Menswear pattern for model with breasts
           compareWith = { ...withBreasts }
@@ -113,12 +110,15 @@ const DraftUi = (props) => {
   const main = error ? (
     <DraftError error={error} updatePatternData={mergeData} />
   ) : (
-    <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-      <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
-      {display === 'compare' && (
-        <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
-      )}
-    </figure>
+    <>
+      <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+        <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
+        {display === 'compare' && (
+          <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
+        )}
+      </figure>
+      <DraftEvents events={patternProps.events} app={app} />
+    </>
   )
 
   return (
