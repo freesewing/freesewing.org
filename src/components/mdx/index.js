@@ -5,6 +5,7 @@ import { MDXProvider } from '@mdx-js/react'
 import Blockquote from '@freesewing/components/Blockquote'
 import ReadMore from '../read-more'
 import YouTube from '../youtube'
+import Legend from '@freesewing/components/Legend'
 
 const customComponents = {
   Note: ({ children }) => <Blockquote type="note">{children}</Blockquote>,
@@ -12,7 +13,8 @@ const customComponents = {
   Warning: ({ children }) => <Blockquote type="warning">{children}</Blockquote>,
   Fixme: ({ children }) => <Blockquote type="fixme">{children}</Blockquote>,
   ReadMore: (props) => <ReadMore {...props} />,
-  YouTube
+  YouTube,
+  Legend
 }
 
 const Mdx = ({ node }) => (

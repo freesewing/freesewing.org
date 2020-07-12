@@ -111,11 +111,11 @@ function useApp() {
   const toggleMenu = () => setMenu(!menu)
   const toggleMobileAside = () => setMobileAside(!mobileAside)
   const closeNav = (evt) => {
-    console.log('would close')
     return null
-    if (typeof evt.target.className === 'object') {
-      if (evt.target.className.baseVal.indexOf('o-closenav') === -1) return setMenu(false)
-    } else if (evt.target.className.indexOf('o-closenav') === -1) return setMenu(false)
+    // This is tricky because the classnames in the build code or different from the development code
+    //if (typeof evt.target.className === 'object') {
+    //  if (evt.target.className.baseVal.indexOf('o-closenav') === -1) return setMenu(false)
+    //} else if (evt.target.className.indexOf('o-closenav') === -1) return setMenu(false)
   }
 
   // Media queries

@@ -1,54 +1,60 @@
 import React, { useState } from 'react'
 import neckstimate from '@freesewing/utils/neckstimate'
 import formatMm from '@freesewing/utils/formatMm'
+import isDegMeasurement from '@freesewing/utils/isDegMeasurement'
 
 const ModelGraph = (props) => {
   const [text, setText] = useState('')
   const [highlight, setHighlight] = useState(false)
   const { model } = props
 
-  if (!model || !model.measurements || !model.measurements.neckCircumference) return null
+  if (!model || !model.measurements || !model.measurements.neck) return null
 
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
   ver.push('hpsToBust')
-  ver.push('hpsToHipsBack')
-  if (model.breasts) ver.push('hpsToHipsFront')
+  ver.push('hpsToWaistBack')
+  if (model.breasts) ver.push('hpsToWaistFront')
   ver.push('shoulderSlope')
   ver.push('shoulderToElbow')
   ver.push('shoulderToWrist')
   if (model.breasts) ver.push('hpsToBust')
-  if (model.breasts) ver.push('naturalWaistToUnderbust')
-  ver.push('naturalWaistToFloor'), ver.push('naturalWaistToHip')
-  ver.push('naturalWaistToSeat')
-  ver.push('naturalWaistToKnee')
-  ver.push('hipsToUpperLeg')
-  ver.push('seatDepth')
+  if (model.breasts) ver.push('waistToUnderbust')
+  ver.push('waistToFloor')
+  ver.push('waistToHips')
+  ver.push('waistToSeat')
+  ver.push('waistToUpperLeg')
+  ver.push('waistToKnee')
+  ver.push('crotchDepth')
   ver.push('inseam')
-  ver.push('naturalWaistToFloor')
+  ver.push('waistToFloor')
 
   const hor = []
-  hor.push('neckCircumference')
-  hor.push('headCircumference')
+  hor.push('neck')
+  hor.push('head')
   hor.push('shoulderToShoulder')
-  hor.push('bicepsCircumference')
+  hor.push('biceps')
   if (model.breasts) {
     hor.push('highBust')
     hor.push('highBustFront')
   }
-  hor.push('chestCircumference')
+  hor.push('chest')
   if (model.breasts) {
     hor.push('bustFront')
     hor.push('bustSpan')
     hor.push('underbust')
   }
-  hor.push('naturalWaist')
-  hor.push('hipsCircumference')
-  hor.push('seatCircumference')
-  hor.push('upperLegCircumference')
-  hor.push('wristCircumference')
-  hor.push('kneeCircumference')
-  hor.push('ankleCircumference')
+  hor.push('waist')
+  hor.push('waistBack')
+  hor.push('hips')
+  hor.push('seat')
+  hor.push('seatBack')
+  hor.push('crossSeam')
+  hor.push('crossSeamFront')
+  hor.push('upperLeg')
+  hor.push('wrist')
+  hor.push('knee')
+  hor.push('ankle')
 
   const own = (m) => {
     return model.measurements[m]
@@ -73,7 +79,9 @@ const ModelGraph = (props) => {
           id: 'measurements.' + measurement
         }) +
           ': ' +
-          formatMm(data[measurement], model.units) +
+          (isDegMeasurement(measurement)
+            ? data[measurement] + '°'
+            : formatMm(data[measurement], model.units)) +
           ' ' +
           (isOwn ? '' : '(' + props.intl.formatMessage({ id: 'app.estimate' }) + ')')
       )
@@ -168,9 +176,9 @@ const ModelGraph = (props) => {
   }
 
   // Get neck measurement, (estimated) model data, and default bar size
-  const neck = model.measurements.neckCircumference
+  const neck = model.measurements.neck
   const data = modelData()
-  const vd = barSize('neckCircumference')
+  const vd = barSize('neck')
 
   return (
     <svg

@@ -1,6 +1,6 @@
 import React from 'react'
-import bugsnag from '@bugsnag/js'
-import bugsnagReact from '@bugsnag/plugin-react'
+import Bugsnag from '@bugsnag/js'
+import BugsnagPluginReact from '@bugsnag/plugin-react'
 import { version } from '../../../package.json'
 
 let user = null
@@ -22,17 +22,18 @@ if (process.env.GATSBY_NETLIFY) {
   }
 }
 
-const bugsnagClient = bugsnag({
+Bugsnag.start({
   apiKey: '12eebb132933c355271140dcdc32bc20',
   appVersion: version + '@' + process.env.GATSBY_NETLIFY_COMMIT_REF,
   releaseStage,
   collectUserIp: false,
-  notifyReleaseStages: ['production', 'next'],
-  beforeSend: (report) => {
-    report.user = { id: user }
-  }
+  enabledReleaseStages: ['production', 'next'],
+  onError: (event) => {
+    event.user = { id: user }
+  },
+  plugins: [new BugsnagPluginReact(React)]
 })
-bugsnagClient.use(bugsnagReact, React)
-const ErrorBoundary = bugsnagClient.getPlugin('react')
+
+const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React)
 
 export default ErrorBoundary

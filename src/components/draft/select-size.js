@@ -2,11 +2,9 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
-import Button from '@material-ui/core/Button'
 
 import MissingAccount from '../missing/account'
 import MissingPeople from '../missing/people'
-import Avatar from '../avatar'
 import Person from '../person'
 import Size from '../size'
 
@@ -57,6 +55,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
             <div style={styles.wrapper}>
               {people.ok.user.map((person) => (
                 <Person
+                  key={person.handle}
                   data={person}
                   translate={app.translate}
                   link={
@@ -75,6 +74,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
       <div style={styles.wrapper}>
         {Object.keys(people.ok.withBreasts).map((size) => (
           <Size
+            key={size}
             breasts={true}
             size={size}
             translate={app.translate}
@@ -87,6 +87,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
         ))}
         {Object.keys(people.ok.withoutBreasts).map((size) => (
           <Size
+            key={size}
             breasts={false}
             size={size}
             translate={app.translate}

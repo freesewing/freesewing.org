@@ -10,12 +10,13 @@ import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 
-import DraftHelp from './help'
 import DraftError from './error'
+import DraftEvents from './events/'
 
 import Dialog from '../pattern/dialog'
 import PatternFabs from '../pattern/fabs'
-
+import { sampleStyles, focusStyle, extraDefs } from './sample-styles'
+import SampleLegend from './sample-legend'
 import './ui.css'
 
 const DraftUi = (props) => {
@@ -24,16 +25,8 @@ const DraftUi = (props) => {
 
   // Methods
   const raiseEvent = (type, data) => {
-    if (type === 'showHelp') {
-      // Clicking same help icon again will cancel it out
-      if (display === 'help' && eventType === data.type && eventValue === data.value)
-        setDisplay('draft')
-      else {
-        setEventType(data.type)
-        setEventValue(data.value)
-        setDisplay('help')
-      }
-    }
+    setEventType(data.type)
+    setEventValue(data.value)
   }
   const openDialog = (action) => {
     setDialogAction(action)
@@ -44,9 +37,6 @@ const DraftUi = (props) => {
     setVisitorUnits(newUnits)
     mergeData(newUnits, 'settings', 'units')
   }
-
-  // Hooks
-  //const docs = useDraftDocs(props.data)
 
   if (!person || !design)
     return (
@@ -68,17 +58,33 @@ const DraftUi = (props) => {
   const [dialogAction, setDialogAction] = useState('pick')
 
   // Draft the pattern
-  let draft, error, patternProps
+  let draft, error, patternProps, compareWith, breasts
   try {
-    draft = new Pattern(data.settings).use(i18nPlugin, {
-      strings: patternTranslations
-    })
+    draft = new Pattern(data.settings).use(i18nPlugin, { strings: patternTranslations })
     if (display === 'compare') {
-      let compareWith = {}
-      if (withBreastsPatterns.indexOf(design) === -1) compareWith = { ...withoutBreasts }
-      else compareWith = { ...withBreasts }
+      compareWith = {}
+      if (withBreastsPatterns.indexOf(design) !== -1) {
+        compareWith = { ...withBreasts }
+        breasts = true
+      } else {
+        if (props.person.notAPerson && props.person.handle.indexOf('ith breasts') !== -1) {
+          // Menswear pattern for model with breasts
+          compareWith = { ...withBreasts }
+          breasts = true
+        } else {
+          compareWith = { ...withoutBreasts }
+          breasts = false
+        }
+      }
       compareWith.model = person.measurements
-      draft.sampleModels(compareWith, 'model')
+      draft.settings.sample = {
+        type: 'models',
+        models: compareWith,
+        styles: sampleStyles(app.theme === 'dark'),
+        focus: 'model',
+        focusStyle: focusStyle(app.theme === 'dark')
+      }
+      draft.sample()
     } else draft.draft()
     patternProps = draft.getRenderProps()
   } catch (err) {
@@ -101,26 +107,19 @@ const DraftUi = (props) => {
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
 
   // Main render element
-  let main
-  if (display === 'help') {
-    main = (
-      <DraftHelp
-        docs={docs}
-        pattern={design}
-        setDisplay={setDisplay}
-        eventType={eventType}
-        eventValue={eventValue}
-      />
-    )
-  } else {
-    if (error) main = <DraftError error={error} updatePatternData={mergeData} />
-    else
-      main = (
-        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-          <Draft {...patternProps} />
-        </figure>
-      )
-  }
+  const main = error ? (
+    <DraftError error={error} updatePatternData={mergeData} />
+  ) : (
+    <>
+      <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+        <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
+        {display === 'compare' && (
+          <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
+        )}
+      </figure>
+      <DraftEvents events={patternProps.events} app={app} />
+    </>
+  )
 
   return (
     <DraftLayout app={app} aside={aside}>

@@ -80,40 +80,42 @@ const ConsentPage = (props) => {
       <FormattedMessage id="gdpr.consentForProfileData" />
     </h2>,
     <table style={styles.table} className="font-title" key="profileTable">
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="profileWhatQuestion">
-          <FormattedMessage id="gdpr.profileWhatQuestion" values={bold} />
-        </td>
-        <td style={styles.cell} data-test="profileWhatAnswer">
-          <FormattedMessage id="gdpr.profileWhatAnswer" values={bold} />
-          <br />
-          <FormattedMessage id="gdpr.profileWhatAnswerOptional" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
-          <FormattedMessage id="gdpr.whyQuestion" />
-        </td>
-        <td style={styles.cell} data-test="profileWhyAnswer">
-          <FormattedMessage id="gdpr.profileWhyAnswer" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
-          <FormattedMessage id="gdpr.timingQuestion" />
-        </td>
-        <td style={styles.cell} data-test="profileTimingAnswer">
-          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
-          <FormattedMessage id="gdpr.shareQuestion" />
-        </td>
-        <td style={styles.cell} data-test="profileShareAnswer">
-          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
-        </td>
-      </tr>
+      <tbody>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="profileWhatQuestion">
+            <FormattedMessage id="gdpr.profileWhatQuestion" values={bold} />
+          </td>
+          <td style={styles.cell} data-test="profileWhatAnswer">
+            <FormattedMessage id="gdpr.profileWhatAnswer" values={bold} />
+            <br />
+            <FormattedMessage id="gdpr.profileWhatAnswerOptional" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
+            <FormattedMessage id="gdpr.whyQuestion" />
+          </td>
+          <td style={styles.cell} data-test="profileWhyAnswer">
+            <FormattedMessage id="gdpr.profileWhyAnswer" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
+            <FormattedMessage id="gdpr.timingQuestion" />
+          </td>
+          <td style={styles.cell} data-test="profileTimingAnswer">
+            <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
+            <FormattedMessage id="gdpr.shareQuestion" />
+          </td>
+          <td style={styles.cell} data-test="profileShareAnswer">
+            <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
+          </td>
+        </tr>
+      </tbody>
     </table>
   ]
   const modelDetails = [
@@ -121,44 +123,46 @@ const ConsentPage = (props) => {
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
     <table style={styles.table} className="font-title" key="modelData">
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="modelWhatQuestion">
-          <FormattedMessage id="gdpr.modelWhatQuestion" />
-        </td>
-        <td style={styles.cell} data-test="modelWhatAnswer">
-          <FormattedMessage id="gdpr.modelWhatAnswer" values={bold} />
-          <br />
-          <FormattedMessage id="gdpr.modelWhatAnswerOptional" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
-          <FormattedMessage id="gdpr.whyQuestion" />
-        </td>
-        <td style={styles.cell} data-test="modelWhyAnswer">
-          <FormattedMessage id="gdpr.modelWhyAnswer" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
-          <FormattedMessage id="gdpr.timingQuestion" />
-        </td>
-        <td style={styles.cell} data-test="profileTimingAnswer">
-          <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
-        </td>
-      </tr>
-      <tr style={styles.row}>
-        <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
-          <FormattedMessage id="gdpr.shareQuestion" />
-        </td>
-        <td style={styles.cell} data-test="profileShareAnswer">
-          <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
-          <br />
-          <small data-test="openData">
-            <FormattedMessage id="gdpr.openData" />
-          </small>
-        </td>
-      </tr>
+      <tbody>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="modelWhatQuestion">
+            <FormattedMessage id="gdpr.modelWhatQuestion" />
+          </td>
+          <td style={styles.cell} data-test="modelWhatAnswer">
+            <FormattedMessage id="gdpr.modelWhatAnswer" values={bold} />
+            <br />
+            <FormattedMessage id="gdpr.modelWhatAnswerOptional" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="whyQuestion">
+            <FormattedMessage id="gdpr.whyQuestion" />
+          </td>
+          <td style={styles.cell} data-test="modelWhyAnswer">
+            <FormattedMessage id="gdpr.modelWhyAnswer" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="timingQuestion">
+            <FormattedMessage id="gdpr.timingQuestion" />
+          </td>
+          <td style={styles.cell} data-test="profileTimingAnswer">
+            <FormattedMessage id="gdpr.profileTimingAnswer" values={bold} />
+          </td>
+        </tr>
+        <tr style={styles.row}>
+          <td style={{ ...styles.cell, ...styles.question }} data-test="shareQuestion">
+            <FormattedMessage id="gdpr.shareQuestion" />
+          </td>
+          <td style={styles.cell} data-test="profileShareAnswer">
+            <FormattedMessage id="gdpr.profileShareAnswer" values={bold} />
+            <br />
+            <small data-test="openData">
+              <FormattedMessage id="gdpr.openData" />
+            </small>
+          </td>
+        </tr>
+      </tbody>
     </table>
   ]
 

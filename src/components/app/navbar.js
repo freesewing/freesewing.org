@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
 
 import Logo from '@freesewing/components/Logo'
 import { Link } from 'gatsby'

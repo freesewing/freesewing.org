@@ -14,14 +14,15 @@ const MeasurementImages = (props) => {
   const [tab, setTab] = useState(breasts == false ? 1 : 0)
   const toggleTab = () => setTab(tab === 0 ? 1 : 0)
 
-  const seated = ['seatdepth']
+  const seated = ['crotchdepth']
   const breastsOnly = [
     'bustspan',
     'bustfront',
     'highbust',
     'highbustfront',
     'highpointshouldertobust',
-    'naturalwaisttounderbust',
+    'hpstobust',
+    'waisttounderbust',
     'underbust'
   ]
   const bg =

@@ -12,6 +12,7 @@ import InvalidIcon from '@material-ui/icons/Warning'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
+import isDegMeasurement from '@freesewing/utils/isDegMeasurement'
 import formatMm from '@freesewing/utils/formatMm'
 import { graphql } from 'gatsby'
 import neckstimate from '@freesewing/utils/neckstimate'
@@ -34,7 +35,9 @@ const EditMeasurementPage = (props) => {
   const [value, setValue] = useState(
     person.measurements
       ? person.measurements[measurement]
-        ? formatMm(person.measurements[measurement], person.units, 'text')
+        ? isDegMeasurement(measurement)
+          ? person.measurements[measurement]
+          : formatMm(person.measurements[measurement], person.units, 'text')
         : ''
       : ''
   )
@@ -72,12 +75,17 @@ const EditMeasurementPage = (props) => {
 
   // Methods
   const updateMeasurement = (evt) => {
+    let mm = false
+    let valid = false
     let value = evt.target.value
     setValue(evt.target.value)
-    let mm = measurementAsMm(value, person.units)
-    let valid = typeof measurementAsMm(value, person.units) === 'number' ? true : false
+    if (isDegMeasurement(measurement)) valid = value > 0 && value < 20
+    else {
+      mm = measurementAsMm(value, person.units)
+      valid = typeof measurementAsMm(value, person.units) === 'number' ? true : false
+    }
     if (valid) {
-      setMm(mm)
+      if (mm) setMm(mm)
       setUpdated(true)
     }
     setValid(valid)
@@ -86,7 +94,7 @@ const EditMeasurementPage = (props) => {
   const saveMeasurement = () => {
     app.updatePerson(
       props.person,
-      [mm, 'measurements', measurement],
+      [isDegMeasurement(measurement) ? value : mm, 'measurements', measurement],
       `/people/${props.person}/#measurements`
     )
   }
@@ -101,23 +109,14 @@ const EditMeasurementPage = (props) => {
   let measurementInRange = value > 0
   let helperText = () => null
 
-  if (person.measurements.neckCircumference) {
-    measurementEstimate = neckstimate(
-      person.measurements.neckCircumference,
-      measurement,
-      person.breasts
-    ) // Note: This is in mm
+  if (person.measurements.neck) {
+    measurementEstimate = neckstimate(person.measurements.neck, measurement, person.breasts) // Note: This is in mm
     measurementInRange =
-      measurementDiffers(
-        person.measurements.neckCircumference,
-        measurement,
-        value * 10,
-        person.breasts
-      ) <= 2
+      measurementDiffers(person.measurements.neck, measurement, value * 10, person.breasts) <= 2
 
-    // Only show measurementEstimate for non measurements.neckCircumference
+    // Only show measurementEstimate for non measurements.neck
     helperText = () => {
-      if (measurement != 'measurements.neckCircumference') {
+      if (measurement != 'measurements.neck') {
         return (
           <>
             <FormattedMessage
@@ -134,6 +133,12 @@ const EditMeasurementPage = (props) => {
       }
     }
   }
+
+  // Range for degree measurements
+  if (isDegMeasurement(measurement)) measurementInRange = value > 0 && value < 20
+
+  // Symbol for text box
+  const unitsText = isDegMeasurement(measurement) ? '°' : person.units === 'imperial' ? '"' : 'cm'
 
   return (
     <AppWrapper app={app}>
@@ -155,7 +160,7 @@ const EditMeasurementPage = (props) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="start">
-                {person.units === 'imperial' ? '"' : 'cm'}
+                {unitsText}
                 &nbsp;
                 {measurementInRange ? (
                   <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
