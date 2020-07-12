@@ -92,6 +92,11 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     </h6>
     <ul className="inline">
       <li>
+        <Link to="/account/reload/">
+          <FormattedMessage id="account.reloadAccount" />
+        </Link>
+      </li>
+      <li>
         <Link to="/account/export/">
           <FormattedMessage id="account.exportYourData" />
         </Link>

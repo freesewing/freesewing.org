@@ -471,7 +471,7 @@ const PersonPage = (props) => {
           </tbody>
         </table>
         {!blankSlate && (
-          <div style={{ margin: '0 auto' }}>
+          <div style={{ margin: 0 }}>
             <ModelGraph model={person} intl={app.intl} />
             <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
               <small>

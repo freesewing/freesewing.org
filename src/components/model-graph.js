@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import neckstimate from '@freesewing/utils/neckstimate'
 import formatMm from '@freesewing/utils/formatMm'
+import isDegMeasurement from '@freesewing/utils/isDegMeasurement'
 
 const ModelGraph = (props) => {
   const [text, setText] = useState('')
@@ -12,20 +13,21 @@ const ModelGraph = (props) => {
   const sizes = [32, 34, 36, 38, 40, 42, 44, 46]
   const ver = []
   ver.push('hpsToBust')
-  ver.push('hpsToHipsBack')
-  if (model.breasts) ver.push('hpsToHipsFront')
+  ver.push('hpsToWaistBack')
+  if (model.breasts) ver.push('hpsToWaistFront')
   ver.push('shoulderSlope')
   ver.push('shoulderToElbow')
   ver.push('shoulderToWrist')
   if (model.breasts) ver.push('hpsToBust')
-  if (model.breasts) ver.push('naturalWaistToUnderbust')
-  ver.push('naturalWaistToFloor'), ver.push('naturalWaistToHip')
-  ver.push('naturalWaistToSeat')
-  ver.push('naturalWaistToKnee')
-  ver.push('hipsToUpperLeg')
-  ver.push('seatDepth')
+  if (model.breasts) ver.push('waistToUnderbust')
+  ver.push('waistToFloor')
+  ver.push('waistToHips')
+  ver.push('waistToSeat')
+  ver.push('waistToUpperLeg')
+  ver.push('waistToKnee')
+  ver.push('crotchDepth')
   ver.push('inseam')
-  ver.push('naturalWaistToFloor')
+  ver.push('waistToFloor')
 
   const hor = []
   hor.push('neck')
@@ -42,9 +44,13 @@ const ModelGraph = (props) => {
     hor.push('bustSpan')
     hor.push('underbust')
   }
-  hor.push('naturalWaist')
+  hor.push('waist')
+  hor.push('waistBack')
   hor.push('hips')
   hor.push('seat')
+  hor.push('seatBack')
+  hor.push('crossSeam')
+  hor.push('crossSeamFront')
   hor.push('upperLeg')
   hor.push('wrist')
   hor.push('knee')
@@ -73,7 +79,9 @@ const ModelGraph = (props) => {
           id: 'measurements.' + measurement
         }) +
           ': ' +
-          formatMm(data[measurement], model.units) +
+          (isDegMeasurement(measurement)
+            ? data[measurement] + '°'
+            : formatMm(data[measurement], model.units)) +
           ' ' +
           (isOwn ? '' : '(' + props.intl.formatMessage({ id: 'app.estimate' }) + ')')
       )
