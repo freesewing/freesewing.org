@@ -18,6 +18,7 @@ import hipstoupperleg from './hipstoupperleg.svg'
 import inseam from './inseam.svg'
 import knee from './knee.svg'
 import waist from './waist.svg'
+import waistback from './waistback.svg'
 import waisttofloor from './waisttofloor.svg'
 import waisttohips from './waisttohips.svg'
 import waisttoknee from './waisttoknee.svg'
@@ -26,6 +27,7 @@ import waisttounderbust from './waisttounderbust.svg'
 import waisttoupperleg from './waisttoupperleg.svg'
 import neck from './neck.svg'
 import seat from './seat.svg'
+import seatback from './seatback.svg'
 import shoulderslope from './shoulderslope.svg'
 import shouldertoelbow from './shouldertoelbow.svg'
 import shouldertoshoulder from './shouldertoshoulder.svg'
@@ -55,6 +57,7 @@ export default {
   inseam,
   knee,
   waist,
+  waistback,
   waisttofloor,
   waisttohips,
   waisttoknee,
@@ -63,6 +66,7 @@ export default {
   waisttoupperleg,
   neck,
   seat,
+  seatback,
   shoulderslope,
   shouldertoelbow,
   shouldertoshoulder,
