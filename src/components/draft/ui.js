@@ -105,38 +105,45 @@ const DraftUi = (props) => {
 
   // Fit to screen
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
-
   // Main render element
-  const main = error ? (
-    <DraftError error={error} updatePatternData={mergeData} />
-  ) : (
-    <>
-      <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-        <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
-        {display === 'compare' && (
-          <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
-        )}
-      </figure>
-      <DraftEvents events={patternProps.events} app={app} />
-    </>
-  )
+  const main =
+    error || patternProps.events.error.length > 0 ? (
+      <DraftError
+        error={error}
+        events={patternProps.events}
+        updatePatternData={mergeData}
+        app={app}
+      />
+    ) : (
+      <>
+        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+          <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
+          {display === 'compare' && (
+            <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
+          )}
+        </figure>
+        <DraftEvents events={patternProps.events} app={app} />
+      </>
+    )
 
   return (
     <DraftLayout app={app} aside={aside}>
       <article>
-        <PatternFabs
-          app={app}
-          fabs={props.fabs}
-          openDialog={openDialog}
-          pattern={props.pattern}
-          toggleUnits={toggleUnits}
-          units={visitorUnits}
-          fit={fit}
-          display={display}
-          setDisplay={setDisplay}
-          setFit={setFit}
-          data={data}
-        />
+        {!error && patternProps.events.error.length === 0 && (
+          <PatternFabs
+            app={app}
+            fabs={props.fabs}
+            openDialog={openDialog}
+            pattern={props.pattern}
+            toggleUnits={toggleUnits}
+            units={visitorUnits}
+            fit={fit}
+            display={display}
+            setDisplay={setDisplay}
+            setFit={setFit}
+            data={data}
+          />
+        )}
         {main}
       </article>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
