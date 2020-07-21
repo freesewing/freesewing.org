@@ -8,7 +8,7 @@ import DraftEvents from './events/'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
 
-const DraftError = ({ error, events, updateGist, app }) => {
+const DraftError = ({ error, events, updatePatternData, setCrashReport, app }) => {
   const uiMdx = useUiMdx()
   // Style
   const styles = {
@@ -41,8 +41,7 @@ const DraftError = ({ error, events, updateGist, app }) => {
             size="large"
             variant="contained"
             color="primary"
-            href="https://github.com/freesewing/freesewing.org/issues/new"
-            target="_BLANK"
+            onClick={() => setCrashReport(true)}
           >
             <Icon icon="github" style={{ marginRight: '0.5rem' }} />
             <FormattedMessage id="app.reportThisOnGithub" />
