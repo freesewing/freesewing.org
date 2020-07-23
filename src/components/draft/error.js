@@ -8,7 +8,7 @@ import DraftEvents from './events/'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
 
-const DraftError = ({ error, events, updatePatternData, setCrashReport, app }) => {
+const DraftError = ({ error, draftEvents, updatePatternData, setCrashReport, app }) => {
   const uiMdx = useUiMdx()
   // Style
   const styles = {
@@ -48,7 +48,7 @@ const DraftError = ({ error, events, updatePatternData, setCrashReport, app }) =
           </Button>
         </p>
       </Blockquote>
-      <DraftEvents events={events} app={app} />
+      {draftEvents}
     </div>
   )
 }

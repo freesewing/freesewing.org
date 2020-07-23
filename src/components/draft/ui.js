@@ -63,6 +63,29 @@ const DraftUi = (props) => {
   const [crashReport, setCrashReport] = useState(false)
   const [issue, setIssue] = useState(false)
 
+  const tracesFromPatternProps = (patterProps) => {
+    const errorAsMarkdown = (e) => `
+## ${e.name}: ${e.message}
+
+Error in ${e.fileName} line ${e.lineNumber}:${e.columnNumber}
+
+\`\`\`js
+${e.stack}
+\`\`\`
+
+`
+    let md = ''
+    for (const e of patternProps.events.error) {
+      if (Array.isArray(e)) {
+        let error = []
+        for (let se of e) {
+          if (se instanceof Error === true) md += errorAsMarkdown(se)
+        }
+      }
+    }
+    return md
+  }
+
   // Effects
   useEffect(() => {
     if (crashReport) {
@@ -72,12 +95,12 @@ const DraftUi = (props) => {
       crashData.breasts = props.person.breasts
       const [patternProps, error, compareWith, breasts] =
         display === 'compare' ? comparePattern(crashData) : draftPattern(crashData)
-
       app.backend
         .createIssue({
           design,
           data: YAML.stringify(data),
           patternProps: YAML.stringify(patternProps),
+          traces: tracesFromPatternProps(patternProps),
           error,
           compareWith
         })
@@ -100,7 +123,7 @@ const DraftUi = (props) => {
 
       return [patternProps, false]
     } catch (err) {
-      return [patternProp, err]
+      return [patternProps, err]
     }
   }
 
@@ -163,6 +186,11 @@ const DraftUi = (props) => {
   // Fit to screen
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
 
+  // Events
+  const draftEvents = (
+    <DraftEvents events={patternProps.events} app={app} debug={data.settings.debug} />
+  )
+
   // Main render element
   let main
   if (issue)
@@ -183,7 +211,7 @@ const DraftUi = (props) => {
     main = (
       <DraftError
         error={error}
-        events={patternProps.events}
+        draftEvents={draftEvents}
         updatePatternData={mergeData}
         setCrashReport={setCrashReport}
         app={app}
@@ -198,7 +226,7 @@ const DraftUi = (props) => {
             <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
           )}
         </figure>
-        <DraftEvents events={patternProps.events} app={app} debug={data.settings.debug} />
+        {draftEvents}
       </>
     )
 
