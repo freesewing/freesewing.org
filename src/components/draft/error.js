@@ -8,7 +8,14 @@ import DraftEvents from './events/'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
 
-const DraftError = ({ error, draftEvents, updatePatternData, setCrashReport, app }) => {
+const DraftError = ({
+  error,
+  draftEvents,
+  updatePatternData,
+  setCrashReport,
+  app,
+  preview = false
+}) => {
   const uiMdx = useUiMdx()
   // Style
   const styles = {
@@ -28,24 +35,32 @@ const DraftError = ({ error, draftEvents, updatePatternData, setCrashReport, app
     }
   }
 
+  const uiPath = 'errors/broken-' + (preview ? 'draft-preview' : 'draft')
+
   return (
     <div style={styles.errorWrapper} data-test="error">
       <div style={styles.header}>
-        <h1>{uiMdx['errors/draft'].title}</h1>
+        <h1>{uiMdx[uiPath].title}</h1>
         <Robot pose="fail" size={150} />
       </div>
       <Blockquote type="note">
-        <Mdx node={uiMdx['errors/draft']} />
+        <Mdx node={uiMdx[uiPath]} />
         <p style={{ textAlign: 'center' }}>
-          <Button
-            size="large"
-            variant="contained"
-            color="primary"
-            onClick={() => setCrashReport(true)}
-          >
-            <Icon icon="github" style={{ marginRight: '0.5rem' }} />
-            <FormattedMessage id="app.reportThisOnGithub" />
-          </Button>
+          {preview ? (
+            <Button size="large" variant="contained" color="primary" href="./edit/">
+              <FormattedMessage id="app.recreatePattern" />
+            </Button>
+          ) : (
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={() => setCrashReport(true)}
+            >
+              <Icon icon="github" style={{ marginRight: '0.5rem' }} />
+              <FormattedMessage id="app.reportThisOnGithub" />
+            </Button>
+          )}
         </p>
       </Blockquote>
       {draftEvents}
