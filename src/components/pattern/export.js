@@ -29,6 +29,7 @@ const ExportPattern = ({ app, data, setAction }) => {
     if (type === 'data') {
       if (format === 'json') exportJsonData(data)
       else if (format === 'yaml') exportYamlData(data)
+      else if (format === 'github gist') exportGithubGist(data)
     } else {
       if (format !== 'svg') setLoading(true)
       const svg = new Pattern(data.settings).use(theme).use(i18n, { strings }).draft().render()
@@ -54,6 +55,17 @@ const ExportPattern = ({ app, data, setAction }) => {
       type: 'application/x-yaml;charset=utf-8'
     })
     fileSaver.saveAs(blob, 'data.yaml')
+  }
+  const exportGithubGist = (data) => {
+    setLoading(true)
+    app.backend
+      .createGist({
+        data: YAML.stringify(data),
+        design: data.design
+      })
+      .then((res) => ready('https://gist.github.com/' + res.data.id))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false))
   }
   const svgToFile = (svg) => {
     const blob = new Blob([svg], {
@@ -170,7 +182,7 @@ const ExportPattern = ({ app, data, setAction }) => {
               <h5>
                 <FormattedMessage id="app.exportAsData" />
               </h5>
-              {['json', 'yaml'].map((format) => (
+              {['json', 'yaml', 'github gist'].map((format) => (
                 <Button
                   {...btnProps}
                   onClick={() => handleExport('data', format)}

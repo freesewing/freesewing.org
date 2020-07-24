@@ -247,6 +247,7 @@ const PersonPage = (props) => {
   }
 
   const blankSlate = !person.measurements || !person.measurements.neck
+
   return (
     <AppWrapper app={app}>
       <CenteredLayout app={app} wide left crumbsOnly>
@@ -448,21 +449,19 @@ const PersonPage = (props) => {
             {person.measurements &&
               Object.keys(person.measurements).map((m) => {
                 if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
-
                 let value = person.measurements[m]
-
+                const measurementEstimate = neckstimate(
+                  person.measurements.neck || 360,
+                  m,
+                  person.breasts
+                )
                 if (value) {
-                  const measurementEstimate = neckstimate(
-                    person.measurements.neck || 360,
-                    m,
-                    person.breasts
-                  )
                   const measurementInRange =
                     measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <=
                     2
 
                   return measurementRow(m, value, measurementEstimate, measurementInRange)
-                } else return null
+                } else return measurementRow(m, value, measurementEstimate, false)
               })}
             {remainingMeasurements().map((m) => {
               if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null

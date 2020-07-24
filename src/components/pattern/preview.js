@@ -14,14 +14,16 @@ const DraftPreview = ({ app, data }) => {
   let patternProps
   try {
     patternProps = new Pattern(data.settings).use(i18nPlugin, { strings }).draft().getRenderProps()
-    return (
-      <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
-        <Draft {...patternProps} />
-      </figure>
-    )
+    if (patternProps.events.error.length > 0) return <DraftError error={err || {}} preview />
   } catch (err) {
-    return <DraftError error={err} />
+    return <DraftError error={err} preview />
   }
+
+  return (
+    <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+      <Draft {...patternProps} />
+    </figure>
+  )
 }
 
 export default DraftPreview
