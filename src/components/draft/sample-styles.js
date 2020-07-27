@@ -87,6 +87,14 @@ export function sampleStyles(dark) {
   return styles
 }
 
+export function nivoStyles(dark) {
+  let jsx = jsxSampleStyles(dark)
+  let styles = []
+  for (const i in jsx) styles.push(jsx[i].stroke)
+
+  return styles
+}
+
 export function focusStyle(dark) {
   let style = jsxFocusStyle(dark)
   return `fill: ${style.fill}; stroke: ${style.stroke}; stroke-width: ${style.strokeWidht};`

@@ -66,6 +66,7 @@
     "@material-ui/lab": "4.0.0-alpha.39",
     "@mdx-js/mdx": "1.6.6",
     "@mdx-js/react": "1.6.5",
+    "@nivo/line": "^0.62.0",
     "algoliasearch": "4.3.0",
     "axios": "0.19.2",
     "core-js": "^3.4.8",
