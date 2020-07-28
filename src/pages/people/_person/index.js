@@ -26,8 +26,8 @@ import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 
-import ModelGraph from '../../../components/model-graph.js'
 import Person from '../../../components/person'
+import SizingGraph from '../../../components/person/size-graph'
 
 const PersonPage = (props) => {
   // Hooks
@@ -370,7 +370,7 @@ const PersonPage = (props) => {
           <FormattedMessage id="app.measurements" />
         </h5>
         {blankSlate && (
-          <Blockquote className="note" data-test="blank-slate">
+          <Blockquote type="note" data-test="blank-slate">
             <h6>
               <FormattedMessage id="app.startWithNeckTitle" />
             </h6>
@@ -378,14 +378,6 @@ const PersonPage = (props) => {
               <FormattedMessage id="app.startWithNeckDescription" />
             </p>
             <p style={{ textAlign: 'right' }}>
-              <Button
-                variant="outlined"
-                color="primary"
-                href="/docs/about/your-measurements/model-graph"
-                style={{ marginRight: '1rem' }}
-              >
-                <FormattedMessage id="app.docs" />
-              </Button>
               <Button
                 variant="contained"
                 color="primary"
@@ -397,6 +389,13 @@ const PersonPage = (props) => {
               </Button>
             </p>
           </Blockquote>
+        )}
+        {!blankSlate && (
+          <SizingGraph
+            breasts={true}
+            person={{ measurements: person.measurements, label: person.name }}
+            app={app}
+          />
         )}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
           <Button
@@ -469,16 +468,6 @@ const PersonPage = (props) => {
             })}
           </tbody>
         </table>
-        {!blankSlate && (
-          <div style={{ margin: 0 }}>
-            <ModelGraph model={person} intl={app.intl} />
-            <Link to="/docs/about/your-measurements/model-graph/" style={{ marginBottom: '1rem' }}>
-              <small>
-                <FormattedMessage id="app.whatIsThis" />
-              </small>
-            </Link>
-          </div>
-        )}
         <p style={{ textAlign: 'center' }}>
           <Button
             data-test="remove"
