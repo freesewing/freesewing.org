@@ -41,7 +41,8 @@ const cmMarkers = () =>
 const horizontalMarkers = () => cmMarkers().concat(inchMarkers())
 
 const verticalMarkers = (data) => {
-  let markers = []
+  const markers = []
+  const flip = Math.floor(data[0].data.length * 0.4)
   let i = 0
   for (const entry in data[0].data) {
     let m = data[0].data[entry]
@@ -52,8 +53,8 @@ const verticalMarkers = (data) => {
       textStyle: { fontFamily: 'sans-serif', fontSize: '11px', fill: '#232529' },
       legend: m.x,
       legendOrientation: 'vertical',
-      legendPosition: i < 12 ? 'bottom-left' : 'top-left',
-      legendOffsetX: i < 12 ? -7 : 7
+      legendPosition: i < flip ? 'bottom-left' : 'top-left',
+      legendOffsetX: i < flip ? -7 : 7
     })
     i++
   }
