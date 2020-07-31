@@ -168,7 +168,8 @@ const routes = {
     '/users/:user': 'users/_user.js',
     '/confirm/signup/:confirmation': 'confirm/signup/_confirmation.js',
     '/confirm/email/:confirmation': 'confirm/email/_confirmation.js',
-    '/confirm/reset/:confirmation': 'confirm/reset/_confirmation.js'
+    '/confirm/reset/:confirmation': 'confirm/reset/_confirmation.js',
+    '/recreate/gist/:gist': 'recreate/gist/_gist.js'
   },
   duplicates: getDuplicates(),
   redirects: {

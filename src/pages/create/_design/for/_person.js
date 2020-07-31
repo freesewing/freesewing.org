@@ -57,7 +57,8 @@ const CreatePatternForPersonPage = (props) => {
       measurements: {},
       metadata: {
         for: person.name || props.person,
-        forHandle: props.person
+        forHandle: props.person,
+        breasts: person.breasts || false
       }
     }
   }

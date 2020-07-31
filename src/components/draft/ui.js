@@ -21,6 +21,7 @@ import SampleLegend from './sample-legend'
 import './ui.css'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
+import SizingGraph from '../person/size-graph'
 
 const DraftUi = (props) => {
   const { app, person, design } = props
@@ -62,6 +63,7 @@ const DraftUi = (props) => {
   const [dialogAction, setDialogAction] = useState('pick')
   const [crashReport, setCrashReport] = useState(false)
   const [issue, setIssue] = useState(false)
+  const [personHasBreasts, setPersonHasBreasts] = useState(false)
 
   const tracesFromPatternProps = (patterProps) => {
     const errorAsMarkdown = (e) => `
@@ -88,6 +90,7 @@ ${e.stack}
 
   // Effects
   useEffect(() => {
+    setPersonHasBreasts(props.person.breasts)
     if (crashReport) {
       app.setLoading(true)
       let crashData = Object.assign(data)
@@ -165,6 +168,7 @@ ${e.stack}
 
       return [patternProps, error, compareWith, breasts]
     } catch (err) {
+      console.log('Error in comparePattern:', err)
       return [patternProps, error, compareWith, breasts]
     }
   }
@@ -226,7 +230,12 @@ ${e.stack}
             <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />
           )}
         </figure>
-        {draftEvents}
+        {display === 'compare' && (
+          <>
+            <SizingGraph breasts={personHasBreasts} person={props.person} app={app} />
+          </>
+        )}
+        {display === 'draft' && draftEvents}
       </>
     )
 
