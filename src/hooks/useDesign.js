@@ -14,6 +14,7 @@ import holmes from '@freesewing/holmes'
 import huey from '@freesewing/huey'
 import hugo from '@freesewing/hugo'
 import jaeger from '@freesewing/jaeger'
+import paco from '@freesewing/paco'
 import penelope from '@freesewing/penelope'
 import sandy from '@freesewing/sandy'
 import shin from '@freesewing/shin'
@@ -44,6 +45,7 @@ const designs = {
   huey,
   hugo,
   jaeger,
+  paco,
   penelope,
   sandy,
   shin,
