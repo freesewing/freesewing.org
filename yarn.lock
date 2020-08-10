@@ -1089,13 +1089,13 @@
   dependencies:
     "@bugsnag/core" "^7.1.1"
 
-"@bugsnag/core@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@bugsnag/core/-/core-7.1.1.tgz#6e97bf6ecd01f04ca121d4c40488dc0595de4639"
-  integrity sha512-PWj2JQJIIbv4lP1YBR88hA9fS3UbGLwn+1ZxxUK5xxcUbTpViMIaoMGdQflfxHh7xfH6YmtwgA5mg2zDZGHCBw==
+"@bugsnag/core@^7.1.1", "@bugsnag/core@^7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@bugsnag/core/-/core-7.3.0.tgz#5fd6876a161cb28e8b14364d46b2f58c304356e6"
+  integrity sha512-Sa24robOiIpj4AmqHwM+oEZM/QN1P+ixwQtvdLZ/Rc0YJYYh2I+eITAaFGlz9uDao/bsWLNUedq8XyNZd1IxRQ==
   dependencies:
     "@bugsnag/cuid" "^3.0.0"
-    "@bugsnag/safe-json-stringify" "^5.0.0"
+    "@bugsnag/safe-json-stringify" "^6.0.0"
     error-stack-parser "^2.0.3"
     iserror "0.0.2"
     stack-generator "^2.0.3"
@@ -1125,17 +1125,17 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-react@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.1.1.tgz#6faf74546ee8c553083a027b69eb55b5f2ac3778"
-  integrity sha512-bxz3hZa0Our7OO42sVsHWgzEuw0vdTC2cCVG1vXKQUeFQqgggMizC8yzSbxCGaqyj04Dui/YzlYnAGV3MRoUjQ==
+"@bugsnag/plugin-react@^7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.3.0.tgz#cd3fcb3f1343d602f7017612097c1780fda42a16"
+  integrity sha512-vWt8+SINBaBumBIgHWdh9yN+AcnRGwipwZTBDn4YaIHFIi+utCM4yxvNq3oss4UA8ATxCKrlhrIcLqaBPRDkmw==
   dependencies:
-    "@bugsnag/core" "^7.1.1"
+    "@bugsnag/core" "^7.3.0"
 
-"@bugsnag/safe-json-stringify@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/safe-json-stringify/-/safe-json-stringify-5.0.0.tgz#1c39847968b52f5c08b7c76754406f9d4446b292"
-  integrity sha512-EdGnA7n2UmX9Z0e2tIU0biKz8tCgtjbY69KoyH3yiMzm7Q9sriIlN9bZjqhTOKzM0GdLSGrkyKWif08xWKyucA==
+"@bugsnag/safe-json-stringify@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@bugsnag/safe-json-stringify/-/safe-json-stringify-6.0.0.tgz#22abdcd83e008c369902976730c34c150148a758"
+  integrity sha512-htzFO1Zc57S8kgdRK9mLcPVTW1BY2ijfH7Dk2CeZmspTWKdKqSo1iwmqrq2WtRjFlo8aRZYgLX0wFrDXF/9DLA==
 
 "@commitlint/cli@9.0.1":
   version "9.0.1"
