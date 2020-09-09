@@ -9,6 +9,7 @@ import head from './head.svg'
 import hips from './hips.svg'
 import hipstoupperleg from './hipstoupperleg.svg'
 import hpstowaistback from './hpstowaistback.svg'
+import hpstowaistfront from './hpstowaistfront.svg'
 import inseam from './inseam.svg'
 import knee from './knee.svg'
 import waist from './waist.svg'
@@ -40,6 +41,7 @@ export default {
   hips,
   hipstoupperleg,
   hpstowaistback,
+  hpstowaistfront,
   inseam,
   knee,
   waist,
