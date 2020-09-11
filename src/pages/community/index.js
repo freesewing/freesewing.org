@@ -2,12 +2,8 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/docs'
-
-import { FormattedMessage } from 'react-intl'
-import Button from '@material-ui/core/Button'
-import RightIcon from '@material-ui/icons/KeyboardArrowRight'
-import LinearProgress from '@material-ui/core/LinearProgress'
+import Layout from '../../components/layouts/default'
+import Blockquote from '@freesewing/components/Blockquote'
 
 const CommunityPage = (props) => {
   // Hooks
@@ -15,33 +11,13 @@ const CommunityPage = (props) => {
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.welcome'))
+    app.setTitle(app.translate('app.community'))
   }, [])
 
   return (
     <AppWrapper app={app}>
-      <Layout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <p>
-            <FormattedMessage id="welcome.letUsSetupYourAccount" />
-            <FormattedMessage id="welcome.walkYouThrough" />
-          </p>
-          <ol>
-            {['units', 'username', 'avatar', 'bio', 'social'].map((step) => (
-              <li key={step}>{app.translate(`welcome.${step}`)}</li>
-            ))}
-          </ol>
-          <p>
-            <FormattedMessage id="welcome.someOptional" />
-          </p>
-        </div>
-        <p>
-          <Button size="large" variant="contained" color="primary" href="/welcome/units/">
-            <FormattedMessage id="app.continue" />
-            <RightIcon style={{ marginLeft: '1rem' }} />
-          </Button>
-        </p>
-        <LinearProgress color="primary" value={5} variant="determinate" />
+      <Layout app={app} active="community">
+        <Blockquote type="fixme">Add community page here</Blockquote>
       </Layout>
     </AppWrapper>
   )
