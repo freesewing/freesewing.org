@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { list } from '@freesewing/pattern-info'
+import { Link } from 'gatsby'
 import capitalize from '@freesewing/utils/capitalize'
 import Filter from '../../components/designs/filter'
 import Button from '@material-ui/core/Button'
@@ -34,9 +35,24 @@ const DesignListPage = (props) => {
     }
   }
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.designs" />
+    </h5>,
+    <ul>
+      {designs.map((design) => (
+        <li key={design}>
+          <Link to={`/designs/${design}/`} title={design}>
+            <FormattedMessage id={`patterns.${design}.title`} />
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout app={app} active="designs" context={context}>
         {filter ? (
           <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
         ) : (
@@ -65,7 +81,7 @@ const DesignListPage = (props) => {
             />
           ))}
         </div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

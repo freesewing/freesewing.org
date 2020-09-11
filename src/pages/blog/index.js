@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
 
 const BlogIndexPage = (props) => {
@@ -25,10 +25,22 @@ const BlogIndexPage = (props) => {
       justifyContent: 'center'
     }
   }
+  const context = [
+    <h5>Blog posts</h5>,
+    <ul>
+      {props.data.allMdx.edges.map((node) => (
+        <li key={node.node.parent.relativeDirectory}>
+          <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.title}>
+            {node.node.frontmatter.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ]
 
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app}>
+      <Layout app={app} active="blog" context={context}>
         <div style={style.wrapper}>
           {props.data.allMdx.edges.map((node) => (
             <PostPreview
@@ -43,7 +55,7 @@ const BlogIndexPage = (props) => {
             />
           ))}
         </div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -3,7 +3,7 @@ import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import Layout from '../components/layouts/default'
 import Mdx from '../components/mdx'
 
 const SharePage = (props) => {
@@ -16,9 +16,9 @@ const SharePage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top left>
+      <Layout app={app} active="community">
         <Mdx node={uiMdx['share']} />
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 
 import PostPreview from '../../components/post-preview'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 const ShowcaseIndexPage = (props) => {
   // State
@@ -26,9 +26,22 @@ const ShowcaseIndexPage = (props) => {
     }
   }
 
+  const context = [
+    <h5>Showcase posts</h5>,
+    <ul>
+      {props.data.allMdx.edges.map((node) => (
+        <li key={node.node.parent.relativeDirectory}>
+          <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.title}>
+            {node.node.frontmatter.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app}>
+      <Layout app={app} active="showcase" context={context}>
         <div style={style.wrapper}>
           {props.data.allMdx.edges.map((node) => (
             <PostPreview
@@ -43,7 +56,7 @@ const ShowcaseIndexPage = (props) => {
             />
           ))}
         </div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

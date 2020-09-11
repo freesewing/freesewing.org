@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -38,40 +38,68 @@ const DocumentationIndexPage = (props) => {
     }
   }
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.docs" />
+    </h5>,
+    <ul>
+      <li>
+        <Link to="/docs/about/">
+          <FormattedMessage id="app.aboutFreesewing" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/docs/measurements/">
+          <FormattedMessage id="app.measurements" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/docs/patterns/">
+          <FormattedMessage id="app.patterns" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/docs/sewing/">
+          <FormattedMessage id="app.sewing" />
+        </Link>
+      </li>
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app}>
+      <Layout app={app} active="docs" context={context}>
         <div style={styles.wrapper}>
           <div style={styles.column}>
-            <h2>
+            <h5>
               <Link to="/docs/about/">
                 <FormattedMessage id="app.aboutFreesewing" />
               </Link>
-            </h2>
+            </h5>
             <ReadMore root="docs/about" recurse={true} />
           </div>
           <div style={styles.column}>
-            <h2>
+            <h5>
               <Link to="/docs/measurements/">
                 <FormattedMessage id="app.measurements" />
               </Link>
-            </h2>
+            </h5>
             <ReadMore root="docs/measurements" />
           </div>
           <div style={styles.column}>
-            <h2>
+            <h5>
               <Link to="/docs/patterns/">
                 <FormattedMessage id="app.patterns" />
               </Link>
-            </h2>
+            </h5>
             <ReadMore root="docs/patterns" />
           </div>
           <div style={styles.column}>
-            <h2>
+            <h5>
               <Link to="/docs/sewing/">
                 <FormattedMessage id="app.sewing" />
               </Link>
-            </h2>
+            </h5>
             <ReadMore root="docs/sewing" />
           </div>
         </div>
@@ -83,7 +111,7 @@ const DocumentationIndexPage = (props) => {
             <a href="https://freesewing.dev/">freesewing.dev</a>
           </p>
         </Blockquote>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

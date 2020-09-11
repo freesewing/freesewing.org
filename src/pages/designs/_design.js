@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 import PostPreview from '../../components/post-preview'
 
 import { FormattedMessage } from 'react-intl'
@@ -13,8 +13,10 @@ import Button from '@material-ui/core/Button'
 import { info as patternInfo, measurements, options } from '@freesewing/pattern-info'
 import PatternMeasurements from '../../components/docs/pattern-measurements'
 import PatternOptions from '../../components/docs/pattern-options'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import LineDrawing from '@freesewing/components/LineDrawing'
+import capitalize from '@freesewing/utils/capitalize'
+import Hashtag from '../../components/hashtag'
 
 const DesignPage = (props) => {
   // Design name is passed to page context in gatsby-node.js
@@ -43,7 +45,7 @@ const DesignPage = (props) => {
       justifyContent: 'center'
     },
     col: {
-      maxWidth: '300px',
+      maxWidth: '290px',
       margin: '1rem'
     },
     img: {
@@ -94,9 +96,31 @@ const DesignPage = (props) => {
     return result
   }
 
+  const context = [
+    <h5>
+      <FormattedMessage id={`patterns.${design}.title`} />
+    </h5>,
+    <ul>
+      <li>
+        <Link to={`/create/${design}/`}>
+          <FormattedMessage
+            id="app.newThing"
+            values={{ thing: capitalize(design) + ' ' + app.translate('app.pattern') }}
+          />
+        </Link>
+        <Link to={`/docs/patterns/${design}/`}>
+          <FormattedMessage id="app.docs" />
+        </Link>
+        <Link to={`/showcase/designs/${design}/`}>
+          <FormattedMessage id="app.showcase" />
+        </Link>
+      </li>
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app}>
+      <Layout app={app} active="designs" context={context}>
         <p>
           <Button
             data-test="create"
@@ -122,6 +146,10 @@ const DesignPage = (props) => {
             <DocsIcon style={{ marginRight: '1rem' }} />
             <FormattedMessage id="app.docs" />
           </Button>
+          <Hashtag
+            tag={`FreeSewing${capitalize(design)}`}
+            title={capitalize(design) + ' Hashtag'}
+          />
         </p>
         <div style={styles.wrapper}>
           <div style={styles.col}>
@@ -190,15 +218,15 @@ const DesignPage = (props) => {
             />
           </div>
           <div style={styles.col} data-test="measurements">
-            <h2>
+            <h5>
               <FormattedMessage id="app.requiredMeasurements" />
-            </h2>
+            </h5>
             <PatternMeasurements pattern={design} app={app} />
           </div>
           <div style={styles.col} data-test="options">
-            <h2>
+            <h5>
               <FormattedMessage id="app.patternOptions" />
-            </h2>
+            </h5>
             <PatternOptions pattern={design} app={app} />
           </div>
         </div>
@@ -222,7 +250,7 @@ const DesignPage = (props) => {
             )
           })}
         </div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

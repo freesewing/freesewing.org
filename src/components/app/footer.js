@@ -76,7 +76,7 @@ const Footer = (props) => {
   const allPatrons = <ul style={styles.ul}>{list}</ul>
 
   const icons = {
-    gitter: 'https://gitter.im/freesewing/chat',
+    discord: 'https://discord.gg/YDV4GvU',
     twitter: 'https://twitter.com/freesewing_org',
     github: 'https://github.com/freesewing',
     instagram: 'https://instagram.com/freesewing_org'
@@ -99,8 +99,8 @@ const Footer = (props) => {
       <div style={styles.container}>
         <ul style={styles.links}>
           <li>
-            <Link to="/docs/about/">
-              <FormattedMessage id="app.aboutFreesewing" />
+            <Link to="/community/">
+              <FormattedMessage id="app.community" />
             </Link>
           </li>
           <li>
@@ -108,21 +108,11 @@ const Footer = (props) => {
               <FormattedMessage id="app.faq" />
             </Link>
           </li>
-          <li>
-            <Link to="/sitemap/">
-              <FormattedMessage id="app.sitemap" />
-            </Link>
-          </li>
         </ul>
         <ul style={styles.links}>
           <li>
             <Link to="/patrons/join/">
               <FormattedMessage id="app.becomeAPatron" />
-            </Link>
-          </li>
-          <li>
-            <Link to="/fixme/">
-              <FormattedMessage id="app.contributeToThing" values={{ thing: 'FreeSewing' }} />
             </Link>
           </li>
           <li>

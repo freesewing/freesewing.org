@@ -27,7 +27,12 @@ const ShowcasePostPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <PostLayout app={app} frontmatter={frontmatter}>
+      <PostLayout
+        app={app}
+        frontmatter={frontmatter}
+        active="showcase"
+        toc={props.data.allMdx.edges[0].node.tableOfContents}
+      >
         <Mdx node={props.data.allMdx.edges[0].node} />
       </PostLayout>
     </AppWrapper>
@@ -43,6 +48,7 @@ export const pageQuery = graphql`
       edges {
         node {
           body
+          tableOfContents(maxDepth: 3)
           frontmatter {
             title
             date

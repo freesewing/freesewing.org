@@ -6,6 +6,7 @@ import PostLayout from '../../components/layouts/post'
 
 import { graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
+import MdxToc from '../../components/mdx/toc'
 
 const BlogPostPage = (props) => {
   // State
@@ -27,7 +28,12 @@ const BlogPostPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <PostLayout app={app} frontmatter={frontmatter}>
+      <PostLayout
+        app={app}
+        frontmatter={frontmatter}
+        active="blog"
+        toc={props.data.allMdx.edges[0].node.tableOfContents}
+      >
         <Mdx node={props.data.allMdx.edges[0].node} />
       </PostLayout>
     </AppWrapper>
@@ -43,6 +49,7 @@ export const pageQuery = graphql`
       edges {
         node {
           body
+          tableOfContents(maxDepth: 3)
           frontmatter {
             title
             date
