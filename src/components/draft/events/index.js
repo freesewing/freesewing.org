@@ -2,7 +2,7 @@ import React from 'react'
 import Event from './event'
 
 const DraftEvents = ({ events, app, debug = false }) => {
-  const types = ['error', 'warning']
+  const types = ['error', 'info', 'warning']
   if (debug) types.push('debug')
 
   return (
