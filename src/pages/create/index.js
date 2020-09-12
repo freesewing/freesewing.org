@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -13,7 +13,7 @@ import capitalize from '@freesewing/utils/capitalize'
 const CreatePatternIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
-    app.setTitle(app.translate('app.chooseAPattern'))
+    app.setTitle(app.translate('app.chooseADesign'))
     app.setCrumbs([
       {
         slug: '/create',
@@ -66,9 +66,22 @@ const CreatePatternIndexPage = (props) => {
     styles.post.padding = '0.5rem'
   }
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.designs" />
+    </h5>,
+    <ul>
+      {list.map((pattern) => (
+        <li>
+          <Link to={`/create/${pattern}/`}>{app.translate(`patterns.${pattern}.title`)}</Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout app={app} active="designs" context={context}>
         <div style={styles.wrapper}>
           {list.map((pattern) => {
             let title = app.translate(`patterns.${pattern}.title`)
@@ -90,7 +103,7 @@ const CreatePatternIndexPage = (props) => {
             )
           })}
         </div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }
