@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 import AuthRequired from '../../components/auth-required'
 
 import Button from '@material-ui/core/Button'
@@ -50,17 +50,17 @@ const AdminPage = (props) => {
   if (impersonating)
     return (
       <AppWrapper app={app}>
-        <CenteredLayout app={app} top>
+        <Layout app={app} active="account">
           <Button fullWidth onClick={revert} variant="contained" color="primary" size="large">
             Stop impersonating @{app.account.username}
           </Button>
-        </CenteredLayout>
+        </Layout>
       </AppWrapper>
     )
   else
     return (
       <AppWrapper app={app}>
-        <CenteredLayout app={app} top wide>
+        <Layout app={app} active="account">
           <AuthRequired app={app} admin>
             <TextField
               variant="outlined"
@@ -79,7 +79,7 @@ const AdminPage = (props) => {
               <SearchHit key={user.handle} user={user} search={search} app={app} />
             ))}
           </AuthRequired>
-        </CenteredLayout>
+        </Layout>
       </AppWrapper>
     )
 }
