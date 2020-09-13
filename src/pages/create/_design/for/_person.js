@@ -7,6 +7,7 @@ import DraftLoadingLayout from '../../../../components/layouts/draft-loading'
 import DraftUi from '../../../../components/draft/ui'
 import usePerson from '../../../../hooks/usePerson'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
+import { optionalMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
 const CreatePatternForPersonPage = (props) => {
@@ -64,6 +65,9 @@ const CreatePatternForPersonPage = (props) => {
   }
   for (let m of requiredMeasurements[props.pageContext.design]) {
     data.settings.measurements[m] = person.measurements[m]
+  }
+  for (let m of optionalMeasurements[props.pageContext.design]) {
+    if (person.measurements[m]) data.settings.measurements[m] = person.measurements[m]
   }
 
   const fabs = ['zoom', 'compare', 'export', 'details']
