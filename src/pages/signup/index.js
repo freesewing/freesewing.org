@@ -112,7 +112,7 @@ const SignupPage = (props) => {
           </p>
           <p>
             <small>
-              <a href="https://gitter.im/freesewing/help">
+              <a href="https://chat.freesewing.org/">
                 <FormattedMessage id="app.emailNotReceived" />
               </a>
             </small>
@@ -202,7 +202,7 @@ const SignupPage = (props) => {
       {trouble && (
         <p>
           <small>
-            <a href="https://gitter.im/freesewing/help">
+            <a href="https://chat.freesewing.org/">
               <FormattedMessage id="app.emailNotReceived" />
             </a>
           </small>

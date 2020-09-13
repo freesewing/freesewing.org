@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import Layout from '../components/layouts/default'
 
 import Blockquote from '@freesewing/components/Blockquote'
 import TextField from '@material-ui/core/TextField'
@@ -32,6 +32,7 @@ const CreatePersonPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.addThing', { thing: app.translate('app.person') }))
+    app.setDescription(app.translate('app.addThing', { thing: app.translate('app.person') }))
   }, [])
 
   // Methods
@@ -47,7 +48,7 @@ const CreatePersonPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app} active="account">
         <div style={{ textAlign: 'left' }}>
           <h5 data-test="name-title">
             <FormattedMessage id="app.name" />
@@ -146,7 +147,7 @@ const CreatePersonPage = (props) => {
             </Button>
           </p>
         </div>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

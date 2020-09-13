@@ -3,7 +3,7 @@ import useApp from '../hooks/useApp'
 import useNavigation from '../hooks/useNavigation'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import WideLayout from '../components/layouts/wide'
+import Layout from '../components/layouts/default'
 import PatronStars from '../components/patron-stars'
 import { list as patterns } from '@freesewing/pattern-info'
 import { Link, graphql } from 'gatsby'
@@ -59,9 +59,22 @@ const Sitemap = (props) => {
     )
   }
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.sitemap" />
+    </h5>,
+    <ul>
+      {Object.keys(main).map((i) => (
+        <li key={i}>
+          <a href={i}>{app.translate(main[i])}</a>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout app={app} context={context}>
         <ul className="links">
           {Object.keys(main).map((i) => (
             <li key={i}>
@@ -292,7 +305,7 @@ const Sitemap = (props) => {
             </li>
           ))}
         </ul>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

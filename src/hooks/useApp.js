@@ -33,7 +33,9 @@ function useApp() {
 
   // React State
   const [crumbs, setCrumbs] = useState([])
-  const [description, setDescription] = useState(false)
+  const [description, setDescription] = useState(
+    intl.formatMessage({ id: 'sewingPatternsForNonAveragePeople' })
+  )
   const [image, setImage] = useState(`https://freesewing.org/share/language.wide.jpg`)
   const [loading, setLoading] = useState(false)
   const [menu, setMenu] = useState(false)

@@ -15,6 +15,7 @@ const PageNotFound = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('errors.404'))
+    app.setDescription('404: ' + app.translate('errors.404'))
   }, [])
 
   const styles = {

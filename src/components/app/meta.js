@@ -10,11 +10,14 @@ const Meta = ({ app }) => {
       <meta name="description" content={app.description} />
       <meta property="og:title" content={app.title} />
       <meta property="og:description" content={app.description} />
-      <meta property="og:image" content="https://freesewing.org/share/en.wide.jpg" />
+      <meta property="og:image" content={app.image || 'https://freesewing.org/share/en.wide.jpg'} />
       {url}
       <meta name="twitter:title" content={app.title} />
       <meta name="twitter:description" content={app.description} />
-      <meta name="twitter:image" content="https://freesewing.org/share/en.wide.jpg" />
+      <meta
+        name="twitter:image"
+        content={app.image || 'https://freesewing.org/share/en.wide.jpg'}
+      />
       <meta name="twitter:card" content="summary_large_image" />
     </Helmet>
   )

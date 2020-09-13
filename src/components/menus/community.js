@@ -23,22 +23,10 @@ const CommunityMenu = ({ app, className = '' }) => (
       <Link to="/showcase/">
         <FormattedMessage id="intro.txt-showcase" />
       </Link>
-      <h6>Chat rooms on Gitter</h6>
+      <h6>Chat on Discord</h6>
       <ul className="inline">
         <li className="link">
-          <a href="https://gitter.im/freesewing/chat">Chat</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/help">Help</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/development">Development</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/translation">Translation</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/design">Design</a>
+          <a href="https://chat.freesewing.org/">FreeSewing on Discord</a>
         </li>
       </ul>
       <h6>

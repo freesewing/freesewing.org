@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import WideLayout from '../components/layouts/wide'
+import Layout from '../components/layouts/default'
 
 import SizingTable from '../components/size-table'
 import SizingGraph from '../components/person/size-graph'
@@ -15,9 +15,27 @@ const SizesPage = (props) => {
     app.setTitle(app.translate('app.sizes'))
   }, [])
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.sizes" />
+    </h5>,
+    <ul>
+      <li>
+        <a href="#with">
+          <FormattedMessage id="app.withBreasts" />
+        </a>
+      </li>
+      <li>
+        <a href="#without">
+          <FormattedMessage id="app.withoutBreasts" />
+        </a>
+      </li>
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app}>
+      <Layout app={app} active="docs" context={context}>
         <ul className="links">
           <li>
             <a href="#with">
@@ -40,7 +58,7 @@ const SizesPage = (props) => {
         </h2>
         <SizingGraph breasts={false} app={app} />
         <SizingTable breasts={false} />
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

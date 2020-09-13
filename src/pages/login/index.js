@@ -118,7 +118,7 @@ const LoginPage = (props) => {
                 variant="contained"
                 color="primary"
                 className="info"
-                href="https://gitter.im/freesewing/help"
+                href="https://chat.freesewing.org/"
               >
                 <FormattedMessage id="app.askForHelp" />
               </Button>

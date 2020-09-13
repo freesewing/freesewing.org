@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import Layout from '../components/layouts/default'
 
 import Search from '../components/search'
 
@@ -14,9 +14,9 @@ const SearchPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app}>
         <Search search={app.translate('app.search')} />
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
