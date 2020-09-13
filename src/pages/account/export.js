@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
+import AccountContext from '../../components/context/account'
 
 const ExportAccountPage = (props) => {
   // Hooks
@@ -25,17 +26,11 @@ const ExportAccountPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage
-            id="account.exportYourDataInfo"
-            values={{ em: (...chunks) => <em>{chunks}</em> }}
-          />
-        </Blockquote>
-        <h6 style={{ textAlign: 'center' }}>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+        <h6>
           <FormattedMessage id="account.exportYourDataTitle" />
         </h6>
-        <p style={{ textAlign: 'center' }}>
+        <p>
           <Button
             size="large"
             variant="outlined"
@@ -56,7 +51,13 @@ const ExportAccountPage = (props) => {
             <FormattedMessage id="account.exportYourData" />
           </Button>
         </p>
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage
+            id="account.exportYourDataInfo"
+            values={{ em: (...chunks) => <em>{chunks}</em> }}
+          />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

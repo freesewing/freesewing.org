@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -41,10 +42,7 @@ const LanguageSettingPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage id="account.languageInfo" />
-        </Blockquote>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <RadioGroup name="language" onChange={updateLanguage} value={language}>
           {Object.keys(languages).map((lang, index) => {
             return (
@@ -82,7 +80,10 @@ const LanguageSettingPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage id="account.languageInfo" />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

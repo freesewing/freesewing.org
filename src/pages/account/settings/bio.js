@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -48,10 +49,7 @@ const BioSettingPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage id="account.bioInfo" />
-        </Blockquote>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <TextField
           id="bio"
           multiline={true}
@@ -91,7 +89,10 @@ const BioSettingPage = (props) => {
         <div style={styles.preview} className="shadow" data-test="preview">
           <Markdown source={bio} />
         </div>
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage id="account.bioInfo" />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

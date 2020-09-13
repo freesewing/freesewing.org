@@ -14,7 +14,8 @@ const DefaultLayout = (props) => {
       <section>
         <BreadCrumbs crumbs={props.app.crumbs} pageTitle={props.app.title} />
         <h1>{props.app.title}</h1>
-        {props.children}
+        {props.text && <div style={{ maxWidth: '80ch' }}>{props.children}</div>}
+        {!props.text && props.children}
       </section>
     </div>
   )

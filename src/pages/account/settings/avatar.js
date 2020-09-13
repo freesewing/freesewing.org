@@ -2,7 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
@@ -71,10 +72,7 @@ const AvatarSettingPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage id="account.avatarInfo" />
-        </Blockquote>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <div style={styles.wrapper}>
           <img
             alt="avatar"
@@ -117,7 +115,10 @@ const AvatarSettingPage = (props) => {
             </Button>
           ) : null}
         </p>
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage id="account.avatarInfo" />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

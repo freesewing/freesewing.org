@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -39,10 +40,7 @@ const TwitterSettingPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage id={'account.twitterInfo'} />
-        </Blockquote>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <TextField
           id="twitter"
           fullWidth={true}
@@ -77,7 +75,10 @@ const TwitterSettingPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage id={'account.twitterInfo'} />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

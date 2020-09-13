@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 import LoginRequired from '../../components/login-required'
 import AccountMenu from '../../components/menus/account'
+import AccountContext from '../../components/context/account'
 
 const AccountPage = (props) => {
   const app = useApp()
@@ -16,9 +17,9 @@ const AccountPage = (props) => {
   return (
     <LoginRequired app={app}>
       <AppWrapper app={app}>
-        <CenteredLayout app={app} top left wide>
+        <Layout app={app} active="account" context={<AccountContext app={app} />}>
           <AccountMenu app={app} className="transparent" />
-        </CenteredLayout>
+        </Layout>
       </AppWrapper>
     </LoginRequired>
   )

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import AccountContext from '../../components/context/account'
 
 const ConsentPage = (props) => {
   // Hooks
@@ -168,7 +169,7 @@ const ConsentPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <Blockquote type="note">
           <p data-test="compliant">
             <FormattedMessage id="gdpr.compliant" />
@@ -279,7 +280,7 @@ const ConsentPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

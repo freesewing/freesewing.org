@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -41,7 +42,7 @@ const PasswordSettingPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <TextField
           id="newPassword"
           fullWidth={true}
@@ -95,7 +96,7 @@ const PasswordSettingPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
