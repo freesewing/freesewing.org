@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import CenteredLayout from '../components/layouts/centered'
+import Layout from '../components/layouts/default'
 
 import Robot from '@freesewing/components/Robot'
 import Button from '@material-ui/core/Button'
@@ -48,44 +48,12 @@ const PageNotFound = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app}>
         <div style={{ textAlign: 'center' }}>
           <Robot size={300} pose="shrug" />
+          <h2>404</h2>
         </div>
-        <div style={styles.wrapper}>
-          <Button
-            style={styles.button}
-            variant="contained"
-            color="primary"
-            href="/"
-            size="large"
-            fullWidth
-          >
-            <HomeIcon />
-            <FormattedMessage id="app.home" />
-          </Button>
-          <Button
-            style={styles.button}
-            variant="outlined"
-            color="primary"
-            href="/search"
-            size="large"
-          >
-            <SearchIcon />
-            <FormattedMessage id="app.search" />
-          </Button>
-          <Button
-            style={styles.button}
-            variant="outlined"
-            color="primary"
-            href="https://github.com/freesewing/freesewing.org/issues/new?title=Broken%20link%20on%20freesewing.org&body=Please%20include%20the%20URL%20of%20the%20page%20that%20has%20the%20broken%20link%20on%20it"
-            size="large"
-          >
-            <Icon type="github" />
-            <FormattedMessage id="app.reportThisOnGithub" />
-          </Button>
-        </div>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
