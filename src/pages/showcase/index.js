@@ -14,6 +14,7 @@ const ShowcaseIndexPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.showcase'))
+    app.setDescription(app.translate('intro.txt-showcase'))
   }, [])
 
   // Style

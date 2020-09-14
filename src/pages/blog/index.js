@@ -14,6 +14,7 @@ const BlogIndexPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.blog'))
+    app.setDescription(app.translate('intro.txt-blog'))
   }, [])
 
   // Style

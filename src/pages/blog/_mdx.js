@@ -18,6 +18,8 @@ const BlogPostPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(frontmatter.title)
+    app.setDescription(props.data.allMdx.edges[0].node.excerpt)
+    app.setImage(props.data.allMdx.edges[0].node.frontmatter.img.childImageSharp.fluid.originalImg)
     app.setCrumbs([
       {
         slug: '/blog/',
@@ -48,6 +50,7 @@ export const pageQuery = graphql`
     allMdx(filter: { fileAbsolutePath: { eq: $file } }) {
       edges {
         node {
+          excerpt
           body
           tableOfContents(maxDepth: 3)
           frontmatter {
