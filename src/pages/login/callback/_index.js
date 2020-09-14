@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
 
 import { navigate } from 'gatsby'
 import Robot from '@freesewing/components/Robot'
@@ -29,14 +29,14 @@ const LoginCallbackPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app} active="account">
         {error && (
           <div>
             <Robot pose="ohno" size={300} />
             <Error report={true} err={{ message: 'requestFailedWithStatusCode500' }} />
           </div>
         )}
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -31,6 +31,24 @@ const Oauth = (props) => {
     }
   }
 
+  if (props.list)
+    return [
+      <Provider
+        provider="google"
+        login={props.login}
+        app={props.app}
+        signup={() => handleSignup('google')}
+        list
+      />,
+      <Provider
+        provider="github"
+        login={props.login}
+        app={props.app}
+        signup={() => handleSignup('github')}
+        list
+      />
+    ]
+
   return (
     <div style={styles.wrapper}>
       <Provider

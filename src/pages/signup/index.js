@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -97,6 +97,21 @@ const SignupPage = (props) => {
         <FormattedMessage id="app.goAheadWeWillWait" />
       </p>
     </>
+  )
+
+  const loginLink = (
+    <Link to="/login" data-test="login">
+      <FormattedMessage id="app.logIn" />
+    </Link>
+  )
+  const troubleLink = (
+    <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
+      {trouble ? (
+        <FormattedMessage id="app.signUp" />
+      ) : (
+        <FormattedMessage id="app.resendActivationEmail" />
+      )}
+    </a>
   )
 
   const form = (
@@ -209,27 +224,30 @@ const SignupPage = (props) => {
         </p>
       )}
       <div style={{ margin: '1rem 0 2rem' }}>
-        <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
-          {trouble ? (
-            <FormattedMessage id="app.signUp" />
-          ) : (
-            <FormattedMessage id="app.resendActivationEmail" />
-          )}
-        </a>
+        {troubleLink}
         <span style={{ padding: '0 1rem' }}>|</span>
-        <Link to="/login" data-test="login">
-          <FormattedMessage id="app.logIn" />
-        </Link>
+        {loginLink}
       </div>
       <Oauth app={app} />
     </form>
   )
 
+  const context = [
+    <h6>
+      <FormattedMessage id="app.signUp" />
+    </h6>,
+    <ul>
+      <li>{troubleLink}</li>
+      <li>{loginLink}</li>
+    </ul>,
+    <Oauth app={app} signup list />
+  ]
+
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={context} text>
         {result ? success : form}
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

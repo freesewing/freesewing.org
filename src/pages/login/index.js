@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
@@ -77,7 +77,7 @@ const LoginPage = (props) => {
   if (inactive)
     return (
       <AppWrapper app={app}>
-        <CenteredLayout app={app}>
+        <Layout app={app} active="account" text>
           <Blockquote type={resend ? 'note' : 'warning'}>
             <h5>
               <FormattedMessage
@@ -124,7 +124,7 @@ const LoginPage = (props) => {
               </Button>
             </p>
           </Blockquote>
-        </CenteredLayout>
+        </Layout>
       </AppWrapper>
     )
 
@@ -149,26 +149,44 @@ const LoginPage = (props) => {
     )
   }
 
+  const troubleLink = (
+    <a href="#trouble" onClick={() => setTrouble(!trouble)}>
+      <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
+    </a>
+  )
+  const signUpLink = (
+    <Link to="/signup" data-test="signup">
+      <FormattedMessage id="app.signUpForAFreeAccount" />
+    </Link>
+  )
+
+  const context = [
+    <h6>
+      <FormattedMessage id="app.logIn" />
+    </h6>,
+    <ul>
+      <li>{troubleLink}</li>
+      <li>{signUpLink}</li>
+    </ul>,
+    <Oauth app={app} login list />
+  ]
+
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app} active="account" context={context} text>
         {redirect}
         <div>{main}</div>
         <div>
-          <a href="#trouble" data-test="trouble" onClick={() => setTrouble(!trouble)}>
-            <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
-          </a>
+          {troubleLink}
           <span style={{ padding: '0 1rem' }}>|</span>
-          <Link to="/signup" data-test="signup">
-            <FormattedMessage id="app.signUpForAFreeAccount" />
-          </Link>
+          {signUpLink}
         </div>
         <div style={{ marginTop: '3rem' }}>
           <Oauth app={app} login />
         </div>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
