@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -159,7 +159,7 @@ const SignupConfirmationPage = (props) => {
   ]
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app} active="account" text>
         <p>
           <FormattedMessage id="gdpr.compliant" />
         </p>
@@ -239,7 +239,7 @@ const SignupConfirmationPage = (props) => {
             <FormattedMessage id="gdpr.createMyAccount" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

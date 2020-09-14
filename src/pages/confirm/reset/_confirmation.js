@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
 
 const PasswordResetConfirmationPage = (props) => {
   const app = useApp()
@@ -13,7 +13,7 @@ const PasswordResetConfirmationPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}></CenteredLayout>
+      <Layout app={app} active="account"></Layout>
     </AppWrapper>
   )
 }
