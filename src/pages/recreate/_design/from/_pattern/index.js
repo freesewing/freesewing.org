@@ -4,8 +4,9 @@ import usePattern from '../../../../../hooks/usePattern'
 import usePeople from '../../../../../hooks/usePeople'
 import withLanguage from '../../../../../components/withLanguage'
 import AppWrapper from '../../../../../components/app/wrapper'
-import WideLayout from '../../../../../components/layouts/wide'
+import Layout from '../../../../../components/layouts/default'
 import LoadingLayout from '../../../../../components/layouts/loading'
+import SelectSizeContext from '../../../../../components/context/select-size'
 
 import { FormattedMessage } from 'react-intl'
 import SelectSize from '../../../../../components/draft/select-size'
@@ -73,9 +74,15 @@ const RecreatePatternPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout
+        app={app}
+        active="designs"
+        context={
+          <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
+        }
+      >
         <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }
