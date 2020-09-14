@@ -3,12 +3,13 @@ import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import WideLayout from '../../../components/layouts/wide'
+import Layout from '../../../components/layouts/default'
 import LoadingLayout from '../../../components/layouts/loading'
 
 import PatternData from '../../../components/pattern/data'
 import PatternNotes from '../../../components/pattern/notes'
-
+import PatternActions from '../../../components/context/pattern-actions'
+import { FormattedMessage } from 'react-intl'
 import PatternPreview from '../../../components/pattern/preview'
 import './index.css'
 
@@ -72,16 +73,33 @@ const PatternPage = (props) => {
     fabs.push('saveAs')
     if (ownPattern) fabs.push('delete')
   }
-  //<PatternFabs
-  //          app={app}
-  //          fabs={fabs}
-  //          openDialog={openDialog}
-  //          pattern={props.pattern}
-  //          design={pattern.data.design}
-  //        />
+
+  const context = []
+  context.push(
+    <h5>
+      <a
+        href="#"
+        role="button"
+        onClick={() => openDialog('pick')}
+        title={app.translate('app.showDetails')}
+      >
+        <FormattedMessage id="app.actions" />
+      </a>
+    </h5>
+  )
+  context.push(
+    <PatternActions
+      app={app}
+      fabs={fabs}
+      design={pattern.data.design}
+      openDialog={openDialog}
+      pattern={props.pattern}
+    />
+  )
+
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout app={app} active="account" context={context}>
         <div className="pwrap">
           <div>
             <h3>Preview</h3>
@@ -98,7 +116,7 @@ const PatternPage = (props) => {
         </div>
         <h3>Data</h3>
         <PatternData data={pattern} />
-      </WideLayout>
+      </Layout>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />,
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
         <Dialog

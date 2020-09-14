@@ -3,7 +3,7 @@ import useApp from '../../hooks/useApp'
 import usePerson from '../../hooks/usePerson'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -35,7 +35,7 @@ const PatternsIndexPage = (props) => {
   // When there is at least one pattern present
   const listState = (
     <>
-      <div style={{ textAlign: 'right', marginBottom: '16px' }}>{newPatternButton}</div>
+      <p>{newPatternButton}</p>
       {Object.keys(app.patterns).map((handle, pattern) => {
         let person = usePerson(app, app.patterns[handle].person)
         let personName = app.patterns[handle].person
@@ -77,18 +77,41 @@ const PatternsIndexPage = (props) => {
         <p>
           <FormattedMessage id="app.noPattern" />
         </p>
-        <p style={{ textAlign: 'right' }}>{newPatternButton}</p>
+        <p>{newPatternButton}</p>
       </Blockquote>
     </div>
   )
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.yourPatterns" />
+    </h5>,
+    <h6>
+      <Link to="/create/">
+        <FormattedMessage
+          id="app.newThing"
+          values={{
+            thing: app.translate('app.pattern')
+          }}
+        />
+      </Link>
+    </h6>,
+    <ul>
+      {Object.keys(app.patterns).map((handle, pattern) => (
+        <li key={handle}>
+          <Link to={`/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top wide>
+      <Layout app={app} active="account" context={context}>
         <div className="pattern-list">
           {Object.keys(app.patterns).length > 0 ? listState : blankState}
         </div>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
