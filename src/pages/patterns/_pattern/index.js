@@ -12,7 +12,6 @@ import PatternNotes from '../../../components/pattern/notes'
 import PatternPreview from '../../../components/pattern/preview'
 import './index.css'
 
-import PatternFabs from '../../../components/pattern/fabs'
 import Dialog from '../../../components/pattern/dialog'
 
 const PatternPage = (props) => {
@@ -73,17 +72,16 @@ const PatternPage = (props) => {
     fabs.push('saveAs')
     if (ownPattern) fabs.push('delete')
   }
-
+  //<PatternFabs
+  //          app={app}
+  //          fabs={fabs}
+  //          openDialog={openDialog}
+  //          pattern={props.pattern}
+  //          design={pattern.data.design}
+  //        />
   return (
     <AppWrapper app={app}>
       <WideLayout app={app} top>
-        <PatternFabs
-          app={app}
-          fabs={fabs}
-          openDialog={openDialog}
-          pattern={props.pattern}
-          design={pattern.data.design}
-        />
         <div className="pwrap">
           <div>
             <h3>Preview</h3>

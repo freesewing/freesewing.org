@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useDesign from '../../hooks/useDesign'
 import useMergeData from '../../hooks/useMergeData'
-import DraftLayout from '../layouts/draft'
+import Layout from '../layouts/default'
 import YAML from 'yaml'
 
 import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
@@ -10,12 +10,13 @@ import Draft from '@freesewing/components/Draft'
 import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
+import { FormattedMessage } from 'react-intl'
 
 import DraftError from './error'
 import DraftEvents from './events/'
 
 import Dialog from '../pattern/dialog'
-import PatternFabs from '../pattern/fabs'
+import PatternActions from '../context/pattern-actions'
 import { sampleStyles, focusStyle, extraDefs } from './sample-styles'
 import SampleLegend from './sample-legend'
 import './ui.css'
@@ -177,7 +178,37 @@ ${e.stack}
     display === 'compare' ? comparePattern(data) : draftPattern(data)
 
   // Configurator
-  const aside = (
+  const context = []
+  if (!error && patternProps.events.error.length === 0) {
+    context.push(
+      <h5>
+        <a
+          href="#"
+          role="button"
+          onClick={() => openDialog('pick')}
+          title={app.translate('app.showDetails')}
+        >
+          <FormattedMessage id="app.actions" />
+        </a>
+      </h5>
+    )
+    context.push(
+      <PatternActions
+        app={app}
+        fabs={props.fabs}
+        openDialog={openDialog}
+        pattern={props.pattern}
+        toggleUnits={toggleUnits}
+        units={visitorUnits}
+        fit={fit}
+        display={display}
+        setDisplay={setDisplay}
+        setFit={setFit}
+        data={data}
+      />
+    )
+  }
+  context.push(
     <DraftConfigurator
       data={data}
       units={app.account.username ? app.account.settings.units : visitorUnits}
@@ -240,25 +271,8 @@ ${e.stack}
     )
 
   return (
-    <DraftLayout app={app} aside={aside}>
-      <article>
-        {!error && patternProps.events.error.length === 0 && (
-          <PatternFabs
-            app={app}
-            fabs={props.fabs}
-            openDialog={openDialog}
-            pattern={props.pattern}
-            toggleUnits={toggleUnits}
-            units={visitorUnits}
-            fit={fit}
-            display={display}
-            setDisplay={setDisplay}
-            setFit={setFit}
-            data={data}
-          />
-        )}
-        {main}
-      </article>
+    <Layout app={app} active="designs" context={context}>
+      <article>{main}</article>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
         <Dialog
@@ -280,7 +294,7 @@ ${e.stack}
           units={visitorUnits}
         />
       </div>
-    </DraftLayout>
+    </Layout>
   )
 }
 
