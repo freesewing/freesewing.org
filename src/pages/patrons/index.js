@@ -3,7 +3,7 @@ import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import Button from '@material-ui/core/Button'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -80,9 +80,35 @@ const PatronPage = (props) => {
     )
     return null
   })
+
+  const context = [
+    <h5>
+      <FormattedMessage id="app.supportFreesewing" />
+    </h5>,
+    <ul>
+      <li>
+        <Link to="/patrons/join/">
+          <FormattedMessage id="app.becomeAPatron" />
+        </Link>
+      </li>
+    </ul>,
+    <h5>
+      <FormattedMessage id="app.patrons" />
+    </h5>,
+
+    <ul>
+      {Object.keys(patrons).map((patron) => (
+        <li key={patron}>
+          <Link to={`/users/${patrons[patron].username}`}>{patrons[patron].username}</Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top noTitle>
+      <Layout app={app} active="community" context={context}>
+        <div style={styles.list}>{list}</div>
         <Blockquote type="note">
           <h6>
             <FormattedMessage id="app.supportFreesewing" />
@@ -96,10 +122,7 @@ const PatronPage = (props) => {
             </Button>
           </p>
         </Blockquote>
-      </CenteredLayout>
-      <WideLayout app={app} top>
-        <div style={styles.list}>{list}</div>
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

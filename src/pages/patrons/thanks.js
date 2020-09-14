@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import Robot from '@freesewing/components/Robot'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -26,19 +26,17 @@ const PatronThanksPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'center' }}>
-          <Robot size={300} pose="yay" />
-          <p>
-            <Button variant="contained" color="primary" size="large" href="/share/">
-              <FormattedMessage id="app.share" />
-            </Button>
-          </p>
-          <Blockquote type="note">
-            <FormattedMessage id="app.patronHelp" />
-          </Blockquote>
-        </div>
-      </CenteredLayout>
+      <Layout app={app} active="community">
+        <Robot size={300} pose="yay" />
+        <p>
+          <Button variant="contained" color="primary" size="large" href="/share/">
+            <FormattedMessage id="app.share" />
+          </Button>
+        </p>
+        <Blockquote type="note">
+          <FormattedMessage id="app.patronHelp" />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }
