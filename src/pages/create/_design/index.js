@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import WideLayout from '../../../components/layouts/wide'
+import Layout from '../../../components/layouts/default'
 
 import usePeople from '../../../hooks/usePeople'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
 import SelectSize from '../../../components/draft/select-size'
+import SelectSizeContext from '../../../components/context/select-size'
 
 const CreatePatternPage = (props) => {
   // Hooks
@@ -36,9 +37,13 @@ const CreatePatternPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout
+        app={app}
+        active="designs"
+        context={<SelectSizeContext app={app} design={design} people={people} />}
+      >
         <SelectSize app={app} design={design} people={people} />
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }
