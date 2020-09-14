@@ -3,13 +3,16 @@ import useApp from '../../hooks/useApp'
 import useNavigation from '../../hooks/useNavigation'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import DocsLayout from '../../components/layouts/docs'
+import Layout from '../../components/layouts/default'
+import DocsNavigation from '../../components/app/docs-navigation'
 import crumbsFromNavigation from '../../components/app/crumbsFromNavigation'
+import MdxToc from '../../components/mdx/toc'
 
 import { graphql } from 'gatsby'
 import { options } from '@freesewing/pattern-info'
 import Mdx from '../../components/mdx'
 import PrevNext from '../../components/prev-next'
+import { FormattedMessage } from 'react-intl'
 
 import { measurements } from '@freesewing/models'
 import MeasurementImage from '../../components/measurements/images'
@@ -50,6 +53,7 @@ const DocsPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(title)
+    app.setDescription(props.data.allMdx.edges[0].node.excerpt)
     app.setCrumbs(crumbsFromNavigation(props.path, tree, titles))
   }, [])
 
@@ -63,13 +67,25 @@ const DocsPage = (props) => {
     measurementImage = <MeasurementImage intl={app.intl} measurement={measurement} />
   }
 
+  const context = []
+  if (props.data.allMdx.edges[0].node.tableOfContents.items) {
+    context.push(<h6>{props.data.allMdx.edges[0].node.frontmatter.title}</h6>)
+    context.push(<MdxToc toc={props.data.allMdx.edges[0].node.tableOfContents} app={app} />)
+  }
+  context.push(
+    <h6>
+      <FormattedMessage id="app.docs" />
+    </h6>
+  )
+  context.push(<DocsNavigation slug={props.path} app={app} />)
+
   return (
     <AppWrapper app={app}>
-      <DocsLayout app={app} slug={props.path}>
+      <Layout app={app} active="docs" context={context} text>
         {measurementImage}
         <Mdx node={props.data.allMdx.edges[0].node} />
         <PrevNext slug={props.path} tree={tree} titles={titles} />
-      </DocsLayout>
+      </Layout>
     </AppWrapper>
   )
 }
@@ -83,6 +99,8 @@ export const pageQuery = graphql`
       edges {
         node {
           body
+          excerpt
+          tableOfContents(maxDepth: 3)
           frontmatter {
             title
           }
