@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
 
 import Markdown from 'react-markdown'
 import UserSocial from '../../components/user-social'
+import PatronStars from '../../components/patron-stars'
+import { FormattedMessage } from 'react-intl'
 
 const Template = (props) => {
   // Hooks
@@ -26,34 +28,111 @@ const Template = (props) => {
     app.loadProfile(props.user).then((res) => {
       if (res.status === 200) setUser(res.data)
     })
-  }, [])
+  }, [props.user])
 
   // Styles
   const styles = {
+    table: {
+      padding: '0.5rem',
+      borderCollapse: 'collapse',
+      tableLayout: 'fixed',
+      whiteSpace: 'nowrap',
+      margin: '0',
+      width: '100%',
+      maxWidth: '666px'
+    },
+    title: {
+      padding: '1rem',
+      borderTop: '1px solid #9993',
+      verticalAlign: 'top',
+      textAlign: 'right',
+      fontWeight: 'bold'
+    },
+    cell: {
+      padding: '1rem',
+      borderTop: '1px solid #9993',
+      verticalAlign: 'top'
+    },
     avatar: {
       background: '#000',
       borderRadius: '4px'
     }
   }
 
+  if (app.mobile) {
+    styles.table.margin = '0 -1.5rem'
+  }
+
   if (!user) return null
 
-  return (
-    <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+  const fields = {
+    username: {
+      label: 'account.username',
+      value: user.username
+    },
+    handle: {
+      label: 'app.handle',
+      value: user.handle
+    },
+    patron: {
+      label: 'app.patron',
+      value: <PatronStars tier={user.patron} />
+    },
+    social: {
+      label: 'account.social',
+      value: <UserSocial accounts={user.social} size={36} />
+    },
+    units: {
+      label: 'account.units',
+      value:
+        user.settings.units === 'metric' ? (
+          <FormattedMessage id="app.metricUnits" />
+        ) : (
+          <FormattedMessage id="app.imperialUnits" />
+        )
+    },
+    language: {
+      label: 'account.language',
+      value: <FormattedMessage id={`i18n.${user.settings.language}`} />
+    },
+    avatar: {
+      label: 'account.avatar',
+      value: (
         <img
           src={user.pictureUris.l}
           style={styles.avatar}
           className="shadow"
           alt={user.username}
         />
-        {user.bio && <Markdown source={user.bio} />}
+      )
+    },
+    bio: {
+      label: 'account.bio',
+      value: <Markdown source={user.bio} />
+    }
+  }
+
+  return (
+    <AppWrapper app={app}>
+      <Layout app={app} top>
+        <table style={styles.table} className="font-title">
+          <tbody>
+            {Object.keys(fields).map((field) => (
+              <tr className="hover" key={field}>
+                <td style={styles.title}>
+                  <FormattedMessage id={fields[field].label} />
+                </td>
+                <td style={styles.cell}>{fields[field].value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         {user.social && (
-          <p style={{ textAlign: 'center' }}>
+          <p>
             <UserSocial accounts={user.social} size={36} />
           </p>
         )}
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
