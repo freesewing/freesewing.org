@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -44,51 +45,46 @@ const WelcomeSocialPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <Blockquote type="note">
-            <p dangerouslySetInnerHTML={{ __html: app.translate('account.socialInfo') }} />
-          </Blockquote>
-          <h5>Github</h5>
-          <TextField
-            fullWidth={true}
-            label={app.translate('account.github')}
-            margin="normal"
-            variant="outlined"
-            value={github}
-            type="text"
-            onChange={updateGithub}
-            InputProps={{
-              startAdornment: <InputAdornment position="start">@</InputAdornment>
-            }}
-          />
-          <h5>Twitter</h5>
-          <TextField
-            fullWidth={true}
-            label={app.translate('account.twitter')}
-            margin="normal"
-            variant="outlined"
-            value={twitter}
-            type="text"
-            onChange={updateTwitter}
-            InputProps={{
-              startAdornment: <InputAdornment position="start">@</InputAdornment>
-            }}
-          />
-          <h5>Instagram</h5>
-          <TextField
-            fullWidth={true}
-            label={app.translate('account.instagram')}
-            margin="normal"
-            variant="outlined"
-            value={instagram}
-            type="text"
-            onChange={updateInstagram}
-            InputProps={{
-              startAdornment: <InputAdornment position="start">@</InputAdornment>
-            }}
-          />
-        </div>
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+        <h5>Github</h5>
+        <TextField
+          fullWidth={true}
+          label={app.translate('account.github')}
+          margin="normal"
+          variant="outlined"
+          value={github}
+          type="text"
+          onChange={updateGithub}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">@</InputAdornment>
+          }}
+        />
+        <h5>Twitter</h5>
+        <TextField
+          fullWidth={true}
+          label={app.translate('account.twitter')}
+          margin="normal"
+          variant="outlined"
+          value={twitter}
+          type="text"
+          onChange={updateTwitter}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">@</InputAdornment>
+          }}
+        />
+        <h5>Instagram</h5>
+        <TextField
+          fullWidth={true}
+          label={app.translate('account.instagram')}
+          margin="normal"
+          variant="outlined"
+          value={instagram}
+          type="text"
+          onChange={updateInstagram}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">@</InputAdornment>
+          }}
+        />
         <p>
           <Button
             size="large"
@@ -103,7 +99,10 @@ const WelcomeSocialPage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={100} variant="determinate" />
-      </CenteredLayout>
+        <Blockquote type="note">
+          <p dangerouslySetInnerHTML={{ __html: app.translate('account.socialInfo') }} />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

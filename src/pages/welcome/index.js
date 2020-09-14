@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -20,7 +21,7 @@ const WelcomePage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
         <div style={{ textAlign: 'left' }}>
           <p>
             <FormattedMessage id="welcome.letUsSetupYourAccount" />
@@ -42,7 +43,7 @@ const WelcomePage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={5} variant="determinate" />
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

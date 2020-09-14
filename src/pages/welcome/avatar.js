@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -62,31 +63,24 @@ const WelcomeAvatarPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <Blockquote type="note">
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+        <div style={styles.wrapper}>
+          <img
+            alt="avatar"
+            src={img || app.account.pictureUris.m}
+            style={styles.avatar}
+            className="shadow"
+          />
+          <div {...getRootProps()} style={styles.dropzone}>
+            <input {...getInputProps()} />
             <p>
-              <FormattedMessage id="account.avatarInfo" />
+              <FormattedMessage id="app.dragAndDropImageHere" />
             </p>
-          </Blockquote>
-          <div style={styles.wrapper}>
-            <img
-              alt="avatar"
-              src={img || app.account.pictureUris.m}
-              style={styles.avatar}
-              className="shadow"
-            />
-            <div {...getRootProps()} style={styles.dropzone}>
-              <input {...getInputProps()} />
-              <p>
-                <FormattedMessage id="app.dragAndDropImageHere" />
-              </p>
-              <p>
-                <Button variant="outlined" color="primary">
-                  <FormattedMessage id="app.selectImage" />
-                </Button>
-              </p>
-            </div>
+            <p>
+              <Button variant="outlined" color="primary">
+                <FormattedMessage id="app.selectImage" />
+              </Button>
+            </p>
           </div>
         </div>
         <p>
@@ -101,7 +95,12 @@ const WelcomeAvatarPage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={62} variant="determinate" />
-      </CenteredLayout>
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage id="account.avatarInfo" />
+          </p>
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

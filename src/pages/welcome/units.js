@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -41,28 +42,21 @@ const WelcomeUnitsPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <Blockquote type="note">
-            <p>
-              <FormattedMessage id="account.unitsInfo" />
-            </p>
-          </Blockquote>
-          <RadioGroup name="units" onChange={handleUnitsChange} value={units}>
-            <FormControlLabel
-              control={<Radio color="primary" />}
-              value="metric"
-              checked={units === 'metric' ? true : false}
-              label={app.translate('app.metricUnits')}
-            />
-            <FormControlLabel
-              control={<Radio color="primary" />}
-              checked={units === 'imperial' ? true : false}
-              value="imperial"
-              label={app.translate('app.imperialUnits')}
-            />
-          </RadioGroup>
-        </div>
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+        <RadioGroup name="units" onChange={handleUnitsChange} value={units}>
+          <FormControlLabel
+            control={<Radio color="primary" />}
+            value="metric"
+            checked={units === 'metric' ? true : false}
+            label={app.translate('app.metricUnits')}
+          />
+          <FormControlLabel
+            control={<Radio color="primary" />}
+            checked={units === 'imperial' ? true : false}
+            value="imperial"
+            label={app.translate('app.imperialUnits')}
+          />
+        </RadioGroup>
         <p>
           <Button
             size="large"
@@ -75,7 +69,12 @@ const WelcomeUnitsPage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={24} variant="determinate" />
-      </CenteredLayout>
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage id="account.unitsInfo" />
+          </p>
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -45,38 +46,28 @@ const WelcomeUsernamePage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <Blockquote type="note">
-            <p>
-              <FormattedMessage
-                id="account.usernameInfo"
-                values={{ em: (...chunks) => <em>{chunks}</em> }}
-              />
-            </p>
-          </Blockquote>
-          <TextField
-            id="username"
-            fullWidth={true}
-            label={app.translate('account.username')}
-            margin="normal"
-            variant="outlined"
-            value={username}
-            type="text"
-            onChange={updateUsername}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  {usernameValid ? (
-                    <ValidIcon style={{ color: '#40c057' }} />
-                  ) : (
-                    <InvalidIcon color="error" />
-                  )}
-                </InputAdornment>
-              )
-            }}
-          />
-        </div>
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+        <TextField
+          id="username"
+          fullWidth={true}
+          label={app.translate('account.username')}
+          margin="normal"
+          variant="outlined"
+          value={username}
+          type="text"
+          onChange={updateUsername}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                {usernameValid ? (
+                  <ValidIcon style={{ color: '#40c057' }} />
+                ) : (
+                  <InvalidIcon color="error" />
+                )}
+              </InputAdornment>
+            )
+          }}
+        />
         <p>
           <Button
             size="large"
@@ -89,7 +80,15 @@ const WelcomeUsernamePage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={43} variant="determinate" />
-      </CenteredLayout>
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage
+              id="account.usernameInfo"
+              values={{ em: (...chunks) => <em>{chunks}</em> }}
+            />
+          </p>
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }

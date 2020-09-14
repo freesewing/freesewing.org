@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
+import Layout from '../../components/layouts/default'
+import WelcomeSteps from '../../components/context/welcome-steps'
 
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -47,29 +48,24 @@ const WelcomeBioPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <div style={{ textAlign: 'left' }}>
-          <Blockquote type="note">
-            <FormattedMessage id="account.bioInfo" />
-          </Blockquote>
-          <TextField
-            id="bio"
-            multiline={true}
-            rows="4"
-            rowsMax="12"
-            fullWidth={true}
-            label={app.translate('account.bio')}
-            margin="normal"
-            variant="outlined"
-            value={bio}
-            onChange={updateBio}
-          />
-          <h6>
-            <FormattedMessage id="app.preview" />
-          </h6>
-          <div style={styles.preview} className="shadow">
-            <Markdown source={bio} />
-          </div>
+      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+        <TextField
+          id="bio"
+          multiline={true}
+          rows="4"
+          rowsMax="12"
+          fullWidth={true}
+          label={app.translate('account.bio')}
+          margin="normal"
+          variant="outlined"
+          value={bio}
+          onChange={updateBio}
+        />
+        <h6>
+          <FormattedMessage id="app.preview" />
+        </h6>
+        <div style={styles.preview} className="shadow">
+          <Markdown source={bio} />
         </div>
         <p>
           <Button
@@ -83,7 +79,10 @@ const WelcomeBioPage = (props) => {
           </Button>
         </p>
         <LinearProgress color="primary" value={81} variant="determinate" />
-      </CenteredLayout>
+        <Blockquote type="note">
+          <FormattedMessage id="account.bioInfo" />
+        </Blockquote>
+      </Layout>
     </AppWrapper>
   )
 }
