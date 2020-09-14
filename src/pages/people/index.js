@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
-
+import Layout from '../../components/layouts/default'
+import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import MissingPeople from '../../components/missing/people'
 import Person from '../../components/person'
+import PeopleContext from '../../components/context/people'
 
 const PeopleIndexPage = (props) => {
   const app = useApp()
@@ -34,7 +35,7 @@ const PeopleIndexPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <WideLayout app={app} top>
+      <Layout app={app} active="account" context={<PeopleContext app={app} />}>
         {add}
         {Object.keys(app.people).length > 0 ? (
           <>
@@ -53,7 +54,7 @@ const PeopleIndexPage = (props) => {
           <MissingPeople />
         )}
         {app.people && Object.keys(app.people).length > 3 && add}
-      </WideLayout>
+      </Layout>
     </AppWrapper>
   )
 }

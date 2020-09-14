@@ -3,7 +3,8 @@ import useApp from '../../../../hooks/useApp'
 import usePerson from '../../../../hooks/usePerson'
 import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
-import CenteredLayout from '../../../../components/layouts/centered'
+import Layout from '../../../../components/layouts/default'
+import PeopleContext from '../../../../components/context/people'
 
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -142,7 +143,7 @@ const EditMeasurementPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app}>
+      <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
         <TextField
           data-test="measurement"
           fullWidth={true}
@@ -198,7 +199,7 @@ const EditMeasurementPage = (props) => {
         </h5>
         <MeasurementsImages measurement={measurement} breasts={person.breasts} />
         <Mdx node={docs} />
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import PeopleContext from '../../../components/context/people'
 
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -42,7 +43,7 @@ const PersonNamePage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
         <TextField
           fullWidth={true}
           label={app.translate('app.name')}
@@ -86,7 +87,7 @@ const PersonNamePage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

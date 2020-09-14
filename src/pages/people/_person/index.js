@@ -3,7 +3,8 @@ import useApp from '../../../hooks/useApp'
 import usePerson from '../../../hooks/usePerson'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import PeopleContext from '../../../components/context/people'
 
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
@@ -169,7 +170,9 @@ const PersonPage = (props) => {
       borderCollapse: 'collapse',
       tableLayout: 'fixed',
       whiteSpace: 'nowrap',
-      margin: '0 auto'
+      margin: '0',
+      width: '100%',
+      maxWidth: '666px'
     },
     cell: {
       padding: '1rem',
@@ -250,89 +253,111 @@ const PersonPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <CenteredLayout app={app} wide left crumbsOnly>
-        <div style={styles.row}>
-          <Person
-            data={app.people[props.person]}
-            link={`/people/${props.person}/`}
-            translate={app.translate}
-          />
-          <table style={styles.table} className="font-title">
-            <tbody>
-              {/* name */}
+      <Layout app={app} active="account" context={<PeopleContext app={app} />}>
+        <table style={styles.table} className="font-title">
+          <tbody>
+            {/* name */}
+            <tr className="hover">
+              <td style={styles.title}>
+                <FormattedMessage id="app.name" />
+              </td>
+              <td style={styles.cell}>{person.name}</td>
+              <td style={styles.buttonCell}>
+                <IconButton
+                  color="primary"
+                  style={styles.iconButton}
+                  size="medium"
+                  href={'/people/' + props.person + '/name/'}
+                >
+                  <EditIcon fontSize="inherit" style={styles.icon} />
+                </IconButton>
+              </td>
+            </tr>
+            {/* chest */}
+            <tr className="hover">
+              <td style={styles.title}>
+                <FormattedMessage id="app.chest" />
+              </td>
+              <td style={styles.cell}>
+                <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
+              </td>
+              <td style={styles.buttonCell}>
+                <IconButton
+                  color="primary"
+                  style={styles.iconButton}
+                  size="medium"
+                  onClick={
+                    () =>
+                      app
+                        .updatePerson(props.person, [!person.breasts, 'breasts'])
+                        .then((res) => setPerson(usePerson(app, props.person)))
+                    // We force a re-render here by setting state after the promise resolves
+                  }
+                >
+                  <RefreshIcon fontSize="inherit" style={styles.icon} />
+                </IconButton>
+              </td>
+            </tr>
+            {/* units */}
+            <tr className="hover">
+              <td style={styles.title}>
+                <FormattedMessage id="account.units" />
+              </td>
+              <td style={styles.cell}>
+                <FormattedMessage id={'app.' + person.units + 'Units'} />
+              </td>
+              <td style={styles.buttonCell}>
+                <IconButton
+                  color="primary"
+                  style={styles.iconButton}
+                  size="medium"
+                  onClick={
+                    () =>
+                      app
+                        .updatePerson(props.person, [
+                          person.units === 'metric' ? 'imperial' : 'metric',
+                          'units'
+                        ])
+                        .then((res) => setPerson(usePerson(app, props.person)))
+                    // We force a re-render here by setting state after the promise resolves
+                  }
+                >
+                  <RefreshIcon fontSize="inherit" style={styles.icon} />
+                </IconButton>
+              </td>
+            </tr>
+            {/* avater */}
+            {['avatar', 'notes'].map((field) => (
               <tr className="hover">
                 <td style={styles.title}>
-                  <FormattedMessage id="app.name" />
+                  <FormattedMessage id={field === 'notes' ? 'app.notes' : `account.avatar`} />
                 </td>
-                <td style={styles.cell}>{person.name}</td>
+                <td style={styles.cell}>
+                  {field === 'avatar' ? (
+                    <img
+                      style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                      src={app.people[props.person].pictureUris.xs}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </td>
                 <td style={styles.buttonCell}>
                   <IconButton
                     color="primary"
                     style={styles.iconButton}
                     size="medium"
-                    href={'/people/' + props.person + '/name/'}
+                    href={`/people/${props.person}/${field}/`}
                   >
                     <EditIcon fontSize="inherit" style={styles.icon} />
                   </IconButton>
                 </td>
               </tr>
-              {/* chest */}
-              <tr className="hover">
-                <td style={styles.title}>
-                  <FormattedMessage id="app.chest" />
-                </td>
-                <td style={styles.cell}>
-                  <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
-                </td>
-                <td style={styles.buttonCell}>
-                  <IconButton
-                    color="primary"
-                    style={styles.iconButton}
-                    size="medium"
-                    onClick={
-                      () =>
-                        app
-                          .updatePerson(props.person, [!person.breasts, 'breasts'])
-                          .then((res) => setPerson(usePerson(app, props.person)))
-                      // We force a re-render here by setting state after the promise resolves
-                    }
-                  >
-                    <RefreshIcon fontSize="inherit" style={styles.icon} />
-                  </IconButton>
-                </td>
-              </tr>
-              {/* units */}
-              <tr className="hover">
-                <td style={styles.title}>
-                  <FormattedMessage id="account.units" />
-                </td>
-                <td style={styles.cell}>
-                  <FormattedMessage id={'app.' + person.units + 'Units'} />
-                </td>
-                <td style={styles.buttonCell}>
-                  <IconButton
-                    color="primary"
-                    style={styles.iconButton}
-                    size="medium"
-                    onClick={
-                      () =>
-                        app
-                          .updatePerson(props.person, [
-                            person.units === 'metric' ? 'imperial' : 'metric',
-                            'units'
-                          ])
-                          .then((res) => setPerson(usePerson(app, props.person)))
-                      // We force a re-render here by setting state after the promise resolves
-                    }
-                  >
-                    <RefreshIcon fontSize="inherit" style={styles.icon} />
-                  </IconButton>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        {person.notes ? (
+            ))}
+          </tbody>
+        </table>
+
+        {person.notes && (
           <>
             <h5 style={styles.heading} data-test="notes-title">
               <FormattedMessage id="app.notes" />
@@ -348,61 +373,24 @@ const PersonPage = (props) => {
             </h5>
             <Markdown source={person.notes} data-test="notes" />
           </>
-        ) : (
-          <h5 style={styles.heading} data-test="notes-title">
-            <span style={{ opacity: '0.5' }}>
-              <FormattedMessage id="app.notes" />
-            </span>
-            <IconButton
-              data-test="add-notes"
-              color="primary"
-              style={styles.iconButton}
-              size="medium"
-              href={'/people/' + props.person + '/notes/'}
-            >
-              <AddIcon fontSize="inherit" style={styles.icon} />
-            </IconButton>
-          </h5>
         )}
 
-        {/* measurements */}
         <h5 id="measurements" style={styles.heading} data-test="measurements-title">
           <FormattedMessage id="app.measurements" />
         </h5>
-        {blankSlate && (
-          <Blockquote type="note" data-test="blank-slate">
-            <h6>
-              <FormattedMessage id="app.startWithNeckTitle" />
-            </h6>
-            <p>
-              <FormattedMessage id="app.startWithNeckDescription" />
-            </p>
-            <p style={{ textAlign: 'right' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                href={`/people/${props.person}/measurements/neck`}
-                data-test="add-neck"
-              >
-                <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
-                <FormattedMessage id="measurements.neck" />
-              </Button>
-            </p>
-          </Blockquote>
-        )}
-        {!blankSlate && (
-          <SizingGraph
-            breasts={true}
-            person={{ measurements: person.measurements, label: person.name }}
-            app={app}
-          />
-        )}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '1rem',
+            maxWidth: '666px'
+          }}
+        >
           <Button
             color="primary"
-            variant="outlined"
+            variant="link"
             style={{
-              marginRight: '1rem',
+              marginLeft: '1rem',
               padding: '0 1rem'
             }}
             disabled={filter ? false : true}
@@ -468,6 +456,38 @@ const PersonPage = (props) => {
             })}
           </tbody>
         </table>
+        {/* measurements */}
+        <h5 id="measurements" style={styles.heading} data-test="measurements-title">
+          <FormattedMessage id="app.measurements" />
+        </h5>
+        {blankSlate && (
+          <Blockquote type="note" data-test="blank-slate">
+            <h6>
+              <FormattedMessage id="app.startWithNeckTitle" />
+            </h6>
+            <p>
+              <FormattedMessage id="app.startWithNeckDescription" />
+            </p>
+            <p style={{ textAlign: 'right' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                href={`/people/${props.person}/measurements/neck`}
+                data-test="add-neck"
+              >
+                <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
+                <FormattedMessage id="measurements.neck" />
+              </Button>
+            </p>
+          </Blockquote>
+        )}
+        {!blankSlate && (
+          <SizingGraph
+            breasts={true}
+            person={{ measurements: person.measurements, label: person.name }}
+            app={app}
+          />
+        )}
         <p style={{ textAlign: 'center' }}>
           <Button
             data-test="remove"
@@ -483,7 +503,7 @@ const PersonPage = (props) => {
             />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }
