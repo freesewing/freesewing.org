@@ -21,7 +21,7 @@ const SettingsPage = (props) => {
   }, [])
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <CenteredLayout app={app} top wide left>
         <AccountMenu app={app} className="transparent" settingsOnly />
       </CenteredLayout>

@@ -14,8 +14,9 @@ import AccountMenu from './account'
 import DocsNavigation from '../app/docs-navigation'
 import HideIcon from '@material-ui/icons/ExpandLess'
 import ShowIcon from '@material-ui/icons/ExpandMore'
+import MainAside from './main-aside'
 
-const MobileMenu = ({ app }) => {
+const MobileMenu = ({ app, context }) => {
   // State
   const [account, setAccount] = useState(false)
   const [docs, setDocs] = useState(false)
@@ -46,8 +47,7 @@ const MobileMenu = ({ app }) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      minHeight: '(calc 100vh - 4rem)',
-      paddingBottom: '4rem'
+      minHeight: '100vh'
     },
     icons: {
       textAlign: 'center',
@@ -170,6 +170,8 @@ const MobileMenu = ({ app }) => {
       <div className={community ? '' : 'collapsed'}>
         <CommunityMenu app={app} className="transparent" />
       </div>
+      <MainAside app={app} />
+      <div className="context-wrapper">{context}</div>
     </div>
   )
 }

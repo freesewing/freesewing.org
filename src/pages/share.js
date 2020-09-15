@@ -15,7 +15,7 @@ const SharePage = (props) => {
   }, [])
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="community">
         <Mdx node={uiMdx['share']} />
       </Layout>

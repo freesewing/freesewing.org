@@ -80,7 +80,7 @@ const DocsPage = (props) => {
   context.push(<DocsNavigation slug={props.path} app={app} />)
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="docs" context={context} text>
         {measurementImage}
         <Mdx node={props.data.allMdx.edges[0].node} />

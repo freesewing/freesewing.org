@@ -44,7 +44,7 @@ const WelcomeSocialPage = (props) => {
   const updateInstagram = (evt) => setInstagram(evt.target.value)
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
       <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
         <h5>Github</h5>
         <TextField

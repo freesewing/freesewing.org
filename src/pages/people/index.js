@@ -34,7 +34,7 @@ const PeopleIndexPage = (props) => {
   )
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<PeopleContext app={app} />}>
       <Layout app={app} active="account" context={<PeopleContext app={app} />}>
         {add}
         {Object.keys(app.people).length > 0 ? (

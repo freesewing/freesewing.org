@@ -167,14 +167,14 @@ const LoginPage = (props) => {
     <ul>
       <li>{troubleLink}</li>
       <li>{signUpLink}</li>
-    </ul>,
-    <Oauth app={app} login list />
+      <Oauth app={app} login list />
+    </ul>
   ]
 
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="account" context={context} text>
         {redirect}
         <div>{main}</div>

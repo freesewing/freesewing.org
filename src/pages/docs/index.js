@@ -67,7 +67,7 @@ const DocumentationIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="docs" context={context}>
         <div style={styles.wrapper}>
           <div style={styles.column}>

@@ -50,7 +50,7 @@ const EmailSettingPage = (props) => {
   // Logic
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
           <FormattedMessage id={'account.emailInfo'} />

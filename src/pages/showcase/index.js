@@ -41,7 +41,7 @@ const ShowcaseIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="showcase" context={context}>
         <div style={style.wrapper}>
           {props.data.allMdx.edges.map((node) => (

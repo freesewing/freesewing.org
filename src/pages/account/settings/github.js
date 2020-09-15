@@ -38,7 +38,7 @@ const GithubSettingPage = (props) => {
   const updateGithub = (evt) => setGithub(evt.target.value)
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <CenteredLayout app={app} top>
         <Blockquote type="note">
           <FormattedMessage id={'account.githubInfo'} />

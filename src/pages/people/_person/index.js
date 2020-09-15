@@ -252,7 +252,7 @@ const PersonPage = (props) => {
   const blankSlate = !person.measurements || !person.measurements.neck
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<PeopleContext app={app} />}>
       <Layout app={app} active="account" context={<PeopleContext app={app} />}>
         <table style={styles.table} className="font-title">
           <tbody>

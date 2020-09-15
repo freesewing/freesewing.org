@@ -36,7 +36,7 @@ const MainMenu = (props) => (
             title={props.app.translate(links[link])}
           >
             {icons[link]}
-            {<FormattedMessage id={links[link]} />}
+            <span className="text">{<FormattedMessage id={links[link]} />}</span>
           </Link>
         </li>
       )

@@ -1,6 +1,5 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
-import MobileAside from '../menus/mobile-aside'
 import Loading from '../loading'
 
 // We need this specific loading layout to avoid SSR issues
@@ -15,13 +14,6 @@ const DraftLoadingLayout = ({ app }) => {
         </div>
         <Loading loading={true} embed />
       </section>
-      {app.mobile ? (
-        <MobileAside app={app} content={aside} />
-      ) : (
-        <aside>
-          <div className="sticky">{aside}</div>
-        </aside>
-      )}
     </div>
   )
 }

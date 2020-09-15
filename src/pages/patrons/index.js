@@ -106,7 +106,7 @@ const PatronPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="community" context={context}>
         <div style={styles.list}>{list}</div>
         <Blockquote type="note">

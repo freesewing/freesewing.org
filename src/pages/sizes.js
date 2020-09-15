@@ -34,7 +34,7 @@ const SizesPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="docs" context={context}>
         <ul className="links">
           <li>

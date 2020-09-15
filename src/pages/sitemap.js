@@ -73,7 +73,7 @@ const Sitemap = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} context={context}>
         <ul className="links">
           {Object.keys(main).map((i) => (

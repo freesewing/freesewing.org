@@ -72,15 +72,13 @@ const RecreatePatternPage = (props) => {
     return null
   }
 
+  const context = (
+    <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
+  )
+
   return (
-    <AppWrapper app={app}>
-      <Layout
-        app={app}
-        active="designs"
-        context={
-          <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
-        }
-      >
+    <AppWrapper app={app} context={context}>
+      <Layout app={app} active="designs" context={context}>
         <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
       </Layout>
     </AppWrapper>

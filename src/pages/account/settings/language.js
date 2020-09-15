@@ -41,7 +41,7 @@ const LanguageSettingPage = (props) => {
   const updateLanguage = (evt) => setLanguage(evt.target.value)
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <RadioGroup name="language" onChange={updateLanguage} value={language}>
           {Object.keys(languages).map((lang, index) => {

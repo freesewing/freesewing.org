@@ -39,7 +39,7 @@ const TwitterSettingPage = (props) => {
   const updateTwitter = (evt) => setTwitter(evt.target.value)
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <TextField
           id="twitter"

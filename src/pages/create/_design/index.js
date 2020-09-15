@@ -36,7 +36,7 @@ const CreatePatternPage = (props) => {
   }, [])
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<SelectSizeContext app={app} design={design} people={people} />}>
       <Layout
         app={app}
         active="designs"

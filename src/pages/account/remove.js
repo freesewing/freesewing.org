@@ -30,7 +30,7 @@ const RemoveAccountPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <Blockquote type="warning">
           <h4>

@@ -42,7 +42,7 @@ const PersonNamePage = (props) => {
   // Styles
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<PeopleContext app={app} />}>
       <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
         <TextField
           fullWidth={true}

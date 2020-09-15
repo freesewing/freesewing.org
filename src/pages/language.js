@@ -58,7 +58,7 @@ const Language = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={contex}>
       <Layout app={app} context={context}>
         {Object.keys(languages).map((lang) => {
           let current = lang === process.env.GATSBY_LANGUAGE ? true : false

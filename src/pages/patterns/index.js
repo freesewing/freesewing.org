@@ -106,7 +106,7 @@ const PatternsIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="account" context={context}>
         <div className="pattern-list">
           {Object.keys(app.patterns).length > 0 ? listState : blankState}

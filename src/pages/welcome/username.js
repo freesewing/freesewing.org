@@ -45,7 +45,7 @@ const WelcomeUsernamePage = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
       <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
         <TextField
           id="username"

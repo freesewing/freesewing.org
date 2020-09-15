@@ -39,7 +39,6 @@ function useApp() {
   const [image, setImage] = useState(`https://freesewing.org/share/language.wide.jpg`)
   const [loading, setLoading] = useState(false)
   const [menu, setMenu] = useState(false)
-  const [mobileAside, setMobileAside] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
 
   /*
@@ -111,7 +110,6 @@ function useApp() {
   // Toggles
   const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const toggleMenu = () => setMenu(!menu)
-  const toggleMobileAside = () => setMobileAside(!mobileAside)
   const closeNav = (evt) => {
     return null
     // This is tricky because the classnames in the build code or different from the development code
@@ -174,15 +172,12 @@ function useApp() {
     setImage,
     menu,
     setMenu,
-    mobileAside,
-    setMobileAside,
     title,
     setTitle,
 
     // Toggles
     toggleDarkMode,
     toggleMenu,
-    toggleMobileAside,
     closeNav,
 
     // Translation

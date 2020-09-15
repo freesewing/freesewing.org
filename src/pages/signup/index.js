@@ -244,7 +244,7 @@ const SignupPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="account" context={context} text>
         {result ? success : form}
       </Layout>

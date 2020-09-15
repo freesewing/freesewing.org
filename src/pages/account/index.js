@@ -16,7 +16,7 @@ const AccountPage = (props) => {
 
   return (
     <LoginRequired app={app}>
-      <AppWrapper app={app}>
+      <AppWrapper app={app} context={<AccountContext app={app} />}>
         <Layout app={app} active="account" context={<AccountContext app={app} />}>
           <AccountMenu app={app} className="transparent" />
         </Layout>

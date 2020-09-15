@@ -4,6 +4,9 @@ import useMergeData from '../../hooks/useMergeData'
 import Layout from '../layouts/default'
 import YAML from 'yaml'
 
+import Fab from '@material-ui/core/Fab'
+import ConfigIcon from '@material-ui/icons/Build'
+import CloseIcon from '@material-ui/icons/Close'
 import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
 import DraftConfigurator from '@freesewing/components/DraftConfigurator'
 import Draft from '@freesewing/components/Draft'
@@ -61,6 +64,7 @@ const DraftUi = (props) => {
   const [visitorUnits, setVisitorUnits] = useState('metric')
   const [data, setData, mergeData] = useMergeData(props.data) // Special state + update method to merge data
   const [dialog, setDialog] = useState(false)
+  const [menu, setMenu] = useState(false)
   const [dialogAction, setDialogAction] = useState('pick')
   const [crashReport, setCrashReport] = useState(false)
   const [issue, setIssue] = useState(false)
@@ -294,6 +298,24 @@ ${e.stack}
           units={visitorUnits}
         />
       </div>
+      {app.mobile && (
+        <>
+          <Fab
+            title={app.translate('app.menu')}
+            color="primary"
+            className="fab secondary only-xs accent"
+            aria-label="Menu"
+            onClick={() => setMenu(!menu)}
+          >
+            {menu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
+          </Fab>
+          {menu && (
+            <div className="draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
+              {context}
+            </div>
+          )}
+        </>
+      )}
     </Layout>
   )
 }

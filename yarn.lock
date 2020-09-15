@@ -3831,6 +3831,11 @@ blob@0.0.5:
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
   integrity sha512-gaqbzQPqOoamawKg0LGVd7SzLgXS+JH61oWprSLH+P+abTczqJbhTR8CmJ2u9/bUYNmHTGJx/UEmn6doAvvuig==
 
+blobs@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/blobs/-/blobs-2.1.0.tgz#b29edbcfa6ddd5fdeae60fb7551bb315f427b527"
+  integrity sha512-WsyfV7G0xNyOaA+pR7whHbHksgFlcDPvWcY9heJXaOl78/1O1VXnhXDJmSF2m1QjtvdNtc5tNKQ0sk+7lUCxlg==
+
 block-stream@*:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"

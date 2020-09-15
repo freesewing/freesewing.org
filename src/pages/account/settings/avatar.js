@@ -71,7 +71,7 @@ const AvatarSettingPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={<AccountContext app={app} />}>
       <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <div style={styles.wrapper}>
           <img

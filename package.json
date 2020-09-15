@@ -71,6 +71,7 @@
     "@nivo/line": "^0.62.0",
     "algoliasearch": "4.3.0",
     "axios": "0.19.2",
+    "blobs": "^2.1.0",
     "core-js": "^3.4.8",
     "dotenv": "8.2.0",
     "file-saver": "2.0.2",

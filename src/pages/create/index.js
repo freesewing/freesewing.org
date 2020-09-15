@@ -80,7 +80,7 @@ const CreatePatternIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} context={context}>
       <Layout app={app} active="designs" context={context}>
         <div style={styles.wrapper}>
           {list.map((pattern) => {
