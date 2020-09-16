@@ -40,6 +40,7 @@ function useApp() {
   const [loading, setLoading] = useState(false)
   const [menu, setMenu] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
+  const [mounted, setMounted] = useState(false) // false until app is mounted
 
   /*
    * Helper method to merge data objects
@@ -174,6 +175,8 @@ function useApp() {
     setMenu,
     title,
     setTitle,
+    mounted,
+    setMounted,
 
     // Toggles
     toggleDarkMode,

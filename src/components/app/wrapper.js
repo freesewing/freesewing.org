@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
 import * as themes from '@freesewing/mui-theme'
@@ -21,6 +21,11 @@ import Bugsnag from './bugsnag'
 /* This component should wrap all page content */
 const AppWrapper = ({ app, children, context = null }) => {
   const [scrolledDown, setScrolledDown] = useState(false)
+
+  useEffect(() => {
+    app.setMounted(true)
+  }, [])
+
   useScrolledDown((s) => setScrolledDown(s))
 
   const scrollToTop = () => {
@@ -49,6 +54,17 @@ const AppWrapper = ({ app, children, context = null }) => {
   if (app.mobile) wrapperClasses += ' mobile'
   if (!app.mobile && !app.tablet) wrapperClasses += ' desktop'
 
+  if (!app.mounted)
+    return (
+      <MuiThemeProvider theme={createMuiTheme(themes[app.theme])}>
+        <Meta app={app} />
+        <div className={wrapperClasses}>
+          {children}
+          <Footer language={process.env.GATSBY_LANGUAGE} app={app} />
+        </div>
+      </MuiThemeProvider>
+    )
+
   return (
     <Bugsnag>
       <MuiThemeProvider theme={createMuiTheme(themes[app.theme])}>
@@ -65,7 +81,6 @@ const AppWrapper = ({ app, children, context = null }) => {
               >
                 {app.menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
               </Fab>
-              <Navbar app={app} />
             </>
           ) : (
             <Navbar app={app} />
