@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -13,6 +13,7 @@ import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
+import AccountContext from '../../../components/context/account'
 
 const EmailSettingPage = (props) => {
   // Hooks
@@ -51,7 +52,7 @@ const EmailSettingPage = (props) => {
 
   return (
     <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <Blockquote type="note">
           <FormattedMessage id={'account.emailInfo'} />
         </Blockquote>
@@ -97,7 +98,7 @@ const EmailSettingPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

@@ -47,7 +47,7 @@ const CreatePersonPage = (props) => {
     })
 
   return (
-    <AppWrapper app={app} context={context}>
+    <AppWrapper app={app}>
       <Layout app={app} active="account">
         <div style={{ textAlign: 'left' }}>
           <h5 data-test="name-title">

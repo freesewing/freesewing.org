@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import CenteredLayout from '../../../components/layouts/centered'
+import Layout from '../../../components/layouts/default'
+import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -39,7 +40,7 @@ const GithubSettingPage = (props) => {
 
   return (
     <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <CenteredLayout app={app} top>
+      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
         <Blockquote type="note">
           <FormattedMessage id={'account.githubInfo'} />
         </Blockquote>
@@ -77,7 +78,7 @@ const GithubSettingPage = (props) => {
             <FormattedMessage id="app.save" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Layout>
     </AppWrapper>
   )
 }

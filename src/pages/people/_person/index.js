@@ -38,6 +38,8 @@ const PersonPage = (props) => {
   const [filter, setFilter] = useState(app.vars.designFilter || false)
   const [person, setPerson] = useState({ ...usePerson(app, props.person) })
 
+  if (!app.account.username) return null // FIXME: Do something better for SSR
+
   // Effects
   useEffect(() => {
     app.setTitle(person.name)
@@ -326,7 +328,7 @@ const PersonPage = (props) => {
                 </IconButton>
               </td>
             </tr>
-            {/* avater */}
+            {/* avatar */}
             {['avatar', 'notes'].map((field) => (
               <tr className="hover">
                 <td style={styles.title}>

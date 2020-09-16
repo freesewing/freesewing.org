@@ -13,7 +13,7 @@ const SearchPage = (props) => {
   }, [])
 
   return (
-    <AppWrapper app={app} context={context}>
+    <AppWrapper app={app}>
       <Layout app={app}>
         <Search search={app.translate('app.search')} />
       </Layout>
