@@ -25,18 +25,18 @@ const icons = {
   account: <AccountIcon />
 }
 
-const MainMenu = (props) => (
-  <ul className="aside-main-menu">
+const MainMenu = ({ app, active = '', iconsOnly = false }) => (
+  <ul className={iconsOnly ? 'footer-main-menu' : 'aside-main-menu'}>
     {Object.keys(links).map((link) => {
       return (
         <li key={link}>
           <Link
             to={`/${link}/`}
-            className={link === props.active ? 'active' : ''}
-            title={props.app.translate(links[link])}
+            className={link === active ? 'active' : ''}
+            title={app.translate(links[link])}
           >
             {icons[link]}
-            <span className="text">{<FormattedMessage id={links[link]} />}</span>
+            {!iconsOnly && <span className="text">{<FormattedMessage id={links[link]} />}</span>}
           </Link>
         </li>
       )

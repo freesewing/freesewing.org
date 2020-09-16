@@ -78,49 +78,75 @@ const HomePage = (props) => {
   const shades = [3, 4, 5, 6, 7, 8, 9]
   const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
   const randomColor = () => oc[pickOne(colors) + pickOne(shades)]
-  const randomColorWithShade = () => {
+  const randomColorWithContrast = () => {
     let shade = pickOne(shades)
     return {
       shade,
+      contrast: shade < 5 ? '#212529' : '#f8f9fa',
       color: oc[pickOne(colors) + shade]
     }
   }
 
   // State
-  const [color, setColor] = useState(randomColor())
+  const [count, setCount] = useState(0)
 
+  const color3 = randomColorWithContrast()
   return (
     <AppWrapper app={app}>
       <div id="homepage">
         <div className="blobs">
           <EmptyBlob app={app} />
-          <div className="blob-wrapper">
-            <SecondBlob color={randomColor()} app={app} />
-            <MainBlob color={randomColor()} app={app} />
-            <ThirdBlob color={randomColor()} app={app} />
+          <div className="blob-wrapper" onClick={() => setCount(count + 1)}>
+            <SecondBlob {...randomColorWithContrast()} app={app} />
+            <MainBlob {...randomColorWithContrast()} app={app} />
+            <ThirdBlob {...color3} app={app} />
           </div>
         </div>
 
         {/* Icons */}
-        <div className="icons">
-          <IconButton href="/designs/" title={app.translate('app.designs')}>
+        <div className="icons" style={{ background: color3.color, color: color3.contrast }}>
+          <Link to="/designs/" title={app.translate('app.designs')}>
             <Icon icon="withBreasts" />
-          </IconButton>
-          <IconButton href="/community/" title={app.translate('app.community')}>
+            <br />
+            <span>
+              <FormattedMessage id="app.designs" />
+            </span>
+          </Link>
+          <Link to="/community/" title={app.translate('app.community')}>
             <CommunityIcon />
-          </IconButton>
-          <IconButton href="/showcase/" title={app.translate('app.showcase')}>
+            <br />
+            <span>
+              <FormattedMessage id="app.community" />
+            </span>
+          </Link>
+          <Link to="/showcase/" title={app.translate('app.showcase')}>
             <ShowcaseIcon />
-          </IconButton>
-          <IconButton href="/blog/" title={app.translate('app.blog')}>
+            <br />
+            <span>
+              <FormattedMessage id="app.showcase" />
+            </span>
+          </Link>
+          <Link to="/blog/" title={app.translate('app.blog')}>
             <BlogIcon />
-          </IconButton>
-          <IconButton href="/docs/" title={app.translate('app.docs')}>
+            <br />
+            <span>
+              <FormattedMessage id="app.blog" />
+            </span>
+          </Link>
+          <Link to="/docs/" title={app.translate('app.docs')}>
             <DocsIcon />
-          </IconButton>
-          <IconButton href="/account/" title={app.translate('app.account')}>
+            <br />
+            <span>
+              <FormattedMessage id="app.docs" />
+            </span>
+          </Link>
+          <Link to="/account/" title={app.translate('app.account')}>
             <AccountIcon />
-          </IconButton>
+            <br />
+            <span>
+              <FormattedMessage id="app.account" />
+            </span>
+          </Link>
         </div>
 
         {/* Support banner */}
@@ -135,8 +161,24 @@ const HomePage = (props) => {
             <p>
               <FormattedMessage id="app.patronPitch" />
             </p>
-            <Button className="btn-primary" variant="contained" href="#tiers">
-              <FormattedMessage id="app.pricing" />
+            <Button
+              color="primary"
+              className="accent"
+              size="large"
+              variant="contained"
+              href="/patrons/join/"
+              style={{ margin: '1rem 1rem 0 0', background: color3.color, color: color3.contrast }}
+            >
+              <FormattedMessage id="app.becomeAPatron" />
+            </Button>
+            <Button
+              color="secondary"
+              size="large"
+              variant="contained"
+              href="/docs/about/pledge/"
+              style={{ marginTop: '1rem' }}
+            >
+              <FormattedMessage id="app.ourRevenuePledge" />
             </Button>
           </div>
         </div>
@@ -154,14 +196,6 @@ const HomePage = (props) => {
               <Mdx node={uiMdx[`homepage/row-2`]} />
             </div>
           </div>
-        </WideLayout>
-
-        <WideLayout app={app} noTitle>
-          {/* Pricing */}
-          <h3 className="pricing">
-            <FormattedMessage id="app.becomeAPatron" />
-          </h3>
-          <Subscribe showFree={false} app={app} />
         </WideLayout>
 
         {/* Latest blog posts */}

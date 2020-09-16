@@ -6,6 +6,7 @@ import { Link } from 'gatsby'
 import IconButton from '@material-ui/core/IconButton'
 import { version } from '../../../package.json'
 import { FormattedMessage } from 'react-intl'
+import MainIcons from '../menus/main-aside'
 
 const Footer = (props) => {
   const data = useStaticQuery(graphql`
@@ -87,41 +88,15 @@ const Footer = (props) => {
       <Link to="/">
         <Logo size={101} />
       </Link>
-      <p>
+      <p dangerouslySetInnerHTML={{ __html: props.app.translate('app.txt-footer') }} />
+      <MainIcons app={props.app} iconsOnly />
+      <p className="social">
         {Object.keys(icons).map((i) => (
           <IconButton href={icons[i]} className={i} title={i} key={i}>
             <Icon icon={i} />
           </IconButton>
         ))}
       </p>
-      <p dangerouslySetInnerHTML={{ __html: props.app.translate('app.txt-footer') + ':' }} />
-      {allPatrons}
-      <div style={styles.container}>
-        <ul style={styles.links}>
-          <li>
-            <Link to="/community/">
-              <FormattedMessage id="app.community" />
-            </Link>
-          </li>
-          <li>
-            <Link to="/docs/about/faq/">
-              <FormattedMessage id="app.faq" />
-            </Link>
-          </li>
-        </ul>
-        <ul style={styles.links}>
-          <li>
-            <Link to="/patrons/join/">
-              <FormattedMessage id="app.becomeAPatron" />
-            </Link>
-          </li>
-          <li>
-            <a href="https://freesewing.dev/">
-              <FormattedMessage id="app.devDocs" />
-            </a>
-          </li>
-        </ul>
-      </div>
       <p className="version">
         <a href={'https://github.com/freesewing/freesewing/releases/tag/v' + version}>v{version}</a>
       </p>

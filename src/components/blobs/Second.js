@@ -16,23 +16,23 @@ const Blob = (props) => {
       fontSize: '20px',
       fill: props.color,
       fontFamily: 'Roboto condensed',
-      fontWeight: 200,
+      fontWeight: 400,
       textAnchor: 'end'
     }
   }
   style.whin = {
     ...style.thin,
-    fill: 'white'
+    fill: props.contrast
   }
   style.thic = {
     ...style.thin,
     fontSize: '16px',
-    fontWeight: 600,
+    fontWeight: 900,
     textAnchor: 'end'
   }
   style.whic = {
     ...style.thic,
-    fill: 'white'
+    fill: props.contrast
   }
 
   const d = blobs2.svgPath(

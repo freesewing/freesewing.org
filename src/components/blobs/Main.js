@@ -13,7 +13,7 @@ const Blob = (props) => {
       fontSize: '20px',
       fill: props.color,
       fontFamily: 'Roboto condensed',
-      fontWeight: 200
+      fontWeight: 500
     }
   }
   style.thic = {
@@ -23,11 +23,11 @@ const Blob = (props) => {
   }
   style.whin = {
     ...style.thin,
-    fill: 'white'
+    fill: props.contrast
   }
   style.whic = {
     ...style.thic,
-    fill: 'white'
+    fill: props.contrast
   }
 
   const d = blobs2.svgPath(
@@ -71,7 +71,7 @@ const Blob = (props) => {
       }
     }
   ]
-
+  console.log(props.shade)
   return (
     <svg {...svgProps}>
       <defs>

@@ -144,30 +144,40 @@ div.blobs {
     }
   }
 }
+div.blobs:hover {
+  cursor: pointer;
+}
 
 div.icons {
-  background: -webkit-linear-gradient(45deg, #845ef7, #f06595);
   margin-top: -8px;
   text-align: center;
   a {
-    color: white !important;
-    margin: 1rem;
+    color: inherit !important;
+    border: 0;
+    border-bottom: 5px solid transparent;
+    width: calc(15% - 4rem);
+    max-width: 150px;
+    margin: 1.5rem;
     padding: 0.5rem;
-    height: 52px;
-    width: 52px;
-    border: 2px solid transparent;
+    display: inline-block;
+    text-align: center;
     svg {
       height: 52px;
       width: 52px;
       padding: 0;
       fill: currentColor;
     }
+    span {
+      font-family: 'Roboto Condensed', sans-serif;
+      text-transform: uppercase;
+      margin: 0 auto;
+    }
   }
-}
-
-div.icons a:hover {
-  border-color: inherit !important;
-  background: transparent;
+  a:hover {
+    text-decoration: none !important;
+    border-color: currentColor;
+    color: red;
+  }
 }
 
 .theme-wrapper.light #blog a.text,
@@ -192,11 +202,8 @@ div.icons a:hover {
   }
   div.icons {
     a {
-      margin: 0.75rem;
-      padding: 0.5rem;
-      height: 42px;
-      width: 42px;
-      border: 2px solid transparent;
+      margin: 1rem;
+      width: calc(30% - 3rem);
       svg {
         height: 42px;
         width: 42px;
@@ -229,16 +236,14 @@ div.icons a:hover {
     padding: 0;
   }
   div.icons {
-    padding: 0.5rem 0;
     a {
-      margin: 0.125rem;
-      padding: 0.25rem;
-      height: 24px;
-      width: 24px;
-      border: 2px solid transparent;
+      margin: 1rem;
+      width: calc(30% - 3rem);
+      font-size: 80%;
+      font-weight: bold;
       svg {
-        height: 24px;
-        width: 24px;
+        height: 32px;
+        width: 32px;
         padding: 0;
         fill: currentColor;
       }
