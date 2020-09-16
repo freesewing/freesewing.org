@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
 import withLanguage from '../components/withLanguage'
@@ -6,15 +6,28 @@ import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
 
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
+import DocsIcon from '@material-ui/icons/ChromeReaderMode'
+import ShowcaseIcon from '@material-ui/icons/CameraAlt'
+import BlogIcon from '@material-ui/icons/RssFeed'
+import CommunityIcon from '@material-ui/icons/Favorite'
+import AccountIcon from '@material-ui/icons/Face'
+import Icon from '@freesewing/components/Icon'
 
 import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
 import { graphql, Link } from 'gatsby'
+import oc from 'open-color-js'
+import MainBlob from '../components/blobs/Main'
+import SecondBlob from '../components/blobs/Second'
+import ThirdBlob from '../components/blobs/Third'
+import EmptyBlob from '../components/blobs/Empty'
+import Hashtag from '../components/hashtag'
 
 // Style
-import './homepage.css'
+import './homepage.scss'
 
 const renderBlogPost = (node) => (
   <div className="post">
@@ -48,80 +61,66 @@ const HomePage = (props) => {
   const app = useApp()
   const uiMdx = useUiMdx()
 
+  const colors = [
+    'red',
+    'pink',
+    'grape',
+    'violet',
+    'indigo',
+    'blue',
+    'cyan',
+    'teal',
+    'green',
+    'lime',
+    'yellow',
+    'orange'
+  ]
+  const shades = [3, 4, 5, 6, 7, 8, 9]
+  const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
+  const randomColor = () => oc[pickOne(colors) + pickOne(shades)]
+  const randomColorWithShade = () => {
+    let shade = pickOne(shades)
+    return {
+      shade,
+      color: oc[pickOne(colors) + shade]
+    }
+  }
+
+  // State
+  const [color, setColor] = useState(randomColor())
+
   return (
     <AppWrapper app={app}>
       <div id="homepage">
-        {/* Top banner */}
-        <header>
-          <div className="banner">
-            <div className="text-block">
-              <h1>FreeSewing</h1>
-              <h2>
-                <FormattedMessage id="app.sewingPatternsForNonAveragePeople" />
-                <sup>*</sup>
-                <br />
-                <small>
-                  <small data-test="subslogan">
-                    * <FormattedMessage id="app.averagePeopleDoNotExist" />
-                  </small>
-                </small>
-              </h2>
-              <Button
-                size="large"
-                color="secondary"
-                variant="contained"
-                className="btn-primary"
-                href={
-                  app.account.patron
-                    ? '/share/'
-                    : app.account.username
-                    ? '/patrons/join/'
-                    : '/create/'
-                }
-              >
-                {app.account.patron ? (
-                  <FormattedMessage id="app.share" />
-                ) : app.account.username ? (
-                  <FormattedMessage id="app.subscribe" />
-                ) : (
-                  <FormattedMessage id="app.browsePatterns" />
-                )}
-              </Button>
-            </div>
+        <div className="blobs">
+          <EmptyBlob app={app} />
+          <div className="blob-wrapper">
+            <SecondBlob color={randomColor()} app={app} />
+            <MainBlob color={randomColor()} app={app} />
+            <ThirdBlob color={randomColor()} app={app} />
           </div>
-        </header>
+        </div>
 
-        <WideLayout app={app} noTitle>
-          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <Blockquote type="note">
-              <Mdx node={uiMdx[`covid`]} />
-            </Blockquote>
-          </div>
-        </WideLayout>
-        {/* First row of text boxes */}
-        <WideLayout app={app} noTitle>
-          <div className="boxes">
-            {[1, 2, 3].map((id) => (
-              <div key={'row1-' + id}>
-                <Mdx node={uiMdx[`homepage/row-1/${id}`]} />
-              </div>
-            ))}
-          </div>
-        </WideLayout>
-
-        {/* Latest blog posts */}
-        <div id="blog">
-          <div className="single">{renderBlogPost(props.data.allMdx.edges[0])}</div>
-          <div className="many">
-            {renderBlogPost(props.data.allMdx.edges[1])}
-            {renderBlogPost(props.data.allMdx.edges[2])}
-            {renderBlogPost(props.data.allMdx.edges[3])}
-            <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
-              <Link to="/blog/" className="more">
-                <FormattedMessage id="app.browseBlogposts" /> &raquo;
-              </Link>
-            </h3>
-          </div>
+        {/* Icons */}
+        <div className="icons">
+          <IconButton href="/designs/" title={app.translate('app.designs')}>
+            <Icon icon="withBreasts" />
+          </IconButton>
+          <IconButton href="/community/" title={app.translate('app.community')}>
+            <CommunityIcon />
+          </IconButton>
+          <IconButton href="/showcase/" title={app.translate('app.showcase')}>
+            <ShowcaseIcon />
+          </IconButton>
+          <IconButton href="/blog/" title={app.translate('app.blog')}>
+            <BlogIcon />
+          </IconButton>
+          <IconButton href="/docs/" title={app.translate('app.docs')}>
+            <DocsIcon />
+          </IconButton>
+          <IconButton href="/account/" title={app.translate('app.account')}>
+            <AccountIcon />
+          </IconButton>
         </div>
 
         {/* Support banner */}
@@ -142,21 +141,43 @@ const HomePage = (props) => {
           </div>
         </div>
 
+        {/* First row of text boxes */}
+        <WideLayout app={app} noTitle>
+          <div className="boxes">
+            <div>
+              <Mdx node={uiMdx[`homepage/updates`]} />
+            </div>
+            <div>
+              <Mdx node={uiMdx[`homepage/row-1`]} />
+            </div>
+            <div>
+              <Mdx node={uiMdx[`homepage/row-2`]} />
+            </div>
+          </div>
+        </WideLayout>
+
         <WideLayout app={app} noTitle>
           {/* Pricing */}
           <h3 className="pricing">
-            <FormattedMessage id="app.pricing" />
+            <FormattedMessage id="app.becomeAPatron" />
           </h3>
           <Subscribe showFree={false} app={app} />
-          {/* Second row of text boxes */}
-          <div className="boxes">
-            {[1, 2, 3].map((id) => (
-              <div key={'row2-' + id}>
-                <Mdx node={uiMdx[`homepage/row-2/${id}`]} />
-              </div>
-            ))}
-          </div>
         </WideLayout>
+
+        {/* Latest blog posts */}
+        <div id="blog">
+          <div className="single">{renderBlogPost(props.data.allMdx.edges[0])}</div>
+          <div className="many">
+            {renderBlogPost(props.data.allMdx.edges[1])}
+            {renderBlogPost(props.data.allMdx.edges[2])}
+            {renderBlogPost(props.data.allMdx.edges[3])}
+            <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
+              <Link to="/blog/" className="more">
+                <FormattedMessage id="app.browseBlogposts" /> &raquo;
+              </Link>
+            </h3>
+          </div>
+        </div>
       </div>
     </AppWrapper>
   )

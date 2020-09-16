@@ -85,8 +85,12 @@
   max-width: 1600px;
   margin: 5rem auto;
 }
-#blog figure { margin: 0 auto }
-#blog a:hover { text-decoration: none; }
+#blog figure {
+  margin: 0 auto;
+}
+#blog a:hover {
+  text-decoration: none;
+}
 
 #blog > div {
   width: calc(50% - 2rem);
@@ -127,15 +131,54 @@
   font-size: 1rem;
 }
 
+div.blobs {
+  position: relative;
+  div.blob-wrapper {
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    svg.empty {
+      position: relative;
+    }
+  }
+}
 
+div.icons {
+  background: -webkit-linear-gradient(45deg, #845ef7, #f06595);
+  margin-top: -8px;
+  text-align: center;
+  a {
+    color: white !important;
+    margin: 1rem;
+    padding: 0.5rem;
+    height: 52px;
+    width: 52px;
+    border: 2px solid transparent;
+    svg {
+      height: 52px;
+      width: 52px;
+      padding: 0;
+      fill: currentColor;
+    }
+  }
+}
+
+div.icons a:hover {
+  border-color: inherit !important;
+  background: transparent;
+}
 
 .theme-wrapper.light #blog a.text,
 .theme-wrapper.light #blog a.image {
   color: #212529;
 }
-.theme-wrapper.dark #blog a.text,
-.theme-wrapper.dark #blog a.image {
-  color: #f8f9fa;
+.theme-wrapper.dark {
+  #blog a.text,
+  #blog a.image {
+    color: #f8f9fa;
+  }
 }
 
 /* mobile and tablet */
@@ -146,6 +189,21 @@
   #homepage div.boxes > div {
     max-width: 666px;
     margin: 0 auto;
+  }
+  div.icons {
+    a {
+      margin: 0.75rem;
+      padding: 0.5rem;
+      height: 42px;
+      width: 42px;
+      border: 2px solid transparent;
+      svg {
+        height: 42px;
+        width: 42px;
+        padding: 0;
+        fill: currentColor;
+      }
+    }
   }
 }
 
@@ -169,5 +227,21 @@
   #blog div.many a.text h3,
   #blog div.many a.text p {
     padding: 0;
+  }
+  div.icons {
+    padding: 0.5rem 0;
+    a {
+      margin: 0.125rem;
+      padding: 0.25rem;
+      height: 24px;
+      width: 24px;
+      border: 2px solid transparent;
+      svg {
+        height: 24px;
+        width: 24px;
+        padding: 0;
+        fill: currentColor;
+      }
+    }
   }
 }
