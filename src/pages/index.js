@@ -20,11 +20,13 @@ import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
 import { graphql, Link } from 'gatsby'
 import oc from 'open-color-js'
-import MainBlob from '../components/blobs/Main'
-import SecondBlob from '../components/blobs/Second'
-import ThirdBlob from '../components/blobs/Third'
+//import MainBlob from '../components/blobs/Main'
+//import SecondBlob from '../components/blobs/Second'
+//import ThirdBlob from '../components/blobs/Third'
 import EmptyBlob from '../components/blobs/Empty'
+import Blob from '../components/blobs'
 import Hashtag from '../components/hashtag'
+import contrast from 'get-contrast'
 
 // Style
 import './homepage.scss'
@@ -56,55 +58,61 @@ const renderBlogPost = (node) => (
   </div>
 )
 
+const colors = [
+  'red',
+  'pink',
+  'grape',
+  'violet',
+  'indigo',
+  'blue',
+  'cyan',
+  'teal',
+  'green',
+  'lime',
+  'yellow',
+  'orange'
+]
+const shades = [5, 6, 7, 8, 9]
+const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
+const getContrast = (color) => {
+  let black = '#212529'
+  let white = '#f8f9fa'
+  let ratio = {
+    black: contrast.ratio(color, black),
+    white: contrast.ratio(color, white)
+  }
+
+  return ratio.black > ratio.white ? black : white
+}
+const randomColors = (theme = 'light') =>
+  [
+    { color: oc[pickOne(colors) + pickOne(shades)] },
+    { color: oc[pickOne(colors) + pickOne(shades)] },
+    { color: oc[pickOne(colors) + pickOne(shades)] }
+  ].map((blob) => ({ color: blob.color, contrast: getContrast(blob.color) }))
+
 const HomePage = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
 
-  const colors = [
-    'red',
-    'pink',
-    'grape',
-    'violet',
-    'indigo',
-    'blue',
-    'cyan',
-    'teal',
-    'green',
-    'lime',
-    'yellow',
-    'orange'
-  ]
-  const shades = [3, 4, 5, 6, 7, 8, 9]
-  const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
-  const randomColor = () => oc[pickOne(colors) + pickOne(shades)]
-  const randomColorWithContrast = () => {
-    let shade = pickOne(shades)
-    return {
-      shade,
-      contrast: shade < 5 ? '#212529' : '#f8f9fa',
-      color: oc[pickOne(colors) + shade]
-    }
-  }
-
   // State
-  const [count, setCount] = useState(0)
+  const [colors, setColors] = useState(randomColors(app.theme))
 
-  const color3 = randomColorWithContrast()
+  const patrons = props.data.patrons.edges.map((node) => ({
+    name: node.node.patron.username,
+    img: node.node.patron.pictureUris.m
+  }))
+
   return (
     <AppWrapper app={app}>
       <div id="homepage">
-        <div className="blobs">
-          <EmptyBlob app={app} />
-          <div className="blob-wrapper" onClick={() => setCount(count + 1)}>
-            <SecondBlob {...randomColorWithContrast()} app={app} />
-            <MainBlob {...randomColorWithContrast()} app={app} />
-            <ThirdBlob {...color3} app={app} />
-          </div>
+        <div className="blob-wrapper" onClick={() => setColors(randomColors(app.theme))}>
+          <Blob colors={colors} patrons={patrons} app={app} />
         </div>
 
         {/* Icons */}
-        <div className="icons" style={{ background: color3.color, color: color3.contrast }}>
+        <div className="icons" style={{ background: colors[2].color, color: colors[2].contrast }}>
           <Link to="/designs/" title={app.translate('app.designs')}>
             <Icon icon="withBreasts" />
             <br />
@@ -167,7 +175,11 @@ const HomePage = (props) => {
               size="large"
               variant="contained"
               href="/patrons/join/"
-              style={{ margin: '1rem 1rem 0 0', background: color3.color, color: color3.contrast }}
+              style={{
+                margin: '1rem 1rem 0 0',
+                background: colors[2].color,
+                color: colors[2].contrast
+              }}
             >
               <FormattedMessage id="app.becomeAPatron" />
             </Button>
@@ -200,11 +212,11 @@ const HomePage = (props) => {
 
         {/* Latest blog posts */}
         <div id="blog">
-          <div className="single">{renderBlogPost(props.data.allMdx.edges[0])}</div>
+          <div className="single">{renderBlogPost(props.data.blog.edges[0])}</div>
           <div className="many">
-            {renderBlogPost(props.data.allMdx.edges[1])}
-            {renderBlogPost(props.data.allMdx.edges[2])}
-            {renderBlogPost(props.data.allMdx.edges[3])}
+            {renderBlogPost(props.data.blog.edges[1])}
+            {renderBlogPost(props.data.blog.edges[2])}
+            {renderBlogPost(props.data.blog.edges[3])}
             <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
               <Link to="/blog/" className="more">
                 <FormattedMessage id="app.browseBlogposts" /> &raquo;
@@ -222,7 +234,7 @@ export default withLanguage(HomePage)
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    allMdx(
+    blog: allMdx(
       limit: 4
       filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -250,6 +262,18 @@ export const pageQuery = graphql`
                   presentationHeight
                 }
               }
+            }
+          }
+        }
+      }
+    }
+    patrons: allFsPatron {
+      edges {
+        node {
+          patron {
+            username
+            pictureUris {
+              m
             }
           }
         }

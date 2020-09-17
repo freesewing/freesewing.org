@@ -122,6 +122,7 @@ function useApp() {
   // Media queries
   const mobile = useMediaQuery('(max-width:599px)')
   const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
+  const slate = useMediaQuery('(min-width: 960px) and (max-width: 1199px)')
 
   // These are user in other methods
   let core = {
@@ -190,6 +191,7 @@ function useApp() {
     // Media queries
     mobile,
     tablet,
+    slate,
 
     // Site language
     language: process.env.GATSBY_LANGUAGE

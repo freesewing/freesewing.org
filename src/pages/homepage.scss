@@ -131,25 +131,23 @@
   font-size: 1rem;
 }
 
-div.blobs {
-  position: relative;
-  div.blob-wrapper {
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    svg.empty {
-      position: relative;
-    }
-  }
+div.blob-wrapper {
+  margin-top: -64px;
+  max-height: calc(100vh - 52px - 6rem);
+  overflow-y: hidden;
+  padding-bottom: calc(52px + 6rem - 8px);
 }
-div.blobs:hover {
+div.blob-wrapper:hover {
   cursor: pointer;
+}
+/* Force transparant background on nav bar */
+div.theme-wrapper > div:first-of-type,
+header.MuiAppBar-colorSecondary {
+  background-color: transparent !important;
 }
 
 div.icons {
-  margin-top: -8px;
+  margin-top: calc(-52px - 6rem);
   text-align: center;
   a {
     color: inherit !important;
