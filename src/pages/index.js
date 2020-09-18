@@ -84,12 +84,13 @@ const getContrast = (color) => {
 
   return ratio.black > ratio.white ? black : white
 }
-const randomColors = (theme = 'light') =>
-  [
-    { color: oc[pickOne(colors) + pickOne(shades)] },
-    { color: oc[pickOne(colors) + pickOne(shades)] },
-    { color: oc[pickOne(colors) + pickOne(shades)] }
-  ].map((blob) => ({ color: blob.color, contrast: getContrast(blob.color) }))
+const randomColor = (theme = 'light') => {
+  let color = oc[pickOne(colors) + pickOne(shades)]
+  return {
+    color,
+    contrast: getContrast(color)
+  }
+}
 
 const HomePage = (props) => {
   // Hooks
@@ -97,7 +98,7 @@ const HomePage = (props) => {
   const uiMdx = useUiMdx()
 
   // State
-  const [colors, setColors] = useState(randomColors(app.theme))
+  const [color, setColor] = useState(randomColor(app.theme))
 
   const patrons = props.data.patrons.edges.map((node) => ({
     name: node.node.patron.username,
@@ -107,54 +108,66 @@ const HomePage = (props) => {
   return (
     <AppWrapper app={app}>
       <div id="homepage">
-        <div className="blob-wrapper" onClick={() => setColors(randomColors(app.theme))}>
-          <Blob colors={colors} patrons={patrons} app={app} />
+        <div className="blob-wrapper" onClick={() => setColor(randomColor(app.theme))}>
+          <Blob color={color} patrons={patrons} app={app} />
         </div>
 
         {/* Icons */}
-        <div className="icons" style={{ background: colors[2].color, color: colors[2].contrast }}>
-          <Link to="/designs/" title={app.translate('app.designs')}>
-            <Icon icon="withBreasts" />
-            <br />
-            <span>
-              <FormattedMessage id="app.designs" />
-            </span>
-          </Link>
-          <Link to="/community/" title={app.translate('app.community')}>
-            <CommunityIcon />
-            <br />
-            <span>
-              <FormattedMessage id="app.community" />
-            </span>
-          </Link>
-          <Link to="/showcase/" title={app.translate('app.showcase')}>
-            <ShowcaseIcon />
-            <br />
-            <span>
-              <FormattedMessage id="app.showcase" />
-            </span>
-          </Link>
-          <Link to="/blog/" title={app.translate('app.blog')}>
-            <BlogIcon />
-            <br />
-            <span>
-              <FormattedMessage id="app.blog" />
-            </span>
-          </Link>
-          <Link to="/docs/" title={app.translate('app.docs')}>
-            <DocsIcon />
-            <br />
-            <span>
-              <FormattedMessage id="app.docs" />
-            </span>
-          </Link>
-          <Link to="/account/" title={app.translate('app.account')}>
-            <AccountIcon />
-            <br />
-            <span>
-              <FormattedMessage id="app.account" />
-            </span>
-          </Link>
+        <div className="icons" style={{ background: color.color, color: color.contrast }}>
+          <div className="icon">
+            <Link to="/designs/" title={app.translate('app.designs')}>
+              <Icon icon="withBreasts" />
+              <br />
+              <span>
+                <FormattedMessage id="app.designs" />
+              </span>
+            </Link>
+          </div>
+          <div className="icon">
+            <Link to="/community/" title={app.translate('app.community')}>
+              <CommunityIcon />
+              <br />
+              <span>
+                <FormattedMessage id="app.community" />
+              </span>
+            </Link>
+          </div>
+          <div className="icon">
+            <Link to="/showcase/" title={app.translate('app.showcase')}>
+              <ShowcaseIcon />
+              <br />
+              <span>
+                <FormattedMessage id="app.showcase" />
+              </span>
+            </Link>
+          </div>
+          <div className="icon">
+            <Link to="/blog/" title={app.translate('app.blog')}>
+              <BlogIcon />
+              <br />
+              <span>
+                <FormattedMessage id="app.blog" />
+              </span>
+            </Link>
+          </div>
+          <div className="icon">
+            <Link to="/docs/" title={app.translate('app.docs')}>
+              <DocsIcon />
+              <br />
+              <span>
+                <FormattedMessage id="app.docs" />
+              </span>
+            </Link>
+          </div>
+          <div className="icon">
+            <Link to="/account/" title={app.translate('app.account')}>
+              <AccountIcon />
+              <br />
+              <span>
+                <FormattedMessage id="app.account" />
+              </span>
+            </Link>
+          </div>
         </div>
 
         {/* Support banner */}
@@ -177,8 +190,8 @@ const HomePage = (props) => {
               href="/patrons/join/"
               style={{
                 margin: '1rem 1rem 0 0',
-                background: colors[2].color,
-                color: colors[2].contrast
+                background: color.color,
+                color: color.contrast
               }}
             >
               <FormattedMessage id="app.becomeAPatron" />

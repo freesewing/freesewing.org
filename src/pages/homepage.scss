@@ -1,5 +1,9 @@
 #homepage {
   flex-grow: 2;
+  max-width: 100vw;
+  overflow: hidden;
+  margin-top: -64px;
+  padding-top: 64px;
 }
 #homepage > header {
   background-image: url('/horizon.jpg');
@@ -131,11 +135,15 @@
   font-size: 1rem;
 }
 
-div.blob-wrapper {
+svg.blobs {
+  margin: -64px auto 0;
   margin-top: -64px;
-  max-height: calc(100vh - 52px - 6rem);
-  overflow-y: hidden;
-  padding-bottom: calc(52px + 6rem - 8px);
+  max-height: calc(100vh - 52px - 5rem + 10px);
+}
+div.blob-wrapper {
+  text-align: center;
+  margin-left: -20vw;
+  margin-right: -20vw;
 }
 div.blob-wrapper:hover {
   cursor: pointer;
@@ -147,34 +155,39 @@ header.MuiAppBar-colorSecondary {
 }
 
 div.icons {
-  margin-top: calc(-52px - 6rem);
+  margin-top: -8px;
+  padding: 1.25rem 0 0.75rem 0;
   text-align: center;
-  a {
-    color: inherit !important;
-    border: 0;
-    border-bottom: 5px solid transparent;
-    width: calc(15% - 4rem);
-    max-width: 150px;
-    margin: 1.5rem;
-    padding: 0.5rem;
+  div.icon {
+    width: 15vw;
     display: inline-block;
     text-align: center;
-    svg {
-      height: 52px;
-      width: 52px;
+    a {
+      color: inherit !important;
+      border: 0;
+      border-bottom: 5px solid transparent;
+      max-width: 150px;
+      margin: 0;
       padding: 0;
-      fill: currentColor;
+      display: inline-block;
+      text-align: center;
+      svg {
+        height: 52px;
+        width: 52px;
+        padding: 0;
+        fill: currentColor;
+      }
+      span {
+        font-family: 'Roboto Condensed', sans-serif;
+        text-transform: uppercase;
+        margin: 0 auto;
+      }
     }
-    span {
-      font-family: 'Roboto Condensed', sans-serif;
-      text-transform: uppercase;
-      margin: 0 auto;
+    a:hover {
+      text-decoration: none !important;
+      border-color: currentColor;
+      color: red;
     }
-  }
-  a:hover {
-    text-decoration: none !important;
-    border-color: currentColor;
-    color: red;
   }
 }
 
@@ -189,8 +202,14 @@ div.icons {
   }
 }
 
+/* mobile and tablet and slate */
+@media (max-width: 1199px) and (min-width: 960px) {
+  div.icons {
+    padding: 0.75rem 0 0.25rem 0;
+  }
+}
 /* mobile and tablet */
-@media (max-width: 959px) {
+@media (max-width: 959px) and (min-width: 600px) {
   #homepage div.boxes {
     display: block;
   }
@@ -198,15 +217,20 @@ div.icons {
     max-width: 666px;
     margin: 0 auto;
   }
+  svg.blobs {
+    max-height: calc(100vh - 75px - 5rem);
+  }
   div.icons {
-    a {
-      margin: 1rem;
-      width: calc(30% - 3rem);
-      svg {
-        height: 42px;
-        width: 42px;
-        padding: 0;
-        fill: currentColor;
+    padding: 0.25rem 0 0 0;
+    div.icon {
+      width: 30vw;
+      a {
+        svg {
+          height: 36px;
+          width: 36px;
+          padding: 0;
+          fill: currentColor;
+        }
       }
     }
   }
@@ -234,16 +258,19 @@ div.icons {
     padding: 0;
   }
   div.icons {
-    a {
-      margin: 1rem;
-      width: calc(30% - 3rem);
-      font-size: 80%;
-      font-weight: bold;
-      svg {
-        height: 32px;
-        width: 32px;
-        padding: 0;
-        fill: currentColor;
+    padding: 0.25rem 0 0 0;
+    div.icon {
+      width: 30vw;
+      a {
+        font-size: 70%;
+        font-weight: bold;
+        min-width: 100px;
+        svg {
+          height: 36px;
+          width: 36px;
+          padding: 0;
+          fill: currentColor;
+        }
       }
     }
   }
