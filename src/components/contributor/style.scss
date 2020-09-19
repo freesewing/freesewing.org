@@ -1,0 +1,42 @@
+div.contributor {
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: 'row';
+  max-width: 600px;
+  height: 110px;
+  margin: 0.75rem 0;
+  overflow: hidden;
+  img {
+    width: 110px;
+    height: 110px;
+  }
+  div.text {
+    padding: 0 1rem;
+    h5 {
+      margin: 0;
+      padding: 0.25rem 0 0 0;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+      li {
+        margin: 0 3px 0 0;
+        display: inline-block;
+        font-family: 'Roboto condensed';
+        line-height: 1;
+        padding: 3px 6px;
+        background: #d0bfff;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        white-space: pre-line;
+      }
+    }
+  }
+}
+
+.theme-wrapper.dark div.contributor div.text ul li {
+  background: #5f3dc4;
+}

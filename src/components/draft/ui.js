@@ -310,7 +310,7 @@ ${e.stack}
             {menu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
           </Fab>
           {menu && (
-            <div className="draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
+            <div className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
               {context}
             </div>
           )}

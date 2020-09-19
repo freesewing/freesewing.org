@@ -11,9 +11,7 @@ div.size {
   position: relative;
   margin: 0.5rem;
   div.top {
-    background-image: url('/horizon.jpg');
-    background-size: cover;
-    background-position-y: bottom;
+    background: $oc-gray-9;
     width: calc(100% - 4rem);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -56,14 +54,20 @@ div.size {
   }
 }
 div.size.breasts > div.top {
-  border-color: $oc-teal-6;
+  border-color: $oc-pink-7;
+  svg {
+    color: $oc-pink-5;
+  }
 }
 div.size.no-breasts > div.top {
-  border-color: $oc-violet-6;
+  border-color: $oc-violet-7;
+  svg {
+    color: $oc-violet-5;
+  }
 }
 
 .theme-wrapper.dark {
-  div.person {
+  div.size {
     border: 1px solid $oc-gray-7;
     div.bottom {
       background: $oc-gray-8;

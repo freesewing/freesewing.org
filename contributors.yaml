@@ -1,24 +1,44 @@
-Anneke:
-  img: anneke.jpg
-  does:
-    - Translation
-    - Pattern testing
-    - Community building
-Gay:
-  img: gay.png
-  does:
-    - Support
-    - Development
-    - Pattern design
-Karen:
-  img: karen.jpg
-  does:
-    - Writing
-    - Pattern testing
-    - Community building
-Wouter:
-  img: wouter.jpg
-  does:
-    - Support
-    - Development
-    - Pattern design
+tags:
+  - communityBuilding
+  - development
+  - patternTesting
+  - patternDesign
+  - support
+  - translation
+  - writing
+
+people:
+  - name: Anneke
+    img: anneke.jpg
+    tags:
+      - translation
+      - patternTesting
+      - communityBuilding
+  - name: joost
+    img: joost.jpg
+    tags:
+      - communityBuilding
+      - development
+      - patternTesting
+      - patternDesign
+      - support
+      - translation
+      - writing
+  - name: Gay
+    img: gay.png
+    tags:
+      - support
+      - patternDesign
+  - name: Karen
+    img: karen.jpg
+    tags:
+      - writing
+      - patternTesting
+      - communityBuilding
+  - name: Wouter
+    img: wouter.jpg
+    tags:
+      - support
+      - development
+      - patternDesign
+      - communityBuilding

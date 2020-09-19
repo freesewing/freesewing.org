@@ -38,7 +38,7 @@ const Blob = (props) => {
 
   /* Pick random contributor */
   const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
-  const contributor = pickOne(Object.keys(contributors))
+  const contributor = pickOne(contributors.people)
   const patron = pickOne(props.patrons)
 
   /* Base text style */
@@ -61,19 +61,19 @@ const Blob = (props) => {
   /* FIXME: Handle translation */
   const text = [
     {
-      text: '#WeAreFreeSewing',
+      text: `#${props.app.translate('cty.wafsHashtag')}`,
       style: { ...style, ...impact, fontSize: adapt('48px', '72px', '72px', '48px') },
       x: adapt(-185, -150, -50, 20),
       y: adapt(95, 90, 50, 120)
     },
     {
-      text: 'We are a community of makers',
+      text: props.app.translate('cty.weAreACommunityOfMakers'),
       style,
       x: adapt(-185, -150, -50, 20),
       y: adapt(125, 130, 90, 145)
     },
     {
-      text: 'We provide made-to-measure sewing patterns',
+      text: props.app.translate('cty.weProvideMtmSewingPatterns'),
       style,
       x: adapt(-185, -150, -50, 20),
       y: adapt(152, 165, 125, 170)
@@ -94,6 +94,20 @@ const Blob = (props) => {
       transform: `translate(${adapt(-140, -140, -120, -70)}, ${adapt(210, 270, 330, 385)})`
     }
   ]
+
+  const threeTags = (tags) => {
+    let three = []
+    if (tags.length < 4) three = tags.map((t) => props.app.translate(`cty.${t}`))
+    else {
+      while (three.length < 3) {
+        let tag = props.app.translate(`cty.${pickOne(tags)}`)
+        if (three.indexOf(tag) === -1) three.push(tag)
+      }
+    }
+
+    return three
+  }
+  const tags = threeTags(contributor.tags)
 
   return (
     <svg {...svgProps}>
@@ -144,13 +158,13 @@ const Blob = (props) => {
 
       <text x="0" y={adapt(300, 390, 485, 450)} style={{ ...style, ...color, ...center }}>
         <tspan x={adapt(580, 530, 420, 330)} style={{ ...l }}>
-          {contributor}
+          {contributor.name}
         </tspan>
-        <tspan style={{ ...s }}> contributes with</tspan>
+        <tspan style={{ ...s }}> {props.app.translate('cty.contributesWith')}</tspan>
         <tspan dx="0" dy={adapt(4, 3, 4, 5)}>
           {' '}
         </tspan>
-        {contributors[contributor].does.map((d) => (
+        {tags.map((d) => (
           <tspan style={{ ...m, ...left }} x={adapt(510, 470, 320, 240)} dy={adapt(24, 26, 32, 24)}>
             {d}
           </tspan>
@@ -161,7 +175,7 @@ const Blob = (props) => {
         <tspan x={adapt(40, 40, 90, 140)} style={{ ...l }}>
           {patron.name}
         </tspan>
-        <tspan style={{ ...m }}> is a patron</tspan>
+        <tspan style={{ ...m }}> {props.app.translate('cty.isAPatron')}</tspan>
       </text>
 
       {blobs.map((blob, i) => (
@@ -199,7 +213,7 @@ const Blob = (props) => {
       <image
         x={adapt(510, 450, 340, 260)}
         y={adapt(130, 190, 290, 280)}
-        href={`/contributors/${contributors[contributor].img}`}
+        href={`/contributors/${contributor.img}`}
         style={{
           width: adapt('140px', '160px', '160px', '140px'),
           height: adapt('140px', '160px', '160px', '140px')
@@ -214,13 +228,13 @@ const Blob = (props) => {
         clipPath="url(#blobs-clip)"
       >
         <tspan x={adapt(580, 530, 420, 330)} style={{ ...l }}>
-          {contributor}
+          {contributor.name}
         </tspan>
-        <tspan style={{ ...s }}> contributes with</tspan>
+        <tspan style={{ ...s }}> {props.app.translate('cty.contributesWith')}</tspan>
         <tspan dx="0" dy={adapt(4, 3, 4, 5)}>
           {' '}
         </tspan>
-        {contributors[contributor].does.map((d) => (
+        {tags.map((d) => (
           <tspan style={{ ...m, ...left }} x={adapt(510, 470, 320, 240)} dy={adapt(24, 26, 32, 24)}>
             {d}
           </tspan>
@@ -252,7 +266,7 @@ const Blob = (props) => {
         <tspan x={adapt(40, 40, 90, 140)} style={{ ...l }}>
           {patron.name}
         </tspan>
-        <tspan style={{ ...m }}> is a patron</tspan>
+        <tspan style={{ ...m }}> {props.app.translate('cty.isAPatron')}</tspan>
       </text>
     </svg>
   )

@@ -158,6 +158,11 @@ const Dialog = React.memo((props) => {
           <ExportPattern {...sharedProps} />
         </>
       )}
+      <p style={{ marginTop: '3rem' }}>
+        <Button variant="outlined" color="primary" size="large" onClick={close}>
+          <FormattedMessage id="app.close" />
+        </Button>
+      </p>
     </>
   )
 })

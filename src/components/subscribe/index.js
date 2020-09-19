@@ -28,15 +28,15 @@ const Subscribe = (props) => {
     },
     tier2: {
       ...sharedStyles,
-      backgroundColor: '#37b24d'
+      backgroundColor: '#22b8cf'
     },
     tier4: {
       ...sharedStyles,
-      backgroundColor: '#228be6'
+      backgroundColor: '#f06595'
     },
     tier8: {
       ...sharedStyles,
-      backgroundColor: '#7950f2'
+      backgroundColor: '#845ef7'
     },
     content: {
       padding: '1rem 2rem'

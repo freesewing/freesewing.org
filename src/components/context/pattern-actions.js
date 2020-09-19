@@ -54,7 +54,7 @@ const PatternFabs = (props) => {
     </li>
   )
 
-  return order.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getFab(fab) : null))
+  return <ul>{order.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getFab(fab) : null))}</ul>
 }
 
 export default PatternFabs
