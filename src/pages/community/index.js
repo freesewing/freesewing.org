@@ -40,23 +40,6 @@ const CommunityPage = (props) => {
     </ul>
   ]
 
-  const renderContributors = () => {
-    let markup = []
-    for (const tag of contributors.tags) {
-      markup.push(
-        <h3 id={tag.tolowercase}>
-          <FormattedMessage id={`cty.${tag}`} />
-        </h3>
-      )
-      for (const person of contributors.people) {
-        if (person.tags.indexOf(tag) !== -1)
-          markup.push(<Contributor contributor={person} app={app} />)
-      }
-    }
-
-    return markup
-  }
-
   return (
     <AppWrapper app={app}>
       <Layout app={app} active="community" text context={context}>
@@ -85,7 +68,9 @@ const CommunityPage = (props) => {
           <FormattedMessage id="cty.whoWeAre" />
         </h2>
         <Mdx node={uiMdx[`community/who`]} />
-        {renderContributors()}
+        {contributors.people.map((person) => (
+          <Contributor contributor={person} app={app} key={person.name} />
+        ))}
       </Layout>
     </AppWrapper>
   )
