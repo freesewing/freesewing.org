@@ -7,13 +7,11 @@ tags:
   - translation
   - writing
 
+teams:
+  - community
+  - patternDesign
+
 people:
-  - name: Anneke
-    img: anneke.jpg
-    tags:
-      - translation
-      - patternTesting
-      - communityBuilding
   - name: joost
     img: joost.jpg
     tags:
@@ -24,21 +22,5 @@ people:
       - support
       - translation
       - writing
-  - name: Gay
-    img: gay.png
-    tags:
-      - support
+    teams:
       - patternDesign
-  - name: Karen
-    img: karen.jpg
-    tags:
-      - writing
-      - patternTesting
-      - communityBuilding
-  - name: Wouter
-    img: wouter.jpg
-    tags:
-      - support
-      - development
-      - patternDesign
-      - communityBuilding
