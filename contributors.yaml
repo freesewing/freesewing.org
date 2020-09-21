@@ -12,6 +12,18 @@ teams:
   - patternDesign
 
 people:
+  - name: Erica
+    img: erica.jpg
+    github: AlfaLyr
+    discord: AlfaLyr
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - development
+      - patternTesting
+      - translation
+      - writing
   - name: Gay
     img: gay.png
     github: DocSpencer77
