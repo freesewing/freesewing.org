@@ -5,6 +5,7 @@ tags:
   - patternDesign
   - support
   - translation
+  - video
   - writing
 
 teams:
@@ -60,6 +61,16 @@ people:
     tags:
       - support
       - patternDesign
+  - name: James
+    img: james.jpg
+    github: creasyo
+    discord: creasyo
+    teams:
+      - community
+    tags:
+      - communityBuilding
+      - patternTesting
+      - video
   - name: joost
     img: joost.jpg
     github: joostdecock
