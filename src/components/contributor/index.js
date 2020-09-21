@@ -8,10 +8,12 @@ const Contributor = ({ contributor, app }) => (
     <div className="text">
       <h5>{contributor.name}</h5>
       <ul>
-        <li className="github">
-          <a href={`https://github.com/${contributor.github}`}>@{contributor.github}</a>
-        </li>
-        <li className="discord">@{contributor.discord}</li>
+        {contributor.github && (
+          <li className="github">
+            <a href={`https://github.com/${contributor.github}`}>@{contributor.github}</a>
+          </li>
+        )}
+        {contributor.discord && <li className="discord">@{contributor.discord}</li>}
       </ul>
       <ul>
         {contributor.tags.map((tag) => (
