@@ -12,6 +12,15 @@ teams:
   - patternDesign
 
 people:
+  - name: Amy
+    img: amy.jpg
+    github: amysews
+    discord: amy_sews
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - writing
   - name: Anneke
     img: anneke.jpg
     github: annekecaramin
