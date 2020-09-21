@@ -9,6 +9,7 @@ div.contributor {
   img {
     width: 110px;
     height: 110px;
+    background: #212529;
   }
   div.text {
     padding: 0 1rem;
@@ -33,10 +34,32 @@ div.contributor {
         text-transform: uppercase;
         white-space: pre-line;
       }
+      li.github,
+      li.discord {
+        font-weight: bold;
+        background: #fcc2d7;
+        a {
+          color: inherit !important;
+        }
+      }
+      li.github:before {
+        content: 'github: ';
+        font-weight: normal;
+      }
+      li.discord:before {
+        content: 'discord: ';
+        font-weight: normal;
+      }
     }
   }
 }
 
-.theme-wrapper.dark div.contributor div.text ul li {
-  background: #5f3dc4;
+.theme-wrapper.dark div.contributor div.text ul {
+  li {
+    background: #5f3dc4;
+  }
+  li.github,
+  li.discord {
+    background: #a61e4d;
+  }
 }

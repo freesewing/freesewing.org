@@ -12,8 +12,50 @@ teams:
   - patternDesign
 
 people:
+  - name: Amy
+    img: amy.jpg
+    github: amysews
+    discord: amy_sews
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - writing
+  - name: Anneke
+    img: anneke.jpg
+    github: annekecaramin
+    discord: annekecaramin
+    teams:
+      - community
+    tags:
+      - translation
+      - patternTesting
+      - communityBuilding
+  - name: Erica
+    img: erica.jpg
+    github: AlfaLyr
+    discord: AlfaLyr
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - development
+      - patternTesting
+      - translation
+      - writing
+  - name: Gay
+    img: gay.png
+    github: DocSpencer77
+    discord: gaylyndie
+    teams:
+      - patternDesign
+    tags:
+      - support
+      - patternDesign
   - name: joost
     img: joost.jpg
+    github: joostdecock
+    discord: joostdecock
     tags:
       - communityBuilding
       - development
@@ -34,4 +76,14 @@ people:
       - support
       - development
       - patternDesign
+      - communityBuilding
+  - name: Karen
+    img: karen.jpg
+    github: tangerineshark
+    discord: tangerineshark
+    teams:
+      - community
+    tags:
+      - writing
+      - patternTesting
       - communityBuilding

@@ -14,6 +14,11 @@ import CommunityMenu from '../menus/community'
 import AccountMenu from '../menus/account'
 import NavbarIcons from './navbar-icons'
 
+import DocsIcon from '@material-ui/icons/ChromeReaderMode'
+import CommunityIcon from '@material-ui/icons/Favorite'
+import AccountIcon from '@material-ui/icons/Face'
+import Icon from '@freesewing/components/Icon'
+
 export default function ButtonAppBar(props) {
   // Don't show on mobile
   if (props.app.mobile) return null
@@ -110,6 +115,11 @@ export default function ButtonAppBar(props) {
   }
   buttonProps['aria-haspopup'] = 'true'
 
+  const iconStyle = {
+    marginRight: '0.5rem',
+    color: props.app.theme === 'dark' ? '#b197fc' : '#845ef7'
+  }
+
   return (
     <div style={style.wrapper}>
       <AppBar position="static" color="secondary" elevation={0}>
@@ -122,7 +132,8 @@ export default function ButtonAppBar(props) {
             onClick={handlePatternOpen}
             {...buttonProps}
           >
-            <FormattedMessage id="app.patterns" />
+            <Icon icon="withBreasts" style={{ ...iconStyle }} />
+            <FormattedMessage id="app.designs" />
           </Button>
           <Popover
             id="patterns-popover"
@@ -135,27 +146,11 @@ export default function ButtonAppBar(props) {
           </Popover>
 
           <Button
-            aria-owns={docsOpen ? 'docs-popover' : undefined}
-            onClick={handleDocsOpen}
-            {...buttonProps}
-          >
-            <FormattedMessage id="app.docs" />
-          </Button>
-          <Popover
-            id="docs-popover"
-            open={docsOpen}
-            anchorEl={docsAnchor}
-            onClose={handlePopoverClose}
-            {...popoverProps}
-          >
-            <DocsMenu app={props.app} />
-          </Popover>
-
-          <Button
             aria-owns={communityOpen ? 'docs-popover' : undefined}
             onClick={handleCommunityOpen}
             {...buttonProps}
           >
+            <CommunityIcon style={{ ...iconStyle }} />
             <FormattedMessage id="app.community" />
           </Button>
           <Popover
@@ -168,6 +163,24 @@ export default function ButtonAppBar(props) {
             <CommunityMenu app={props.app} />
           </Popover>
 
+          <Button
+            aria-owns={docsOpen ? 'docs-popover' : undefined}
+            onClick={handleDocsOpen}
+            {...buttonProps}
+          >
+            <DocsIcon style={{ ...iconStyle }} />
+            <FormattedMessage id="app.docs" />
+          </Button>
+          <Popover
+            id="docs-popover"
+            open={docsOpen}
+            anchorEl={docsAnchor}
+            onClose={handlePopoverClose}
+            {...popoverProps}
+          >
+            <DocsMenu app={props.app} />
+          </Popover>
+
           <span style={style.spacer} />
 
           {loggedIn ? (
@@ -177,6 +190,7 @@ export default function ButtonAppBar(props) {
                 onClick={handleUserOpen}
                 {...buttonProps}
               >
+                <AccountIcon style={{ ...iconStyle }} />
                 <FormattedMessage id="app.account" />
               </Button>
               <Popover

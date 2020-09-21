@@ -2,11 +2,24 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Button from '@material-ui/core/Button'
+import CommunityIcon from '@material-ui/icons/Favorite'
 import './menu.scss'
 
 const CommunityMenu = ({ app, className = '' }) => (
   <div className={`style-wrapper ${app.theme} menu-instance wrapper ${className}`}>
     <div>
+      <h6>
+        <Link to="/community/">
+          <FormattedMessage id="app.community" />
+        </Link>
+      </h6>
+      <Link to="/community/#who">
+        <FormattedMessage id="cty.whoWeAre" />
+      </Link>
+      <span> & </span>
+      <Link to="/community/#where">
+        <FormattedMessage id="cty.whereToFindUs" />
+      </Link>
       <h6>
         <Link to="/blog/">
           <FormattedMessage id="app.blog" />
@@ -23,23 +36,6 @@ const CommunityMenu = ({ app, className = '' }) => (
       <Link to="/showcase/">
         <FormattedMessage id="intro.txt-showcase" />
       </Link>
-      <h6>Chat on Discord</h6>
-      <ul className="inline">
-        <li className="link">
-          <a href="https://chat.freesewing.org/">FreeSewing on Discord</a>
-        </li>
-      </ul>
-      <h6>
-        <FormattedMessage id="app.socialMedia" />
-      </h6>
-      <ul className="inline">
-        <li className="link">
-          <a href="https://twitter.com/freesewing_org">Twitter</a>
-        </li>
-        <li className="link">
-          <a href="https://instagram.com/freesewing_org">Instagram</a>
-        </li>
-      </ul>
     </div>
     <div>
       <h6>
