@@ -20,6 +20,15 @@ const CommunityPage = (props) => {
     app.setTitle(app.translate('app.community'))
   }, [])
 
+  const teamMembers = (team) => {
+    let members = []
+    for (const contributor of contributors.people) {
+      if (contributor.teams.indexOf(team) !== -1) members.push(contributor)
+    }
+
+    return members
+  }
+
   const context = [
     <h5>
       <FormattedMessage id="app.community" />
@@ -37,6 +46,30 @@ const CommunityPage = (props) => {
           </li>
         )
       )}
+    </ul>,
+    <h6>
+      <a href="#who">
+        <FormattedMessage id="cty.whoWeAre" />
+      </a>
+    </h6>,
+    <ul>
+      {contributors.people.map((person) => (
+        <li key={person.name}>
+          <a href={`#${person.name.toLowerCase()}`}>{person.name}</a>
+        </li>
+      ))}
+    </ul>,
+    <h6>
+      <a href="#teams">{uiMdx['community/teams'].title}</a>
+    </h6>,
+    <ul>
+      {contributors.teams.map((team) => (
+        <li key={team}>
+          <a href={`#team-${team.toLowerCase()}`}>
+            <FormattedMessage id={`cty.${team}`} /> <FormattedMessage id="cty.team" />
+          </a>
+        </li>
+      ))}
     </ul>
   ]
 
@@ -54,6 +87,9 @@ const CommunityPage = (props) => {
               <FormattedMessage id="cty.whoWeAre" />
             </a>
           </li>
+          <li>
+            <a href="#teams">{uiMdx['community/teams'].title}</a>
+          </li>
         </ul>
         <Blockquote type="tip">
           <Mdx node={uiMdx[`community/hashtag`]} />
@@ -70,6 +106,18 @@ const CommunityPage = (props) => {
         <Mdx node={uiMdx[`community/who`]} />
         {contributors.people.map((person) => (
           <Contributor contributor={person} app={app} key={person.name} />
+        ))}
+        <h2 id="teams">{uiMdx['community/teams'].title}</h2>
+        <Mdx node={uiMdx[`community/teams`]} />
+        {contributors.teams.map((team) => (
+          <>
+            <h4 id={`team-${team.toLowerCase()}`}>
+              <FormattedMessage id={`cty.${team}`} /> <FormattedMessage id="cty.team" />
+            </h4>
+            {teamMembers(team).map((m) => (
+              <Contributor contributor={m} app={app} />
+            ))}
+          </>
         ))}
       </Layout>
     </AppWrapper>
