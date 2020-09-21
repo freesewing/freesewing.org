@@ -23,7 +23,9 @@ const CommunityPage = (props) => {
   const teamMembers = (team) => {
     let members = []
     for (const contributor of contributors.people) {
-      if (contributor.teams.indexOf(team) !== -1) members.push(contributor)
+      if (contributor.teams) {
+        if (contributor.teams.indexOf(team) !== -1) members.push(contributor)
+      }
     }
 
     return members
@@ -107,6 +109,13 @@ const CommunityPage = (props) => {
         {contributors.people.map((person) => (
           <Contributor contributor={person} app={app} key={person.name} />
         ))}
+        <Blockquote type="note">
+          <h5>Are you missing?</h5>
+          <p>
+            Please <a href="https://chat.freesewing.org/">let us know on Discord</a> or{' '}
+            <a href="https://github.com/freesewing/freesewing/issues/new">create an issue</a>.
+          </p>
+        </Blockquote>
         <h2 id="teams">{uiMdx['community/teams'].title}</h2>
         <Mdx node={uiMdx[`community/teams`]} />
         {contributors.teams.map((team) => (
