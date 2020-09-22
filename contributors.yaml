@@ -5,6 +5,7 @@ tags:
   - patternDesign
   - support
   - translation
+  - video
   - writing
 
 teams:
@@ -37,6 +38,22 @@ people:
     discord: slylele
     tags:
       - translation
+  - name: Emmanuel
+    img: emmanuel.jpg
+    github: enyachoke
+    discord: nyachoke
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+  - name: Eleonore
+    img: eleonore.jpg
+    github: eleonoremilbou
+    discord: Eleonore
+    teams:
+      - community
+    tags:
+      - communityBuilding
   - name: Erica
     img: erica.jpg
     github: AlfaLyr
@@ -58,6 +75,16 @@ people:
     tags:
       - support
       - patternDesign
+  - name: James
+    img: james.jpg
+    github: creasyo
+    discord: creasyo
+    teams:
+      - community
+    tags:
+      - communityBuilding
+      - patternTesting
+      - video
   - name: joost
     img: joost.jpg
     github: joostdecock
@@ -72,6 +99,18 @@ people:
       - writing
     teams:
       - patternDesign
+      - community
+  - name: Wouter
+    img: wouter.jpg
+    github: woutervdub
+    discord: Wouter.vdub
+    teams:
+      - patternDesign
+    tags:
+      - support
+      - development
+      - patternDesign
+      - communityBuilding
   - name: Karen
     img: karen.jpg
     github: tangerineshark
