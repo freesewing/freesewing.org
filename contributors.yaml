@@ -99,18 +99,13 @@ people:
       - writing
     teams:
       - patternDesign
-      - community
-  - name: Wouter
-    img: wouter.jpg
-    github: woutervdub
-    discord: Wouter.vdub
-    teams:
-      - patternDesign
+  - name: Juona
+    img: juona.jpg
+    github: Juona-France
+    discord: fixme
     tags:
-      - support
-      - development
-      - patternDesign
-      - communityBuilding
+      - translation
+      - community
   - name: Karen
     img: karen.jpg
     github: tangerineshark
@@ -121,3 +116,14 @@ people:
       - writing
       - patternTesting
       - communityBuilding
+  - name: Wouter               
+    img: wouter.jpg            
+    github: woutervdub         
+    discord: Wouter.vdub       
+    teams:                     
+      - patternDesign          
+    tags:                      
+      - support                
+      - development            
+      - patternDesign          
+      - communityBuilding     
