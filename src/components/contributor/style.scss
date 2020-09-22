@@ -37,10 +37,15 @@ div.contributor {
       li.github,
       li.discord {
         font-weight: bold;
-        background: #fcc2d7;
         a {
           color: inherit !important;
         }
+      }
+      li.github {
+        background: #ffec99;
+      }
+      li.discord {
+        background: #d8f5a2;
       }
       li.github:before {
         content: 'github: ';
@@ -58,8 +63,10 @@ div.contributor {
   li {
     background: #5f3dc4;
   }
-  li.github,
+  li.github {
+    background: #f08c00;
+  }
   li.discord {
-    background: #a61e4d;
+    background: #66a80f;
   }
 }
