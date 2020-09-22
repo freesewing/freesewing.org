@@ -116,14 +116,22 @@ people:
       - writing
       - patternTesting
       - communityBuilding
-  - name: Wouter               
-    img: wouter.jpg            
-    github: woutervdub         
-    discord: Wouter.vdub       
-    teams:                     
-      - patternDesign          
-    tags:                      
-      - support                
-      - development            
-      - patternDesign          
-      - communityBuilding     
+  - name: Rachel
+    img: rachel.png
+    github: rrolon47
+    discord: rrolon47
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+  - name: Wouter
+    img: wouter.jpg
+    github: woutervdub
+    discord: Wouter.vdub
+    teams:
+      - patternDesign
+    tags:
+      - support
+      - development
+      - patternDesign
+      - communityBuilding
