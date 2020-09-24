@@ -171,8 +171,8 @@ const HomePage = (props) => {
         </div>
 
         {/* Support banner */}
-        <div className="stripe">
-          <div>
+        <div className="stripe" style={{ color: color.contrast }}>
+          <div className="stripe-content">
             <h1>
               <FormattedMessage id="app.supportFreesewing" />
             </h1>
@@ -206,6 +206,7 @@ const HomePage = (props) => {
               <FormattedMessage id="app.ourRevenuePledge" />
             </Button>
           </div>
+          <div className="stripe-bg" style={{ backgroundColor: color.color }}></div>
         </div>
 
         {/* First row of text boxes */}
