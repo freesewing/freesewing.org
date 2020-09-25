@@ -42,7 +42,7 @@ should [become a patron](https://freesewing.org/patrons/join).
 
  - 💻 Makers website: [freesewing.org](https://freesewing.org)
  - 💻 Developers website: [freesewing.dev](https://freesewing.dev)
- - 💬 Chat: [gitter.im/freesewing](https://gitter.im/freesewing/chat)
+ - 💬 Chat on Discord: [chat.freesewing.org](https://chat.freesewing.org/)
  - 🐦 Twitter: [@freesewing_org](https://twitter.com/freesewing_org)
  - 📷 Instagram: [@freesewing_org](https://instagram.com/freesewing_org)
 

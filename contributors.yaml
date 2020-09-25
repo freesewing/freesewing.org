@@ -13,6 +13,15 @@ teams:
   - patternDesign
 
 people:
+  - name: Deb
+    img: ../avatar.svg
+    github: dfbean
+    discord: Deb
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - patternTesting
   - name: Amy
     img: amy.jpg
     github: amysews
@@ -46,6 +55,7 @@ people:
       - patternDesign
     tags:
       - patternDesign
+      - development
   - name: Eleonore
     img: eleonore.jpg
     github: eleonoremilbou
@@ -75,6 +85,7 @@ people:
     tags:
       - support
       - patternDesign
+      - development
   - name: James
     img: james.jpg
     github: creasyo
@@ -124,6 +135,7 @@ people:
       - patternDesign
     tags:
       - patternDesign
+      - development
   - name: Wouter
     img: wouter.jpg
     github: woutervdub

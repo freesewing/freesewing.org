@@ -69,11 +69,30 @@
   padding: 3rem 2rem;
   color: #fff;
   font-family: 'Roboto Condensed', sans-serif;
+  position: relative;
+  width: 100%;
 }
-#homepage div.stripe > div {
+
+#homepage div.stripe-content {
+  z-index: 10;
+  position: relative;
   max-width: 500px;
   padding: 1rem 2rem;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+#homepage div.stripe-bg {
+  opacity: 0.75;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 #homepage div.stripe p {
   font-size: 125%;
 }
@@ -158,19 +177,28 @@ div.icons {
   margin-top: -8px;
   padding: 1.25rem 0 0.75rem 0;
   text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 48px 48px 0 rgba(255, 254, 254, 0.15);
+
   div.icon {
     width: 15vw;
     display: inline-block;
     text-align: center;
+
     a {
       color: inherit !important;
       border: 0;
-      border-bottom: 5px solid transparent;
+      border-bottom: 3px solid transparent;
       max-width: 150px;
       margin: 0;
       padding: 0;
       display: inline-block;
       text-align: center;
+      opacity: 0.85;
+      transition-property: border-color opacity;
+      transition-duration: 300ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
       svg {
         height: 52px;
         width: 52px;
@@ -184,6 +212,7 @@ div.icons {
       }
     }
     a:hover {
+      opacity: 1;
       text-decoration: none !important;
       border-color: currentColor;
       color: red;
@@ -221,7 +250,6 @@ div.icons {
     max-height: calc(100vh - 75px - 5rem);
   }
   div.icons {
-    padding: 0.25rem 0 0 0;
     div.icon {
       width: 30vw;
       a {
