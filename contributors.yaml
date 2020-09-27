@@ -13,6 +13,15 @@ teams:
   - patternDesign
 
 people:
+  - name: Deb
+    img: ../avatar.svg
+    github: dfbean
+    discord: Deb
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - patternTesting
   - name: Amy
     img: amy.jpg
     github: amysews
