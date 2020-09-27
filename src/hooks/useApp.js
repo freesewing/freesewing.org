@@ -62,6 +62,11 @@ function useApp(full = true) {
   const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
   const slate = useMediaQuery('(min-width: 960px) and (max-width: 1199px)')
 
+  // SSR-save navigate method
+  const navigate = (slug) => {
+    if (typeof window !== 'undefined') gatsbyNavigate(slug)
+  }
+
   if (!full)
     return {
       // Helper methods
@@ -170,11 +175,6 @@ function useApp(full = true) {
         else console.log('Loading account data did not return 200', res)
       })
       .catch((error) => showError(error))
-  }
-
-  // SSR-save navigate method
-  const navigate = (slug) => {
-    if (typeof window !== 'undefined') gatsbyNavigate(slug)
   }
 
   // Error handling
