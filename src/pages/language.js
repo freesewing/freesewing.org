@@ -12,10 +12,11 @@ import { Link } from 'gatsby'
 import LanguageIcon from '../components/language-icon'
 
 const Language = (props) => {
-  const app = useApp()
+  const app = useApp(false)
   useEffect(() => {
     app.setTitle(app.translate('account.language'))
     app.setDescription(app.translate('account.languageTitle'))
+    app.setContext(context)
   }, [])
 
   const styles = {
@@ -59,7 +60,7 @@ const Language = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <Layout app={app} context={context}>
+      <Layout app={app} text>
         {Object.keys(languages).map((lang) => {
           let current = lang === process.env.GATSBY_LANGUAGE ? true : false
           return (

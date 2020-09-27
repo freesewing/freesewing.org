@@ -7,7 +7,6 @@ const WelcomeSteps = ({ app }) => (
     <h5>
       <FormattedMessage id="app.welcome" />
     </h5>
-    ,
     <ul>
       {['units', 'username', 'avatar', 'bio', 'social'].map((step) => (
         <li key={step}>

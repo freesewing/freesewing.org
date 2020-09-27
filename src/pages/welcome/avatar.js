@@ -59,11 +59,12 @@ const WelcomeAvatarPage = (props) => {
         title: <FormattedMessage id="app.welcome" />
       }
     ])
+    app.setContext(<WelcomeSteps app={app} />)
   }, [])
 
   return (
-    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
-      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <div style={styles.wrapper}>
           <img
             alt="avatar"

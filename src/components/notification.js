@@ -45,7 +45,8 @@ const Notification = ({ notification, setNotification, mobile }) => {
       maxWidth: '400px',
       padding: '0.5rem 1.5rem',
       borderRadius: '6px',
-      color: '#fff'
+      color: '#fff',
+      fontFamily: 'Roboto condensed'
     },
     color: {
       success: {
@@ -65,7 +66,7 @@ const Notification = ({ notification, setNotification, mobile }) => {
   const children = (
     <div style={{ ...styles.wrapper, ...styles.color[type] }} className="shadow">
       <Icon key="icon" style={styles.icon} />
-      <div className="font-title">{msg}</div>
+      <div>{msg}</div>
     </div>
   )
   return (

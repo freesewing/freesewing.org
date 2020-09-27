@@ -19,11 +19,11 @@ import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
 
 const DesignPage = (props) => {
+  // Load minimal app hook for static content
+  const app = useApp(false)
+
   // Design name is passed to page context in gatsby-node.js
   const design = props.pageContext.design
-
-  // Hooks
-  const app = useApp()
 
   // Effect
   useEffect(() => {
@@ -34,6 +34,7 @@ const DesignPage = (props) => {
         title: <FormattedMessage id="app.designs" />
       }
     ])
+    app.setContext(context)
   }, [])
 
   // Style
@@ -120,7 +121,7 @@ const DesignPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <Layout app={app} active="designs" context={context}>
+      <Layout app={app} active="designs">
         <p>
           <Button
             data-test="create"

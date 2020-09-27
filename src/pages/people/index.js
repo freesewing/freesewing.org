@@ -14,6 +14,7 @@ const PeopleIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.people'))
+    app.setContext(<PeopleContext app={app} />)
   }, [])
 
   // Styles
@@ -34,8 +35,8 @@ const PeopleIndexPage = (props) => {
   )
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         {add}
         {Object.keys(app.people).length > 0 ? (
           <>

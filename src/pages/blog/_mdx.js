@@ -10,15 +10,15 @@ import MdxToc from '../../components/mdx/toc'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 
 const BlogPostPage = (props) => {
-  // State
-  const app = useApp()
+  // Load minimal app hook for static content
+  const app = useApp(false)
 
   // Data from page query
   const frontmatter = props.data.allMdx.edges[0].node.frontmatter
 
   // Effects
   useEffect(() => {
-    app.setTitle(frontmatter.title)
+    app.setTitle(props.pageContext.title)
     app.setDescription(props.data.allMdx.edges[0].node.excerpt)
     app.setImage(props.data.allMdx.edges[0].node.frontmatter.img.childImageSharp.fluid.originalImg)
     app.setCrumbs([
@@ -27,6 +27,7 @@ const BlogPostPage = (props) => {
         title: app.translate('app.blog')
       }
     ])
+    app.setContext(context)
   }, [])
 
   const img = frontmatter.img.childImageSharp.fluid
@@ -63,13 +64,13 @@ const BlogPostPage = (props) => {
       })
     : null
   const context = [
-    <h5>{frontmatter.title}</h5>,
+    <h5>{props.pageContext.title}</h5>,
     <MdxToc toc={props.data.allMdx.edges[0].node.tableOfContents} />
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout active="blog" app={app} context={context}>
+    <AppWrapper app={app}>
+      <Layout active="blog" app={app}>
         <div style={style.meta} data-test="meta">
           <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
           <div>
@@ -113,7 +114,6 @@ export const pageQuery = graphql`
           body
           tableOfContents(maxDepth: 3)
           frontmatter {
-            title
             date
             year: date
             linktitle

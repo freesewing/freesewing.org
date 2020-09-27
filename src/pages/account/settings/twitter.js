@@ -33,14 +33,15 @@ const TwitterSettingPage = (props) => {
         slug: '/account/settings/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   // Methods
   const updateTwitter = (evt) => setTwitter(evt.target.value)
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <TextField
           id="twitter"
           fullWidth={true}

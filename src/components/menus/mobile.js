@@ -8,10 +8,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import MapIcon from '@material-ui/icons/Map'
 import IconButton from '@material-ui/core/IconButton'
 import PatternsMenu from './patterns'
-import DocsMenu from './docs'
 import CommunityMenu from './community'
 import AccountMenu from './account'
-import DocsNavigation from '../app/docs-navigation'
 import HideIcon from '@material-ui/icons/ExpandLess'
 import ShowIcon from '@material-ui/icons/ExpandMore'
 import MainAside from './main-aside'
@@ -19,15 +17,13 @@ import MainAside from './main-aside'
 const MobileMenu = ({ app, context }) => {
   // State
   const [account, setAccount] = useState(false)
-  const [docs, setDocs] = useState(false)
   const [community, setCommunity] = useState(false)
   const [patterns, setPatterns] = useState(false)
 
   const toggle = (type) => {
-    let state = { account, docs, community, patterns }
+    let state = { account, community, patterns }
     let methods = {
       account: setAccount,
-      docs: setDocs,
       community: setCommunity,
       patterns: setPatterns
     }
@@ -65,11 +61,6 @@ const MobileMenu = ({ app, context }) => {
       padding: '0 1.5rem'
     }
   }
-
-  // Figure out where we are
-  let docsMenu = <DocsMenu app={app} className="transparent" />
-  if (window && window.location.pathname.slice(0, 5) === '/docs')
-    docsMenu = <DocsNavigation app={app} slug={window.location.pathname} />
 
   // Icons
   const icons = {
@@ -154,17 +145,9 @@ const MobileMenu = ({ app, context }) => {
       </div>
 
       <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('docs')} className="poh">
-          <FormattedMessage id="app.docs" />
-          {docs ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={docs ? '' : 'collapsed'}>{docsMenu}</div>
-
-      <h5>
         <a role="button" style={style.toggle} onClick={() => toggle('community')} className="poh">
           <FormattedMessage id="app.community" />
-          {docs ? <HideIcon /> : <ShowIcon />}
+          {community ? <HideIcon /> : <ShowIcon />}
         </a>
       </h5>
       <div className={community ? '' : 'collapsed'}>

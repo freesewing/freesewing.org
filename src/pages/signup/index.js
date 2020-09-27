@@ -33,6 +33,7 @@ const SignupPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.signUp'))
+    app.setContext(context)
   }, [])
 
   // Methods
@@ -244,8 +245,8 @@ const SignupPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         {result ? success : form}
       </Layout>
     </AppWrapper>

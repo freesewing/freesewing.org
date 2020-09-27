@@ -34,14 +34,15 @@ const UnitsSettingPage = (props) => {
         slug: '/account/settings/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   // Methods
   const updateUnits = (evt) => setUnits(evt.target.value)
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <RadioGroup name="units" onChange={updateUnits} value={units}>
           {['metric', 'imperial'].map((type) => {
             return (

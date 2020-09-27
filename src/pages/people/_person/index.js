@@ -49,6 +49,7 @@ const PersonPage = (props) => {
         title: app.translate('app.people')
       }
     ])
+    app.setContext(<PeopleContext app={app} />)
   }, [])
 
   // Methods
@@ -254,8 +255,8 @@ const PersonPage = (props) => {
   const blankSlate = !person.measurements || !person.measurements.neck
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <table style={styles.table} className="font-title">
           <tbody>
             {/* name */}

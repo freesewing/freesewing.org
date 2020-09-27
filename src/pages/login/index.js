@@ -22,6 +22,7 @@ const LoginPage = (props) => {
   const [resend, setResend] = useState(false)
   useEffect(() => {
     app.setTitle(app.translate('app.logIn'))
+    app.setContext(context)
   }, [])
 
   const handleLogin = (evt) => {
@@ -174,8 +175,8 @@ const LoginPage = (props) => {
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         {redirect}
         <div>{main}</div>
         <div>

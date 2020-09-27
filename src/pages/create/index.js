@@ -20,6 +20,7 @@ const CreatePatternIndexPage = (props) => {
         title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
       }
     ])
+    app.setContext(context)
   }, [])
 
   const styles = {
@@ -80,8 +81,8 @@ const CreatePatternIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="designs" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="designs">
         <div style={styles.wrapper}>
           {list.map((pattern) => {
             let title = app.translate(`patterns.${pattern}.title`)

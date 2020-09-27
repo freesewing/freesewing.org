@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import useNavigation from '../hooks/useNavigation'
 import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
@@ -11,9 +10,9 @@ import { FormattedMessage } from 'react-intl'
 
 const Sitemap = (props) => {
   const app = useApp()
-  const { tree, titles } = useNavigation(app)
   useEffect(() => {
     app.setTitle(app.translate('app.sitemap'))
+    app.setContext(context)
   }, [])
 
   const styles = {
@@ -34,31 +33,6 @@ const Sitemap = (props) => {
     '#showcase': 'app.showcase'
   }
 
-  const renderDocs = () => {
-    let links = []
-    for (let slug in tree) links.push(renderDocsLevel(slug, tree[slug]))
-
-    return <ul className="links">{links}</ul>
-  }
-
-  const renderDocsLevel = (slug, level) => {
-    let links = []
-    if (level.children && Object.keys(level.children).length > 0) {
-      for (let slug in level.children) links.push(renderDocsLevel(slug, level.children[slug]))
-    }
-    if (links.length > 0) links = <ul className="links">{links}</ul>
-
-    return (
-      <li>
-        <Link to={slug}>
-          {titles[slug]}
-          <span style={styles.url}>{slug}</span>
-        </Link>
-        {links}
-      </li>
-    )
-  }
-
   const context = [
     <h5>
       <FormattedMessage id="app.sitemap" />
@@ -72,9 +46,44 @@ const Sitemap = (props) => {
     </ul>
   ]
 
+  const renderMdxList = (pages) => {
+    let links = []
+    for (let slug in pages) {
+      let p = pages[slug]
+      links.push(
+        <li key={p.slug}>
+          <Link to={p.slug}>
+            {p.title}
+            <span style={styles.url}>{p.slug}</span>
+          </Link>
+        </li>
+      )
+    }
+
+    return <ul className="links">{links}</ul>
+  }
+
+  const renderMdxTree = (pages) => {
+    let links = []
+    for (let slug in pages) {
+      let p = pages[slug]
+      links.push(
+        <li key={p.slug}>
+          <Link to={p.slug}>
+            {p.title}
+            <span style={styles.url}>{p.slug}</span>
+          </Link>
+          {p.offspring && renderMdxTree(p.offspring)}
+        </li>
+      )
+    }
+
+    return <ul className="links">{links}</ul>
+  }
+
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app}>
         <ul className="links">
           {Object.keys(main).map((i) => (
             <li key={i}>
@@ -233,23 +242,14 @@ const Sitemap = (props) => {
             <FormattedMessage id="app.blog" />
           </Link>
         </h2>
-        <ul className="links">
-          {props.data.blog.edges.map((edge) => (
-            <li key={edge.node.parent.relativeDirectory}>
-              <Link to={`/${edge.node.parent.relativeDirectory}/`}>
-                {edge.node.frontmatter.title}
-                <span style={styles.url}>{`/${edge.node.parent.relativeDirectory}/`}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {renderMdxList(props.pageContext.blog)}
 
         <h2 id="docs">
           <Link to="/docs/">
             <FormattedMessage id="app.docs" />
           </Link>
         </h2>
-        {renderDocs()}
+        {renderMdxTree(props.pageContext.tree.docs.offspring)}
 
         <h2 id="patrons">
           <Link to="/patrons/">
@@ -284,7 +284,7 @@ const Sitemap = (props) => {
             <li key={p}>
               <Link to={`/designs/${p}`}>
                 {app.translate(`patterns.${p}.title`)}
-                <span style={styles.url}>{`/designs/${p}`}</span>
+                <span style={styles.url}>{`/designs/${p}/`}</span>
               </Link>
             </li>
           ))}
@@ -295,12 +295,18 @@ const Sitemap = (props) => {
             <FormattedMessage id="app.showcase" />
           </Link>
         </h2>
+        {renderMdxList(props.pageContext.showcase)}
+        <h3>
+          <Link to="/showcase/designs/">
+            <FormattedMessage id="app.showcase" />: <FormattedMessage id="app.designs" />
+          </Link>
+        </h3>
         <ul className="links">
-          {props.data.showcase.edges.map((edge) => (
-            <li key={edge.node.parent.relativeDirectory}>
-              <Link to={`/${edge.node.parent.relativeDirectory}/`}>
-                {edge.node.frontmatter.title}
-                <span style={styles.url}>{`/${edge.node.parent.relativeDirectory}/`}</span>
+          {patterns.map((p) => (
+            <li key={p}>
+              <Link to={`/showcase/designs/${p}`}>
+                {app.translate(`patterns.${p}.title`)}
+                <span style={styles.url}>{`/showcase/designs/${p}/`}</span>
               </Link>
             </li>
           ))}
@@ -315,40 +321,6 @@ export default withLanguage(Sitemap)
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    blog: allMdx(
-      filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: ASC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-    showcase: allMdx(
-      filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: ASC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
     patrons8: allFsPatron(filter: { patron: { tier: { eq: "8" } } }) {
       edges {
         node {

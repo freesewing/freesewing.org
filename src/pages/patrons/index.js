@@ -14,11 +14,12 @@ import { graphql, Link } from 'gatsby'
 
 const PatronPage = (props) => {
   // Hooks
-  const app = useApp()
+  const app = useApp(false)
 
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.patrons'))
+    app.setContext(context)
   }, [])
 
   // Styles
@@ -106,8 +107,8 @@ const PatronPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="community" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="community">
         <div style={styles.list}>{list}</div>
         <Blockquote type="note">
           <h6>

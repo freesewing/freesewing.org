@@ -33,6 +33,7 @@ const WelcomeUnitsPage = (props) => {
         title: <FormattedMessage id="app.welcome" />
       }
     ])
+    app.setContext(<WelcomeSteps app={app} />)
   }, [])
 
   // Methods
@@ -41,8 +42,8 @@ const WelcomeUnitsPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
-      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <RadioGroup name="units" onChange={handleUnitsChange} value={units}>
           <FormControlLabel
             control={<Radio color="primary" />}

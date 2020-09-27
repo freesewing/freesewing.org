@@ -35,6 +35,7 @@ const WelcomeUsernamePage = (props) => {
         title: <FormattedMessage id="app.welcome" />
       }
     ])
+    app.setContext(<WelcomeSteps app={app} />)
   }, [])
 
   // Methods
@@ -45,8 +46,8 @@ const WelcomeUsernamePage = (props) => {
   }
 
   return (
-    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
-      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <TextField
           id="username"
           fullWidth={true}

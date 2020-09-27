@@ -14,7 +14,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import PostPreview from '../../components/post-preview'
 
 const DesignListPage = (props) => {
-  const app = useApp()
+  // Load minimal app hook for static content
+  const app = useApp(false)
 
   // State
   const [designs, setDesigns] = useState(list)
@@ -23,6 +24,7 @@ const DesignListPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.designs'))
+    app.setContext(context)
   }, [])
 
   // Style
@@ -52,7 +54,7 @@ const DesignListPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <Layout app={app} active="designs" context={context}>
+      <Layout app={app} active="designs">
         {filter ? (
           <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
         ) : (

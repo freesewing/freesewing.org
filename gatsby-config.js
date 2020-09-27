@@ -18,7 +18,7 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-nprogress',
     options: {
-      color: '#74c0fc'
+      color: '#9775fa'
     }
   },
   {
@@ -38,7 +38,9 @@ const plugins = [
         {
           resolve: 'gatsby-remark-images',
           options: {
-            maxWidth: 756
+            maxWidth: 800,
+            showCaptions: ['title', 'alt'],
+            markdownCaptions: true
           }
         }
       ],

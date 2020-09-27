@@ -10,9 +10,10 @@ import SizingGraph from '../components/person/size-graph'
 import { FormattedMessage } from 'react-intl'
 
 const SizesPage = (props) => {
-  const app = useApp()
+  const app = useApp(false)
   useEffect(() => {
     app.setTitle(app.translate('app.sizes'))
+    app.setContext(context)
   }, [])
 
   const context = [
@@ -34,8 +35,8 @@ const SizesPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="docs" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="docs">
         <ul className="links">
           <li>
             <a href="#with">

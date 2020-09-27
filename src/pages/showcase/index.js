@@ -15,6 +15,7 @@ const ShowcaseIndexPage = (props) => {
   useEffect(() => {
     app.setTitle(app.translate('app.showcase'))
     app.setDescription(app.translate('intro.txt-showcase'))
+    app.setContext(context)
   }, [])
 
   // Style
@@ -41,8 +42,8 @@ const ShowcaseIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="showcase" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="showcase">
         <div style={style.wrapper}>
           {props.data.allMdx.edges.map((node) => (
             <PostPreview

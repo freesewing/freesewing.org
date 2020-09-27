@@ -11,13 +11,14 @@ const AccountPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.account'))
+    app.setContext(<AccountContext app={app} />)
     app.refresh()
   }, [])
 
   return (
     <LoginRequired app={app}>
-      <AppWrapper app={app} context={<AccountContext app={app} />}>
-        <Layout app={app} active="account" context={<AccountContext app={app} />}>
+      <AppWrapper app={app}>
+        <Layout app={app} active="account">
           <AccountMenu app={app} className="transparent" />
         </Layout>
       </AppWrapper>

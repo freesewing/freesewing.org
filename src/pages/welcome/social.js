@@ -36,6 +36,7 @@ const WelcomeSocialPage = (props) => {
         title: <FormattedMessage id="app.welcome" />
       }
     ])
+    app.setContext(<WelcomeSteps app={app} />)
   }, [])
 
   // Methods
@@ -44,8 +45,8 @@ const WelcomeSocialPage = (props) => {
   const updateInstagram = (evt) => setInstagram(evt.target.value)
 
   return (
-    <AppWrapper app={app} active="account" text context={<WelcomeSteps app={app} />}>
-      <Layout app={app} active="account" text context={<WelcomeSteps app={app} />}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <h5>Github</h5>
         <TextField
           fullWidth={true}

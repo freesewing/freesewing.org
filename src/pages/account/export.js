@@ -22,11 +22,12 @@ const ExportAccountPage = (props) => {
         slug: '/account/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <h6>
           <FormattedMessage id="account.exportYourDataTitle" />
         </h6>

@@ -35,14 +35,15 @@ const PasswordSettingPage = (props) => {
         slug: '/account/settings/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   // Methods
   const updateNewPassword = (evt) => setNewPassword(evt.target.value)
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <TextField
           id="newPassword"
           fullWidth={true}

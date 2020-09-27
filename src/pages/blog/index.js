@@ -8,13 +8,14 @@ import { Link, graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
 
 const BlogIndexPage = (props) => {
-  // State
-  const app = useApp()
+  // Load minimal app hook for static content
+  const app = useApp(false)
 
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.blog'))
     app.setDescription(app.translate('intro.txt-blog'))
+    app.setContext(context)
   }, [])
 
   // Style
@@ -40,8 +41,8 @@ const BlogIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="blog" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="blog">
         <div style={style.wrapper}>
           {props.data.allMdx.edges.map((node) => (
             <PostPreview

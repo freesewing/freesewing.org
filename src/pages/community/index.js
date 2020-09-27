@@ -18,6 +18,7 @@ const CommunityPage = (props) => {
   // Effects
   useEffect(() => {
     app.setTitle(app.translate('app.community'))
+    app.setContext(context)
   }, [])
 
   const teamMembers = (team) => {
@@ -77,7 +78,7 @@ const CommunityPage = (props) => {
 
   return (
     <AppWrapper app={app}>
-      <Layout app={app} active="community" text context={context}>
+      <Layout app={app} active="community" text>
         <ul className="links">
           <li>
             <a href="#where">

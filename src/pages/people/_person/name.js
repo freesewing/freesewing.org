@@ -34,6 +34,7 @@ const PersonNamePage = (props) => {
         title: app.people[props.person].name || props.person
       }
     ])
+    app.setContext(<PeopleContext app={app} />)
   }, [])
 
   // Methods
@@ -42,8 +43,8 @@ const PersonNamePage = (props) => {
   // Styles
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <TextField
           fullWidth={true}
           label={app.translate('app.name')}

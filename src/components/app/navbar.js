@@ -9,7 +9,6 @@ import { FormattedMessage } from 'react-intl'
 
 import Popover from '@material-ui/core/Popover'
 import PatternMenu from '../menus/patterns'
-import DocsMenu from '../menus/docs'
 import CommunityMenu from '../menus/community'
 import AccountMenu from '../menus/account'
 import NavbarIcons from './navbar-icons'
@@ -30,25 +29,21 @@ export default function ButtonAppBar(props) {
   }, [props.app.account])
 
   const [patternAnchor, setPatternAnchor] = useState(null)
-  const [docsAnchor, setDocsAnchor] = useState(null)
   const [communityAnchor, setCommunityAnchor] = useState(null)
   const [userAnchor, setUserAnchor] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
 
   const handlePatternOpen = (event) => setPatternAnchor(event.currentTarget)
-  const handleDocsOpen = (event) => setDocsAnchor(event.currentTarget)
   const handleCommunityOpen = (event) => setCommunityAnchor(event.currentTarget)
   const handleUserOpen = (event) => setUserAnchor(event.currentTarget)
 
   const handlePopoverClose = () => {
     setPatternAnchor(null)
-    setDocsAnchor(null)
     setCommunityAnchor(null)
     setUserAnchor(null)
   }
 
   const patternsOpen = Boolean(patternAnchor)
-  const docsOpen = Boolean(docsAnchor)
   const communityOpen = Boolean(communityAnchor)
   const userOpen = Boolean(userAnchor)
 
@@ -146,7 +141,7 @@ export default function ButtonAppBar(props) {
           </Popover>
 
           <Button
-            aria-owns={communityOpen ? 'docs-popover' : undefined}
+            aria-owns={communityOpen ? 'community-popover' : undefined}
             onClick={handleCommunityOpen}
             {...buttonProps}
           >
@@ -163,23 +158,10 @@ export default function ButtonAppBar(props) {
             <CommunityMenu app={props.app} />
           </Popover>
 
-          <Button
-            aria-owns={docsOpen ? 'docs-popover' : undefined}
-            onClick={handleDocsOpen}
-            {...buttonProps}
-          >
+          <Button {...buttonProps} href="/docs/">
             <DocsIcon style={{ ...iconStyle }} />
             <FormattedMessage id="app.docs" />
           </Button>
-          <Popover
-            id="docs-popover"
-            open={docsOpen}
-            anchorEl={docsAnchor}
-            onClose={handlePopoverClose}
-            {...popoverProps}
-          >
-            <DocsMenu app={props.app} />
-          </Popover>
 
           <span style={style.spacer} />
 

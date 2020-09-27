@@ -67,6 +67,7 @@ const EditMeasurementPage = (props) => {
       }
     ])
     if (!person.measurements) setPerson({ ...person, measurements: {} })
+    app.setContext(<PeopleContext app={app} />)
   }, [])
 
   // If there's no measurements for this person, terminate the initial render,
@@ -142,8 +143,8 @@ const EditMeasurementPage = (props) => {
   const unitsText = isDegMeasurement(measurement) ? '°' : person.units === 'imperial' ? '"' : 'cm'
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <TextField
           data-test="measurement"
           fullWidth={true}

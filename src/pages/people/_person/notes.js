@@ -33,6 +33,7 @@ const PersonNotesPage = (props) => {
         title: app.people[props.person].name || props.person
       }
     ])
+    app.setContext(<PeopleContext app={app} />)
   }, [])
 
   // Methods
@@ -48,8 +49,8 @@ const PersonNotesPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <TextField
           data-test="notes"
           multiline={true}

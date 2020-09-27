@@ -50,7 +50,11 @@ const PatternPage = (props) => {
         }
       ])
     }
-  }, [])
+  }, [props.pattern])
+  // Set context only after pattern is loaded
+  useEffect(() => {
+    app.setContext(context)
+  }, [app.title])
 
   if (pattern === 'pending') return <LoadingLayout app={app} />
   else if (pattern === false) {
@@ -68,7 +72,7 @@ const PatternPage = (props) => {
   }
 
   // Note that the fabs order does not matter, it will be enforced by the PatternFabs component
-  const fabs = ['export', 'details', 'edit', 'recreate']
+  const fabs = ['export', 'edit', 'recreate']
   if (app.account.username) {
     fabs.push('saveAs')
     if (ownPattern) fabs.push('delete')
@@ -84,6 +88,9 @@ const PatternPage = (props) => {
         title={app.translate('app.showDetails')}
       >
         <FormattedMessage id="app.actions" />
+        <span style={{ display: 'inline-block', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
+          [<FormattedMessage id="app.showDetails" />]
+        </span>
       </a>
     </h5>
   )
@@ -98,8 +105,8 @@ const PatternPage = (props) => {
   )
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <div className="pwrap">
           <div>
             <h3>Preview</h3>

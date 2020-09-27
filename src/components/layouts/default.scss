@@ -1,0 +1,126 @@
+@import '../../../node_modules/open-color/open-color.scss';
+div.text-toc-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  div.text {
+    max-width: 69ch;
+    width: 100%;
+  }
+  div.toc {
+    position: sticky;
+    align-self: flex-start;
+    top: 0;
+    max-width: calc(300px + 1rem);
+    min-width: calc(200px + 1rem);
+    padding-left: 1rem;
+    ul {
+      font-family: 'Roboto condensed';
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      line-height: 1.25;
+      li a {
+        display: block;
+        margin: 0 -0.5rem;
+        padding: 0.25rem 0.5rem;
+      }
+      li a.level-2 {
+        padding-left: 1.25rem;
+      }
+      li a.level-3 {
+        padding-left: 2.25rem;
+      }
+      li a.level-4 {
+        padding-left: 3.25rem;
+      }
+      li a.level-5 {
+        padding-left: 4.25rem;
+      }
+      li a:hover {
+        background: $oc-violet-0;
+        text-decoration: none;
+      }
+    }
+  }
+}
+li a.level-2 {
+  padding-left: 1.25rem;
+}
+
+h2 a.anchor,
+h3 a.anchor,
+h4 a.anchor,
+h5 a.anchor,
+h6 a.anchor {
+  margin-left: -15px;
+  margin-right: -1px;
+}
+
+ul.aside-main-menu li {
+  display: block;
+  a span.text {
+    display: inline-block;
+  }
+}
+
+div.mob-menu {
+  padding: 1rem;
+}
+
+.jargon-term {
+  background: $oc-cyan-0;
+  text-decoration: none;
+}
+.jargon-term:after {
+  display: none;
+}
+
+img.gatsby-resp-image-image {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+/* slate */
+@media (max-width: 1199px) and (min-width: 960px) {
+  div.text-toc-wrapper div.toc {
+    max-width: calc(200px + 1rem);
+    min-width: calc(100px + 1rem);
+  }
+}
+
+/* tablet */
+@media (max-width: 959px) {
+  div.text-toc-wrapper {
+    flex-wrap: wrap-reverse;
+    div.toc {
+      width: 100%;
+      max-width: 100%;
+      position: relative;
+      padding: 0;
+      margin: 0 0;
+      border: 1px solid $oc-violet-1;
+      border-radius: 4px;
+      margin-top: -1rem;
+      ul {
+        padding: 0.5rem;
+      }
+      h6,
+      h5 {
+        margin: 0;
+        padding: 0 0.5rem;
+        background: $oc-violet-1;
+      }
+    }
+  }
+  .theme-wrapper.dark div.text-toc-wrapper div.toc {
+    border-color: $oc-gray-8;
+    h6,
+    h5 {
+      background: $oc-gray-8;
+    }
+    ul li a:hover {
+      background: $oc-gray-8;
+    }
+  }
+}

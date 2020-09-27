@@ -63,6 +63,11 @@ const RecreatePatternPage = (props) => {
       ])
     }
   }, [])
+  useEffect(() => {
+    app.setContext(
+      <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
+    )
+  }, [])
 
   // Allow usePattern promise to resolve
   if (pattern === 'pending') return <LoadingLayout app={app} />
@@ -72,13 +77,9 @@ const RecreatePatternPage = (props) => {
     return null
   }
 
-  const context = (
-    <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
-  )
-
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="designs" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="designs">
         <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
       </Layout>
     </AppWrapper>

@@ -13,6 +13,7 @@ const LogoutPage = (props) => {
   useEffect(() => {
     app.setTitle(app.translate('app.logOut'))
     app.setDescription(app.translate('app.clickBelowToLogOut'))
+    app.setContext(context)
   }, [])
 
   const context = [
@@ -24,8 +25,8 @@ const LogoutPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <p>
           <FormattedMessage id="app.clickBelowToLogOut" />
         </p>

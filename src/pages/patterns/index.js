@@ -19,6 +19,7 @@ const PatternsIndexPage = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.yourPatterns'))
+    app.setContext(context)
   }, [])
 
   const newPatternButton = (
@@ -86,16 +87,6 @@ const PatternsIndexPage = (props) => {
     <h5>
       <FormattedMessage id="app.yourPatterns" />
     </h5>,
-    <h6>
-      <Link to="/create/">
-        <FormattedMessage
-          id="app.newThing"
-          values={{
-            thing: app.translate('app.pattern')
-          }}
-        />
-      </Link>
-    </h6>,
     <ul>
       {Object.keys(app.patterns).map((handle, pattern) => (
         <li key={handle}>
@@ -106,8 +97,8 @@ const PatternsIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context}>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account">
         <div className="pattern-list">
           {Object.keys(app.patterns).length > 0 ? listState : blankState}
         </div>

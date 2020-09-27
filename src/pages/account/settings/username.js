@@ -36,6 +36,7 @@ const UsernameSettingPage = (props) => {
         slug: '/account/settings/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   // Methods
@@ -46,8 +47,8 @@ const UsernameSettingPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <TextField
           id="username"
           fullWidth={true}

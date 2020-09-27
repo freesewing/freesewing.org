@@ -33,14 +33,15 @@ const GithubSettingPage = (props) => {
         slug: '/account/settings/'
       }
     ])
+    app.setContext(<AccountContext app={app} />)
   }, [])
 
   // Methods
   const updateGithub = (evt) => setGithub(evt.target.value)
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
+    <AppWrapper app={app}>
+      <Layout app={app} active="account" text>
         <Blockquote type="note">
           <FormattedMessage id={'account.githubInfo'} />
         </Blockquote>
