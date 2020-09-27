@@ -13,6 +13,7 @@ import AccountMenu from './account'
 import HideIcon from '@material-ui/icons/ExpandLess'
 import ShowIcon from '@material-ui/icons/ExpandMore'
 import MainAside from './main-aside'
+import Icon from '@freesewing/components/Icon'
 
 const MobileMenu = ({ app, context }) => {
   // State
@@ -69,10 +70,10 @@ const MobileMenu = ({ app, context }) => {
       link: '/',
       icon: <Logo size={22} />
     },
-    sitemap: {
-      title: 'app.sitemap',
-      link: '/sitemap/',
-      icon: <MapIcon />
+    discord: {
+      title: 'app.chatWithUs',
+      link: 'https://chat.freesewing.org/',
+      icon: <Icon icon="discord" />
     },
     search: {
       title: 'app.search',
@@ -120,41 +121,9 @@ const MobileMenu = ({ app, context }) => {
           )}
         </IconButton>
       </div>
-      {app.account.username && (
-        <>
-          <h5>
-            <a role="button" style={style.toggle} onClick={() => toggle('account')} className="poh">
-              <FormattedMessage id="app.account" />
-              {account ? <HideIcon /> : <ShowIcon />}
-            </a>
-          </h5>
-          <div className={account ? '' : 'collapsed'}>
-            <AccountMenu app={app} className="transparent" />
-          </div>
-        </>
-      )}
 
-      <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('patterns')} className="poh">
-          <FormattedMessage id="app.patterns" />
-          {patterns ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={patterns ? '' : 'collapsed'}>
-        <PatternsMenu app={app} className="transparent" />
-      </div>
-
-      <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('community')} className="poh">
-          <FormattedMessage id="app.community" />
-          {community ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={community ? '' : 'collapsed'}>
-        <CommunityMenu app={app} className="transparent" />
-      </div>
       <MainAside app={app} />
-      <div className="context-wrapper">{context}</div>
+      <div className="context-wrapper">{app.context}</div>
     </div>
   )
 }
