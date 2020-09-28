@@ -24,6 +24,7 @@ import EmptyBlob from '../components/blobs/Empty'
 import Blob from '../components/blobs'
 import Hashtag from '../components/hashtag'
 import contrast from 'get-contrast'
+import LatestNews from '../components/LatestNews'
 
 // Style
 import './homepage.scss'
@@ -210,7 +211,8 @@ const HomePage = (props) => {
         <WideLayout app={app} noTitle>
           <div className="boxes">
             <div>
-              <Mdx node={uiMdx[`homepage/updates`]} />
+              <h2>Latest news</h2>
+              <LatestNews />
             </div>
             <div>
               <Mdx node={uiMdx[`homepage/row-1`]} />
