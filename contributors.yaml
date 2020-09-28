@@ -13,15 +13,6 @@ teams:
   - patternDesign
 
 people:
-  - name: Deb
-    img: ../avatar.svg
-    github: dfbean
-    discord: Deb
-    teams:
-      - patternDesign
-    tags:
-      - patternDesign
-      - patternTesting
   - name: Amy
     img: amy.jpg
     github: amysews
@@ -47,6 +38,15 @@ people:
     discord: slylele
     tags:
       - translation
+  - name: Deb
+    img: ../avatar.svg
+    github: dfbean
+    discord: Deb
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - patternTesting
   - name: Emmanuel
     img: emmanuel.jpg
     github: enyachoke
@@ -96,7 +96,7 @@ people:
       - communityBuilding
       - patternTesting
       - video
-  - name: joost
+  - name: Joost
     img: joost.jpg
     github: joostdecock
     discord: joostdecock

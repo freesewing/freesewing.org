@@ -81,6 +81,11 @@ img.gatsby-resp-image-image {
     0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
+.scribble {
+  font-family: 'Permanent marker';
+  color: $oc-pink-5;
+}
+
 /* slate */
 @media (max-width: 1199px) and (min-width: 960px) {
   div.text-toc-wrapper div.toc {

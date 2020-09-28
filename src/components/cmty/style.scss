@@ -35,7 +35,9 @@ div.contributor {
         white-space: pre-line;
       }
       li.github,
-      li.discord {
+      li.discord,
+      li.twitter,
+      li.instagram {
         font-weight: bold;
         a {
           color: inherit !important;
@@ -47,12 +49,30 @@ div.contributor {
       li.discord {
         background: #d8f5a2;
       }
+      li.twitter {
+        background: #a5d8ff;
+      }
+      li.instagram {
+        background: #fcc2d7;
+      }
+      li.heart {
+        background: transparent;
+        padding: 2px;
+      }
       li.github:before {
         content: 'github: ';
         font-weight: normal;
       }
       li.discord:before {
         content: 'discord: ';
+        font-weight: normal;
+      }
+      li.twitter:before {
+        content: 'twitter: ';
+        font-weight: normal;
+      }
+      li.instagram:before {
+        content: 'instagram: ';
         font-weight: normal;
       }
     }
@@ -68,5 +88,22 @@ div.contributor {
   }
   li.discord {
     background: #66a80f;
+  }
+}
+
+/* mobile */
+@media (max-width: 599px) {
+  div.contributor {
+    div.text.snug {
+      padding: 0 0.5rem;
+      h5 {
+        margin-top: 0;
+        margin-bottom: -4px;
+        padding-top: 0;
+      }
+      ul {
+        font-size: 90%;
+      }
+    }
   }
 }
