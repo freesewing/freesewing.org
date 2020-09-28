@@ -51,6 +51,7 @@ const Template = (props) => {
     cell: {
       padding: '1rem',
       borderTop: '1px solid #9993',
+      whiteSpace: 'wrap',
       verticalAlign: 'top'
     },
     avatar: {
