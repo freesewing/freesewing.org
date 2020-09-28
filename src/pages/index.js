@@ -20,9 +20,6 @@ import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
 import { graphql, Link } from 'gatsby'
 import oc from 'open-color-js'
-//import MainBlob from '../components/blobs/Main'
-//import SecondBlob from '../components/blobs/Second'
-//import ThirdBlob from '../components/blobs/Third'
 import EmptyBlob from '../components/blobs/Empty'
 import Blob from '../components/blobs'
 import Hashtag from '../components/hashtag'
@@ -171,7 +168,7 @@ const HomePage = (props) => {
         </div>
 
         {/* Support banner */}
-        <div className="stripe" style={{ color: color.contrast }}>
+        <div className="stripe">
           <div className="stripe-content">
             <h1>
               <FormattedMessage id="app.supportFreesewing" />

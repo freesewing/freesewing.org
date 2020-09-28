@@ -83,7 +83,7 @@
 }
 
 #homepage div.stripe-bg {
-  opacity: 0.5;
+  opacity: 0.3;
   position: absolute;
   top: 0;
   left: 0;
@@ -301,5 +301,9 @@ div.icons {
         }
       }
     }
+  }
+  #homepage div.stripe {
+    padding: 1rem;
+    width: calc(100% - 2rem);
   }
 }
