@@ -128,11 +128,6 @@ const Template = (props) => {
             ))}
           </tbody>
         </table>
-        {user.social && (
-          <p>
-            <UserSocial accounts={user.social} size={36} />
-          </p>
-        )}
       </Layout>
     </AppWrapper>
   )
