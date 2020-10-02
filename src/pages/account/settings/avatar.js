@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
@@ -10,7 +9,7 @@ import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
-const AvatarSettingPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -124,4 +123,4 @@ const AvatarSettingPage = (props) => {
   )
 }
 
-export default withLanguage(AvatarSettingPage)
+export default Page

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -13,7 +12,7 @@ import LoginForm from '../../components/session/login/login-form'
 import ResetPasswordForm from '../../components/session/login/reset-password-form'
 import Oauth from '../../components/session/oauth/'
 
-const LoginPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -192,4 +191,4 @@ const LoginPage = (props) => {
   )
 }
 
-export default withLanguage(LoginPage)
+export default Page

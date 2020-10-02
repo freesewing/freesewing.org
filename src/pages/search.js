@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
 
 import Search from '../components/search'
 
-const SearchPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.search'))
@@ -21,4 +20,4 @@ const SearchPage = (props) => {
   )
 }
 
-export default withLanguage(SearchPage)
+export default Page

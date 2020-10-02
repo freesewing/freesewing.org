@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
 import PostPreview from '../../components/post-preview'
 import { Link, graphql } from 'gatsby'
 
-const ShowcaseIndexPage = (props) => {
+const Page = (props) => {
   // State
   const app = useApp()
 
@@ -63,7 +62,7 @@ const ShowcaseIndexPage = (props) => {
   )
 }
 
-export default withLanguage(ShowcaseIndexPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

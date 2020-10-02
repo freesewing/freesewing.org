@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
@@ -10,7 +9,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const PasswordSettingPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -102,4 +101,4 @@ const PasswordSettingPage = (props) => {
   )
 }
 
-export default withLanguage(PasswordSettingPage)
+export default Page

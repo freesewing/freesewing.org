@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import useUiMdx from '../../hooks/useUiMdx'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -14,7 +13,7 @@ import Contributor from '../../components/cmty/contributor'
 import { graphql, Link } from 'gatsby'
 import '../../components/cmty/style.scss'
 
-const CommunityWhoPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -114,7 +113,7 @@ const CommunityWhoPage = (props) => {
   )
 }
 
-export default withLanguage(CommunityWhoPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

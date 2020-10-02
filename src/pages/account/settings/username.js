@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
@@ -13,7 +12,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
-const UsernameSettingPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -103,4 +102,4 @@ const UsernameSettingPage = (props) => {
   )
 }
 
-export default withLanguage(UsernameSettingPage)
+export default Page

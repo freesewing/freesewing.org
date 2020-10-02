@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../../hooks/useApp'
 import usePerson from '../../../../hooks/usePerson'
-import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
 import Layout from '../../../../components/layouts/default'
 import PeopleContext from '../../../../components/context/people'
@@ -22,7 +21,7 @@ import Mdx from '../../../../components/mdx'
 
 import MeasurementsImages from '../../../../components/measurements/images'
 
-const EditMeasurementPage = (props) => {
+const Page = (props) => {
   // Provided by pageContext
   const measurement = props.pageContext.measurement
 
@@ -205,7 +204,7 @@ const EditMeasurementPage = (props) => {
   )
 }
 
-export default withLanguage(EditMeasurementPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

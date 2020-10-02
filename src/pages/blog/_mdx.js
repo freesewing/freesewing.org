@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -9,7 +8,7 @@ import Mdx from '../../components/mdx'
 import MdxToc from '../../components/mdx/toc'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 
-const BlogPostPage = (props) => {
+const Page = (props) => {
   // Load minimal app hook for static content
   const app = useApp(false)
 
@@ -102,7 +101,7 @@ const BlogPostPage = (props) => {
   )
 }
 
-export default withLanguage(BlogPostPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

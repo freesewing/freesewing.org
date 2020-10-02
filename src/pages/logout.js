@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
 
@@ -8,7 +7,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Robot from '@freesewing/components/Robot'
 
-const LogoutPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.logOut'))
@@ -38,4 +37,4 @@ const LogoutPage = (props) => {
   )
 }
 
-export default withLanguage(LogoutPage)
+export default Page

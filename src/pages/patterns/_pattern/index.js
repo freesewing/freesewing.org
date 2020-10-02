@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import LoadingLayout from '../../../components/layouts/loading'
@@ -15,7 +14,7 @@ import './index.css'
 
 import Dialog from '../../../components/pattern/dialog'
 
-const PatternPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -145,4 +144,4 @@ const PatternPage = (props) => {
   )
 }
 
-export default withLanguage(PatternPage)
+export default Page

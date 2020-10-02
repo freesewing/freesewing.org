@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import WideLayout from '../../../components/layouts/wide'
 
 import { graphql, Link } from 'gatsby'
 import { list as patternList } from '@freesewing/pattern-info'
 
-const ShowcaseIndexPage = (props) => {
+const Page = (props) => {
   // State
   const app = useApp()
 
@@ -103,7 +102,7 @@ const ShowcaseIndexPage = (props) => {
   )
 }
 
-export default withLanguage(ShowcaseIndexPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

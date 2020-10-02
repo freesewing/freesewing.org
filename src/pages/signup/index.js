@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -18,7 +17,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import successGif from '../../components/session/signup/success.gif'
 import Oauth from '../../components/session/oauth/'
 
-const SignupPage = (props) => {
+const Page = (props) => {
   // State
   const app = useApp()
   const [email, setEmail] = useState('')
@@ -253,4 +252,4 @@ const SignupPage = (props) => {
   )
 }
 
-export default withLanguage(SignupPage)
+export default Page

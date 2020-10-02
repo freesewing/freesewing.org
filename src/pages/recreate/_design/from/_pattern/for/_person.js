@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../../../../hooks/useApp'
-import withLanguage from '../../../../../../components/withLanguage'
 import AppWrapper from '../../../../../../components/app/wrapper'
 import DraftUi from '../../../../../../components/draft/ui'
 
@@ -8,7 +7,7 @@ import usePattern from '../../../../../../hooks/usePattern'
 import usePerson from '../../../../../../hooks/usePerson'
 import LoadingLayout from '../../../../../../components/layouts/loading'
 
-const CreatePatternForPersonPage = (props) => {
+const Page = (props) => {
   const app = useApp()
 
   // SSR
@@ -122,4 +121,4 @@ const CreatePatternForPersonPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternForPersonPage)
+export default Page

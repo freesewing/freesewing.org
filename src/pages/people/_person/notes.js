@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import PeopleContext from '../../../components/context/people'
@@ -11,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import Markdown from 'react-markdown'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const PersonNotesPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -100,4 +99,4 @@ const PersonNotesPage = (props) => {
   )
 }
 
-export default withLanguage(PersonNotesPage)
+export default Page

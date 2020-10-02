@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -10,7 +9,7 @@ import { list } from '@freesewing/pattern-info'
 import LineDrawing from '@freesewing/components/LineDrawing'
 import capitalize from '@freesewing/utils/capitalize'
 
-const CreatePatternIndexPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.chooseADesign'))
@@ -109,4 +108,4 @@ const CreatePatternIndexPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternIndexPage)
+export default Page

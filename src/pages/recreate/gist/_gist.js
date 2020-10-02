@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import DraftUi from '../../../components/draft/ui'
 
@@ -11,7 +10,7 @@ import LoadingLayout from '../../../components/layouts/loading'
 import axios from 'axios'
 import yaml from 'yaml'
 
-const CreatePatternFromGist = (props) => {
+const Page = (props) => {
   const app = useApp()
 
   // SSR
@@ -96,4 +95,4 @@ const CreatePatternFromGist = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternFromGist)
+export default Page

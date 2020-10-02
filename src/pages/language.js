@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
 
@@ -11,7 +10,7 @@ import { Link } from 'gatsby'
 
 import LanguageIcon from '../components/language-icon'
 
-const Language = (props) => {
+const Page = (props) => {
   const app = useApp(false)
   useEffect(() => {
     app.setTitle(app.translate('account.language'))
@@ -98,4 +97,4 @@ const Language = (props) => {
   )
 }
 
-export default withLanguage(Language)
+export default Page

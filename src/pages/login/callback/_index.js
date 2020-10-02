@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 
@@ -8,7 +7,7 @@ import { navigate } from 'gatsby'
 import Robot from '@freesewing/components/Robot'
 import Error from '../../../components/error'
 
-const LoginCallbackPage = (props) => {
+const Page = (props) => {
   // Only accept valid callbacks
   if (!props.confirmation || !props.validation) {
     if (typeof window !== 'undefined') navigate('/login/')
@@ -41,4 +40,4 @@ const LoginCallbackPage = (props) => {
   )
 }
 
-export default withLanguage(LoginCallbackPage)
+export default Page

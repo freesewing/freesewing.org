@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import DraftUi from '../../../components/draft/ui'
 
@@ -16,7 +15,7 @@ import Button from '@material-ui/core/Button'
  * This page allows you to edit your own patterns
  */
 
-const CreatePatternForPersonPage = (props) => {
+const Page = (props) => {
   const app = useApp()
 
   // State
@@ -123,4 +122,4 @@ const CreatePatternForPersonPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternForPersonPage)
+export default Page

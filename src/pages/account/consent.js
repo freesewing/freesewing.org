@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -13,7 +12,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import AccountContext from '../../components/context/account'
 
-const ConsentPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -286,4 +285,4 @@ const ConsentPage = (props) => {
   )
 }
 
-export default withLanguage(ConsentPage)
+export default Page

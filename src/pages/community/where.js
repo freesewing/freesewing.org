@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import useUiMdx from '../../hooks/useUiMdx'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -11,7 +10,7 @@ import Contributor from '../../components/cmty/contributor'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 
-const CommunityPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
@@ -81,4 +80,4 @@ const CommunityPage = (props) => {
   )
 }
 
-export default withLanguage(CommunityPage)
+export default Page

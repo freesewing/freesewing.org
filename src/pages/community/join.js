@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -8,7 +7,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import Subscribe from '../../components/subscribe'
 
-const JoinPatronsPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -47,4 +46,4 @@ const JoinPatronsPage = (props) => {
   )
 }
 
-export default withLanguage(JoinPatronsPage)
+export default Page

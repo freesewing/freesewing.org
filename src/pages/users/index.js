@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -8,7 +7,7 @@ import { FormattedMessage } from 'react-intl'
 import Robot from '@freesewing/components/Robot'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const UsersIndexPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.users'))
@@ -30,4 +29,4 @@ const UsersIndexPage = (props) => {
   )
 }
 
-export default withLanguage(UsersIndexPage)
+export default Page

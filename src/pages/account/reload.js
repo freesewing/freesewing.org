@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import AccountContext from '../../components/context/account'
 
-const ReloadAccountPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -45,4 +44,4 @@ const ReloadAccountPage = (props) => {
   )
 }
 
-export default withLanguage(ReloadAccountPage)
+export default Page

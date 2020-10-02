@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
 
@@ -15,7 +14,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 
-const CreatePersonPage = (props) => {
+const Page = (props) => {
   // State
   const app = useApp()
   const [units, setUnits] = useState(
@@ -152,4 +151,4 @@ const CreatePersonPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePersonPage)
+export default Page

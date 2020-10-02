@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 
@@ -10,7 +9,7 @@ import capitalize from '@freesewing/utils/capitalize'
 import SelectSize from '../../../components/draft/select-size'
 import SelectSizeContext from '../../../components/context/select-size'
 
-const CreatePatternPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
   const people = usePeople(app, props.pageContext.design)
@@ -48,4 +47,4 @@ const CreatePatternPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternPage)
+export default Page

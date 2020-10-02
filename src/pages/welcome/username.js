@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import WelcomeSteps from '../../components/context/welcome-steps'
@@ -16,7 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
-const WelcomeUsernamePage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -94,4 +93,4 @@ const WelcomeUsernamePage = (props) => {
   )
 }
 
-export default withLanguage(WelcomeUsernamePage)
+export default Page

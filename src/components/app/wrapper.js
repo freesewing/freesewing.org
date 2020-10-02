@@ -19,7 +19,7 @@ import useScrolledDown from '../../hooks/useScrolledDown'
 import Bugsnag from './bugsnag'
 
 /* This component should wrap all page content */
-const AppWrapper = ({ app, children, context = null }) => {
+const AppWrapper = ({ app, children }) => {
   const [scrolledDown, setScrolledDown] = useState(false)
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const AppWrapper = ({ app, children, context = null }) => {
           <Loading loading={app.loading} />
           {app.mobile && (
             <div className="menu" onClick={app.closeNav}>
-              <MobileMenu app={app} context={context} />
+              <MobileMenu app={app} />
             </div>
           )}
           <Footer language={process.env.GATSBY_LANGUAGE} app={app} />

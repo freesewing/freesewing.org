@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -13,7 +12,7 @@ import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 import PostPreview from '../../components/post-preview'
 
-const DesignListPage = (props) => {
+const Page = (props) => {
   // Load minimal app hook for static content
   const app = useApp(false)
 
@@ -88,4 +87,4 @@ const DesignListPage = (props) => {
   )
 }
 
-export default withLanguage(DesignListPage)
+export default Page

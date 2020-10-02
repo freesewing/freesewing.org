@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import useUiMdx from '../../../hooks/useUiMdx'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import Mdx from '../../../components/mdx'
@@ -9,7 +8,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { navigate } from 'gatsby'
 
-const LoadGistPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   const uiMdx = useUiMdx()
   const uiPath = 'draft/recreate-gist'
@@ -51,4 +50,4 @@ const LoadGistPage = (props) => {
   )
 }
 
-export default withLanguage(LoadGistPage)
+export default Page

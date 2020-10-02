@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
@@ -13,7 +12,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-const LanguageSettingPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -89,4 +88,4 @@ const LanguageSettingPage = (props) => {
   )
 }
 
-export default withLanguage(LanguageSettingPage)
+export default Page

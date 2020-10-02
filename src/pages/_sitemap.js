@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import Layout from '../components/layouts/default'
 import PatronStars from '../components/patron-stars'
@@ -8,7 +7,7 @@ import { list as patterns } from '@freesewing/pattern-info'
 import { Link, graphql } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
-const Sitemap = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.sitemap'))
@@ -316,7 +315,7 @@ const Sitemap = (props) => {
   )
 }
 
-export default withLanguage(Sitemap)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

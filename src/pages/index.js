@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
 import WideLayout from '../components/layouts/wide'
 
@@ -242,7 +241,7 @@ const HomePage = (props) => {
   )
 }
 
-export default withLanguage(HomePage)
+export default HomePage
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

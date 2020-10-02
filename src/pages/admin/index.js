@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import AuthRequired from '../../components/auth-required'
@@ -9,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import SearchHit from '../../components/admin/hit'
 
-const AdminPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -84,4 +83,4 @@ const AdminPage = (props) => {
     )
 }
 
-export default withLanguage(AdminPage)
+export default Page

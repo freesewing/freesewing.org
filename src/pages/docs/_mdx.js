@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import MdxToc from '../../components/mdx/toc'
@@ -14,7 +13,7 @@ import { measurements } from '@freesewing/models'
 import MeasurementImage from '../../components/measurements/images'
 import PrevNext from '../../components/mdx/prevnext'
 
-const DocsPage = (props) => {
+const Page = (props) => {
   // Load minimal app hook for static content
   const app = useApp(false)
 
@@ -62,7 +61,7 @@ const DocsPage = (props) => {
   )
 }
 
-export default withLanguage(DocsPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

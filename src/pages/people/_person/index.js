@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import usePerson from '../../../hooks/usePerson'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import PeopleContext from '../../../components/context/people'
@@ -30,7 +29,7 @@ import capitalize from '@freesewing/utils/capitalize'
 import Person from '../../../components/person'
 import SizingGraph from '../../../components/person/size-graph'
 
-const PersonPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -511,4 +510,4 @@ const PersonPage = (props) => {
   )
 }
 
-export default withLanguage(PersonPage)
+export default Page

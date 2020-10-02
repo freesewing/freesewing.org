@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import useApp from '../../../../../hooks/useApp'
 import usePattern from '../../../../../hooks/usePattern'
 import usePeople from '../../../../../hooks/usePeople'
-import withLanguage from '../../../../../components/withLanguage'
 import AppWrapper from '../../../../../components/app/wrapper'
 import Layout from '../../../../../components/layouts/default'
 import LoadingLayout from '../../../../../components/layouts/loading'
@@ -12,7 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import SelectSize from '../../../../../components/draft/select-size'
 import capitalize from '@freesewing/utils/capitalize'
 
-const RecreatePatternPage = (props) => {
+const Page = (props) => {
   // Page context
   const design = props.pageContext.design
 
@@ -86,4 +85,4 @@ const RecreatePatternPage = (props) => {
   )
 }
 
-export default withLanguage(RecreatePatternPage)
+export default Page

@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import PeopleContext from '../../../components/context/people'
@@ -9,7 +8,7 @@ import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const PersonAvatarPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
   const onDrop = useCallback((acceptedFiles) => {
@@ -121,4 +120,4 @@ const PersonAvatarPage = (props) => {
   )
 }
 
-export default withLanguage(PersonAvatarPage)
+export default Page

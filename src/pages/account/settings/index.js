@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 import AccountMenu from '../../../components/menus/account'
 import AccountContext from '../../../components/context/account'
 
-const SettingsPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -31,4 +30,4 @@ const SettingsPage = (props) => {
   )
 }
 
-export default withLanguage(SettingsPage)
+export default Page

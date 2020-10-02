@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import Layout from '../../../components/layouts/default'
 
@@ -15,7 +14,7 @@ import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 import AccountContext from '../../../components/context/account'
 
-const EmailSettingPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -104,4 +103,4 @@ const EmailSettingPage = (props) => {
   )
 }
 
-export default withLanguage(EmailSettingPage)
+export default Page

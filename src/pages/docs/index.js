@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -8,7 +7,7 @@ import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 import Blockquote from '@freesewing/components/Blockquote'
 
-const DocumentationIndexPage = (props) => {
+const Page = (props) => {
   // Load minimal app hook for static content
   const app = useApp(false)
 
@@ -69,4 +68,4 @@ const DocumentationIndexPage = (props) => {
   )
 }
 
-export default withLanguage(DocumentationIndexPage)
+export default Page

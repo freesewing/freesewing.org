@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import WideLayout from '../../components/layouts/wide'
 import Layout from '../../components/layouts/default'
@@ -12,7 +11,7 @@ import PatronStars from '../../components/patron-stars'
 import UserSocial from '../../components/user-social'
 import { graphql, Link } from 'gatsby'
 
-const PatronPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp(false)
 
@@ -128,7 +127,7 @@ const PatronPage = (props) => {
   )
 }
 
-export default withLanguage(PatronPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

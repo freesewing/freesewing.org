@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 import PostPreview from '../../components/post-preview'
@@ -18,7 +17,7 @@ import LineDrawing from '@freesewing/components/LineDrawing'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
 
-const DesignPage = (props) => {
+const Page = (props) => {
   // Load minimal app hook for static content
   const app = useApp(false)
 
@@ -256,7 +255,7 @@ const DesignPage = (props) => {
   )
 }
 
-export default withLanguage(DesignPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

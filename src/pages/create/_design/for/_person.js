@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useApp from '../../../../hooks/useApp'
-import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
 
 import DraftLoadingLayout from '../../../../components/layouts/draft-loading'
@@ -10,7 +9,7 @@ import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import { optionalMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
-const CreatePatternForPersonPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   const person = usePerson(app, props.person)
 
@@ -88,4 +87,4 @@ const CreatePatternForPersonPage = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternForPersonPage)
+export default Page

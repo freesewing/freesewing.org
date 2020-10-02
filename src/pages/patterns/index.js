@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import usePerson from '../../hooks/usePerson'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
 import Layout from '../../components/layouts/default'
 
@@ -15,7 +14,7 @@ import capitalize from '@freesewing/utils/capitalize'
 
 import './patterns.css'
 
-const PatternsIndexPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   useEffect(() => {
     app.setTitle(app.translate('app.yourPatterns'))
@@ -107,4 +106,4 @@ const PatternsIndexPage = (props) => {
   )
 }
 
-export default withLanguage(PatternsIndexPage)
+export default Page
