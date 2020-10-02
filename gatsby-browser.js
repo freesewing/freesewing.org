@@ -2,8 +2,6 @@ const React = require('react')
 const IntlProvider = require('react-intl').IntlProvider
 const strings = require('@freesewing/i18n').strings
 
-const WithLanguage = require('./src/components/withLanguage')
-
 exports.wrapRootElement = ({ element }) => (
   <IntlProvider
     locale={process.env.GATSBY_LANGUAGE}
@@ -12,3 +10,7 @@ exports.wrapRootElement = ({ element }) => (
     {element}
   </IntlProvider>
 )
+
+exports.wrapPageElement = ({ element, props }) => {
+  return element
+}
