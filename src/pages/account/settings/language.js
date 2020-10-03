@@ -19,9 +19,6 @@ const Page = (props) => {
 
   const [language, setLanguage] = useState(app.account.settings.language || 'en')
 
-  // Methods
-  const updateLanguage = (evt) => setLanguage(evt.target.value)
-
   return (
     <AppWrapper
       app={app}

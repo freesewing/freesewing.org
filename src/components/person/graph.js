@@ -1,6 +1,5 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
-import formatMm from '@freesewing/utils/formatMm'
 import { nivoStyles } from '../draft/sample-styles'
 import oc from 'open-color-js'
 import nivoTheme from './nivo-theme'

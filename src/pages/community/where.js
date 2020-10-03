@@ -10,18 +10,8 @@ import { Link } from 'gatsby'
 
 const Page = (props) => {
   const app = useApp()
+
   const uiMdx = useUiMdx()
-
-  const teamMembers = (team) => {
-    let members = []
-    for (const contributor of contributors.people) {
-      if (contributor.teams) {
-        if (contributor.teams.indexOf(team) !== -1) members.push(contributor)
-      }
-    }
-
-    return members
-  }
 
   const context = [
     <h5>

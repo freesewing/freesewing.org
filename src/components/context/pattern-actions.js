@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
 import { navigate } from 'gatsby'
 import order from '../pattern/actions-order'
 

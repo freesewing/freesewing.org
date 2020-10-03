@@ -192,9 +192,8 @@ const pageTitle = (slug, page) => {
       } else if (chunks.length === 3) return translate(`patterns.${chunks[2]}.title`)
     }
   }
-  if (typeof page.frontmatter !== 'undefined' && page.frontmatter.linktitle)
-    return page.frontmatter.linktitle
-  else return page.frontmatter.title
+
+  return page.frontmatter.linktitle ? page.frontmatter.linktitle : page.frontmatter.title
 }
 
 const mdxList = (pages) =>

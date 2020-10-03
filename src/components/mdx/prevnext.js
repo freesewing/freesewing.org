@@ -17,8 +17,8 @@ const PreviousNext = ({ previous = false, next = false }) => (
     }}
   >
     {['prev', 'next'].map((side) => {
-      if (side === 'prev' && !previous) return <PrevIcon />
-      if (side === 'next' && !next) return <NextIcon />
+      if (side === 'prev' && !previous) return <PrevIcon key={`icon-${side}`} />
+      if (side === 'next' && !next) return <NextIcon key={`icon-${side}`} />
       let { slug, title } = side === 'next' ? next : previous
 
       return (

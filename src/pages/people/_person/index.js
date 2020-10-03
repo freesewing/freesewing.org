@@ -24,7 +24,6 @@ import InvalidIcon from '@material-ui/icons/Help'
 import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
-import Person from '../../../components/person'
 import SizingGraph from '../../../components/person/size-graph'
 
 const Page = (props) => {
@@ -319,8 +318,8 @@ const Page = (props) => {
           </tr>
           {/* avatar */}
           {['avatar', 'notes'].map((field) => (
-            <tr className="hover">
-              <td style={styles.title} key={field}>
+            <tr className="hover" key={field}>
+              <td style={styles.title}>
                 <FormattedMessage id={field === 'notes' ? 'app.notes' : `account.avatar`} />
               </td>
               <td style={styles.cell}>

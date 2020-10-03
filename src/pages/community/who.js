@@ -77,7 +77,7 @@ const Page = (props) => {
         <FormattedMessage id="cty.contributors" />
       </h2>
       {contributors.people.map((person) => (
-        <div id={person.name.toLowerCase()}>
+        <div id={person.name.toLowerCase()} key={person.name}>
           <Contributor contributor={person} app={app} key={person.name} />
         </div>
       ))}
