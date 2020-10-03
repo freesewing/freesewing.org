@@ -96,6 +96,13 @@ people:
       - communityBuilding
       - patternTesting
       - video
+  - name: Jim
+    img: jim.jpg
+    github: nutation
+    discord: nutation
+    tags:
+      - communityBuilding
+      - support
   - name: Joost
     img: joost.jpg
     github: joostdecock
