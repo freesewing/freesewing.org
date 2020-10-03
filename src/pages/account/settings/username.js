@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
@@ -13,32 +12,14 @@ import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
 
-  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+  // FIXME: Show something better than nothing in SSR
+  if (!app.account.username) return null
 
-  // State
   const [username, setUsername] = useState(app.account.username)
   const [usernameValid, setUsernameValid] = useState(true)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.username'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      },
-      {
-        title: app.translate('app.settings'),
-        slug: '/account/settings/'
-      }
-    ])
-    app.setContext(<AccountContext app={app} />)
-  }, [])
-
-  // Methods
   const updateUsername = (evt) => {
     let value = evt.target.value
     setUsername(value)
@@ -46,58 +27,66 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account" text>
-        <TextField
-          id="username"
-          fullWidth={true}
-          label={app.translate('account.username')}
-          margin="normal"
+    <AppWrapper
+      app={app}
+      title={app.translate('account.username')}
+      crumbs={[
+        { title: app.translate('app.account'), slug: '/account/' },
+        { title: app.translate('app.settings'), slug: '/account/settings/' }
+      ]}
+      context={<AccountContext app={app} />}
+      active="account"
+      text
+    >
+      <TextField
+        id="username"
+        fullWidth={true}
+        label={app.translate('account.username')}
+        margin="normal"
+        variant="outlined"
+        value={username}
+        type="text"
+        onChange={updateUsername}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              {usernameValid ? (
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
+              ) : (
+                <InvalidIcon color="error" data-test="invalid" />
+              )}
+            </InputAdornment>
+          )
+        }}
+      />
+      <p style={{ textAlign: 'right' }}>
+        <Button
+          size="large"
           variant="outlined"
-          value={username}
-          type="text"
-          onChange={updateUsername}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {usernameValid ? (
-                  <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
-                ) : (
-                  <InvalidIcon color="error" data-test="invalid" />
-                )}
-              </InputAdornment>
-            )
-          }}
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          data-test="save"
+          size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="contained"
+          color="primary"
+          disabled={!usernameValid}
+          onClick={() => app.updateAccount([username, 'username'], '/account/settings/')}
+        >
+          <FormattedMessage id="app.save" />
+        </Button>
+      </p>
+      <Blockquote type="note">
+        <FormattedMessage
+          id={'account.usernameInfo'}
+          values={{ em: (...chunks) => <em>{chunks}</em> }}
         />
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href="/account/settings"
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          <Button
-            data-test="save"
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            disabled={!usernameValid}
-            onClick={() => app.updateAccount([username, 'username'], '/account/settings/')}
-          >
-            <FormattedMessage id="app.save" />
-          </Button>
-        </p>
-        <Blockquote type="note">
-          <FormattedMessage
-            id={'account.usernameInfo'}
-            values={{ em: (...chunks) => <em>{chunks}</em> }}
-          />
-        </Blockquote>
-      </Layout>
+      </Blockquote>
     </AppWrapper>
   )
 }

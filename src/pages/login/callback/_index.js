@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 
 import { navigate } from 'gatsby'
 import Robot from '@freesewing/components/Robot'
@@ -14,12 +13,10 @@ const Page = (props) => {
     else return null
   }
 
-  // Hooks
   const app = useApp()
 
   // Effects
   useEffect(() => {
-    app.setTitle(app.translate('app.justAMoment'))
     app.setLoading(true)
     app.providerLogin({ validation: props.validation, confirmation: props.confirmation })
   }, [])
@@ -27,15 +24,13 @@ const Page = (props) => {
   const [error, setError] = useState(false)
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account">
-        {error && (
-          <div>
-            <Robot pose="ohno" size={300} />
-            <Error report={true} err={{ message: 'requestFailedWithStatusCode500' }} />
-          </div>
-        )}
-      </Layout>
+    <AppWrapper app={app} title={app.translate('app.justAMoment')} active="account">
+      {error && (
+        <div>
+          <Robot pose="ohno" size={300} />
+          <Error report={true} err={{ message: 'requestFailedWithStatusCode500' }} />
+        </div>
+      )}
     </AppWrapper>
   )
 }

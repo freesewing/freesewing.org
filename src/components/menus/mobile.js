@@ -123,7 +123,7 @@ const MobileMenu = ({ app, context }) => {
       </div>
 
       <MainAside app={app} />
-      <div className="context-wrapper">{app.context}</div>
+      <div className="context-wrapper">{context}</div>
     </div>
   )
 }

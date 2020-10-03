@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import usePerson from '../../hooks/usePerson'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -11,15 +10,10 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'gatsby'
 import Markdown from 'react-markdown'
 import capitalize from '@freesewing/utils/capitalize'
-
 import './patterns.css'
 
 const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.yourPatterns'))
-    app.setContext(context)
-  }, [])
 
   const newPatternButton = (
     <Button href="/create/" color="primary" variant="contained">
@@ -96,12 +90,16 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account">
-        <div className="pattern-list">
-          {Object.keys(app.patterns).length > 0 ? listState : blankState}
-        </div>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.yourPatterns')}
+      context={context}
+      active="account"
+      text
+    >
+      <div className="pattern-list">
+        {Object.keys(app.patterns).length > 0 ? listState : blankState}
+      </div>
     </AppWrapper>
   )
 }

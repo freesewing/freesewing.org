@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../../hooks/useApp'
-import usePerson from '../../../../hooks/usePerson'
 import AppWrapper from '../../../../components/app/wrapper'
-import Layout from '../../../../components/layouts/default'
-import PeopleContext from '../../../../components/context/people'
 
+import usePerson from '../../../../hooks/usePerson'
+import PeopleContext from '../../../../components/context/people'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
@@ -18,17 +17,13 @@ import { graphql } from 'gatsby'
 import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import Mdx from '../../../../components/mdx'
-
 import MeasurementsImages from '../../../../components/measurements/images'
 
 const Page = (props) => {
-  // Provided by pageContext
-  const measurement = props.pageContext.measurement
-
-  // Hooks
   const app = useApp()
 
-  // State
+  const measurement = props.pageContext.measurement
+
   const [person, setPerson] = useState({ ...usePerson(app, props.person) })
   const [updated, setUpdated] = useState(false)
   const [mm, setMm] = useState('')
@@ -45,36 +40,18 @@ const Page = (props) => {
     typeof measurementAsMm(value, person.units) === 'number' ? true : false
   )
 
+  useEffect(() => {
+    if (!person.measurements) setPerson({ ...person, measurements: {} })
+  }, [])
+
   // We'll need this a bunch of times
   const label = app.translate(`measurements.${measurement}`)
-
-  // Effects
-  useEffect(() => {
-    app.setTitle(label)
-    app.setCrumbs([
-      {
-        title: app.translate('app.people'),
-        slug: '/people/'
-      },
-      {
-        title: person.name,
-        slug: `/people/${props.person}/`
-      },
-      {
-        title: app.translate('app.measurements'),
-        slug: `/people/${props.person}/#measurements`
-      }
-    ])
-    if (!person.measurements) setPerson({ ...person, measurements: {} })
-    app.setContext(<PeopleContext app={app} />)
-  }, [])
 
   // If there's no measurements for this person, terminate the initial render,
   // that way, useEffect will populate the measurements triggering a re-render with
   // measurements present
   if (typeof person.measurements === 'undefined') return null
 
-  // Methods
   const updateMeasurement = (evt) => {
     let mm = false
     let valid = false
@@ -142,64 +119,73 @@ const Page = (props) => {
   const unitsText = isDegMeasurement(measurement) ? '°' : person.units === 'imperial' ? '"' : 'cm'
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account" text>
-        <TextField
-          data-test="measurement"
-          fullWidth={true}
-          label={label}
-          margin="normal"
+    <AppWrapper
+      app={app}
+      title={label}
+      context={<PeopleContext app={app} />}
+      crumbs={[
+        { title: app.translate('app.people'), slug: '/people/' },
+        { title: person.name, slug: `/people/${props.person}/` },
+        { title: app.translate('app.measurements'), slug: `/people/${props.person}/#measurements` }
+      ]}
+      active="account"
+      text
+    >
+      <TextField
+        data-test="measurement"
+        fullWidth={true}
+        label={label}
+        margin="normal"
+        variant="outlined"
+        value={value}
+        type="text"
+        helperText={helperText()}
+        onChange={updateMeasurement}
+        onKeyPress={(event) => {
+          if (event.key === 'Enter') saveMeasurement()
+        }}
+        autoFocus={true}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              {unitsText}
+              &nbsp;
+              {measurementInRange ? (
+                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
+              ) : (
+                <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
+              )}
+            </InputAdornment>
+          )
+        }}
+      />
+      <p style={{ textAlign: 'right' }}>
+        <Button
+          size="large"
           variant="outlined"
-          value={value}
-          type="text"
-          helperText={helperText()}
-          onChange={updateMeasurement}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') saveMeasurement()
-          }}
-          autoFocus={true}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {unitsText}
-                &nbsp;
-                {measurementInRange ? (
-                  <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
-                ) : (
-                  <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
-                )}
-              </InputAdornment>
-            )
-          }}
-        />
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href={`/people/${props.person}/#measurements`}
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          <Button
-            data-test="save"
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            disabled={!updated || !valid}
-            onClick={saveMeasurement}
-          >
-            <FormattedMessage id="app.save" />
-          </Button>
-        </p>
-        <h5 data-test="howto">
-          <FormattedMessage id="app.howToTakeMeasurements" />
-        </h5>
-        <MeasurementsImages measurement={measurement} breasts={person.breasts} />
-        <Mdx node={docs} />
-      </Layout>
+          color="primary"
+          href={`/people/${props.person}/#measurements`}
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          data-test="save"
+          size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="contained"
+          color="primary"
+          disabled={!updated || !valid}
+          onClick={saveMeasurement}
+        >
+          <FormattedMessage id="app.save" />
+        </Button>
+      </p>
+      <h5 data-test="howto">
+        <FormattedMessage id="app.howToTakeMeasurements" />
+      </h5>
+      <MeasurementsImages measurement={measurement} breasts={person.breasts} />
+      <Mdx node={docs} />
     </AppWrapper>
   )
 }

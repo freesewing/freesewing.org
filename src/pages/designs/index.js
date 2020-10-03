@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { list } from '@freesewing/pattern-info'
@@ -13,20 +12,11 @@ import SearchIcon from '@material-ui/icons/Search'
 import PostPreview from '../../components/post-preview'
 
 const Page = (props) => {
-  // Load minimal app hook for static content
   const app = useApp(false)
 
-  // State
   const [designs, setDesigns] = useState(list)
   const [filter, setFilter] = useState(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.designs'))
-    app.setContext(context)
-  }, [])
-
-  // Style
   const style = {
     wrapper: {
       display: 'flex',
@@ -52,37 +42,35 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="designs">
-        {filter ? (
-          <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
-        ) : (
-          <p style={{ textAlign: 'right' }}>
-            <Button onClick={() => setFilter(!filter)} variant="outlined">
-              <SearchIcon style={{ marginRight: '0.5rem' }} />
-              <FormattedMessage id="filter.filter" />
-            </Button>
-          </p>
-        )}
-        <div style={style.wrapper}>
-          {designs.map((design) => (
-            <PostPreview
-              designs
-              key={design}
-              app={app}
-              img={{
-                src: '/designs/' + design + '.jpg',
-                alt: capitalize(design)
-              }}
-              title={capitalize(design)}
-              description={app.translate('patterns.' + design + '.description')}
-              link={'/designs/' + design + '/'}
-              caption={design}
-              width={200}
-            />
-          ))}
-        </div>
-      </Layout>
+    <AppWrapper app={app} title={app.translate('app.designs')} context={context} active="designs">
+      {filter ? (
+        <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
+      ) : (
+        <p style={{ textAlign: 'right' }}>
+          <Button onClick={() => setFilter(!filter)} variant="outlined">
+            <SearchIcon style={{ marginRight: '0.5rem' }} />
+            <FormattedMessage id="filter.filter" />
+          </Button>
+        </p>
+      )}
+      <div style={style.wrapper}>
+        {designs.map((design) => (
+          <PostPreview
+            designs
+            key={design}
+            app={app}
+            img={{
+              src: '/designs/' + design + '.jpg',
+              alt: capitalize(design)
+            }}
+            title={capitalize(design)}
+            description={app.translate('patterns.' + design + '.description')}
+            link={'/designs/' + design + '/'}
+            caption={design}
+            width={200}
+          />
+        ))}
+      </div>
     </AppWrapper>
   )
 }

@@ -275,7 +275,7 @@ ${e.stack}
     )
 
   return (
-    <Layout app={app} active="designs" context={context}>
+    <Layout app={app} active="designs" context={context} title={props.title} crumbs={props.crumbs}>
       <article>{main}</article>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>

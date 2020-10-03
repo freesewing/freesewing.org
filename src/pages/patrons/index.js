@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
-import Layout from '../../components/layouts/default'
 
 import Button from '@material-ui/core/Button'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -12,16 +10,8 @@ import UserSocial from '../../components/user-social'
 import { graphql, Link } from 'gatsby'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.patrons'))
-    app.setContext(context)
-  }, [])
-
-  // Styles
   const styles = {
     patron: {
       width: '150px',
@@ -106,23 +96,27 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="community">
-        <div style={styles.list}>{list}</div>
-        <Blockquote type="note">
-          <h6>
-            <FormattedMessage id="app.supportFreesewing" />
-          </h6>
-          <p>
-            <FormattedMessage id="account.patronInfo" />
-          </p>
-          <p>
-            <Button variant="contained" color="primary" size="large" href="/patrons/join/">
-              <FormattedMessage id="app.becomeAPatron" />
-            </Button>
-          </p>
-        </Blockquote>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.patrons')}
+      context={context}
+      active="community"
+      text
+    >
+      <div style={styles.list}>{list}</div>
+      <Blockquote type="note">
+        <h6>
+          <FormattedMessage id="app.supportFreesewing" />
+        </h6>
+        <p>
+          <FormattedMessage id="account.patronInfo" />
+        </p>
+        <p>
+          <Button variant="contained" color="primary" size="large" href="/patrons/join/">
+            <FormattedMessage id="app.becomeAPatron" />
+          </Button>
+        </p>
+      </Blockquote>
     </AppWrapper>
   )
 }

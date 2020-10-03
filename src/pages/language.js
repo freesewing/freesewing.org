@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../hooks/useApp'
 import AppWrapper from '../components/app/wrapper'
-import Layout from '../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { languages } from '@freesewing/i18n'
 import Button from '@material-ui/core/Button'
 import { Link } from 'gatsby'
-
 import LanguageIcon from '../components/language-icon'
 
 const Page = (props) => {
   const app = useApp(false)
-  useEffect(() => {
-    app.setTitle(app.translate('account.language'))
-    app.setDescription(app.translate('account.languageTitle'))
-    app.setContext(context)
-  }, [])
 
   const styles = {
     button: {
@@ -58,41 +51,39 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} text>
-        {Object.keys(languages).map((lang) => {
-          let current = lang === process.env.GATSBY_LANGUAGE ? true : false
-          return (
-            <Button
-              key={lang}
-              style={styles.button}
-              variant={current ? 'contained' : 'outlined'}
-              color="primary"
-              href={'https://' + lang + '.freesewing.org'}
-              fullWidth
-              size="large"
-            >
-              <div style={styles.icon}>
-                <LanguageIcon language={lang} />
-              </div>
-              <div style={styles.text}>
-                {languages[lang]}
-                {current
-                  ? null
-                  : [
-                      <span key="open"> (</span>,
-                      <FormattedMessage id={'i18n.' + lang} key="lang" />,
-                      <span key="close">)</span>
-                    ]}
-              </div>
-              <div>
-                {lang}
-                <span style={styles.muted}>.freesewing.org</span>
-              </div>
-            </Button>
-          )
-        })}
-      </Layout>
+    <AppWrapper app={app} title={app.translate('account.language')} context={context} text>
+      {Object.keys(languages).map((lang) => {
+        let current = lang === process.env.GATSBY_LANGUAGE ? true : false
+        return (
+          <Button
+            key={lang}
+            style={styles.button}
+            variant={current ? 'contained' : 'outlined'}
+            color="primary"
+            href={'https://' + lang + '.freesewing.org'}
+            fullWidth
+            size="large"
+          >
+            <div style={styles.icon}>
+              <LanguageIcon language={lang} />
+            </div>
+            <div style={styles.text}>
+              {languages[lang]}
+              {current
+                ? null
+                : [
+                    <span key="open"> (</span>,
+                    <FormattedMessage id={'i18n.' + lang} key="lang" />,
+                    <span key="close">)</span>
+                  ]}
+            </div>
+            <div>
+              {lang}
+              <span style={styles.muted}>.freesewing.org</span>
+            </div>
+          </Button>
+        )
+      })}
     </AppWrapper>
   )
 }

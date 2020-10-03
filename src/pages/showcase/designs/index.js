@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import WideLayout from '../../../components/layouts/wide'
 
 import { graphql, Link } from 'gatsby'
 import { list as patternList } from '@freesewing/pattern-info'
 
 const Page = (props) => {
-  // State
   const app = useApp()
-
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.showcase') + ': ' + app.translate('app.patterns'))
-    app.setCrumbs([{ title: app.translate('app.showcase'), slug: '/showcase/' }])
-  }, [])
 
   const style = {
     wrapper: {
@@ -47,7 +39,12 @@ const Page = (props) => {
       patterns[p].push(node.node)
     }
   }
+
+  const title = app.translate('app.showcase') + ': ' + app.translate('app.patterns')
+
   const renderPatterns = () => {
+    let context = [<h5>{title}</h5>]
+    let list = []
     let output = []
     for (let pattern in patterns) {
       let showcases = []
@@ -74,30 +71,37 @@ const Page = (props) => {
         i++
       }
       if (i > 0) {
-        output.push(
-          <h2 key={`h2-${pattern}`}>
-            <Link to={`/showcase/designs/${pattern}/`}>
-              {app.translate(`patterns.${pattern}.title`)}
-            </Link>
-          </h2>
+        let link = (
+          <Link to={`/showcase/designs/${pattern}/`}>
+            {app.translate(`patterns.${pattern}.title`)}
+          </Link>
         )
+        output.push(<h2 key={`h2-${pattern}`}>{link}</h2>)
         output.push(
           <div key={`div-${pattern}`} style={style.wrapper}>
             {showcases}
           </div>
         )
+        list.push(<li key={`li-${pattern}`}>{link}</li>)
       }
     }
 
-    return output
+    context.push(<ul>{list}</ul>)
+
+    return [context, output]
   }
 
+  const [context, output] = renderPatterns()
+
   return (
-    <AppWrapper app={app}>
-      <WideLayout app={app}>
-        {renderPatterns()}
-        <div style={style.wrapper}></div>
-      </WideLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.showcase') + ': ' + app.translate('app.patterns')}
+      crumbs={[{ title: app.translate('app.showcase'), slug: '/showcase/' }]}
+      context={context}
+      active="showcase"
+    >
+      {output}
     </AppWrapper>
   )
 }

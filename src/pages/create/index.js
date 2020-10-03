@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -11,16 +10,6 @@ import capitalize from '@freesewing/utils/capitalize'
 
 const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.chooseADesign'))
-    app.setCrumbs([
-      {
-        slug: '/create',
-        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
-      }
-    ])
-    app.setContext(context)
-  }, [])
 
   const styles = {
     wrapper: {
@@ -80,30 +69,39 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="designs">
-        <div style={styles.wrapper}>
-          {list.map((pattern) => {
-            let title = app.translate(`patterns.${pattern}.title`)
-            return (
-              <div key={pattern} style={styles.post} className="shadow">
-                <Link
-                  data-test="post-link"
-                  to={`/create/${pattern}/`}
-                  style={styles.link}
-                  title={title}
-                >
-                  <LineDrawing pattern={pattern} size={app.mobile ? 92 : 164} />
-                  <h2 style={styles.title}>{capitalize(pattern)}</h2>
-                  <p style={styles.blurb}>
-                    <FormattedMessage id={'patterns.' + pattern + '.title'} />
-                  </p>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.chooseADesign')}
+      context={context}
+      crumbs={[
+        {
+          slug: '/create/',
+          title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+        }
+      ]}
+      active="designs"
+    >
+      <div style={styles.wrapper}>
+        {list.map((pattern) => {
+          let title = app.translate(`patterns.${pattern}.title`)
+          return (
+            <div key={pattern} style={styles.post} className="shadow">
+              <Link
+                data-test="post-link"
+                to={`/create/${pattern}/`}
+                style={styles.link}
+                title={title}
+              >
+                <LineDrawing pattern={pattern} size={app.mobile ? 92 : 164} />
+                <h2 style={styles.title}>{capitalize(pattern)}</h2>
+                <p style={styles.blurb}>
+                  <FormattedMessage id={'patterns.' + pattern + '.title'} />
+                </p>
+              </Link>
+            </div>
+          )
+        })}
+      </div>
     </AppWrapper>
   )
 }

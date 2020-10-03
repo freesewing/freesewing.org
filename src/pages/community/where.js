@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import useUiMdx from '../../hooks/useUiMdx'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
+
+import useUiMdx from '../../hooks/useUiMdx'
 import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from '../../components/mdx'
 import contributors from '../../../contributors.yaml'
@@ -11,21 +11,8 @@ import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
-
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('cty.whereToFindUs'))
-    app.setContext(context)
-    app.setCrumbs([
-      {
-        slug: '/community',
-        title: <span className="scribble">{app.translate('app.community')}</span>
-      }
-    ])
-  }, [])
 
   const teamMembers = (team) => {
     let members = []
@@ -69,13 +56,19 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="community" text noTitle>
-        <h1 className="scribble">
-          <FormattedMessage id="cty.whereToFindUs" />
-        </h1>
-        <Mdx node={uiMdx[`community/where`]} />
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('cty.whereToFindUs')}
+      context={context}
+      crumbs={[{ slug: '/community/', title: <FormattedMessage id="app.community" /> }]}
+      active="community"
+      text
+      noTitle
+    >
+      <h1 className="scribble">
+        <FormattedMessage id="cty.whereToFindUs" />
+      </h1>
+      <Mdx node={uiMdx[`community/where`]} />
     </AppWrapper>
   )
 }

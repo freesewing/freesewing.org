@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
-import PostPreview from '../../components/post-preview'
 
+import PostPreview from '../../components/post-preview'
 import { FormattedMessage } from 'react-intl'
 import StarIcon from '@material-ui/icons/Star'
 import PlayIcon from '@material-ui/icons/PlayArrow'
@@ -18,25 +17,10 @@ import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
 
 const Page = (props) => {
-  // Load minimal app hook for static content
   const app = useApp(false)
 
-  // Design name is passed to page context in gatsby-node.js
   const design = props.pageContext.design
 
-  // Effect
-  useEffect(() => {
-    app.setTitle(app.translate(`patterns.${design}.title`))
-    app.setCrumbs([
-      {
-        slug: '/designs',
-        title: <FormattedMessage id="app.designs" />
-      }
-    ])
-    app.setContext(context)
-  }, [])
-
-  // Style
   const styles = {
     wrapper: {
       display: 'flex',
@@ -119,138 +103,138 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="designs">
-        <p>
-          <Button
-            data-test="create"
-            style={{ marginRight: '1rem' }}
-            color="primary"
-            variant="contained"
-            size="large"
-            href={'/create/' + design + '/'}
-          >
-            <PlayIcon style={{ marginRight: '1rem' }} />
-            <FormattedMessage
-              id="app.newThing"
-              values={{ thing: design + ' ' + app.translate('app.pattern') }}
-            />
-          </Button>
-          <Button
-            data-test="docs"
-            color="primary"
-            variant="outlined"
-            size="large"
-            href={'/docs/patterns/' + design + '/'}
-          >
-            <DocsIcon style={{ marginRight: '1rem' }} />
-            <FormattedMessage id="app.docs" />
-          </Button>
-          <Hashtag
-            tag={`FreeSewing${capitalize(design)}`}
-            title={capitalize(design) + ' Hashtag'}
+    <AppWrapper
+      app={app}
+      title={app.translate(`patterns.${design}.title`)}
+      context={context}
+      active="designs"
+    >
+      <p>
+        <Button
+          data-test="create"
+          style={{ marginRight: '1rem' }}
+          color="primary"
+          variant="contained"
+          size="large"
+          href={'/create/' + design + '/'}
+        >
+          <PlayIcon style={{ marginRight: '1rem' }} />
+          <FormattedMessage
+            id="app.newThing"
+            values={{ thing: design + ' ' + app.translate('app.pattern') }}
           />
-        </p>
-        <div style={styles.wrapper}>
-          <div style={styles.col}>
-            <p id="description">
-              <FormattedMessage id={'patterns.' + design + '.description'} />
-            </p>
-            <LineDrawing pattern={design} />
-            <table style={styles.table}>
-              <tbody>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'filter.difficulty'} />
-                  </td>
-                  <td style={styles.valTd}>{difficulty}</td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'app.measurements'} />
-                  </td>
-                  <td style={styles.valTd}>{info.measurements.length}</td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'app.patternOptions'} />
-                  </td>
-                  <td style={styles.valTd}>{info.options.length}</td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'filter.department'} />
-                  </td>
-                  <td style={styles.valTd}>
-                    <FormattedMessage id={'filter.' + info.department} />
-                  </td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'filter.type'} />
-                  </td>
-                  <td style={styles.valTd}>
-                    <FormattedMessage id={'filter.' + info.type} />
-                  </td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'filter.design'} />
-                  </td>
-                  <td style={styles.valTd}>{nameList(info.design)}</td>
-                </tr>
-                <tr>
-                  <td style={styles.keyTd}>
-                    <FormattedMessage id={'filter.code'} />
-                  </td>
-                  <td style={styles.valTd}>{nameList(info.code)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style={styles.col}>
-            <img
-              data-test="cover"
-              src={'/designs/' + design + '.jpg'}
-              alt={design}
-              className="shadow"
-              style={styles.img}
+        </Button>
+        <Button
+          data-test="docs"
+          color="primary"
+          variant="outlined"
+          size="large"
+          href={'/docs/patterns/' + design + '/'}
+        >
+          <DocsIcon style={{ marginRight: '1rem' }} />
+          <FormattedMessage id="app.docs" />
+        </Button>
+        <Hashtag tag={`FreeSewing${capitalize(design)}`} title={capitalize(design) + ' Hashtag'} />
+      </p>
+      <div style={styles.wrapper}>
+        <div style={styles.col}>
+          <p id="description">
+            <FormattedMessage id={'patterns.' + design + '.description'} />
+          </p>
+          <LineDrawing pattern={design} />
+          <table style={styles.table}>
+            <tbody>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'filter.difficulty'} />
+                </td>
+                <td style={styles.valTd}>{difficulty}</td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'app.measurements'} />
+                </td>
+                <td style={styles.valTd}>{info.measurements.length}</td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'app.patternOptions'} />
+                </td>
+                <td style={styles.valTd}>{info.options.length}</td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'filter.department'} />
+                </td>
+                <td style={styles.valTd}>
+                  <FormattedMessage id={'filter.' + info.department} />
+                </td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'filter.type'} />
+                </td>
+                <td style={styles.valTd}>
+                  <FormattedMessage id={'filter.' + info.type} />
+                </td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'filter.design'} />
+                </td>
+                <td style={styles.valTd}>{nameList(info.design)}</td>
+              </tr>
+              <tr>
+                <td style={styles.keyTd}>
+                  <FormattedMessage id={'filter.code'} />
+                </td>
+                <td style={styles.valTd}>{nameList(info.code)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style={styles.col}>
+          <img
+            data-test="cover"
+            src={'/designs/' + design + '.jpg'}
+            alt={design}
+            className="shadow"
+            style={styles.img}
+          />
+        </div>
+        <div style={styles.col} data-test="measurements">
+          <h5>
+            <FormattedMessage id="app.requiredMeasurements" />
+          </h5>
+          <PatternMeasurements pattern={design} app={app} />
+        </div>
+        <div style={styles.col} data-test="options">
+          <h5>
+            <FormattedMessage id="app.patternOptions" />
+          </h5>
+          <PatternOptions pattern={design} app={app} />
+        </div>
+      </div>
+      <h2>
+        <FormattedMessage id="app.showcase" />
+      </h2>
+      <div style={styles.wrapper}>
+        {props.data.allMdx.edges.map((node) => {
+          if (node.node.frontmatter.patterns.indexOf(design) === -1) return null
+          return (
+            <PostPreview
+              key={node.node.parent.relativeDirectory}
+              app={app}
+              img={node.node.frontmatter.img.childImageSharp.fluid}
+              title={node.node.frontmatter.title}
+              description={node.node.excerpt}
+              link={'/' + node.node.parent.relativeDirectory + '/'}
+              caption={node.node.frontmatter.caption}
+              width={300}
             />
-          </div>
-          <div style={styles.col} data-test="measurements">
-            <h5>
-              <FormattedMessage id="app.requiredMeasurements" />
-            </h5>
-            <PatternMeasurements pattern={design} app={app} />
-          </div>
-          <div style={styles.col} data-test="options">
-            <h5>
-              <FormattedMessage id="app.patternOptions" />
-            </h5>
-            <PatternOptions pattern={design} app={app} />
-          </div>
-        </div>
-        <h2>
-          <FormattedMessage id="app.showcase" />
-        </h2>
-        <div style={styles.wrapper}>
-          {props.data.allMdx.edges.map((node) => {
-            if (node.node.frontmatter.patterns.indexOf(design) === -1) return null
-            return (
-              <PostPreview
-                key={node.node.parent.relativeDirectory}
-                app={app}
-                img={node.node.frontmatter.img.childImageSharp.fluid}
-                title={node.node.frontmatter.title}
-                description={node.node.excerpt}
-                link={'/' + node.node.parent.relativeDirectory + '/'}
-                caption={node.node.frontmatter.caption}
-                width={300}
-              />
-            )
-          })}
-        </div>
-      </Layout>
+          )
+        })}
+      </div>
     </AppWrapper>
   )
 }

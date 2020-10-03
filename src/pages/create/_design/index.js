@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 
 import usePeople from '../../../hooks/usePeople'
 import { FormattedMessage } from 'react-intl'
@@ -10,39 +9,35 @@ import SelectSize from '../../../components/draft/select-size'
 import SelectSizeContext from '../../../components/context/select-size'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
   const people = usePeople(app, props.pageContext.design)
 
   // Design is added to page context in gatsby-node
+  // FIXME: This does not seem to be the case (any longer)
   const design = props.pageContext.design
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.chooseASize'))
-    app.setCrumbs([
-      {
-        slug: '/create/',
-        title: (
-          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-        )
-      },
-      {
-        slug: '/create/',
-        title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
-      }
-    ])
-  }, [])
+  const crumbs = [
+    {
+      slug: '/create/',
+      title: <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+    },
+    {
+      slug: '/create/',
+      title: (
+        <FormattedMessage id="app.newThing" values={{ thing: design ? capitalize(design) : '' }} />
+      )
+    }
+  ]
 
   return (
-    <AppWrapper app={app} context={<SelectSizeContext app={app} design={design} people={people} />}>
-      <Layout
-        app={app}
-        active="designs"
-        context={<SelectSizeContext app={app} design={design} people={people} />}
-      >
-        <SelectSize app={app} design={design} people={people} />
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.chooseASize')}
+      context={<SelectSizeContext app={app} design={design} people={people} />}
+      crumbs={crumbs}
+      active="designs"
+    >
+      <SelectSize app={app} design={design} people={people} />
     </AppWrapper>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import Markdown from 'react-markdown'
 import UserSocial from '../../components/user-social'
@@ -9,27 +8,19 @@ import PatronStars from '../../components/patron-stars'
 import { FormattedMessage } from 'react-intl'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
 
-  // State
   const [user, setUser] = useState(false)
 
-  // Effects
   useEffect(() => {
-    app.setTitle(props.user)
-    app.setCrumbs([
-      {
-        slug: '/users/',
-        title: app.translate('app.users')
-      }
-    ])
     app.loadProfile(props.user).then((res) => {
       if (res.status === 200) setUser(res.data)
     })
   }, [props.user])
 
-  // Styles
+  // FIXME: Show something better than nothing in SSR
+  if (!user) return null
+
   const styles = {
     table: {
       padding: '0.5rem',
@@ -59,11 +50,7 @@ const Page = (props) => {
     }
   }
 
-  if (app.mobile) {
-    styles.table.margin = '0 -1.5rem'
-  }
-
-  if (!user) return null
+  if (app.mobile) styles.table.margin = '0 -1.5rem'
 
   const fields = {
     username: {
@@ -113,21 +100,23 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} top>
-        <table style={styles.table} className="font-title">
-          <tbody>
-            {Object.keys(fields).map((field) => (
-              <tr className="hover" key={field}>
-                <td style={styles.title}>
-                  <FormattedMessage id={fields[field].label} />
-                </td>
-                <td style={styles.cell}>{fields[field].value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={props.user}
+      crumbs={[{ slug: '/users/', title: <FormattedMessage id="app.users" /> }]}
+    >
+      <table style={styles.table} className="font-title">
+        <tbody>
+          {Object.keys(fields).map((field) => (
+            <tr className="hover" key={field}>
+              <td style={styles.title}>
+                <FormattedMessage id={fields[field].label} />
+              </td>
+              <td style={styles.cell}>{fields[field].value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </AppWrapper>
   )
 }

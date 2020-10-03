@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import useApp from '../../hooks/useApp'
-import useUiMdx from '../../hooks/useUiMdx'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
+
+import useUiMdx from '../../hooks/useUiMdx'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 import Mdx from '../../components/mdx'
@@ -14,22 +14,8 @@ import { graphql, Link } from 'gatsby'
 import '../../components/cmty/style.scss'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
-  console.log(props.data)
-
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('cty.whoWeAre'))
-    app.setContext(context)
-    app.setCrumbs([
-      {
-        slug: '/community',
-        title: <span className="scribble">{app.translate('app.community')}</span>
-      }
-    ])
-  }, [])
 
   const context = [
     <h5>
@@ -63,52 +49,58 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="community" text noTitle>
-        <h1 className="scribble">
-          <FormattedMessage id="cty.whoWeAre" />
-        </h1>
-        <ul className="links">
-          <li>
-            <a href="#contributors">
-              <FormattedMessage id="cty.contributors" />
-            </a>
-          </li>
-          <li>
-            <a href="#patrons">
-              <FormattedMessage id="app.patrons" />
-            </a>
-          </li>
-        </ul>
-        <h2 id="contributors">
-          <FormattedMessage id="cty.contributors" />
-        </h2>
-        {contributors.people.map((person) => (
-          <div id={person.name.toLowerCase()}>
-            <Contributor contributor={person} app={app} key={person.name} />
-          </div>
-        ))}
-        <Mdx node={uiMdx[`community/who`]} />
-        <h2 id="patrons">
-          <FormattedMessage id="app.patrons" />
-        </h2>
-        <Blockquote type="note">
-          <h4>
-            <FormattedMessage id="app.supportFreesewing" />
-          </h4>
-          <p>
-            <FormattedMessage id="account.patronInfo" />
-          </p>
-          <p>
-            <Button variant="contained" color="primary" size="large" href="/patrons/join/">
-              <FormattedMessage id="app.becomeAPatron" />
-            </Button>
-          </p>
-        </Blockquote>
-        {props.data.allFsPatron.edges.map((node) => (
-          <Patron patron={node.node.patron} id={node.node.patron.handle} />
-        ))}
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('cty.whoWeAre')}
+      context={context}
+      crumbs={[{ slug: '/community/', title: <FormattedMessage id="app.community" /> }]}
+      active="community"
+      text
+      noTitle
+    >
+      <h1 className="scribble">
+        <FormattedMessage id="cty.whoWeAre" />
+      </h1>
+      <ul className="links">
+        <li>
+          <a href="#contributors">
+            <FormattedMessage id="cty.contributors" />
+          </a>
+        </li>
+        <li>
+          <a href="#patrons">
+            <FormattedMessage id="app.patrons" />
+          </a>
+        </li>
+      </ul>
+      <h2 id="contributors">
+        <FormattedMessage id="cty.contributors" />
+      </h2>
+      {contributors.people.map((person) => (
+        <div id={person.name.toLowerCase()}>
+          <Contributor contributor={person} app={app} key={person.name} />
+        </div>
+      ))}
+      <Mdx node={uiMdx[`community/who`]} />
+      <h2 id="patrons">
+        <FormattedMessage id="app.patrons" />
+      </h2>
+      <Blockquote type="note">
+        <h4>
+          <FormattedMessage id="app.supportFreesewing" />
+        </h4>
+        <p>
+          <FormattedMessage id="account.patronInfo" />
+        </p>
+        <p>
+          <Button variant="contained" color="primary" size="large" href="/patrons/join/">
+            <FormattedMessage id="app.becomeAPatron" />
+          </Button>
+        </p>
+      </Blockquote>
+      {props.data.allFsPatron.edges.map((node) => (
+        <Patron patron={node.node.patron} id={node.node.patron.handle} />
+      ))}
     </AppWrapper>
   )
 }

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../hooks/useApp'
 import AppWrapper from '../components/app/wrapper'
-import Layout from '../components/layouts/default'
 
 import Robot from '@freesewing/components/Robot'
 import Button from '@material-ui/core/Button'
@@ -12,10 +11,6 @@ import { FormattedMessage } from 'react-intl'
 
 const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('errors.404'))
-    app.setDescription('404: ' + app.translate('errors.404'))
-  }, [])
 
   const styles = {
     wrapper: {
@@ -47,13 +42,15 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app}>
-        <div style={{ textAlign: 'center' }}>
-          <Robot size={300} pose="shrug" />
-          <h2>404</h2>
-        </div>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('errors.404')}
+      description={'404: ' + app.translate('errors.404')}
+    >
+      <div style={{ textAlign: 'center' }}>
+        <Robot size={300} pose="shrug" />
+        <h2>404</h2>
+      </div>
     </AppWrapper>
   )
 }

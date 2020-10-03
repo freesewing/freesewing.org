@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
-import usePerson from '../../../hooks/usePerson'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
-import PeopleContext from '../../../components/context/people'
 
+import usePerson from '../../../hooks/usePerson'
+import PeopleContext from '../../../components/context/people'
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
 import RefreshIcon from '@material-ui/icons/Refresh'
@@ -25,33 +24,18 @@ import InvalidIcon from '@material-ui/icons/Help'
 import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
-
 import Person from '../../../components/person'
 import SizingGraph from '../../../components/person/size-graph'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
 
-  // State
   const [filter, setFilter] = useState(app.vars.designFilter || false)
   const [person, setPerson] = useState({ ...usePerson(app, props.person) })
 
-  if (!app.account.username) return null // FIXME: Do something better for SSR
+  // FIXME: Show something better than nothing in SSR
+  if (!app.account.username) return null
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(person.name)
-    app.setCrumbs([
-      {
-        slug: '/people/',
-        title: app.translate('app.people')
-      }
-    ])
-    app.setContext(<PeopleContext app={app} />)
-  }, [])
-
-  // Methods
   const updateFilter = (evt) => {
     if (evt === false) {
       setFilter(false)
@@ -160,7 +144,6 @@ const Page = (props) => {
     )
   }
 
-  // Styles
   const styles = {
     avatarWrapper: {
       width: '250px',
@@ -253,259 +236,260 @@ const Page = (props) => {
 
   const blankSlate = !person.measurements || !person.measurements.neck
 
+  // Methods
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account">
-        <table style={styles.table} className="font-title">
-          <tbody>
-            {/* name */}
+    <AppWrapper
+      app={app}
+      title={app.translate(person.name)}
+      context={<PeopleContext app={app} />}
+      crumbs={[{ slug: '/people/', title: <FormattedMessage id="app.people" /> }]}
+      active="account"
+    >
+      <table style={styles.table} className="font-button">
+        <tbody>
+          {/* name */}
+          <tr className="hover">
+            <td style={styles.title}>
+              <FormattedMessage id="app.name" />
+            </td>
+            <td style={styles.cell}>{person.name}</td>
+            <td style={styles.buttonCell}>
+              <IconButton
+                color="primary"
+                style={styles.iconButton}
+                size="medium"
+                href={'/people/' + props.person + '/name/'}
+              >
+                <EditIcon fontSize="inherit" style={styles.icon} />
+              </IconButton>
+            </td>
+          </tr>
+          {/* chest */}
+          <tr className="hover">
+            <td style={styles.title}>
+              <FormattedMessage id="app.chest" />
+            </td>
+            <td style={styles.cell}>
+              <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
+            </td>
+            <td style={styles.buttonCell}>
+              <IconButton
+                color="primary"
+                style={styles.iconButton}
+                size="medium"
+                onClick={
+                  () =>
+                    app
+                      .updatePerson(props.person, [!person.breasts, 'breasts'])
+                      .then((res) => setPerson(usePerson(app, props.person)))
+                  // We force a re-render here by setting state after the promise resolves
+                }
+              >
+                <RefreshIcon fontSize="inherit" style={styles.icon} />
+              </IconButton>
+            </td>
+          </tr>
+          {/* units */}
+          <tr className="hover">
+            <td style={styles.title}>
+              <FormattedMessage id="account.units" />
+            </td>
+            <td style={styles.cell}>
+              <FormattedMessage id={'app.' + person.units + 'Units'} />
+            </td>
+            <td style={styles.buttonCell}>
+              <IconButton
+                color="primary"
+                style={styles.iconButton}
+                size="medium"
+                onClick={
+                  () =>
+                    app
+                      .updatePerson(props.person, [
+                        person.units === 'metric' ? 'imperial' : 'metric',
+                        'units'
+                      ])
+                      .then((res) => setPerson(usePerson(app, props.person)))
+                  // We force a re-render here by setting state after the promise resolves
+                }
+              >
+                <RefreshIcon fontSize="inherit" style={styles.icon} />
+              </IconButton>
+            </td>
+          </tr>
+          {/* avatar */}
+          {['avatar', 'notes'].map((field) => (
             <tr className="hover">
               <td style={styles.title}>
-                <FormattedMessage id="app.name" />
+                <FormattedMessage id={field === 'notes' ? 'app.notes' : `account.avatar`} />
               </td>
-              <td style={styles.cell}>{person.name}</td>
+              <td style={styles.cell}>
+                {field === 'avatar' ? (
+                  <img
+                    style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                    src={app.people[props.person].pictureUris.xs}
+                  />
+                ) : (
+                  ''
+                )}
+              </td>
               <td style={styles.buttonCell}>
                 <IconButton
                   color="primary"
                   style={styles.iconButton}
                   size="medium"
-                  href={'/people/' + props.person + '/name/'}
+                  href={`/people/${props.person}/${field}/`}
                 >
                   <EditIcon fontSize="inherit" style={styles.icon} />
                 </IconButton>
               </td>
             </tr>
-            {/* chest */}
-            <tr className="hover">
-              <td style={styles.title}>
-                <FormattedMessage id="app.chest" />
-              </td>
-              <td style={styles.cell}>
-                <FormattedMessage id={'app.with' + (person.breasts ? '' : 'out') + 'Breasts'} />
-              </td>
-              <td style={styles.buttonCell}>
-                <IconButton
-                  color="primary"
-                  style={styles.iconButton}
-                  size="medium"
-                  onClick={
-                    () =>
-                      app
-                        .updatePerson(props.person, [!person.breasts, 'breasts'])
-                        .then((res) => setPerson(usePerson(app, props.person)))
-                    // We force a re-render here by setting state after the promise resolves
-                  }
-                >
-                  <RefreshIcon fontSize="inherit" style={styles.icon} />
-                </IconButton>
-              </td>
-            </tr>
-            {/* units */}
-            <tr className="hover">
-              <td style={styles.title}>
-                <FormattedMessage id="account.units" />
-              </td>
-              <td style={styles.cell}>
-                <FormattedMessage id={'app.' + person.units + 'Units'} />
-              </td>
-              <td style={styles.buttonCell}>
-                <IconButton
-                  color="primary"
-                  style={styles.iconButton}
-                  size="medium"
-                  onClick={
-                    () =>
-                      app
-                        .updatePerson(props.person, [
-                          person.units === 'metric' ? 'imperial' : 'metric',
-                          'units'
-                        ])
-                        .then((res) => setPerson(usePerson(app, props.person)))
-                    // We force a re-render here by setting state after the promise resolves
-                  }
-                >
-                  <RefreshIcon fontSize="inherit" style={styles.icon} />
-                </IconButton>
-              </td>
-            </tr>
-            {/* avatar */}
-            {['avatar', 'notes'].map((field) => (
-              <tr className="hover">
-                <td style={styles.title}>
-                  <FormattedMessage id={field === 'notes' ? 'app.notes' : `account.avatar`} />
-                </td>
-                <td style={styles.cell}>
-                  {field === 'avatar' ? (
-                    <img
-                      style={{ width: '50px', height: '50px', borderRadius: '50%' }}
-                      src={app.people[props.person].pictureUris.xs}
-                    />
-                  ) : (
-                    ''
-                  )}
-                </td>
-                <td style={styles.buttonCell}>
-                  <IconButton
-                    color="primary"
-                    style={styles.iconButton}
-                    size="medium"
-                    href={`/people/${props.person}/${field}/`}
-                  >
-                    <EditIcon fontSize="inherit" style={styles.icon} />
-                  </IconButton>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
 
-        {person.notes && (
-          <>
-            <h5 style={styles.heading} data-test="notes-title">
-              <FormattedMessage id="app.notes" />
-              <IconButton
-                data-test="edit-notes"
-                color="primary"
-                style={styles.iconButton}
-                size="medium"
-                href={'/people/' + props.person + '/notes/'}
-              >
-                <EditIcon fontSize="inherit" style={styles.icon} />
-              </IconButton>
-            </h5>
-            <Markdown source={person.notes} data-test="notes" />
-          </>
-        )}
+      {person.notes && (
+        <>
+          <h5 style={styles.heading} data-test="notes-title">
+            <FormattedMessage id="app.notes" />
+            <IconButton
+              data-test="edit-notes"
+              color="primary"
+              style={styles.iconButton}
+              size="medium"
+              href={'/people/' + props.person + '/notes/'}
+            >
+              <EditIcon fontSize="inherit" style={styles.icon} />
+            </IconButton>
+          </h5>
+          <Markdown source={person.notes} data-test="notes" />
+        </>
+      )}
 
-        <h5 id="measurements" style={styles.heading} data-test="measurements-title">
-          <FormattedMessage id="app.measurements" />
-        </h5>
-        <div
+      <h5 id="measurements" style={styles.heading} data-test="measurements-title">
+        <FormattedMessage id="app.measurements" />
+      </h5>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '1rem',
+          maxWidth: '666px'
+        }}
+      >
+        <Button
+          color="primary"
+          variant="link"
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '1rem',
-            maxWidth: '666px'
+            marginLeft: '1rem',
+            padding: '0 1rem'
           }}
+          disabled={filter ? false : true}
+          onClick={() => updateFilter(false)}
         >
-          <Button
-            color="primary"
-            variant="link"
-            style={{
-              marginLeft: '1rem',
-              padding: '0 1rem'
-            }}
-            disabled={filter ? false : true}
-            onClick={() => updateFilter(false)}
-          >
-            <FormattedMessage id="filter.resetFilter" />
-          </Button>
-          <Select value={filter} onChange={updateFilter} variant="outlined" color="primary">
-            <MenuItem value={false}>
-              <FormattedMessage id="filter.byPattern" />
+          <FormattedMessage id="filter.resetFilter" />
+        </Button>
+        <Select value={filter} onChange={updateFilter} variant="outlined" color="primary">
+          <MenuItem value={false}>
+            <FormattedMessage id="filter.byPattern" />
+          </MenuItem>
+          {list.map((pattern) => (
+            <MenuItem key={pattern} value={pattern}>
+              {capitalize(pattern)}
             </MenuItem>
-            {list.map((pattern) => (
-              <MenuItem key={pattern} value={pattern}>
-                {capitalize(pattern)}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-        <table style={styles.table} className="font-title">
-          <tbody>
-            <tr>
-              <td
-                style={{
-                  ...styles.valueCell,
-                  textAlign: 'right',
-                  paddingRight: 'calc(1rem + 25px)'
-                }}
-              >
-                <b>
-                  <FormattedMessage id="app.name" />
-                </b>
-              </td>
-              <td style={styles.valueCell}>
-                <FormattedMessage id="app.estimate" />
-              </td>
-              <td style={styles.valueCell}>
-                <b>
-                  <FormattedMessage id="app.actual" />
-                </b>
-              </td>
-              <td style={styles.buttonCell}></td>
-            </tr>
-            {person.measurements &&
-              Object.keys(person.measurements).map((m) => {
-                if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
-                let value = person.measurements[m]
-                const measurementEstimate = neckstimate(
-                  person.measurements.neck || 360,
-                  m,
-                  person.breasts
-                )
-                if (value) {
-                  const measurementInRange =
-                    measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <=
-                    2
-
-                  return measurementRow(m, value, measurementEstimate, measurementInRange)
-                } else return measurementRow(m, value, measurementEstimate, false)
-              })}
-            {remainingMeasurements().map((m) => {
+          ))}
+        </Select>
+      </div>
+      <table style={styles.table} className="font-button">
+        <tbody>
+          <tr>
+            <td
+              style={{
+                ...styles.valueCell,
+                textAlign: 'right',
+                paddingRight: 'calc(1rem + 25px)'
+              }}
+            >
+              <b>
+                <FormattedMessage id="app.name" />
+              </b>
+            </td>
+            <td style={styles.valueCell}>
+              <FormattedMessage id="app.estimate" />
+            </td>
+            <td style={styles.valueCell}>
+              <b>
+                <FormattedMessage id="app.actual" />
+              </b>
+            </td>
+            <td style={styles.buttonCell}></td>
+          </tr>
+          {person.measurements &&
+            Object.keys(person.measurements).map((m) => {
               if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
-              else return measurementRow(m)
+              let value = person.measurements[m]
+              const measurementEstimate = neckstimate(
+                person.measurements.neck || 360,
+                m,
+                person.breasts
+              )
+              if (value) {
+                const measurementInRange =
+                  measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <= 2
+
+                return measurementRow(m, value, measurementEstimate, measurementInRange)
+              } else return measurementRow(m, value, measurementEstimate, false)
             })}
-          </tbody>
-        </table>
-        {/* measurements */}
-        <h5 id="measurements" style={styles.heading} data-test="measurements-title">
-          <FormattedMessage id="app.measurements" />
-        </h5>
-        {blankSlate && (
-          <Blockquote type="note" data-test="blank-slate">
-            <h6>
-              <FormattedMessage id="app.startWithNeckTitle" />
-            </h6>
-            <p>
-              <FormattedMessage id="app.startWithNeckDescription" />
-            </p>
-            <p style={{ textAlign: 'right' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                href={`/people/${props.person}/measurements/neck`}
-                data-test="add-neck"
-              >
-                <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
-                <FormattedMessage id="measurements.neck" />
-              </Button>
-            </p>
-          </Blockquote>
-        )}
-        {!blankSlate && (
-          <SizingGraph
-            breasts={true}
-            person={{ measurements: person.measurements, label: person.name }}
-            app={app}
-          />
-        )}
-        <p style={{ textAlign: 'center' }}>
-          <Button
-            data-test="remove"
-            className="danger"
-            color="primary"
-            variant="contained"
-            onClick={() => app.removePerson(props.person)}
-            size="large"
-          >
-            <FormattedMessage
-              id="app.removeThing"
-              values={{ thing: app.translate('app.person') }}
-            />
-          </Button>
-        </p>
-      </Layout>
+          {remainingMeasurements().map((m) => {
+            if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
+            else return measurementRow(m)
+          })}
+        </tbody>
+      </table>
+      {/* measurements */}
+      <h5 id="measurements" style={styles.heading} data-test="measurements-title">
+        <FormattedMessage id="app.measurements" />
+      </h5>
+      {blankSlate && (
+        <Blockquote type="note" data-test="blank-slate">
+          <h6>
+            <FormattedMessage id="app.startWithNeckTitle" />
+          </h6>
+          <p>
+            <FormattedMessage id="app.startWithNeckDescription" />
+          </p>
+          <p style={{ textAlign: 'right' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              href={`/people/${props.person}/measurements/neck`}
+              data-test="add-neck"
+            >
+              <AddIcon fontSize="inherit" style={{ marginRight: '0.5rem' }} />
+              <FormattedMessage id="measurements.neck" />
+            </Button>
+          </p>
+        </Blockquote>
+      )}
+      {!blankSlate && (
+        <SizingGraph
+          breasts={true}
+          person={{ measurements: person.measurements, label: person.name }}
+          app={app}
+        />
+      )}
+      <p style={{ textAlign: 'center' }}>
+        <Button
+          data-test="remove"
+          className="danger"
+          color="primary"
+          variant="contained"
+          onClick={() => app.removePerson(props.person)}
+          size="large"
+        >
+          <FormattedMessage id="app.removeThing" values={{ thing: app.translate('app.person') }} />
+        </Button>
+      </p>
     </AppWrapper>
   )
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
 import AppWrapper from '../components/app/wrapper'
-import WideLayout from '../components/layouts/wide'
 
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
@@ -207,20 +206,18 @@ const HomePage = (props) => {
         </div>
 
         {/* First row of text boxes */}
-        <WideLayout app={app} noTitle>
-          <div className="boxes">
-            <div>
-              <h2>Latest news</h2>
-              <LatestNews />
-            </div>
-            <div>
-              <Mdx node={uiMdx[`homepage/row-1`]} />
-            </div>
-            <div>
-              <Mdx node={uiMdx[`homepage/row-2`]} />
-            </div>
+        <div className="boxes">
+          <div>
+            <h2>Latest news</h2>
+            <LatestNews />
           </div>
-        </WideLayout>
+          <div>
+            <Mdx node={uiMdx[`homepage/row-1`]} />
+          </div>
+          <div>
+            <Mdx node={uiMdx[`homepage/row-2`]} />
+          </div>
+        </div>
 
         {/* Latest blog posts */}
         <div id="blog">

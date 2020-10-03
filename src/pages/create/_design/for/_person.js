@@ -21,27 +21,22 @@ const Page = (props) => {
       </AppWrapper>
     )
 
-  // Effects
-  useEffect(() => {
-    app.setCrumbs([
-      {
-        slug: `/create/`,
-        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
-      },
-      {
-        slug: `/create/${props.pageContext.design}/`,
-        title: app.translate('app.newThing', {
-          thing: app.translate(`patterns.${props.pageContext.design}.title`)
-        })
-      }
-    ])
-    app.setTitle(
-      app.translate('app.newPatternForModel', {
-        pattern: app.translate(`patterns.${props.pageContext.design}.title`),
-        model: person.name || props.person
+  const crumbs = [
+    {
+      slug: `/create/`,
+      title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+    },
+    {
+      slug: `/create/${props.pageContext.design}/`,
+      title: app.translate('app.newThing', {
+        thing: app.translate(`patterns.${props.pageContext.design}.title`)
       })
-    )
-  }, [props.person])
+    }
+  ]
+  const title = app.translate('app.newPatternForModel', {
+    pattern: app.translate(`patterns.${props.pageContext.design}.title`),
+    model: person.name || props.person
+  })
 
   // Initial pattern data
   const data = {
@@ -74,7 +69,7 @@ const Page = (props) => {
   else fabs.push('units')
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" noLayout>
       <DraftUi
         mode="create"
         app={app}
@@ -82,6 +77,8 @@ const Page = (props) => {
         design={props.pageContext.design}
         data={data}
         fabs={fabs}
+        title={title}
+        crumbs={crumbs}
       />
     </AppWrapper>
   )

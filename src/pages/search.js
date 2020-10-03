@@ -1,21 +1,15 @@
 import React, { useEffect } from 'react'
 import useApp from '../hooks/useApp'
 import AppWrapper from '../components/app/wrapper'
-import Layout from '../components/layouts/default'
 
 import Search from '../components/search'
 
 const Page = (props) => {
-  const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.search'))
-  }, [])
+  const app = useApp(false)
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app}>
-        <Search search={app.translate('app.search')} />
-      </Layout>
+    <AppWrapper app={app} title={app.translate('app.search')}>
+      <Search search={app.translate('app.search')} />
     </AppWrapper>
   )
 }

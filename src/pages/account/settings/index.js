@@ -1,31 +1,23 @@
 import React, { useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
-import AccountMenu from '../../../components/menus/account'
 import AccountContext from '../../../components/context/account'
 
+import AccountMenu from '../../../components/menus/account'
+
 const Page = (props) => {
-  // Hooks
   const app = useApp()
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.settings'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      }
-    ])
-    app.setContext(<AccountContext app={app} />)
-  }, [])
-
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account" text>
-        <AccountMenu app={app} className="transparent" settingsOnly />
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.settings')}
+      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
+      context={<AccountContext app={app} />}
+      active="account"
+      text
+    >
+      <AccountMenu app={app} className="transparent" settingsOnly />
     </AppWrapper>
   )
 }

@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import { Link, graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
 
 const Page = (props) => {
-  // Load minimal app hook for static content
   const app = useApp(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.blog'))
-    app.setDescription(app.translate('intro.txt-blog'))
-    app.setContext(context)
-  }, [])
-
-  // Style
   const style = {
     wrapper: {
       display: 'flex',
@@ -26,6 +16,7 @@ const Page = (props) => {
       justifyContent: 'center'
     }
   }
+
   const context = [
     <h5>Blog posts</h5>,
     <ul>
@@ -40,23 +31,21 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="blog">
-        <div style={style.wrapper}>
-          {props.data.allMdx.edges.map((node) => (
-            <PostPreview
-              key={node.node.parent.relativeDirectory}
-              app={app}
-              img={node.node.frontmatter.img.childImageSharp.fluid}
-              title={node.node.frontmatter.title}
-              description={node.node.excerpt}
-              link={'/' + node.node.parent.relativeDirectory + '/'}
-              caption={node.node.frontmatter.caption}
-              width={400}
-            />
-          ))}
-        </div>
-      </Layout>
+    <AppWrapper app={app} title={app.translate('app.blog')} context={context} active="blog">
+      <div style={style.wrapper}>
+        {props.data.allMdx.edges.map((node) => (
+          <PostPreview
+            key={node.node.parent.relativeDirectory}
+            app={app}
+            img={node.node.frontmatter.img.childImageSharp.fluid}
+            title={node.node.frontmatter.title}
+            description={node.node.excerpt}
+            link={'/' + node.node.parent.relativeDirectory + '/'}
+            caption={node.node.frontmatter.caption}
+            width={400}
+          />
+        ))}
+      </div>
     </AppWrapper>
   )
 }

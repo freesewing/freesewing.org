@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
 
 import { useDropzone } from 'react-dropzone'
@@ -10,10 +9,10 @@ import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
 
 const Page = (props) => {
-  // Hooks
   const app = useApp()
 
-  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+  // FIXME: Show something better than nothing in SSR
+  if (!app.account.username) return null
 
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
@@ -22,28 +21,11 @@ const Page = (props) => {
     }
     acceptedFiles.forEach((file) => reader.readAsDataURL(file))
   }, [])
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
-  // State
   const [img, setImg] = useState(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.avatar'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      },
-      {
-        title: app.translate('app.settings'),
-        slug: '/account/settings/'
-      }
-    ])
-    app.setContext(<AccountContext app={app} />)
-  }, [])
-
-  // Styles
   const styles = {
     wrapper: {
       display: 'flex',
@@ -71,54 +53,62 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account" text>
-        <div style={styles.wrapper}>
-          <img
-            alt="avatar"
-            src={img || app.account.pictureUris.m}
-            style={styles.avatar}
-            className="shadow"
-          />
-          <div {...getRootProps()} style={styles.dropzone}>
-            <input {...getInputProps()} />
-            <p data-test="instructions">
-              <FormattedMessage id="app.dragAndDropImageHere" />
-            </p>
-            <p>
-              <Button variant="outlined" color="primary" data-test="pick-file">
-                <FormattedMessage id="app.selectImage" />
-              </Button>
-            </p>
-          </div>
-        </div>
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href="/account/settings"
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          {img ? (
-            <Button
-              data-test="save"
-              style={{ marginLeft: '1rem' }}
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={() => app.updateAccount([img, 'avatar'], '/account/settings/')}
-            >
-              <FormattedMessage id="app.save" />
+    <AppWrapper
+      app={app}
+      title={app.translate('account.avatar')}
+      crumbs={[
+        { title: app.translate('app.account'), slug: '/account/' },
+        { title: app.translate('app.settings'), slug: '/account/settings/' }
+      ]}
+      context={<AccountContext app={app} />}
+      active="account"
+      text
+    >
+      <div style={styles.wrapper}>
+        <img
+          alt="avatar"
+          src={img || app.account.pictureUris.m}
+          style={styles.avatar}
+          className="shadow"
+        />
+        <div {...getRootProps()} style={styles.dropzone}>
+          <input {...getInputProps()} />
+          <p data-test="instructions">
+            <FormattedMessage id="app.dragAndDropImageHere" />
+          </p>
+          <p>
+            <Button variant="outlined" color="primary" data-test="pick-file">
+              <FormattedMessage id="app.selectImage" />
             </Button>
-          ) : null}
-        </p>
-        <Blockquote type="note">
-          <FormattedMessage id="account.avatarInfo" />
-        </Blockquote>
-      </Layout>
+          </p>
+        </div>
+      </div>
+      <p style={{ textAlign: 'right' }}>
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        {img ? (
+          <Button
+            data-test="save"
+            style={{ marginLeft: '1rem' }}
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() => app.updateAccount([img, 'avatar'], '/account/settings/')}
+          >
+            <FormattedMessage id="app.save" />
+          </Button>
+        ) : null}
+      </p>
+      <Blockquote type="note">
+        <FormattedMessage id="account.avatarInfo" />
+      </Blockquote>
     </AppWrapper>
   )
 }
