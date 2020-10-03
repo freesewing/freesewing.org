@@ -1,0 +1,38 @@
+@import '../../../node_modules/open-color/open-color.scss';
+div.readmore {
+  border: 1px solid $oc-violet-1;
+  border-radius: 4px;
+  h6,
+  h5 {
+    margin: 0;
+    padding: 0 0.5rem;
+    background: $oc-violet-1;
+  }
+
+  ul {
+    padding: 0.5rem;
+    font-family: 'Roboto condensed';
+    margin: 0;
+    list-style-type: none;
+    line-height: 1.25;
+    li a {
+      display: block;
+      margin: 0 -0.5rem;
+      padding: 0.25rem 0.5rem;
+    }
+    li a:hover {
+      background: $oc-violet-0;
+      text-decoration: none;
+    }
+  }
+}
+.theme-wrapper.dark div.readmore {
+  border-color: $oc-gray-8;
+  h6,
+  h5 {
+    background: $oc-gray-8;
+  }
+  ul li a:hover {
+    background: $oc-gray-8;
+  }
+}

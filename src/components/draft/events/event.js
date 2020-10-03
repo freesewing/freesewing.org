@@ -1,5 +1,6 @@
 import React from 'react'
 import DebugIcon from '@material-ui/icons/Info'
+import InfoIcon from '@material-ui/icons/Stars'
 import WarningIcon from '@material-ui/icons/ErrorOutline'
 import ErrorIcon from '@material-ui/icons/HighlightOff'
 import Markdown from 'react-markdown'
@@ -28,10 +29,18 @@ const Event = ({ type, event, app }) => {
       else if (Array.isArray(e)) {
         for (const subevent of e) data.concat(formatEvent(subevent, data))
       } else data.push(formatObject(e))
-    } else
-      data.push(
-        <Markdown source={`**${app.translate('app.' + type)}:** ${e}`} className="react-markdown" />
-      )
+    } else {
+      if (app.intl.messages[e]) e = app.intl.messages[e]
+      else if (app.intl.messages[`plugin.${e}`]) e = app.intl.messages[`plugin.${e}`]
+      if (type === 'info') data.push(<Markdown source={e} className="react-markdown" />)
+      else
+        data.push(
+          <Markdown
+            source={`**${app.translate('app.' + type)}:** ${e}`}
+            className="react-markdown"
+          />
+        )
+    }
 
     return data
   }
@@ -40,6 +49,7 @@ const Event = ({ type, event, app }) => {
     <div className={`draft-event ${type}`}>
       <div className={`icon ${type}`}>
         {type === 'debug' && <DebugIcon fontSize="small" />}
+        {type === 'info' && <InfoIcon fontSize="small" />}
         {type === 'warning' && <WarningIcon fontSize="small" />}
         {type === 'error' && <ErrorIcon fontSize="small" />}
       </div>

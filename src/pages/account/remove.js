@@ -1,56 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
+import AccountContext from '../../components/context/account'
 
-const RemoveAccountPage = (props) => {
-  // Hooks
+const Page = (props) => {
   const app = useApp()
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.removeYourAccount'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      }
-    ])
-  }, [])
-
-  // Methods
-  const handleRemove = (key) => {
-    app.removeAccount()
-  }
-
   return (
-    <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        <Blockquote type="note">
-          <FormattedMessage
-            id="account.removeYourAccountInfo"
-            values={{ em: (...chunks) => <em>{chunks}</em> }}
-          />
-        </Blockquote>
-        <Blockquote type="warning">
-          <h4>
-            <FormattedMessage id="app.proceedWithCaution" />
-          </h4>
-          <p>
-            <FormattedMessage id="account.removeYourAccountWarning" />
-          </p>
-          <p style={{ textAlign: 'right' }}>
-            <Button href="/account/settings" variant="outlined" color="primary" data-test="back">
-              <FormattedMessage id="app.back" />
-            </Button>
-          </p>
-        </Blockquote>
-
+    <AppWrapper
+      app={app}
+      title={app.translate('account.removeYourAccount')}
+      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
+      context={<AccountContext app={app} />}
+      active="account"
+      text
+    >
+      <Blockquote type="warning">
+        <h4>
+          <FormattedMessage id="app.proceedWithCaution" />
+        </h4>
+        <p>
+          <FormattedMessage id="account.removeYourAccountWarning" />
+        </p>
         <p style={{ textAlign: 'center' }}>
           <Button
             size="large"
@@ -68,14 +43,20 @@ const RemoveAccountPage = (props) => {
             style={{ marginLeft: '1rem' }}
             variant="contained"
             color="primary"
-            onClick={handleRemove}
+            onClick={app.removeAccount}
           >
             <FormattedMessage id="account.removeYourAccount" />
           </Button>
         </p>
-      </CenteredLayout>
+      </Blockquote>
+      <Blockquote type="note">
+        <FormattedMessage
+          id="account.removeYourAccountInfo"
+          values={{ em: (...chunks) => <em>{chunks}</em> }}
+        />
+      </Blockquote>
     </AppWrapper>
   )
 }
 
-export default withLanguage(RemoveAccountPage)
+export default Page

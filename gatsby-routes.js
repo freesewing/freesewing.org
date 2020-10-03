@@ -173,6 +173,7 @@ const routes = {
   },
   duplicates: getDuplicates(),
   redirects: {
+    '/recreate/': '/create/',
     '/contact/': '/docs/about/contact/',
     '/faq/': '/docs/about/faq/',
     '/share/': '/docs/about/share/',

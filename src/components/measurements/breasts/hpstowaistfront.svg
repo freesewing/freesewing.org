@@ -1,8 +1,8 @@
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="2000" height="1500" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 1500">
     <defs>
         <g id="path">
-            <path  d="M 45 -135 c 40 0 120 90 135 125 m 470 -143 c 50 70 50 100 50 125" style="fill: none; stroke-linejoin: round;"/>
-            <path  d="M 670  -30 l 145 0" class="line"/>
+            <path  d="M 45 -135 c 40 0 100 80 130 95 c 30 30 10 65 10 170 m 440 -273 c 50 70 50 100 50 245" style="fill: none; stroke-linejoin: round;"/>
+            <path  d="M 28 130 l 12 0 m 60 0 l 145 0 m 350 -30 l 190 0" class="line"/>
         </g>
     </defs>
     <style type="text/css"><![CDATA[

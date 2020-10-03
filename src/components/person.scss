@@ -1,7 +1,7 @@
 @import '../../node_modules/open-color/open-color.scss';
 div.person {
   border: 1px solid $oc-gray-3;
-  width: 400px;
+  width: 390px;
   border-radius: 3px;
   padding: 0;
   text-align: left;
@@ -12,9 +12,7 @@ div.person {
   margin: 0.5rem auto;
   div.top {
     border-bottom: 4px solid transparent;
-    background-image: url('/horizon.jpg');
-    background-size: cover;
-    background-position-y: bottom;
+    background: -webkit-linear-gradient(0deg, $oc-violet-7, $oc-pink-7);
     width: calc(100% - 2rem - 125px);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -80,10 +78,10 @@ div.person {
   }
 }
 div.person.breasts > div.top {
-  border-color: $oc-teal-6;
+  border-color: $oc-pink-7;
 }
 div.person.no-breasts > div.top {
-  border-color: $oc-violet-6;
+  border-color: $oc-violet-7;
 }
 
 .theme-wrapper.dark {

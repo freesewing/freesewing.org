@@ -22,6 +22,7 @@ import simon from '@freesewing/simon'
 import simone from '@freesewing/simone'
 import sven from '@freesewing/sven'
 import tamiko from '@freesewing/tamiko'
+import teagan from '@freesewing/teagan'
 import theo from '@freesewing/theo'
 import titan from '@freesewing/titan'
 import trayvon from '@freesewing/trayvon'
@@ -53,6 +54,7 @@ const designs = {
   simone,
   sven,
   tamiko,
+  teagan,
   theo,
   titan,
   trayvon,

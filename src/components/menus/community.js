@@ -8,6 +8,18 @@ const CommunityMenu = ({ app, className = '' }) => (
   <div className={`style-wrapper ${app.theme} menu-instance wrapper ${className}`}>
     <div>
       <h6>
+        <Link to="/community/">
+          <FormattedMessage id="app.community" />
+        </Link>
+      </h6>
+      <Link to="/community/#who">
+        <FormattedMessage id="cty.whoWeAre" />
+      </Link>
+      <span> & </span>
+      <Link to="/community/#where">
+        <FormattedMessage id="cty.whereToFindUs" />
+      </Link>
+      <h6>
         <Link to="/blog/">
           <FormattedMessage id="app.blog" />
         </Link>
@@ -23,35 +35,6 @@ const CommunityMenu = ({ app, className = '' }) => (
       <Link to="/showcase/">
         <FormattedMessage id="intro.txt-showcase" />
       </Link>
-      <h6>Chat rooms on Gitter</h6>
-      <ul className="inline">
-        <li className="link">
-          <a href="https://gitter.im/freesewing/chat">Chat</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/help">Help</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/development">Development</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/translation">Translation</a>
-        </li>
-        <li className="link">
-          <a href="https://gitter.im/freesewing/design">Design</a>
-        </li>
-      </ul>
-      <h6>
-        <FormattedMessage id="app.socialMedia" />
-      </h6>
-      <ul className="inline">
-        <li className="link">
-          <a href="https://twitter.com/freesewing_org">Twitter</a>
-        </li>
-        <li className="link">
-          <a href="https://instagram.com/freesewing_org">Instagram</a>
-        </li>
-      </ul>
     </div>
     <div>
       <h6>

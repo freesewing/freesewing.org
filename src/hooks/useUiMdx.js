@@ -12,6 +12,7 @@ function useUiMdx() {
             }
             fileAbsolutePath
             body
+            excerpt
           }
         }
       }
@@ -22,6 +23,7 @@ function useUiMdx() {
     let id = node.node.fileAbsolutePath.split('markdown/org/ui/').pop().slice(0, -6)
     uiMdx[id] = {
       title: node.node.frontmatter.title,
+      excerpt: node.node.excerpt,
       body: node.node.body
     }
   }

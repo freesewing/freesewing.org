@@ -1,0 +1,313 @@
+#homepage {
+  flex-grow: 2;
+  max-width: 100vw;
+  overflow: hidden;
+  margin-top: -64px;
+  padding-top: 64px;
+}
+#homepage > header {
+  background-image: url('/horizon.jpg');
+  background-size: cover;
+  background-position: bottom;
+}
+#homepage > header > div.banner {
+  min-height: 300px;
+  padding: 3rem 2rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  position: relative;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    349deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.2) 35%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0.9;
+}
+#homepage > header > div.banner > div.text-block {
+  padding: 1rem 2rem;
+}
+
+#homepage > header > div.banner > div.text-block h1 {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  font-weight: 900;
+  color: #fff;
+}
+#homepage > header > div.banner > div.text-block h2 {
+  border-color: rgba(255, 255, 255, 0.25);
+  margin: 0 0 1rem 0;
+  color: #fff;
+}
+#homepage div.boxes {
+  max-width: 1600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
+}
+#homepage div.boxes > div {
+  padding: 1.5rem;
+  max-width: calc(30% - 1.5rem);
+}
+#homepage .btn-primary {
+  background: #fff;
+  border-color: #fff;
+  color: #212529;
+  margin: 0.5rem;
+}
+#homepage .btn-secondary {
+  background: rgba(255, 255, 255, 0.5);
+  color: #212529;
+  border-color: #fff;
+}
+#homepage div.stripe {
+  background-image: url('/support.jpg');
+  background-size: cover;
+  background-position: bottom;
+  min-height: 300px;
+  padding: 3rem 2rem;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  position: relative;
+  width: 100%;
+}
+
+#homepage div.stripe-content {
+  z-index: 10;
+  position: relative;
+  max-width: 500px;
+  padding: 1rem 2rem;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#homepage div.stripe-bg {
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#homepage div.stripe p {
+  font-size: 125%;
+}
+#homepage h3.pricing {
+  text-align: center;
+  margin-top: 3rem;
+}
+#homepage a.anchor.before {
+  display: none;
+}
+
+#blog {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: 5rem auto;
+}
+#blog figure {
+  margin: 0 auto;
+}
+#blog a:hover {
+  text-decoration: none;
+}
+
+#blog > div {
+  width: calc(50% - 2rem);
+  padding: 1rem;
+}
+#blog > div.many {
+  display: flex;
+  flex-direction: column;
+}
+#blog div.many div.post {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 2rem;
+}
+
+#blog div.many a.image {
+  width: 30%;
+  margin: 0;
+  padding: 0;
+}
+#blog div.single h3 {
+  margin: 0;
+  line-height: 1.25;
+}
+#blog div.single p {
+  margin: 0;
+}
+#blog div.many h3 {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+#blog div.many p {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-size: 1rem;
+}
+
+svg.blobs {
+  margin: -64px auto 0;
+  margin-top: -64px;
+  max-height: calc(100vh - 52px - 5rem + 10px);
+}
+div.blob-wrapper {
+  text-align: center;
+  margin-left: -20vw;
+  margin-right: -20vw;
+}
+div.blob-wrapper:hover {
+  cursor: pointer;
+}
+/* Force transparant background on nav bar */
+div.theme-wrapper > div:first-of-type,
+header.MuiAppBar-colorSecondary {
+  background-color: transparent !important;
+}
+
+div.icons {
+  margin-top: -8px;
+  padding: 1.25rem 0 0.75rem 0;
+  text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 48px 48px 0 rgba(255, 254, 254, 0.15);
+
+  div.icon {
+    width: 15vw;
+    display: inline-block;
+    text-align: center;
+
+    a {
+      color: inherit !important;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      max-width: 150px;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      text-align: center;
+      opacity: 0.85;
+      transition-property: border-color opacity;
+      transition-duration: 300ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+      svg {
+        height: 52px;
+        width: 52px;
+        padding: 0;
+        fill: currentColor;
+      }
+      span {
+        font-family: 'Roboto Condensed', sans-serif;
+        text-transform: uppercase;
+        margin: 0 auto;
+      }
+    }
+    a:hover {
+      opacity: 1;
+      text-decoration: none !important;
+      border-color: currentColor;
+      color: red;
+    }
+  }
+}
+
+.theme-wrapper.light #blog a.text,
+.theme-wrapper.light #blog a.image {
+  color: #212529;
+}
+.theme-wrapper.dark {
+  #blog a.text,
+  #blog a.image {
+    color: #f8f9fa;
+  }
+}
+
+/* mobile and tablet and slate */
+@media (max-width: 1199px) and (min-width: 960px) {
+  div.icons {
+    padding: 0.75rem 0 0.25rem 0;
+  }
+}
+/* mobile and tablet */
+@media (max-width: 959px) and (min-width: 600px) {
+  #homepage div.boxes {
+    display: block;
+  }
+  #homepage div.boxes > div {
+    max-width: 666px;
+    margin: 0 auto;
+  }
+  svg.blobs {
+    max-height: calc(100vh - 75px - 5rem);
+  }
+  div.icons {
+    div.icon {
+      width: 30vw;
+      a {
+        svg {
+          height: 36px;
+          width: 36px;
+          padding: 0;
+          fill: currentColor;
+        }
+      }
+    }
+  }
+}
+
+/* mobile */
+@media (max-width: 599px) {
+  #homepage div.boxes > div {
+    max-width: 100%;
+    min-width: 200px;
+  }
+  #homepage > header {
+    background-size: 350%;
+    background-position: 15% 95%;
+  }
+  #blog > div {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+  #blog div.many a.image {
+    display: none;
+  }
+  #blog div.many a.text h3,
+  #blog div.many a.text p {
+    padding: 0;
+  }
+  div.icons {
+    padding: 0.25rem 0 0 0;
+    div.icon {
+      width: 30vw;
+      a {
+        font-size: 70%;
+        font-weight: bold;
+        min-width: 100px;
+        svg {
+          height: 36px;
+          width: 36px;
+          padding: 0;
+          fill: currentColor;
+        }
+      }
+    }
+  }
+  #homepage div.stripe {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+}

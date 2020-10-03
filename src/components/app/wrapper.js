@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MuiThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
 import * as themes from '@freesewing/mui-theme'
@@ -17,10 +17,16 @@ import Meta from './meta'
 import MobileMenu from '../menus/mobile'
 import useScrolledDown from '../../hooks/useScrolledDown'
 import Bugsnag from './bugsnag'
+import Layout from '../layouts/default'
 
 /* This component should wrap all page content */
-const AppWrapper = ({ app, children }) => {
+const AppWrapper = (props) => {
   const [scrolledDown, setScrolledDown] = useState(false)
+
+  useEffect(() => {
+    props.app.setMounted(true)
+  }, [])
+
   useScrolledDown((s) => setScrolledDown(s))
 
   const scrollToTop = () => {
@@ -29,7 +35,7 @@ const AppWrapper = ({ app, children }) => {
 
   // Scroll to top style
   let sttBase = {
-    right: app.mobile ? 'calc(1.5rem + 64px)' : '1rem',
+    right: props.app.mobile ? 'calc(1.5rem + 64px)' : '1rem',
     transition: 'margin-bottom ease-in-out 0.1s'
   }
   const style = {
@@ -43,57 +49,77 @@ const AppWrapper = ({ app, children }) => {
     }
   }
 
-  let wrapperClasses = app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
-  if (app.menu) wrapperClasses += ' show-menu'
-  if (app.mobileAside) wrapperClasses += ' show-mobile-aside'
-  if (app.tablet) wrapperClasses += ' tablet'
-  if (app.mobile) wrapperClasses += ' mobile'
-  if (!app.mobile && !app.tablet) wrapperClasses += ' desktop'
+  let wrapperClasses = props.app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
+  if (props.app.menu) wrapperClasses += ' show-menu'
+  if (props.app.tablet) wrapperClasses += ' tablet'
+  if (props.app.mobile) wrapperClasses += ' mobile'
+  if (!props.app.mobile && !props.app.tablet) wrapperClasses += ' desktop'
+
+  const meta = {
+    title: props.title || false,
+    description: props.description || false,
+    image: props.image || false
+  }
+  const theme = createMuiTheme(themes[props.app.theme])
+
+  if (!props.app.mounted)
+    return (
+      <MuiThemeProvider theme={theme}>
+        <Meta {...meta} />
+        <div className={wrapperClasses}>
+          {props.noLayout ? props.children : <Layout {...props}>{props.children}</Layout>}
+          <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />
+        </div>
+      </MuiThemeProvider>
+    )
 
   return (
     <Bugsnag>
-      <MuiThemeProvider theme={createMuiTheme(themes[app.theme])}>
-        <Meta app={app} />
+      <MuiThemeProvider theme={theme}>
+        <Meta {...meta} />
         <div className={wrapperClasses}>
-          {app.mobile ? (
+          {props.app.mobile ? (
             <>
               <Fab
-                title={app.translate('app.menu')}
+                title={props.app.translate('app.menu')}
                 color="primary"
                 className="fab primary only-xs"
                 aria-label="Menu"
-                onClick={app.toggleMenu}
+                onClick={props.app.toggleMenu}
               >
-                {app.menu ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
+                {props.app.menu ? (
+                  <CloseIcon fontSize="inherit" />
+                ) : (
+                  <MenuIcon fontSize="inherit" />
+                )}
               </Fab>
-              <Navbar app={app} />
             </>
           ) : (
-            <Navbar app={app} />
+            <Navbar app={props.app} />
           )}
           <Fab
-            title={app.translate('app.scrollToTop')}
+            title={props.app.translate('app.scrollToTop')}
             color="primary"
             className="fab secondary"
             arial-label="Scroll to top"
             onClick={scrollToTop}
-            style={scrolledDown && !app.menu ? style.showStt : style.hideStt}
+            style={scrolledDown && !props.app.menu ? style.showStt : style.hideStt}
           >
             <UpIcon fontSize="inherit" />
           </Fab>
-          {children}
+          {props.noLayout ? props.children : <Layout {...props}>{props.children}</Layout>}
           <Notification
-            notification={app.notification}
-            setNotification={app.setNotification}
-            mobile={app.mobile}
+            notification={props.app.notification}
+            setNotification={props.app.setNotification}
+            mobile={props.app.mobile}
           />
-          <Loading loading={app.loading} />
-          {app.mobile && (
-            <div className="menu" onClick={app.closeNav}>
-              <MobileMenu app={app} />
+          <Loading loading={props.app.loading} />
+          {props.app.mobile && (
+            <div className="menu" onClick={props.app.closeNav}>
+              <MobileMenu app={props.app} context={props.context} />
             </div>
           )}
-          <Footer language={process.env.GATSBY_LANGUAGE} app={app} />
+          <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />
         </div>
       </MuiThemeProvider>
     </Bugsnag>

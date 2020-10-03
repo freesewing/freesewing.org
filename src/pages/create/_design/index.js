@@ -1,46 +1,45 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import WideLayout from '../../../components/layouts/wide'
 
 import usePeople from '../../../hooks/usePeople'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
 import SelectSize from '../../../components/draft/select-size'
+import SelectSizeContext from '../../../components/context/select-size'
 
-const CreatePatternPage = (props) => {
-  // Hooks
+const Page = (props) => {
   const app = useApp()
   const people = usePeople(app, props.pageContext.design)
 
   // Design is added to page context in gatsby-node
+  // FIXME: This does not seem to be the case (any longer)
   const design = props.pageContext.design
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.chooseASize'))
-    app.setCrumbs([
-      {
-        slug: '/create/',
-        title: (
-          <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-        )
-      },
-      {
-        slug: '/create/',
-        title: <FormattedMessage id="app.newThing" values={{ thing: capitalize(design) }} />
-      }
-    ])
-  }, [])
+  const crumbs = [
+    {
+      slug: '/create/',
+      title: <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+    },
+    {
+      slug: '/create/',
+      title: (
+        <FormattedMessage id="app.newThing" values={{ thing: design ? capitalize(design) : '' }} />
+      )
+    }
+  ]
 
   return (
-    <AppWrapper app={app}>
-      <WideLayout app={app} top>
-        <SelectSize app={app} design={design} people={people} />
-      </WideLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.chooseASize')}
+      context={<SelectSizeContext app={app} design={design} people={people} />}
+      crumbs={crumbs}
+      active="designs"
+    >
+      <SelectSize app={app} design={design} people={people} />
     </AppWrapper>
   )
 }
 
-export default withLanguage(CreatePatternPage)
+export default Page

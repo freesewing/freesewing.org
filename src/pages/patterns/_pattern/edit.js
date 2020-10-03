@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
 import DraftUi from '../../../components/draft/ui'
 
 import usePattern from '../../../hooks/usePattern'
 import usePerson from '../../../hooks/usePerson'
 import LoadingLayout from '../../../components/layouts/loading'
-import CenteredLayout from '../../../components/layouts/centered'
 import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -16,35 +14,18 @@ import Button from '@material-ui/core/Button'
  * This page allows you to edit your own patterns
  */
 
-const CreatePatternForPersonPage = (props) => {
+const Page = (props) => {
   const app = useApp()
 
-  // State
   const [pattern, setPattern] = useState(null)
   const [person, setPerson] = useState(null)
   const [design, setDesign] = useState(null)
+  // Page title won't be available until async code runs
+  const [title, setTitle] = useState(app.translate('app.pattern'))
+  const [description, setDescription] = useState(false)
 
   // SSR
-  if (typeof props.pattern === 'undefined')
-    return (
-      <AppWrapper app={app}>
-        <LoadingLayout app={app} />
-      </AppWrapper>
-    )
-
-  // Methods
-  const applyCrumbs = (handle, title) => {
-    app.setCrumbs([
-      {
-        slug: `/patterns/`,
-        title: app.translate('app.patterns')
-      },
-      {
-        slug: `/patterns/${handle}/`,
-        title
-      }
-    ])
-  }
+  if (typeof props.pattern === 'undefined') return <LoadingLayout app={app} />
 
   // Effects
   useEffect(() => {
@@ -63,22 +44,43 @@ const CreatePatternForPersonPage = (props) => {
         setPattern(p)
         setPerson(usePerson(app, p.person))
         setDesign(p.data.design)
-        applyCrumbs(props.pattern, p.name)
+        setTitle(p.name)
+        setDescription(p.notes || false)
       })
     } else {
       setDesign(pop.data.design)
       setPerson(usePerson(app, pop.data.settings.metadata.forHandle))
       setPattern(pop)
-      applyCrumbs(props.pattern, pop.name)
+      setTitle(pop.name)
+      setDescription(pop.notes || false)
     }
-    app.setTitle(app.translate('app.editThing', { thing: app.translate('app.pattern') }))
   }, [props.pattern])
 
   const fabs = ['zoom', 'compare', 'notes', 'save', 'saveAs', 'export', 'details']
 
-  return (
-    <AppWrapper app={app}>
-      {person && pattern && design ? (
+  const crumbs = [
+    {
+      slug: `/patterns/`,
+      title: app.translate('app.patterns')
+    },
+    {
+      slug: `/patterns/${props.handle}/`,
+      title
+    }
+  ]
+
+  console.log({ person, pattern, design })
+
+  if (person && pattern && design)
+    return (
+      <AppWrapper
+        app={app}
+        title={title}
+        description={description}
+        crumbs={crumbs}
+        active="account"
+        noLayout
+      >
         <DraftUi
           mode="edit"
           app={app}
@@ -87,40 +89,45 @@ const CreatePatternForPersonPage = (props) => {
           pattern={pattern}
           data={pattern.data}
           fabs={fabs}
+          title={title}
+          description={description}
+          crumbs={crumbs}
         />
-      ) : person === false ? (
-        <CenteredLayout app={app} top>
-          <Blockquote type="note">
-            <h4>
+      </AppWrapper>
+    )
+
+  if (pattern && !person)
+    return (
+      <AppWrapper app={app} title={title} crumbs={crumbs} active="account" text>
+        <Blockquote type="note">
+          <h4>
+            <FormattedMessage id="app.recreatePattern" />
+          </h4>
+          <p>
+            <FormattedMessage id="app.recreatePattern-txt" />
+          </p>
+          <p>
+            <Button
+              variant="contained"
+              color="primary"
+              href={`/recreate/${design}/from/${pattern.handle}/`}
+            >
               <FormattedMessage id="app.recreatePattern" />
-            </h4>
-            <p>
-              <FormattedMessage id="app.recreatePattern-txt" />
-            </p>
-            <p>
-              <Button
-                variant="contained"
-                color="primary"
-                href={`/recreate/${design}/from/${pattern.handle}/`}
-              >
-                <FormattedMessage id="app.recreatePattern" />
-              </Button>
-            </p>
-          </Blockquote>
-          <Blockquote type="warning">
-            <h6>
-              <FormattedMessage id="app.editOwnPatternsOnly" />
-            </h6>
-            <p>
-              <FormattedMessage id="app.editOwnPatternsOnly-txt" />
-            </p>
-          </Blockquote>
-        </CenteredLayout>
-      ) : (
-        <LoadingLayout app={app} />
-      )}
-    </AppWrapper>
-  )
+            </Button>
+          </p>
+        </Blockquote>
+        <Blockquote type="warning">
+          <h6>
+            <FormattedMessage id="app.editOwnPatternsOnly" />
+          </h6>
+          <p>
+            <FormattedMessage id="app.editOwnPatternsOnly-txt" />
+          </p>
+        </Blockquote>
+      </AppWrapper>
+    )
+
+  return <LoadingLayout app={app} />
 }
 
-export default withLanguage(CreatePatternForPersonPage)
+export default Page

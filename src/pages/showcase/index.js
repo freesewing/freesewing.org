@@ -1,22 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
 
 import PostPreview from '../../components/post-preview'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
-const ShowcaseIndexPage = (props) => {
-  // State
+const Page = (props) => {
   const app = useApp()
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.showcase'))
-  }, [])
-
-  // Style
   const style = {
     wrapper: {
       display: 'flex',
@@ -26,29 +17,46 @@ const ShowcaseIndexPage = (props) => {
     }
   }
 
+  const context = [
+    <h5>Showcase posts</h5>,
+    <ul>
+      {props.data.allMdx.edges.map((node) => (
+        <li key={node.node.parent.relativeDirectory}>
+          <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.title}>
+            {node.node.frontmatter.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
-    <AppWrapper app={app}>
-      <WideLayout app={app}>
-        <div style={style.wrapper}>
-          {props.data.allMdx.edges.map((node) => (
-            <PostPreview
-              key={node.node.parent.relativeDirectory}
-              app={app}
-              img={node.node.frontmatter.img.childImageSharp.fluid}
-              title={node.node.frontmatter.title}
-              description={node.node.excerpt}
-              link={'/' + node.node.parent.relativeDirectory + '/'}
-              caption={node.node.frontmatter.caption}
-              width={400}
-            />
-          ))}
-        </div>
-      </WideLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.showcase')}
+      description={app.translate('intro.txt-showcase')}
+      context={context}
+      active="showcase"
+    >
+      <div style={style.wrapper}>
+        {props.data.allMdx.edges.map((node) => (
+          <PostPreview
+            key={node.node.parent.relativeDirectory}
+            app={app}
+            img={node.node.frontmatter.img.childImageSharp.fluid}
+            title={node.node.frontmatter.title}
+            description={node.node.excerpt}
+            link={'/' + node.node.parent.relativeDirectory + '/'}
+            caption={node.node.frontmatter.caption}
+            width={400}
+          />
+        ))}
+      </div>
     </AppWrapper>
   )
 }
 
-export default withLanguage(ShowcaseIndexPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

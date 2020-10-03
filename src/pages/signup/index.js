@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -14,13 +12,12 @@ import InvalidIcon from '@material-ui/icons/Warning'
 import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import Blockquote from '@freesewing/components/Blockquote'
-
 import successGif from '../../components/session/signup/success.gif'
 import Oauth from '../../components/session/oauth/'
 
-const SignupPage = (props) => {
-  // State
+const Page = (props) => {
   const app = useApp()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailValid, setEmailValid] = useState(false)
@@ -30,12 +27,6 @@ const SignupPage = (props) => {
   const [trouble, setTrouble] = useState(false)
   const [france, setFrance] = useState(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.signUp'))
-  }, [])
-
-  // Methods
   const handleSignup = (evt) => {
     evt.preventDefault()
     app
@@ -81,7 +72,6 @@ const SignupPage = (props) => {
     else setFrance(false)
   }
 
-  // Data
   const success = (
     <>
       <h2>
@@ -99,6 +89,21 @@ const SignupPage = (props) => {
     </>
   )
 
+  const loginLink = (
+    <Link to="/login" data-test="login">
+      <FormattedMessage id="app.logIn" />
+    </Link>
+  )
+  const troubleLink = (
+    <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
+      {trouble ? (
+        <FormattedMessage id="app.signUp" />
+      ) : (
+        <FormattedMessage id="app.resendActivationEmail" />
+      )}
+    </a>
+  )
+
   const form = (
     <form onSubmit={trouble ? handleResend : handleSignup}>
       {!result && error ? <Blockquote type="warning">{error}</Blockquote> : null}
@@ -112,7 +117,7 @@ const SignupPage = (props) => {
           </p>
           <p>
             <small>
-              <a href="https://gitter.im/freesewing/help">
+              <a href="https://chat.freesewing.org/">
                 <FormattedMessage id="app.emailNotReceived" />
               </a>
             </small>
@@ -202,36 +207,43 @@ const SignupPage = (props) => {
       {trouble && (
         <p>
           <small>
-            <a href="https://gitter.im/freesewing/help">
+            <a href="https://chat.freesewing.org/">
               <FormattedMessage id="app.emailNotReceived" />
             </a>
           </small>
         </p>
       )}
       <div style={{ margin: '1rem 0 2rem' }}>
-        <a href="#trouble" onClick={() => setTrouble(!trouble)} data-test="trouble">
-          {trouble ? (
-            <FormattedMessage id="app.signUp" />
-          ) : (
-            <FormattedMessage id="app.resendActivationEmail" />
-          )}
-        </a>
+        {troubleLink}
         <span style={{ padding: '0 1rem' }}>|</span>
-        <Link to="/login" data-test="login">
-          <FormattedMessage id="app.logIn" />
-        </Link>
+        {loginLink}
       </div>
       <Oauth app={app} />
     </form>
   )
 
+  const context = [
+    <h6>
+      <FormattedMessage id="app.signUp" />
+    </h6>,
+    <ul>
+      <li>{troubleLink}</li>
+      <li>{loginLink}</li>
+    </ul>,
+    <Oauth app={app} signup list />
+  ]
+
   return (
-    <AppWrapper app={app}>
-      <CenteredLayout app={app} top>
-        {result ? success : form}
-      </CenteredLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.signUp')}
+      context={context}
+      active="account"
+      text
+    >
+      {result ? success : form}
     </AppWrapper>
   )
 }
 
-export default withLanguage(SignupPage)
+export default Page

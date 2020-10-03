@@ -1,28 +1,44 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
 
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
-
 import LoginForm from '../../components/session/login/login-form'
 import ResetPasswordForm from '../../components/session/login/reset-password-form'
 import Oauth from '../../components/session/oauth/'
 
-const LoginPage = (props) => {
+const Page = (props) => {
   const app = useApp()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [trouble, setTrouble] = useState(false)
   const [inactive, setInactive] = useState(false)
   const [resend, setResend] = useState(false)
-  useEffect(() => {
-    app.setTitle(app.translate('app.logIn'))
-  }, [])
+
+  const troubleLink = (
+    <a href="#trouble" onClick={() => setTrouble(!trouble)}>
+      <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
+    </a>
+  )
+  const signUpLink = (
+    <Link to="/signup" data-test="signup">
+      <FormattedMessage id="app.signUpForAFreeAccount" />
+    </Link>
+  )
+  const context = [
+    <h6>
+      <FormattedMessage id="app.logIn" />
+    </h6>,
+    <ul>
+      <li>{troubleLink}</li>
+      <li>{signUpLink}</li>
+      <Oauth app={app} login list />
+    </ul>
+  ]
 
   const handleLogin = (evt) => {
     evt.preventDefault()
@@ -76,55 +92,59 @@ const LoginPage = (props) => {
 
   if (inactive)
     return (
-      <AppWrapper app={app}>
-        <CenteredLayout app={app}>
-          <Blockquote type={resend ? 'note' : 'warning'}>
-            <h5>
-              <FormattedMessage
-                id={
-                  resend
-                    ? 'app.checkInboxClickLinkInConfirmationEmail'
-                    : 'account.accountNeedsActivation'
-                }
-              />
-            </h5>
-            <p>
-              <FormattedMessage
-                id={resend ? 'app.goAheadWeWillWait' : 'account.accountNeedsActivation'}
-              />
-            </p>
-            {!resend && (
-              <p>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleResendActivationEmail}
-                  size="large"
-                >
-                  <FormattedMessage id="app.resendActivationEmail" />
-                </Button>
-              </p>
-            )}
-          </Blockquote>
-          <Blockquote type="note">
-            <h6>
-              <FormattedMessage id="app.askForHelp" />
-            </h6>
-            <p>
-              <FormattedMessage id="app.joinTheChatMsg" />
-            </p>
+      <AppWrapper
+        app={app}
+        title={app.translate('app.logIn')}
+        context={context}
+        active="account"
+        text
+      >
+        <Blockquote type={resend ? 'note' : 'warning'}>
+          <h5>
+            <FormattedMessage
+              id={
+                resend
+                  ? 'app.checkInboxClickLinkInConfirmationEmail'
+                  : 'account.accountNeedsActivation'
+              }
+            />
+          </h5>
+          <p>
+            <FormattedMessage
+              id={resend ? 'app.goAheadWeWillWait' : 'account.accountNeedsActivation'}
+            />
+          </p>
+          {!resend && (
             <p>
               <Button
                 variant="contained"
                 color="primary"
-                className="info"
-                href="https://gitter.im/freesewing/help"
+                onClick={handleResendActivationEmail}
+                size="large"
               >
-                <FormattedMessage id="app.askForHelp" />
+                <FormattedMessage id="app.resendActivationEmail" />
               </Button>
             </p>
-          </Blockquote>
-        </CenteredLayout>
+          )}
+        </Blockquote>
+        <Blockquote type="note">
+          <h6>
+            <FormattedMessage id="app.askForHelp" />
+          </h6>
+          <p>
+            <FormattedMessage id="app.joinTheChatMsg" />
+          </p>
+          <p>
+            <Button
+              variant="contained"
+              color="primary"
+              className="info"
+              href="https://chat.freesewing.org/"
+            >
+              <FormattedMessage id="app.askForHelp" />
+            </Button>
+          </p>
+        </Blockquote>
       </AppWrapper>
     )
 
@@ -152,25 +172,25 @@ const LoginPage = (props) => {
   let main = <LoginForm {...formProps} />
   if (trouble) main = <ResetPasswordForm {...formProps} />
   return (
-    <AppWrapper app={app}>
-      <CenteredLayout app={app}>
-        {redirect}
-        <div>{main}</div>
-        <div>
-          <a href="#trouble" data-test="trouble" onClick={() => setTrouble(!trouble)}>
-            <FormattedMessage id={'app.' + (trouble ? 'logIn' : 'troubleLoggingIn')} />
-          </a>
-          <span style={{ padding: '0 1rem' }}>|</span>
-          <Link to="/signup" data-test="signup">
-            <FormattedMessage id="app.signUpForAFreeAccount" />
-          </Link>
-        </div>
-        <div style={{ marginTop: '3rem' }}>
-          <Oauth app={app} login />
-        </div>
-      </CenteredLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.logIn')}
+      context={context}
+      active="account"
+      text
+    >
+      {redirect}
+      <div>{main}</div>
+      <div>
+        {troubleLink}
+        <span style={{ padding: '0 1rem' }}>|</span>
+        {signUpLink}
+      </div>
+      <div style={{ marginTop: '3rem' }}>
+        <Oauth app={app} login />
+      </div>
     </AppWrapper>
   )
 }
 
-export default withLanguage(LoginPage)
+export default Page

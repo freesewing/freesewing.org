@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import usePerson from '../../hooks/usePerson'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import CenteredLayout from '../../components/layouts/centered'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -12,14 +10,10 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'gatsby'
 import Markdown from 'react-markdown'
 import capitalize from '@freesewing/utils/capitalize'
-
 import './patterns.css'
 
-const PatternsIndexPage = (props) => {
+const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.yourPatterns'))
-  }, [])
 
   const newPatternButton = (
     <Button href="/create/" color="primary" variant="contained">
@@ -35,7 +29,7 @@ const PatternsIndexPage = (props) => {
   // When there is at least one pattern present
   const listState = (
     <>
-      <div style={{ textAlign: 'right', marginBottom: '16px' }}>{newPatternButton}</div>
+      <p>{newPatternButton}</p>
       {Object.keys(app.patterns).map((handle, pattern) => {
         let person = usePerson(app, app.patterns[handle].person)
         let personName = app.patterns[handle].person
@@ -77,20 +71,37 @@ const PatternsIndexPage = (props) => {
         <p>
           <FormattedMessage id="app.noPattern" />
         </p>
-        <p style={{ textAlign: 'right' }}>{newPatternButton}</p>
+        <p>{newPatternButton}</p>
       </Blockquote>
     </div>
   )
 
+  const context = [
+    <h5>
+      <FormattedMessage id="app.yourPatterns" />
+    </h5>,
+    <ul>
+      {Object.keys(app.patterns).map((handle, pattern) => (
+        <li key={handle}>
+          <Link to={`/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
+        </li>
+      ))}
+    </ul>
+  ]
+
   return (
-    <AppWrapper app={app}>
-      <CenteredLayout app={app} top wide>
-        <div className="pattern-list">
-          {Object.keys(app.patterns).length > 0 ? listState : blankState}
-        </div>
-      </CenteredLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.yourPatterns')}
+      context={context}
+      active="account"
+      text
+    >
+      <div className="pattern-list">
+        {Object.keys(app.patterns).length > 0 ? listState : blankState}
+      </div>
     </AppWrapper>
   )
 }
 
-export default withLanguage(PatternsIndexPage)
+export default Page

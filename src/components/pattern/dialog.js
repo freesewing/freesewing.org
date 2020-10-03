@@ -5,36 +5,7 @@ import ExportPattern from '../pattern/export'
 import SavePatternNotes from '../pattern/save-notes'
 import SavePatternAs from '../pattern/save-as'
 import { navigate } from 'gatsby'
-import SaveIcon from '@material-ui/icons/Save'
-import SaveAsIcon from '@material-ui/icons/CloudUpload'
-import ExportIcon from '@material-ui/icons/GetApp'
-import EditIcon from '@material-ui/icons/Edit'
-import RecreateIcon from '@material-ui/icons/Replay'
-import NotesIcon from '@material-ui/icons/RateReview'
-import CompareIcon from '@material-ui/icons/SupervisorAccount'
-import ZoomInIcon from '@material-ui/icons/ZoomIn'
-import ZoomOutIcon from '@material-ui/icons/ZoomOut'
-import DeleteIcon from '@material-ui/icons/DeleteForever'
-import MenuOpenIcon from '@material-ui/icons/MenuOpen'
-import fabsOrder from './fabsorder'
-
-// Style
-const styles = {
-  button: {
-    margin: '0.5rem'
-  },
-  buttonIcon: {
-    marginRight: '1rem'
-  },
-  buttonRightIcon: {
-    marginLeft: '1rem'
-  },
-  expand: {
-    fontWeight: 'normal',
-    fontSize: '1.25rem',
-    padding: '0 1rem'
-  }
-}
+import order from './actions-order'
 
 const Dialog = React.memo((props) => {
   if (!props.mode) throw new Error('Mode is not set in pattern dialog')
@@ -111,23 +82,6 @@ const Dialog = React.memo((props) => {
     zoom: 'app.zoom-txt'
   }
 
-  const icons = {
-    compare: <CompareIcon style={styles.buttonIcon} />,
-    delete: <DeleteIcon style={styles.buttonIcon} />,
-    edit: <EditIcon style={styles.buttonIcon} />,
-    notes: <NotesIcon style={styles.buttonIcon} />,
-    recreate: <RecreateIcon style={styles.buttonIcon} />,
-    export: <ExportIcon style={styles.buttonIcon} />,
-    save: <SaveIcon style={styles.buttonIcon} />,
-    saveAs: <SaveAsIcon style={styles.buttonIcon} />,
-    units: <span style={styles.buttonIcon}>{props.units === 'metric' ? '10 cm' : '4"'}</span>,
-    zoom: props.fit ? (
-      <ZoomInIcon style={styles.buttonIcon} />
-    ) : (
-      <ZoomOutIcon style={styles.buttonIcon} />
-    )
-  }
-
   const actions = {
     compare: () => {
       props.setDisplay(props.display === 'draft' ? 'compare' : 'draft')
@@ -166,7 +120,6 @@ const Dialog = React.memo((props) => {
             onClick={actions[type]}
             className={type === 'delete' ? 'danger' : ''}
           >
-            {icons[type]}
             {titles[type]}
           </Button>
         </p>
@@ -177,7 +130,7 @@ const Dialog = React.memo((props) => {
   return (
     <>
       {props.action === 'pick' &&
-        fabsOrder.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getInfo(fab) : null))}
+        order.map((fab) => (props.fabs.indexOf(fab) !== -1 ? getInfo(fab) : null))}
       {props.action === 'notes' && (
         <SavePatternNotes
           {...sharedProps}
@@ -193,22 +146,11 @@ const Dialog = React.memo((props) => {
           <ExportPattern {...sharedProps} />
         </>
       )}
-      <Button
-        onClick={close}
-        variant="outlined"
-        color="primary"
-        size="large"
-        style={{ margin: '2rem 0' }}
-        key="close"
-      >
-        <MenuOpenIcon
-          style={{
-            marginRight: '0.5rem',
-            transform: 'rotate(180deg)'
-          }}
-        />
-        Close
-      </Button>
+      <p style={{ marginTop: '3rem' }}>
+        <Button variant="outlined" color="primary" size="large" onClick={close}>
+          <FormattedMessage id="app.close" />
+        </Button>
+      </p>
     </>
   )
 })

@@ -1,47 +1,37 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../../hooks/useApp'
-import withLanguage from '../../../../components/withLanguage'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import DraftLoadingLayout from '../../../../components/layouts/draft-loading'
+import LoadingLayout from '../../../../components/layouts/loading'
 import DraftUi from '../../../../components/draft/ui'
 import usePerson from '../../../../hooks/usePerson'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
+import { optionalMeasurements } from '@freesewing/pattern-info'
 import { version } from '../../../../../package.json'
 
-const CreatePatternForPersonPage = (props) => {
+const Page = (props) => {
   const app = useApp()
   const person = usePerson(app, props.person)
 
   // SSR
-  if (typeof props.person === 'undefined')
-    return (
-      <AppWrapper app={app}>
-        <DraftLoadingLayout app={app} />
-      </AppWrapper>
-    )
+  if (typeof props.person === 'undefined') return <LoadingLayout app={app} />
 
-  // Effects
-  useEffect(() => {
-    app.setCrumbs([
-      {
-        slug: `/create/`,
-        title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
-      },
-      {
-        slug: `/create/${props.pageContext.design}/`,
-        title: app.translate('app.newThing', {
-          thing: app.translate(`patterns.${props.pageContext.design}.title`)
-        })
-      }
-    ])
-    app.setTitle(
-      app.translate('app.newPatternForModel', {
-        pattern: app.translate(`patterns.${props.pageContext.design}.title`),
-        model: person.name || props.person
+  const crumbs = [
+    {
+      slug: `/create/`,
+      title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+    },
+    {
+      slug: `/create/${props.pageContext.design}/`,
+      title: app.translate('app.newThing', {
+        thing: app.translate(`patterns.${props.pageContext.design}.title`)
       })
-    )
-  }, [props.person])
+    }
+  ]
+  const title = app.translate('app.newPatternForModel', {
+    pattern: app.translate(`patterns.${props.pageContext.design}.title`),
+    model: person.name || props.person
+  })
 
   // Initial pattern data
   const data = {
@@ -65,13 +55,16 @@ const CreatePatternForPersonPage = (props) => {
   for (let m of requiredMeasurements[props.pageContext.design]) {
     data.settings.measurements[m] = person.measurements[m]
   }
+  for (let m of optionalMeasurements[props.pageContext.design]) {
+    if (person.measurements[m]) data.settings.measurements[m] = person.measurements[m]
+  }
 
   const fabs = ['zoom', 'compare', 'export', 'details']
   if (app.account.username) fabs.push('saveAs')
   else fabs.push('units')
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" noLayout>
       <DraftUi
         mode="create"
         app={app}
@@ -79,9 +72,11 @@ const CreatePatternForPersonPage = (props) => {
         design={props.pageContext.design}
         data={data}
         fabs={fabs}
+        title={title}
+        crumbs={crumbs}
       />
     </AppWrapper>
   )
 }
 
-export default withLanguage(CreatePatternForPersonPage)
+export default Page

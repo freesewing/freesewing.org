@@ -8,7 +8,12 @@ export default function usePeople(app, design) {
     if (typeof measurements === 'undefined') return false
     if (typeof required === 'undefined') return false
     for (let m of required) {
-      if (Object.keys(measurements).indexOf(m) === -1 || measurements[m] === null) return false
+      if (
+        Object.keys(measurements).indexOf(m) === -1 ||
+        measurements[m] === null ||
+        measurements[m] === ''
+      )
+        return false
     }
 
     return true
