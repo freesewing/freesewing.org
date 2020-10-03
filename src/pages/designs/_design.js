@@ -106,6 +106,8 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={app.translate(`patterns.${design}.title`)}
+      description={app.translate(`patterns.${design}.description`)}
+      image={`https://freesewing.org/designs/${design}.jpg`}
       context={context}
       active="designs"
     >
