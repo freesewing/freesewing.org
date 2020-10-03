@@ -102,7 +102,7 @@ const HomePage = (props) => {
   }))
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} noLayout>
       <div id="homepage">
         <div className="blob-wrapper" onClick={() => setColor(randomColor(app.theme))}>
           <Blob color={color} patrons={patrons} app={app} />
