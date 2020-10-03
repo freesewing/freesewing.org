@@ -22,7 +22,7 @@ const PreviousNext = ({ previous = false, next = false }) => (
       let { slug, title } = side === 'next' ? next : previous
 
       return (
-        <Link to={slug} style={{ textAlign: side === 'prev' ? 'left' : 'right' }}>
+        <Link key={side} to={slug} style={{ textAlign: side === 'prev' ? 'left' : 'right' }}>
           {side === 'prev' ? <PrevIcon style={{ marginBottom: '-6px' }} /> : null}
           {title}
           {side === 'next' ? <NextIcon style={{ marginBottom: '-6px' }} /> : null}

@@ -1,5 +1,4 @@
 import React from 'react'
-import NavCrumbs from '../navcrumbs'
 import BreadCrumbs from '../breadcrumbs'
 import MainAside from '../menus/main-aside'
 import './default.scss'

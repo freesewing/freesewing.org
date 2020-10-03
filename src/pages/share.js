@@ -13,7 +13,7 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={uiMdx['share'].title}
-      title={uiMdx['share'].excerpt}
+      description={uiMdx['share'].excerpt}
       active="community"
       text
     >

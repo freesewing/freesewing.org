@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
 import AccountContext from '../../../components/context/account'

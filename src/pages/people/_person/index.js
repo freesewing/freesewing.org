@@ -320,7 +320,7 @@ const Page = (props) => {
           {/* avatar */}
           {['avatar', 'notes'].map((field) => (
             <tr className="hover">
-              <td style={styles.title}>
+              <td style={styles.title} key={field}>
                 <FormattedMessage id={field === 'notes' ? 'app.notes' : `account.avatar`} />
               </td>
               <td style={styles.cell}>

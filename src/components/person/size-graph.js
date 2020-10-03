@@ -1,11 +1,6 @@
 import React from 'react'
 import Graph from './graph'
-import {
-  measurements as allMeasurements,
-  sizes as allSizes,
-  withBreasts,
-  withoutBreasts
-} from '@freesewing/models'
+import { withBreasts, withoutBreasts } from '@freesewing/models'
 import measurementsOrder from './measurements-order'
 import convertSize from '@freesewing/utils/convertSize'
 

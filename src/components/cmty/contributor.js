@@ -8,7 +8,7 @@ const Contributor = ({ contributor, app }) => (
       <h5>{contributor.name}</h5>
       <ul>
         {contributor.github && (
-          <li className="github">
+          <li className="github" key={contributor.github}>
             <a href={`https://github.com/${contributor.github}`}>@{contributor.github}</a>
           </li>
         )}
@@ -16,7 +16,7 @@ const Contributor = ({ contributor, app }) => (
       </ul>
       <ul>
         {contributor.tags.map((tag) => (
-          <li>
+          <li key={tag}>
             <FormattedMessage id={`cty.${tag}`} />
           </li>
         ))}

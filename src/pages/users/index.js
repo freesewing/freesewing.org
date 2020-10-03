@@ -4,7 +4,6 @@ import AppWrapper from '../../components/app/wrapper'
 
 import { FormattedMessage } from 'react-intl'
 import Robot from '@freesewing/components/Robot'
-import Blockquote from '@freesewing/components/Blockquote'
 
 const Page = (props) => {
   const app = useApp()

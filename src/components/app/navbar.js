@@ -8,13 +8,9 @@ import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
 import Popover from '@material-ui/core/Popover'
-import PatternMenu from '../menus/patterns'
-import CommunityMenu from '../menus/community'
 import AccountMenu from '../menus/account'
 import NavbarIcons from './navbar-icons'
 
-import DocsIcon from '@material-ui/icons/ChromeReaderMode'
-import CommunityIcon from '@material-ui/icons/Favorite'
 import AccountIcon from '@material-ui/icons/Face'
 import Icon from '@freesewing/components/Icon'
 

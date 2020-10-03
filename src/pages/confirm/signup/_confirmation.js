@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'

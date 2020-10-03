@@ -121,7 +121,7 @@ function useApp(full = true) {
   ///////////////////////////////////
 
   // Backend
-  const backend = full ? new Backend(process.env.GATSBY_BACKEND) : null
+  const backend = new Backend(process.env.GATSBY_BACKEND)
 
   // Persistent state
   const [token, setToken] = useLocalStorage('token')

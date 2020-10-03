@@ -2,11 +2,9 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import MissingPeople from '../../components/missing/people'
-import Person from '../../components/person'
 import PeopleContext from '../../components/context/people'
 
 const Page = (props) => {

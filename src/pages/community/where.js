@@ -3,10 +3,8 @@ import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
 import useUiMdx from '../../hooks/useUiMdx'
-import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from '../../components/mdx'
 import contributors from '../../../contributors.yaml'
-import Contributor from '../../components/cmty/contributor'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
 

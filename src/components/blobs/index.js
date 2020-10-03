@@ -22,9 +22,6 @@ const Blob = (props) => {
     )} ${adapt(500, 600, 700, 700)}`
   }
 
-  /* REMOVEME */
-  const large = true
-
   const getPath = (size) =>
     blobs2.svgPath(
       {
@@ -47,12 +44,10 @@ const Blob = (props) => {
     fontFamily: 'Roboto condensed',
     fontWeight: 600
   }
-  const bold = { fontWeight: 'bold' }
   const impact = { fontWeight: 900 }
   const color = { fill: props.color.color }
   const contrast = { fill: props.color.contrast }
   const left = { textAnchor: 'start' }
-  const right = { textAnchor: 'end' }
   const center = { textAnchor: 'middle' }
   const s = { fontSize: adapt('15px', '18px', '22px', '18px') }
   const m = { fontSize: adapt('22px', '24px', '32px', '24px'), fontWeight: 600 }
@@ -165,7 +160,12 @@ const Blob = (props) => {
           {' '}
         </tspan>
         {tags.map((d) => (
-          <tspan style={{ ...m, ...left }} x={adapt(510, 470, 320, 240)} dy={adapt(24, 26, 32, 24)}>
+          <tspan
+            key={d}
+            style={{ ...m, ...left }}
+            x={adapt(510, 470, 320, 240)}
+            dy={adapt(24, 26, 32, 24)}
+          >
             {d}
           </tspan>
         ))}
@@ -184,6 +184,7 @@ const Blob = (props) => {
 
       {[0, 1, 2].map((i) => (
         <use
+          key={`clip-${i}`}
           xlinkHref="#logo"
           x="0"
           y="0"
@@ -235,7 +236,12 @@ const Blob = (props) => {
           {' '}
         </tspan>
         {tags.map((d) => (
-          <tspan style={{ ...m, ...left }} x={adapt(510, 470, 320, 240)} dy={adapt(24, 26, 32, 24)}>
+          <tspan
+            key={d}
+            style={{ ...m, ...left }}
+            x={adapt(510, 470, 320, 240)}
+            dy={adapt(24, 26, 32, 24)}
+          >
             {d}
           </tspan>
         ))}

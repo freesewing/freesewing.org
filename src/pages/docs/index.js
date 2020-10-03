@@ -10,22 +10,22 @@ const Page = (props) => {
   const app = useApp(false)
 
   const docs = [
-    <li>
+    <li key="about">
       <Link to="/docs/about/">
         <FormattedMessage id="app.aboutFreesewing" />
       </Link>
     </li>,
-    <li>
+    <li key="measurements">
       <Link to="/docs/measurements/">
         <FormattedMessage id="app.measurements" />
       </Link>
     </li>,
-    <li>
+    <li key="patterns">
       <Link to="/docs/patterns/">
         <FormattedMessage id="app.patterns" />
       </Link>
     </li>,
-    <li>
+    <li key="sewing">
       <Link to="/docs/sewing/">
         <FormattedMessage id="app.sewing" />
       </Link>

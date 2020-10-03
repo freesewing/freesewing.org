@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
@@ -99,7 +99,11 @@ const Page = (props) => {
         </p>
       </Blockquote>
       {props.data.allFsPatron.edges.map((node) => (
-        <Patron patron={node.node.patron} id={node.node.patron.handle} />
+        <Patron
+          key={node.node.patron.handle}
+          patron={node.node.patron}
+          id={node.node.patron.handle}
+        />
       ))}
     </AppWrapper>
   )

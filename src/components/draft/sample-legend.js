@@ -1,5 +1,5 @@
 import React from 'react'
-import { jsxSampleStyles, jsxFocusStyle, extraDefs } from './sample-styles'
+import { jsxSampleStyles, extraDefs } from './sample-styles'
 import convertSize from '@freesewing/utils/convertSize'
 import Icon from '@freesewing/components/Icon'
 
@@ -22,7 +22,7 @@ const SampleLegend = (props) => {
         {Object.keys(props.sizes).map((size) => {
           i++
           return (
-            <g transform={`translate(${i * 45} 0)`}>
+            <g key={`sample-${i}`} transform={`translate(${i * 45} 0)`}>
               <g transform="translate(6 9)">
                 <Icon icon={props.breasts ? 'withBreasts' : 'withoutBreasts'} size={24} />
               </g>

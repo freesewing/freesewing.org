@@ -7,18 +7,6 @@ import SavePatternAs from '../pattern/save-as'
 import { navigate } from 'gatsby'
 import order from './actions-order'
 
-// Style
-const styles = {
-  button: {
-    margin: '0.5rem'
-  },
-  expand: {
-    fontWeight: 'normal',
-    fontSize: '1.25rem',
-    padding: '0 1rem'
-  }
-}
-
 const Dialog = React.memo((props) => {
   if (!props.mode) throw new Error('Mode is not set in pattern dialog')
 

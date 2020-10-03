@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
 
 const Contributor = ({ patron, app }) => {
   let stars = []

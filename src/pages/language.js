@@ -38,11 +38,11 @@ const Page = (props) => {
       {Object.keys(languages).map((lang) => {
         let current = lang === process.env.GATSBY_LANGUAGE ? true : false
         return current ? (
-          <li>
+          <li key={lang}>
             <Link to="/">{languages[lang]}</Link>
           </li>
         ) : (
-          <li>
+          <li key={lang}>
             <a href={'https://' + lang + '.freesewing.org'}>{languages[lang]}</a>
           </li>
         )

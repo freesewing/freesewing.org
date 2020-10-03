@@ -61,7 +61,7 @@ const Page = (props) => {
     </h5>,
     <ul>
       {list.map((pattern) => (
-        <li>
+        <li key={pattern}>
           <Link to={`/create/${pattern}/`}>{app.translate(`patterns.${pattern}.title`)}</Link>
         </li>
       ))}

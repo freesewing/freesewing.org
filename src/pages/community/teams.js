@@ -3,7 +3,6 @@ import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
 import useUiMdx from '../../hooks/useUiMdx'
-import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from '../../components/mdx'
 import contributors from '../../../contributors.yaml'
 import Contributor from '../../components/cmty/contributor'
@@ -70,14 +69,14 @@ const Page = (props) => {
       </h1>
       <Mdx node={uiMdx[`community/teams`]} />
       {contributors.teams.map((team) => (
-        <>
+        <div key={team}>
           <h4 id={`team-${team.toLowerCase()}`}>
             <FormattedMessage id={`cty.${team}`} /> <FormattedMessage id="cty.team" />
           </h4>
           {teamMembers(team).map((m) => (
-            <Contributor contributor={m} app={app} />
+            <Contributor contributor={m} app={app} key={m.name} />
           ))}
-        </>
+        </div>
       ))}
     </AppWrapper>
   )

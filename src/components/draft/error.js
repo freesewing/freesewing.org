@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button'
 import Blockquote from '@freesewing/components/Blockquote'
 import Robot from '@freesewing/components/Robot'
 import Icon from '@freesewing/components/Icon'
-import DraftEvents from './events/'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
 

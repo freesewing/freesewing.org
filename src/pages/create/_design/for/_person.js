@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import DraftLoadingLayout from '../../../../components/layouts/draft-loading'
+import LoadingLayout from '../../../../components/layouts/loading'
 import DraftUi from '../../../../components/draft/ui'
 import usePerson from '../../../../hooks/usePerson'
 import { measurements as requiredMeasurements } from '@freesewing/pattern-info'
@@ -14,12 +14,7 @@ const Page = (props) => {
   const person = usePerson(app, props.person)
 
   // SSR
-  if (typeof props.person === 'undefined')
-    return (
-      <AppWrapper app={app}>
-        <DraftLoadingLayout app={app} />
-      </AppWrapper>
-    )
+  if (typeof props.person === 'undefined') return <LoadingLayout app={app} />
 
   const crumbs = [
     {

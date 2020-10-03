@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
 
 import DraftUi from '../../../components/draft/ui'
 import usePattern from '../../../hooks/usePattern'
-import usePerson from '../../../hooks/usePerson'
 import LoadingLayout from '../../../components/layouts/loading'
 import axios from 'axios'
 import yaml from 'yaml'
