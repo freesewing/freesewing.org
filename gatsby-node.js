@@ -170,7 +170,7 @@ const postInfo = (slug, posts) => ({
 
 // Gets the page title for a given slug
 const pageTitle = (slug, page) => {
-  if (!page.frontmatter || !page.frontmatter.title || page.frontmatter.title === '') {
+  if (!page.frontmatter || !page.frontmatter.title) {
     let chunks = slugChunks(slug)
     // Perhaps a pattern option or sub page
     if (chunks[0] === 'docs' && chunks[1] === 'patterns') {
@@ -192,14 +192,9 @@ const pageTitle = (slug, page) => {
       } else if (chunks.length === 3) return translate(`patterns.${chunks[2]}.title`)
     }
   }
-  if (
-    typeof page.frontmatter !== 'undefined' &&
-    typeof page.frontmatter.linktitle !== 'undefined' &&
-    page.frontmatter.linktitle !== ''
-  )
+  if (typeof page.frontmatter !== 'undefined' && page.frontmatter.linktitle)
     return page.frontmatter.linktitle
-
-  return page.frontmatter.title
+  else return page.frontmatter.title
 }
 
 const mdxList = (pages) =>
