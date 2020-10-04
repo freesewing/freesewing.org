@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import MissingPeople from '../../components/missing/people'
 import PeopleContext from '../../components/context/people'
+import Person from '../../components/person'
 
 const Page = (props) => {
   const app = useApp()
