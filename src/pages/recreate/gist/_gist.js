@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
+
 import DraftUi from '../../../components/draft/ui'
-
-import usePattern from '../../../hooks/usePattern'
-import usePerson from '../../../hooks/usePerson'
 import LoadingLayout from '../../../components/layouts/loading'
-
 import axios from 'axios'
 import yaml from 'yaml'
 
-const CreatePatternFromGist = (props) => {
+const Page = (props) => {
   const app = useApp()
 
   // SSR
-  if (typeof props.gist === 'undefined')
-    return (
-      <AppWrapper app={app}>
-        <LoadingLayout app={app} />
-      </AppWrapper>
-    )
+  if (typeof props.gist === 'undefined') return <LoadingLayout app={app} />
 
-  // State
   const [gist, setGist] = useState(null)
   const [pattern, setPattern] = useState(null)
   const [design, setDesign] = useState(null)
@@ -38,7 +28,14 @@ const CreatePatternFromGist = (props) => {
     breasts: gist?.settings?.metadata.breasts || false
   })
 
-  // Effects
+  const title = app.translate('app.recreateThing', { thing: 'gist' })
+  const crumbs = [
+    {
+      title: app.translate('app.recreateThing', { thing: 'gist' }),
+      slug: '/recreate/gist/'
+    }
+  ]
+
   useEffect(() => {
     axios
       .get(`https://api.github.com/gists/${props.gist}`)
@@ -48,13 +45,6 @@ const CreatePatternFromGist = (props) => {
           setGist(g)
           setDesign(g.design)
           setPerson(makePerson(g))
-          app.setTitle(app.translate('app.recreateThing', { thing: `gist ${props.gist}` }))
-          app.setCrumbs([
-            {
-              title: app.translate('app.recreateThing', { thing: 'gist' }),
-              slug: '/recreate/gist/'
-            }
-          ])
         } else setError(true)
       })
       .catch((err) => {
@@ -68,7 +58,7 @@ const CreatePatternFromGist = (props) => {
   // Allow pattern to load
   if (!gist && !error)
     return (
-      <AppWrapper app={app}>
+      <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" text>
         <LoadingLayout app={app} />
       </AppWrapper>
     )
@@ -76,13 +66,13 @@ const CreatePatternFromGist = (props) => {
   // Show this if things go wrong
   if (error)
     return (
-      <AppWrapper app={app}>
+      <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" text>
         <p>oops</p>
       </AppWrapper>
     )
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" noLayout>
       <DraftUi
         mode="recreate"
         app={app}
@@ -96,4 +86,4 @@ const CreatePatternFromGist = (props) => {
   )
 }
 
-export default withLanguage(CreatePatternFromGist)
+export default Page

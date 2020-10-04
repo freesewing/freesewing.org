@@ -1,7 +1,16 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+const React = require('react')
+const IntlProvider = require('react-intl').IntlProvider
+const strings = require('@freesewing/i18n').strings
 
-// You can delete this file if you're not using it
+exports.wrapRootElement = ({ element }) => (
+  <IntlProvider
+    locale={process.env.GATSBY_LANGUAGE}
+    messages={strings[process.env.GATSBY_LANGUAGE]}
+  >
+    {element}
+  </IntlProvider>
+)
+
+exports.wrapPageElement = ({ element, props }) => {
+  return element
+}

@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import useApp from '../../../../../hooks/useApp'
+import AppWrapper from '../../../../../components/app/wrapper'
+
 import usePattern from '../../../../../hooks/usePattern'
 import usePeople from '../../../../../hooks/usePeople'
-import withLanguage from '../../../../../components/withLanguage'
-import AppWrapper from '../../../../../components/app/wrapper'
-import Layout from '../../../../../components/layouts/default'
 import LoadingLayout from '../../../../../components/layouts/loading'
 import SelectSizeContext from '../../../../../components/context/select-size'
-
 import { FormattedMessage } from 'react-intl'
 import SelectSize from '../../../../../components/draft/select-size'
 import capitalize from '@freesewing/utils/capitalize'
 
-const RecreatePatternPage = (props) => {
-  // Page context
-  const design = props.pageContext.design
-
-  // Hooks
+const Page = (props) => {
   const app = useApp()
-  const people = usePeople(app, props.pageContext.design)
 
-  // State
+  const design = props.pageContext.design
+  const people = usePeople(app, design)
+
   const [pattern, setPattern] = useState('pending')
+  const [title, setTitle] = useState(
+    app.translate('app.recreate') + ' ' + app.translate('app.pattern')
+  )
+  const [crumbs, setCrumbs] = useState([])
+  const [context, setContext] = useState([])
 
-  // Effects
   useEffect(() => {
     let patternOrPromise = usePattern(app, props.pattern)
     if (patternOrPromise.then instanceof Function) {
       patternOrPromise.then((p) => {
         setPattern(p)
-        app.setTitle(app.translate('app.recreate') + ' ' + p.name)
-        app.setCrumbs([
+        setTitle(app.translate('app.recreate') + ' ' + p.name)
+        setCrumbs([
           {
             slug: '/create',
             title: (
@@ -48,8 +47,8 @@ const RecreatePatternPage = (props) => {
       })
     } else {
       setPattern(patternOrPromise)
-      app.setTitle(app.translate('app.recreate') + ' ' + patternOrPromise.name)
-      app.setCrumbs([
+      setTitle(app.translate('app.recreate') + ' ' + patternOrPromise.name)
+      setCrumbs([
         {
           slug: '/create',
           title: (
@@ -63,6 +62,11 @@ const RecreatePatternPage = (props) => {
       ])
     }
   }, [])
+  useEffect(() => {
+    setContext(
+      <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
+    )
+  }, [])
 
   // Allow usePattern promise to resolve
   if (pattern === 'pending') return <LoadingLayout app={app} />
@@ -72,17 +76,11 @@ const RecreatePatternPage = (props) => {
     return null
   }
 
-  const context = (
-    <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
-  )
-
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="designs" context={context}>
-        <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
-      </Layout>
+    <AppWrapper app={app} title={title} context={context} crumbs={crumbs} active="designs">
+      <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
     </AppWrapper>
   )
 }
 
-export default withLanguage(RecreatePatternPage)
+export default Page

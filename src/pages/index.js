@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
-import withLanguage from '../components/withLanguage'
 import AppWrapper from '../components/app/wrapper'
-import WideLayout from '../components/layouts/wide'
 
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
 import { FormattedMessage } from 'react-intl'
-import Blockquote from '@freesewing/components/Blockquote'
 import DocsIcon from '@material-ui/icons/ChromeReaderMode'
 import ShowcaseIcon from '@material-ui/icons/CameraAlt'
 import BlogIcon from '@material-ui/icons/RssFeed'
@@ -16,17 +12,12 @@ import CommunityIcon from '@material-ui/icons/Favorite'
 import AccountIcon from '@material-ui/icons/Face'
 import Icon from '@freesewing/components/Icon'
 
-import Subscribe from '../components/subscribe'
 import Mdx from '../components/mdx'
 import { graphql, Link } from 'gatsby'
 import oc from 'open-color-js'
-//import MainBlob from '../components/blobs/Main'
-//import SecondBlob from '../components/blobs/Second'
-//import ThirdBlob from '../components/blobs/Third'
-import EmptyBlob from '../components/blobs/Empty'
 import Blob from '../components/blobs'
-import Hashtag from '../components/hashtag'
 import contrast from 'get-contrast'
+import LatestNews from '../components/LatestNews'
 
 // Style
 import './homepage.scss'
@@ -106,7 +97,7 @@ const HomePage = (props) => {
   }))
 
   return (
-    <AppWrapper app={app}>
+    <AppWrapper app={app} noLayout>
       <div id="homepage">
         <div className="blob-wrapper" onClick={() => setColor(randomColor(app.theme))}>
           <Blob color={color} patrons={patrons} app={app} />
@@ -172,7 +163,7 @@ const HomePage = (props) => {
 
         {/* Support banner */}
         <div className="stripe">
-          <div>
+          <div className="stripe-content">
             <h1>
               <FormattedMessage id="app.supportFreesewing" />
             </h1>
@@ -206,22 +197,22 @@ const HomePage = (props) => {
               <FormattedMessage id="app.ourRevenuePledge" />
             </Button>
           </div>
+          <div className="stripe-bg" style={{ backgroundColor: color.color }}></div>
         </div>
 
         {/* First row of text boxes */}
-        <WideLayout app={app} noTitle>
-          <div className="boxes">
-            <div>
-              <Mdx node={uiMdx[`homepage/updates`]} />
-            </div>
-            <div>
-              <Mdx node={uiMdx[`homepage/row-1`]} />
-            </div>
-            <div>
-              <Mdx node={uiMdx[`homepage/row-2`]} />
-            </div>
+        <div className="boxes">
+          <div>
+            <h2>Latest news</h2>
+            <LatestNews />
           </div>
-        </WideLayout>
+          <div>
+            <Mdx node={uiMdx[`homepage/row-1`]} />
+          </div>
+          <div>
+            <Mdx node={uiMdx[`homepage/row-2`]} />
+          </div>
+        </div>
 
         {/* Latest blog posts */}
         <div id="blog">
@@ -242,7 +233,7 @@ const HomePage = (props) => {
   )
 }
 
-export default withLanguage(HomePage)
+export default HomePage
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
 
-const AccountContext = ({ app }) => [
+const AccountContext = ({ app, active = '' }) => [
   <h5>
     <FormattedMessage id="app.account" />
   </h5>,

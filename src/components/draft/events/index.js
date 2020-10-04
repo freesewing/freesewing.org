@@ -8,7 +8,7 @@ const DraftEvents = ({ events, app, debug = false }) => {
   return (
     <div className="draft-events">
       {types.map((type) => (
-        <div className={`events-${type}`}>
+        <div className={`events-${type}`} key={type}>
           {events[type].map((event, index) => (
             <Event event={event} type={type} key={index} app={app} />
           ))}

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
@@ -11,80 +9,69 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const InstagramSettingPage = (props) => {
-  // Hooks
+const Page = (props) => {
   const app = useApp()
 
-  if (!app.account.username) return null // FIXME: Show something better than nothing in SSR
+  // FIXME: Show something better than nothing in SSR
+  if (!app.account.username) return null
 
-  // State
   const [instagram, setInstagram] = useState(
     app.account.social ? app.account.social.instagram || '' : ''
   )
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.instagram'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      },
-      {
-        title: app.translate('app.settings'),
-        slug: '/account/settings/'
-      }
-    ])
-  }, [])
-
-  // Methods
-  const updateInstagram = (evt) => setInstagram(evt.target.value)
-
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
-        <Blockquote type="note">
-          <FormattedMessage id={'account.instagramInfo'} />
-        </Blockquote>
-        <TextField
-          id="instagram"
-          fullWidth={true}
-          label={app.translate('account.instagram')}
-          margin="normal"
+    <AppWrapper
+      app={app}
+      title={app.translate('account.instagram')}
+      crumbs={[
+        { title: app.translate('app.account'), slug: '/account/' },
+        { title: app.translate('app.settings'), slug: '/account/settings/' }
+      ]}
+      context={<AccountContext app={app} />}
+      active="account"
+      text
+    >
+      <Blockquote type="note">
+        <FormattedMessage id={'account.instagramInfo'} />
+      </Blockquote>
+      <TextField
+        id="instagram"
+        fullWidth={true}
+        label={app.translate('account.instagram')}
+        margin="normal"
+        variant="outlined"
+        value={instagram}
+        type="text"
+        onChange={(evt) => setInstagram(evt.target.value)}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">@</InputAdornment>
+        }}
+      />
+      <p style={{ textAlign: 'right' }}>
+        <Button
+          size="large"
           variant="outlined"
-          value={instagram}
-          type="text"
-          onChange={updateInstagram}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">@</InputAdornment>
-          }}
-        />
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href="/account/settings"
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          <Button
-            data-test="save"
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            onClick={() =>
-              app.updateAccount([instagram, 'social', 'instagram'], '/account/settings/')
-            }
-          >
-            <FormattedMessage id="app.save" />
-          </Button>
-        </p>
-      </Layout>
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          data-test="save"
+          size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            app.updateAccount([instagram, 'social', 'instagram'], '/account/settings/')
+          }
+        >
+          <FormattedMessage id="app.save" />
+        </Button>
+      </p>
     </AppWrapper>
   )
 }
 
-export default withLanguage(InstagramSettingPage)
+export default Page

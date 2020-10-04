@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
 import usePerson from '../../hooks/usePerson'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -12,14 +10,10 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'gatsby'
 import Markdown from 'react-markdown'
 import capitalize from '@freesewing/utils/capitalize'
-
 import './patterns.css'
 
-const PatternsIndexPage = (props) => {
+const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.yourPatterns'))
-  }, [])
 
   const newPatternButton = (
     <Button href="/create/" color="primary" variant="contained">
@@ -86,16 +80,6 @@ const PatternsIndexPage = (props) => {
     <h5>
       <FormattedMessage id="app.yourPatterns" />
     </h5>,
-    <h6>
-      <Link to="/create/">
-        <FormattedMessage
-          id="app.newThing"
-          values={{
-            thing: app.translate('app.pattern')
-          }}
-        />
-      </Link>
-    </h6>,
     <ul>
       {Object.keys(app.patterns).map((handle, pattern) => (
         <li key={handle}>
@@ -106,14 +90,18 @@ const PatternsIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context}>
-        <div className="pattern-list">
-          {Object.keys(app.patterns).length > 0 ? listState : blankState}
-        </div>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.yourPatterns')}
+      context={context}
+      active="account"
+      text
+    >
+      <div className="pattern-list">
+        {Object.keys(app.patterns).length > 0 ? listState : blankState}
+      </div>
     </AppWrapper>
   )
 }
 
-export default withLanguage(PatternsIndexPage)
+export default Page

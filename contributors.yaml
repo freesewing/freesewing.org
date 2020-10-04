@@ -5,6 +5,7 @@ tags:
   - patternDesign
   - support
   - translation
+  - video
   - writing
 
 teams:
@@ -31,6 +32,30 @@ people:
       - translation
       - patternTesting
       - communityBuilding
+  - name: Céline
+    img: celine.jpg
+    github: slylele
+    discord: slylele
+    tags:
+      - translation
+  - name: Deb
+    img: ../avatar.svg
+    github: dfbean
+    discord: Deb
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - patternTesting
+  - name: Emmanuel
+    img: emmanuel.jpg
+    github: enyachoke
+    discord: nyachoke
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - development
   - name: Eleonore
     img: eleonore.jpg
     github: eleonoremilbou
@@ -60,7 +85,18 @@ people:
     tags:
       - support
       - patternDesign
-  - name: joost
+      - development
+  - name: James
+    img: james.jpg
+    github: creasyo
+    discord: creasyo
+    teams:
+      - community
+    tags:
+      - communityBuilding
+      - patternTesting
+      - video
+  - name: Joost
     img: joost.jpg
     github: joostdecock
     discord: joostdecock
@@ -74,6 +110,45 @@ people:
       - writing
     teams:
       - patternDesign
+  - name: Juona
+    img: juona.jpg
+    github: Juona-France
+    discord: fixme
+    tags:
+      - translation
+      - community
+  - name: Karen
+    img: karen.jpg
+    github: tangerineshark
+    discord: tangerineshark
+    teams:
+      - community
+    tags:
+      - writing
+      - patternTesting
+      - communityBuilding
+  - name: Rachel
+    img: rachel.png
+    github: rrolon47
+    discord: rrolon47
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+      - development
+  - name: Sandra
+    img: sandra.png
+    github: sewanista
+    discord: sewanista
+    teams:
+      - patternDesign
+    tags:
+      - patternDesign
+  - name: Stoffsuchti
+    img: stoffsuchti.jpg
+    github: stoffsuchti
+    tags:
+      - translation
   - name: Wouter
     img: wouter.jpg
     github: woutervdub
@@ -85,18 +160,3 @@ people:
       - development
       - patternDesign
       - communityBuilding
-  - name: Karen
-    img: karen.jpg
-    github: tangerineshark
-    discord: tangerineshark
-    teams:
-      - community
-    tags:
-      - writing
-      - patternTesting
-      - communityBuilding
-  - name: Stoffsuchti
-    img: stoffsuchti.jpg
-    github: stoffsuchti
-    tags:
-      - translation

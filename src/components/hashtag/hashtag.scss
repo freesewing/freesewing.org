@@ -1,10 +1,8 @@
 a.hashtag {
-  font-family: 'Roboto condensed';
+  font-family: 'Permanent marker';
   padding: 0 1rem;
   font-size: 1.25em;
   font-weight: bold;
   text-decoration: none;
-  background: -webkit-linear-gradient(45deg, #845ef7, #f06595);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #f06595 !important;
 }

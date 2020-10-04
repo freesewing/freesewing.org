@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -13,7 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import AccountContext from '../../components/context/account'
 
-const ConsentPage = (props) => {
+const Page = (props) => {
   // Hooks
   const app = useApp()
 
@@ -35,17 +33,6 @@ const ConsentPage = (props) => {
   const [openData, setOpenData] = useState(
     app.account.consent ? (app.account.consent.model ? true : false) : false
   )
-
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.reviewYourConsent'))
-    app.setCrumbs([
-      {
-        title: app.translate('app.account'),
-        slug: '/account/'
-      }
-    ])
-  }, [])
 
   // Methods
   const saveConsent = () => {
@@ -168,121 +155,126 @@ const ConsentPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={<AccountContext app={app} />}>
-      <Layout app={app} active="account" context={<AccountContext app={app} />} text>
-        <Blockquote type="note">
-          <p data-test="compliant">
-            <FormattedMessage id="gdpr.compliant" />
-          </p>
-          <p data-test="consentWhyAnswer">
-            <FormattedMessage id="gdpr.consentWhyAnswer" />
-          </p>
-        </Blockquote>
-        {details ? profileDetails : null}
-        <h5 data-test="profileQuestion">
-          <FormattedMessage id="gdpr.profileQuestion" />
-        </h5>
-        <RadioGroup name="profile" onChange={() => setProfile(!profile)} value={profile}>
-          <FormControlLabel
-            data-test="noIDoNot"
-            control={<Radio color="primary" />}
-            value={false}
-            checked={profile ? false : true}
-            label={app.translate('gdpr.noIDoNot')}
-          />
-          <FormControlLabel
-            data-test="yesIDo"
-            control={<Radio color="primary" />}
-            value={true}
-            checked={profile ? true : false}
-            label={app.translate('gdpr.yesIDo')}
-          />
-        </RadioGroup>
-        {profile ? null : (
-          <Blockquote type="warning" data-test="profileWarning">
-            <FormattedMessage id="gdpr.profileWarning" />
-          </Blockquote>
-        )}
-
-        {details ? modelDetails : null}
-        <h5 data-test="modelQuestion">
-          <FormattedMessage id="gdpr.modelQuestion" />
-        </h5>
-        <RadioGroup name="model" onChange={() => setModel(!model)} value={model}>
-          <FormControlLabel
-            data-test="noIDoNot"
-            control={<Radio color="primary" />}
-            value={false}
-            checked={model ? false : true}
-            label={app.translate('gdpr.noIDoNot')}
-          />
-          <FormControlLabel
-            data-test="yesIDo"
-            control={<Radio color="primary" />}
-            value={true}
-            checked={model ? true : false}
-            label={app.translate('gdpr.yesIDo')}
-          />
-        </RadioGroup>
-        {details ? (
-          <div style={{ marginLeft: '2rem' }}>
-            <FormControlLabel
-              data-test="openDataQuestion"
-              control={<Checkbox color="primary" onChange={() => setOpenData(!openData)} />}
-              value={true}
-              checked={openData ? true : false}
-              label={app.translate('gdpr.openDataQuestion')}
-            />
-            {openData ? null : (
-              <p style={{ marginTop: 0 }}>
-                <small data-test="openDataInfo">
-                  <FormattedMessage id="gdpr.openDataInfo" />
-                </small>
-              </p>
-            )}
-          </div>
-        ) : null}
-
-        {model ? null : (
-          <Blockquote type="warning" data-test="modelWarning">
-            <FormattedMessage id="gdpr.modelWarning" />
-          </Blockquote>
-        )}
-
-        <p style={{ textAlign: app.mobile ? 'left' : 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href="/account/settings"
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          <Button
-            data-test="details"
-            style={{ marginLeft: '1rem' }}
-            size="large"
-            variant="outlined"
-            color="primary"
-            onClick={() => setDetails(!details)}
-          >
-            <FormattedMessage id={'app.' + (details ? 'hide' : 'show') + 'Details'} />
-          </Button>
-          <Button
-            data-test="save"
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            onClick={saveConsent}
-          >
-            <FormattedMessage id="app.save" />
-          </Button>
+    <AppWrapper
+      app={app}
+      active="account"
+      text
+      title={app.translate('account.reviewYourConsent')}
+      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
+      context={<AccountContext app={app} />}
+    >
+      <Blockquote type="note">
+        <p data-test="compliant">
+          <FormattedMessage id="gdpr.compliant" />
         </p>
-      </Layout>
+        <p data-test="consentWhyAnswer">
+          <FormattedMessage id="gdpr.consentWhyAnswer" />
+        </p>
+      </Blockquote>
+      {details ? profileDetails : null}
+      <h5 data-test="profileQuestion">
+        <FormattedMessage id="gdpr.profileQuestion" />
+      </h5>
+      <RadioGroup name="profile" onChange={() => setProfile(!profile)} value={profile}>
+        <FormControlLabel
+          data-test="noIDoNot"
+          control={<Radio color="primary" />}
+          value={false}
+          checked={profile ? false : true}
+          label={app.translate('gdpr.noIDoNot')}
+        />
+        <FormControlLabel
+          data-test="yesIDo"
+          control={<Radio color="primary" />}
+          value={true}
+          checked={profile ? true : false}
+          label={app.translate('gdpr.yesIDo')}
+        />
+      </RadioGroup>
+      {profile ? null : (
+        <Blockquote type="warning" data-test="profileWarning">
+          <FormattedMessage id="gdpr.profileWarning" />
+        </Blockquote>
+      )}
+
+      {details ? modelDetails : null}
+      <h5 data-test="modelQuestion">
+        <FormattedMessage id="gdpr.modelQuestion" />
+      </h5>
+      <RadioGroup name="model" onChange={() => setModel(!model)} value={model}>
+        <FormControlLabel
+          data-test="noIDoNot"
+          control={<Radio color="primary" />}
+          value={false}
+          checked={model ? false : true}
+          label={app.translate('gdpr.noIDoNot')}
+        />
+        <FormControlLabel
+          data-test="yesIDo"
+          control={<Radio color="primary" />}
+          value={true}
+          checked={model ? true : false}
+          label={app.translate('gdpr.yesIDo')}
+        />
+      </RadioGroup>
+      {details ? (
+        <div style={{ marginLeft: '2rem' }}>
+          <FormControlLabel
+            data-test="openDataQuestion"
+            control={<Checkbox color="primary" onChange={() => setOpenData(!openData)} />}
+            value={true}
+            checked={openData ? true : false}
+            label={app.translate('gdpr.openDataQuestion')}
+          />
+          {openData ? null : (
+            <p style={{ marginTop: 0 }}>
+              <small data-test="openDataInfo">
+                <FormattedMessage id="gdpr.openDataInfo" />
+              </small>
+            </p>
+          )}
+        </div>
+      ) : null}
+
+      {model ? null : (
+        <Blockquote type="warning" data-test="modelWarning">
+          <FormattedMessage id="gdpr.modelWarning" />
+        </Blockquote>
+      )}
+
+      <p style={{ textAlign: app.mobile ? 'left' : 'right' }}>
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href="/account/settings"
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          data-test="details"
+          style={{ marginLeft: '1rem' }}
+          size="large"
+          variant="outlined"
+          color="primary"
+          onClick={() => setDetails(!details)}
+        >
+          <FormattedMessage id={'app.' + (details ? 'hide' : 'show') + 'Details'} />
+        </Button>
+        <Button
+          data-test="save"
+          size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="contained"
+          color="primary"
+          onClick={saveConsent}
+        >
+          <FormattedMessage id="app.save" />
+        </Button>
+      </p>
     </AppWrapper>
   )
 }
 
-export default withLanguage(ConsentPage)
+export default Page

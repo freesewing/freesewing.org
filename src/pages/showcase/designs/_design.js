@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import WideLayout from '../../../components/layouts/wide'
 
 import { graphql, Link } from 'gatsby'
 
-const ShowcaseIndexPage = (props) => {
-  // State
+const Page = (props) => {
   const app = useApp()
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate(`patterns.${props.pageContext.design}.title`))
-    app.setCrumbs([{ title: app.translate('app.showcase'), slug: '/showcase/' }])
-  }, [])
-
-  // Data
   const style = {
     wrapper: {
       display: 'flex',
@@ -75,17 +65,20 @@ const ShowcaseIndexPage = (props) => {
     else return <p>No showcase found</p>
   }
 
+  // Data
   return (
-    <AppWrapper app={app}>
-      <WideLayout app={app} top>
-        {renderPosts()}
-        <div style={style.wrapper}></div>
-      </WideLayout>
+    <AppWrapper
+      app={app}
+      title={app.translate(`patterns.${props.pageContext.design}.title`)}
+      crumbs={[{ title: app.translate('app.showcase'), slug: '/showcase/' }]}
+      active="showcase"
+    >
+      {renderPosts()}
     </AppWrapper>
   )
 }
 
-export default withLanguage(ShowcaseIndexPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

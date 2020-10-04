@@ -1,41 +1,18 @@
 import React, { useState } from 'react'
-import { FormattedMessage } from 'react-intl'
 import Logo from '@freesewing/components/Logo'
 import LightModeIcon from '@material-ui/icons/WbSunny'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
-import MapIcon from '@material-ui/icons/Map'
 import IconButton from '@material-ui/core/IconButton'
-import PatternsMenu from './patterns'
-import DocsMenu from './docs'
-import CommunityMenu from './community'
-import AccountMenu from './account'
-import DocsNavigation from '../app/docs-navigation'
-import HideIcon from '@material-ui/icons/ExpandLess'
-import ShowIcon from '@material-ui/icons/ExpandMore'
 import MainAside from './main-aside'
+import Icon from '@freesewing/components/Icon'
 
 const MobileMenu = ({ app, context }) => {
   // State
   const [account, setAccount] = useState(false)
-  const [docs, setDocs] = useState(false)
   const [community, setCommunity] = useState(false)
   const [patterns, setPatterns] = useState(false)
-
-  const toggle = (type) => {
-    let state = { account, docs, community, patterns }
-    let methods = {
-      account: setAccount,
-      docs: setDocs,
-      community: setCommunity,
-      patterns: setPatterns
-    }
-    // Close all
-    for (let method in methods) methods[method](false)
-    // Open 1 if needed
-    if (!state[type]) methods[type](true)
-  }
 
   // Style
   const colors = {
@@ -66,11 +43,6 @@ const MobileMenu = ({ app, context }) => {
     }
   }
 
-  // Figure out where we are
-  let docsMenu = <DocsMenu app={app} className="transparent" />
-  if (window && window.location.pathname.slice(0, 5) === '/docs')
-    docsMenu = <DocsNavigation app={app} slug={window.location.pathname} />
-
   // Icons
   const icons = {
     home: {
@@ -78,10 +50,10 @@ const MobileMenu = ({ app, context }) => {
       link: '/',
       icon: <Logo size={22} />
     },
-    sitemap: {
-      title: 'app.sitemap',
-      link: '/sitemap/',
-      icon: <MapIcon />
+    discord: {
+      title: 'app.chatWithUs',
+      link: 'https://chat.freesewing.org/',
+      icon: <Icon icon="discord" />
     },
     search: {
       title: 'app.search',
@@ -129,47 +101,7 @@ const MobileMenu = ({ app, context }) => {
           )}
         </IconButton>
       </div>
-      {app.account.username && (
-        <>
-          <h5>
-            <a role="button" style={style.toggle} onClick={() => toggle('account')} className="poh">
-              <FormattedMessage id="app.account" />
-              {account ? <HideIcon /> : <ShowIcon />}
-            </a>
-          </h5>
-          <div className={account ? '' : 'collapsed'}>
-            <AccountMenu app={app} className="transparent" />
-          </div>
-        </>
-      )}
 
-      <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('patterns')} className="poh">
-          <FormattedMessage id="app.patterns" />
-          {patterns ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={patterns ? '' : 'collapsed'}>
-        <PatternsMenu app={app} className="transparent" />
-      </div>
-
-      <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('docs')} className="poh">
-          <FormattedMessage id="app.docs" />
-          {docs ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={docs ? '' : 'collapsed'}>{docsMenu}</div>
-
-      <h5>
-        <a role="button" style={style.toggle} onClick={() => toggle('community')} className="poh">
-          <FormattedMessage id="app.community" />
-          {docs ? <HideIcon /> : <ShowIcon />}
-        </a>
-      </h5>
-      <div className={community ? '' : 'collapsed'}>
-        <CommunityMenu app={app} className="transparent" />
-      </div>
       <MainAside app={app} />
       <div className="context-wrapper">{context}</div>
     </div>

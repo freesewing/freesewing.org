@@ -50,4 +50,6 @@
   background: #212529;
 }
 
-
+ul.config {
+  font-family: 'Roboto condensed';
+}

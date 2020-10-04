@@ -1,6 +1,5 @@
 import React from 'react'
 import oc from 'open-color-js'
-import { version } from '../../../package.json'
 
 export function jsxSampleStyles(dark) {
   let shared = { fill: 'none', strokeWidth: 1 }
@@ -79,9 +78,9 @@ export function jsxFocusStyle(dark) {
 export function sampleStyles(dark) {
   let jsx = jsxSampleStyles(dark)
   let styles = []
-  for (const i in jsx)
+  for (const s of jsx)
     styles.push(
-      `stroke-width: ${jsx[i].strokeWidth}; stroke: ${jsx[i].stroke}; stroke-dasharray: ${jsx[i].strokeDasharray}; filter: ${jsx[i].filter};`
+      `stroke-width: ${s.strokeWidth}; stroke: ${s.stroke}; stroke-dasharray: ${s.strokeDasharray}; filter: ${s.filter};`
     )
 
   return styles
@@ -90,7 +89,7 @@ export function sampleStyles(dark) {
 export function nivoStyles(dark) {
   let jsx = jsxSampleStyles(dark)
   let styles = []
-  for (const i in jsx) styles.push(jsx[i].stroke)
+  for (const s of jsx) styles.push(s.stroke)
 
   return styles
 }

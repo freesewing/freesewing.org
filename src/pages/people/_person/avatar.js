@@ -1,47 +1,30 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
-import PeopleContext from '../../../components/context/people'
 
+import PeopleContext from '../../../components/context/people'
 import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 
-const PersonAvatarPage = (props) => {
-  // Hooks
+const Page = (props) => {
   const app = useApp()
+
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
     reader.onload = () => {
       setImg(reader.result)
     }
     acceptedFiles.forEach((file) => reader.readAsDataURL(file))
+    app.setContext(<PeopleContext app={app} />)
   }, [])
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
-  if (!app.account.username) return null // FIXME: Do something better for SSR
+  // FIXME: Show something better than nothing in SSR
+  if (!app.account.username) return null
 
-  // State
   const [img, setImg] = useState(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('account.avatar'))
-    app.setCrumbs([
-      {
-        slug: '/people/',
-        title: app.translate('app.people')
-      },
-      {
-        slug: '/people/' + props.person + '/',
-        title: app.people[props.person].name || props.person
-      }
-    ])
-  }, [])
-
-  // Styles
   const styles = {
     wrapper: {
       display: 'flex',
@@ -69,55 +52,66 @@ const PersonAvatarPage = (props) => {
   }
 
   return (
-    <AppWrapper app={app} context={<PeopleContext app={app} />}>
-      <Layout app={app} active="account" context={<PeopleContext app={app} />}>
-        <div style={styles.wrapper}>
-          <img
-            alt="avatar"
-            src={img || app.account.pictureUris.m}
-            style={styles.avatar}
-            className="shadow"
-          />
-          <div {...getRootProps()} style={styles.dropzone}>
-            <input {...getInputProps()} />
-            <p data-test="instructions">
-              <FormattedMessage id="app.dragAndDropImageHere" />
-            </p>
-            <p>
-              <Button variant="outlined" color="primary" data-test="pick-file">
-                <FormattedMessage id="app.selectImage" />
-              </Button>
-            </p>
-          </div>
-        </div>
-        <p style={{ textAlign: 'right' }}>
-          <Button
-            size="large"
-            variant="outlined"
-            color="primary"
-            href={`/people/${props.person}/`}
-            data-test="cancel"
-          >
-            <FormattedMessage id="app.cancel" />
-          </Button>
-          {img ? (
-            <Button
-              data-test="save"
-              style={{ marginLeft: '1rem' }}
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={() =>
-                app.updatePerson(props.person, [img, 'picture'], `/people/${props.person}/`)
-              }
-            >
-              <FormattedMessage id="app.save" />
+    <AppWrapper
+      app={app}
+      title={app.translate('account.avatar')}
+      context={<PeopleContext app={app} />}
+      crumbs={[
+        { slug: '/people/', title: app.translate('app.people') },
+        {
+          slug: '/people/' + props.person + '/',
+          title: app.people[props.person].name || props.person
+        }
+      ]}
+      active="account"
+      text
+    >
+      <div style={styles.wrapper}>
+        <img
+          alt="avatar"
+          src={img || app.account.pictureUris.m}
+          style={styles.avatar}
+          className="shadow"
+        />
+        <div {...getRootProps()} style={styles.dropzone}>
+          <input {...getInputProps()} />
+          <p data-test="instructions">
+            <FormattedMessage id="app.dragAndDropImageHere" />
+          </p>
+          <p>
+            <Button variant="outlined" color="primary" data-test="pick-file">
+              <FormattedMessage id="app.selectImage" />
             </Button>
-          ) : null}
-        </p>
-      </Layout>
+          </p>
+        </div>
+      </div>
+      <p style={{ textAlign: 'right' }}>
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          href={`/people/${props.person}/`}
+          data-test="cancel"
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        {img ? (
+          <Button
+            data-test="save"
+            style={{ marginLeft: '1rem' }}
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() =>
+              app.updatePerson(props.person, [img, 'picture'], `/people/${props.person}/`)
+            }
+          >
+            <FormattedMessage id="app.save" />
+          </Button>
+        ) : null}
+      </p>
     </AppWrapper>
   )
 }
 
-export default withLanguage(PersonAvatarPage)
+export default Page

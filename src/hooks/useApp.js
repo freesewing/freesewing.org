@@ -11,25 +11,16 @@ import patternMethods from './lib/pattern'
 import sessionMethods from './lib/session'
 import adminMethods from './lib/admin'
 
-function useApp() {
-  // Environment
-
-  // Backend
-  const backend = new Backend(process.env.GATSBY_BACKEND)
+function useApp(full = true) {
+  // Required for each page
+  ///////////////////////////////////
 
   // i18n
   const intl = useIntl()
 
   // Persistent state
-  const [admin, setAdmin] = useLocalStorage('admin', null)
   const [account, setAccount] = useLocalStorage('account', { username: false })
-  const [people, setPeople] = useLocalStorage('people', {})
-  const [patterns, setPatterns] = useLocalStorage('patterns', {})
   const [theme, setTheme] = useLocalStorage('theme', 'light')
-  const [token, setToken] = useLocalStorage('token')
-  const [notification, setNotification] = useLocalStorage('notification')
-  // Various stuff we may need to hold on to between page loads
-  const [vars, setVars] = useLocalStorage('vars', {})
 
   // React State
   const [crumbs, setCrumbs] = useState([])
@@ -44,6 +35,111 @@ function useApp() {
   const [menu, setMenu] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
   const [mounted, setMounted] = useState(false) // false until app is mounted
+  const [context, setContext] = useState([])
+  const [toc, setToc] = useState(false)
+
+  // Persist user data to local storage
+  const persist = (data) => {
+    if (data.account) setAccount(data.account)
+    if (data.theme) setTheme(data.theme)
+    if (data.vars) setVar(data.vars)
+  }
+
+  // Translate helper method
+  const translate = (id, values = false) => {
+    if (!values) return intl.formatMessage({ id })
+    else return intl.formatMessage({ id }, values)
+  }
+
+  // Toggles
+  const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
+  const toggleMenu = () => setMenu(!menu)
+  // FIXME: remove this
+  const closeNav = (evt) => null
+
+  // Media queries
+  const mobile = useMediaQuery('(max-width:599px)')
+  const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
+  const slate = useMediaQuery('(min-width: 960px) and (max-width: 1199px)')
+
+  // SSR-save navigate method
+  const navigate = (slug) => {
+    if (typeof window !== 'undefined') gatsbyNavigate(slug)
+  }
+
+  if (!full)
+    return {
+      // Helper methods
+      persist,
+      navigate,
+
+      // React state
+      crumbs,
+      setCrumbs,
+      description,
+      setDescription,
+      image,
+      setImage,
+      loading,
+      setLoading,
+      menu,
+      setMenu,
+      title,
+      setTitle,
+      mounted,
+      setMounted,
+      context,
+      setContext,
+      toc,
+      setToc,
+
+      // Persistent state
+      account,
+      //setAccount,
+      theme,
+      setTheme,
+
+      // Toggles
+      toggleDarkMode,
+      toggleMenu,
+      closeNav,
+
+      // Translation
+      translate,
+      intl,
+
+      // Media queries
+      mobile,
+      tablet,
+      slate,
+
+      // Site language
+      language: process.env.GATSBY_LANGUAGE
+    }
+
+  // Only required for some pages
+  ///////////////////////////////////
+
+  // Backend
+  const backend = new Backend(process.env.GATSBY_BACKEND)
+
+  // Persistent state
+  const [token, setToken] = useLocalStorage('token')
+  const [admin, setAdmin] = useLocalStorage('admin', null)
+  const [people, setPeople] = useLocalStorage('people', {})
+  const [patterns, setPatterns] = useLocalStorage('patterns', {})
+  const [notification, setNotification] = useLocalStorage('notification')
+
+  // Various stuff we may need to hold on to between page loads
+  const [vars, setVars] = useLocalStorage('vars', {})
+
+  // Persist user data to local storage
+  const fullPersist = (data) => {
+    persist(data)
+    if (data.token) setToken(data.token)
+    if (data.people) setPeople(data.people)
+    if (data.patterns) setPatterns(data.patterns)
+  }
 
   /*
    * Helper method to merge data objects
@@ -70,16 +166,6 @@ function useApp() {
     return mergeData(orig, [value, key, l1, l2])
   }
 
-  // Persist user data to local storage
-  const persist = (data) => {
-    if (data.account) setAccount(data.account)
-    if (data.people) setPeople(data.people)
-    if (data.patterns) setPatterns(data.patterns)
-    if (data.theme) setTheme(data.theme)
-    if (data.token) setToken(data.token)
-    if (data.vars) setVar(data.vars)
-  }
-
   // Refresh user data from backend
   const refresh = () => {
     return backend
@@ -91,17 +177,6 @@ function useApp() {
       .catch((error) => showError(error))
   }
 
-  // SSR-save navigate method
-  const navigate = (slug) => {
-    if (typeof window !== 'undefined') gatsbyNavigate(slug)
-  }
-
-  // Translate helper method
-  const translate = (id, values = false) => {
-    if (!values) return intl.formatMessage({ id })
-    else return intl.formatMessage({ id }, values)
-  }
-
   // Error handling
   const showError = (error) => {
     setLoading(false)
@@ -111,22 +186,6 @@ function useApp() {
     })
   }
 
-  // Toggles
-  const toggleDarkMode = () => setTheme(theme === 'light' ? 'dark' : 'light')
-  const toggleMenu = () => setMenu(!menu)
-  const closeNav = (evt) => {
-    return null
-    // This is tricky because the classnames in the build code or different from the development code
-    //if (typeof evt.target.className === 'object') {
-    //  if (evt.target.className.baseVal.indexOf('o-closenav') === -1) return setMenu(false)
-    //} else if (evt.target.className.indexOf('o-closenav') === -1) return setMenu(false)
-  }
-
-  // Media queries
-  const mobile = useMediaQuery('(max-width:599px)')
-  const tablet = useMediaQuery('(min-width: 600px) and (max-width: 959px)')
-  const slate = useMediaQuery('(min-width: 960px) and (max-width: 1199px)')
-
   // These are user in other methods
   let core = {
     // Helper methods
@@ -134,7 +193,7 @@ function useApp() {
     refresh,
     mergeData,
     subMergeData,
-    persist,
+    persist: fullPersist,
     navigate,
     translate,
     showError,
@@ -181,6 +240,10 @@ function useApp() {
     setTitle,
     mounted,
     setMounted,
+    context,
+    setContext,
+    toc,
+    setToc,
 
     // Toggles
     toggleDarkMode,

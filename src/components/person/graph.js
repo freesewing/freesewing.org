@@ -1,6 +1,5 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
-import formatMm from '@freesewing/utils/formatMm'
 import { nivoStyles } from '../draft/sample-styles'
 import oc from 'open-color-js'
 import nivoTheme from './nivo-theme'
@@ -10,9 +9,6 @@ const CustomSymbol = ({ size, color, borderWidth, borderColor }) => (
     <circle r={size} stroke={borderColor} strokeWidth={1.5} fill="none" fillOpacity={0.85} />
   </g>
 )
-const formatCm = (val) => formatMm(val, 'metric')
-const formatInch = (val) => formatMm(val, 'imperial')
-const formatDegrees = (val) => Math.floor(val / 5) / 10 + '°'
 const inchMarkers = () =>
   [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({
     axis: 'y',

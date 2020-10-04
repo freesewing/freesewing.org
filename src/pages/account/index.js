@@ -1,28 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
-import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 import LoginRequired from '../../components/login-required'
+import AppWrapper from '../../components/app/wrapper'
+
 import AccountMenu from '../../components/menus/account'
 import AccountContext from '../../components/context/account'
 
-const AccountPage = (props) => {
+const Page = (props) => {
   const app = useApp()
-  useEffect(() => {
-    app.setTitle(app.translate('app.account'))
-    app.refresh()
-  }, [])
 
   return (
     <LoginRequired app={app}>
-      <AppWrapper app={app} context={<AccountContext app={app} />}>
-        <Layout app={app} active="account" context={<AccountContext app={app} />}>
-          <AccountMenu app={app} className="transparent" />
-        </Layout>
+      <AppWrapper
+        app={app}
+        title={app.translate('app.account')}
+        context={<AccountContext app={app} />}
+        active="account"
+      >
+        <AccountMenu app={app} className="transparent" />
       </AppWrapper>
     </LoginRequired>
   )
 }
 
-export default withLanguage(AccountPage)
+export default Page

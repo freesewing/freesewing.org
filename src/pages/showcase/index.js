@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import PostPreview from '../../components/post-preview'
 import { Link, graphql } from 'gatsby'
 
-const ShowcaseIndexPage = (props) => {
-  // State
+const Page = (props) => {
   const app = useApp()
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.showcase'))
-    app.setDescription(app.translate('intro.txt-showcase'))
-  }, [])
-
-  // Style
   const style = {
     wrapper: {
       display: 'flex',
@@ -41,28 +31,32 @@ const ShowcaseIndexPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="showcase" context={context}>
-        <div style={style.wrapper}>
-          {props.data.allMdx.edges.map((node) => (
-            <PostPreview
-              key={node.node.parent.relativeDirectory}
-              app={app}
-              img={node.node.frontmatter.img.childImageSharp.fluid}
-              title={node.node.frontmatter.title}
-              description={node.node.excerpt}
-              link={'/' + node.node.parent.relativeDirectory + '/'}
-              caption={node.node.frontmatter.caption}
-              width={400}
-            />
-          ))}
-        </div>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.showcase')}
+      description={app.translate('intro.txt-showcase')}
+      context={context}
+      active="showcase"
+    >
+      <div style={style.wrapper}>
+        {props.data.allMdx.edges.map((node) => (
+          <PostPreview
+            key={node.node.parent.relativeDirectory}
+            app={app}
+            img={node.node.frontmatter.img.childImageSharp.fluid}
+            title={node.node.frontmatter.title}
+            description={node.node.excerpt}
+            link={'/' + node.node.parent.relativeDirectory + '/'}
+            caption={node.node.frontmatter.caption}
+            width={400}
+          />
+        ))}
+      </div>
     </AppWrapper>
   )
 }
 
-export default withLanguage(ShowcaseIndexPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

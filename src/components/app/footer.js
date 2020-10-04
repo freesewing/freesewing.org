@@ -5,7 +5,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
 import IconButton from '@material-ui/core/IconButton'
 import { version } from '../../../package.json'
-import { FormattedMessage } from 'react-intl'
 import MainIcons from '../menus/main-aside'
 
 const Footer = (props) => {
@@ -73,8 +72,6 @@ const Footer = (props) => {
     )
     return null
   })
-
-  const allPatrons = <ul style={styles.ul}>{list}</ul>
 
   const icons = {
     discord: 'https://discord.gg/YDV4GvU',

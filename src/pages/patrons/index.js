@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import WideLayout from '../../components/layouts/wide'
-import Layout from '../../components/layouts/default'
 
 import Button from '@material-ui/core/Button'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -12,16 +9,9 @@ import PatronStars from '../../components/patron-stars'
 import UserSocial from '../../components/user-social'
 import { graphql, Link } from 'gatsby'
 
-const PatronPage = (props) => {
-  // Hooks
-  const app = useApp()
+const Page = (props) => {
+  const app = useApp(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.patrons'))
-  }, [])
-
-  // Styles
   const styles = {
     patron: {
       width: '150px',
@@ -106,28 +96,32 @@ const PatronPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="community" context={context}>
-        <div style={styles.list}>{list}</div>
-        <Blockquote type="note">
-          <h6>
-            <FormattedMessage id="app.supportFreesewing" />
-          </h6>
-          <p>
-            <FormattedMessage id="account.patronInfo" />
-          </p>
-          <p>
-            <Button variant="contained" color="primary" size="large" href="/patrons/join/">
-              <FormattedMessage id="app.becomeAPatron" />
-            </Button>
-          </p>
-        </Blockquote>
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.patrons')}
+      context={context}
+      active="community"
+      text
+    >
+      <div style={styles.list}>{list}</div>
+      <Blockquote type="note">
+        <h6>
+          <FormattedMessage id="app.supportFreesewing" />
+        </h6>
+        <p>
+          <FormattedMessage id="account.patronInfo" />
+        </p>
+        <p>
+          <Button variant="contained" color="primary" size="large" href="/patrons/join/">
+            <FormattedMessage id="app.becomeAPatron" />
+          </Button>
+        </p>
+      </Blockquote>
     </AppWrapper>
   )
 }
 
-export default withLanguage(PatronPage)
+export default Page
 
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`

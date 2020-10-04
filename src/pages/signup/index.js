@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
-import withLanguage from '../../components/withLanguage'
 import AppWrapper from '../../components/app/wrapper'
-import Layout from '../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
@@ -14,13 +12,12 @@ import InvalidIcon from '@material-ui/icons/Warning'
 import validateEmail from '@freesewing/utils/validateEmail'
 import validateTld from '@freesewing/utils/validateTld'
 import Blockquote from '@freesewing/components/Blockquote'
-
 import successGif from '../../components/session/signup/success.gif'
 import Oauth from '../../components/session/oauth/'
 
-const SignupPage = (props) => {
-  // State
+const Page = (props) => {
   const app = useApp()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailValid, setEmailValid] = useState(false)
@@ -30,12 +27,6 @@ const SignupPage = (props) => {
   const [trouble, setTrouble] = useState(false)
   const [france, setFrance] = useState(false)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.signUp'))
-  }, [])
-
-  // Methods
   const handleSignup = (evt) => {
     evt.preventDefault()
     app
@@ -81,7 +72,6 @@ const SignupPage = (props) => {
     else setFrance(false)
   }
 
-  // Data
   const success = (
     <>
       <h2>
@@ -244,12 +234,16 @@ const SignupPage = (props) => {
   ]
 
   return (
-    <AppWrapper app={app} context={context}>
-      <Layout app={app} active="account" context={context} text>
-        {result ? success : form}
-      </Layout>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.signUp')}
+      context={context}
+      active="account"
+      text
+    >
+      {result ? success : form}
     </AppWrapper>
   )
 }
 
-export default withLanguage(SignupPage)
+export default Page

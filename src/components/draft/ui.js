@@ -70,7 +70,7 @@ const DraftUi = (props) => {
   const [issue, setIssue] = useState(false)
   const [personHasBreasts, setPersonHasBreasts] = useState(false)
 
-  const tracesFromPatternProps = (patterProps) => {
+  const tracesFromPatternProps = (patternProps) => {
     const errorAsMarkdown = (e) => `
 ## ${e.name}: ${e.message}
 
@@ -226,9 +226,10 @@ ${e.stack}
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
 
   // Events
-  const draftEvents = (
-    <DraftEvents events={patternProps.events} app={app} debug={data.settings.debug} />
-  )
+  const draftEvents =
+    patternProps && patternProps.events ? (
+      <DraftEvents events={patternProps.events} app={app} debug={data.settings.debug} />
+    ) : null
 
   // Main render element
   let main
@@ -275,7 +276,7 @@ ${e.stack}
     )
 
   return (
-    <Layout app={app} active="designs" context={context}>
+    <Layout app={app} active="designs" context={context} title={props.title} crumbs={props.crumbs}>
       <article>{main}</article>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>

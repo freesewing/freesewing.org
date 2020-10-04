@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
-import withLanguage from '../../../components/withLanguage'
 import AppWrapper from '../../../components/app/wrapper'
-import Layout from '../../../components/layouts/default'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -10,22 +8,14 @@ import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-const SignupConfirmationPage = (props) => {
-  // Hooks
+const Page = (props) => {
   const app = useApp()
 
-  // State
   const [details, setDetails] = useState(false)
   const [profile, setProfile] = useState(false)
   const [model, setModel] = useState(false)
   const [openData, setOpenData] = useState(true)
 
-  // Effects
-  useEffect(() => {
-    app.setTitle(app.translate('app.oneMoreThing'))
-  }, [])
-
-  // Methods
   const createAccount = () => {
     if (profile) {
       let consent = {
@@ -37,7 +27,6 @@ const SignupConfirmationPage = (props) => {
     }
   }
 
-  // Style
   const styles = {
     table: {
       padding: 0,
@@ -158,90 +147,88 @@ const SignupConfirmationPage = (props) => {
     </table>
   ]
   return (
-    <AppWrapper app={app}>
-      <Layout app={app} active="account" text>
-        <p>
-          <FormattedMessage id="gdpr.compliant" />
-        </p>
-        <p>
-          <FormattedMessage id="gdpr.consentWhyAnswer" />
-        </p>
-        {details ? profileDetails : null}
-        <h5>
-          <FormattedMessage id="gdpr.profileQuestion" />
-        </h5>
-        <div style={styles.side}>
+    <AppWrapper app={app} title={app.translate('app.oneMoreThing')} active="account" text>
+      <p>
+        <FormattedMessage id="gdpr.compliant" />
+      </p>
+      <p>
+        <FormattedMessage id="gdpr.consentWhyAnswer" />
+      </p>
+      {details ? profileDetails : null}
+      <h5>
+        <FormattedMessage id="gdpr.profileQuestion" />
+      </h5>
+      <div style={styles.side}>
+        <FormControlLabel
+          control={<Checkbox color="primary" onChange={() => setProfile(!profile)} />}
+          value={profile}
+          checked={profile ? true : false}
+          label={app.translate('gdpr.yesIDo')}
+        />
+        {profile ? null : (
+          <Blockquote type="note">
+            <FormattedMessage id="gdpr.noConsentNoAccount" />
+          </Blockquote>
+        )}
+      </div>
+      {details ? modelDetails : null}
+      <h5>
+        <FormattedMessage id="gdpr.modelQuestion" />
+      </h5>
+      <div style={styles.side}>
+        <FormControlLabel
+          control={<Checkbox color="primary" onChange={() => setModel(!model)} />}
+          value={model}
+          checked={model ? true : false}
+          label={app.translate('gdpr.yesIDo')}
+        />
+        {model ? null : (
+          <Blockquote type="note">
+            <FormattedMessage id="gdpr.noConsentNoPatterns" />
+          </Blockquote>
+        )}
+      </div>
+      {details ? (
+        <div style={{ marginLeft: '2rem' }}>
           <FormControlLabel
-            control={<Checkbox color="primary" onChange={() => setProfile(!profile)} />}
-            value={profile}
-            checked={profile ? true : false}
-            label={app.translate('gdpr.yesIDo')}
+            control={<Checkbox color="primary" onChange={() => setOpenData(!openData)} />}
+            value={true}
+            checked={openData ? true : false}
+            label={app.translate('gdpr.openDataQuestion')}
           />
-          {profile ? null : (
-            <Blockquote type="note">
-              <FormattedMessage id="gdpr.noConsentNoAccount" />
-            </Blockquote>
+          {openData ? null : (
+            <p style={{ marginTop: 0 }}>
+              <small>
+                <FormattedMessage id="gdpr.openDataInfo" />
+              </small>
+            </p>
           )}
         </div>
-        {details ? modelDetails : null}
-        <h5>
-          <FormattedMessage id="gdpr.modelQuestion" />
-        </h5>
-        <div style={styles.side}>
-          <FormControlLabel
-            control={<Checkbox color="primary" onChange={() => setModel(!model)} />}
-            value={model}
-            checked={model ? true : false}
-            label={app.translate('gdpr.yesIDo')}
-          />
-          {model ? null : (
-            <Blockquote type="note">
-              <FormattedMessage id="gdpr.noConsentNoPatterns" />
-            </Blockquote>
-          )}
-        </div>
-        {details ? (
-          <div style={{ marginLeft: '2rem' }}>
-            <FormControlLabel
-              control={<Checkbox color="primary" onChange={() => setOpenData(!openData)} />}
-              value={true}
-              checked={openData ? true : false}
-              label={app.translate('gdpr.openDataQuestion')}
-            />
-            {openData ? null : (
-              <p style={{ marginTop: 0 }}>
-                <small>
-                  <FormattedMessage id="gdpr.openDataInfo" />
-                </small>
-              </p>
-            )}
-          </div>
-        ) : null}
+      ) : null}
 
-        <p style={{ textAlign: app.mobile ? 'left' : 'right' }}>
-          <Button
-            style={{ marginLeft: '1rem' }}
-            size="large"
-            variant="outlined"
-            color="primary"
-            onClick={() => setDetails(!details)}
-          >
-            <FormattedMessage id={'app.' + (details ? 'hide' : 'show') + 'Details'} />
-          </Button>
-          <Button
-            size="large"
-            style={{ marginLeft: '1rem' }}
-            variant="contained"
-            color="primary"
-            onClick={createAccount}
-            disabled={!profile}
-          >
-            <FormattedMessage id="gdpr.createMyAccount" />
-          </Button>
-        </p>
-      </Layout>
+      <p style={{ textAlign: app.mobile ? 'left' : 'right' }}>
+        <Button
+          style={{ marginLeft: '1rem' }}
+          size="large"
+          variant="outlined"
+          color="primary"
+          onClick={() => setDetails(!details)}
+        >
+          <FormattedMessage id={'app.' + (details ? 'hide' : 'show') + 'Details'} />
+        </Button>
+        <Button
+          size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="contained"
+          color="primary"
+          onClick={createAccount}
+          disabled={!profile}
+        >
+          <FormattedMessage id="gdpr.createMyAccount" />
+        </Button>
+      </p>
     </AppWrapper>
   )
 }
 
-export default withLanguage(SignupConfirmationPage)
+export default Page
