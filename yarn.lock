@@ -19149,10 +19149,10 @@ title-case@^2.1.0:
     no-case "^2.2.0"
     upper-case "^1.0.3"
 
-tlds@1.207.0:
-  version "1.207.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.207.0.tgz#459264e644cf63ddc0965fece3898913286b1afd"
-  integrity sha512-k7d7Q1LqjtAvhtEOs3yN14EabsNO8ZCoY6RESSJDB9lst3bTx3as/m1UuAeCKzYxiyhR1qq72ZPhpSf+qlqiwg==
+tlds@1.211.0:
+  version "1.211.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.211.0.tgz#86ccefed98538f867cee431e22f57fad87dcc8fc"
+  integrity sha512-xo3HkJ8cmluINOK9ziKNeDcNjQibPNeVAlGfwgyhvxrBv1ZFqs74DcnffKaemHcOI8tNgQ+pB7G8GbcmZENKoA==
 
 tmp@0.1.0:
   version "0.1.0"
