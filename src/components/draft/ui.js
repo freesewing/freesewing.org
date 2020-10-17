@@ -185,7 +185,7 @@ ${e.stack}
   const context = []
   if (!error && patternProps.events.error.length === 0) {
     context.push(
-      <h5>
+      <h5 key="details">
         <a
           href="#"
           role="button"
@@ -198,6 +198,7 @@ ${e.stack}
     )
     context.push(
       <PatternActions
+        key="actions"
         app={app}
         fabs={props.fabs}
         openDialog={openDialog}
@@ -214,6 +215,7 @@ ${e.stack}
   }
   context.push(
     <DraftConfigurator
+      key="config"
       data={data}
       units={app.account.username ? app.account.settings.units : visitorUnits}
       config={Pattern.config}
