@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 const DocsContext = ({ slug, siblings = {}, offspring = {}, up }) => {
-  console.log(up)
   return (
     <ul>
       {Object.keys(siblings).map((sib) => (
