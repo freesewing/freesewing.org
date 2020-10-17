@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@bugsnag/js": "^7.1.1",
+    "@bugsnag/js": "^7.4.0",
     "@bugsnag/plugin-react": "^7.1.1",
     "@freesewing/aaron": "2.10.0-rc.1",
     "@freesewing/albert": "^2.10.0-rc.1",
@@ -90,7 +90,7 @@
     "gatsby-plugin-offline": "^3.2.18",
     "gatsby-plugin-react-helmet": "3.3.6",
     "gatsby-plugin-sass": "^2.3.12",
-    "gatsby-plugin-sharp": "2.6.19",
+    "gatsby-plugin-sharp": "2.6.42",
     "gatsby-plugin-styled-components": "3.3.10",
     "gatsby-remark-autolink-headers": "2.3.11",
     "gatsby-remark-copy-linked-files": "2.3.11",
@@ -111,7 +111,7 @@
     "react-dropzone": "11.2.0",
     "react-fast-compare": "^3.2.0",
     "react-helmet": "6.1.0",
-    "react-instantsearch-dom": "6.6.0",
+    "react-instantsearch-dom": "6.8.1",
     "react-intl": "5.0.2",
     "react-markdown": "4.3.1",
     "react-youtube": "^7.9.0",
@@ -131,7 +131,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "9.0.1",
-    "@commitlint/config-conventional": "8.3.4",
+    "@commitlint/config-conventional": "11.0.0",
     "babel-plugin-apply-mdx-type-prop": "^1.6.16",
     "babel-plugin-styled-components": "^1.10.7",
     "cypress": "4.10.0",
