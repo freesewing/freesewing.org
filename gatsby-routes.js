@@ -35,7 +35,7 @@ const dupes = {
         'sleevecaptopfactory',
         'sleevewidthguarantee'
       ],
-      to: ['huey', 'simon', 'simone', 'sven', 'diana']
+      to: ['huey', 'simon', 'simone', 'sven', 'diana', 'teagan']
     },
     {
       options: ['backneckcutout', 'frontarmholedeeper', 'shoulderslopereduction'],
@@ -51,15 +51,15 @@ const dupes = {
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo']
+      to: ['bent', 'diana', 'huey', 'hugo', 'teagan']
     },
     {
       options: ['armholedepthfactor'],
-      to: ['bent', 'huey', 'sven', 'wahid']
+      to: ['bent', 'huey', 'sven', 'wahid', 'teagan']
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo']
+      to: ['bent', 'diana', 'huey', 'hugo', 'teagan']
     },
     {
       options: ['bicepsease'],

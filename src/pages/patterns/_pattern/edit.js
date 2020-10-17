@@ -69,8 +69,6 @@ const Page = (props) => {
     }
   ]
 
-  console.log({ person, pattern, design })
-
   if (person && pattern && design)
     return (
       <AppWrapper
