@@ -41,7 +41,7 @@ const PatternIndexPage = (props) => {
           </Button>
           <p>
             <Hashtag
-              tag={`FreeSewign${capitalize(props.pattern)}`}
+              tag={`FreeSewing${capitalize(props.pattern)}`}
               title={`${capitalize(props.pattern)} Hashtag`}
             />
           </p>
