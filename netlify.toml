@@ -117,8 +117,3 @@
 [[redirects]]
   from = "/patterns/waralee*"
   to = "/designs/waralee/"
-
-[[redirects]]
-  from = "/*"
-  to = "/"
-  status = 200
