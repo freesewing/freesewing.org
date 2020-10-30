@@ -19543,10 +19543,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-permanent-marker@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-permanent-marker/-/typeface-permanent-marker-0.0.72.tgz#89505a727c8095a0b7087d919e6d6bbf7ac4207e"
-  integrity sha512-M8rXJuCbMzm3HfoGOHcNW6cbb/jSsf96ib8bcSIiW7pJEAWaDL3tYYSQxgv2IFVgyLM6BAu/w1GemVFEu2Gkow==
+typeface-permanent-marker@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-permanent-marker/-/typeface-permanent-marker-1.1.13.tgz#4af383b970604b73321786f9d6d75988599f1476"
+  integrity sha512-cZgBXtUMquWlMh4/hhZ3lmBPDWnIwdodGHBMPQOXe1mUsnWBKe46ssOVE5kIEicnDxfmgSCV2/U/SZpDIm/w+Q==
 
 typeface-raleway@^0.0.75:
   version "0.0.75"
