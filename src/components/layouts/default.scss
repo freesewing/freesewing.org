@@ -71,9 +71,20 @@ div.mob-menu {
 .jargon-term {
   background: $oc-cyan-0;
   text-decoration: none;
+  background: #ffd43b42;
+  padding: 0 5px;
+  border-radius: 2px;
 }
 .jargon-term:after {
   display: none;
+}
+.theme-wrapper.dark {
+  .jargon-term {
+    text-decoration: none;
+  }
+  .jargon-term:after {
+    display: none;
+  }
 }
 
 img.gatsby-resp-image-image {

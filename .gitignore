@@ -31,3 +31,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
+# Local Netlify folder
+.netlify
