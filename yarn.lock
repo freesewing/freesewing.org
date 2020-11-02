@@ -9368,18 +9368,18 @@ gatsby-transformer-remark@2.8.44:
     unist-util-select "^1.5.0"
     unist-util-visit "^1.4.1"
 
-gatsby-transformer-sharp@^2.4.3:
-  version "2.5.10"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.5.10.tgz#ab5298be82bbb2250777fbc298816277b94525d7"
-  integrity sha512-TXOhY4R5TrwtdHYmdqCZ45+PsVIiAUlcckxaNep1Ww/YLZsuaWm6JM8O9Wfy9MUGERmPYQpKfRJv3jCs8vSXYA==
+gatsby-transformer-sharp@^2.5.20:
+  version "2.5.20"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.5.20.tgz#b06aab5439893bc9a52b498fce96bf17429f18f3"
+  integrity sha512-pErJWfDLQ3qpyu4+XHXnlKg2zaJIUhfEjHkXX/HQR5CccCwN2AO5y9Jy4rqTxXYUasWCZg2DegP6zlj0PKdjlA==
   dependencies:
-    "@babel/runtime" "^7.10.3"
+    "@babel/runtime" "^7.11.2"
     bluebird "^3.7.2"
-    fs-extra "^8.1.0"
-    potrace "^2.1.6"
-    probe-image-size "^4.1.1"
-    semver "^5.7.1"
-    sharp "^0.25.1"
+    fs-extra "^9.0.1"
+    potrace "^2.1.8"
+    probe-image-size "^5.0.0"
+    semver "^7.3.2"
+    sharp "^0.25.4"
 
 gatsby@^2.24.65:
   version "2.24.65"
@@ -14402,9 +14402,9 @@ object-keys@^1.0.11, object-keys@^1.0.12, object-keys@^1.1.0, object-keys@^1.1.1
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
 object-path@^0.11.2, object-path@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
-  integrity sha1-NwrnUvvzfePqcKhhwju6iRVpGUk=
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
+  integrity sha512-jgSbThcoR/s+XumvGMTMf81QVBmah+/Q7K7YduKeKVWL7N111unR2d6pZZarSk6kY/caeNxUDyxOvMWyzoU2eg==
 
 object-visit@^1.0.0:
   version "1.0.1"
@@ -19615,10 +19615,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-permanent-marker@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-permanent-marker/-/typeface-permanent-marker-0.0.72.tgz#89505a727c8095a0b7087d919e6d6bbf7ac4207e"
-  integrity sha512-M8rXJuCbMzm3HfoGOHcNW6cbb/jSsf96ib8bcSIiW7pJEAWaDL3tYYSQxgv2IFVgyLM6BAu/w1GemVFEu2Gkow==
+typeface-permanent-marker@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-permanent-marker/-/typeface-permanent-marker-1.1.13.tgz#4af383b970604b73321786f9d6d75988599f1476"
+  integrity sha512-cZgBXtUMquWlMh4/hhZ3lmBPDWnIwdodGHBMPQOXe1mUsnWBKe46ssOVE5kIEicnDxfmgSCV2/U/SZpDIm/w+Q==
 
 typeface-raleway@^0.0.75:
   version "0.0.75"
@@ -19946,7 +19946,7 @@ unist-util-visit-parents@^3.0.0:
     "@types/unist" "^2.0.0"
     unist-util-is "^4.0.0"
 
-unist-util-visit@2.0.2, unist-util-visit@^2.0.0, unist-util-visit@^2.0.2:
+unist-util-visit@2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.2.tgz#3843782a517de3d2357b4c193b24af2d9366afb7"
   integrity sha512-HoHNhGnKj6y+Sq+7ASo2zpVdfdRifhTgX2KTU3B/sO/TTlZchp7E3S4vjRzDJ7L60KmrCPsQkVK3lEF3cz36XQ==
@@ -19955,7 +19955,7 @@ unist-util-visit@2.0.2, unist-util-visit@^2.0.0, unist-util-visit@^2.0.2:
     unist-util-is "^4.0.0"
     unist-util-visit-parents "^3.0.0"
 
-unist-util-visit@2.0.3, unist-util-visit@^2.0.3:
+unist-util-visit@2.0.3, unist-util-visit@^2.0.0, unist-util-visit@^2.0.2, unist-util-visit@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.3.tgz#c3703893146df47203bb8a9795af47d7b971208c"
   integrity sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==
