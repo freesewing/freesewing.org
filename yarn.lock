@@ -2374,15 +2374,15 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.18.tgz#f83cbb2355de9cf36a213140ce21647da1e34fa7"
   integrity sha512-aFHsZVu7r9WamlP+WO/lyvHHZAubkQjkcRYlvS7fQElypfJvjKdHevjC3xiqlsQpasx/4KqRMoEIb++wNtd+6w==
 
-"@mdx-js/util@1.6.16":
-  version "1.6.16"
-  resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.16.tgz#07a7342f6b61ea1ecbfb31e6e23bf7a8c79b9b57"
-  integrity sha512-SFtLGIGZummuyMDPRL5KdmpgI8U19Ble28UjEWihPjGxF1Lgj8aDjLWY8KiaUy9eqb9CKiVCqEIrK9jbnANfkw==
-
 "@mdx-js/util@1.6.18":
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.18.tgz#c7563bf72cb4520b8b7100b64006a64be717e936"
   integrity sha512-axMe+NoLF55OlXPbhRn4GNCHcL1f5W3V3c0dWzg05S9JXm3Ecpxzxaht3g3vTP0dcqBL/yh/xCvzK0ZpO54Eug==
+
+"@mdx-js/util@1.6.21":
+  version "1.6.21"
+  resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.21.tgz#25f97a0a1b76e78c16ae5d98c6c73e1be8d89e39"
+  integrity sha512-6sANhqfEHu6gdHZSrzDjN18Y48mIon8f2Os6J+IFmMHN0IhNG/0PUIIsI07kA1sZ9t6vgZNBloVmcDa5WOSe6A==
 
 "@mdx-js/util@^2.0.0-next.8":
   version "2.0.0-next.8"
@@ -3845,13 +3845,13 @@ babel-plugin-apply-mdx-type-prop@1.6.18:
     "@babel/helper-plugin-utils" "7.10.4"
     "@mdx-js/util" "1.6.18"
 
-babel-plugin-apply-mdx-type-prop@^1.6.16:
-  version "1.6.16"
-  resolved "https://registry.yarnpkg.com/babel-plugin-apply-mdx-type-prop/-/babel-plugin-apply-mdx-type-prop-1.6.16.tgz#4becd65b3aa108f15c524a0b125ca7c81f3443d8"
-  integrity sha512-hjUd24Yhnr5NKtHpC2mcRBGjC6RUKGzSzjN9g5SdjT4WpL/JDlpmjyBf7vWsJJSXFvMIbzRyxF4lT9ukwOnj/w==
+babel-plugin-apply-mdx-type-prop@^1.6.21:
+  version "1.6.21"
+  resolved "https://registry.yarnpkg.com/babel-plugin-apply-mdx-type-prop/-/babel-plugin-apply-mdx-type-prop-1.6.21.tgz#0c8600c965ca4203e3c026ed971ed5b7e810aeba"
+  integrity sha512-+vQarmm+g+kePH4CMp2iEN/HOx1oEvZeSKCdKCEZlnJOthXzkpaRAbM3ZNCiKqVr9WuoqPNfoXQ0EVppYpIwfg==
   dependencies:
     "@babel/helper-plugin-utils" "7.10.4"
-    "@mdx-js/util" "1.6.16"
+    "@mdx-js/util" "1.6.21"
 
 babel-plugin-dynamic-import-node@^2.3.3:
   version "2.3.3"
