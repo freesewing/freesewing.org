@@ -132,7 +132,7 @@
   "devDependencies": {
     "@commitlint/cli": "9.0.1",
     "@commitlint/config-conventional": "11.0.0",
-    "babel-plugin-apply-mdx-type-prop": "^1.6.16",
+    "babel-plugin-apply-mdx-type-prop": "^1.6.21",
     "babel-plugin-styled-components": "^1.10.7",
     "cypress": "4.10.0",
     "eslint": "6.8.0",
