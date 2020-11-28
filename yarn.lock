@@ -18870,10 +18870,10 @@ typeface-permanent-marker@1.1.13:
   resolved "https://registry.yarnpkg.com/typeface-permanent-marker/-/typeface-permanent-marker-1.1.13.tgz#4af383b970604b73321786f9d6d75988599f1476"
   integrity sha512-cZgBXtUMquWlMh4/hhZ3lmBPDWnIwdodGHBMPQOXe1mUsnWBKe46ssOVE5kIEicnDxfmgSCV2/U/SZpDIm/w+Q==
 
-typeface-raleway@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-raleway/-/typeface-raleway-0.0.75.tgz#cc79688aa3175452744ecd19540b54dad153e8f3"
-  integrity sha512-mUvT/klCTGA2HporaIMNY3ap45YxBErxFv/1pv82LhbFdNc3m+6ddfoexP6xxwMZ5yZ2VmDhMqk1yikDEoxU/Q==
+typeface-raleway@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-raleway/-/typeface-raleway-1.1.13.tgz#5dd44c7029c69991f3e8a66f4434ba62bcf0886a"
+  integrity sha512-iouV4D1dv4Ylm++j2PmPW7HKJH7zTKu5xXsta1hqQ2oG8+9fSpocuF40xCSTckaa1DLYbk1TUiU14wr2nCUBqg==
 
 typeface-roboto-condensed@1.1.13:
   version "1.1.13"
