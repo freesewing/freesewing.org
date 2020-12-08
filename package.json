@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@bugsnag/js": "^7.5.1",
+    "@bugsnag/js": "^7.5.3",
     "@bugsnag/plugin-react": "^7.3.1",
     "@freesewing/aaron": "2.10.7",
     "@freesewing/albert": "^2.10.7",
