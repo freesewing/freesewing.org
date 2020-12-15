@@ -8814,24 +8814,24 @@ gatsby-remark-smartypants@2.5.0:
     retext-smartypants "^3.0.3"
     unist-util-visit "^1.4.1"
 
-gatsby-source-filesystem@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.6.0.tgz#f681bbb231d785e085546a961135e0971b0a8ed9"
-  integrity sha512-SvA/1eaVxCeZd1QIvuWOUjcX4QtMEQkVOuLd0K2WfMjtgCcRu9Y6R5UT+Fbk7G2Cx9SlwxclYS4Y/b0uRUphpg==
+gatsby-source-filesystem@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.7.0.tgz#09da0ecfb85a6527858029d38b7bc2c68c9a91a3"
+  integrity sha512-SpIwHe89LLwgwNUEcHaRCe3J5+7ODgdJLh/PhJdSpmEzeHQRtLAfInNuoTMs8pJ53W+1HI/ph3/HXSAPddi/VA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     better-queue "^3.8.10"
-    chokidar "^3.4.2"
+    chokidar "^3.4.3"
     file-type "^16.0.0"
     fs-extra "^8.1.0"
-    gatsby-core-utils "^1.5.0"
+    gatsby-core-utils "^1.6.0"
     got "^9.6.0"
     md5-file "^5.0.0"
     mime "^2.4.6"
     pretty-bytes "^5.4.1"
     progress "^2.0.3"
     valid-url "^1.0.9"
-    xstate "^4.13.0"
+    xstate "^4.14.0"
 
 gatsby-telemetry@^1.6.0:
   version "1.6.0"
@@ -20096,10 +20096,10 @@ xss@^1.0.6:
     commander "^2.20.3"
     cssfilter "0.0.10"
 
-xstate@^4.11.0, xstate@^4.13.0, xstate@^4.9.1:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.14.0.tgz#dd9f3f0af4acd04a01b3ad60d3d4c66c51ac1b5d"
-  integrity sha512-nz+T5rlPl0Vu1L9NZdI7JYVq57k/pKpyLwmztqgcj/HqUVsopnMKBP6cQJCb4Op9TC8kffyJSMwHDFthuRpooQ==
+xstate@^4.11.0, xstate@^4.14.0, xstate@^4.9.1:
+  version "4.15.1"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.15.1.tgz#0553453c1cd201fedaf35a3cc518fe56090dbc3a"
+  integrity sha512-8dD/GnTwxUuDr/cY42vi+Enu4mpbuUXWISYJ0a9BC+cIFvqufJsepyDLS6lLsznfUP0GS5Yx9m3IQWFhAoGt/A==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"
