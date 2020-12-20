@@ -94,7 +94,7 @@ const SearchHit = (props) => {
 
   return (
     <div style={styles.wrapper}>
-      <Avatar data={props.app.account} alt="avatar" />
+      <Avatar data={props.user} alt="avatar" />
       <div style={styles.data}>
         <h5 style={styles.heading}>
           {props.user.username} ({props.user.handle})
@@ -104,7 +104,7 @@ const SearchHit = (props) => {
             <b>Email</b>: {props.user.email}
           </li>
           <li>
-            <b>Login</b>: {props.user.time.login}
+            <b>Login</b>: {props.user.time ? props.user.time.login : 'never'}
           </li>
           <li>
             <b>Patron</b>: {tier}

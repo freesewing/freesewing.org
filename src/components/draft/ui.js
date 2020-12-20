@@ -107,7 +107,11 @@ ${e.stack}
         .createIssue({
           design,
           data: YAML.stringify(data),
-          patternProps: YAML.stringify(patternProps),
+          patternProps: {
+            settings: YAML.stringify(patternProps.settings),
+            events: YAML.stringify(patternProps.events),
+            parts: JSON.stringify(patternProps.parts, null, 2)
+          },
           traces: tracesFromPatternProps(patternProps),
           error,
           compareWith

@@ -110,6 +110,10 @@ if (false && process.env.CONTEXT === 'production' && process.env.HEAD === 'maste
 }
 
 module.exports = {
+  flags: {
+    DEV_SSR: true
+    //QUERY_ON_DEMAND: true
+  },
   plugins: plugins,
   siteMetadata: {
     title: 'FreeSewing',
