@@ -10,6 +10,10 @@
 
 This repository holds the source code for the [freesewing.org](https://freesewing.org) website.
 
+## Getting started ⚡
+
+Please refer to the online documentation for this repository at: https://freesewing.dev/reference/repos/org/
+
 ## About FreeSewing 💀
 
 Where the world of makers and developers collide, that's where you'll find FreeSewing.

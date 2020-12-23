@@ -111,8 +111,13 @@ if (false && process.env.CONTEXT === 'production' && process.env.HEAD === 'maste
 
 module.exports = {
   flags: {
-    DEV_SSR: true
-    //QUERY_ON_DEMAND: true
+    DEV_SSR: true,
+    QUERY_ON_DEMAND: true,
+    FAST_DEV: true,
+    LAZY_IMAGES: true,
+    PRESERVE_WEBPACK_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    FAST_REFRESH: true
   },
   plugins: plugins,
   siteMetadata: {
