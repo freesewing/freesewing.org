@@ -95,7 +95,7 @@ const AppWrapper = (props) => {
               </Fab>
             </>
           ) : (
-            <Navbar app={props.app} />
+            !props.noNavbar && <Navbar app={props.app} />
           )}
           <Fab
             title={props.app.translate('app.scrollToTop')}

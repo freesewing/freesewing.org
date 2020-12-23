@@ -7,12 +7,33 @@ const LatestNews = (props) => {
   useEffect(() => {
     axios
       .get('https://raw.githubusercontent.com/freesewing/freesewing/develop/LATEST_NEWS.md')
-      .then((result) => setNews(result.data))
+      .then((result) => {
+        let n = []
+        let a = false
+        for (let line of result.data.split('\n')) {
+          console.log(line)
+          if (line.slice(0, 5) === '#####') {
+            if (a) n.push(a)
+            a = ''
+          }
+          a += '\n' + line
+        }
+        n.push(a)
+        setNews(n)
+      })
       .catch((err) => console.log(err))
   }, [])
   const [news, setNews] = useState(false)
 
-  return news ? <Markdown source={news} /> : <Spinner size="150" />
+  return news ? (
+    news.map((a) => (
+      <div>
+        <Markdown source={a} />
+      </div>
+    ))
+  ) : (
+    <Spinner size="150" />
+  )
 }
 
 export default LatestNews

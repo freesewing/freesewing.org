@@ -1,0 +1,41 @@
+import React from 'react'
+import DocsIcon from '@material-ui/icons/ChromeReaderMode'
+import ShowcaseIcon from '@material-ui/icons/CameraAlt'
+import BlogIcon from '@material-ui/icons/RssFeed'
+import CommunityIcon from '@material-ui/icons/Favorite'
+import AccountIcon from '@material-ui/icons/Face'
+import Icon from '@freesewing/components/Icon'
+import { Link } from 'gatsby'
+import { FormattedMessage } from 'react-intl'
+
+const IconBar = ({ app }) => {
+  // Keep icons from blowing up on SSR
+  const iconStyle = { maxWidth: '52px' }
+
+  const icons = {
+    designs: <Icon icon="withBreasts" style={iconStyle} />,
+    community: <CommunityIcon style={iconStyle} />,
+    showcase: <ShowcaseIcon style={iconStyle} />,
+    blog: <BlogIcon style={iconStyle} />,
+    docs: <DocsIcon style={iconStyle} />,
+    account: <AccountIcon style={iconStyle} />
+  }
+
+  return (
+    <div className="icons">
+      {Object.keys(icons).map((icon) => (
+        <div className="icon" key={icon}>
+          <Link to={`/${icon}/`} title={app.translate(`app.${icon}`)}>
+            {icons[icon]}
+            <br />
+            <span>
+              <FormattedMessage id={`app.${icon}`} />
+            </span>
+          </Link>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default IconBar

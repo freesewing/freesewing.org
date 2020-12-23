@@ -39,7 +39,7 @@
   margin: 0 0 1rem 0;
   color: #fff;
 }
-#homepage div.boxes {
+#homepage div.news {
   max-width: 1600px;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@
   justify-content: space-around;
   margin: auto;
 }
-#homepage div.boxes > div {
+#homepage div.news > div {
   padding: 1.5rem;
   max-width: calc(30% - 1.5rem);
 }
@@ -158,32 +158,19 @@
   font-size: 1rem;
 }
 
-svg.blobs {
-  margin: -64px auto 0;
-  margin-top: -64px;
-  max-height: calc(100vh - 52px - 5rem + 10px);
-}
-div.blob-wrapper {
-  text-align: center;
-  margin-left: -20vw;
-  margin-right: -20vw;
-}
-div.blob-wrapper:hover {
-  cursor: pointer;
-}
-/* Force transparant background on nav bar */
-div.theme-wrapper > div:first-of-type,
-header.MuiAppBar-colorSecondary {
-  background-color: transparent !important;
-}
-
 div.icons {
-  margin-top: -8px;
-  padding: 1.25rem 0 0.75rem 0;
+  background: linear-gradient(
+    45deg,
+    rgba(234, 58, 58, 1) 0%,
+    rgba(255, 165, 56, 1) 20%,
+    rgba(255, 241, 56, 1) 40%,
+    rgba(56, 156, 86, 1) 60%,
+    rgba(56, 116, 255, 1) 80%,
+    rgba(147, 61, 161, 1) 100%
+  );
+  padding: 0.5rem 0;
   text-align: center;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 48px 48px 0 rgba(255, 254, 254, 0.15);
-
+  margin: 4rem auto;
   div.icon {
     width: 15vw;
     display: inline-block;
@@ -233,6 +220,17 @@ div.icons {
   #blog a.image {
     color: #f8f9fa;
   }
+  div.icons {
+    background: linear-gradient(
+      45deg,
+      rgba(122, 31, 31, 1) 0%,
+      rgba(140, 91, 32, 1) 20%,
+      rgba(143, 135, 32, 1) 40%,
+      rgba(40, 107, 60, 1) 61%,
+      rgba(38, 78, 172, 1) 80%,
+      rgba(100, 41, 110, 1) 100%
+    );
+  }
 }
 
 /* mobile and tablet and slate */
@@ -243,10 +241,10 @@ div.icons {
 }
 /* mobile and tablet */
 @media (max-width: 959px) and (min-width: 600px) {
-  #homepage div.boxes {
+  #homepage div.news {
     display: block;
   }
-  #homepage div.boxes > div {
+  #homepage div.news > div {
     max-width: 666px;
     margin: 0 auto;
   }
@@ -270,7 +268,7 @@ div.icons {
 
 /* mobile */
 @media (max-width: 599px) {
-  #homepage div.boxes > div {
+  #homepage div.news > div {
     max-width: 100%;
     min-width: 200px;
   }

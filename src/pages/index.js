@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
 import AppWrapper from '../components/app/wrapper'
@@ -18,6 +18,10 @@ import oc from 'open-color-js'
 import Blob from '../components/blobs'
 import contrast from 'get-contrast'
 import LatestNews from '../components/LatestNews'
+
+import Splash from '../components/homepage/splash'
+import IconBar from '../components/homepage/iconbar'
+import SupportBanner from '../components/homepage/support-banner'
 
 // Style
 import './homepage.scss'
@@ -49,47 +53,10 @@ const renderBlogPost = (node) => (
   </div>
 )
 
-const colors = [
-  'red',
-  'pink',
-  'grape',
-  'violet',
-  'indigo',
-  'blue',
-  'cyan',
-  'teal',
-  'green',
-  'lime',
-  'yellow',
-  'orange'
-]
-const shades = [5, 6, 7, 8, 9]
-const pickOne = (array) => array[Math.floor(Math.random() * array.length)]
-const getContrast = (color) => {
-  let black = '#212529'
-  let white = '#f8f9fa'
-  let ratio = {
-    black: contrast.ratio(color, black),
-    white: contrast.ratio(color, white)
-  }
-
-  return ratio.black > ratio.white ? black : white
-}
-const randomColor = (theme = 'light') => {
-  let color = oc[pickOne(colors) + pickOne(shades)]
-  return {
-    color,
-    contrast: getContrast(color)
-  }
-}
-
 const HomePage = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
-
-  // State
-  const [color, setColor] = useState(randomColor(app.theme))
 
   const patrons = props.data.patrons.edges.map((node) => ({
     name: node.node.patron.username,
@@ -97,122 +64,16 @@ const HomePage = (props) => {
   }))
 
   return (
-    <AppWrapper app={app} noLayout>
+    <AppWrapper app={app} noLayout oNavbar>
       <div id="homepage">
-        <div className="blob-wrapper" onClick={() => setColor(randomColor(app.theme))}>
-          <Blob color={color} patrons={patrons} app={app} />
+        <Splash app={app} uiMdx={uiMdx} />
+        <IconBar app={app} />
+
+        <div className="news">
+          <LatestNews />
         </div>
 
-        {/* Icons */}
-        <div className="icons" style={{ background: color.color, color: color.contrast }}>
-          <div className="icon">
-            <Link to="/designs/" title={app.translate('app.designs')}>
-              <Icon icon="withBreasts" />
-              <br />
-              <span>
-                <FormattedMessage id="app.designs" />
-              </span>
-            </Link>
-          </div>
-          <div className="icon">
-            <Link to="/community/" title={app.translate('app.community')}>
-              <CommunityIcon />
-              <br />
-              <span>
-                <FormattedMessage id="app.community" />
-              </span>
-            </Link>
-          </div>
-          <div className="icon">
-            <Link to="/showcase/" title={app.translate('app.showcase')}>
-              <ShowcaseIcon />
-              <br />
-              <span>
-                <FormattedMessage id="app.showcase" />
-              </span>
-            </Link>
-          </div>
-          <div className="icon">
-            <Link to="/blog/" title={app.translate('app.blog')}>
-              <BlogIcon />
-              <br />
-              <span>
-                <FormattedMessage id="app.blog" />
-              </span>
-            </Link>
-          </div>
-          <div className="icon">
-            <Link to="/docs/" title={app.translate('app.docs')}>
-              <DocsIcon />
-              <br />
-              <span>
-                <FormattedMessage id="app.docs" />
-              </span>
-            </Link>
-          </div>
-          <div className="icon">
-            <Link to="/account/" title={app.translate('app.account')}>
-              <AccountIcon />
-              <br />
-              <span>
-                <FormattedMessage id="app.account" />
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Support banner */}
-        <div className="stripe">
-          <div className="stripe-content">
-            <h1>
-              <FormattedMessage id="app.supportFreesewing" />
-            </h1>
-            <h2>
-              <FormattedMessage id="app.txt-tiers" />
-            </h2>
-            <p>
-              <FormattedMessage id="app.patronPitch" />
-            </p>
-            <Button
-              color="primary"
-              className="accent"
-              size="large"
-              variant="contained"
-              href="/patrons/join/"
-              style={{
-                margin: '1rem 1rem 0 0',
-                background: color.color,
-                color: color.contrast
-              }}
-            >
-              <FormattedMessage id="app.becomeAPatron" />
-            </Button>
-            <Button
-              color="secondary"
-              size="large"
-              variant="contained"
-              href="/docs/about/pledge/"
-              style={{ marginTop: '1rem' }}
-            >
-              <FormattedMessage id="app.ourRevenuePledge" />
-            </Button>
-          </div>
-          <div className="stripe-bg" style={{ backgroundColor: color.color }}></div>
-        </div>
-
-        {/* First row of text boxes */}
-        <div className="boxes">
-          <div>
-            <h2>Latest news</h2>
-            <LatestNews />
-          </div>
-          <div>
-            <Mdx node={uiMdx[`homepage/row-1`]} />
-          </div>
-          <div>
-            <Mdx node={uiMdx[`homepage/row-2`]} />
-          </div>
-        </div>
+        <SupportBanner />
 
         {/* Latest blog posts */}
         <div id="blog">
