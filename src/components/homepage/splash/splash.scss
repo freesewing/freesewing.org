@@ -2,13 +2,14 @@
 
 div.splash {
   margin: 0 auto;
-  padding: 2rem 0 0;
+  padding: 0;
   div.top {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     color: $oc-gray-9;
+    padding: 0 1rem;
     div.logo {
       text-align: center;
       div.name {
@@ -41,14 +42,14 @@ div.splash {
 
   div.groups div {
     margin: 2rem 1rem;
-    border: 1px solid $oc-gray-4;
+    border: 1px solid $oc-gray-5;
     padding: 0 2rem 0.5rem;
     border-radius: 6px;
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 43%;
     width: calc(33% - 2rem);
-    background-color: $oc-gray-0;
+    background-color: $oc-gray-1;
   }
   div.groups div p {
     max-width: 70%;
@@ -63,17 +64,25 @@ div.splash {
     background-image: url('/splash/developer.png');
   }
   div.groups div.active {
-    background-color: $oc-gray-2;
+    background-color: $oc-gray-9;
+    color: $oc-gray-0;
   }
   div.details {
-    background: $oc-gray-2;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    background: $oc-gray-9;
+    color: $oc-gray-0;
     background-repeat: no-repeat;
-    background-position: bottom right;
+    background-position: bottom right 20px;
     background-size: auto 33%;
     section {
       max-width: 700px;
+      width: calc(100% - 2rem - 40px);
       margin: auto;
       padding: 1rem;
+      a {
+        color: $oc-violet-2 !important;
+      }
     }
   }
   div.details.maker {
@@ -97,7 +106,7 @@ div.splash {
     div.groups div {
       background-size: 200px;
       padding: 0 1rem 170px 1rem;
-      margin: 2rem 0.5rem;
+      margin: 2rem 1rem;
       p {
         max-width: 100%;
       }
@@ -114,17 +123,21 @@ div.splash {
       flex-direction: column;
       div.slogan {
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         margin: 2rem auto;
+        font-weight: 500;
+      }
+      div.logo div.name {
+        font-size: 1.25rem;
       }
     }
     div.groups {
       flex-wrap: wrap;
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
     }
     div.groups div {
       width: 100%;
-      margin: 0.5rem;
+      margin: 0.5rem 1rem;
     }
     div.details {
       background-size: 200px;

@@ -76,6 +76,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
         'github',
         'instagram',
         'twitter',
+        'newsletter',
         'email',
         'username',
         'password'

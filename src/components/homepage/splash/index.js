@@ -14,66 +14,38 @@ const Splash = ({ app, uiMdx }) => {
     else setReveal(group)
   }
 
-  const maker = (
-    <div
-      key="maker"
-      className={`maker poh ${reveal === 'maker' ? 'active' : ''}`}
-      onClick={() => toggleReveal('maker')}
-    >
-      <h3>For makers</h3>
-      <p>
-        All our sewing patterns are made-to-measure &amp; free to use, courtesy of our community
-      </p>
-    </div>
-  )
-  const designer = (
-    <div
-      key="designer"
-      className={`designer poh ${reveal === 'designer' ? 'active' : ''}`}
-      onClick={() => toggleReveal('designer')}
-    >
-      <h3>For designers</h3>
-      <p>Find out how parametric design is different, and what that means for you as a designer</p>
-    </div>
-  )
-  const developer = (
-    <div
-      key="developer"
-      className={`developer poh ${reveal === 'developer' ? 'active' : ''}`}
-      onClick={() => toggleReveal('developer')}
-    >
-      <h3>For developers</h3>
-      <p>
-        FreeSewing is written in JavaScript. We have guides and docs for beginners and experts alike
-      </p>
-    </div>
-  )
-  const groups = []
-
-  if (app.mobile) {
-    if (!reveal) groups.push(maker, designer, developer)
-    else {
-      if (reveal === 'maker') groups.push(maker)
-      else if (reveal === 'designer') groups.push(designer)
-      else if (reveal === 'developer') groups.push(developer)
-    }
-  } else {
-    groups.push(maker, designer, developer)
+  const boxes = {}
+  for (let role of ['maker', 'designer', 'developer']) {
+    boxes[role] = (
+      <div
+        key={role}
+        className={`${role} poh ${reveal === role ? 'active' : ''}`}
+        onClick={() => toggleReveal(role)}
+      >
+        <Mdx node={uiMdx[`splash/${role}`]} />
+      </div>
+    )
   }
+
+  const groups = []
+  if (app.mobile) {
+    if (!reveal) groups.push(boxes.maker, boxes.designer, boxes.developer)
+    else groups.push(boxes[reveal])
+  } else groups.push(boxes.maker, boxes.designer, boxes.developer)
 
   return (
     <div className="splash">
       <div className="top">
         <div className="logo">
-          <Logo size={166} />
+          <Logo size={app.mobile ? 96 : 166} />
           <div className="name">
             <span className="free">Free</span>Sewing
           </div>
         </div>
         <div className="slogan">
-          Come for the sewing patterns
+          <FormattedMessage id="app.slogan-come" />
           <br />
-          Stay for the community
+          <FormattedMessage id="app.slogan-stay" />
         </div>
       </div>
       <div className="groups">{groups}</div>
@@ -81,7 +53,7 @@ const Splash = ({ app, uiMdx }) => {
         <div className={`details ${reveal ? reveal : ''}`}>
           <Mdx node={uiMdx[`homepage/${reveal}s`]} />
           <div className="close-button">
-            <Button onClick={() => setReveal(false)} color="primary" variant="contained">
+            <Button onClick={() => setReveal(false)} color="secondary" variant="outlined">
               <FormattedMessage id="app.close" />
             </Button>
           </div>

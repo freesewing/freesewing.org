@@ -59,6 +59,7 @@ const AccountContext = ({ app, active = '' }) => [
       'github',
       'instagram',
       'twitter',
+      'newsletter',
       'email',
       'username',
       'password'

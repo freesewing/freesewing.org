@@ -1,43 +1,17 @@
+@import '../../node_modules/open-color/open-color.scss';
+
 #homepage {
   flex-grow: 2;
   max-width: 100vw;
   overflow: hidden;
   margin-top: -64px;
-  padding-top: 64px;
+  padding-top: 0;
 }
-#homepage > header {
-  background-image: url('/horizon.jpg');
-  background-size: cover;
-  background-position: bottom;
-}
-#homepage > header > div.banner {
-  min-height: 300px;
-  padding: 3rem 2rem;
-  font-family: 'Roboto Condensed', sans-serif;
-  position: relative;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    349deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.2) 35%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  opacity: 0.9;
-}
-#homepage > header > div.banner > div.text-block {
-  padding: 1rem 2rem;
-}
-
-#homepage > header > div.banner > div.text-block h1 {
-  margin: 0 0 2rem 0;
-  padding: 0;
-  font-weight: 900;
-  color: #fff;
-}
-#homepage > header > div.banner > div.text-block h2 {
-  border-color: rgba(255, 255, 255, 0.25);
-  margin: 0 0 1rem 0;
-  color: #fff;
+#homepage > h2 {
+  width: calc(100% - 2rem);
+  display: block;
+  max-width: 1600px;
+  margin: 1rem auto;
 }
 #homepage div.news {
   max-width: 1600px;
@@ -46,29 +20,37 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
-}
-#homepage div.news > div {
-  padding: 1.5rem;
-  max-width: calc(30% - 1.5rem);
+  div.news-article {
+    margin: 0.5rem;
+    border-radius: 3px;
+    padding: 1.5rem;
+    padding-bottom: 0.1rem;
+    max-width: calc(33.333% - 4rem);
+    h5 {
+      margin-top: 0;
+    }
+  }
 }
 #homepage .btn-primary {
-  background: #fff;
-  border-color: #fff;
-  color: #212529;
+  background: $oc-gray-0;
+  border-color: $oc-gray-0;
+  color: $oc-gray-9;
   margin: 0.5rem;
 }
 #homepage .btn-secondary {
   background: rgba(255, 255, 255, 0.5);
-  color: #212529;
-  border-color: #fff;
+  color: $oc-gray-9;
+  border-color: $oc-gray-0;
 }
 #homepage div.stripe {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
   background-image: url('/support.jpg');
   background-size: cover;
   background-position: bottom;
   min-height: 300px;
   padding: 3rem 2rem;
-  color: #fff;
+  color: $oc-gray-0;
   font-family: 'Roboto Condensed', sans-serif;
   position: relative;
   width: 100%;
@@ -110,7 +92,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   max-width: 1600px;
-  margin: 5rem auto;
+  margin: 3rem auto;
+  margin-bottom: 4rem;
 }
 #blog figure {
   margin: 0 auto;
@@ -159,42 +142,35 @@
 }
 
 div.icons {
-  background: linear-gradient(
-    45deg,
-    rgba(234, 58, 58, 1) 0%,
-    rgba(255, 165, 56, 1) 20%,
-    rgba(255, 241, 56, 1) 40%,
-    rgba(56, 156, 86, 1) 60%,
-    rgba(56, 116, 255, 1) 80%,
-    rgba(147, 61, 161, 1) 100%
-  );
-  padding: 0.5rem 0;
+  background: $oc-gray-9;
+  color: $oc-gray-0;
+  padding: 0;
   text-align: center;
   margin: 4rem auto;
   div.icon {
     width: 15vw;
     display: inline-block;
     text-align: center;
-
     a {
       color: inherit !important;
       border: 0;
-      border-bottom: 3px solid transparent;
-      max-width: 150px;
+      width: 100%;
       margin: 0;
-      padding: 0;
+      padding: 2rem 0;
       display: inline-block;
       text-align: center;
-      opacity: 0.85;
-      transition-property: border-color opacity;
+      transition-property: color;
       transition-duration: 300ms;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
       svg {
-        height: 52px;
-        width: 52px;
+        height: 64px;
+        width: 64px;
         padding: 0;
         fill: currentColor;
+        transition-property: color;
+        transition-duration: 300ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
       span {
         font-family: 'Roboto Condensed', sans-serif;
@@ -203,61 +179,49 @@ div.icons {
       }
     }
     a:hover {
-      opacity: 1;
       text-decoration: none !important;
-      border-color: currentColor;
-      color: red;
+      color: $oc-violet-2 !important;
+      svg {
+        color: $oc-violet-2;
+      }
     }
   }
 }
 
 .theme-wrapper.light #blog a.text,
 .theme-wrapper.light #blog a.image {
-  color: #212529;
+  color: $oc-gray-9;
 }
 .theme-wrapper.dark {
   #blog a.text,
   #blog a.image {
-    color: #f8f9fa;
-  }
-  div.icons {
-    background: linear-gradient(
-      45deg,
-      rgba(122, 31, 31, 1) 0%,
-      rgba(140, 91, 32, 1) 20%,
-      rgba(143, 135, 32, 1) 40%,
-      rgba(40, 107, 60, 1) 61%,
-      rgba(38, 78, 172, 1) 80%,
-      rgba(100, 41, 110, 1) 100%
-    );
+    color: $oc-gray-0;
   }
 }
 
 /* mobile and tablet and slate */
 @media (max-width: 1199px) and (min-width: 960px) {
   div.icons {
-    padding: 0.75rem 0 0.25rem 0;
+    div.icon a svg {
+      height: 52px;
+      width: 52px;
+    }
   }
 }
 /* mobile and tablet */
 @media (max-width: 959px) and (min-width: 600px) {
-  #homepage div.news {
-    display: block;
-  }
   #homepage div.news > div {
-    max-width: 666px;
-    margin: 0 auto;
-  }
-  svg.blobs {
-    max-height: calc(100vh - 75px - 5rem);
+    min-width: 42ch;
   }
   div.icons {
+    padding: 1rem 0;
     div.icon {
       width: 30vw;
       a {
+        padding: 1rem 0;
         svg {
-          height: 36px;
-          width: 36px;
+          height: 48px;
+          width: 48px;
           padding: 0;
           fill: currentColor;
         }
@@ -269,12 +233,7 @@ div.icons {
 /* mobile */
 @media (max-width: 599px) {
   #homepage div.news > div {
-    max-width: 100%;
-    min-width: 200px;
-  }
-  #homepage > header {
-    background-size: 350%;
-    background-position: 15% 95%;
+    min-width: calc(100% - 4rem);
   }
   #blog > div {
     width: calc(100% - 2rem);
@@ -288,16 +247,18 @@ div.icons {
     padding: 0;
   }
   div.icons {
-    padding: 0.25rem 0 0 0;
+    padding: 1rem 0;
     div.icon {
-      width: 30vw;
+      width: calc(50vw - 2rem);
+      margin: 0;
       a {
-        font-size: 70%;
+        padding: 1rem 0;
+        font-size: 100%;
         font-weight: bold;
         min-width: 100px;
         svg {
-          height: 36px;
-          width: 36px;
+          height: 64px;
+          width: 64px;
           padding: 0;
           fill: currentColor;
         }

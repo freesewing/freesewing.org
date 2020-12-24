@@ -1,0 +1,88 @@
+@import '../../../node_modules/open-color/open-color.scss';
+
+footer {
+  div.cols {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    div {
+      min-width: 150px;
+      max-width: calc(25% - 2rem);
+      padding: 0 1rem;
+    }
+  }
+  ul {
+    text-align: left;
+    li {
+      padding: 0.35rem 0;
+      display: block;
+      a {
+        text-transform: capitalize;
+        svg {
+          margin-right: 1rem;
+          margin-bottom: -5px;
+        }
+      }
+    }
+    li.heading {
+      font-weight: bold;
+      border-bottom: 3px solid currentColor;
+      margin-bottom: 0.5rem;
+    }
+  }
+  div.logo {
+    text-align: center;
+    div.name {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Raleway';
+      span.free {
+        font-weight: 900;
+      }
+    }
+  }
+  div.slogan {
+    padding-top: 0rem;
+    font-weight: 300;
+    font-family: 'Raleway';
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  p.version {
+    font-size: 1rem;
+  }
+}
+
+/* SM screens */
+@media (min-width: 600px) and (max-width: 959px) {
+  footer div.cols {
+    flex-wrap: wrap;
+    div {
+      width: calc(30% - 4rem);
+      padding: 0 1rem;
+    }
+    div:last-of-type {
+      min-width: calc(100% - 2rem);
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      div.logo {
+        margin: auto;
+      }
+    }
+  }
+}
+/* XS screens */
+@media (max-width: 599px) {
+  footer div.cols {
+    display: block;
+    div {
+      margin: 2rem auto 0;
+      max-width: calc(100% - 4rem);
+    }
+    div:first-of-type {
+      margin-top: 0;
+    }
+  }
+}

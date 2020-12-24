@@ -22,6 +22,7 @@ import LatestNews from '../components/LatestNews'
 import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
+import Newsletter from '../components/homepage/newsletter'
 
 // Style
 import './homepage.scss'
@@ -64,16 +65,15 @@ const HomePage = (props) => {
   }))
 
   return (
-    <AppWrapper app={app} noLayout oNavbar>
+    <AppWrapper app={app} noLayout noNavbar>
       <div id="homepage">
-        <Splash app={app} uiMdx={uiMdx} />
         <IconBar app={app} />
-
+        <Splash app={app} uiMdx={uiMdx} />
+        <SupportBanner />
         <div className="news">
           <LatestNews />
         </div>
-
-        <SupportBanner />
+        <Newsletter app={app} uiMdx={uiMdx} />
 
         {/* Latest blog posts */}
         <div id="blog">
@@ -82,11 +82,11 @@ const HomePage = (props) => {
             {renderBlogPost(props.data.blog.edges[1])}
             {renderBlogPost(props.data.blog.edges[2])}
             {renderBlogPost(props.data.blog.edges[3])}
-            <h3 style={{ textAlign: 'right', padding: '0 1rem' }}>
+            <p style={{ textAlign: 'right', padding: '0 1rem' }}>
               <Link to="/blog/" className="more">
                 <FormattedMessage id="app.browseBlogposts" /> &raquo;
               </Link>
-            </h3>
+            </p>
           </div>
         </div>
       </div>

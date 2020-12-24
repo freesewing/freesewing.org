@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl'
 
 const IconBar = ({ app }) => {
   // Keep icons from blowing up on SSR
-  const iconStyle = { maxWidth: '52px' }
+  const iconStyle = { maxWidth: '64px' }
 
   const icons = {
     designs: <Icon icon="withBreasts" style={iconStyle} />,

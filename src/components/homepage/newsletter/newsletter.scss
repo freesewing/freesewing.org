@@ -1,0 +1,55 @@
+@import '../../../../node_modules/open-color/open-color.scss';
+
+div.newsletter {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(45deg, $oc-gray-9 0%, $oc-gray-8 50%, $oc-gray-9 100%);
+  div.inner {
+    padding: 2rem 1rem 3rem;
+    margin: 4rem 0;
+    width: calc(100% - 2rem);
+    background: $oc-gray-9;
+    color: $oc-gray-0;
+    background-repeat: no-repeat;
+    background-position: bottom right 10px;
+    background-size: 20% auto;
+    background-color: transparent;
+    background-image: url('/splash/reader.png');
+    p.button {
+      width: 200px;
+      margin-top: 2rem;
+    }
+    #email,
+    #email-label {
+      color: $oc-gray-2;
+    }
+    fieldset {
+      border-color: $oc-gray-2;
+    }
+  }
+}
+div.newsletter div.inner > div {
+  max-width: 42ch;
+  margin: auto;
+}
+
+/* SM screens */
+@media (min-width: 600px) and (max-width: 959px) {
+  div.newsletter div.inner > div {
+    margin-left: 0;
+  }
+  div.newsletter div.inner {
+    background-size: 30% auto;
+  }
+}
+/* XS screens */
+@media (max-width: 599px) {
+  div.newsletter div.inner {
+    padding-bottom: 140px;
+    background-size: 30% auto;
+    background-size: 190px;
+  }
+}
+
+.theme-wrapper.dark div.newsletter {
+}

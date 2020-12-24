@@ -11,7 +11,6 @@ const LatestNews = (props) => {
         let n = []
         let a = false
         for (let line of result.data.split('\n')) {
-          console.log(line)
           if (line.slice(0, 5) === '#####') {
             if (a) n.push(a)
             a = ''
@@ -27,7 +26,7 @@ const LatestNews = (props) => {
 
   return news ? (
     news.map((a) => (
-      <div>
+      <div className="news-article shadow">
         <Markdown source={a} />
       </div>
     ))

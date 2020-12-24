@@ -25,8 +25,13 @@ const icons = {
   account: <AccountIcon />
 }
 
-const MainMenu = ({ app, active = '', iconsOnly = false }) => (
-  <ul className={iconsOnly ? 'footer-main-menu' : 'aside-main-menu'}>
+const MainMenu = ({ app, active = '', footer = false }) => (
+  <ul className={footer ? 'footer-main-menu' : 'aside-main-menu'}>
+    {footer && (
+      <li className="heading">
+        <FormattedMessage id="app.furtherReading" />
+      </li>
+    )}
     {Object.keys(links).map((link) => {
       return (
         <li key={link}>
@@ -35,8 +40,8 @@ const MainMenu = ({ app, active = '', iconsOnly = false }) => (
             className={link === active ? 'active' : ''}
             title={app.translate(links[link])}
           >
-            {icons[link]}
-            {!iconsOnly && <span className="text">{<FormattedMessage id={links[link]} />}</span>}
+            {!footer && icons[link]}
+            <span className="text">{<FormattedMessage id={links[link]} />}</span>
           </Link>
         </li>
       )
