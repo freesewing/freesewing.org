@@ -100,7 +100,7 @@
     "gatsby-remark-prismjs": "3.10.0",
     "gatsby-remark-smartypants": "2.7.0",
     "gatsby-source-filesystem": "2.8.0",
-    "gatsby-transformer-remark": "2.13.0",
+    "gatsby-transformer-remark": "2.13.1",
     "gatsby-transformer-sharp": "^2.8.0",
     "get-contrast": "^2.0.0",
     "node-sass": "^4.14.1",
@@ -142,7 +142,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.1",
     "gatsby-cli": "^2.15.0",
-    "husky": "^4.3.5",
+    "husky": "^4.3.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0"
   },
