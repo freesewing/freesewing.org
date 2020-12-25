@@ -1496,10 +1496,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/cathrin/-/cathrin-2.10.8-rc.0.tgz#5c43b21c2cb586d206ed95051e09412dc8d69e11"
   integrity sha512-kmF8rVkX6STvn33ja5sStZJHFKfDov/PMjmDXRwktuWWzyiaS7Mr58K/IWNTFgO3nh9J4Rk4DFMy6c6bshjf+w==
 
-"@freesewing/components@2.10.8-rc.0":
-  version "2.10.8-rc.0"
-  resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.10.8-rc.0.tgz#79ba49d1f89824c2de1013fa4904541870ad3c9e"
-  integrity sha512-ATkP50HHotYI/7Pd7gXWkFnwN06By/ZdVqlKab+HZbehnFfRCwe+hgzuHO91/8ilOB167r2zI1Ql9h9Djcliqw==
+"@freesewing/components@2.10.8-rc.0a":
+  version "2.10.8-rc.0a"
+  resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.10.8-rc.0a.tgz#f62843452fb849a9c63e6e604d31ec64b9e10b0e"
+  integrity sha512-M9rqftnEdo3E4wXfLKC0GbabRXk29pXYMT8yDVY4qh5GzrLxV3RCfB+28/VXCKSFUu/bcQy6PVpDO4RrX6Tf6w==
 
 "@freesewing/core@2.10.8-rc.0":
   version "2.10.8-rc.0"
