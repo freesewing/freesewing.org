@@ -5,23 +5,29 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    div {
+    > div {
       min-width: 150px;
       max-width: calc(25% - 2rem);
       padding: 0 1rem;
     }
+    div:last-of-type {
+      min-width: 250px;
+    }
   }
   ul {
     text-align: left;
+    li:first-of-type {
+      padding: 0.35rem 0.75rem;
+    }
     li {
-      padding: 0.35rem 0;
       display: block;
       a {
+        display: block;
         text-transform: capitalize;
-        svg {
-          margin-right: 1rem;
-          margin-bottom: -5px;
-        }
+        padding: 0.35rem 0.75rem;
+      }
+      a:hover {
+        text-decoration: none !important;
       }
     }
     li.heading {
@@ -32,6 +38,7 @@ footer {
   }
   div.logo {
     text-align: center;
+    width: 100%;
     div.name {
       display: block;
       font-size: 1.5rem;
@@ -43,6 +50,7 @@ footer {
     }
   }
   div.slogan {
+    width: 100%;
     padding-top: 0rem;
     font-weight: 300;
     font-family: 'Raleway';
@@ -55,15 +63,21 @@ footer {
   }
 }
 
+/* XL screens */
+@media (min-width: 1200px) {
+  footer div.cols > div:last-of-type {
+    min-width: 350px;
+  }
+}
 /* SM screens */
 @media (min-width: 600px) and (max-width: 959px) {
   footer div.cols {
     flex-wrap: wrap;
-    div {
+    > div {
       width: calc(30% - 4rem);
       padding: 0 1rem;
     }
-    div:last-of-type {
+    > div:last-of-type {
       min-width: calc(100% - 2rem);
       margin-top: 3rem;
       margin-bottom: 3rem;
@@ -77,11 +91,11 @@ footer {
 @media (max-width: 599px) {
   footer div.cols {
     display: block;
-    div {
+    > div {
       margin: 2rem auto 0;
       max-width: calc(100% - 4rem);
     }
-    div:first-of-type {
+    > div:first-of-type {
       margin-top: 0;
     }
   }

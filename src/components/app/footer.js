@@ -10,9 +10,20 @@ import './footer.scss'
 const Footer = (props) => {
   const social = {
     discord: 'https://discord.gg/YDV4GvU',
-    twitter: 'https://twitter.com/freesewing_org',
     instagram: 'https://instagram.com/freesewing_org',
-    github: 'https://github.com/freesewing'
+    facebook: 'https://www.facebook.com/groups/627769821272714/',
+    github: 'https://github.com/freesewing',
+    reddit: 'https://www.reddit.com/r/freesewing/',
+    twitter: 'https://twitter.com/freesewing_org'
+  }
+
+  const links = {
+    aboutFreesewing: '/docs/about/',
+    faq: '/docs/about/faq',
+    becomeAPatron: '/patrons/join/',
+    ourRevenuePledge: '/docs/about/pledge',
+    privacyNotice: '/docs/about/privacy',
+    yourRights: '/docs/about/rights'
   }
 
   return (
@@ -23,31 +34,13 @@ const Footer = (props) => {
             <li className="heading">
               <FormattedMessage id="app.whatIsThis" />
             </li>
-            <li>
-              <Link to="/docs/about/">
-                <FormattedMessage id="app.aboutFreesewing" />
-              </Link>
-            </li>
-            <li>
-              <Link to="/docs/about/faq/">
-                <FormattedMessage id="app.faq" />
-              </Link>
-            </li>
-            <li>
-              <Link to="/patrons/join/">
-                <FormattedMessage id="app.becomeAPatron" />
-              </Link>
-            </li>
-            <li>
-              <Link to="/docs/about/pledge/">
-                <FormattedMessage id="app.ourRevenuePledge" />
-              </Link>
-            </li>
-            <li>
-              <Link to="/docs/about/privacy/">
-                <FormattedMessage id="app.privacyNotice" />
-              </Link>
-            </li>
+            {Object.keys(links).map((key) => (
+              <li key={key}>
+                <Link to={links[key]} title={props.app.translate(`app.${key}`)}>
+                  <FormattedMessage id={`app.${key}`} />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
@@ -69,7 +62,7 @@ const Footer = (props) => {
         </div>
         <div>
           <div className="logo">
-            <Link to="/">
+            <Link to="/" title={props.app.translate('app.home')}>
               <Logo size={props.app.mobile ? 96 : 133} />
             </Link>
             <div className="name">
@@ -81,11 +74,6 @@ const Footer = (props) => {
             <br />
             <FormattedMessage id="app.slogan-stay" />
           </div>
-          <p className="version">
-            <a href={'https://github.com/freesewing/freesewing/releases/tag/v' + version}>
-              v{version}
-            </a>
-          </p>
         </div>
       </div>
     </footer>
