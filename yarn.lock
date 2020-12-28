@@ -1149,7 +1149,7 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-react@^7.3.1":
+"@bugsnag/plugin-react@^7.5.4":
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.5.4.tgz#3fdd9a54d8170fbcdd99cfbd19d19628cf7ad582"
   integrity sha512-UFNCae2BbvvetIegAy+h45jlmtQ8k+ZnhpM0wnG4EPzDeZA1AFM+LzqRMWF7GrRRLb8H3W8PoswUN9M1Vr6eog==
