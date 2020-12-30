@@ -1673,10 +1673,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-title/-/plugin-title-2.10.8-rc.0.tgz#b12f271362cc07dba69a1000047c0f8f02f965a7"
   integrity sha512-X3YvOp4PQytrvxseBGe4qSK2q0Y8C/16VHx4o8A46z73URq2ReXKlgz3nEDPYhOF5Oac3WVNzefNHJyhfQoOkA==
 
-"@freesewing/prettier-config@2.10.8-rc.0":
-  version "2.10.8-rc.0"
-  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.10.8-rc.0.tgz#bef9500b3480dab9f901ba3dfdfbdf20dcd30f43"
-  integrity sha512-ZTC5TjxnrP4khCB3jFpmH0WbneJO7ufMFFE60SPd34wBSaeInrMscda7fU7sui64wzIriIjSDnzpBT3Jq4GP1Q==
+"@freesewing/prettier-config@2.10.8-rc.1":
+  version "2.10.8-rc.1"
+  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.10.8-rc.1.tgz#715c8aaf7a3a89450207b30789de5d6932f74e46"
+  integrity sha512-1zPgMDIRDVVPGRBtSIYLQxbwGWfd0vRjukNZXAgpKxS/dyRGAUkvh8hbyNwIuKrcBc/VHEcmyoIQHia4GKjS1g==
 
 "@freesewing/rendertest@2.10.8-rc.0":
   version "2.10.8-rc.0"
