@@ -61,6 +61,17 @@ const Page = (props) => {
     ' ' +
     props.params.pattern
 
+  const saveMethod = (data) => {
+    app
+      .updatePattern(props.params.pattern, { data })
+      .then((err) => {
+        props.setDialog(false)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   if (person && pattern && design)
     return (
       <AppWrapper
@@ -82,6 +93,7 @@ const Page = (props) => {
           description={title}
           crumbs={app.getCrumbs(props.location.pathname)}
           slug={props.location.pathname}
+          saveMethod={saveMethod}
         />
       </AppWrapper>
     )

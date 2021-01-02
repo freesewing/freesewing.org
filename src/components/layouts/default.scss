@@ -32,31 +32,45 @@ section#mdx table {
 }
 
 // Main page content layout
-div.layout {
-  display: flex;
+div.layout-wrapper {
   width: 100%;
-  margin: auto;
+  margin: 0;
   padding: 0;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: none;
-  > aside {
-    width: 35%;
-    max-width: 500px;
-    background: $oc-gray-1;
-    border-right: 2px solid $oc-gray-3;
-  }
-  > section {
-    max-width: calc(65% - 6rem);
-    margin: 0 0 0 4rem;
-    padding-bottom: 2rem;
-    > div.content {
-      max-width: 66ch;
-      min-width: 600px;
+  background-color: red;
+  background: rgb(116, 165, 214);
+  background: linear-gradient(
+    90deg,
+    $oc-gray-1 0%,
+    $oc-gray-1 25%,
+    $oc-gray-0 26%,
+    $oc-gray-0 100%
+  );
+  div.layout {
+    display: flex;
+    max-width: 1600px;
+    margin: auto;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: $oc-gray-0;
+    > aside {
+      width: 33%;
+      background: $oc-gray-1;
+      border-right: 2px solid $oc-gray-3;
     }
-    > div.content.wide {
-      max-width: 100%;
-      margin: auto;
+    > section {
+      width: 63%;
+      margin: 0;
+      padding-bottom: 2rem;
+      > div.content {
+        max-width: 66ch;
+        min-width: 600px;
+      }
+      > div.content.wide {
+        max-width: 100%;
+        margin: auto;
+      }
     }
   }
 }
@@ -170,4 +184,8 @@ div.gatsby-highlight {
   > div {
     transform: translate(0px, 0px);
   }
+}
+
+div.spaced-buttons > button {
+  margin: 0 0.5rem 0.5rem 0;
 }

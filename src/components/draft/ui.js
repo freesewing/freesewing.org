@@ -5,6 +5,7 @@ import Layout from '../layouts/default'
 import YAML from 'yaml'
 
 import Fab from '@material-ui/core/Fab'
+import Button from '@material-ui/core/Button'
 import ConfigIcon from '@material-ui/icons/Build'
 import CloseIcon from '@material-ui/icons/Close'
 import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
@@ -188,39 +189,6 @@ ${e.stack}
 
   // Configurator
   const preMenuItems = []
-  if (!error && patternProps.events.error.length === 0) {
-    preMenuItems.push(
-      <li>
-        <FormattedMessage id="app.actions" />
-        <a
-          href="#"
-          role="button"
-          onClick={() => openDialog('pick')}
-          title={app.translate('app.showDetails')}
-        >
-          <span style={{ display: 'inline-block', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
-            [<FormattedMessage id="app.showDetails" />]
-          </span>
-        </a>
-      </li>
-    )
-    preMenuItems.push(
-      <PatternActions
-        key="actions"
-        app={app}
-        fabs={props.fabs}
-        openDialog={openDialog}
-        pattern={props.pattern}
-        toggleUnits={toggleUnits}
-        units={visitorUnits}
-        fit={fit}
-        display={display}
-        setDisplay={setDisplay}
-        setFit={setFit}
-        data={data}
-      />
-    )
-  }
   preMenuItems.push(
     <DraftConfigurator
       key="config"
@@ -271,6 +239,33 @@ ${e.stack}
   else
     main = (
       <>
+        <div className="spaced-buttons">
+          {display === 'draft' ? (
+            <>
+              {props.saveMethod && (
+                <Button variant="outlined" color="primary" onClick={() => props.saveMethod(data)}>
+                  <FormattedMessage id="app.savePattern" />
+                </Button>
+              )}
+              <Button variant="outlined" color="primary" onClick={() => setDisplay('compare')}>
+                <FormattedMessage id="app.comparePattern" />
+              </Button>
+              <Button variant="outlined" color="primary" onClick={() => setFit(!fit)}>
+                {fit ? (
+                  <small>
+                    <FormattedMessage id="app.zoom" />
+                  </small>
+                ) : (
+                  <FormattedMessage id="app.zoom" />
+                )}
+              </Button>
+            </>
+          ) : (
+            <Button variant="outlined" color="primary" onClick={() => setDisplay('draft')}>
+              <FormattedMessage id="app.back" />
+            </Button>
+          )}
+        </div>
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
           <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
           {display === 'compare' && (
@@ -297,29 +292,9 @@ ${e.stack}
       crumbs={props.crumbs}
       title={props.title}
       preMenu={preMenu}
+      wide
     >
       <article>{main}</article>
-      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
-      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
-        <Dialog
-          mode={props.recreate ? 'recreate' : 'create'}
-          fabs={props.fabs}
-          data={data}
-          pattern={props.pattern}
-          person={props.person}
-          setDialog={setDialog}
-          openDialog={openDialog}
-          app={app}
-          action={dialogAction}
-          setAction={setDialogAction}
-          setFit={setFit}
-          fit={fit}
-          display={display}
-          setDisplay={setDisplay}
-          toggleUnits={toggleUnits}
-          units={visitorUnits}
-        />
-      </div>
       {app.mobile && (
         <>
           <Fab
