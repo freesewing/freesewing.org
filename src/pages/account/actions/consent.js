@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import useApp from '../../hooks/useApp'
-import AppWrapper from '../../components/app/wrapper'
+import useApp from '../../../hooks/useApp'
+import AppWrapper from '../../../components/app/wrapper'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -9,7 +9,6 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import AccountContext from '../../components/context/account'
 
 const Page = (props) => {
   // Hooks
@@ -67,7 +66,7 @@ const Page = (props) => {
     <h2 key="profileTitle" data-test="consentForProfileData">
       <FormattedMessage id="gdpr.consentForProfileData" />
     </h2>,
-    <table style={styles.table} className="font-title" key="profileTable">
+    <table style={styles.table} key="profileTable">
       <tbody>
         <tr style={styles.row}>
           <td style={{ ...styles.cell, ...styles.question }} data-test="profileWhatQuestion">
@@ -110,7 +109,7 @@ const Page = (props) => {
     <h2 key="modelTitle" data-test="consentForModelData">
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
-    <table style={styles.table} className="font-title" key="modelData">
+    <table style={styles.table} key="modelData">
       <tbody>
         <tr style={styles.row}>
           <td style={{ ...styles.cell, ...styles.question }} data-test="modelWhatQuestion">
@@ -157,11 +156,8 @@ const Page = (props) => {
   return (
     <AppWrapper
       app={app}
-      active="account"
-      text
       title={app.translate('account.reviewYourConsent')}
-      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
-      context={<AccountContext app={app} />}
+      {...app.treeProps(props.path)}
     >
       <Blockquote type="note">
         <p data-test="compliant">

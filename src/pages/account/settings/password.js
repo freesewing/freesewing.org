@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -20,17 +19,7 @@ const Page = (props) => {
   const [newReveal, setNewReveal] = useState(false)
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.password')}
-      crumbs={[
-        { title: app.translate('app.account'), slug: '/account/' },
-        { title: app.translate('app.settings'), slug: '/account/settings/' }
-      ]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
-    >
+    <AppWrapper app={app} title={app.translate('account.password')} {...app.treeProps(props.path)}>
       <TextField
         id="newPassword"
         fullWidth={true}

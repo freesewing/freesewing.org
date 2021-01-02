@@ -32,15 +32,14 @@ const Page = (props) => {
     </li>
   ]
 
-  const context = [
-    <h5>
-      <FormattedMessage id="app.docs" />
-    </h5>,
-    <ul>{docs}</ul>
-  ]
-
   return (
-    <AppWrapper app={app} title={app.translate('app.docs')} context={context} active="docs" text>
+    <AppWrapper
+      app={app}
+      title={app.translate('app.docs')}
+      slug={props.path}
+      next={app.getNext(props.path)}
+      prev={app.getPrev(props.path)}
+    >
       <ul className="links">{docs}</ul>
       <p>
         Click through to drill down, or refer to <Link to="/sitemap/#docs">the sitemap</Link> for a

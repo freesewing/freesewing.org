@@ -1,39 +1,25 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import PrevIcon from '@material-ui/icons/KeyboardArrowLeft'
+import NextIcon from '@material-ui/icons/KeyboardArrowRight'
 
-const PreviousNext = ({ slug, app }) => {
-  // Previous/Next navigation
-  const renderLink = (side) => {
-    let to = side === 'next' ? app.pages[slug].next : app.pages[slug].previous
+const PrevNext = ({ prev = false, next = false }) =>
+  prev || next ? (
+    <div className="prev-next">
+      {['prev', 'next'].map((side) => {
+        if (side === 'prev' && !prev) return <PrevIcon key={`icon-${side}`} />
+        if (side === 'next' && !next) return <NextIcon key={`icon-${side}`} />
+        let { slug, title } = side === 'next' ? next : prev
 
-    if (!to) return <span>&nbsp;</span>
-
-    return (
-      <Link to={to.slug} style={{ textAlign: side === 'prev' ? 'left' : 'right' }}>
-        {side === 'prev' ? <span>&laquo;&nbsp;</span> : null}
-        {to.title}
-        {side === 'next' ? <span>&nbsp;&raquo;</span> : null}
-      </Link>
-    )
-  }
-
-  const styles = {
-    wrapper: {
-      margin: '3.33rem 0 6.66rem 0',
-      display: 'flex',
-      flexDirection: 'row',
-      alignContent: 'center',
-      justifyContent: 'space-between',
-      borderRadius: '4px',
-      padding: '9px'
-    }
-  }
-  return (
-    <div style={styles.wrapper} className="shadow">
-      {renderLink('prev')}
-      {renderLink('next')}
+        return (
+          <Link key={side} to={slug} style={{ textAlign: side === 'prev' ? 'left' : 'right' }}>
+            {side === 'prev' ? <PrevIcon style={{ marginBottom: '-6px' }} /> : null}
+            <b>{title}</b>
+            {side === 'next' ? <NextIcon style={{ marginBottom: '-6px' }} /> : null}
+          </Link>
+        )
+      })}
     </div>
-  )
-}
+  ) : null
 
-export default PreviousNext
+export default PrevNext

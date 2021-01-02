@@ -80,36 +80,16 @@ const Page = (props) => {
     return result
   }
 
-  const context = [
-    <h5>
-      <FormattedMessage id={`patterns.${design}.title`} />
-    </h5>,
-    <ul>
-      <li>
-        <Link to={`/create/${design}/`}>
-          <FormattedMessage
-            id="app.newThing"
-            values={{ thing: capitalize(design) + ' ' + app.translate('app.pattern') }}
-          />
-        </Link>
-        <Link to={`/docs/patterns/${design}/`}>
-          <FormattedMessage id="app.docs" />
-        </Link>
-        <Link to={`/showcase/designs/${design}/`}>
-          <FormattedMessage id="app.showcase" />
-        </Link>
-      </li>
-    </ul>
-  ]
-
   return (
     <AppWrapper
       app={app}
       title={app.translate(`patterns.${design}.title`)}
       description={app.translate(`patterns.${design}.description`)}
       image={`https://freesewing.org/designs/${design}.jpg`}
-      context={context}
-      active="designs"
+      slug={props.path}
+      wide
+      prev={app.getPrev(props.path)}
+      next={app.getNext(props.path)}
     >
       <p>
         <Button

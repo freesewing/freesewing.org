@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../../../hooks/useApp'
-import usePattern from '../../../hooks/usePattern'
-import AppWrapper from '../../../components/app/wrapper'
+import useApp from '../../../../hooks/useApp'
+import usePattern from '../../../../hooks/usePattern'
+import AppWrapper from '../../../../components/app/wrapper'
 
-import LoadingLayout from '../../../components/layouts/loading'
-import PatternData from '../../../components/pattern/data'
-import PatternNotes from '../../../components/pattern/notes'
-import PatternActions from '../../../components/context/pattern-actions'
+import LoadingLayout from '../../../../components/layouts/loading'
+import PatternNotes from '../../../../components/pattern/notes'
+import PatternActions from '../../../../components/context/pattern-actions'
 import { FormattedMessage } from 'react-intl'
-import PatternPreview from '../../../components/pattern/preview'
+import PatternPreview from '../../../../components/pattern/preview'
 import './index.css'
 
-import Dialog from '../../../components/pattern/dialog'
+import Dialog from '../../../../components/pattern/dialog'
 
 const Page = (props) => {
   const app = useApp()
@@ -85,33 +84,33 @@ const Page = (props) => {
       pattern={props.pattern}
     />
   )
-
   return (
-    <AppWrapper
-      app={app}
-      title={title}
-      context={context}
-      crumbs={[{ title: app.translate('app.patterns'), slug: '/patterns/' }]}
-      active="account"
-      text
-    >
-      <div className="pwrap">
-        <div>
-          <h3>Preview</h3>
-          <div className="preview shadow">
-            <PatternPreview data={pattern.data} app={app} />
-          </div>
-        </div>
-        {pattern.notes && (
-          <div>
-            <h3>Notes</h3>
-            <PatternNotes notes={pattern.notes} app={app} />
-          </div>
-        )}
+    <AppWrapper app={app} title={title} {...app.treeProps(props.location.pathname, false)}>
+      {pattern.notes && <PatternNotes notes={pattern.notes} app={app} />}
+      <div className="preview shadow">
+        <PatternPreview data={pattern.data} app={app} pattern={props.pattern} />
       </div>
-      <h3>Data</h3>
-      <PatternData data={pattern} />
-      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />,
+      <h5>
+        <FormattedMessage id="app.actions" />
+        <a
+          href="#"
+          role="button"
+          onClick={() => openDialog('pick')}
+          title={app.translate('app.showDetails')}
+        >
+          <span style={{ display: 'inline-block', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
+            [<FormattedMessage id="app.showDetails" />]
+          </span>
+        </a>
+      </h5>
+      <PatternActions
+        app={app}
+        fabs={fabs}
+        design={pattern.data.design}
+        openDialog={openDialog}
+        pattern={props.pattern}
+      />
+      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
         <Dialog
           mode="view"

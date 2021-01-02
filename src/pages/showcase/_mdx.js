@@ -57,20 +57,11 @@ const Page = (props) => {
       title={props.pageContext.title}
       description={props.data.allMdx.edges[0].node.excerpt}
       image={img.originalImg}
-      crumbs={[{ slug: '/showcase/', title: app.translate('app.showcase') }]}
-      context={context}
-      active="showcase"
+      {...app.treeProps(props.path)}
     >
       <div style={style.meta} data-test="meta">
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
-        <div>
-          {tags}
-          <FormattedMessage id="app.by" />
-          &nbsp;
-          <Link to={'/users/' + frontmatter.author} data-test="author">
-            {frontmatter.author}
-          </Link>
-        </div>
+        <div>{tags}</div>
       </div>
       <figure style={style.figure}>
         <a href={img.src}>
@@ -105,7 +96,6 @@ export const pageQuery = graphql`
           frontmatter {
             date
             caption
-            author
             patterns
             img {
               childImageSharp {

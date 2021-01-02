@@ -14,6 +14,7 @@ import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
+import MainMenu from '../menus/main'
 
 import DraftError from './error'
 import DraftEvents from './events/'
@@ -186,21 +187,24 @@ ${e.stack}
     display === 'compare' ? comparePattern(data) : draftPattern(data)
 
   // Configurator
-  const context = []
+  const preMenuItems = []
   if (!error && patternProps.events.error.length === 0) {
-    context.push(
-      <h5 key="details">
+    preMenuItems.push(
+      <li>
+        <FormattedMessage id="app.actions" />
         <a
           href="#"
           role="button"
           onClick={() => openDialog('pick')}
           title={app.translate('app.showDetails')}
         >
-          <FormattedMessage id="app.actions" />
+          <span style={{ display: 'inline-block', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
+            [<FormattedMessage id="app.showDetails" />]
+          </span>
         </a>
-      </h5>
+      </li>
     )
-    context.push(
+    preMenuItems.push(
       <PatternActions
         key="actions"
         app={app}
@@ -217,7 +221,7 @@ ${e.stack}
       />
     )
   }
-  context.push(
+  preMenuItems.push(
     <DraftConfigurator
       key="config"
       data={data}
@@ -261,6 +265,7 @@ ${e.stack}
         updatePatternData={mergeData}
         setCrashReport={setCrashReport}
         app={app}
+        data={data}
       />
     )
   else
@@ -281,8 +286,18 @@ ${e.stack}
       </>
     )
 
+  const mainMenu = <MainMenu app={props.app} slug={props.slug} />
+  const preMenu = <ul id="pre-main-menu">{preMenuItems}</ul>
+
   return (
-    <Layout app={app} active="designs" context={context} title={props.title} crumbs={props.crumbs}>
+    <Layout
+      app={app}
+      mainMenu={mainMenu}
+      slug={props.slug}
+      crumbs={props.crumbs}
+      title={props.title}
+      preMenu={preMenu}
+    >
       <article>{main}</article>
       <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
       <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
@@ -318,7 +333,7 @@ ${e.stack}
           </Fab>
           {menu && (
             <div className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
-              {context}
+              {preMenu}
             </div>
           )}
         </>

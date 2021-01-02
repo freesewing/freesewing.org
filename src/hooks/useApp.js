@@ -3,6 +3,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { navigate as gatsbyNavigate } from 'gatsby'
 import Backend from '@freesewing/utils/backend'
 import { useIntl } from 'react-intl'
+import useTree from './useTree'
 
 import useLocalStorage from './useLocalStorage'
 import accountMethods from './lib/account'
@@ -10,13 +11,18 @@ import personMethods from './lib/person'
 import patternMethods from './lib/pattern'
 import sessionMethods from './lib/session'
 import adminMethods from './lib/admin'
+import ntr from './lib/tree'
 
 function useApp(full = true) {
   // Required for each page
   ///////////////////////////////////
 
-  // i18n
+  // i18n & translate helper method
   const intl = useIntl()
+  const translate = (id, values = false) => {
+    if (!values) return intl.formatMessage({ id })
+    else return intl.formatMessage({ id }, values)
+  }
 
   // Persistent state
   const [account, setAccount] = useLocalStorage('account', { username: false })
@@ -37,18 +43,13 @@ function useApp(full = true) {
   const [mounted, setMounted] = useState(false) // false until app is mounted
   const [context, setContext] = useState([])
   const [toc, setToc] = useState(false)
+  const [tree, setTree] = useState(useTree(translate))
 
   // Persist user data to local storage
   const persist = (data) => {
     if (data.account) setAccount(data.account)
     if (data.theme) setTheme(data.theme)
     if (data.vars) setVar(data.vars)
-  }
-
-  // Translate helper method
-  const translate = (id, values = false) => {
-    if (!values) return intl.formatMessage({ id })
-    else return intl.formatMessage({ id }, values)
   }
 
   // Toggles
@@ -67,11 +68,70 @@ function useApp(full = true) {
     if (typeof window !== 'undefined') gatsbyNavigate(slug)
   }
 
+  // Mehtods for handling navigation tree
+  const getOffspring = (slug) => {
+    let ntree = {}
+    Object.assign(ntree, tree)
+    return ntr.order(ntr.getSelf(slug, ntree).offspring)
+  }
+
+  const getNext = (slug) => {
+    let ntree = {}
+    Object.assign(ntree, tree)
+    let next = ntr.getFirstOffspring(slug, ntree)
+    if (!next) next = ntr.getNextSibling(slug, ntree)
+    if (!next) next = ntr.getNextParent(slug, ntree)
+
+    return next
+  }
+
+  const getPrev = (slug) => {
+    let ntree = {}
+    Object.assign(ntree, tree)
+    let prev = ntr.getPrevSibling(slug, ntree)
+    if (!prev) prev = ntr.getParent(slug, ntree)
+
+    return prev
+  }
+
+  const getCrumbs = (slug) => {
+    let ntree = {}
+    Object.assign(ntree, tree)
+    let crumbs = []
+    let chunks = slug.split('/').slice(1, -1)
+    for (let crumb of chunks) {
+      if (!ntree.offspring) return crumbs
+      ntree = ntree.offspring[crumb]
+      if (!ntree) return crumbs
+      crumbs.push({ title: ntree.title, slug: ntree.slug })
+    }
+
+    return crumbs.slice(0, -1)
+  }
+
+  const treeProps = (slug, prevNext = true) =>
+    prevNext
+      ? {
+          slug,
+          prev: getPrev(slug),
+          next: getNext(slug),
+          crumbs: getCrumbs(slug)
+        }
+      : {
+          slug,
+          crumbs: getCrumbs(slug)
+        }
+
   if (!full)
     return {
       // Helper methods
       persist,
       navigate,
+      getOffspring,
+      getPrev,
+      getNext,
+      getCrumbs,
+      treeProps,
 
       // React state
       crumbs,
@@ -92,6 +152,8 @@ function useApp(full = true) {
       setContext,
       toc,
       setToc,
+      tree,
+      setTree,
 
       // Persistent state
       account,
@@ -227,6 +289,11 @@ function useApp(full = true) {
     ...sessionMethods(core),
     ...adminMethods(core),
 
+    getOffspring,
+    getPrev,
+    getNext,
+    getCrumbs,
+    treeProps,
     // React state
     crumbs,
     setCrumbs,
@@ -244,6 +311,8 @@ function useApp(full = true) {
     setContext,
     toc,
     setToc,
+    tree,
+    setTree,
 
     // Toggles
     toggleDarkMode,

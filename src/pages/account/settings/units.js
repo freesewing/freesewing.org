@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -19,17 +18,7 @@ const Page = (props) => {
   const [units, setUnits] = useState(app.account.settings.units || 'metric')
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.units')}
-      crumbs={[
-        { title: app.translate('app.account'), slug: '/account/' },
-        { title: app.translate('app.settings'), slug: '/account/settings/' }
-      ]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
-    >
+    <AppWrapper app={app} title={app.translate('account.units')} {...app.treeProps(props.path)}>
       <RadioGroup name="units" onChange={(evt) => setUnits(evt.target.value)} value={units}>
         {['metric', 'imperial'].map((type) => {
           return (

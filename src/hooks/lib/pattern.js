@@ -73,7 +73,7 @@ const patternMethods = ({
             type: 'success',
             msg: translate('app.fieldRemoved', { field: translate('app.pattern') })
           })
-          navigate('/patterns/')
+          navigate('/account/patterns/')
         }
       })
       .catch((error) => {

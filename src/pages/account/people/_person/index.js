@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import useApp from '../../../hooks/useApp'
-import AppWrapper from '../../../components/app/wrapper'
+import useApp from '../../../../hooks/useApp'
+import AppWrapper from '../../../../components/app/wrapper'
 
-import usePerson from '../../../hooks/usePerson'
-import PeopleContext from '../../../components/context/people'
+import usePerson from '../../../../hooks/usePerson'
+import PeopleContext from '../../../../components/context/people'
 import { FormattedMessage } from 'react-intl'
 import EditIcon from '@material-ui/icons/Edit'
 import RefreshIcon from '@material-ui/icons/Refresh'
@@ -24,7 +24,7 @@ import InvalidIcon from '@material-ui/icons/Help'
 import { Link } from 'gatsby'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
-import SizingGraph from '../../../components/person/size-graph'
+import SizingGraph from '../../../../components/person/size-graph'
 
 const Page = (props) => {
   const app = useApp()

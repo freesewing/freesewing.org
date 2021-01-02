@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import useApp from '../../../../hooks/useApp'
-import AppWrapper from '../../../../components/app/wrapper'
+import useApp from '../../../../../hooks/useApp'
+import AppWrapper from '../../../../../components/app/wrapper'
 
-import usePerson from '../../../../hooks/usePerson'
-import PeopleContext from '../../../../components/context/people'
+import usePerson from '../../../../../hooks/usePerson'
+import PeopleContext from '../../../../../components/context/people'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
@@ -16,8 +16,8 @@ import formatMm from '@freesewing/utils/formatMm'
 import { graphql } from 'gatsby'
 import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
-import Mdx from '../../../../components/mdx'
-import MeasurementsImages from '../../../../components/measurements/images'
+import Mdx from '../../../../../components/mdx'
+import MeasurementsImages from '../../../../../components/measurements/images'
 
 const Page = (props) => {
   const app = useApp()

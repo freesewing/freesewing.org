@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -20,17 +19,7 @@ const Page = (props) => {
   )
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.instagram')}
-      crumbs={[
-        { title: app.translate('app.account'), slug: '/account/' },
-        { title: app.translate('app.settings'), slug: '/account/settings/' }
-      ]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
-    >
+    <AppWrapper app={app} title={app.translate('account.instagram')} {...app.treeProps(props.path)}>
       <Blockquote type="note">
         <FormattedMessage id={'account.instagramInfo'} />
       </Blockquote>

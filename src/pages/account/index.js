@@ -11,12 +11,7 @@ const Page = (props) => {
 
   return (
     <LoginRequired app={app}>
-      <AppWrapper
-        app={app}
-        title={app.translate('app.account')}
-        context={<AccountContext app={app} />}
-        active="account"
-      >
+      <AppWrapper app={app} title={app.translate('app.account')} {...app.treeProps(props.path)}>
         <AccountMenu app={app} className="transparent" />
       </AppWrapper>
     </LoginRequired>

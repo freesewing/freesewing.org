@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import AccountContext from '../../../components/context/account'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -18,17 +17,7 @@ const Page = (props) => {
   const [twitter, setTwitter] = useState(app.account.social ? app.account.social.twitter || '' : '')
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.twitter')}
-      crumbs={[
-        { title: app.translate('app.account'), slug: '/account/' },
-        { title: app.translate('app.settings'), slug: '/account/settings/' }
-      ]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
-    >
+    <AppWrapper app={app} title={app.translate('account.twitter')} {...app.treeProps(props.path)}>
       <TextField
         id="twitter"
         fullWidth={true}

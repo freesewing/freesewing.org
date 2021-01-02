@@ -1,30 +1,27 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
 import MainAside from '../menus/main-aside'
+import PrevNext from '../prev-next'
 import './default.scss'
 
 const DefaultLayout = (props) => {
   return (
-    <div className="fs-sa" dataLayout="docs">
+    <div className="layout">
       <aside>
         <div className="sticky">
-          <MainAside app={props.app} active={props.active} />
-          <div className="aside-context">{props.context || null}</div>
+          {props.preMenu || null}
+          {props.mainMenu}
         </div>
       </aside>
       <section>
-        <BreadCrumbs crumbs={props.crumbs} pageTitle={props.title} />
-        {!props.noTitle && <h1>{props.title}</h1>}
-        {props.toc ? (
-          <div className="text-toc-wrapper">
-            <div className="text">{props.children}</div>
-            <div className="toc">{props.toc}</div>
-          </div>
-        ) : props.text ? (
-          <div style={{ maxWidth: '80ch' }}>{props.children}</div>
-        ) : (
-          props.children
+        {!props.noCrumbs && (
+          <BreadCrumbs app={props.app} crumbs={props.crumbs} pageTitle={props.title} />
         )}
+        {!props.noTitle && <h1>{props.title}</h1>}
+        <div className={`content ${props.wide ? 'wide' : ''}`}>
+          {props.children}
+          <PrevNext prev={props.prev} next={props.next} />
+        </div>
       </section>
     </div>
   )

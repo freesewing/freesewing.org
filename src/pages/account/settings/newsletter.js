@@ -9,7 +9,6 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import AccountContext from '../../../components/context/account'
 
 const Page = (props) => {
   // Hooks
@@ -28,14 +27,8 @@ const Page = (props) => {
   return (
     <AppWrapper
       app={app}
-      active="account"
-      text
       title={app.translate('account.newsletter')}
-      crumbs={[
-        { title: app.translate('app.account'), slug: '/account/' },
-        { title: app.translate('app.settings'), slug: '/account/settings/' }
-      ]}
-      context={<AccountContext app={app} />}
+      {...app.treeProps(props.path)}
     >
       <h5>
         <FormattedMessage id="account.newsletterInfo" />

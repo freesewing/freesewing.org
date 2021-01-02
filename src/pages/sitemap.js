@@ -99,12 +99,6 @@ const Page = (props) => {
           </Link>
         </li>
         <li>
-          <Link to="/patterns/">
-            <FormattedMessage id="app.patterns" />
-            <span style={styles.url}>/patterns/</span>
-          </Link>
-        </li>
-        <li>
           <Link to="/create/">
             <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
             <span style={styles.url}>/create/</span>
@@ -266,9 +260,7 @@ const Page = (props) => {
       </ul>
 
       <h2 id="patterns">
-        <Link to="/patterns/">
-          <FormattedMessage id="app.patterns" />
-        </Link>
+        <FormattedMessage id="app.patterns" />
       </h2>
       <ul className="links">
         {patterns.map((p) => (

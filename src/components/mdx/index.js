@@ -18,7 +18,7 @@ const customComponents = {
 
 const Mdx = ({ node, offspring }) => {
   if (!node) return null
-  customComponents.ReadMore = (props) => <ReadMore {...props} offspring={offspring} />
+  customComponents.ReadMore = (props) => <ReadMore node={node} pages={offspring} />
   return (
     <section id="mdx">
       <MDXProvider components={customComponents}>

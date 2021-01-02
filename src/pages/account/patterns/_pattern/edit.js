@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import useApp from '../../../hooks/useApp'
-import AppWrapper from '../../../components/app/wrapper'
-import DraftUi from '../../../components/draft/ui'
+import useApp from '../../../../hooks/useApp'
+import AppWrapper from '../../../../components/app/wrapper'
+import DraftUi from '../../../../components/draft/ui'
 
-import usePattern from '../../../hooks/usePattern'
-import usePerson from '../../../hooks/usePerson'
-import LoadingLayout from '../../../components/layouts/loading'
+import usePattern from '../../../../hooks/usePattern'
+import usePerson from '../../../../hooks/usePerson'
+import LoadingLayout from '../../../../components/layouts/loading'
 import Blockquote from '@freesewing/components/Blockquote'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -20,8 +20,6 @@ const Page = (props) => {
   const [pattern, setPattern] = useState(null)
   const [person, setPerson] = useState(null)
   const [design, setDesign] = useState(null)
-  // Page title won't be available until async code runs
-  const [title, setTitle] = useState(app.translate('app.pattern'))
   const [description, setDescription] = useState(false)
 
   // SSR
@@ -44,39 +42,32 @@ const Page = (props) => {
         setPattern(p)
         setPerson(usePerson(app, p.person))
         setDesign(p.data.design)
-        setTitle(p.name)
-        setDescription(p.notes || false)
       })
     } else {
       setDesign(pop.data.design)
-      setPerson(usePerson(app, pop.data.settings.metadata.forHandle))
+      if (pop.data.settings.metadata)
+        setPerson(usePerson(app, pop.data.settings.metadata.forHandle))
+      else setPerson(usePerson(app, pop.data.model))
       setPattern(pop)
-      setTitle(pop.name)
-      setDescription(pop.notes || false)
     }
   }, [props.pattern])
 
   const fabs = ['zoom', 'compare', 'notes', 'save', 'saveAs', 'export', 'details']
 
-  const crumbs = [
-    {
-      slug: `/patterns/`,
-      title: app.translate('app.patterns')
-    },
-    {
-      slug: `/patterns/${props.handle}/`,
-      title
-    }
-  ]
+  const title =
+    app.translate('app.editThing', {
+      thing: app.translate('app.pattern')
+    }) +
+    ' ' +
+    props.params.pattern
 
   if (person && pattern && design)
     return (
       <AppWrapper
         app={app}
         title={title}
-        description={description}
-        crumbs={crumbs}
-        active="account"
+        description={title}
+        slug={props.location.pathname}
         noLayout
       >
         <DraftUi
@@ -88,15 +79,16 @@ const Page = (props) => {
           data={pattern.data}
           fabs={fabs}
           title={title}
-          description={description}
-          crumbs={crumbs}
+          description={title}
+          crumbs={app.getCrumbs(props.location.pathname)}
+          slug={props.location.pathname}
         />
       </AppWrapper>
     )
 
   if (pattern && !person)
     return (
-      <AppWrapper app={app} title={title} crumbs={crumbs} active="account" text>
+      <AppWrapper app={app} title={title} description={title} slug={props.location.pathname}>
         <Blockquote type="note">
           <h4>
             <FormattedMessage id="app.recreatePattern" />

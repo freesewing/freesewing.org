@@ -1,7 +1,7 @@
 import React from 'react'
-import useApp from '../../hooks/useApp'
-import usePerson from '../../hooks/usePerson'
-import AppWrapper from '../../components/app/wrapper'
+import useApp from '../../../hooks/useApp'
+import usePerson from '../../../hooks/usePerson'
+import AppWrapper from '../../../components/app/wrapper'
 
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
@@ -36,7 +36,7 @@ const Page = (props) => {
         if (person) personName = person.name
         return (
           <div key={handle} className="shadow pattern">
-            <Link to={`/patterns/${handle}/`}>
+            <Link to={`/account/patterns/${handle}/`}>
               <LineDrawing
                 pattern={app.patterns[handle].data ? app.patterns[handle].data.design : 'aaron'}
                 color={app.theme === 'dark' ? '#f8f9fa' : '#212529'}
@@ -46,7 +46,7 @@ const Page = (props) => {
             </Link>
             <div>
               <h5>
-                <Link to={`/patterns/${handle}/`}>
+                <Link to={`/account/patterns/${handle}/`}>
                   <span>{personName}:</span>
                   {app.patterns[handle].name}
                 </Link>
@@ -76,27 +76,8 @@ const Page = (props) => {
     </div>
   )
 
-  const context = [
-    <h5>
-      <FormattedMessage id="app.yourPatterns" />
-    </h5>,
-    <ul>
-      {Object.keys(app.patterns).map((handle, pattern) => (
-        <li key={handle}>
-          <Link to={`/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
-        </li>
-      ))}
-    </ul>
-  ]
-
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('app.yourPatterns')}
-      context={context}
-      active="account"
-      text
-    >
+    <AppWrapper app={app} title={app.translate('app.patterns')} {...app.treeProps(props.path)}>
       <div className="pattern-list">
         {Object.keys(app.patterns).length > 0 ? listState : blankState}
       </div>

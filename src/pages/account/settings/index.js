@@ -1,23 +1,14 @@
 import React from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-import AccountContext from '../../../components/context/account'
-
-import AccountMenu from '../../../components/menus/account'
+import ReadMore from '../../../components/mdx/readmore'
 
 const Page = (props) => {
   const app = useApp()
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('app.settings')}
-      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
-    >
-      <AccountMenu app={app} className="transparent" settingsOnly />
+    <AppWrapper app={app} title={app.translate('app.settings')} {...app.treeProps(props.path)}>
+      <ReadMore list pages={app.getOffspring(props.path)} />
     </AppWrapper>
   )
 }

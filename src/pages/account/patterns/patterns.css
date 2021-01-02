@@ -1,5 +1,4 @@
 div.pattern-list {
-
 }
 div.pattern-list div.pattern {
   width: calc(100% - 2rem);
@@ -42,4 +41,3 @@ div.pattern-list div.pattern > div div.notes {
   display: block;
   font-size: 1rem;
 }
-

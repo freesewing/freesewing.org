@@ -40,9 +40,6 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     )}
     {!settingsOnly && (
       <>
-        <h6>
-          <FormattedMessage id="app.browse" />
-        </h6>
         <ul className="inline">
           <li>
             <Link to="/patterns/">

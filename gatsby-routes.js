@@ -154,17 +154,26 @@ const routes = {
   },
   perMeasurement: {
     multiple: {
-      '/people/:person/measurements/_measurement': 'people/_person/measurements/_measurement.js'
+      '/account/people/:person/measurements/_measurement':
+        'account/people/_person/measurements/_measurement.js'
     }
   },
   dynamic: {
     '/login/callback/:confirmation/:validation': 'login/callback/_index.js',
-    '/patterns/:pattern': 'patterns/_pattern/index.js',
-    '/patterns/:pattern/edit': 'patterns/_pattern/edit.js',
-    '/people/:person/': 'people/_person/index.js',
-    '/people/:person/avatar/': 'people/_person/avatar.js',
-    '/people/:person/name/': 'people/_person/name.js',
-    '/people/:person/notes/': 'people/_person/notes.js',
+    '/account/patterns/:pattern': 'account/patterns/_pattern/index.js',
+    '/account/patterns/:pattern/data': 'account/patterns/_pattern/data.js',
+    '/account/patterns/:pattern/edit': 'account/patterns/_pattern/edit.js',
+    '/account/patterns/:pattern/export': 'account/patterns/_pattern/export.js',
+    '/account/patterns/:pattern/name': 'account/patterns/_pattern/name.js',
+    '/account/patterns/:pattern/notes': 'account/patterns/_pattern/notes.js',
+    '/account/patterns/:pattern/recreate': 'account/patterns/_pattern/recreate.js',
+    '/account/patterns/:pattern/remove': 'account/patterns/_pattern/remove.js',
+    '/account/patterns/:pattern/save-as': 'account/patterns/_pattern/save-as.js',
+    '/account/patterns/:pattern/share': 'account/patterns/_pattern/share.js',
+    '/account/people/:person/': 'account/people/_person/index.js',
+    '/account/people/:person/avatar/': 'account/people/_person/avatar.js',
+    '/account/people/:person/name/': 'account/people/_person/name.js',
+    '/account/people/:person/notes/': 'account/people/_person/notes.js',
     '/users/:user': 'users/_user.js',
     '/confirm/signup/:confirmation': 'confirm/signup/_confirmation.js',
     '/confirm/email/:confirmation': 'confirm/email/_confirmation.js',
@@ -181,7 +190,9 @@ const routes = {
     '/privary/': '/docs/about/privacy/',
     '/rights/': '/docs/about/rights/',
     '/designs/fu/': '/designs/florence/',
-    '/docs/patterns/fu/': '/docs/patterns/florence/'
+    '/docs/patterns/fu/': '/docs/patterns/florence/',
+    '/people/': '/account/people/',
+    '/patterns/': '/account/patterns/'
   }
 }
 

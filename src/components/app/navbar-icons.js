@@ -15,7 +15,7 @@ const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
 
   const style = {
     iconButton: {
-      color: colors[theme]
+      color: colors.dark
     },
     icon: {
       maxWidth: '24px',
@@ -27,7 +27,8 @@ const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
     darkModeIcon: {
       transform: 'rotate(26deg)',
       maxWidth: '24px',
-      maxHeight: '24px'
+      maxHeight: '24px',
+      color: '#ffe066'
     }
   }
 

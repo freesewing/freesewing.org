@@ -46,7 +46,7 @@ export default function ButtonAppBar(props) {
       width: '100%',
       margin: 0,
       padding: 0,
-      background: props.app.theme === 'dark' ? colors.light : colors.dark,
+      background: '#1a1d21',
       zIndex: 15
     },
     logo: {
@@ -55,14 +55,15 @@ export default function ButtonAppBar(props) {
       width: '42px',
       padding: '11px',
       display: 'inline-block',
-      color: colors[props.app.theme]
+      color: colors.dark
     },
     button: {
       height: '64px',
-      padding: '0 18px'
+      padding: '0 18px',
+      color: colors.dark
     },
     iconButton: {
-      color: colors[props.app.theme]
+      color: colors.dark
     },
     icon: {
       maxWidth: '24px',
@@ -100,12 +101,12 @@ export default function ButtonAppBar(props) {
 
   const iconStyle = {
     marginRight: '0.5rem',
-    color: props.app.theme === 'dark' ? '#b197fc' : '#845ef7'
+    color: '#b197fc'
   }
 
   return (
     <div style={style.wrapper}>
-      <AppBar position="static" color="secondary" elevation={0}>
+      <AppBar position="static" color="transparent" elevation={2}>
         <Toolbar disableGutters={true}>
           <Link to="/" style={style.logo}>
             <Logo embed />

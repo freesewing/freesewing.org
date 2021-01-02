@@ -1,11 +1,11 @@
 import React from 'react'
-import useApp from '../../hooks/useApp'
-import AppWrapper from '../../components/app/wrapper'
+import useApp from '../../../hooks/useApp'
+import AppWrapper from '../../../components/app/wrapper'
 
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
-import AccountContext from '../../components/context/account'
+import AccountContext from '../../../components/context/account'
 
 const Page = (props) => {
   const app = useApp()
@@ -14,14 +14,11 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={app.translate('account.exportYourData')}
-      crumbs={[{ title: app.translate('app.account'), slug: '/account/' }]}
-      context={<AccountContext app={app} />}
-      active="account"
-      text
+      {...app.treeProps(props.path)}
     >
-      <h6>
+      <p>
         <FormattedMessage id="account.exportYourDataTitle" />
-      </h6>
+      </p>
       <p>
         <Button
           size="large"

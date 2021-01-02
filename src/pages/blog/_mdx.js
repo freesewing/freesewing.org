@@ -55,9 +55,7 @@ const Page = (props) => {
       title={props.pageContext.title}
       description={props.data.allMdx.edges[0].node.excerpt}
       image={props.data.allMdx.edges[0].node.frontmatter.img.childImageSharp.fluid.originalImg}
-      crumbs={[{ slug: '/blog/', title: app.translate('app.blog') }]}
-      context={context}
-      active="blog"
+      {...app.treeProps(props.path)}
     >
       <div style={style.meta} data-test="meta">
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
