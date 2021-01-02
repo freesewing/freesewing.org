@@ -38,7 +38,7 @@ export function patternLeaf(pattern, translate) {
       },
       recreate: {
         title: translate('app.recreatePattern'),
-        slug: `/recreate/${pattern.design}/from/${pattern.handle}/`,
+        slug: `/recreate/${pattern.data.design}/from/${pattern.handle}/`,
         offspring: {}
       },
       'save-as': {
