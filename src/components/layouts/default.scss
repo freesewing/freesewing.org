@@ -37,7 +37,7 @@ div.layout-wrapper {
   margin: 0;
   padding: 0;
   background-color: red;
-  background: rgb(116, 165, 214);
+  background: $oc-gray-0;
   background: linear-gradient(
     90deg,
     $oc-gray-1 0%,
@@ -75,11 +75,24 @@ div.layout-wrapper {
   }
 }
 .theme-wrapper.dark {
-  header,
-  div.layout {
-    > aside {
-      background-color: darken($oc-gray-9, 3);
-      border-right: 2px solid $oc-gray-8;
+  header {
+    background-color: darken($oc-gray-9, 3);
+  }
+  div.layout-wrapper {
+    background: $oc-gray-0;
+    background: linear-gradient(
+      90deg,
+      darken($oc-gray-9, 3) 0%,
+      darken($oc-gray-9, 3) 25%,
+      $oc-gray-9 26%,
+      $oc-gray-9 100%
+    );
+    div.layout {
+      background-color: $oc-gray-9;
+      > aside {
+        background-color: darken($oc-gray-9, 3);
+        border-right: 2px solid $oc-gray-8;
+      }
     }
   }
 }
@@ -188,4 +201,9 @@ div.gatsby-highlight {
 
 div.spaced-buttons > button {
   margin: 0 0.5rem 0.5rem 0;
+}
+
+ul#pre-main-menu {
+  margin: 0;
+  padding: 0;
 }
