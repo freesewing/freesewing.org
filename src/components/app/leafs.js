@@ -25,7 +25,7 @@ export function patternLeaf(pattern, translate) {
         offspring: {}
       },
       export: {
-        title: translate('app.printPattern') + ' / ' + translate('app.exportPattern'),
+        title: translate('app.exportPattern'),
         slug: `/account/patterns/${pattern.handle}/export/`,
         offspring: {}
       },
