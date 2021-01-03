@@ -1,5 +1,4 @@
 import React from 'react'
-import './size.scss'
 import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
 import formatMm from '@freesewing/utils/formatMm'

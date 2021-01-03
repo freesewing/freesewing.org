@@ -6,7 +6,9 @@ import Blockquote from '@freesewing/components/Blockquote'
 import MissingAccount from '../missing/account'
 import MissingPeople from '../missing/people'
 import Person from '../person'
+import '../person.scss'
 import Size from '../size'
+import '../size.scss'
 
 const SelectSize = ({ app, design, people, recreate = false }) => {
   // Style
@@ -14,8 +16,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
     wrapper: {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center'
+      flexWrap: 'wrap'
     },
     person: {
       maxWidth: '300px',

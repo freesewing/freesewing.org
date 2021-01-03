@@ -1,5 +1,4 @@
 import React from 'react'
-import './person.scss'
 import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
 
@@ -8,7 +7,7 @@ const Person = (props) => {
   if (!props.data) return null
 
   return (
-    <div className={`person ${props.data.breasts ? 'breasts' : 'no-breasts'}`}>
+    <div className={`shadow person ${props.data.breasts ? 'breasts' : 'no-breasts'}`}>
       <div className="top">
         <h5>{props.data.name}</h5>
       </div>
