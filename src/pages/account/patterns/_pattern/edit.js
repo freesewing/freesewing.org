@@ -62,7 +62,7 @@ const Page = (props) => {
         data={pattern.data}
         crumbs={app.getCrumbs(props.location.pathname)}
         saveMethod={saveMethod}
-        actions={['zoom', 'compare', 'save', 'saveAsOwn']}
+        actions={['zoom', 'compare', 'save', 'saveAsOwn', 'exportOwn']}
       />
     </AppWrapper>
   )

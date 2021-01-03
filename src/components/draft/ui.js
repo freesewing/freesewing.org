@@ -22,6 +22,7 @@ import ZoomInIcon from '@material-ui/icons/ZoomIn'
 import ZoomOutIcon from '@material-ui/icons/ZoomOut'
 import CompareIcon from '@material-ui/icons/PeopleAlt'
 import ShowIcon from '@material-ui/icons/Visibility'
+import ExportIcon from '@material-ui/icons/Print'
 
 import DraftError from './error'
 import DraftEvents from './events/'
@@ -219,6 +220,16 @@ ${e.stack}
             <FormattedMessage id="app.showPattern" />
           </span>
         )}
+      </li>
+    ),
+    exportOwn: (
+      <li className="action" key="a-exportown">
+        <span
+          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/export/`)}
+        >
+          <ExportIcon />
+          <FormattedMessage id="app.exportPattern" />
+        </span>
       </li>
     ),
     save: (
