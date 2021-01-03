@@ -32,6 +32,7 @@ const PaypalButton = (props) => {
         method="post"
         target="_top"
         id={'form-tier' + tier}
+        className="monthly"
       >
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />
         <input type="hidden" name="business" value="info@freesewing.org" />
@@ -66,6 +67,7 @@ const PaypalButton = (props) => {
         method="post"
         target="_top"
         id={'form-tier' + tier + '-yearly'}
+        className="yearly"
       >
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />
         <input type="hidden" name="business" value="info@freesewing.org" />
