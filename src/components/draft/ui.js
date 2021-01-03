@@ -25,6 +25,7 @@ import ShowIcon from '@material-ui/icons/Visibility'
 import ExportIcon from '@material-ui/icons/Print'
 import Icon from '@freesewing/components/Icon'
 import ExportPattern from '../pattern/export'
+import SaveAsPattern from '../pattern/save-as'
 
 import DraftError from './error'
 import DraftEvents from './events/'
@@ -211,7 +212,7 @@ ${e.stack}
       </li>
     ),
     export: (
-      <li className="action" key="a-exportown">
+      <li className="action" key="a-export">
         {display === 'export' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
@@ -244,13 +245,18 @@ ${e.stack}
       </li>
     ),
     saveAs: (
-      <li className="action" key="a-saveasown">
-        <span
-          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/save-as/`)}
-        >
-          <SaveAsIcon />
-          <FormattedMessage id="app.saveAsNewPattern" />
-        </span>
+      <li className="action" key="a-saveas">
+        {display === 'saveas' ? (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.savehowPattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('saveas')}>
+            <SaveAsIcon />
+            <FormattedMessage id="app.saveAsNewPattern" />
+          </span>
+        )}
       </li>
     ),
     saveAsOwn: (
@@ -328,9 +334,10 @@ ${e.stack}
         data={data}
       />
     )
-  else if (display === 'export') {
-    main = <ExportPattern app={app} data={data} />
-  } else
+  else if (display === 'export') main = <ExportPattern app={app} data={data} />
+  else if (display === 'saveas')
+    main = <SaveAsPattern app={app} data={data} person={props.person} />
+  else
     main = (
       <>
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
