@@ -16,6 +16,12 @@ import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
 import MainMenu from '../menus/main'
+import SaveIcon from '@material-ui/icons/Save'
+import SaveAsIcon from '@material-ui/icons/CloudUpload'
+import ZoomInIcon from '@material-ui/icons/ZoomIn'
+import ZoomOutIcon from '@material-ui/icons/ZoomOut'
+import CompareIcon from '@material-ui/icons/PeopleAlt'
+import ShowIcon from '@material-ui/icons/Visibility'
 
 import DraftError from './error'
 import DraftEvents from './events/'
@@ -93,6 +99,8 @@ ${e.stack}
     }
     return md
   }
+
+  console.log(data)
 
   // Effects
   useEffect(() => {
@@ -186,18 +194,67 @@ ${e.stack}
   const [patternProps, error, compareWith, breasts] =
     display === 'compare' ? comparePattern(data) : draftPattern(data)
 
-  // Configurator
-  const preMenuItems = []
-  preMenuItems.push(
-    <DraftConfigurator
-      key="config"
-      data={data}
-      units={app.account.username ? app.account.settings.units : visitorUnits}
-      config={Pattern.config}
-      updatePatternData={mergeData}
-      raiseEvent={raiseEvent}
-    />
-  )
+  // User actions
+  const savePattern = (data) => {
+    app
+      .updatePattern(props.patternHandle, { data })
+      .then((err) => {
+        setDialog(false)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const actions = {
+    compare: (
+      <li className="action" key="a-compare">
+        {display === 'draft' ? (
+          <span onClick={() => setDisplay('compare')}>
+            <CompareIcon />
+            <FormattedMessage id="app.comparePattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.showPattern" />
+          </span>
+        )}
+      </li>
+    ),
+    save: (
+      <li className="action" key="a-save">
+        <span onClick={() => savePattern(data)}>
+          <SaveIcon />
+          <FormattedMessage id="app.savePattern" />
+        </span>
+      </li>
+    ),
+    saveAsOwn: (
+      <li className="action" key="a-saveasown">
+        <span
+          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/save-as/`)}
+        >
+          <SaveAsIcon />
+          <FormattedMessage id="app.saveAsNewPattern" />
+        </span>
+      </li>
+    ),
+    zoom: (
+      <li className="action" key="a-zoom">
+        <span onClick={() => setFit(!fit)} key="a-zoom">
+          {fit ? (
+            <>
+              <ZoomInIcon /> <FormattedMessage id="app.zoomIn" />
+            </>
+          ) : (
+            <>
+              <ZoomOutIcon /> <FormattedMessage id="app.zoomOut" />
+            </>
+          )}
+        </span>
+      </li>
+    )
+  }
 
   // Fit to screen
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
@@ -238,33 +295,6 @@ ${e.stack}
   else
     main = (
       <>
-        <div className="spaced-buttons">
-          {display === 'draft' ? (
-            <>
-              {props.saveMethod && (
-                <Button variant="outlined" color="primary" onClick={() => props.saveMethod(data)}>
-                  <FormattedMessage id="app.savePattern" />
-                </Button>
-              )}
-              <Button variant="outlined" color="primary" onClick={() => setDisplay('compare')}>
-                <FormattedMessage id="app.comparePattern" />
-              </Button>
-              <Button variant="outlined" color="primary" onClick={() => setFit(!fit)}>
-                {fit ? (
-                  <small>
-                    <FormattedMessage id="app.zoom" />
-                  </small>
-                ) : (
-                  <FormattedMessage id="app.zoom" />
-                )}
-              </Button>
-            </>
-          ) : (
-            <Button variant="outlined" color="primary" onClick={() => setDisplay('draft')}>
-              <FormattedMessage id="app.back" />
-            </Button>
-          )}
-        </div>
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
           <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
           {display === 'compare' && (
@@ -281,7 +311,17 @@ ${e.stack}
     )
 
   const mainMenu = <MainMenu app={props.app} slug={props.slug} />
-  const preMenu = <ul id="pre-main-menu">{preMenuItems}</ul>
+  const preMenu = (
+    <DraftConfigurator
+      key="config"
+      data={data}
+      units={app.account.username ? app.account.settings.units : visitorUnits}
+      config={Pattern.config}
+      updatePatternData={mergeData}
+      raiseEvent={raiseEvent}
+      actions={props.actions.map((a) => actions[a])}
+    />
+  )
 
   return (
     <Layout

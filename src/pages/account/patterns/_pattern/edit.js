@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import AppWrapper from '../../../../components/app/wrapper'
 import DraftUi from '../../../../components/draft/ui'
@@ -16,50 +16,13 @@ import Button from '@material-ui/core/Button'
 
 const Page = (props) => {
   const app = useApp()
+  const pattern = usePattern(app, props.params.pattern)
 
-  const [pattern, setPattern] = useState(null)
-  const [person, setPerson] = useState(null)
-  const [design, setDesign] = useState(null)
-  const [description, setDescription] = useState(false)
-
-  // SSR
-  if (typeof props.pattern === 'undefined') return <LoadingLayout app={app} />
-
-  // Effects
-  useEffect(() => {
-    /*
-     * The usePattern hook is used to load the pattern
-     *
-     *   - Patterns that are in localStorage return instantly
-     *   - Patterns loaded from the backend return a promise
-     *
-     *  pop = patternOrPromise
-     */
-    let pop = usePattern(app, props.pattern)
-    if (pop.then instanceof Function) {
-      // Pending promise
-      pop.then((p) => {
-        setPattern(p)
-        setPerson(usePerson(app, p.person))
-        setDesign(p.data.design)
-      })
-    } else {
-      setDesign(pop.data.design)
-      if (pop.data.settings.metadata)
-        setPerson(usePerson(app, pop.data.settings.metadata.forHandle))
-      else setPerson(usePerson(app, pop.data.model))
-      setPattern(pop)
-    }
-  }, [props.pattern])
-
-  const fabs = ['zoom', 'compare', 'notes', 'save', 'saveAs', 'export', 'details']
-
-  const title =
-    app.translate('app.editThing', {
-      thing: app.translate('app.pattern')
-    }) +
-    ' ' +
-    props.params.pattern
+  if (!pattern) {
+    if (app.account.username) app.navigate('/account/patterns/')
+    else app.navigate('/')
+    return null
+  }
 
   const saveMethod = (data) => {
     app
@@ -72,64 +35,37 @@ const Page = (props) => {
       })
   }
 
-  if (person && pattern && design)
-    return (
-      <AppWrapper
-        app={app}
-        title={title}
-        description={title}
-        slug={props.location.pathname}
-        noLayout
-      >
-        <DraftUi
-          mode="edit"
-          app={app}
-          design={design}
-          person={person}
-          pattern={pattern}
-          data={pattern.data}
-          fabs={fabs}
-          title={title}
-          description={title}
-          crumbs={app.getCrumbs(props.location.pathname)}
-          slug={props.location.pathname}
-          saveMethod={saveMethod}
-        />
-      </AppWrapper>
-    )
+  // Handling both legacy and current ways of passing the person
+  const person = pattern.data.settings.metadata
+    ? usePerson(app, pattern.data.settings.metadata.forHandle)
+    : usePerson(app, pattern.data.model)
 
-  if (pattern && !person)
-    return (
-      <AppWrapper app={app} title={title} description={title} slug={props.location.pathname}>
-        <Blockquote type="note">
-          <h4>
-            <FormattedMessage id="app.recreatePattern" />
-          </h4>
-          <p>
-            <FormattedMessage id="app.recreatePattern-txt" />
-          </p>
-          <p>
-            <Button
-              variant="contained"
-              color="primary"
-              href={`/recreate/${design}/from/${pattern.handle}/`}
-            >
-              <FormattedMessage id="app.recreatePattern" />
-            </Button>
-          </p>
-        </Blockquote>
-        <Blockquote type="warning">
-          <h6>
-            <FormattedMessage id="app.editOwnPatternsOnly" />
-          </h6>
-          <p>
-            <FormattedMessage id="app.editOwnPatternsOnly-txt" />
-          </p>
-        </Blockquote>
-      </AppWrapper>
-    )
+  const shared = {
+    app,
+    title:
+      app.translate('app.editThing', {
+        thing: app.translate('app.pattern')
+      }) +
+      ' ' +
+      pattern.handle,
+    slug: props.location.pathname
+  }
+  shared.description = shared.title
 
-  return <LoadingLayout app={app} />
+  return (
+    <AppWrapper {...shared} noLayout>
+      <DraftUi
+        {...shared}
+        patternHandle={props.params.pattern}
+        design={pattern.data.design}
+        person={person}
+        data={pattern.data}
+        crumbs={app.getCrumbs(props.location.pathname)}
+        saveMethod={saveMethod}
+        actions={['zoom', 'compare', 'save', 'saveAsOwn']}
+      />
+    </AppWrapper>
+  )
 }
 
 export default Page
