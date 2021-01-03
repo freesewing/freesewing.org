@@ -72,7 +72,8 @@ function useApp(full = true) {
   const getOffspring = (slug) => {
     let ntree = {}
     Object.assign(ntree, tree)
-    return ntr.order(ntr.getSelf(slug, ntree).offspring)
+    let page = ntr.getSelf(slug, ntree)
+    return page.offspring ? ntr.order(page.offspring) : []
   }
 
   const getNext = (slug) => {

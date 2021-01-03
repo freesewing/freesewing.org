@@ -1,8 +1,4 @@
-import { measurements as allMeasurements } from '@freesewing/models'
-
-const measurements = new Set()
-allMeasurements.menswear.forEach((m) => measurements.add(m))
-allMeasurements.womenswear.forEach((m) => measurements.add(m))
+import { measurements } from '@freesewing/models'
 
 export function patternLeaf(pattern, translate) {
   return {
@@ -68,13 +64,14 @@ export function patternLeaf(pattern, translate) {
 
 export function personLeaf(person, translate) {
   let order = {}
-  for (let m of measurements) order[translate(`measurements.${m}`)] = m
+  for (let m of measurements[person.breasts ? 'womenswear' : 'menswear'])
+    order[translate(`measurements.${m}`)] = m
   let mnodes = {}
   for (let title of Object.keys(order).sort()) {
     let m = order[title]
-    mnodes[m] = {
+    mnodes[m.toLowerCase()] = {
       title,
-      slug: `/account/people/${person.handle}/measurements/${m}/`,
+      slug: `/account/people/${person.handle}/measurements/${m.toLowerCase()}/`,
       offspring: {}
     }
   }
@@ -122,6 +119,11 @@ export function personLeaf(person, translate) {
         title: translate('app.measurements'),
         slug: `/account/people/${person.handle}/measurements/`,
         offspring: mnodes
+      },
+      remove: {
+        title: translate('app.removeThing', { thing: translate('app.person') }),
+        slug: `/account/people/${person.handle}/remove/`,
+        offspring: {}
       }
     }
   }

@@ -81,7 +81,12 @@ function getNextParent(slug, tree) {
 function getParent(slug, tree) {
   let chunks = slug.split('/').slice(1, -2)
   let branch = { ...tree }
-  for (let i = 0; i < chunks.length - 1; i++) branch = branch.offspring[chunks[i]]
+  for (let i = 0; i < chunks.length - 1; i++) {
+    if (!branch || !branch.offspring) return false
+    branch = branch.offspring[chunks[i]]
+  }
+  if (!branch || !branch.offspring) return false
+
   return getCurrentFromList(branch.offspring, chunks.pop())
 }
 
@@ -93,7 +98,9 @@ function trimTree(slug, tree) {
 }
 
 function getSelf(slug, tree) {
-  return trimTree(slug, tree).offspring[slug.split('/').slice(1, -1).pop()]
+  let page = trimTree(slug, tree)
+
+  return page && page.offspring ? page.offspring[slug.split('/').slice(1, -1).pop()] : false
 }
 
 function order(pages) {

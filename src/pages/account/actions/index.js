@@ -2,7 +2,7 @@ import React from 'react'
 import useApp from '../../../hooks/useApp'
 import LoginRequired from '../../../components/login-required'
 import AppWrapper from '../../../components/app/wrapper'
-import ReadMore from '../../../components/mdx/readmore'
+import Offspring from '../../../components/offspring'
 
 const Page = (props) => {
   const app = useApp()
@@ -10,7 +10,7 @@ const Page = (props) => {
   return (
     <LoginRequired app={app}>
       <AppWrapper app={app} title={app.translate('app.actions')} {...app.treeProps(props.path)}>
-        <ReadMore list pages={app.getOffspring(props.path)} />
+        <Offspring app={app} slug={props.path} />
       </AppWrapper>
     </LoginRequired>
   )

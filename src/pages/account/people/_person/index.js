@@ -4,6 +4,7 @@ import AppWrapper from '../../../../components/app/wrapper'
 
 import usePerson from '../../../../hooks/usePerson'
 import Person from '../../../../components/person'
+import Offspring from '../../../../components/offspring'
 import { FormattedMessage } from 'react-intl'
 import Markdown from 'react-markdown'
 
@@ -14,14 +15,12 @@ const Page = (props) => {
   // FIXME: Show something better than nothing in SSR
   if (!app.account.username) return null
 
+  let slug = `/account/people/${props.params.person}/`
+
   return (
-    <AppWrapper
-      app={app}
-      title={person.name}
-      crumbs={[{ slug: '/people/', title: <FormattedMessage id="app.people" /> }]}
-      {...app.treeProps(`/account/people/${props.params.person}/`)}
-    >
+    <AppWrapper app={app} title={person.name} {...app.treeProps(slug)}>
       <Person data={person} translate={app.translate} fullWidth />
+      <Offspring app={app} slug={slug} />
       {person.notes && (
         <>
           <h5>

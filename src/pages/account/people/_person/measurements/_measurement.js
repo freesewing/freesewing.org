@@ -72,7 +72,7 @@ const Page = (props) => {
     app.updatePerson(
       props.person,
       [isDegMeasurement(measurement) ? value : mm, 'measurements', measurement],
-      `/people/${props.person}/#measurements`
+      `/account/people/${props.person}/measurements/`
     )
   }
 
