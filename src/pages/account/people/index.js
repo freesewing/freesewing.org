@@ -28,7 +28,7 @@ const Page = (props) => {
   )
 
   return (
-    <AppWrapper app={app} title={app.translate('app.people')} {...app.treeProps(props.path)}>
+    <AppWrapper app={app} title={app.translate('app.people')} {...app.treeProps(props.path)} wide>
       {add}
       {Object.keys(app.people).length > 0 ? (
         <>
