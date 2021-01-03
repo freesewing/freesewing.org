@@ -3,7 +3,6 @@ import useApp from '../../../../../hooks/useApp'
 import AppWrapper from '../../../../../components/app/wrapper'
 
 import usePerson from '../../../../../hooks/usePerson'
-import PeopleContext from '../../../../../components/context/people'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
@@ -122,14 +121,7 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={label}
-      context={<PeopleContext app={app} />}
-      crumbs={[
-        { title: app.translate('app.people'), slug: '/people/' },
-        { title: person.name, slug: `/people/${props.person}/` },
-        { title: app.translate('app.measurements'), slug: `/people/${props.person}/#measurements` }
-      ]}
-      active="account"
-      text
+      {...app.treeProps(`/account/people/${props.person}/measurements/${measurement}/`)}
     >
       <TextField
         data-test="measurement"

@@ -193,14 +193,14 @@ const Page = (props) => {
       {...app.treeProps(`/account/people/${props.params.person}/measurements/`)}
     >
       {blankSlate ? (
-        <Blockquote type="note" data-test="blank-slate">
+        <Blockquote type="tip" data-test="blank-slate">
           <h6>
             <FormattedMessage id="app.startWithNeckTitle" />
           </h6>
           <p>
             <FormattedMessage id="app.startWithNeckDescription" />
           </p>
-          <p style={{ textAlign: 'right' }}>
+          <p>
             <Button
               variant="contained"
               color="primary"
