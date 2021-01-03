@@ -54,6 +54,7 @@ div.layout-wrapper {
     flex-wrap: nowrap;
     justify-content: space-between;
     background-color: $oc-gray-0;
+    min-height: 66vh;
     > aside {
       width: 33%;
       background: $oc-gray-1;

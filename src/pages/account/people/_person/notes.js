@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import useApp from '../../../../hooks/useApp'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import PeopleContext from '../../../../components/context/people'
 import TextField from '@material-ui/core/TextField'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
@@ -29,16 +28,7 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={app.translate('app.notes')}
-      context={<PeopleContext app={app} />}
-      crumbs={[
-        { slug: '/people/', title: app.translate('app.people') },
-        {
-          slug: '/people/' + props.person + '/',
-          title: app.people[props.person].name || props.person
-        }
-      ]}
-      active="account"
-      text
+      {...app.treeProps(`/account/people/${props.params.person}/notes/`)}
     >
       <TextField
         data-test="notes"
@@ -69,7 +59,7 @@ const Page = (props) => {
           variant="contained"
           color="primary"
           onClick={() =>
-            app.updatePerson(props.person, [notes, 'notes'], `/people/${props.person}/`)
+            app.updatePerson(props.person, [notes, 'notes'], `/account/people/${props.person}/`)
           }
         >
           <FormattedMessage id="app.save" />

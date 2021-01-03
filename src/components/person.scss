@@ -68,6 +68,9 @@ div.person {
     height: 100%;
   }
 }
+div.person.full-width {
+  width: calc(100% - 1rem);
+}
 div.person.breasts > div.top {
   border-color: $oc-pink-7;
 }

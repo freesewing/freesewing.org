@@ -65,6 +65,16 @@ const Page = (props) => {
         >
           <FormattedMessage id="app.save" />
         </Button>
+        <Button
+          data-test="remove"
+          className="danger"
+          color="primary"
+          variant="contained"
+          onClick={() => app.removePerson(props.person)}
+          size="large"
+        >
+          <FormattedMessage id="app.removeThing" values={{ thing: app.translate('app.person') }} />
+        </Button>
       </p>
     </AppWrapper>
   )

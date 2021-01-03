@@ -20,7 +20,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
       </>
     )}
     {app.mobile && (
-      <ul className="inline">
+      <ul className="inline fw-400">
         <li>
           <Link to="/create/">
             <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
@@ -40,19 +40,19 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     )}
     {!settingsOnly && (
       <>
-        <ul className="inline">
+        <ul className="inline fw-400">
           <li>
-            <Link to="/patterns/">
+            <Link to="/account/patterns/">
               <FormattedMessage id="app.patterns" />
             </Link>
           </li>
           <li>
-            <Link to="/people/">
+            <Link to="/account/people/">
               <FormattedMessage id="app.people" />
             </Link>
           </li>
           <li>
-            <Link to={`/users/${app.account.username}/`}>
+            <Link to={`/account/profile/`}>
               <FormattedMessage id="app.profile" />
             </Link>
           </li>
@@ -64,7 +64,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
         <FormattedMessage id="app.settings" />
       </Link>
     </h6>
-    <ul className="inline">
+    <ul className="inline fw-400">
       {[
         'avatar',
         'bio',
@@ -88,7 +88,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     <h6>
       <FormattedMessage id="app.actions" />
     </h6>
-    <ul className="inline">
+    <ul className="inline fw-400">
       <li>
         <Link to="/account/reload/">
           <FormattedMessage id="account.reloadAccount" />

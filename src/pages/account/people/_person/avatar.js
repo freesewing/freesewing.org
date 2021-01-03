@@ -51,28 +51,25 @@ const Page = (props) => {
     styles.dropzone.height = '200px'
   }
 
+  let loadImage = img
+  if (
+    !img &&
+    app.account &&
+    app.account.people &&
+    app.account.people[props.params.person] &&
+    app.account.people[props.params.person].pictureUris
+  )
+    loadImage = app.account.people[props.params.person].pictureUris.m
+  else loadImage = 'https://freesewing.org/avatar.svg'
+
   return (
     <AppWrapper
       app={app}
       title={app.translate('account.avatar')}
-      context={<PeopleContext app={app} />}
-      crumbs={[
-        { slug: '/people/', title: app.translate('app.people') },
-        {
-          slug: '/people/' + props.person + '/',
-          title: app.people[props.person].name || props.person
-        }
-      ]}
-      active="account"
-      text
+      {...app.treeProps(`/account/people/${props.params.person}/avatar/`)}
     >
       <div style={styles.wrapper}>
-        <img
-          alt="avatar"
-          src={img || app.account.pictureUris.m}
-          style={styles.avatar}
-          className="shadow"
-        />
+        <img alt="avatar" src={img || loadImage} style={styles.avatar} className="shadow" />
         <div {...getRootProps()} style={styles.dropzone}>
           <input {...getInputProps()} />
           <p data-test="instructions">
@@ -103,7 +100,7 @@ const Page = (props) => {
             variant="contained"
             color="primary"
             onClick={() =>
-              app.updatePerson(props.person, [img, 'picture'], `/people/${props.person}/`)
+              app.updatePerson(props.person, [img, 'picture'], `/account/people/${props.person}/`)
             }
           >
             <FormattedMessage id="app.save" />

@@ -19,7 +19,7 @@ import useScrolledDown from '../../hooks/useScrolledDown'
 import Bugsnag from './bugsnag'
 import Layout from '../layouts/default'
 import MainMenu from '../menus/main'
-import { patternLeaf } from './leafs'
+import { patternLeaf, personLeaf } from './leafs'
 
 /* This component should wrap all page content */
 const AppWrapper = (props) => {
@@ -40,10 +40,10 @@ const AppWrapper = (props) => {
       if (props.app.people && Object.keys(props.app.people).length > 0) {
         tree.offspring.account.offspring.people.offspring = {}
         for (let person in props.app.people) {
-          tree.offspring.account.offspring.people.offspring[person] = {
-            title: props.app.people[person].name,
-            slug: `/account/people/${person}/`
-          }
+          tree.offspring.account.offspring.people.offspring[person] = personLeaf(
+            props.app.people[person],
+            props.app.translate
+          )
         }
       }
     } else delete tree.offspring.account
