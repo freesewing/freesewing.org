@@ -77,7 +77,7 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app} title={title} context={context} crumbs={crumbs} active="designs">
+    <AppWrapper app={app} title={title} crumbs={crumbs} wide>
       <SelectSize app={app} design={design} people={people} recreate={props.pattern} />
     </AppWrapper>
   )
