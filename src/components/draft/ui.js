@@ -23,11 +23,12 @@ import ZoomOutIcon from '@material-ui/icons/ZoomOut'
 import CompareIcon from '@material-ui/icons/PeopleAlt'
 import ShowIcon from '@material-ui/icons/Visibility'
 import ExportIcon from '@material-ui/icons/Print'
+import Icon from '@freesewing/components/Icon'
+import ExportPattern from '../pattern/export'
 
 import DraftError from './error'
 import DraftEvents from './events/'
 
-import Dialog from '../pattern/dialog'
 import PatternActions from '../context/pattern-actions'
 import { sampleStyles, focusStyle, extraDefs } from './sample-styles'
 import SampleLegend from './sample-legend'
@@ -44,10 +45,6 @@ const DraftUi = (props) => {
   const raiseEvent = (type, data) => {
     setEventType(data.type)
     setEventValue(data.value)
-  }
-  const openDialog = (action) => {
-    setDialogAction(action)
-    setDialog(true)
   }
   const toggleUnits = () => {
     let newUnits = visitorUnits === 'metric' ? 'imperial' : 'metric'
@@ -71,9 +68,7 @@ const DraftUi = (props) => {
   const [eventValue, setEventValue] = useState('')
   const [visitorUnits, setVisitorUnits] = useState('metric')
   const [data, setData, mergeData] = useMergeData(props.data) // Special state + update method to merge data
-  const [dialog, setDialog] = useState(false)
   const [menu, setMenu] = useState(false)
-  const [dialogAction, setDialogAction] = useState('pick')
   const [crashReport, setCrashReport] = useState(false)
   const [issue, setIssue] = useState(false)
   const [personHasBreasts, setPersonHasBreasts] = useState(false)
@@ -100,8 +95,6 @@ ${e.stack}
     }
     return md
   }
-
-  console.log(data)
 
   // Effects
   useEffect(() => {
@@ -197,27 +190,37 @@ ${e.stack}
 
   // User actions
   const savePattern = (data) => {
-    app
-      .updatePattern(props.patternHandle, { data })
-      .then((err) => {
-        setDialog(false)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    app.updatePattern(props.patternHandle, { data }).catch((err) => {
+      console.log(err)
+    })
   }
   const actions = {
     compare: (
       <li className="action" key="a-compare">
-        {display === 'draft' ? (
+        {display === 'compare' ? (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.showPattern" />
+          </span>
+        ) : (
           <span onClick={() => setDisplay('compare')}>
             <CompareIcon />
             <FormattedMessage id="app.comparePattern" />
           </span>
-        ) : (
+        )}
+      </li>
+    ),
+    export: (
+      <li className="action" key="a-exportown">
+        {display === 'export' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
             <FormattedMessage id="app.showPattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('export')}>
+            <ExportIcon />
+            <FormattedMessage id="app.exportPattern" />
           </span>
         )}
       </li>
@@ -240,6 +243,16 @@ ${e.stack}
         </span>
       </li>
     ),
+    saveAs: (
+      <li className="action" key="a-saveasown">
+        <span
+          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/save-as/`)}
+        >
+          <SaveAsIcon />
+          <FormattedMessage id="app.saveAsNewPattern" />
+        </span>
+      </li>
+    ),
     saveAsOwn: (
       <li className="action" key="a-saveasown">
         <span
@@ -247,6 +260,18 @@ ${e.stack}
         >
           <SaveAsIcon />
           <FormattedMessage id="app.saveAsNewPattern" />
+        </span>
+      </li>
+    ),
+    units: (
+      <li className="action" key="a-units">
+        <span onClick={toggleUnits} key="a-units">
+          <Icon icon="units" />
+          {visitorUnits === 'metric' ? (
+            <FormattedMessage id="app.metricUnits" />
+          ) : (
+            <FormattedMessage id="app.imperialUnits" />
+          )}
         </span>
       </li>
     ),
@@ -303,7 +328,9 @@ ${e.stack}
         data={data}
       />
     )
-  else
+  else if (display === 'export') {
+    main = <ExportPattern app={app} data={data} />
+  } else
     main = (
       <>
         <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
@@ -330,7 +357,7 @@ ${e.stack}
       config={Pattern.config}
       updatePatternData={mergeData}
       raiseEvent={raiseEvent}
-      actions={props.actions.map((a) => actions[a])}
+      actions={props.actions ? props.actions.map((a) => actions[a]) : false}
     />
   )
 
