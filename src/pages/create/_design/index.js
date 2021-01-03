@@ -6,14 +6,12 @@ import usePeople from '../../../hooks/usePeople'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
 import SelectSize from '../../../components/draft/select-size'
-import SelectSizeContext from '../../../components/context/select-size'
 
 const Page = (props) => {
   const app = useApp()
   const people = usePeople(app, props.pageContext.design)
 
   // Design is added to page context in gatsby-node
-  // FIXME: This does not seem to be the case (any longer)
   const design = props.pageContext.design
 
   const crumbs = [
@@ -30,13 +28,7 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('app.chooseASize')}
-      context={<SelectSizeContext app={app} design={design} people={people} />}
-      crumbs={crumbs}
-      active="designs"
-    >
+    <AppWrapper app={app} title={app.translate('app.chooseASize')} crumbs={crumbs} wide>
       <SelectSize app={app} design={design} people={people} />
     </AppWrapper>
   )

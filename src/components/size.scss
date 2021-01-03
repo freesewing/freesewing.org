@@ -1,30 +1,21 @@
 @import '../../node_modules/open-color/open-color.scss';
 div.size {
-  border: 1px solid $oc-gray-3;
-  width: 140px;
+  width: 166px;
   border-radius: 3px;
   padding: 0;
-  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   margin: 0.5rem;
   div.top {
-    background: $oc-gray-9;
     width: calc(100% - 4rem);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    color: $oc-gray-1;
     padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
     border-bottom: 4px solid transparent;
     h5 {
       text-align: center;
       margin: 0 auto;
       line-height: 1;
-      text-shadow: 0 0 2px #000c;
       span.prefix {
         font-size: 1rem;
       }
@@ -34,8 +25,6 @@ div.size {
     }
   }
   div.bottom {
-    background: $oc-gray-2;
-    font-family: 'Roboto Condensed';
     padding: 0.5rem;
     font-size: 0.9rem;
     text-align: center;
@@ -53,27 +42,60 @@ div.size {
     height: 100%;
   }
 }
-div.size.breasts > div.top {
-  border-color: $oc-pink-7;
-  svg {
-    color: $oc-pink-5;
+.theme-wrapper.light {
+  div.size:hover {
+    background: $oc-gray-1;
   }
-}
-div.size.no-breasts > div.top {
-  border-color: $oc-violet-7;
-  svg {
-    color: $oc-violet-5;
-  }
-}
-
-.theme-wrapper.dark {
-  div.size {
-    border: 1px solid $oc-gray-7;
+  div.size.breasts {
+    div.top {
+      border-color: $oc-pink-7;
+      svg {
+        color: $oc-pink-5;
+      }
+    }
     div.bottom {
+      background: #f0659526;
+    }
+  }
+  div.size.no-breasts {
+    > div.top {
+      border-color: $oc-violet-7;
+      svg {
+        color: $oc-violet-5;
+      }
+    }
+    > div.bottom {
+      background: #845ef726;
+    }
+  }
+}
+.theme-wrapper.dark {
+  div.size:hover {
+    background: $oc-gray-8;
+  }
+  div.size.breasts {
+    div.top {
+      border-color: $oc-pink-4;
+      svg {
+        color: $oc-pink-4;
+      }
+    }
+    div.bottom {
+      background: #f783ac26;
+    }
+  }
+  div.size.no-breasts {
+    div.top {
+      border-color: $oc-violet-4;
+      svg {
+        color: $oc-violet-4;
+      }
+    }
+    div.top:hover {
       background: $oc-gray-8;
     }
-    div.avatar img {
-      border-color: $oc-gray-8;
+    div.bottom {
+      background: #9775fa26;
     }
   }
 }

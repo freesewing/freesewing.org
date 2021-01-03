@@ -6,7 +6,7 @@ import formatMm from '@freesewing/utils/formatMm'
 import convertSize from '@freesewing/utils/convertSize'
 
 const Size = (props) => (
-  <div className={`size ${props.breasts ? 'breasts' : 'no-breasts'}`}>
+  <div className={`shadow size ${props.breasts ? 'breasts' : 'no-breasts'}`}>
     <div className="top">
       <h5>
         <Icon icon={props.breasts ? 'withBreasts' : 'withoutBreasts'} size={52} />
