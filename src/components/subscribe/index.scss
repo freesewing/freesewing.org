@@ -6,6 +6,7 @@ div.tiers {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  color: $oc-gray-9;
   div.tier {
     width: calc(33% - 3rem);
     margin: 0.5rem;
@@ -15,6 +16,7 @@ div.tiers {
     h2 {
       margin: 1rem 0;
       padding: 0;
+      color: $oc-gray-9;
     }
     span {
       display: block;
@@ -33,32 +35,14 @@ div.tiers {
     }
     form.monthly button {
       padding: 1rem 2rem;
+      margin: 1rem auto;
+    }
+    form.yearly button {
+      color: $oc-gray-9;
     }
   }
-}
-
-.theme-wrapper.light div.tiers {
-  color: $oc-gray-0;
-  h2 {
-    color: $oc-gray-0;
-  }
   div.tier-2 {
-    background: $oc-gray-7;
-  }
-  div.tier-4 {
-    background: $oc-pink-6;
-  }
-  div.tier-8 {
-    background: $oc-violet-6;
-  }
-}
-.theme-wrapper.dark div.tiers {
-  color: $oc-gray-9;
-  h2 {
-    color: $oc-gray-9;
-  }
-  div.tier-2 {
-    background: $oc-gray-6;
+    background: $oc-teal-4;
   }
   div.tier-4 {
     background: $oc-pink-4;
