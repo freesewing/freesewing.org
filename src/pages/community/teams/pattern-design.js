@@ -22,8 +22,7 @@ const Page = (props) => {
   const title = app.translate('cty.patternDesign') + ' ' + app.translate('cty.team')
 
   return (
-    <AppWrapper app={app} title={title} {...app.treeProps(props.path)} noTitle>
-      <h1 className="scribble">{title}</h1>
+    <AppWrapper app={app} title={title} {...app.treeProps(props.path)}>
       {teamMembers('patternDesign').map((m) => (
         <Contributor contributor={m} app={app} key={m.name} />
       ))}

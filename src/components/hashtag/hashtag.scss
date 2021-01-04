@@ -1,8 +1,16 @@
+@import '../../../node_modules/open-color/open-color.scss';
+
 a.hashtag {
   font-family: 'Permanent marker';
   padding: 0 1rem;
   font-size: 1.25em;
   font-weight: bold;
   text-decoration: none;
-  color: #f06595 !important;
+}
+
+.theme-wrapper.light a.hashtag {
+  color: $oc-gray-7 !important;
+}
+.theme-wrapper.dark a.hashtag {
+  color: $oc-gray-3 !important;
 }

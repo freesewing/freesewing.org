@@ -10,8 +10,7 @@ const Page = (props) => {
   const uiMdx = useUiMdx()
 
   return (
-    <AppWrapper app={app} title="Facebook" {...app.treeProps(props.path)} noTitle>
-      <h1 className="scribble">Facebook</h1>
+    <AppWrapper app={app} title="Facebook" {...app.treeProps(props.path)}>
       <Mdx node={uiMdx[`community/where/facebook`]} />
     </AppWrapper>
   )

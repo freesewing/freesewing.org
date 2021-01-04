@@ -1,17 +1,17 @@
 import React from 'react'
 import useApp from '../../hooks/useApp'
+import useUiMdx from '../../hooks/useUiMdx'
 import AppWrapper from '../../components/app/wrapper'
 
-import useUiMdx from '../../hooks/useUiMdx'
-import Mdx from '../../components/mdx'
+import Newsletter from '../../components/homepage/newsletter'
 
 const Page = (props) => {
   const app = useApp()
   const uiMdx = useUiMdx()
 
   return (
-    <AppWrapper app={app} title="Hashtags" {...app.treeProps(props.path)}>
-      <Mdx node={uiMdx[`community/hashtags`]} />
+    <AppWrapper app={app} title="Newsletter" {...app.treeProps(props.path)}>
+      <Newsletter app={app} uiMdx={uiMdx} contentOnly />
     </AppWrapper>
   )
 }

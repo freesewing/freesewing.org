@@ -58,6 +58,7 @@ const titles = {
 // No translate for these
 const brands = {
   '/community/hashtags/': 'Hashtags',
+  '/community/newsletter/': 'Newsletter',
   '/community/where/discord/': 'Discord',
   '/community/where/facebook/': 'Facebook',
   '/community/where/github/': 'Github',

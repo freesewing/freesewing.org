@@ -10,8 +10,7 @@ const Page = (props) => {
   const uiMdx = useUiMdx()
 
   return (
-    <AppWrapper app={app} title="YouTube" {...app.treeProps(props.path)} noTitle>
-      <h1 className="scribble">YouTube</h1>
+    <AppWrapper app={app} title="YouTube" {...app.treeProps(props.path)}>
       <Mdx node={uiMdx[`community/where/youtube`]} />
     </AppWrapper>
   )

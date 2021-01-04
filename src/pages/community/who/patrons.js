@@ -18,15 +18,7 @@ const Page = (props) => {
   const uiMdx = useUiMdx()
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('cty.whoWeAre')}
-      {...app.treeProps(props.path)}
-      noTitle
-    >
-      <h1 className="scribble">
-        <FormattedMessage id="app.patrons" />
-      </h1>
+    <AppWrapper app={app} title={app.translate('app.patrons')} {...app.treeProps(props.path)}>
       <Blockquote type="note">
         <h4>
           <FormattedMessage id="app.supportFreesewing" />

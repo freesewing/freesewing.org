@@ -17,13 +17,9 @@ const Page = (props) => {
       title={app.translate('app.community')}
       noTitle
       {...app.treeProps(props.path)}
-      wide
     >
       <h1 className="scribble">#WeAre&shy;FreeSewing</h1>
-      <h4
-        className="scribble"
-        dangerouslySetInnerHTML={{ __html: app.translate('app.txt-footer') }}
-      />
+      <p dangerouslySetInnerHTML={{ __html: app.translate('app.txt-footer') }} />
       <Offspring app={app} slug={props.path} />
     </AppWrapper>
   )
