@@ -25,9 +25,6 @@ const Page = (props) => {
         dangerouslySetInnerHTML={{ __html: app.translate('app.txt-footer') }}
       />
       <Offspring app={app} slug={props.path} />
-      <Blockquote type="tip">
-        <Mdx node={uiMdx[`community/hashtag`]} />
-      </Blockquote>
     </AppWrapper>
   )
 }

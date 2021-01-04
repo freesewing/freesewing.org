@@ -6,6 +6,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import ReadMore from './readmore'
 import YouTube from '../youtube'
 import Legend from '@freesewing/components/Legend'
+import Hashtag from '../hashtag'
 
 const customComponents = {
   Note: ({ children }) => <Blockquote type="note">{children}</Blockquote>,
@@ -13,7 +14,8 @@ const customComponents = {
   Warning: ({ children }) => <Blockquote type="warning">{children}</Blockquote>,
   Fixme: ({ children }) => <Blockquote type="fixme">{children}</Blockquote>,
   YouTube,
-  Legend
+  Legend,
+  Hashtag
 }
 
 const Mdx = ({ node, offspring }) => {

@@ -45,19 +45,36 @@ const titles = {
   '/community/calls/': 'cty.calls',
   '/community/join/': 'app.becomeAPatron',
   '/community/teams/': 'cty.teams',
+  '/community/teams/community/': ['cty.community', 'cty.team'],
+  '/community/teams/pattern-design/': ['cty.patternDesign', 'cty.team'],
   '/community/where/': 'cty.whereToFindUs',
   '/community/who/': 'cty.whoWeAre',
+  '/community/who/contributors/': 'cty.contributors',
+  '/community/who/patrons/': 'app.patrons',
   '/designs/': 'app.designs',
   '/docs/': 'app.docs',
   '/showcase/': 'app.showcase'
 }
+// No translate for these
+const brands = {
+  '/community/hashtags/': 'Hashtags',
+  '/community/where/discord/': 'Discord',
+  '/community/where/facebook/': 'Facebook',
+  '/community/where/github/': 'Github',
+  '/community/where/instagram/': 'Instagram',
+  '/community/where/reddit/': 'Reddit',
+  '/community/where/twitter/': 'Twitter',
+  '/community/where/youtube/': 'YouTube'
+}
 
 const getTranslatedTitle = (slug, translate) => {
-  if (titles[slug]) return translate(titles[slug])
-  else {
-    //    console.log('No title found for ', slug)
-    return false
+  if (brands[slug]) return brands[slug]
+  if (titles[slug]) {
+    if (Array.isArray(titles[slug])) return titles[slug].map((s) => translate(s)).join(' ')
+    else return translate(titles[slug])
   }
+
+  return false
 }
 
 // This does a lot of work
