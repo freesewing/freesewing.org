@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MainAside from './main-aside'
 import Icon from '@freesewing/components/Icon'
 
-const MobileMenu = ({ app, context }) => {
+const MobileMenu = ({ app, mainMenu }) => {
   // State
   const [account, setAccount] = useState(false)
   const [community, setCommunity] = useState(false)
@@ -51,7 +51,7 @@ const MobileMenu = ({ app, context }) => {
       icon: <Logo size={22} />
     },
     discord: {
-      title: 'app.chatWithUs',
+      title: 'app.chatOnDiscord',
       link: 'https://chat.freesewing.org/',
       icon: <Icon icon="discord" />
     },
@@ -78,7 +78,7 @@ const MobileMenu = ({ app, context }) => {
               aria-label={icons[icon].title}
               color="inherit"
               href={icons[icon].link}
-              title={icons[icon].title}
+              title={app.translate(icons[icon].title)}
             >
               {icons[icon].icon}
             </IconButton>
@@ -101,9 +101,7 @@ const MobileMenu = ({ app, context }) => {
           )}
         </IconButton>
       </div>
-
-      <MainAside app={app} />
-      <div className="context-wrapper">{context}</div>
+      {mainMenu}
     </div>
   )
 }

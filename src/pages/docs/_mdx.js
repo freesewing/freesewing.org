@@ -26,9 +26,7 @@ const Page = (props) => {
       app={app}
       title={props.pageContext.title}
       description={props.data.allMdx.edges[0].node.excerpt}
-      slug={props.path}
-      next={app.getNext(props.path)}
-      prev={app.getPrev(props.path)}
+      {...app.treeProps(props.path)}
     >
       {measurementImage}
       <Mdx node={props.data.allMdx.edges[0].node} offspring={app.getOffspring(props.path)} />

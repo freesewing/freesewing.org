@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import orderBy from 'lodash.orderby'
-import TutorialIcon from '@material-ui/icons/School'
 import DocsIcon from '@material-ui/icons/ChromeReaderMode'
 import ShowcaseIcon from '@material-ui/icons/CameraAlt'
 import BlogIcon from '@material-ui/icons/RssFeed'

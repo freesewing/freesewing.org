@@ -90,27 +90,27 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     </h6>
     <ul className="inline fw-400">
       <li>
-        <Link to="/account/reload/">
+        <Link to="/account/actions/reload/">
           <FormattedMessage id="account.reloadAccount" />
         </Link>
       </li>
       <li>
-        <Link to="/account/export/">
+        <Link to="/account/actions/export/">
           <FormattedMessage id="account.exportYourData" />
         </Link>
       </li>
       <li>
-        <Link to="/account/consent/">
+        <Link to="/account/actions/consent/">
           <FormattedMessage id="account.reviewYourConsent" />
         </Link>
       </li>
       <li>
-        <Link to="/account/restrict/">
+        <Link to="/account/actions/restrict/">
           <FormattedMessage id="account.restrictProcessingOfYourData" />
         </Link>
       </li>
       <li>
-        <Link to="/account/remove/">
+        <Link to="/account/actions/remove/">
           <FormattedMessage id="account.removeYourAccount" />
         </Link>
       </li>

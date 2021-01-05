@@ -150,6 +150,7 @@ function useTree(translate) {
             path
             context {
               title
+              order
             }
           }
         }

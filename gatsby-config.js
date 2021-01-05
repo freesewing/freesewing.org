@@ -62,6 +62,7 @@ const plugins = [
         'gatsby-remark-copy-linked-files',
         'gatsby-remark-autolink-headers',
         'gatsby-remark-smartypants',
+        'gatsby-remark-check-links',
         {
           resolve: 'gatsby-remark-jargon',
           options: { jargon }

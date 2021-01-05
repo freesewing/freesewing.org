@@ -109,7 +109,7 @@ function order(pages) {
   for (let key of Object.keys(pages))
     tmp[key] = {
       ...pages[key],
-      ordertitle: pages[key].order + pages[key].title,
+      ordertitle: pages[key].ordertitle + pages[key].title,
       key
     }
   return orderBy(tmp, ['ordertitle'])

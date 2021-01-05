@@ -63,6 +63,10 @@
   padding: 1rem 2rem;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  h1,
+  h2 {
+    color: $oc-gray-2;
+  }
 }
 
 #homepage div.stripe-bg {

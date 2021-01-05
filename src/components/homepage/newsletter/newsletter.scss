@@ -15,6 +15,9 @@ div.newsletter {
     background-size: 20% auto;
     background-color: transparent;
     background-image: url('/splash/reader.png');
+    h5 {
+      color: $oc-gray-2;
+    }
     p.button {
       width: 200px;
       margin-top: 2rem;

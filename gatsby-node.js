@@ -47,6 +47,7 @@ const mdxQuery = function (type, language) {
         title
         ${type === 'blog' ? 'linktitle' : ''}
         date
+        order
       }
     } } }
   }`
@@ -85,9 +86,6 @@ const pageTitle = (slug, page) => {
   return page.frontmatter.linktitle ? page.frontmatter.linktitle : page.frontmatter.title
 }
 
-const mdxList = (pages) =>
-  Object.keys(pages).map((slug) => ({ slug, title: pages[slug].context.title }))
-
 const createMdxPages = async function (pages, createPage, graphql, language) {
   let types = ['blog', 'showcase', 'docs']
   let promises = []
@@ -107,6 +105,7 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
             context: {
               slug,
               title: pageTitle(slug, page.node),
+              order: page.node.frontmatter.order,
               // Keep file here, it is used in the page query to filter
               file: page.node.fileAbsolutePath
             }
@@ -120,6 +119,7 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
                 context: {
                   slug: newSlug,
                   title: pages.docs[slug].context.title,
+                  order: pages.docs[slug].context.order,
                   // Keep file here, it is used in the page query to filter
                   file: pages.docs[slug].context.file
                 }

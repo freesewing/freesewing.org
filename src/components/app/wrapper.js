@@ -152,8 +152,8 @@ const AppWrapper = (props) => {
           />
           <Loading loading={props.app.loading} />
           {props.app.mobile && (
-            <div className="menu" onClick={props.app.closeNav}>
-              <MobileMenu app={props.app} context={props.context} />
+            <div className="menu" id="mobile-menu" onClick={props.app.closeNav}>
+              <MobileMenu app={props.app} mainMenu={mainMenu} />
             </div>
           )}
           <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />
