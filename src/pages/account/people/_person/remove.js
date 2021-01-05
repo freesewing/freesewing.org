@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button'
 const Page = (props) => {
   const app = useApp()
 
-  console.log(props)
   // FIXME: Show something better than nothing in SSR
   if (typeof app.people[props.params.person] === 'undefined') return <p>Hmm...</p>
 
@@ -34,3 +33,5 @@ const Page = (props) => {
     </AppWrapper>
   )
 }
+
+export default Page
