@@ -85,11 +85,11 @@ export default function ButtonAppBar(props) {
     }
   }
   const icons = {
-    designs: <Icon icon="withBreasts" />,
-    showcase: <ShowcaseIcon />,
     blog: <BlogIcon />,
+    community: <CommunityIcon />,
+    designs: <Icon icon="withBreasts" />,
     docs: <DocsIcon />,
-    community: <CommunityIcon />
+    showcase: <ShowcaseIcon />
   }
 
   const popoverProps = {
