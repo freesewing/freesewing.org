@@ -127,7 +127,6 @@ function useTree(translate) {
         filter: {
           path: {
             nin: [
-              "/sitemap/"
               "/dev-404-page/"
               "/404/"
               "/404.html"

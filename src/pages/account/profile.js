@@ -13,7 +13,7 @@ const Page = (props) => {
   const user = app.account
 
   // FIXME: Show something better than nothing in SSR
-  if (!user) return null
+  if (!user.username) return null
 
   const styles = {
     table: {

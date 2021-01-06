@@ -120,7 +120,7 @@ export default function ButtonAppBar(props) {
     <div style={style.wrapper}>
       <AppBar position="static" color="transparent" elevation={2}>
         <Toolbar disableGutters={true}>
-          <Link to="/" style={style.logo} title={props.app.translate('app.home')}>
+          <Link to="/" style={style.logo} title={props.app.translate('app.home')} className="logo">
             <Logo embed />
           </Link>
 

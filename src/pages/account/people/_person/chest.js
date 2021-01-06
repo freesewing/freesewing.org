@@ -11,10 +11,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 const Page = (props) => {
   const app = useApp()
 
-  const [breasts, setBreasts] = useState(app.people[props.params.person].breasts)
-
   // FIXME: Show something better than nothing in SSR
   if (typeof app.people[props.person] === 'undefined') return null
+
+  // Figure out inital state in a SSR-safe way
+  const initial = false
+  if (
+    app.people &&
+    props.params.person &&
+    app.people[props.params.person] &&
+    app.people[props.params.person].breasts
+  )
+    initial = app.people[props.params.person].breasts
+
+  const [breasts, setBreasts] = useState(initial)
 
   return (
     <AppWrapper

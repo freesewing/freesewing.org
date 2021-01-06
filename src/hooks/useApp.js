@@ -70,9 +70,11 @@ function useApp(full = true) {
 
   // Mehtods for handling navigation tree
   const getOffspring = (slug) => {
+    if (slug.length < 3) return [] // Gatsby build passes /*
     let ntree = {}
     Object.assign(ntree, tree)
     let page = ntr.getSelf(slug, ntree)
+    if (!page) return []
     return page.offspring ? ntr.order(page.offspring) : []
   }
 

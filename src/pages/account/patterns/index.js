@@ -36,7 +36,6 @@ const Page = (props) => {
           <p>
             <FormattedMessage id="app.noPattern" />
           </p>
-          <p>{newPatternButton}</p>
         </Blockquote>
       )}
     </AppWrapper>

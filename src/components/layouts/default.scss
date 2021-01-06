@@ -120,6 +120,10 @@ header button:hover span {
     color: $oc-violet-3;
   }
 }
+header a,
+header button {
+  padding: 0 1vw !important;
+}
 
 /* slate */
 @media (max-width: 1199px) and (min-width: 960px) {
