@@ -66,6 +66,9 @@ div.splash {
   div.groups div.active {
     background-color: $oc-gray-9;
     color: $oc-gray-0;
+    h3 {
+      color: $oc-gray-3;
+    }
   }
   div.details {
     width: calc(100% + 40px);
@@ -82,6 +85,9 @@ div.splash {
       padding: 1rem;
       a {
         color: $oc-violet-2 !important;
+      }
+      h4 {
+        color: $oc-gray-3;
       }
     }
   }
