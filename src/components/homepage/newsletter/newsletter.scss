@@ -5,7 +5,7 @@ div.newsletter {
   margin: 0;
   background: linear-gradient(45deg, $oc-gray-9 0%, $oc-gray-8 50%, $oc-gray-9 100%);
   div.inner {
-    padding: 2rem 1rem 3rem;
+    padding: 3rem 1rem;
     margin: 4rem 0;
     width: calc(100% - 2rem);
     background: $oc-gray-9;
@@ -15,6 +15,8 @@ div.newsletter {
     background-size: 20% auto;
     background-color: transparent;
     background-image: url('/splash/reader.png');
+    max-width: 1600px;
+    min-height: 250px;
     h5 {
       color: $oc-gray-2;
     }
