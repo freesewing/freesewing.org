@@ -94,6 +94,10 @@ const Page = (props) => {
   // Allow pattern to load
   if (!pattern) return <LoadingLayout app={app} />
 
+  const actions = ['zoom', 'compare', 'export']
+  if (app.account.username) actions.push('saveAs')
+  else actions.push('units')
+
   return (
     <AppWrapper app={app} title={title} crumbs={crumbs} noLayout>
       <DraftUi
@@ -111,7 +115,7 @@ const Page = (props) => {
         person={person}
         design={pattern.data.design}
         recreate={props.pattern}
-        fabs={fabs}
+        actions={actions}
       />
     </AppWrapper>
   )

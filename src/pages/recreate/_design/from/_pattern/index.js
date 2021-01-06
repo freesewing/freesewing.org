@@ -5,7 +5,6 @@ import AppWrapper from '../../../../../components/app/wrapper'
 import usePattern from '../../../../../hooks/usePattern'
 import usePeople from '../../../../../hooks/usePeople'
 import LoadingLayout from '../../../../../components/layouts/loading'
-import SelectSizeContext from '../../../../../components/context/select-size'
 import { FormattedMessage } from 'react-intl'
 import SelectSize from '../../../../../components/draft/select-size'
 import capitalize from '@freesewing/utils/capitalize'
@@ -21,7 +20,6 @@ const Page = (props) => {
     app.translate('app.recreate') + ' ' + app.translate('app.pattern')
   )
   const [crumbs, setCrumbs] = useState([])
-  const [context, setContext] = useState([])
 
   useEffect(() => {
     let patternOrPromise = usePattern(app, props.pattern)
@@ -61,11 +59,6 @@ const Page = (props) => {
         }
       ])
     }
-  }, [])
-  useEffect(() => {
-    setContext(
-      <SelectSizeContext app={app} design={design} people={people} recreate={props.pattern} />
-    )
   }, [])
 
   // Allow usePattern promise to resolve
