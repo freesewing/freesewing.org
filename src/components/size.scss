@@ -18,9 +18,11 @@ div.size {
       line-height: 1;
       span.prefix {
         font-size: 1rem;
+        display: block;
       }
       span.size {
         font-size: 3rem;
+        display: block;
       }
     }
   }
@@ -100,31 +102,10 @@ div.size {
   }
 }
 @media (max-width: 599px) {
-  div.person {
-    width: 100%;
-    max-width: 400px;
-    div.top {
-      width: calc(100% - 3rem - 50px);
-      padding-left: calc(2rem + 50px);
-      height: 4.5rem;
-      h5 {
-        font-size: 90%;
-      }
-    }
-    div.bottom {
-      padding-left: calc(2rem + 50px);
-      width: calc(100% - 2.5rem - 50px);
-      ul li {
-        padding: 0;
-        font-size: 95%;
-      }
-    }
-    div.avatar {
-      img {
-        width: 50px;
-        height: 50px;
-        top: 6rem;
-      }
+  div.size {
+    width: 144px;
+    div.top h5 span.size {
+      font-size: 2rem;
     }
   }
 }

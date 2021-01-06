@@ -138,8 +138,8 @@ div.person.no-breasts > div.top {
 
 @media (max-width: 599px) {
   div.person {
-    width: 100%;
-    max-width: 400px;
+    width: calc(100% - 1rem);
+    min-width: auto;
     div.top {
       width: calc(100% - 3rem - 50px);
       padding-left: calc(2rem + 50px);
