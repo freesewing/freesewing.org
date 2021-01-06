@@ -29,7 +29,7 @@ const personMethods = ({
             type: 'success',
             msg: translate('app.created')
           })
-          navigate(`/people/${res.data.person.handle}/`)
+          navigate(`/account/people/${res.data.person.handle}/`)
         }
       })
       .catch((error) => {
@@ -92,7 +92,7 @@ const personMethods = ({
             type: 'success',
             msg: translate('app.fieldRemoved', { field: translate('app.person') })
           })
-          navigate('/people/')
+          navigate('/account/people/')
         }
       })
       .catch((error) => {
