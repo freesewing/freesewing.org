@@ -22,8 +22,6 @@ const PostPreview = ({
       padding: 0
     },
     title: {
-      border: 0,
-      fontSize: '1.5rem',
       margin: 0,
       padding: 0,
       lineHeight: 1.25
@@ -71,7 +69,7 @@ const PostPreview = ({
             />
           </figure>
         )}
-        <h2 style={style.title}>{title}</h2>
+        <h5 style={style.title}>{title}</h5>
         <p style={style.blurb}>{description}</p>
       </Link>
     </div>

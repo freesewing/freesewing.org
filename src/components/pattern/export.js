@@ -12,7 +12,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import useDesign from '../../hooks/useDesign'
 import useTiler from '../../hooks/useTiler'
 
-const ExportPattern = ({ app, data, setAction }) => {
+const ExportPattern = ({ app, data }) => {
   // State
   const [link, setLink] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -85,7 +85,7 @@ const ExportPattern = ({ app, data, setAction }) => {
     },
     column: {
       width: '100%',
-      maxWidth: '350px'
+      maxWidth: '266px'
     },
     button: {
       margin: '0.5rem',

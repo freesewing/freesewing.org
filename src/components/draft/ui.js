@@ -5,6 +5,7 @@ import Layout from '../layouts/default'
 import YAML from 'yaml'
 
 import Fab from '@material-ui/core/Fab'
+import Button from '@material-ui/core/Button'
 import ConfigIcon from '@material-ui/icons/Build'
 import CloseIcon from '@material-ui/icons/Close'
 import { withBreasts as withBreastsPatterns } from '@freesewing/pattern-info'
@@ -14,15 +15,24 @@ import i18nPlugin from '@freesewing/plugin-i18n'
 import { plugin as patternTranslations } from '@freesewing/i18n'
 import { withoutBreasts, withBreasts } from '@freesewing/models'
 import { FormattedMessage } from 'react-intl'
+import MainMenu from '../menus/main'
+import SaveIcon from '@material-ui/icons/Save'
+import SaveAsIcon from '@material-ui/icons/CloudUpload'
+import ZoomInIcon from '@material-ui/icons/ZoomIn'
+import ZoomOutIcon from '@material-ui/icons/ZoomOut'
+import CompareIcon from '@material-ui/icons/PeopleAlt'
+import ShowIcon from '@material-ui/icons/Visibility'
+import ExportIcon from '@material-ui/icons/Print'
+import Icon from '@freesewing/components/Icon'
+import ExportPattern from '../pattern/export'
+import SaveAsPattern from '../pattern/save-as'
 
 import DraftError from './error'
 import DraftEvents from './events/'
 
-import Dialog from '../pattern/dialog'
 import PatternActions from '../context/pattern-actions'
 import { sampleStyles, focusStyle, extraDefs } from './sample-styles'
 import SampleLegend from './sample-legend'
-import './ui.css'
 import useUiMdx from '../../hooks/useUiMdx'
 import Mdx from '../mdx'
 import SizingGraph from '../person/size-graph'
@@ -36,10 +46,6 @@ const DraftUi = (props) => {
   const raiseEvent = (type, data) => {
     setEventType(data.type)
     setEventValue(data.value)
-  }
-  const openDialog = (action) => {
-    setDialogAction(action)
-    setDialog(true)
   }
   const toggleUnits = () => {
     let newUnits = visitorUnits === 'metric' ? 'imperial' : 'metric'
@@ -63,9 +69,7 @@ const DraftUi = (props) => {
   const [eventValue, setEventValue] = useState('')
   const [visitorUnits, setVisitorUnits] = useState('metric')
   const [data, setData, mergeData] = useMergeData(props.data) // Special state + update method to merge data
-  const [dialog, setDialog] = useState(false)
   const [menu, setMenu] = useState(false)
-  const [dialogAction, setDialogAction] = useState('pick')
   const [crashReport, setCrashReport] = useState(false)
   const [issue, setIssue] = useState(false)
   const [personHasBreasts, setPersonHasBreasts] = useState(false)
@@ -185,48 +189,114 @@ ${e.stack}
   const [patternProps, error, compareWith, breasts] =
     display === 'compare' ? comparePattern(data) : draftPattern(data)
 
-  // Configurator
-  const context = []
-  if (!error && patternProps.events.error.length === 0) {
-    context.push(
-      <h5 key="details">
-        <a
-          href="#"
-          role="button"
-          onClick={() => openDialog('pick')}
-          title={app.translate('app.showDetails')}
+  // User actions
+  const savePattern = (data) => {
+    app.updatePattern(props.patternHandle, { data }).catch((err) => {
+      console.log(err)
+    })
+  }
+  const actions = {
+    compare: (
+      <li className="action" key="a-compare">
+        {display === 'compare' ? (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.showPattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('compare')}>
+            <CompareIcon />
+            <FormattedMessage id="app.comparePattern" />
+          </span>
+        )}
+      </li>
+    ),
+    export: (
+      <li className="action" key="a-export">
+        {display === 'export' ? (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.showPattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('export')}>
+            <ExportIcon />
+            <FormattedMessage id="app.exportPattern" />
+          </span>
+        )}
+      </li>
+    ),
+    exportOwn: (
+      <li className="action" key="a-exportown">
+        <span
+          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/export/`)}
         >
-          <FormattedMessage id="app.actions" />
-        </a>
-      </h5>
-    )
-    context.push(
-      <PatternActions
-        key="actions"
-        app={app}
-        fabs={props.fabs}
-        openDialog={openDialog}
-        pattern={props.pattern}
-        toggleUnits={toggleUnits}
-        units={visitorUnits}
-        fit={fit}
-        display={display}
-        setDisplay={setDisplay}
-        setFit={setFit}
-        data={data}
-      />
+          <ExportIcon />
+          <FormattedMessage id="app.exportPattern" />
+        </span>
+      </li>
+    ),
+    save: (
+      <li className="action" key="a-save">
+        <span onClick={() => savePattern(data)}>
+          <SaveIcon />
+          <FormattedMessage id="app.savePattern" />
+        </span>
+      </li>
+    ),
+    saveAs: (
+      <li className="action" key="a-saveas">
+        {display === 'saveas' ? (
+          <span onClick={() => setDisplay('draft')}>
+            <ShowIcon />
+            <FormattedMessage id="app.savehowPattern" />
+          </span>
+        ) : (
+          <span onClick={() => setDisplay('saveas')}>
+            <SaveAsIcon />
+            <FormattedMessage id="app.saveAsNewPattern" />
+          </span>
+        )}
+      </li>
+    ),
+    saveAsOwn: (
+      <li className="action" key="a-saveasown">
+        <span
+          onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/save-as/`)}
+        >
+          <SaveAsIcon />
+          <FormattedMessage id="app.saveAsNewPattern" />
+        </span>
+      </li>
+    ),
+    units: (
+      <li className="action" key="a-units">
+        <span onClick={toggleUnits} key="a-units">
+          <Icon icon="units" />
+          {visitorUnits === 'metric' ? (
+            <FormattedMessage id="app.metricUnits" />
+          ) : (
+            <FormattedMessage id="app.imperialUnits" />
+          )}
+        </span>
+      </li>
+    ),
+    zoom: (
+      <li className="action" key="a-zoom">
+        <span onClick={() => setFit(!fit)} key="a-zoom">
+          {fit ? (
+            <>
+              <ZoomInIcon /> <FormattedMessage id="app.zoomIn" />
+            </>
+          ) : (
+            <>
+              <ZoomOutIcon /> <FormattedMessage id="app.zoomOut" />
+            </>
+          )}
+        </span>
+      </li>
     )
   }
-  context.push(
-    <DraftConfigurator
-      key="config"
-      data={data}
-      units={app.account.username ? app.account.settings.units : visitorUnits}
-      config={Pattern.config}
-      updatePatternData={mergeData}
-      raiseEvent={raiseEvent}
-    />
-  )
 
   // Fit to screen
   if (fit && patternProps) patternProps.style = { maxHeight: '85vh' }
@@ -261,8 +331,12 @@ ${e.stack}
         updatePatternData={mergeData}
         setCrashReport={setCrashReport}
         app={app}
+        data={data}
       />
     )
+  else if (display === 'export') main = <ExportPattern app={app} data={data} />
+  else if (display === 'saveas')
+    main = <SaveAsPattern app={app} data={data} person={props.person} />
   else
     main = (
       <>
@@ -281,30 +355,30 @@ ${e.stack}
       </>
     )
 
+  const mainMenu = <MainMenu app={props.app} slug={props.slug} />
+  const preMenu = (
+    <DraftConfigurator
+      key="config"
+      data={data}
+      units={app.account.username ? app.account.settings.units : visitorUnits}
+      config={Pattern.config}
+      updatePatternData={mergeData}
+      raiseEvent={raiseEvent}
+      actions={props.actions ? props.actions.map((a) => actions[a]) : false}
+    />
+  )
+
   return (
-    <Layout app={app} active="designs" context={context} title={props.title} crumbs={props.crumbs}>
+    <Layout
+      app={app}
+      mainMenu={mainMenu}
+      slug={props.slug}
+      crumbs={props.crumbs}
+      title={props.title}
+      preMenu={preMenu}
+      wide
+    >
       <article>{main}</article>
-      <div id="pattern-mask" className={dialog ? 'show' : ''} onClick={() => setDialog(false)} />
-      <div id="pattern-dialog" className={dialog ? 'show shadow' : ''}>
-        <Dialog
-          mode={props.recreate ? 'recreate' : 'create'}
-          fabs={props.fabs}
-          data={data}
-          pattern={props.pattern}
-          person={props.person}
-          setDialog={setDialog}
-          openDialog={openDialog}
-          app={app}
-          action={dialogAction}
-          setAction={setDialogAction}
-          setFit={setFit}
-          fit={fit}
-          display={display}
-          setDisplay={setDisplay}
-          toggleUnits={toggleUnits}
-          units={visitorUnits}
-        />
-      </div>
       {app.mobile && (
         <>
           <Fab
@@ -318,7 +392,7 @@ ${e.stack}
           </Fab>
           {menu && (
             <div className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
-              {context}
+              {preMenu}
             </div>
           )}
         </>

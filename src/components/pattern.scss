@@ -1,0 +1,66 @@
+@import '../../node_modules/open-color/open-color.scss';
+div.pattern-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  div.pattern {
+    // Shadow class will add 1 px border in dark mode
+    width: calc(50% - 3rem - 4px);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 3px;
+    position: relative;
+    div.top {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      h5 {
+        margin: 0 0 1rem;
+        padding: 0;
+      }
+      h6 {
+        margin: 0;
+        line-height: 1.2;
+        span {
+          word-wrap: anywhere;
+          margin: 0;
+          padding: 0;
+          line-height: 1;
+          display: block;
+          font-size: 1rem;
+          color: #868e96;
+        }
+      }
+      div.linedrawing {
+        margin-right: 1rem;
+      }
+    }
+    div.notes {
+      word-wrap: anywhere;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      margin-top: -1rem;
+    }
+    > a {
+      text-align: center;
+    }
+    a.link {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.theme-wrapper.light div.pattern-list div.pattern:hover {
+  background: $oc-gray-1;
+}
+.theme-wrapper.dark div.pattern-list div.pattern:hover {
+  background: $oc-gray-8;
+}

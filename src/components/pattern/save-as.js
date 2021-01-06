@@ -37,11 +37,7 @@ const SavePatternAs = (props) => {
       })
       .then((data) => {
         setLoading(false)
-        navigate(`/patterns/${data.handle}/`)
-        //props.app.setTitle(nameVal)
-        //props.setPattern(data)
-        props.setDialog(false)
-        props.setAction('pick')
+        navigate(`/account/patterns/${data.handle}/`)
       })
   }
 
@@ -80,7 +76,7 @@ const SavePatternAs = (props) => {
         </>
       )}
       <p>
-        <Button size="large" fullWidth variant="contained" color="primary" onClick={handleSave}>
+        <Button size="large" variant="contained" color="primary" onClick={handleSave}>
           <FormattedMessage id="app.saveAsNewPattern" />
         </Button>
       </p>

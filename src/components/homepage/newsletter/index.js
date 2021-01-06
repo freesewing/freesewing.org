@@ -11,7 +11,7 @@ import InvalidIcon from '@material-ui/icons/Warning'
 
 import './newsletter.scss'
 
-const Newsletter = ({ app, uiMdx }) => {
+const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
   const [email, setEmail] = useState(app.account.email || '')
   const [emailValid, setEmailValid] = useState(app.account && app.account.username ? true : false)
   const [subscribed, setSubscribed] = useState(false)
@@ -45,64 +45,67 @@ const Newsletter = ({ app, uiMdx }) => {
   let loggedIn = false
   if (app.account && app.account.username) loggedIn = true
 
+  const core = (
+    <div>
+      <Mdx node={uiMdx['homepage/newsletter']} />
+      {subscribed && (
+        <>
+          <h5>
+            <FormattedMessage id="app.yay" />
+          </h5>
+          <p>
+            <FormattedMessage id="app.checkInboxClickLinkInConfirmationEmail" />
+          </p>
+        </>
+      )}
+      {!loggedIn && !subscribed && (
+        <TextField
+          id="email"
+          fullWidth={true}
+          label={app.translate('account.email')}
+          margin="normal"
+          variant="outlined"
+          color="secondary"
+          value={email}
+          type="text"
+          onChange={updateEmail}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                {emailValid ? (
+                  <ValidIcon style={{ color: '#40c057', maxWidth: '24px' }} data-test="valid" />
+                ) : (
+                  <InvalidIcon
+                    color="error"
+                    data-test="invalid"
+                    style={{ color: '#ff6b6b', maxWidth: '24px' }}
+                  />
+                )}
+              </InputAdornment>
+            )
+          }}
+        />
+      )}
+      {!subscribed && (
+        <p className="button">
+          <Button
+            onClick={subscribe}
+            variant="contained"
+            color={contentOnly ? 'primary' : 'secondary'}
+            fullWidth={!contentOnly}
+            disabled={!emailValid}
+          >
+            <FormattedMessage id="app.subscribe" />
+          </Button>
+        </p>
+      )}
+    </div>
+  )
+
+  if (contentOnly) return core
   return (
     <div className="newsletter">
-      <div className="inner">
-        <div>
-          <Mdx node={uiMdx['homepage/newsletter']} />
-          {subscribed && (
-            <>
-              <h5>
-                <FormattedMessage id="app.yay" />
-              </h5>
-              <p>
-                <FormattedMessage id="app.checkInboxClickLinkInConfirmationEmail" />
-              </p>
-            </>
-          )}
-          {!loggedIn && !subscribed && (
-            <TextField
-              id="email"
-              fullWidth={true}
-              label={app.translate('account.email')}
-              margin="normal"
-              variant="outlined"
-              color="secondary"
-              value={email}
-              type="text"
-              onChange={updateEmail}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">
-                    {emailValid ? (
-                      <ValidIcon style={{ color: '#40c057', maxWidth: '24px' }} data-test="valid" />
-                    ) : (
-                      <InvalidIcon
-                        color="error"
-                        data-test="invalid"
-                        style={{ color: '#ff6b6b', maxWidth: '24px' }}
-                      />
-                    )}
-                  </InputAdornment>
-                )
-              }}
-            />
-          )}
-          {!subscribed && (
-            <p className="button">
-              <Button
-                onClick={subscribe}
-                variant="contained"
-                color="secondary"
-                fullWidth
-                disabled={!emailValid}
-              >
-                <FormattedMessage id="app.subscribe" />
-              </Button>
-            </p>
-          )}
-        </div>
-      </div>
+      <div className="inner">{core}</div>
     </div>
   )
 }

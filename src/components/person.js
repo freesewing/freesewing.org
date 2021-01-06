@@ -1,5 +1,4 @@
 import React from 'react'
-import './person.scss'
 import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
 
@@ -7,8 +6,13 @@ const Person = (props) => {
   // SSR
   if (!props.data) return null
 
+  let classes = ''
+  if (!props.data.breasts) classes += 'no-'
+  classes += 'breasts person shadow'
+  if (props.fullWidth) classes += ' full-width'
+
   return (
-    <div className={`person ${props.data.breasts ? 'breasts' : 'no-breasts'}`}>
+    <div className={classes}>
       <div className="top">
         <h5>{props.data.name}</h5>
       </div>
@@ -31,7 +35,7 @@ const Person = (props) => {
       <div className="avatar">
         <img src={props.data.pictureUris.m} />
       </div>
-      <Link to={props.link} className="link" />
+      {props.link && <Link to={props.link} className="link" />}
     </div>
   )
 }

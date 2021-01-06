@@ -26,7 +26,7 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
+      justifyContent: 'left'
     },
     col: {
       maxWidth: '290px',
@@ -39,18 +39,17 @@ const Page = (props) => {
     star: {
       color: 'orange'
     },
-    table: {
-      fontFamily: 'Roboto Condensed'
-    },
+    table: {},
     keyTd: {
       textAlign: 'right',
       padding: '0.25rem 1rem 0.25rem 0',
-      lineHeight: 1.15
+      lineHeight: 1.15,
+      fontWeight: 300
     },
     valTd: {
       lineHeight: 1.15,
       padding: '0.25rem 0',
-      fontWeight: 'bold'
+      fontWeight: 500
     }
   }
   if (app.mobile) styles.col.width = '100%'
@@ -80,41 +79,20 @@ const Page = (props) => {
     return result
   }
 
-  const context = [
-    <h5>
-      <FormattedMessage id={`patterns.${design}.title`} />
-    </h5>,
-    <ul>
-      <li>
-        <Link to={`/create/${design}/`}>
-          <FormattedMessage
-            id="app.newThing"
-            values={{ thing: capitalize(design) + ' ' + app.translate('app.pattern') }}
-          />
-        </Link>
-        <Link to={`/docs/patterns/${design}/`}>
-          <FormattedMessage id="app.docs" />
-        </Link>
-        <Link to={`/showcase/designs/${design}/`}>
-          <FormattedMessage id="app.showcase" />
-        </Link>
-      </li>
-    </ul>
-  ]
-
   return (
     <AppWrapper
       app={app}
       title={app.translate(`patterns.${design}.title`)}
       description={app.translate(`patterns.${design}.description`)}
       image={`https://freesewing.org/designs/${design}.jpg`}
-      context={context}
-      active="designs"
+      slug={props.path}
+      wide
+      prev={app.getPrev(props.path)}
+      next={app.getNext(props.path)}
     >
-      <p>
+      <div className="spaced">
         <Button
           data-test="create"
-          style={{ marginRight: '1rem' }}
           color="primary"
           variant="contained"
           size="large"
@@ -137,14 +115,14 @@ const Page = (props) => {
           <FormattedMessage id="app.docs" />
         </Button>
         <Hashtag tag={`FreeSewing${capitalize(design)}`} title={capitalize(design) + ' Hashtag'} />
+      </div>
+      <p id="description">
+        <FormattedMessage id={'patterns.' + design + '.description'} />
       </p>
       <div style={styles.wrapper}>
         <div style={styles.col}>
-          <p id="description">
-            <FormattedMessage id={'patterns.' + design + '.description'} />
-          </p>
           <LineDrawing pattern={design} />
-          <table style={styles.table}>
+          <table>
             <tbody>
               <tr>
                 <td style={styles.keyTd}>
@@ -204,22 +182,15 @@ const Page = (props) => {
             style={styles.img}
           />
         </div>
-        <div style={styles.col} data-test="measurements">
-          <h5>
-            <FormattedMessage id="app.requiredMeasurements" />
-          </h5>
-          <PatternMeasurements pattern={design} app={app} />
-        </div>
-        <div style={styles.col} data-test="options">
-          <h5>
-            <FormattedMessage id="app.patternOptions" />
-          </h5>
-          <PatternOptions pattern={design} app={app} />
-        </div>
       </div>
-      <h2>
-        <FormattedMessage id="app.showcase" />
-      </h2>
+      <h5>
+        <FormattedMessage id="app.requiredMeasurements" />
+      </h5>
+      <PatternMeasurements pattern={design} app={app} />
+      <h5>
+        <FormattedMessage id="app.patternOptions" />
+      </h5>
+      <PatternOptions pattern={design} app={app} />
       <div style={styles.wrapper}>
         {props.data.allMdx.edges.map((node) => {
           if (node.node.frontmatter.patterns.indexOf(design) === -1) return null

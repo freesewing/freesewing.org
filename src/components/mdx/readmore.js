@@ -1,22 +1,33 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { FormattedMessage } from 'react-intl'
 import './readmore.scss'
 
-const ReadMore = ({ offspring = false }) =>
-  offspring ? (
-    <div className="readmore">
-      <h6>
-        <FormattedMessage id="app.furtherReading" />
-      </h6>
-      <ul>
-        {Object.keys(offspring).map((slug) => (
-          <li key={slug}>
-            <Link to={slug}>{offspring[slug]}</Link>
-          </li>
-        ))}
+const renderLink = (page, className, recurse) => (
+  <li key={page.slug}>
+    <Link to={page.slug}>{page.title}</Link>
+    {recurse && page.offspring && (
+      <ul className={className}>
+        {Object.keys(page.offspring).map((slug) =>
+          renderLink(page.offspring[slug], className, recurse)
+        )}
       </ul>
-    </div>
+    )}
+  </li>
+)
+const renderPages = (pages, className = '', recurse = false) => (
+  <ul className={className}>{pages.map((p) => renderLink(p, className, recurse))}</ul>
+)
+
+const ReadMore = ({ pages = [], title = 'Further reading', list = false, recurse = false }) =>
+  pages ? (
+    list ? (
+      renderPages(pages, 'links', recurse)
+    ) : (
+      <div className="readmore">
+        <h6>{title}</h6>
+        {renderPages(pages, '', recurse)}
+      </div>
+    )
   ) : null
 
 export default ReadMore

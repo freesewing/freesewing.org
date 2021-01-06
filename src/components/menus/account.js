@@ -20,7 +20,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
       </>
     )}
     {app.mobile && (
-      <ul className="inline">
+      <ul className="inline fw-400">
         <li>
           <Link to="/create/">
             <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
@@ -40,22 +40,19 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     )}
     {!settingsOnly && (
       <>
-        <h6>
-          <FormattedMessage id="app.browse" />
-        </h6>
-        <ul className="inline">
+        <ul className="inline fw-400">
           <li>
-            <Link to="/patterns/">
+            <Link to="/account/patterns/">
               <FormattedMessage id="app.patterns" />
             </Link>
           </li>
           <li>
-            <Link to="/people/">
+            <Link to="/account/people/">
               <FormattedMessage id="app.people" />
             </Link>
           </li>
           <li>
-            <Link to={`/users/${app.account.username}/`}>
+            <Link to={`/account/profile/`}>
               <FormattedMessage id="app.profile" />
             </Link>
           </li>
@@ -67,7 +64,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
         <FormattedMessage id="app.settings" />
       </Link>
     </h6>
-    <ul className="inline">
+    <ul className="inline fw-400">
       {[
         'avatar',
         'bio',
@@ -91,29 +88,29 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
     <h6>
       <FormattedMessage id="app.actions" />
     </h6>
-    <ul className="inline">
+    <ul className="inline fw-400">
       <li>
-        <Link to="/account/reload/">
+        <Link to="/account/actions/reload/">
           <FormattedMessage id="account.reloadAccount" />
         </Link>
       </li>
       <li>
-        <Link to="/account/export/">
+        <Link to="/account/actions/export/">
           <FormattedMessage id="account.exportYourData" />
         </Link>
       </li>
       <li>
-        <Link to="/account/consent/">
+        <Link to="/account/actions/consent/">
           <FormattedMessage id="account.reviewYourConsent" />
         </Link>
       </li>
       <li>
-        <Link to="/account/restrict/">
+        <Link to="/account/actions/restrict/">
           <FormattedMessage id="account.restrictProcessingOfYourData" />
         </Link>
       </li>
       <li>
-        <Link to="/account/remove/">
+        <Link to="/account/actions/remove/">
           <FormattedMessage id="account.removeYourAccount" />
         </Link>
       </li>

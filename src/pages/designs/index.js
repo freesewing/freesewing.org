@@ -26,23 +26,8 @@ const Page = (props) => {
     }
   }
 
-  const context = [
-    <h5>
-      <FormattedMessage id="app.designs" />
-    </h5>,
-    <ul>
-      {designs.map((design) => (
-        <li key={design}>
-          <Link to={`/designs/${design}/`} title={design}>
-            <FormattedMessage id={`patterns.${design}.title`} />
-          </Link>
-        </li>
-      ))}
-    </ul>
-  ]
-
   return (
-    <AppWrapper app={app} title={app.translate('app.designs')} context={context} active="designs">
+    <AppWrapper app={app} title={app.translate('app.designs')} slug={props.path} wide>
       {filter ? (
         <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
       ) : (

@@ -5,7 +5,6 @@ import LightModeIcon from '@material-ui/icons/WbSunny'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
-import SitemapIcon from '@material-ui/icons/Map'
 
 const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
   const colors = {
@@ -15,7 +14,7 @@ const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
 
   const style = {
     iconButton: {
-      color: colors[theme]
+      color: colors.dark
     },
     icon: {
       maxWidth: '24px',
@@ -27,7 +26,8 @@ const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
     darkModeIcon: {
       transform: 'rotate(26deg)',
       maxWidth: '24px',
-      maxHeight: '24px'
+      maxHeight: '24px',
+      color: '#ffe066'
     }
   }
 
@@ -41,15 +41,6 @@ const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
         title={translate('app.search')}
       >
         <SearchIcon style={style.icon} />
-      </IconButton>
-      <IconButton
-        style={style.iconButton}
-        aria-label="menu"
-        color="inherit"
-        href="/sitemap/"
-        title={translate(`app.sitemap`)}
-      >
-        <SitemapIcon style={style.icon} />
       </IconButton>
       <IconButton
         style={style.iconButton}

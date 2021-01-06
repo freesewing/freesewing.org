@@ -31,13 +31,7 @@ const Page = (props) => {
   ]
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('app.showcase')}
-      description={app.translate('intro.txt-showcase')}
-      context={context}
-      active="showcase"
-    >
+    <AppWrapper app={app} title={app.translate('app.showcase')} {...app.treeProps(props.path)} wide>
       <div style={style.wrapper}>
         {props.data.allMdx.edges.map((node) => (
           <PostPreview
@@ -48,7 +42,7 @@ const Page = (props) => {
             description={node.node.excerpt}
             link={'/' + node.node.parent.relativeDirectory + '/'}
             caption={node.node.frontmatter.caption}
-            width={400}
+            width={368}
           />
         ))}
       </div>

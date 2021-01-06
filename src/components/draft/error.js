@@ -13,7 +13,9 @@ const DraftError = ({
   updatePatternData,
   setCrashReport,
   app,
-  preview = false
+  preview = false,
+  data,
+  pattern
 }) => {
   const uiMdx = useUiMdx()
   // Style
@@ -37,31 +39,34 @@ const DraftError = ({
   const uiPath = 'errors/broken-' + (preview ? 'draft-preview' : 'draft')
 
   return (
-    <div style={styles.errorWrapper} data-test="error">
+    <div>
       <div style={styles.header}>
-        <h1>{uiMdx[uiPath].title}</h1>
-        <Robot pose="fail" size={150} />
+        <h3>{uiMdx[uiPath].title}</h3>
+        <Robot pose="shrug" size={150} />
       </div>
-      <Blockquote type="note">
-        <Mdx node={uiMdx[uiPath]} />
-        <p style={{ textAlign: 'center' }}>
-          {preview ? (
-            <Button size="large" variant="contained" color="primary" href="./edit/">
-              <FormattedMessage id="app.recreatePattern" />
-            </Button>
-          ) : (
-            <Button
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={() => setCrashReport(true)}
-            >
-              <Icon icon="github" style={{ marginRight: '0.5rem' }} />
-              <FormattedMessage id="app.reportThisOnGithub" />
-            </Button>
-          )}
-        </p>
-      </Blockquote>
+      <Mdx node={uiMdx[uiPath]} />
+      <p style={{ textAlign: 'center' }}>
+        {preview ? (
+          <Button
+            size="large"
+            variant="outlined"
+            color="primary"
+            href={`/recreate/${data.design}/from/${pattern}/`}
+          >
+            <FormattedMessage id="app.recreatePattern" />
+          </Button>
+        ) : (
+          <Button
+            size="large"
+            variant="outlined"
+            color="primary"
+            onClick={() => setCrashReport(true)}
+          >
+            <Icon icon="github" style={{ marginRight: '0.5rem' }} />
+            <FormattedMessage id="app.reportThisOnGithub" />
+          </Button>
+        )}
+      </p>
       {draftEvents}
     </div>
   )

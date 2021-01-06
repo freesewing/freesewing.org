@@ -59,21 +59,21 @@ const Page = (props) => {
     if (person.measurements[m]) data.settings.measurements[m] = person.measurements[m]
   }
 
-  const fabs = ['zoom', 'compare', 'export', 'details']
-  if (app.account.username) fabs.push('saveAs')
-  else fabs.push('units')
+  const actions = ['zoom', 'compare', 'export']
+  if (app.account.username) actions.push('saveAs')
+  else actions.push('units')
 
   return (
-    <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" noLayout>
+    <AppWrapper app={app} title={title} crumbs={crumbs} noLayout>
       <DraftUi
         mode="create"
         app={app}
         person={person}
         design={props.pageContext.design}
         data={data}
-        fabs={fabs}
         title={title}
         crumbs={crumbs}
+        actions={actions}
       />
     </AppWrapper>
   )

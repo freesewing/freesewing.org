@@ -18,12 +18,36 @@ import MobileMenu from '../menus/mobile'
 import useScrolledDown from '../../hooks/useScrolledDown'
 import Bugsnag from './bugsnag'
 import Layout from '../layouts/default'
+import MainMenu from '../menus/main'
+import { patternLeaf, personLeaf } from './leafs'
 
 /* This component should wrap all page content */
 const AppWrapper = (props) => {
   const [scrolledDown, setScrolledDown] = useState(false)
 
   useEffect(() => {
+    let tree = { ...props.app.tree }
+    if (props.app.account.username) {
+      if (props.app.patterns && Object.keys(props.app.patterns).length > 0) {
+        tree.offspring.account.offspring.patterns.offspring = {}
+        for (let pattern in props.app.patterns) {
+          tree.offspring.account.offspring.patterns.offspring[pattern] = patternLeaf(
+            props.app.patterns[pattern],
+            props.app.translate
+          )
+        }
+      }
+      if (props.app.people && Object.keys(props.app.people).length > 0) {
+        tree.offspring.account.offspring.people.offspring = {}
+        for (let person in props.app.people) {
+          tree.offspring.account.offspring.people.offspring[person] = personLeaf(
+            props.app.people[person],
+            props.app.translate
+          )
+        }
+      }
+    } else delete tree.offspring.account
+    props.app.setTree(tree)
     props.app.setMounted(true)
   }, [])
 
@@ -61,13 +85,20 @@ const AppWrapper = (props) => {
     image: props.image || false
   }
   const theme = createMuiTheme(themes[props.app.theme])
+  const mainMenu = <MainMenu app={props.app} slug={props.slug} />
 
   if (!props.app.mounted)
     return (
       <MuiThemeProvider theme={theme}>
         <Meta {...meta} />
         <div className={wrapperClasses}>
-          {props.noLayout ? props.children : <Layout {...props}>{props.children}</Layout>}
+          {props.noLayout ? (
+            props.children
+          ) : (
+            <Layout {...props} mainMenu={mainMenu}>
+              {props.children}
+            </Layout>
+          )}
           <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />
         </div>
       </MuiThemeProvider>
@@ -107,7 +138,13 @@ const AppWrapper = (props) => {
           >
             <UpIcon fontSize="inherit" />
           </Fab>
-          {props.noLayout ? props.children : <Layout {...props}>{props.children}</Layout>}
+          {props.noLayout ? (
+            props.children
+          ) : (
+            <Layout {...props} mainMenu={mainMenu}>
+              {props.children}
+            </Layout>
+          )}
           <Notification
             notification={props.app.notification}
             setNotification={props.app.setNotification}
@@ -115,8 +152,8 @@ const AppWrapper = (props) => {
           />
           <Loading loading={props.app.loading} />
           {props.app.mobile && (
-            <div className="menu" onClick={props.app.closeNav}>
-              <MobileMenu app={props.app} context={props.context} />
+            <div className="menu" id="mobile-menu" onClick={props.app.closeNav}>
+              <MobileMenu app={props.app} mainMenu={mainMenu} />
             </div>
           )}
           <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />

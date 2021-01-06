@@ -14,8 +14,8 @@ const Page = (props) => {
       title={app.translate('app.becomeAPatron')}
       image={'https://freesewing.org/support.jpg'}
       description={app.translate('app.txt-tiers') + ' ' + app.translate('app.patronPitch')}
-      crumbs={[{ slug: '/community/', title: <FormattedMessage id="app.community" /> }]}
-      active="community"
+      {...app.treeProps('/community/join/')}
+      wide
     >
       <div style={{ maxWidth: '80ch' }}>
         <p>

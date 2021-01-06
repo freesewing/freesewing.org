@@ -5,52 +5,22 @@ import AppWrapper from '../../components/app/wrapper'
 import useUiMdx from '../../hooks/useUiMdx'
 import Blockquote from '@freesewing/components/Blockquote'
 import Mdx from '../../components/mdx'
-import { FormattedMessage } from 'react-intl'
-import { Link } from 'gatsby'
+import Offspring from '../../components/offspring'
 
 const Page = (props) => {
   const app = useApp()
   const uiMdx = useUiMdx()
 
-  const context = [
-    <h5>
-      <Link to="/community">
-        <FormattedMessage id="app.community" />
-      </Link>
-    </h5>,
-    <h6>
-      <Link to="/community/who/">
-        <FormattedMessage id="cty.whoWeAre" />
-      </Link>
-    </h6>,
-    <h6>
-      <Link to="/community/where/">
-        <FormattedMessage id="cty.whereToFindUs" />
-      </Link>
-    </h6>,
-    <h6>
-      <Link to="/community/teams/">{uiMdx['community/teams'].title}</Link>
-    </h6>
-  ]
-
   return (
     <AppWrapper
       app={app}
       title={app.translate('app.community')}
-      context={context}
-      active="community"
-      text
       noTitle
+      {...app.treeProps(props.path)}
     >
       <h1 className="scribble">#WeAre&shy;FreeSewing</h1>
-      <h4
-        className="scribble"
-        dangerouslySetInnerHTML={{ __html: app.translate('app.txt-footer') }}
-      />
-      {context.slice(1)}
-      <Blockquote type="tip">
-        <Mdx node={uiMdx[`community/hashtag`]} />
-      </Blockquote>
+      <p dangerouslySetInnerHTML={{ __html: app.translate('app.txt-footer') }} />
+      <Offspring app={app} slug={props.path} />
     </AppWrapper>
   )
 }
