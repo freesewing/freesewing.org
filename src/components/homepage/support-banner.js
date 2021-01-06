@@ -26,15 +26,6 @@ const SupportBanner = (props) => (
       >
         <FormattedMessage id="app.becomeAPatron" />
       </Button>
-      <Button
-        color="secondary"
-        size="large"
-        variant="contained"
-        href="/docs/about/pledge/"
-        style={{ marginTop: '1rem' }}
-      >
-        <FormattedMessage id="app.ourRevenuePledge" />
-      </Button>
     </div>
     <div className="stripe-bg"></div>
   </div>

@@ -51,33 +51,24 @@
   min-height: 300px;
   padding: 3rem 2rem;
   color: $oc-gray-0;
-  font-family: 'Roboto Condensed', sans-serif;
   position: relative;
   width: 100%;
+  font-weight: 500;
 }
 
 #homepage div.stripe-content {
   z-index: 10;
   position: relative;
   max-width: 500px;
-  padding: 1rem 2rem;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem 2rem 2rem;
+  text-shadow: 0px 1px $oc-gray-9;
   h1,
   h2 {
     color: $oc-gray-2;
   }
-}
-
-#homepage div.stripe-bg {
-  opacity: 0.3;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  a {
+    text-shadow: none;
+  }
 }
 
 #homepage div.stripe p {
@@ -177,7 +168,6 @@ div.icons {
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
       span {
-        font-family: 'Roboto Condensed', sans-serif;
         text-transform: uppercase;
         margin: 0 auto;
       }
