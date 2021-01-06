@@ -45,7 +45,6 @@ const Page = (props) => {
       })
     }
   }
-
   const sortMeasurements = (measurements) => {
     let sorted = []
     let translated = {}
@@ -63,7 +62,8 @@ const Page = (props) => {
     name,
     value = false,
     measurementEstimate = null,
-    measurementInRange = null
+    measurementInRange = null,
+    notSet = false
   ) => {
     const missing = {
       opacity: value ? 1 : 0.5,
@@ -87,13 +87,13 @@ const Page = (props) => {
               data-test="valid"
             />
           ) : (
-            <Link to="/docs/about/your-measurements/estimates/">
+            !notSet && (
               <InvalidIcon
                 size="small"
-                style={{ fontSize: '1.2rem', marginLeft: '0.5rem' }}
+                style={{ color: '#ff922b', fontSize: '1.2rem', marginLeft: '0.5rem' }}
                 data-test="invalid"
               />
-            </Link>
+            )
           )}
         </td>
         <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
@@ -155,7 +155,7 @@ const Page = (props) => {
       borderTop: '1px solid #9993',
       verticalAlign: 'top',
       textAlign: 'right',
-      fontWeight: 'bold',
+      fontWeight: 500,
       overflow: 'hidden',
       textOverflow: 'ellipsis'
     }
@@ -170,17 +170,6 @@ const Page = (props) => {
   const measurements = person.breasts
     ? sortMeasurements(allMeasurements.womenswear)
     : sortMeasurements(allMeasurements.menswear)
-
-  const remainingMeasurements = () => {
-    if (typeof person.measurements === 'undefined') return measurements
-    let remaining = []
-    for (let m of measurements) {
-      if (typeof person.measurements[m] === 'undefined' || person.measurements[m] === null)
-        remaining.push(m)
-    }
-
-    return remaining
-  }
 
   const blankSlate = !person.measurements || !person.measurements.neck
 
@@ -249,7 +238,7 @@ const Page = (props) => {
           ))}
         </Select>
       </div>
-      <table style={styles.table} className="font-button">
+      <table style={styles.table}>
         <tbody>
           <tr>
             <td
@@ -258,22 +247,23 @@ const Page = (props) => {
                 textAlign: 'right',
                 paddingRight: 'calc(1rem + 25px)'
               }}
+              className="fw-700"
             >
               <b>
                 <FormattedMessage id="app.name" />
               </b>
             </td>
-            <td style={styles.valueCell}>
+            <td style={styles.valueCell} className="fw-700">
               <FormattedMessage id="app.estimate" />
             </td>
-            <td style={styles.valueCell}>
+            <td style={styles.valueCell} className="fw-700">
               <b>
                 <FormattedMessage id="app.actual" />
               </b>
             </td>
           </tr>
           {person.measurements &&
-            Object.keys(person.measurements).map((m) => {
+            measurements.map((m) => {
               if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
               let value = person.measurements[m]
               const measurementEstimate = neckstimate(
@@ -286,12 +276,8 @@ const Page = (props) => {
                   measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <= 2
 
                 return measurementRow(m, value, measurementEstimate, measurementInRange)
-              } else return measurementRow(m, value, measurementEstimate, false)
+              } else return measurementRow(m, value, measurementEstimate, false, true)
             })}
-          {remainingMeasurements().map((m) => {
-            if (filter && requiredMeasurements[filter].indexOf(m) === -1) return null
-            else return measurementRow(m)
-          })}
         </tbody>
       </table>
     </AppWrapper>

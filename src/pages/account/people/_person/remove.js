@@ -10,7 +10,7 @@ const Page = (props) => {
   // FIXME: Show something better than nothing in SSR
   if (typeof app.people[props.params.person] === 'undefined') return <p>Hmm...</p>
 
-  const title = 'thing' //app.translate('app.removeThing', { thing: app.people[props.person].name})
+  const title = app.translate('app.removeThing', { thing: app.people[props.person].name })
 
   return (
     <AppWrapper
