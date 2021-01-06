@@ -249,7 +249,7 @@ ${e.stack}
         {display === 'saveas' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
-            <FormattedMessage id="app.savehowPattern" />
+            <FormattedMessage id="app.showPattern" />
           </span>
         ) : (
           <span onClick={() => setDisplay('saveas')}>
