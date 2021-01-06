@@ -37,7 +37,7 @@ const Page = (props) => {
               <Person
                 key={handle}
                 data={app.people[handle]}
-                link={`/people/${handle}/`}
+                link={`/account/people/${handle}/`}
                 translate={app.translate}
               />
             ))}
