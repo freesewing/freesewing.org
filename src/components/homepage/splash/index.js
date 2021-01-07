@@ -3,6 +3,7 @@ import Logo from '@freesewing/components/Logo'
 import Mdx from '../../mdx'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
+import Stripe from './stripe'
 
 import './splash.scss'
 
@@ -47,6 +48,13 @@ const Splash = ({ app, uiMdx }) => {
           <br />
           <FormattedMessage id="app.slogan-stay" />
         </div>
+        {!app.account ||
+          (!app.account.username && (
+            <div className="extra">
+              <Mdx node={uiMdx[`homepage/extra`]} />
+              <Stripe />
+            </div>
+          ))}
       </div>
       <div className="groups">{groups}</div>
       {reveal && (

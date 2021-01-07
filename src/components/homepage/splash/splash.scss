@@ -31,6 +31,30 @@ div.splash {
       font-size: 2.5rem;
       line-height: 1.2;
     }
+    div.extra {
+      font-family: 'Permanent marker';
+      text-align: center;
+      max-width: 15ch;
+      transform: rotate(6.66deg);
+      font-size: 1.2rem;
+      line-height: 1.1;
+      padding: 1rem 2rem;
+      margin-top: -2rem;
+      a,
+      svg {
+        color: $oc-indigo-6;
+      }
+      h5 a {
+        font-family: 'Permanent marker';
+        font-size: 2rem;
+      }
+      svg {
+        transform: translate(0, -15px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
   }
   div.groups {
     max-width: 1600px;
