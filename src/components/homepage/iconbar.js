@@ -4,6 +4,7 @@ import ShowcaseIcon from '@material-ui/icons/CameraAlt'
 import BlogIcon from '@material-ui/icons/RssFeed'
 import CommunityIcon from '@material-ui/icons/Favorite'
 import AccountIcon from '@material-ui/icons/Face'
+import LoginIcon from '@material-ui/icons/VpnKey'
 import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
 import { FormattedMessage } from 'react-intl'
@@ -17,9 +18,11 @@ const IconBar = ({ app }) => {
     community: <CommunityIcon style={iconStyle} />,
     showcase: <ShowcaseIcon style={iconStyle} />,
     blog: <BlogIcon style={iconStyle} />,
-    docs: <DocsIcon style={iconStyle} />,
-    account: <AccountIcon style={iconStyle} />
+    docs: <DocsIcon style={iconStyle} />
   }
+
+  if (app.account && app.account.username) icons.account = <AccountIcon style={iconStyle} />
+  else icons.login = <LoginIcon style={iconStyle} />
 
   return (
     <div className="icons">
@@ -29,7 +32,7 @@ const IconBar = ({ app }) => {
             {icons[icon]}
             <br />
             <span>
-              <FormattedMessage id={`app.${icon}`} />
+              <FormattedMessage id={icon === 'login' ? 'app.logIn' : `app.${icon}`} />
             </span>
           </Link>
         </div>
