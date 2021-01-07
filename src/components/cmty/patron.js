@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contributor = ({ patron, app }) => {
   let stars = []
-  for (let i = 0; i < parseInt(patron.tier); i++)
+  for (let i = 0; i < parseInt(patron.tier) / 2; i++)
     stars.push(
       <li className="heart" key={i}>
         💖
@@ -22,9 +22,7 @@ const Contributor = ({ patron, app }) => {
           )}
           {patron.social && patron.social.twitter && (
             <li className="twitter">
-              <a href={`https://twitter.com/${patron.social.twitter}`}>
-                @{patron.social.instagram}
-              </a>
+              <a href={`https://twitter.com/${patron.social.twitter}`}>@{patron.social.twitter}</a>
             </li>
           )}
           {patron.social && patron.social.instagram && (

@@ -1,9 +1,9 @@
 import React from 'react'
-import useApp from '../hooks/useApp'
-import AppWrapper from '../components/app/wrapper'
+import useApp from '../../hooks/useApp'
+import AppWrapper from '../../components/app/wrapper'
 
-import useUiMdx from '../hooks/useUiMdx'
-import Mdx from '../components/mdx'
+import useUiMdx from '../../hooks/useUiMdx'
+import Mdx from '../../components/mdx'
 
 const Page = (props) => {
   const app = useApp()
@@ -12,10 +12,9 @@ const Page = (props) => {
   return (
     <AppWrapper
       app={app}
-      title={uiMdx['share'].title}
+      title={app.translate('app.shareFreesewing')}
       description={uiMdx['share'].excerpt}
-      active="community"
-      text
+      {...app.treeProps(props.path)}
     >
       <Mdx node={uiMdx['share']} />
     </AppWrapper>

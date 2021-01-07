@@ -61,7 +61,6 @@ div.layout-wrapper {
       border-right: 2px solid $oc-gray-3;
     }
     > section {
-      width: 63%;
       margin: 0;
       padding-bottom: 2rem;
       > div.content {
@@ -125,6 +124,12 @@ header button {
   padding: 0 1vw !important;
 }
 
+/* monitor */
+@media (min-width: 1200px) {
+  div.layout > section {
+    width: 63%;
+  }
+}
 /* slate */
 @media (max-width: 1199px) and (min-width: 960px) {
   div.layout {

@@ -44,6 +44,7 @@ const titles = {
   '/community/': 'cty.community',
   '/community/calls/': 'cty.calls',
   '/community/join/': 'app.becomeAPatron',
+  '/community/share/': 'app.shareFreesewing',
   '/community/teams/': 'cty.teams',
   '/community/teams/community/': ['cty.community', 'cty.team'],
   '/community/teams/pattern-design/': ['cty.patternDesign', 'cty.team'],
@@ -134,9 +135,9 @@ function useTree(translate) {
               "/language/"
               "/logout/"
               "/search/"
-              "/share/"
               "/sizes/"
               "/signup/"
+              "/thanks/"
               "/patrons/"
               "/patrons/join/"
               "/patrons/thanks/"
