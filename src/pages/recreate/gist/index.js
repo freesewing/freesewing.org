@@ -19,7 +19,7 @@ const Page = (props) => {
   const [gist, setGist] = useState('')
 
   return (
-    <AppWrapper app={app} title={title} description={title} active="designs" text>
+    <AppWrapper app={app} title={title} description={title}>
       <TextField
         variant="outlined"
         fullWidth

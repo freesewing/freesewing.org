@@ -71,8 +71,12 @@ const Page = (props) => {
       </AppWrapper>
     )
 
+  const actions = ['zoom', 'compare', 'export']
+  if (app.account.username) actions.push('saveAs')
+  else actions.push('units')
+
   return (
-    <AppWrapper app={app} title={title} crumbs={crumbs} active="designs" noLayout>
+    <AppWrapper app={app} title={title} crumbs={crumbs} noLayout>
       <DraftUi
         mode="recreate"
         app={app}
@@ -80,7 +84,9 @@ const Page = (props) => {
         person={person}
         design={design}
         recreate="gist"
-        fabs={fabs}
+        title={title}
+        crumbs={crumbs}
+        actions={actions}
       />
     </AppWrapper>
   )
