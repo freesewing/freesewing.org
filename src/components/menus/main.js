@@ -89,7 +89,6 @@ const MainMenu = ({ app, slug = '/fixme/' }) => {
   links.login = app.translate('app.logIn')
   if (app.account.username) keyOrder.unshift(app.translate('app.account'))
   else keyOrder.unshift(app.translate('app.logIn'))
-  console.log(keyOrder, app.account.username)
 
   return (
     <>
