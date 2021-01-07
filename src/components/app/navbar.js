@@ -20,7 +20,7 @@ import ShowcaseIcon from '@material-ui/icons/CameraAlt'
 import BlogIcon from '@material-ui/icons/RssFeed'
 import CommunityIcon from '@material-ui/icons/Favorite'
 
-export default function ButtonAppBar(props) {
+const ButtonAppBar = (props) => {
   // Don't show on mobile
   if (props.app.mobile) return null
 
@@ -202,3 +202,5 @@ export default function ButtonAppBar(props) {
     </div>
   )
 }
+
+export default React.memo(ButtonAppBar)
