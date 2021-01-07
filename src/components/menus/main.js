@@ -9,14 +9,15 @@ import AccountIcon from '@material-ui/icons/Face'
 import LoginIcon from '@material-ui/icons/VpnKey'
 import Icon from '@freesewing/components/Icon'
 
+const iStyle = { style: { maxWidth: '32px' } }
 const icons = {
-  designs: <Icon icon="withBreasts" />,
-  showcase: <ShowcaseIcon />,
-  blog: <BlogIcon />,
-  docs: <DocsIcon />,
-  community: <CommunityIcon />,
-  account: <AccountIcon />,
-  login: <LoginIcon />
+  designs: <Icon icon="withBreasts" {...iStyle} />,
+  showcase: <ShowcaseIcon {...iStyle} />,
+  blog: <BlogIcon {...iStyle} />,
+  docs: <DocsIcon {...iStyle} />,
+  community: <CommunityIcon {...iStyle} />,
+  account: <AccountIcon {...iStyle} />,
+  login: <LoginIcon {...iStyle} />
 }
 
 const onPath = (slug, chunks) => {
