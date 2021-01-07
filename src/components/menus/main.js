@@ -6,6 +6,7 @@ import ShowcaseIcon from '@material-ui/icons/CameraAlt'
 import BlogIcon from '@material-ui/icons/RssFeed'
 import CommunityIcon from '@material-ui/icons/Favorite'
 import AccountIcon from '@material-ui/icons/Face'
+import LoginIcon from '@material-ui/icons/VpnKey'
 import Icon from '@freesewing/components/Icon'
 
 const icons = {
@@ -14,7 +15,8 @@ const icons = {
   blog: <BlogIcon />,
   docs: <DocsIcon />,
   community: <CommunityIcon />,
-  account: <AccountIcon />
+  account: <AccountIcon />,
+  login: <LoginIcon />
 }
 
 const onPath = (slug, chunks) => {
@@ -75,31 +77,38 @@ const MainMenu = ({ app, slug = '/fixme/' }) => {
     blog: app.translate('app.blog'),
     docs: app.translate('app.docs')
   }
-  if (app.account.username) links.account = app.translate('app.account')
   let order = {}
   for (let key in links) order[links[key]] = key
+  let keyOrder = Object.keys(order)
+  keyOrder.sort()
+  // Keep these at the top regardless of order
+  order[app.translate('app.account')] = 'account'
+  order[app.translate('app.logIn')] = 'login'
+  links.account = app.translate('app.account')
+  links.login = app.translate('app.logIn')
+  if (app.account.username) keyOrder.unshift(app.translate('app.account'))
+  else keyOrder.unshift(app.translate('app.logIn'))
+  console.log(keyOrder, app.account.username)
 
   return (
     <>
       <ul className="aside-main-menu" id="main-menu">
-        {Object.keys(order)
-          .sort()
-          .map((title) => {
-            let link = order[title]
-            return (
-              <li key={link}>
-                <Link
-                  to={`/${link}/`}
-                  className={link === chunks[0] ? 'active' : ''}
-                  title={links[link]}
-                >
-                  {icons[link]}
-                  <span className="text">{links[link]}</span>
-                </Link>
-                {link === chunks[0] && <Submenu slug={slug} chunks={chunks} tree={app.tree} />}
-              </li>
-            )
-          })}
+        {keyOrder.map((title) => {
+          let link = order[title]
+          return (
+            <li key={link}>
+              <Link
+                to={`/${link}/`}
+                className={link === chunks[0] ? 'active' : ''}
+                title={links[link]}
+              >
+                {icons[link]}
+                <span className="text">{links[link]}</span>
+              </Link>
+              {link === chunks[0] && <Submenu slug={slug} chunks={chunks} tree={app.tree} />}
+            </li>
+          )
+        })}
       </ul>
     </>
   )
