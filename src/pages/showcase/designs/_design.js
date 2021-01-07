@@ -71,7 +71,7 @@ const Page = (props) => {
       app={app}
       title={app.translate(`patterns.${props.pageContext.design}.title`)}
       crumbs={[{ title: app.translate('app.showcase'), slug: '/showcase/' }]}
-      active="showcase"
+      wide
     >
       {renderPosts()}
     </AppWrapper>

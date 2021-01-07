@@ -98,8 +98,7 @@ const Page = (props) => {
       app={app}
       title={app.translate('app.showcase') + ': ' + app.translate('app.patterns')}
       crumbs={[{ title: app.translate('app.showcase'), slug: '/showcase/' }]}
-      context={context}
-      active="showcase"
+      wide
     >
       {output}
     </AppWrapper>
