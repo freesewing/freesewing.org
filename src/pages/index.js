@@ -22,7 +22,7 @@ import LatestNews from '../components/LatestNews'
 import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
-import Newsletter from '../components/homepage/newsletter'
+import Newsletter from '../components/newsletter'
 
 // Style
 import './homepage.scss'
@@ -73,7 +73,7 @@ const HomePage = (props) => {
         <div className="news">
           <LatestNews />
         </div>
-        <Newsletter app={app} uiMdx={uiMdx} />
+        <Newsletter app={app} uiMdx={uiMdx} homepage />
 
         {/* Latest blog posts */}
         <div id="blog">

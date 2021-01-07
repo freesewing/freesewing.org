@@ -3,7 +3,9 @@ import useApp from '../../hooks/useApp'
 import useUiMdx from '../../hooks/useUiMdx'
 import AppWrapper from '../../components/app/wrapper'
 
-import Newsletter from '../../components/homepage/newsletter'
+import Mdx from '../../components/mdx'
+import Newsletter from '../../components/newsletter'
+import Blockquote from '@freesewing/components/Blockquote'
 
 const Page = (props) => {
   const app = useApp()
@@ -11,7 +13,13 @@ const Page = (props) => {
 
   return (
     <AppWrapper app={app} title="Newsletter" {...app.treeProps(props.path)}>
-      <Newsletter app={app} uiMdx={uiMdx} contentOnly />
+      {app.account && app.account.username && (
+        <Blockquote type="tip">
+          <h5>{uiMdx['newsletter/account'].title}</h5>
+          <Mdx node={uiMdx['newsletter/account']} />
+        </Blockquote>
+      )}
+      <Newsletter app={app} uiMdx={uiMdx} />
     </AppWrapper>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Mdx from '../../mdx'
+import Mdx from '../mdx'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import TextField from '@material-ui/core/TextField'
@@ -11,9 +11,9 @@ import InvalidIcon from '@material-ui/icons/Warning'
 
 import './newsletter.scss'
 
-const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
-  const [email, setEmail] = useState(app.account.email || '')
-  const [emailValid, setEmailValid] = useState(app.account && app.account.username ? true : false)
+const Newsletter = ({ app, uiMdx, homepage = false }) => {
+  const [email, setEmail] = useState('')
+  const [emailValid, setEmailValid] = useState(false)
   const [subscribed, setSubscribed] = useState(false)
 
   const updateEmail = (evt) => {
@@ -22,8 +22,6 @@ const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
     let valid = (validateEmail(value) && validateTld(value)) || false
     setEmailValid(valid)
   }
-  if (app.account && app.account.newsletter) return null
-
   const subscribe = () => {
     if (loggedIn) app.updateAccount([true, 'newsletter'])
     else {
@@ -47,7 +45,7 @@ const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
 
   const core = (
     <div>
-      <Mdx node={uiMdx['homepage/newsletter']} />
+      <Mdx node={uiMdx['newsletter']} />
       {subscribed && (
         <>
           <h5>
@@ -58,14 +56,14 @@ const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
           </p>
         </>
       )}
-      {!loggedIn && !subscribed && (
+      {!subscribed && (
         <TextField
           id="email"
           fullWidth={true}
           label={app.translate('account.email')}
           margin="normal"
           variant="outlined"
-          color="secondary"
+          color={homepage ? 'secondary' : 'primary'}
           value={email}
           type="text"
           onChange={updateEmail}
@@ -91,9 +89,10 @@ const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
           <Button
             onClick={subscribe}
             variant="contained"
-            color={contentOnly ? 'primary' : 'secondary'}
-            fullWidth={!contentOnly}
+            color={homepage ? 'secondary' : 'primary'}
+            fullWidth={homepage}
             disabled={!emailValid}
+            size="large"
           >
             <FormattedMessage id="app.subscribe" />
           </Button>
@@ -102,7 +101,7 @@ const Newsletter = ({ app, uiMdx, contentOnly = false }) => {
     </div>
   )
 
-  if (contentOnly) return core
+  if (!homepage) return core
   return (
     <div className="newsletter">
       <div className="inner">{core}</div>

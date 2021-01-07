@@ -1,4 +1,4 @@
-@import '../../../../node_modules/open-color/open-color.scss';
+@import '../../../node_modules/open-color/open-color.scss';
 
 div.newsletter {
   padding: 0;
@@ -26,10 +26,10 @@ div.newsletter {
     }
     #email,
     #email-label {
-      color: $oc-gray-2;
+      color: $oc-gray-4;
     }
     fieldset {
-      border-color: $oc-gray-2;
+      border-color: $oc-gray-4;
     }
   }
 }
@@ -54,7 +54,4 @@ div.newsletter div.inner > div {
     background-size: 30% auto;
     background-size: 190px;
   }
-}
-
-.theme-wrapper.dark div.newsletter {
 }
