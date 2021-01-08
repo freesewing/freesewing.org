@@ -203,7 +203,7 @@ const Page = (props) => {
         </Blockquote>
       ) : (
         <SizingGraph
-          breasts={true}
+          breasts={person.breasts}
           person={{ measurements: person.measurements, label: person.name }}
           app={app}
         />
