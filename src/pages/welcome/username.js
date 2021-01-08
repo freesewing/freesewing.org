@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import ValidIcon from '@material-ui/icons/CheckCircle'
 import InvalidIcon from '@material-ui/icons/Warning'
+import LoginRequired from '../../components/login-required'
 
 const Page = (props) => {
   const app = useApp()
@@ -29,56 +30,55 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.usernameTitle')}
-      context={<WelcomeSteps app={app} />}
-      crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
-      active="account"
-      text
-    >
-      <TextField
-        id="username"
-        fullWidth={true}
-        label={app.translate('account.username')}
-        margin="normal"
-        variant="outlined"
-        value={username}
-        type="text"
-        onChange={updateUsername}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start">
-              {usernameValid ? (
-                <ValidIcon style={{ color: '#40c057' }} />
-              ) : (
-                <InvalidIcon color="error" />
-              )}
-            </InputAdornment>
-          )
-        }}
-      />
-      <p>
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          onClick={() => app.updateAccount([username, 'username'], '/welcome/avatar/')}
-        >
-          <FormattedMessage id="app.continue" />
-          <RightIcon style={{ marginLeft: '1rem' }} />
-        </Button>
-      </p>
-      <LinearProgress color="primary" value={43} variant="determinate" />
-      <Blockquote type="note">
+    <LoginRequired app={app}>
+      <AppWrapper
+        app={app}
+        title={app.translate('account.usernameTitle')}
+        crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
+      >
+        <TextField
+          id="username"
+          fullWidth={true}
+          label={app.translate('account.username')}
+          margin="normal"
+          variant="outlined"
+          value={username}
+          type="text"
+          onChange={updateUsername}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                {usernameValid ? (
+                  <ValidIcon style={{ color: '#40c057' }} />
+                ) : (
+                  <InvalidIcon color="error" />
+                )}
+              </InputAdornment>
+            )
+          }}
+        />
         <p>
-          <FormattedMessage
-            id="account.usernameInfo"
-            values={{ em: (...chunks) => <em>{chunks}</em> }}
-          />
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() => app.updateAccount([username, 'username'], '/welcome/avatar/')}
+          >
+            <FormattedMessage id="app.continue" />
+            <RightIcon style={{ marginLeft: '1rem' }} />
+          </Button>
         </p>
-      </Blockquote>
-    </AppWrapper>
+        <LinearProgress color="primary" value={43} variant="determinate" />
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage
+              id="account.usernameInfo"
+              values={{ em: (...chunks) => <em>{chunks}</em> }}
+            />
+          </p>
+        </Blockquote>
+      </AppWrapper>
+    </LoginRequired>
   )
 }
 

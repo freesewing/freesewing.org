@@ -9,6 +9,7 @@ import { useDropzone } from 'react-dropzone'
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
+import LoginRequired from '../../components/login-required'
 
 const Page = (props) => {
   const app = useApp()
@@ -47,51 +48,50 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.avatarTitle')}
-      context={<WelcomeSteps app={app} />}
-      crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
-      active="account"
-      text
-    >
-      <div style={styles.wrapper}>
-        <img
-          alt="avatar"
-          src={img || app.account.pictureUris.m}
-          style={styles.avatar}
-          className="shadow"
-        />
-        <div {...getRootProps()} style={styles.dropzone}>
-          <input {...getInputProps()} />
-          <p>
-            <FormattedMessage id="app.dragAndDropImageHere" />
-          </p>
-          <p>
-            <Button variant="outlined" color="primary">
-              <FormattedMessage id="app.selectImage" />
-            </Button>
-          </p>
+    <LoginRequired app={app}>
+      <AppWrapper
+        app={app}
+        title={app.translate('account.avatarTitle')}
+        crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
+      >
+        <div style={styles.wrapper}>
+          <img
+            alt="avatar"
+            src={img || app.account.pictureUris.m}
+            style={styles.avatar}
+            className="shadow"
+          />
+          <div {...getRootProps()} style={styles.dropzone}>
+            <input {...getInputProps()} />
+            <p>
+              <FormattedMessage id="app.dragAndDropImageHere" />
+            </p>
+            <p>
+              <Button variant="outlined" color="primary">
+                <FormattedMessage id="app.selectImage" />
+              </Button>
+            </p>
+          </div>
         </div>
-      </div>
-      <p>
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          onClick={() => app.updateAccount([img, 'avatar'], '/welcome/bio/')}
-        >
-          <FormattedMessage id="app.continue" />
-          <RightIcon style={{ marginLeft: '1rem' }} />
-        </Button>
-      </p>
-      <LinearProgress color="primary" value={62} variant="determinate" />
-      <Blockquote type="note">
         <p>
-          <FormattedMessage id="account.avatarInfo" />
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() => app.updateAccount([img, 'avatar'], '/welcome/bio/')}
+          >
+            <FormattedMessage id="app.continue" />
+            <RightIcon style={{ marginLeft: '1rem' }} />
+          </Button>
         </p>
-      </Blockquote>
-    </AppWrapper>
+        <LinearProgress color="primary" value={62} variant="determinate" />
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage id="account.avatarInfo" />
+          </p>
+        </Blockquote>
+      </AppWrapper>
+    </LoginRequired>
   )
 }
 

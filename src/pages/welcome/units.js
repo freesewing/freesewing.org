@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
+import LoginRequired from '../../components/login-required'
 
 const Page = (props) => {
   const app = useApp()
@@ -21,46 +22,45 @@ const Page = (props) => {
   const [units, setUnits] = useState(app.account.settings.units)
 
   return (
-    <AppWrapper
-      app={app}
-      title={app.translate('account.unitsTitle')}
-      context={<WelcomeSteps app={app} />}
-      crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
-      active="account"
-      text
-    >
-      <RadioGroup name="units" onChange={(evt) => setUnits(evt.target.value)} value={units}>
-        <FormControlLabel
-          control={<Radio color="primary" />}
-          value="metric"
-          checked={units === 'metric' ? true : false}
-          label={app.translate('app.metricUnits')}
-        />
-        <FormControlLabel
-          control={<Radio color="primary" />}
-          checked={units === 'imperial' ? true : false}
-          value="imperial"
-          label={app.translate('app.imperialUnits')}
-        />
-      </RadioGroup>
-      <p>
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          onClick={() => app.updateAccount([units, 'settings', 'units'], '/welcome/username/')}
-        >
-          <FormattedMessage id="app.continue" />
-          <RightIcon style={{ marginLeft: '1rem' }} />
-        </Button>
-      </p>
-      <LinearProgress color="primary" value={24} variant="determinate" />
-      <Blockquote type="note">
+    <LoginRequired app={app}>
+      <AppWrapper
+        app={app}
+        title={app.translate('account.unitsTitle')}
+        crumbs={[{ slug: '/welcome/', title: <FormattedMessage id="app.welcome" /> }]}
+      >
+        <RadioGroup name="units" onChange={(evt) => setUnits(evt.target.value)} value={units}>
+          <FormControlLabel
+            control={<Radio color="primary" />}
+            value="metric"
+            checked={units === 'metric' ? true : false}
+            label={app.translate('app.metricUnits')}
+          />
+          <FormControlLabel
+            control={<Radio color="primary" />}
+            checked={units === 'imperial' ? true : false}
+            value="imperial"
+            label={app.translate('app.imperialUnits')}
+          />
+        </RadioGroup>
         <p>
-          <FormattedMessage id="account.unitsInfo" />
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() => app.updateAccount([units, 'settings', 'units'], '/welcome/username/')}
+          >
+            <FormattedMessage id="app.continue" />
+            <RightIcon style={{ marginLeft: '1rem' }} />
+          </Button>
         </p>
-      </Blockquote>
-    </AppWrapper>
+        <LinearProgress color="primary" value={24} variant="determinate" />
+        <Blockquote type="note">
+          <p>
+            <FormattedMessage id="account.unitsInfo" />
+          </p>
+        </Blockquote>
+      </AppWrapper>
+    </LoginRequired>
   )
 }
 

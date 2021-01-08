@@ -31,7 +31,7 @@ const Page = (props) => {
       {...app.treeProps(props.path)}
     >
       <h5>
-        <FormattedMessage id="account.newsletterInfo" />
+        <FormattedMessage id="account.newsletterTitle" />
       </h5>
       <RadioGroup name="profile" onChange={toggleNewsletter} value={newsletter}>
         <FormControlLabel
