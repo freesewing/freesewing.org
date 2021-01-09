@@ -15,6 +15,9 @@
   "dependencies": {
     "@bugsnag/js": "^7.5.4",
     "@bugsnag/plugin-react": "^7.3.1",
+    "@fontsource/permanent-marker": "^4.1.0",
+    "@fontsource/roboto-mono": "^4.1.0",
+    "@fontsource/ubuntu": "^4.1.0",
     "@freesewing/aaron": "2.11.0-rc.3",
     "@freesewing/albert": "^2.11.0-rc.3",
     "@freesewing/benjamin": "2.11.0-rc.3",
@@ -128,9 +131,6 @@
     "styled-components": "^5.2.1",
     "tlds": "1.216.0",
     "trim-right": "1.0.1",
-    "typeface-permanent-marker": "1.1.13",
-    "typeface-raleway": "^1.1.13",
-    "typeface-roboto-condensed": "1.1.13",
     "yaml": "1.10.0"
   },
   "devDependencies": {
