@@ -18,7 +18,7 @@ const PrevNext = ({ prev = false, next = false }) =>
             {side === 'prev' ? (
               <PrevIcon style={{ marginBottom: '-6px', maxWidth: '32px' }} />
             ) : null}
-            <b>{title}</b>
+            <span className="boldish">{title}</span>
             {side === 'next' ? (
               <NextIcon style={{ marginBottom: '-6px', maxWidth: '32px' }} />
             ) : null}

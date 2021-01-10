@@ -1,6 +1,5 @@
 import React from 'react'
 import BreadCrumbs from '../breadcrumbs'
-import MainAside from '../menus/main-aside'
 import PrevNext from '../prev-next'
 import './default.scss'
 

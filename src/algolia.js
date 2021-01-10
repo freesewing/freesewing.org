@@ -20,9 +20,9 @@ const getQuery = (language) => `{
 const flatten = (arr) => {
   return arr.map((node) => {
     let it = {
-      objectId: node.node.id,
+      objectID: node.node.id,
       path: '/' + node.node.parent.relativeDirectory,
-      title: node.node.frontmatter.title.split('|').pop(),
+      title: node.node.frontmatter.title,
       content: remark().use(recommended).use(frontmatter).use(html).processSync(node.node.rawBody)
         .contents
     }

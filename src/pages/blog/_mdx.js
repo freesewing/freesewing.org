@@ -78,7 +78,7 @@ const Page = (props) => {
             alt={frontmatter.caption}
           />
         </a>
-        <figcaption data-test="caption">{frontmatter.caption}</figcaption>
+        <figcaption data-test="caption" dangerouslySetInnerHTML={{ __html: frontmatter.caption }} />
       </figure>
       <div style={style.body}>
         <Mdx node={props.data.allMdx.edges[0].node} />
