@@ -1,30 +1,50 @@
-import React, { useState } from 'react'
-import useApp from '../../../../hooks/useApp'
-import usePattern from '../../../../hooks/usePattern'
-import AppWrapper from '../../../../components/app/wrapper'
+import React, { useState, useEffect } from 'react'
+import useApp from '../../../hooks/useApp'
+import usePattern from '../../../hooks/usePattern'
+import AppWrapper from '../../../components/app/wrapper'
 
-import Loading from '../../../../components/loading'
-import Button from '@material-ui/core/Button'
+import { Link } from 'gatsby'
+import Blockquote from '@freesewing/components/Blockquote'
+import Loading from '../../../components/layouts/loading'
 import { FormattedMessage } from 'react-intl'
+import Button from '@material-ui/core/Button'
+
 import TextField from '@material-ui/core/TextField'
-import { navigate } from 'gatsby'
 
 const Page = (props) => {
   const app = useApp()
-  const pattern = usePattern(app, props.params.pattern)
 
-  // State
+  const [pattern, setPattern] = useState('pending')
+  // Page title won't be available until async code runs
+  const [title, setTitle] = useState(app.translate('app.pattern'))
+  const [description, setDescription] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
   const [notes, setNotes] = useState('')
-  const [loading, setLoading] = useState(false)
 
-  if (!pattern) {
+  useEffect(() => {
+    let patternOrPromise = usePattern(app, props.pattern)
+    if (patternOrPromise.then instanceof Function) {
+      patternOrPromise.then((p) => {
+        setPattern(p)
+        setTitle(p.name)
+        setDescription(p.notes || false)
+        setLoading(false)
+      })
+    } else {
+      setPattern(patternOrPromise)
+      setTitle(patternOrPromise.name)
+      setDescription(patternOrPromise.notes || false)
+      setLoading(false)
+    }
+  }, [props.pattern])
+
+  if (pattern === 'pending') return <Loading app={app} />
+  else if (pattern === false) {
     if (app.account.username) app.navigate('/account/patterns/')
     else app.navigate('/')
     return null
   }
-
-  // Methods
   const updateName = (evt) => setName(evt.target.value)
   const updateNotes = (evt) => setNotes(evt.target.value)
   const handleSave = () => {

@@ -182,6 +182,10 @@ const routes = {
     '/confirm/signup/:confirmation': 'confirm/signup/_confirmation.js',
     '/confirm/email/:confirmation': 'confirm/email/_confirmation.js',
     '/confirm/reset/:confirmation': 'confirm/reset/_confirmation.js',
+    '/patterns/:pattern': 'patterns/_pattern/index.js',
+    '/patterns/:pattern/edit': 'patterns/_pattern/edit.js',
+    '/patterns/:pattern/export': 'patterns/_pattern/export.js',
+    '/patterns/:pattern/save-as': 'patterns/_pattern/save-as.js',
     '/recreate/gist/:gist': 'recreate/gist/_gist.js'
   },
   duplicates: getDuplicates(),

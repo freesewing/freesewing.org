@@ -211,7 +211,8 @@ ${e.stack}
         )}
       </li>
     ),
-    export: (
+    // FIXME: Can this be removed?
+    exportREMOVEME: (
       <li className="action" key="a-export">
         {display === 'export' ? (
           <span onClick={() => setDisplay('draft')}>
@@ -224,6 +225,14 @@ ${e.stack}
             <FormattedMessage id="app.exportPattern" />
           </span>
         )}
+      </li>
+    ),
+    exportOther: (
+      <li className="action" key="a-exportother">
+        <span onClick={() => props.app.navigate(`/patterns/${props.patternHandle}/export/`)}>
+          <ExportIcon />
+          <FormattedMessage id="app.exportPattern" />
+        </span>
       </li>
     ),
     exportOwn: (
@@ -244,7 +253,8 @@ ${e.stack}
         </span>
       </li>
     ),
-    saveAs: (
+    // FIXME: Can this be removed?
+    saveAsREMOVEME: (
       <li className="action" key="a-saveas">
         {display === 'saveas' ? (
           <span onClick={() => setDisplay('draft')}>
@@ -257,6 +267,14 @@ ${e.stack}
             <FormattedMessage id="app.saveAsNewPattern" />
           </span>
         )}
+      </li>
+    ),
+    saveAsOther: (
+      <li className="action" key="a-saveasother">
+        <span onClick={() => props.app.navigate(`/patterns/${props.patternHandle}/save-as/`)}>
+          <SaveAsIcon />
+          <FormattedMessage id="app.saveAsNewPattern" />
+        </span>
       </li>
     ),
     saveAsOwn: (
