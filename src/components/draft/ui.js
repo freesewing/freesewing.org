@@ -211,8 +211,7 @@ ${e.stack}
         )}
       </li>
     ),
-    // FIXME: Can this be removed?
-    exportREMOVEME: (
+    export: (
       <li className="action" key="a-export">
         {display === 'export' ? (
           <span onClick={() => setDisplay('draft')}>
@@ -253,8 +252,7 @@ ${e.stack}
         </span>
       </li>
     ),
-    // FIXME: Can this be removed?
-    saveAsREMOVEME: (
+    saveAs: (
       <li className="action" key="a-saveas">
         {display === 'saveas' ? (
           <span onClick={() => setDisplay('draft')}>
