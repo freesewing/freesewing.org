@@ -18,12 +18,12 @@ const Footer = (props) => {
   }
 
   const links = {
-    aboutFreesewing: '/docs/about/',
-    faq: '/docs/about/faq',
+    aboutFreesewing: '/docs/guide/what/',
+    faq: '/docs/faq/',
     becomeAPatron: '/patrons/join/',
-    ourRevenuePledge: '/docs/about/pledge',
-    privacyNotice: '/docs/about/privacy',
-    yourRights: '/docs/about/rights'
+    ourRevenuePledge: '/docs/various/pledge/',
+    privacyNotice: '/docs/various/privacy/',
+    yourRights: '/docs/various/rights/'
   }
 
   return (
