@@ -15,14 +15,13 @@ const Page = (props) => {
   if (typeof app.people[props.person] === 'undefined') return null
 
   // Figure out inital state in a SSR-safe way
-  const initial = false
-  if (
+  const initial =
     app.people &&
     props.params.person &&
     app.people[props.params.person] &&
     app.people[props.params.person].units
-  )
-    initial = app.people[props.params.person].units
+      ? app.people[props.params.person].units
+      : false
 
   const [units, setUnits] = useState(initial)
 
