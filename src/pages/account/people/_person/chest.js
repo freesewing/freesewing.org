@@ -49,9 +49,19 @@ const Page = (props) => {
           label={app.translate('app.withoutBreasts')}
         />
       </RadioGroup>
-      <p>
+      <p style={{ textAlign: 'right' }}>
         <Button
           size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="outlined"
+          color="primary"
+          href={`/account/people/${props.person}/`}
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          size="large"
+          style={{ marginLeft: '1rem' }}
           variant="contained"
           color="primary"
           onClick={() =>
