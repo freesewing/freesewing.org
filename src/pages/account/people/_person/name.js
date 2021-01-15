@@ -49,7 +49,7 @@ const Page = (props) => {
           style={{ marginLeft: '1rem' }}
           variant="outlined"
           color="primary"
-          href={`/people/${props.person}/`}
+          href={`/account/people/${props.person}/`}
         >
           <FormattedMessage id="app.cancel" />
         </Button>
