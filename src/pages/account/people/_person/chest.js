@@ -15,14 +15,13 @@ const Page = (props) => {
   if (typeof app.people[props.person] === 'undefined') return null
 
   // Figure out inital state in a SSR-safe way
-  const initial = false
-  if (
+  const initial =
     app.people &&
     props.params.person &&
     app.people[props.params.person] &&
     app.people[props.params.person].breasts
-  )
-    initial = app.people[props.params.person].breasts
+      ? app.people[props.params.person].breasts
+      : false
 
   const [breasts, setBreasts] = useState(initial)
 
@@ -50,9 +49,19 @@ const Page = (props) => {
           label={app.translate('app.withoutBreasts')}
         />
       </RadioGroup>
-      <p>
+      <p style={{ textAlign: 'right' }}>
         <Button
           size="large"
+          style={{ marginLeft: '1rem' }}
+          variant="outlined"
+          color="primary"
+          href={`/account/people/${props.person}/`}
+        >
+          <FormattedMessage id="app.cancel" />
+        </Button>
+        <Button
+          size="large"
+          style={{ marginLeft: '1rem' }}
           variant="contained"
           color="primary"
           onClick={() =>
