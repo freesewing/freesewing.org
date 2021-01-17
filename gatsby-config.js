@@ -40,7 +40,8 @@ const plugins = [
           options: {
             maxWidth: 800,
             showCaptions: ['title', 'alt'],
-            markdownCaptions: true
+            markdownCaptions: true,
+            backgroundColor: `, 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)`
           }
         }
       ],
@@ -48,7 +49,9 @@ const plugins = [
         {
           resolve: 'gatsby-remark-images',
           options: {
-            maxWidth: 756
+            maxWidth: 756,
+            showCaptions: ['title', 'alt'],
+            backgroundColor: `transparent`
           }
         },
         {

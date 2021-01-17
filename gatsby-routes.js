@@ -166,7 +166,6 @@ const routes = {
     '/account/patterns/:pattern/export': 'account/patterns/_pattern/export.js',
     '/account/patterns/:pattern/name': 'account/patterns/_pattern/name.js',
     '/account/patterns/:pattern/notes': 'account/patterns/_pattern/notes.js',
-    '/account/patterns/:pattern/recreate': 'account/patterns/_pattern/recreate.js',
     '/account/patterns/:pattern/remove': 'account/patterns/_pattern/remove.js',
     '/account/patterns/:pattern/save-as': 'account/patterns/_pattern/save-as.js',
     '/account/patterns/:pattern/share': 'account/patterns/_pattern/share.js',

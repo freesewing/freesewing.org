@@ -162,7 +162,7 @@ const ButtonAppBar = (props) => {
               href="/login/"
               color="inherit"
               style={style.button}
-              title={props.app.translate('app.login')}
+              title={props.app.translate('app.logIn')}
             >
               <FormattedMessage id="app.logIn" />
             </Button>
