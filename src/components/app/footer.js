@@ -1,7 +1,6 @@
 import React from 'react'
 import Logo from '@freesewing/components/Logo'
 import { Link } from 'gatsby'
-import { version } from '../../../package.json'
 import MainIcons from '../menus/main-aside'
 import { FormattedMessage } from 'react-intl'
 

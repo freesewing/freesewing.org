@@ -17,19 +17,6 @@ const Page = (props) => {
     }
   }
 
-  const context = [
-    <h5>Showcase posts</h5>,
-    <ul>
-      {props.data.allMdx.edges.map((node) => (
-        <li key={node.node.parent.relativeDirectory}>
-          <Link to={`/${node.node.parent.relativeDirectory}/`} title={node.node.frontmatter.title}>
-            {node.node.frontmatter.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  ]
-
   return (
     <AppWrapper app={app} title={app.translate('app.showcase')} {...app.treeProps(props.path)} wide>
       <div style={style.wrapper}>

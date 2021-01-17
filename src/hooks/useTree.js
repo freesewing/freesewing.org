@@ -19,7 +19,6 @@ const alwaysDrop = [
 const titles = {
   '/account/': 'app.account',
   '/account/actions/': 'app.actions',
-  '/account/actions/consent/': 'account.review',
   '/account/actions/consent/': 'account.reviewYourConsent',
   '/account/actions/export/': 'account.exportYourData',
   '/account/actions/reload/': 'account.reloadAccount',
@@ -102,7 +101,6 @@ const slugChunks = (slug) => {
 }
 
 const decorateTree = (tree, slug, page, translate) => {
-  let index
   let chunks = slugChunks(slug)
   if (chunks.length === 0) return tree
   let title = getTitle(slug, page, chunks, translate)
@@ -169,7 +167,6 @@ function useTree(translate) {
     }
   `)
   const pages = {}
-  const posts = {}
   for (let edge of data.pages.edges) pages[edge.node.path] = edge.node.context
   // We'll sort posts by date, rather than title
   for (let edge of data.posts.edges) {

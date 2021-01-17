@@ -12,7 +12,7 @@ const Page = (props) => {
   const pattern = usePattern(app, props.params.pattern)
 
   // State
-  const [notes, setNotes] = useState(pattern.notes || '')
+  const [notes, setNotes] = useState(pattern.notes ? pattern.notes : '')
 
   if (!pattern) {
     if (app.account.username) app.navigate('/account/patterns/')
@@ -23,8 +23,6 @@ const Page = (props) => {
   // Methods
   const updateNotes = (evt) => setNotes(evt.target.value)
   const handleSave = () => {
-    let nameVal = name
-    if (name === '') nameVal = props.params.pattern
     app.updatePattern(props.params.pattern, { notes }).catch((err) => console.log(err))
   }
 

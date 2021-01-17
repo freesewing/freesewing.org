@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import AppWrapper from '../../../../components/app/wrapper'
 

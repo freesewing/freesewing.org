@@ -3,22 +3,9 @@ import useApp from '../hooks/useApp'
 import useUiMdx from '../hooks/useUiMdx'
 import AppWrapper from '../components/app/wrapper'
 
-import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
-import DocsIcon from '@material-ui/icons/ChromeReaderMode'
-import ShowcaseIcon from '@material-ui/icons/CameraAlt'
-import BlogIcon from '@material-ui/icons/RssFeed'
-import CommunityIcon from '@material-ui/icons/Favorite'
-import AccountIcon from '@material-ui/icons/Face'
-import Icon from '@freesewing/components/Icon'
-
-import Mdx from '../components/mdx'
 import { graphql, Link } from 'gatsby'
-import oc from 'open-color-js'
-import Blob from '../components/blobs'
-import contrast from 'get-contrast'
 import LatestNews from '../components/LatestNews'
-
 import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
@@ -58,11 +45,6 @@ const HomePage = (props) => {
   // Hooks
   const app = useApp()
   const uiMdx = useUiMdx()
-
-  const patrons = props.data.patrons.edges.map((node) => ({
-    name: node.node.patron.username,
-    img: node.node.patron.pictureUris.m
-  }))
 
   return (
     <AppWrapper app={app} noLayout noNavbar>
@@ -127,18 +109,6 @@ export const pageQuery = graphql`
                   presentationHeight
                 }
               }
-            }
-          }
-        }
-      }
-    }
-    patrons: allFsPatron {
-      edges {
-        node {
-          patron {
-            username
-            pictureUris {
-              m
             }
           }
         }

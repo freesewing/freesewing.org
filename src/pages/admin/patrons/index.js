@@ -10,7 +10,6 @@ const Page = (props) => {
 
   const [patrons, setPatrons] = useState([])
   const [list, setList] = useState([])
-  const token = app.token
 
   // Effects
   useEffect(() => {

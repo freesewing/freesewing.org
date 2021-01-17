@@ -4,7 +4,6 @@ import LoginRequired from '../../components/login-required'
 import AppWrapper from '../../components/app/wrapper'
 
 import AccountMenu from '../../components/menus/account'
-import AccountContext from '../../components/context/account'
 
 const Page = (props) => {
   const app = useApp()

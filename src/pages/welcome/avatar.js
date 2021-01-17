@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import WelcomeSteps from '../../components/context/welcome-steps'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { useDropzone } from 'react-dropzone'

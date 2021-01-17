@@ -2,7 +2,7 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
 import { measurements } from '@freesewing/models'
 import MeasurementImage from '../../components/measurements/images'

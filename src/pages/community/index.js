@@ -2,14 +2,10 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import useUiMdx from '../../hooks/useUiMdx'
-import Blockquote from '@freesewing/components/Blockquote'
-import Mdx from '../../components/mdx'
 import Offspring from '../../components/offspring'
 
 const Page = (props) => {
   const app = useApp()
-  const uiMdx = useUiMdx()
 
   return (
     <AppWrapper

@@ -58,7 +58,7 @@ const Splash = ({ app, uiMdx }) => {
       </div>
       <div className="groups">{groups}</div>
       {reveal && (
-        <div className={`details ${reveal ? reveal : ''}`}>
+        <div className={`details ${reveal}`}>
           <Mdx node={uiMdx[`homepage/${reveal}s`]} />
           <div className="close-button">
             <Button onClick={() => setReveal(false)} color="secondary" variant="outlined">

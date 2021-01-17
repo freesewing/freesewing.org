@@ -53,11 +53,6 @@ const mdxQuery = function (type, language) {
   }`
 }
 
-const postInfo = (slug, posts) => ({
-  slug,
-  title: posts[slug].context.title
-})
-
 // Gets the page title for a given slug
 const pageTitle = (slug, page) => {
   if (!page.frontmatter || !page.frontmatter.title) {
@@ -89,7 +84,6 @@ const pageTitle = (slug, page) => {
 const createMdxPages = async function (pages, createPage, graphql, language) {
   let types = ['blog', 'showcase', 'docs']
   let promises = []
-  let tree
   for (let type of types) {
     pages[type] = {}
     let query = mdxQuery(type, language)

@@ -5,7 +5,7 @@ import AppWrapper from '../../components/app/wrapper'
 import { Link, graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
 import MdxToc from '../../components/mdx/toc'
-import { FormattedDate, FormattedMessage } from 'react-intl'
+import { FormattedDate } from 'react-intl'
 
 const Page = (props) => {
   const app = useApp()
@@ -46,10 +46,6 @@ const Page = (props) => {
         )
       })
     : null
-  const context = [
-    <h5>{props.pageContext.title}</h5>,
-    <MdxToc toc={props.data.allMdx.edges[0].node.tableOfContents} />
-  ]
 
   return (
     <AppWrapper

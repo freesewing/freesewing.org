@@ -3,13 +3,10 @@ import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
 import AuthRequired from '../../../components/auth-required'
 
-import Button from '@material-ui/core/Button'
-
 const Page = (props) => {
   const app = useApp()
 
   const [list, setList] = useState([])
-  const token = app.token
 
   // Effects
   useEffect(() => {

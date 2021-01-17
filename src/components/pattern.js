@@ -1,6 +1,5 @@
 import React from 'react'
 import usePerson from '../hooks/usePerson'
-import Icon from '@freesewing/components/Icon'
 import LineDrawing from '@freesewing/components/LineDrawing'
 import Markdown from 'react-markdown'
 import capitalize from '@freesewing/utils/capitalize'

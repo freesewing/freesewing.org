@@ -44,10 +44,6 @@ const Page = (props) => {
         )
       })
     : null
-  const context = [
-    <h5>{props.pageContext.title}</h5>,
-    <MdxToc toc={props.data.allMdx.edges[0].node.tableOfContents} />
-  ]
 
   return (
     <AppWrapper

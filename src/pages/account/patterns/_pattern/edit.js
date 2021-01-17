@@ -6,9 +6,6 @@ import DraftUi from '../../../../components/draft/ui'
 import usePattern from '../../../../hooks/usePattern'
 import usePerson from '../../../../hooks/usePerson'
 import LoadingLayout from '../../../../components/layouts/loading'
-import Blockquote from '@freesewing/components/Blockquote'
-import { FormattedMessage } from 'react-intl'
-import Button from '@material-ui/core/Button'
 
 /*
  * This page allows you to edit your own patterns

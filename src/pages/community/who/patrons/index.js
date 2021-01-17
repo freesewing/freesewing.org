@@ -2,10 +2,8 @@ import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import useUiMdx from '../../../../hooks/useUiMdx'
 import Blockquote from '@freesewing/components/Blockquote'
 import Button from '@material-ui/core/Button'
-import Mdx from '../../../../components/mdx'
 import { FormattedMessage } from 'react-intl'
 import { graphql, Link } from 'gatsby'
 import PatronStars from '../../../../components/patron-stars'
@@ -13,7 +11,6 @@ import UserSocial from '../../../../components/user-social'
 
 const Page = (props) => {
   const app = useApp()
-  const uiMdx = useUiMdx()
 
   const styles = {
     patron: {
@@ -50,7 +47,6 @@ const Page = (props) => {
   const list = []
   order.map((username) => {
     let patron = patrons[username]
-    let img = '/avatar.svg'
     list.push(
       <div key={patron.handle} style={styles.patron}>
         <Link to={'/users/' + patron.username} style={{ width: '100%' }}>

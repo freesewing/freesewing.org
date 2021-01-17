@@ -2,7 +2,6 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import WelcomeSteps from '../../components/context/welcome-steps'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import RightIcon from '@material-ui/icons/KeyboardArrowRight'

@@ -12,7 +12,7 @@ const Page = (props) => {
   const app = useApp()
 
   // FIXME: Show something better than nothing in SSR
-  if (typeof app.people[props.person] === 'undefined') return null
+  if (!app.people || typeof app.people[props.person] === 'undefined') return null
 
   // Figure out inital state in a SSR-safe way
   const initial =

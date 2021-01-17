@@ -7,7 +7,6 @@ import Loading from '../../../../components/loading'
 import Button from '@material-ui/core/Button'
 import { FormattedMessage } from 'react-intl'
 import TextField from '@material-ui/core/TextField'
-import { navigate } from 'gatsby'
 
 const Page = (props) => {
   const app = useApp()

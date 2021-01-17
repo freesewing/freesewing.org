@@ -1,7 +1,6 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
-import Blockquote from '@freesewing/components/Blockquote'
 import Robot from '@freesewing/components/Robot'
 import Icon from '@freesewing/components/Icon'
 import useUiMdx from '../../hooks/useUiMdx'

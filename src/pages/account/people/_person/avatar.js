@@ -51,7 +51,7 @@ const Page = (props) => {
     styles.dropzone.height = '200px'
   }
 
-  let loadImage = img
+  let loadImage
   if (
     !img &&
     app.account &&

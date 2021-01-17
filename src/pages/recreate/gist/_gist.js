@@ -53,8 +53,6 @@ const Page = (props) => {
       })
   }, [props.gist])
 
-  const fabs = ['zoom', 'compare', 'export', 'details']
-
   // Allow pattern to load
   if (!gist && !error)
     return (

@@ -5,7 +5,6 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import LanguageIcon from '@material-ui/icons/Translate'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
-import MainAside from './main-aside'
 import Icon from '@freesewing/components/Icon'
 
 const MobileMenu = ({ app, mainMenu }) => {

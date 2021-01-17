@@ -3,7 +3,6 @@ import useApp from '../../../../../hooks/useApp'
 import AppWrapper from '../../../../../components/app/wrapper'
 
 import usePerson from '../../../../../hooks/usePerson'
-import Person from '../../../../../components/person'
 import { FormattedMessage } from 'react-intl'
 import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
@@ -69,10 +68,6 @@ const Page = (props) => {
       opacity: value ? 1 : 0.5,
       padding: value ? '1rem' : '0 1rem',
       verticalAlign: 'middle'
-    }
-    const missingIcon = {
-      fontSize: '1.5ren',
-      padding: 0
     }
 
     let link = `/account/people/${props.person}/measurements/${name.toLowerCase()}`

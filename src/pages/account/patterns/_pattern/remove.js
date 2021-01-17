@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useApp from '../../../../hooks/useApp'
 import usePattern from '../../../../hooks/usePattern'
 import AppWrapper from '../../../../components/app/wrapper'
 
 import Loading from '../../../../components/loading'
 import Button from '@material-ui/core/Button'
-import { FormattedMessage } from 'react-intl'
-import TextField from '@material-ui/core/TextField'
-import { navigate } from 'gatsby'
-import Blockquote from '@freesewing/components/Blockquote'
 
 const Page = (props) => {
   const app = useApp()

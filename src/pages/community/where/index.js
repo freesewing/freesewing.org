@@ -5,7 +5,6 @@ import AppWrapper from '../../../components/app/wrapper'
 import useUiMdx from '../../../hooks/useUiMdx'
 import Mdx from '../../../components/mdx'
 import Offspring from '../../../components/offspring'
-import { Link } from 'gatsby'
 
 const Page = (props) => {
   const app = useApp()

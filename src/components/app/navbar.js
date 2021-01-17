@@ -169,6 +169,7 @@ const ButtonAppBar = (props) => {
           )}
           {Object.keys(icons).map((icon) => (
             <IconButton
+              key={icon}
               style={style.iconButton}
               href={`/${icon}/`}
               size="small"

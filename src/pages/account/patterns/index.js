@@ -1,6 +1,5 @@
 import React from 'react'
 import useApp from '../../../hooks/useApp'
-import usePerson from '../../../hooks/usePerson'
 import AppWrapper from '../../../components/app/wrapper'
 
 import Blockquote from '@freesewing/components/Blockquote'
@@ -25,7 +24,7 @@ const Page = (props) => {
       {Object.keys(app.patterns).length > 0 ? (
         <div className="pattern-list">
           {Object.keys(app.patterns).map((handle, pattern) => (
-            <Pattern app={app} pattern={handle} />
+            <Pattern key={handle} app={app} pattern={handle} />
           ))}
         </div>
       ) : (

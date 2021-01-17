@@ -3,13 +3,7 @@ import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
 import AppWrapper from '../../../components/app/wrapper'
 
-import { Link } from 'gatsby'
-import Blockquote from '@freesewing/components/Blockquote'
 import LoadingLayout from '../../../components/layouts/loading'
-import PatternNotes from '../../../components/pattern/notes'
-import { FormattedMessage } from 'react-intl'
-import PatternPreview from '../../../components/pattern/preview'
-
 import ExportPattern from '../../../components/pattern/export'
 
 const Page = (props) => {

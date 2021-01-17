@@ -7,7 +7,6 @@ const Page = (props) => {
   const app = useApp()
 
   const [stats, setStats] = useState([])
-  const token = app.token
 
   // Effects
   useEffect(() => {

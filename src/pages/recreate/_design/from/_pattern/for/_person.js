@@ -115,8 +115,6 @@ const Page = (props) => {
         person={person}
         design={pattern.data.design}
         recreate={props.pattern}
-        title={title}
-        crumbs={crumbs}
         actions={actions}
       />
     </AppWrapper>
