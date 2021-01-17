@@ -5,7 +5,6 @@ import DraftUi from '../../../../components/draft/ui'
 
 import usePattern from '../../../../hooks/usePattern'
 import usePerson from '../../../../hooks/usePerson'
-import LoadingLayout from '../../../../components/layouts/loading'
 
 /*
  * This page allows you to edit your own patterns
