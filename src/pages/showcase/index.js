@@ -3,7 +3,7 @@ import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
 import PostPreview from '../../components/post-preview'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 const Page = (props) => {
   const app = useApp()

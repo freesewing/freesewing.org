@@ -4,7 +4,6 @@ import AppWrapper from '../../components/app/wrapper'
 
 import { Link, graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
-import MdxToc from '../../components/mdx/toc'
 import { FormattedDate, FormattedMessage } from 'react-intl'
 
 const Page = (props) => {

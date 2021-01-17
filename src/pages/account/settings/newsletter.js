@@ -3,8 +3,6 @@ import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
 
 import { FormattedMessage } from 'react-intl'
-import Blockquote from '@freesewing/components/Blockquote'
-import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'

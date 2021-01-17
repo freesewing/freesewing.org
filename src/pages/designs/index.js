@@ -4,7 +4,6 @@ import AppWrapper from '../../components/app/wrapper'
 
 import { FormattedMessage } from 'react-intl'
 import { list } from '@freesewing/pattern-info'
-import { Link } from 'gatsby'
 import capitalize from '@freesewing/utils/capitalize'
 import Filter from '../../components/designs/filter'
 import Button from '@material-ui/core/Button'

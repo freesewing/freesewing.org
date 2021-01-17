@@ -2,7 +2,7 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
 
 const Page = (props) => {

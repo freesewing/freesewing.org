@@ -2,7 +2,6 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import { Link } from 'gatsby'
 import Offspring from '../../components/offspring'
 
 const Page = (props) => {

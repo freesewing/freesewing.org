@@ -16,7 +16,6 @@ const Page = (props) => {
 
   // Figure out inital state in a SSR-safe way
   const initial =
-    app.people &&
     props.params.person &&
     app.people[props.params.person] &&
     app.people[props.params.person].breasts

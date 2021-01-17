@@ -3,7 +3,6 @@ import useApp from '../../../hooks/useApp'
 import usePattern from '../../../hooks/usePattern'
 import AppWrapper from '../../../components/app/wrapper'
 
-import { Link } from 'gatsby'
 import Loading from '../../../components/layouts/loading'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'

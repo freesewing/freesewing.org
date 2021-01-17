@@ -12,7 +12,7 @@ const Page = (props) => {
   const pattern = usePattern(app, props.params.pattern)
 
   // State
-  const [notes, setNotes] = useState(pattern.notes ? pattern.notes : '')
+  const [notes, setNotes] = useState(pattern ? pattern.notes : '')
 
   if (!pattern) {
     if (app.account.username) app.navigate('/account/patterns/')

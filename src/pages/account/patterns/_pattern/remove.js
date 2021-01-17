@@ -3,7 +3,6 @@ import useApp from '../../../../hooks/useApp'
 import usePattern from '../../../../hooks/usePattern'
 import AppWrapper from '../../../../components/app/wrapper'
 
-import Loading from '../../../../components/loading'
 import Button from '@material-ui/core/Button'
 
 const Page = (props) => {
