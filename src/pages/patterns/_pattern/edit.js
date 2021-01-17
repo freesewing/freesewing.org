@@ -3,6 +3,7 @@ import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
 import DraftUi from '../../../components/draft/ui'
 
+import LoadingLayout from '../../../components/layouts/loading'
 import usePattern from '../../../hooks/usePattern'
 import usePerson from '../../../hooks/usePerson'
 import Blockquote from '@freesewing/components/Blockquote'
