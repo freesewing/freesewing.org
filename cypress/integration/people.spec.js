@@ -2,6 +2,8 @@ import { strings } from '@freesewing/i18n'
 
 const i18n = strings[Cypress.env('LANGUAGE')]
 
+cy.log('print strings', strings)
+
 describe('People', () => {
   beforeEach(() => {
     cy.visit('/login')
@@ -9,7 +11,6 @@ describe('People', () => {
     // Logging in with email address because we'll change the username in our tests
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
-    cy.log('print strings', strings)
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
     cy.server()
   })
