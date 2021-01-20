@@ -9,6 +9,7 @@ describe('People', () => {
     // Logging in with email address because we'll change the username in our tests
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
+    console.log(strings)
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
     cy.server()
   })
@@ -63,7 +64,7 @@ describe('People', () => {
   })
 
   it('add notes', () => {
-    cy.visit('/people/')
+    cy.visit('/account/people/')
     cy.get('[data-test=model-link]').last().find('h6').click()
     cy.get('[data-test=add-notes]').click()
     cy.get('h1').should('contain', i18n['app.notes'])
@@ -75,7 +76,7 @@ describe('People', () => {
   })
 
   it('edit notes', () => {
-    cy.visit('/people/')
+    cy.visit('/account/people/')
     cy.get('[data-test=model-link]').first().find('h6').click()
     cy.get('[data-test=edit-notes]').click()
     cy.get('h1').should('contain', i18n['app.notes'])
@@ -88,7 +89,7 @@ describe('People', () => {
 
   context('when having no neck circomference set', () => {
     it.only('add measurement', () => {
-      cy.visit('/people/')
+      cy.visit('/account/people/')
       cy.get('div.box > a').last().find('h6').click({ force: true })
 
       cy.get('h1').should('contain', 'Example person - With breasts')

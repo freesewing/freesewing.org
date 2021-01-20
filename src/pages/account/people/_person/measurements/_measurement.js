@@ -156,7 +156,7 @@ const Page = (props) => {
           size="large"
           variant="outlined"
           color="primary"
-          href={`/people/${props.person}/#measurements`}
+          href={`/account/people/${props.person}/#measurements`}
           data-test="cancel"
         >
           <FormattedMessage id="app.cancel" />

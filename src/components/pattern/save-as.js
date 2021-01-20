@@ -26,7 +26,7 @@ const SavePatternAs = (props) => {
     if (notes === '')
       notesVal = `
 - 👕 : [${data.design}](/designs/${data.design}/)
-- 🧑 : [${data.settings.metadata.for}](/people/${props.person.handle}/)
+- 🧑 : [${data.settings.metadata.for}](/account/people/${props.person.handle}/)
 - 📅 : ${new Date().toISOString()}`
     props.app
       .createPattern({

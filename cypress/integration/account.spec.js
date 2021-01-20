@@ -11,7 +11,7 @@ describe('Account page', function () {
 
   const links = {
     '/patterns/': 'app.patterns',
-    '/people/': 'app.people',
+    '/account/people/': 'app.people',
     '/users/test_user/': 'app.profile',
     '/account/settings/avatar/': 'account.avatar',
     '/account/settings/bio/': 'account.bio',
