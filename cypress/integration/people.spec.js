@@ -9,7 +9,7 @@ describe('People', () => {
     // Logging in with email address because we'll change the username in our tests
     cy.get('#username').type('test@freesewing.org')
     cy.get('#password').type('test{enter}')
-    console.log(strings)
+    cy.log('print strings', strings)
     cy.get('[data-test=notification]').should('contain', i18n['app.goodToSeeYouAgain'].slice(0, 20))
     cy.server()
   })
