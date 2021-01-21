@@ -195,7 +195,7 @@ ${e.stack}
   }
   const actions = {
     compare: (
-      <li className="action" key="a-compare">
+      <li className="action" key="a-compare" id="draft-action-compare">
         {display === 'compare' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
@@ -210,7 +210,7 @@ ${e.stack}
       </li>
     ),
     export: (
-      <li className="action" key="a-export">
+      <li className="action" key="a-export" id="draft-action-export">
         {display === 'export' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
@@ -225,7 +225,7 @@ ${e.stack}
       </li>
     ),
     exportOther: (
-      <li className="action" key="a-exportother">
+      <li className="action" key="a-exportother" id="draft-action-exportother">
         <span onClick={() => props.app.navigate(`/patterns/${props.patternHandle}/export/`)}>
           <ExportIcon />
           <FormattedMessage id="app.exportPattern" />
@@ -233,7 +233,7 @@ ${e.stack}
       </li>
     ),
     exportOwn: (
-      <li className="action" key="a-exportown">
+      <li className="action" key="a-exportown" id="draft-action-exportown">
         <span
           onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/export/`)}
         >
@@ -243,7 +243,7 @@ ${e.stack}
       </li>
     ),
     save: (
-      <li className="action" key="a-save">
+      <li className="action" key="a-save" id="draft-action-save">
         <span onClick={() => savePattern(data)}>
           <SaveIcon />
           <FormattedMessage id="app.savePattern" />
@@ -251,7 +251,7 @@ ${e.stack}
       </li>
     ),
     saveAs: (
-      <li className="action" key="a-saveas">
+      <li className="action" key="a-saveas" id="draft-action-saveas">
         {display === 'saveas' ? (
           <span onClick={() => setDisplay('draft')}>
             <ShowIcon />
@@ -266,7 +266,7 @@ ${e.stack}
       </li>
     ),
     saveAsOther: (
-      <li className="action" key="a-saveasother">
+      <li className="action" key="a-saveasother" id="draft-action-saveasother">
         <span onClick={() => props.app.navigate(`/patterns/${props.patternHandle}/save-as/`)}>
           <SaveAsIcon />
           <FormattedMessage id="app.saveAsNewPattern" />
@@ -274,7 +274,7 @@ ${e.stack}
       </li>
     ),
     saveAsOwn: (
-      <li className="action" key="a-saveasown">
+      <li className="action" key="a-saveasown" id="draft-action-saveasown">
         <span
           onClick={() => props.app.navigate(`/account/patterns/${props.patternHandle}/save-as/`)}
         >
@@ -284,7 +284,7 @@ ${e.stack}
       </li>
     ),
     units: (
-      <li className="action" key="a-units">
+      <li className="action" key="a-units" id="draft-action-units">
         <span onClick={toggleUnits} key="a-units">
           <Icon icon="units" />
           {visitorUnits === 'metric' ? (
@@ -296,7 +296,7 @@ ${e.stack}
       </li>
     ),
     zoom: (
-      <li className="action" key="a-zoom">
+      <li className="action" key="a-zoom" id="draft-action-zoom">
         <span onClick={() => setFit(!fit)} key="a-zoom">
           {fit ? (
             <>
@@ -354,7 +354,7 @@ ${e.stack}
   else
     main = (
       <>
-        <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
+        <figure key="pattern" style={{ textAlign: 'center' }} id={`freesewing-${display}`}>
           <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
           {display === 'compare' && (
             <SampleLegend dark={app.theme === 'dark'} sizes={compareWith} breasts={breasts} />

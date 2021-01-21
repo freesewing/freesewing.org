@@ -66,7 +66,7 @@ const Notification = ({ notification, setNotification, mobile }) => {
   const children = (
     <div style={{ ...styles.wrapper, ...styles.color[type] }} className="shadow">
       <Icon key="icon" style={styles.icon} />
-      <div>{msg}</div>
+      <div id="notification-msg">{msg}</div>
     </div>
   )
   return (

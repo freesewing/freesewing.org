@@ -125,7 +125,7 @@ const ExportPattern = ({ app, data }) => {
     )
   return (
     <React.Fragment>
-      <div style={styles.wrapper}>
+      <div style={styles.wrapper} id="pattern-export">
         {link ? (
           <div style={styles.download}>
             <Blockquote type="note">
