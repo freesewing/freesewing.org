@@ -13,8 +13,6 @@ import PostPreview from '../../components/post-preview'
 const Page = (props) => {
   const app = useApp(false)
 
-  console.log(list)
-
   const [designs, setDesigns] = useState(list)
   const [filter, setFilter] = useState(false)
 
