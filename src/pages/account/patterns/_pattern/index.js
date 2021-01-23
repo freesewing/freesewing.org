@@ -12,7 +12,7 @@ const Page = (props) => {
   const pattern = usePattern(app, props.pattern)
 
   if (pattern === false) {
-    if (app.account.username) app.navigate('/patterns/')
+    if (app.account.username) app.navigate('/account/patterns/')
     else app.navigate('/')
     return null
   }

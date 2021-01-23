@@ -64,7 +64,7 @@ const Page = (props) => {
   // Allow usePattern promise to resolve
   if (pattern === 'pending') return <LoadingLayout app={app} />
   else if (pattern === false) {
-    if (app.account.username) app.navigate('/patterns/')
+    if (app.account.username) app.navigate('/account/patterns/')
     else app.navigate('/')
     return null
   }

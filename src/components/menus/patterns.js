@@ -13,7 +13,7 @@ const PatternMenu = ({ app, className = '' }) => (
           <FormattedMessage id="app.browseCollection" />
         </Button>
         {app.account.username && (
-          <Button variant="outlined" color="primary" href="/patterns/" className="button">
+          <Button variant="outlined" color="primary" href="/account/patterns/" className="button">
             <FormattedMessage id="app.browseYourPatterns" />
           </Button>
         )}
@@ -32,7 +32,7 @@ const PatternMenu = ({ app, className = '' }) => (
           </li>
           {app.account.username && (
             <li>
-              <Link to="/patterns/">
+              <Link to="/account/patterns/">
                 <FormattedMessage id="app.browseYourPatterns" />
               </Link>
             </li>
@@ -68,7 +68,7 @@ const PatternMenu = ({ app, className = '' }) => (
         <ul className="inline">
           {Object.keys(app.patterns).map((handle) => (
             <li key={handle} className="link">
-              <Link to={`/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
+              <Link to={`/account/patterns/${handle}/`}>{app.patterns[handle].name}</Link>
             </li>
           ))}
         </ul>
