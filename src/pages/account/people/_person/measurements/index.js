@@ -172,7 +172,7 @@ const Page = (props) => {
     <AppWrapper
       app={app}
       title={app.translate('app.measurements')}
-      crumbs={[{ slug: '/people/', title: <FormattedMessage id="app.people" /> }]}
+      crumbs={[{ slug: '/account/people/', title: <FormattedMessage id="app.people" /> }]}
       {...app.treeProps(`/account/people/${props.params.person}/measurements/`)}
     >
       {blankSlate ? (

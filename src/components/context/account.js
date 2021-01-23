@@ -30,12 +30,12 @@ const AccountContext = ({ app, active = '' }) => [
   </h6>,
   <ul>
     <li>
-      <Link to="/patterns/">
+      <Link to="/account/patterns/">
         <FormattedMessage id="app.patterns" />
       </Link>
     </li>
     <li>
-      <Link to="/people/">
+      <Link to="/account/people/">
         <FormattedMessage id="app.people" />
       </Link>
     </li>

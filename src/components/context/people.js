@@ -9,7 +9,7 @@ const PeopleContext = ({ app }) => [
   <ul>
     {Object.keys(app.people).map((handle) => (
       <li key={handle}>
-        <Link to={`/people/${handle}/`}>{app.people[handle].name}</Link>
+        <Link to={`/account/people/${handle}/`}>{app.people[handle].name}</Link>
       </li>
     ))}
   </ul>

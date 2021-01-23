@@ -117,7 +117,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
               {people.no.user.map((person) => {
                 return (
                   <li key={person.handle}>
-                    <Link to={'/people/' + person.handle} title={person.name}>
+                    <Link to={'/account/people/' + person.handle} title={person.name}>
                       {person.name}
                     </Link>
                   </li>
