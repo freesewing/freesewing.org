@@ -13,6 +13,7 @@ import diana from '@freesewing/diana'
 import florent from '@freesewing/florent'
 import florence from '@freesewing/florence'
 import holmes from '@freesewing/holmes'
+import hortensia from '@freesewing/hortensia'
 import huey from '@freesewing/huey'
 import hugo from '@freesewing/hugo'
 import jaeger from '@freesewing/jaeger'
@@ -47,6 +48,7 @@ const designs = {
   florent,
   florence,
   holmes,
+  hortensia,
   huey,
   hugo,
   jaeger,

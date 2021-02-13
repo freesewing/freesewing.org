@@ -79,6 +79,12 @@ const Page = (props) => {
     return result
   }
 
+  // This is a bit hackish for now, but I'm too tired :(
+  const noMeasurements = ['hortensia']
+  let createLink
+  if (design === 'hortensia') createLink = `/create/hortensia/for/size-36-b/`
+  else createLink = `/create/${design}/`
+
   return (
     <AppWrapper
       app={app}
@@ -96,7 +102,7 @@ const Page = (props) => {
           color="primary"
           variant="contained"
           size="large"
-          href={'/create/' + design + '/'}
+          href={createLink}
         >
           <PlayIcon style={{ marginRight: '1rem' }} />
           <FormattedMessage
