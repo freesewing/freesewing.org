@@ -28,10 +28,15 @@ const Page = (props) => {
       })
     }
   ]
-  const title = app.translate('app.newPatternForModel', {
-    pattern: app.translate(`patterns.${props.pageContext.design}.title`),
-    model: person.name || props.person
-  })
+  const title =
+    props.person === 'any'
+      ? app.translate('app.newThing', {
+          thing: app.translate(`patterns.${props.pageContext.design}.title`)
+        })
+      : app.translate('app.newPatternForModel', {
+          pattern: app.translate(`patterns.${props.pageContext.design}.title`),
+          model: person.name || props.person
+        })
 
   // Initial pattern data
   const data = {

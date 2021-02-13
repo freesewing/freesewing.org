@@ -4,6 +4,7 @@ import capitalize from '@freesewing/utils/capitalize'
 import { Link } from 'gatsby'
 import PatternOptions from './pattern-options'
 import PatternMeasurements from './pattern-measurements'
+import { measurements } from '@freesewing/pattern-info'
 import Button from '@material-ui/core/Button'
 import PlayIcon from '@material-ui/icons/PlayArrow'
 import Hashtag from '../hashtag'
@@ -76,10 +77,14 @@ const PatternIndexPage = (props) => {
         <FormattedMessage id="app.patternOptions" />
       </h2>
       <PatternOptions pattern={props.pattern} />
-      <h2>
-        <FormattedMessage id="app.requiredMeasurements" />
-      </h2>
-      <PatternMeasurements pattern={props.pattern} app={props.app} />
+      {measurements[props.pattern].length > 0 ? (
+        <>
+          <h2>
+            <FormattedMessage id="app.requiredMeasurements" />
+          </h2>
+          <PatternMeasurements pattern={props.pattern} app={props.app} />
+        </>
+      ) : null}
       <h2>
         <FormattedMessage id="app.examples" />
       </h2>

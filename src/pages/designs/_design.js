@@ -79,10 +79,9 @@ const Page = (props) => {
     return result
   }
 
-  // This is a bit hackish for now, but I'm too tired :(
-  const noMeasurements = ['hortensia']
+  // Skip the size-select step if the pattern does not require measurments
   let createLink
-  if (design === 'hortensia') createLink = `/create/hortensia/for/size-36-b/`
+  if (info.measurements.length === 0) createLink = `/create/${design}/for/any/`
   else createLink = `/create/${design}/`
 
   return (

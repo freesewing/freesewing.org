@@ -47,7 +47,7 @@ const Page = (props) => {
   return (
     <AppWrapper
       app={app}
-      title={props.pageContext.title}
+      title={props.data.allMdx.edges[0].node.frontmatter.title}
       description={props.data.allMdx.edges[0].node.excerpt}
       image={props.data.allMdx.edges[0].node.frontmatter.img.childImageSharp.fluid.originalImg}
       {...app.treeProps(props.path)}
@@ -97,6 +97,7 @@ export const pageQuery = graphql`
             date
             year: date
             linktitle
+            title
             caption
             author
             img {
