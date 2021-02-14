@@ -12,7 +12,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import useDesign from '../../hooks/useDesign'
 import useTiler from '../../hooks/useTiler'
 
-const ExportPattern = ({ app, data }) => {
+const ExportPattern = ({ app, data, handle = false }) => {
   // State
   const [link, setLink] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -73,7 +73,7 @@ const ExportPattern = ({ app, data }) => {
     })
     fileSaver.saveAs(blob, 'pattern.svg')
   }
-  const convert = (svg, format, size = 'full') => tiler.tile(svg, format, size)
+  const convert = (svg, format, size = 'full') => tiler.tile(svg, format, size, handle, data.design)
 
   // Style
   const styles = {

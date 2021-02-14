@@ -20,7 +20,7 @@ const Page = (props) => {
       title={app.translate('app.exportPattern')}
       {...app.treeProps(props.location.pathname, false)}
     >
-      <ExportPattern app={app} data={pattern.data} />
+      <ExportPattern app={app} data={pattern.data} handle={props.params.pattern} />
     </AppWrapper>
   )
 }
