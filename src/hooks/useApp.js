@@ -40,7 +40,6 @@ function useApp(full = true) {
   const [loading, setLoading] = useState(false)
   const [menu, setMenu] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
-  const [mounted, setMounted] = useState(false) // false until app is mounted
   const [context, setContext] = useState([])
   const [toc, setToc] = useState(false)
   const [tree, setTree] = useState(useTree(translate))
@@ -149,8 +148,6 @@ function useApp(full = true) {
       setMenu,
       title,
       setTitle,
-      mounted,
-      setMounted,
       context,
       setContext,
       toc,
@@ -308,8 +305,6 @@ function useApp(full = true) {
     setMenu,
     title,
     setTitle,
-    mounted,
-    setMounted,
     context,
     setContext,
     toc,

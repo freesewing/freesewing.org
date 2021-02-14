@@ -247,10 +247,6 @@ exports.createPages = async ({ actions, graphql }) => {
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
 
-  //await createMdxPages('blog', actions.createPage, graphql, language)
-  //await createMdxPages('showcase', actions.createPage, graphql, language)
-  //await createMdxPages('docs', actions.createPage, graphql, language)
-
   await createPerDesignPages(actions.createPage, language)
   await createPerMeasurementPages(actions.createPage, language)
   await createDynamicPages(actions.createPage)

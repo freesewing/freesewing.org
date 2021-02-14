@@ -1,0 +1,16 @@
+@import '../../../node_modules/open-color/open-color.scss';
+
+div.ais-Hits {
+  div.search-hit {
+    margin-bottom: 1rem;
+    div.path,
+    h5 {
+      margin: 0;
+      padding: 0;
+      line-height: 1.1;
+    }
+    div.path {
+      font-size: 0.9rem;
+    }
+  }
+}

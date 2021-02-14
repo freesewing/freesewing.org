@@ -46,7 +46,6 @@ const AppWrapper = (props) => {
       }
     } else delete tree.offspring.account
     props.app.setTree(tree)
-    props.app.setMounted(true)
   }, [])
 
   useScrolledDown((s) => setScrolledDown(s))
@@ -84,23 +83,6 @@ const AppWrapper = (props) => {
   }
   const theme = createMuiTheme(themes[props.app.theme])
   const mainMenu = <MainMenu app={props.app} slug={props.slug} />
-
-  if (!props.app.mounted)
-    return (
-      <MuiThemeProvider theme={theme}>
-        <Meta {...meta} />
-        <div className={wrapperClasses}>
-          {props.noLayout ? (
-            props.children
-          ) : (
-            <Layout {...props} mainMenu={mainMenu}>
-              {props.children}
-            </Layout>
-          )}
-          <Footer language={process.env.GATSBY_LANGUAGE} app={props.app} />
-        </div>
-      </MuiThemeProvider>
-    )
 
   return (
     <Bugsnag>

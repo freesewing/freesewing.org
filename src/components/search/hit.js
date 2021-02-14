@@ -5,11 +5,11 @@ import { Link } from 'gatsby'
 const Hit = (clickHandler) => ({ hit }) => {
   return (
     <div className="search-hit">
-      <h2>
+      <h5>
         <Link to={hit.path} onClick={clickHandler}>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </Link>
-      </h2>
+      </h5>
       <div className="path">
         <Link to={hit.path} onClick={clickHandler}>
           {hit.path}
