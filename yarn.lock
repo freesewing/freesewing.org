@@ -1522,10 +1522,10 @@
     bin-pack "^1.0.2"
     hooks "^0.3.2"
 
-"@freesewing/cornelius@^2.14.0":
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/@freesewing/cornelius/-/cornelius-2.14.0.tgz#0562e4244db267ed14bb4d334a01b559074913f2"
-  integrity sha512-L6tK276xPB1W10gEdRYkdLUSNCbmv76lTpfCV1a6hniV096otegOLXtm86YMg1DodUDCUS2YHaGjl2oRnoi9Lg==
+"@freesewing/cornelius@^2.14.1":
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/@freesewing/cornelius/-/cornelius-2.14.1.tgz#e992f5d826076af87e8b0560529154b8ff7381cc"
+  integrity sha512-UKZl4H8T4waHxDFS0vPaxanFq3cytlyMT/G3hhfSKjknRsDvXfnk4drv6NsxQ94MzEafdESAng7jZlzP9Co61w==
 
 "@freesewing/css-theme@2.14.0":
   version "2.14.0"
