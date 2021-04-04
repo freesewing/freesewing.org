@@ -53,6 +53,24 @@ const mdxQuery = function (type, language) {
   }`
 }
 
+const newsletterQuery = () => `{
+  allMdx(
+    filter: {fields: {source: {eq: "newsletter"}}}
+    sort: { fields: [fileAbsolutePath], order: DESC }
+  ) {
+    edges {
+      node {
+        fileAbsolutePath
+        parent {
+          ... on File {
+            relativeDirectory
+          }
+        }
+      }
+    }
+  }
+}`
+
 // Gets the page title for a given slug
 const pageTitle = (slug, page) => {
   if (!page.frontmatter || !page.frontmatter.title) {
@@ -132,6 +150,40 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
       }
     })
   }
+
+  return Promise.all(promises)
+}
+
+const createNewsletterPages = async function (pages, createPage, graphql, language) {
+  let promises = []
+  pages = {}
+  let query = newsletterQuery()
+  let component = path.resolve(`./src/pages/newsletter/_mdx.js`)
+  await graphql(query).then((res) => {
+    if (typeof res.data === 'undefined') throw 'query failed ' + query
+    else {
+      for (let page of res.data.allMdx.edges) {
+        let slug = `/newsletter/${page.node.parent.relativeDirectory}/`
+        pages[slug] = {
+          path: slug,
+          component,
+          context: {
+            // Keep file here, it is used in the page query to filter
+            file: page.node.fileAbsolutePath
+          }
+        }
+      }
+    }
+    for (let slug in pages) {
+      console.log('Creating', slug)
+      promises.push(
+        new Promise((resolve, reject) => {
+          createPage(pages[slug])
+          resolve(true)
+        })
+      )
+    }
+  })
 
   return Promise.all(promises)
 }
@@ -246,6 +298,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
+  await createNewsletterPages(pages, actions.createPage, graphql, language)
 
   await createPerDesignPages(actions.createPage, language)
   await createPerMeasurementPages(actions.createPage, language)

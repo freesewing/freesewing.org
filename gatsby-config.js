@@ -15,10 +15,19 @@ const plugins = [
   // Automatically restores your cache and caches new files within the Netlify cache folder.
   //   To reset the cache, hit the Clear build cache checkbox in the Netlify app.
   'gatsby-plugin-netlify-cache',
+  'gatsby-plugin-mdx-source-name',
   {
     resolve: 'gatsby-plugin-nprogress',
     options: {
       color: '#9775fa'
+    }
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: `${__dirname}/markdown/newsletter`,
+      name: 'newsletter'
+      //ignore: ignore
     }
   },
   {

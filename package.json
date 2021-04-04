@@ -91,6 +91,7 @@
     "gatsby-plugin-feed": "^2.10.0",
     "gatsby-plugin-manifest": "^2.12.1",
     "gatsby-plugin-mdx": "1.10.1",
+    "gatsby-plugin-mdx-source-name": "^1.0.1",
     "gatsby-plugin-netlify": "2.11.1",
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-nprogress": "2.10.0",
