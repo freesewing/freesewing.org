@@ -9,6 +9,7 @@ import bruce from '@freesewing/bruce'
 import carlton from '@freesewing/carlton'
 import carlita from '@freesewing/carlita'
 import cathrin from '@freesewing/cathrin'
+import charlie from '@freesewing/charlie'
 import cornelius from '@freesewing/cornelius'
 import diana from '@freesewing/diana'
 import florent from '@freesewing/florent'
@@ -45,6 +46,7 @@ const designs = {
   carlita,
   carlton,
   cathrin,
+  charlie,
   cornelius,
   diana,
   florent,
