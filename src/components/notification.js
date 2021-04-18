@@ -25,7 +25,6 @@ const Notification = ({ notification, setNotification, mobile }) => {
   else if (msg instanceof Object) {
     // We seem to hit this (only) when testing headless with cypress
     // It most likely has something to do with the notification in localstorage
-    console.log({ msg })
     msg = (
       <span
         key="message"

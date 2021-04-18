@@ -59,7 +59,6 @@ const Page = (props) => {
   const info = patternInfo[design]
   info.measurements = measurements[design]
   info.options = options[design]
-  console.log(info)
 
   const difficulty = []
   for (let i = 1; i <= info.difficulty; i++)
