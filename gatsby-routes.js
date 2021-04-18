@@ -97,6 +97,29 @@ const dupes = {
       ],
       to: ['carlton', 'jaeger']
     }
+  ],
+  titan: [
+    {
+      options: [
+        'waistease',
+        'seatease',
+        'kneeease',
+        'waistheight',
+        'lengthbonus',
+        'crotchdrop',
+        'crossseamcurvestart',
+        'crossseamcurvebend',
+        'crossseamcurveangle',
+        'crotchseamcurvestart',
+        'crotchseamcurvebend',
+        'crotchseamcurveangle',
+        'grainlineposition',
+        'legbalance',
+        'waistbalance',
+        'waistbandwidth'
+      ],
+      to: ['paco', 'charlie']
+    }
   ]
 }
 
