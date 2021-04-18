@@ -1,10 +1,11 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import capitalize from '@freesewing/utils/capitalize'
+import Blockquote from '@freesewing/components/Blockquote'
 import { Link } from 'gatsby'
 import PatternOptions from './pattern-options'
 import PatternMeasurements from './pattern-measurements'
-import { measurements } from '@freesewing/pattern-info'
+import { info, measurements } from '@freesewing/pattern-info'
 import Button from '@material-ui/core/Button'
 import PlayIcon from '@material-ui/icons/PlayArrow'
 import Hashtag from '../hashtag'
@@ -12,6 +13,18 @@ import Hashtag from '../hashtag'
 const PatternIndexPage = (props) => {
   return (
     <>
+      {info[props.pattern].deprecated && (
+        <Blockquote type="note">
+          <h5>{capitalize(props.pattern)} is deprecated</h5>
+          <p>
+            We recommend{' '}
+            <Link to={`/designs/${info[props.pattern].deprecated}/`}>
+              {capitalize(info[props.pattern].deprecated)}
+            </Link>{' '}
+            instead.
+          </p>
+        </Blockquote>
+      )}
       <div
         style={{
           display: 'flex',

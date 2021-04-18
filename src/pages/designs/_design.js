@@ -11,8 +11,9 @@ import Button from '@material-ui/core/Button'
 import { info as patternInfo, measurements, options } from '@freesewing/pattern-info'
 import PatternMeasurements from '../../components/docs/pattern-measurements'
 import PatternOptions from '../../components/docs/pattern-options'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import LineDrawing from '@freesewing/components/LineDrawing'
+import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
 
@@ -58,6 +59,7 @@ const Page = (props) => {
   const info = patternInfo[design]
   info.measurements = measurements[design]
   info.options = options[design]
+  console.log(info)
 
   const difficulty = []
   for (let i = 1; i <= info.difficulty; i++)
@@ -95,6 +97,15 @@ const Page = (props) => {
       prev={app.getPrev(props.path)}
       next={app.getNext(props.path)}
     >
+      {info.deprecated && (
+        <Blockquote type="note">
+          <h5>{capitalize(design)} is deprecated</h5>
+          <p>
+            We recommend{' '}
+            <Link to={`/designs/${info.deprecated}/`}>{capitalize(info.deprecated)}</Link> instead.
+          </p>
+        </Blockquote>
+      )}
       <div className="spaced">
         <Button
           data-test="create"
