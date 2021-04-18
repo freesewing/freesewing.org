@@ -53,6 +53,7 @@ const Page = (props) => {
       description={props.data.allMdx.edges[0].node.excerpt}
       image={img.originalImg}
       {...app.treeProps(props.path)}
+      edit={props.data.allMdx.edges[0].node.parent.relativeDirectory}
     >
       <div style={style.meta} data-test="meta">
         <FormattedDate value={frontmatter.date} year="numeric" month="long" day="2-digit" />
@@ -85,6 +86,11 @@ export const pageQuery = graphql`
     allMdx(filter: { fileAbsolutePath: { eq: $file } }) {
       edges {
         node {
+          parent {
+            ... on File {
+              relativeDirectory
+            }
+          }
           excerpt
           body
           tableOfContents(maxDepth: 3)

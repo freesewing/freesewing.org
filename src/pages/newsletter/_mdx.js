@@ -39,6 +39,8 @@ const Page = (props) => {
       title={name}
       description={`FreeSewing newsletter - ${name}`}
       crumbs={crumbs}
+      edit={props.data.allMdx.edges[0].node.parent.relativeDirectory}
+      newsletter={true}
     >
       <Mdx node={props.data.allMdx.edges[0].node} />
     </AppWrapper>
@@ -53,6 +55,11 @@ export const pageQuery = graphql`
     allMdx(filter: { fileAbsolutePath: { eq: $file } }) {
       edges {
         node {
+          parent {
+            ... on File {
+              relativeDirectory
+            }
+          }
           body
           parent {
             ... on File {
