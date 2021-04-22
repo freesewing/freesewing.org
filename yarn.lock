@@ -4213,10 +4213,10 @@ blob-util@2.0.2:
   resolved "https://registry.yarnpkg.com/blob-util/-/blob-util-2.0.2.tgz#3b4e3c281111bb7f11128518006cdc60b403a1eb"
   integrity sha512-T7JQa+zsXXEa6/8ZhHcQEW1UFfVM49Ts65uBkFL6fz2QmrElqmbajIDJvuA0tEhRe5eIjpV9ZF+0RfZR9voJFQ==
 
-blobs@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/blobs/-/blobs-2.1.0.tgz#b29edbcfa6ddd5fdeae60fb7551bb315f427b527"
-  integrity sha512-WsyfV7G0xNyOaA+pR7whHbHksgFlcDPvWcY9heJXaOl78/1O1VXnhXDJmSF2m1QjtvdNtc5tNKQ0sk+7lUCxlg==
+blobs@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/blobs/-/blobs-2.2.0.tgz#9195cdfeb6d12264526ed6a865e1ccc82f2064b6"
+  integrity sha512-r44CNxZX+EPVV2z/JiTcsluumJDq+TYQnWA4KdJG4IpiUAVqVob9xR6CmNpGwaecpSL/Hq0vdiwSHnF8VaDj0g==
 
 block-stream@*:
   version "0.0.9"
