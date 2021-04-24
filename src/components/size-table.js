@@ -4,7 +4,7 @@ import {
   measurements as allMeasurements,
   sizes as allSizes,
   withBreasts,
-  withoutBreasts
+  withoutBreasts,
 } from '@freesewing/models'
 import formatMm from '@freesewing/utils/formatMm'
 import Icon from '@freesewing/components/Icon'
@@ -18,14 +18,14 @@ const SizeTable = (props) => {
   const style = {
     wrapper: {
       overflowX: 'auto',
-      marginBottom: '1rem'
+      marginBottom: '1rem',
     },
     th: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
-      alignItems: 'center'
-    }
+      alignItems: 'center',
+    },
   }
 
   const icon = <Icon icon={props.breasts ? 'withBreasts' : 'withoutBreasts'} />
@@ -67,7 +67,7 @@ const SizeTable = (props) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </div>,
   ]
 }
 

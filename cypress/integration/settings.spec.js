@@ -20,7 +20,7 @@ describe('Account settings', function () {
     'instagram',
     'twitter',
     'email',
-    'username'
+    'username',
   ]
 
   it('Verify translations and links', function () {

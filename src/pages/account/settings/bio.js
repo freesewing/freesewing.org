@@ -20,8 +20,8 @@ const Page = (props) => {
     preview: {
       margin: '1rem 0',
       borderRadius: '6px',
-      padding: '1rem 2rem'
-    }
+      padding: '1rem 2rem',
+    },
   }
 
   return (

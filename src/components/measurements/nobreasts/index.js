@@ -59,5 +59,5 @@ export default {
   shouldertoshoulder,
   shouldertowrist,
   upperleg,
-  wrist
+  wrist,
 }

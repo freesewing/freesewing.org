@@ -9,18 +9,18 @@ const PaypalButton = (props) => {
     2: {
       name: 'monkey',
       code: 'pm',
-      item: 'Powder Monkey'
+      item: 'Powder Monkey',
     },
     4: {
       name: 'mate',
       code: 'fm',
-      item: 'First Mate'
+      item: 'First Mate',
     },
     8: {
       name: 'captain',
       code: 'capt',
-      item: 'Captain'
-    }
+      item: 'Captain',
+    },
   }
 
   const form = formData[tier]

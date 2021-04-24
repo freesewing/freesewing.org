@@ -5,7 +5,7 @@ const Meta = (props) => {
   const dflt = {
     title: 'FreeSewing',
     description: 'We are a community of makers. We provide made-to-measure sewing patterns',
-    image: 'https://freesewing.org/splash.png'
+    image: 'https://freesewing.org/splash.png',
   }
 
   const title = props.title || dflt.title

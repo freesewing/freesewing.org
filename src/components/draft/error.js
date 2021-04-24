@@ -14,25 +14,25 @@ const DraftError = ({
   app,
   preview = false,
   data,
-  pattern
+  pattern,
 }) => {
   const uiMdx = useUiMdx()
   // Style
   const styles = {
     errorWrapper: {
       maxWidth: '800px',
-      margin: 'auto'
+      margin: 'auto',
     },
     error: {
       overflowX: 'auto',
       fontSize: '80%',
-      fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`
+      fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
     },
     header: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-around'
-    }
+      justifyContent: 'space-around',
+    },
   }
 
   const uiPath = 'errors/broken-' + (preview ? 'draft-preview' : 'draft')

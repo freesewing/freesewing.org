@@ -14,14 +14,14 @@ const Page = (props) => {
     body: {
       maxWidth: '60ch',
       fontSize: '115%',
-      margin: 'auto'
-    }
+      margin: 'auto',
+    },
   }
   const seasons = {
     q1: 'Winter',
     q2: 'Spring',
     q3: 'Summer',
-    q4: 'Autumn'
+    q4: 'Autumn',
   }
   const edition = props.data.allMdx.edges[0].node.parent.relativeDirectory
   const name = `${seasons[edition.slice(4, 6)]} ${edition.slice(0, 4)}`
@@ -29,8 +29,8 @@ const Page = (props) => {
   const crumbs = [
     {
       title: 'Newsletter',
-      slug: '/newsletter/'
-    }
+      slug: '/newsletter/',
+    },
   ]
 
   return (

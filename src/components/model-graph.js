@@ -76,7 +76,7 @@ const ModelGraph = (props) => {
     if (measurement) {
       setText(
         props.intl.formatMessage({
-          id: 'measurements.' + measurement
+          id: 'measurements.' + measurement,
         }) +
           ': ' +
           (isDegMeasurement(measurement)
@@ -97,7 +97,7 @@ const ModelGraph = (props) => {
     angle = (angle * Math.PI) / 180
     return {
       x: y * Math.sin(angle) + x * Math.cos(angle),
-      y: y * Math.cos(angle) - x * Math.sin(angle)
+      y: y * Math.cos(angle) - x * Math.sin(angle),
     }
   }
 
@@ -116,7 +116,7 @@ const ModelGraph = (props) => {
       let slice = {
         c: rotate(0, size, angle),
         cw: rotate(size / -5, size, angle),
-        ccw: rotate(size / 5, size, angle)
+        ccw: rotate(size / 5, size, angle),
       }
       points.push(slice)
       let isOwn = own(hor[i])

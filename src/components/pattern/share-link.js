@@ -24,7 +24,7 @@ const PatternShareLink = (props) => {
               onCopy={() =>
                 props.app.setNotification({
                   type: 'success',
-                  msg: props.app.translate('app.copiedToClipboard')
+                  msg: props.app.translate('app.copiedToClipboard'),
                 })
               }
             >

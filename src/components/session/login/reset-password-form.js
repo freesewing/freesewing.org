@@ -17,7 +17,7 @@ const ResetPasswordForm = (props) => (
           <FormattedMessage
             id="app.forgotLoginInstructions"
             values={{
-              b: (...chunks) => <strong>{chunks}</strong>
+              b: (...chunks) => <strong>{chunks}</strong>,
             }}
           />
           .

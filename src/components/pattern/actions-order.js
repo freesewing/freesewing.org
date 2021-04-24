@@ -9,5 +9,5 @@ export default [
   'saveAs',
   'export',
   'details',
-  'delete'
+  'delete',
 ]

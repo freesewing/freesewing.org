@@ -19,23 +19,23 @@ const Page = (props) => {
   const crumbs = [
     {
       slug: `/create/`,
-      title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+      title: app.translate('app.newThing', { thing: app.translate('app.pattern') }),
     },
     {
       slug: `/create/${props.pageContext.design}/`,
       title: app.translate('app.newThing', {
-        thing: app.translate(`patterns.${props.pageContext.design}.title`)
-      })
-    }
+        thing: app.translate(`patterns.${props.pageContext.design}.title`),
+      }),
+    },
   ]
   const title =
     props.person === 'any'
       ? app.translate('app.newThing', {
-          thing: app.translate(`patterns.${props.pageContext.design}.title`)
+          thing: app.translate(`patterns.${props.pageContext.design}.title`),
         })
       : app.translate('app.newPatternForModel', {
           pattern: app.translate(`patterns.${props.pageContext.design}.title`),
-          model: person.name || props.person
+          model: person.name || props.person,
         })
 
   // Initial pattern data
@@ -53,9 +53,9 @@ const Page = (props) => {
       metadata: {
         for: person.name || props.person,
         forHandle: props.person,
-        breasts: person.breasts || false
-      }
-    }
+        breasts: person.breasts || false,
+      },
+    },
   }
   for (let m of requiredMeasurements[props.pageContext.design]) {
     data.settings.measurements[m] = person.measurements[m]

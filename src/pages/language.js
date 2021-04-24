@@ -18,18 +18,18 @@ const Page = (props) => {
       marginBottom: '1rem',
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
     },
     icon: {
-      marginRight: '1rem'
+      marginRight: '1rem',
     },
     text: {
-      marginRight: '1rem'
+      marginRight: '1rem',
     },
     muted: {
       opacity: 0.6,
-      fontStyle: 'italic'
-    }
+      fontStyle: 'italic',
+    },
   }
 
   const context = [
@@ -47,7 +47,7 @@ const Page = (props) => {
           </li>
         )
       })}
-    </ul>
+    </ul>,
   ]
 
   return (
@@ -74,7 +74,7 @@ const Page = (props) => {
                 : [
                     <span key="open"> (</span>,
                     <FormattedMessage id={'i18n.' + lang} key="lang" />,
-                    <span key="close">)</span>
+                    <span key="close">)</span>,
                   ]}
             </div>
             <div>

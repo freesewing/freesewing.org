@@ -16,7 +16,7 @@ const adminMethods = ({
   setPatterns,
   setPeople,
   setAdmin,
-  admin
+  admin,
 }) => {
   const adminSearch = (query) => backend.adminSearch(query, token)
 
@@ -29,12 +29,12 @@ const adminMethods = ({
           setLoading(false)
           setNotification({
             type: 'success',
-            msg: 'Patron status set to ' + patron
+            msg: 'Patron status set to ' + patron,
           })
         } else {
           setNotification({
             type: 'error',
-            msg: 'Return status code was not 200'
+            msg: 'Return status code was not 200',
           })
         }
       })
@@ -42,7 +42,7 @@ const adminMethods = ({
         setLoading(false)
         setNotification({
           type: 'error',
-          msg: err
+          msg: err,
         })
       })
   }
@@ -56,12 +56,12 @@ const adminMethods = ({
           setLoading(false)
           setNotification({
             type: 'success',
-            msg: 'Role set to ' + role
+            msg: 'Role set to ' + role,
           })
         } else {
           setNotification({
             type: 'error',
-            msg: 'Return status code was not 200'
+            msg: 'Return status code was not 200',
           })
         }
       })
@@ -69,7 +69,7 @@ const adminMethods = ({
         setLoading(false)
         setNotification({
           type: 'error',
-          msg: err
+          msg: err,
         })
       })
   }
@@ -83,12 +83,12 @@ const adminMethods = ({
           setLoading(false)
           setNotification({
             type: 'success',
-            msg: 'Account unfrozen'
+            msg: 'Account unfrozen',
           })
         } else {
           setNotification({
             type: 'error',
-            msg: 'Return status code was not 200'
+            msg: 'Return status code was not 200',
           })
         }
       })
@@ -96,7 +96,7 @@ const adminMethods = ({
         setLoading(false)
         setNotification({
           type: 'error',
-          msg: err
+          msg: err,
         })
       })
   }
@@ -116,12 +116,12 @@ const adminMethods = ({
           setLoading(false)
           setNotification({
             type: 'success',
-            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username }),
           })
         } else {
           setNotification({
             type: 'error',
-            msg: 'Return status code was not 200'
+            msg: 'Return status code was not 200',
           })
         }
       })
@@ -129,7 +129,7 @@ const adminMethods = ({
         setLoading(false)
         setNotification({
           type: 'error',
-          msg: err
+          msg: err,
         })
       })
   }
@@ -139,7 +139,7 @@ const adminMethods = ({
     adminSetPatronStatus,
     adminSetRole,
     adminUnfreeze,
-    adminImpersonate
+    adminImpersonate,
   }
 }
 

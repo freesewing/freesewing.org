@@ -16,34 +16,34 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
     wrapper: {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
     },
     person: {
       maxWidth: '300px',
       margin: '0.5rem',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     name: {
       margin: 0,
-      wordWrap: 'anywhere'
+      wordWrap: 'anywhere',
     },
     sizes: {
       margin: 0,
       padding: 0,
-      listStyleType: 'none'
+      listStyleType: 'none',
     },
     li: {
-      display: 'inline'
+      display: 'inline',
     },
     size: {
       margin: '0 0.5rem 0.5rem 0',
       display: 'inline-block',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     bq: {
       maxWidth: '500px',
-      margin: '0'
-    }
+      margin: '0',
+    },
   }
   if (app.tablet) styles.person.width = '150px'
   if (app.mobile) styles.person.width = '200px'
@@ -108,7 +108,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
                 id="app.countModelsLackingForPattern"
                 values={{
                   count: people.no.user.length,
-                  pattern: design
+                  pattern: design,
                 }}
               />
               :

@@ -16,25 +16,25 @@ const Dialog = ({
   setDisplay,
   setLoading,
   recreate = false,
-  edit = false
+  edit = false,
 }) => {
   // State
   const [action, setAction] = useState('pick')
   const styles = {
     button: {
-      margin: '0.5rem'
+      margin: '0.5rem',
     },
     buttonIcon: {
-      marginRight: '1rem'
+      marginRight: '1rem',
     },
     buttonRightIcon: {
-      marginLeft: '1rem'
+      marginLeft: '1rem',
     },
     expand: {
       fontWeight: 'normal',
       fontSize: '1.25rem',
-      padding: '0 1rem'
-    }
+      padding: '0 1rem',
+    },
   }
 
   const close = () => {

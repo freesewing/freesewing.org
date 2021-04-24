@@ -9,11 +9,11 @@ const LoadingLayout = (props) => {
     flexDirection: 'column',
     justifyContent: 'center',
     padding: '1.5rem',
-    width: 'calc(100% - 3rem)'
+    width: 'calc(100% - 3rem)',
   }
   const style = {
     textAlign: 'center',
-    maxWidth: '600px'
+    maxWidth: '600px',
   }
 
   return (

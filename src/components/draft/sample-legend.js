@@ -10,7 +10,7 @@ const SampleLegend = (props) => {
     fontWeight: 'bold',
     fill: 'currentColor',
     textAlign: 'center',
-    textAnchor: 'middle'
+    textAnchor: 'middle',
   }
   const lineStyles = jsxSampleStyles(props.dark)
   let i = -1

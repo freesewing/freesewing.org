@@ -8,62 +8,62 @@ export function jsxSampleStyles(dark) {
       ...shared,
       stroke: oc.red6,
       strokeDasharray: '1 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.red6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.red6})`,
     },
     {
       ...shared,
       stroke: oc.blue6,
       strokeDasharray: '12 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.blue6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.blue6})`,
     },
     {
       ...shared,
       stroke: oc.green6,
       strokeDasharray: '20 2 1 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.green6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.green6})`,
     },
     {
       ...shared,
       stroke: oc.orange6,
       strokeDasharray: '4 3',
-      filter: `drop-shadow(0px 0px 1px ${oc.orange6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.orange6})`,
     },
     {
       ...shared,
       stroke: oc.pink6,
       strokeDasharray: '2 2 22 3 2 2 2 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.pink6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.pink6})`,
     },
     {
       ...shared,
       stroke: oc.teal6,
       strokeDasharray: '1 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.teal6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.teal6})`,
     },
     {
       ...shared,
       stroke: oc.yellow6,
       strokeDasharray: '12 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.yellow6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.yellow6})`,
     },
     {
       ...shared,
       stroke: oc.grape6,
       strokeDasharray: '20 2 1 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.grape6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.grape6})`,
     },
     {
       ...shared,
       stroke: oc.indigo6,
       strokeDasharray: '4 3',
-      filter: `drop-shadow(0px 0px 1px ${oc.indigo6})`
+      filter: `drop-shadow(0px 0px 1px ${oc.indigo6})`,
     },
     {
       ...shared,
       stroke: oc.cyan6,
       strokeDasharray: '12 2 22 3 2 2 2 2',
-      filter: `drop-shadow(0px 0px 1px ${oc.cyan6})`
-    }
+      filter: `drop-shadow(0px 0px 1px ${oc.cyan6})`,
+    },
   ]
 }
 
@@ -71,7 +71,7 @@ export function jsxFocusStyle(dark) {
   return {
     fill: 'url(#sample-fill)',
     stroke: dark ? oc.gray0 : oc.gray9,
-    strokeWidth: 1
+    strokeWidth: 1,
   }
 }
 

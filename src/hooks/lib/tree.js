@@ -110,7 +110,7 @@ function order(pages) {
     tmp[key] = {
       ...pages[key],
       ordertitle: pages[key].ordertitle + pages[key].title,
-      key
+      key,
     }
   return orderBy(tmp, ['ordertitle'])
 }
@@ -122,5 +122,5 @@ export default {
   getNextSibling,
   getNextParent,
   getPrevSibling,
-  getParent
+  getParent,
 }

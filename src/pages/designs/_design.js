@@ -27,31 +27,31 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'left'
+      justifyContent: 'left',
     },
     col: {
       maxWidth: '290px',
-      margin: '1rem'
+      margin: '1rem',
     },
     img: {
       marginTop: '1rem',
-      borderRadius: '4px'
+      borderRadius: '4px',
     },
     star: {
-      color: 'orange'
+      color: 'orange',
     },
     table: {},
     keyTd: {
       textAlign: 'right',
       padding: '0.25rem 1rem 0.25rem 0',
       lineHeight: 1.15,
-      fontWeight: 300
+      fontWeight: 300,
     },
     valTd: {
       lineHeight: 1.15,
       padding: '0.25rem 0',
-      fontWeight: 500
-    }
+      fontWeight: 500,
+    },
   }
   if (app.mobile) styles.col.width = '100%'
 

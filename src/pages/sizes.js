@@ -23,7 +23,7 @@ const Page = (props) => {
           maxWidth: '1600px',
           width: '100%',
           margin: '0 auto',
-          paddingBottom: '3rem'
+          paddingBottom: '3rem',
         }}
       >
         <BreadCrumbs app={props.app} pageTitle={title} />
@@ -33,7 +33,7 @@ const Page = (props) => {
             maxWidth: '600px',
             width: '100%',
             margin: '0',
-            padding: '1rem'
+            padding: '1rem',
           }}
         >
           <FormControlLabel

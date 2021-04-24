@@ -30,18 +30,18 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
     },
     avatar: {
       width: 'calc(50% - 1rem)',
-      borderRadius: '6px'
+      borderRadius: '6px',
     },
     dropzone: {
       width: 'calc(50% - 3rem)',
       border: '6px dashed #aaa',
       textAlign: 'center',
-      padding: '2rem 1rem'
-    }
+      padding: '2rem 1rem',
+    },
   }
 
   if (app.mobile) {

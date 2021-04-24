@@ -73,5 +73,5 @@ export default {
   shouldertowrist,
   underbust,
   upperleg,
-  wrist
+  wrist,
 }

@@ -42,7 +42,7 @@ const Page = (props) => {
         person: pattern.data.settings.metadata
           ? pattern.data.settings.metadata.forHandle
           : pattern.data.model,
-        data: pattern.data
+        data: pattern.data,
       })
       .then((data) => {
         setLoading(false)

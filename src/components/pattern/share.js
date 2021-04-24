@@ -18,10 +18,10 @@ const SavePattern = (props) => {
     let mdx = uiMdx['draft/sharing-patterns-requires-an-account']
     let btnProps = {
       style: {
-        margin: '0.5rem'
+        margin: '0.5rem',
       },
       color: 'primary',
-      size: 'large'
+      size: 'large',
     }
     return (
       <Blockquote type="note">
@@ -59,7 +59,7 @@ const SavePattern = (props) => {
         name,
         person: props.person,
         notes,
-        data
+        data,
       })
       .then((res) => {
         console.log(res)
@@ -70,13 +70,13 @@ const SavePattern = (props) => {
   const styles = {
     wrapper: {
       maxWidth: '42em',
-      margin: 'auto'
+      margin: 'auto',
     },
     preview: {
       margin: '1rem 0',
       borderRadius: '6px',
-      padding: '1rem 2rem'
-    }
+      padding: '1rem 2rem',
+    },
   }
 
   return (
@@ -99,7 +99,7 @@ const SavePattern = (props) => {
                 <InvalidIcon color="error" />
               )}
             </InputAdornment>
-          )
+          ),
         }}
       />
       <TextField

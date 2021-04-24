@@ -16,21 +16,21 @@ const MobileMenu = ({ app, mainMenu }) => {
   // Style
   const colors = {
     light: '#212529',
-    dark: '#f8f9fa'
+    dark: '#f8f9fa',
   }
   const style = {
     wrapper: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      minHeight: '100vh'
+      minHeight: '100vh',
     },
     icons: {
       textAlign: 'center',
-      margin: '1rem auto'
+      margin: '1rem auto',
     },
     iconButton: {
-      color: colors[app.theme]
+      color: colors[app.theme],
     },
     toggle: {
       display: 'flex',
@@ -38,8 +38,8 @@ const MobileMenu = ({ app, mainMenu }) => {
       color: 'inherit',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0 1.5rem'
-    }
+      padding: '0 1.5rem',
+    },
   }
 
   // Icons
@@ -47,23 +47,23 @@ const MobileMenu = ({ app, mainMenu }) => {
     home: {
       title: 'app.home',
       link: '/',
-      icon: <Logo size={22} />
+      icon: <Logo size={22} />,
     },
     discord: {
       title: 'app.chatOnDiscord',
       link: 'https://chat.freesewing.org/',
-      icon: <Icon icon="discord" />
+      icon: <Icon icon="discord" />,
     },
     search: {
       title: 'app.search',
       link: '/search/',
-      icon: <SearchIcon />
+      icon: <SearchIcon />,
     },
     language: {
       title: 'account.language',
       link: '/language/',
-      icon: <LanguageIcon />
-    }
+      icon: <LanguageIcon />,
+    },
   }
 
   return (

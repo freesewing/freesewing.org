@@ -112,11 +112,11 @@ ${e.stack}
           patternProps: {
             settings: YAML.stringify(patternProps.settings),
             events: YAML.stringify(patternProps.events),
-            parts: JSON.stringify(patternProps.parts, null, 2)
+            parts: JSON.stringify(patternProps.parts, null, 2),
           },
           traces: tracesFromPatternProps(patternProps),
           error,
-          compareWith
+          compareWith,
         })
         .then((res) =>
           setIssue(`https://github.com/freesewing/freesewing.org/issues/${res.data.id}`)
@@ -172,7 +172,7 @@ ${e.stack}
         models: compareWith,
         styles: sampleStyles(app.theme === 'dark'),
         focus: 'model',
-        focusStyle: focusStyle(app.theme === 'dark')
+        focusStyle: focusStyle(app.theme === 'dark'),
       }
       draft.sample()
       patternProps = draft.getRenderProps()
@@ -309,7 +309,7 @@ ${e.stack}
           )}
         </span>
       </li>
-    )
+    ),
   }
 
   // Fit to screen

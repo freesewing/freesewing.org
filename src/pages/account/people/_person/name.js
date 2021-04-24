@@ -40,7 +40,7 @@ const Page = (props) => {
                 <InvalidIcon color="error" />
               )}
             </InputAdornment>
-          )
+          ),
         }}
       />
       <p style={{ textAlign: 'right' }}>

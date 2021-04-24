@@ -57,17 +57,17 @@ const AppWrapper = (props) => {
   // Scroll to top style
   let sttBase = {
     right: props.app.mobile ? 'calc(1.5rem + 64px)' : '1rem',
-    transition: 'margin-bottom ease-in-out 0.1s'
+    transition: 'margin-bottom ease-in-out 0.1s',
   }
   const style = {
     showStt: {
       ...sttBase,
-      marginBottom: 0
+      marginBottom: 0,
     },
     hideStt: {
       ...sttBase,
-      marginBottom: 'calc(-64px - 1rem)'
-    }
+      marginBottom: 'calc(-64px - 1rem)',
+    },
   }
 
   let wrapperClasses = props.app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
@@ -79,7 +79,7 @@ const AppWrapper = (props) => {
   const meta = {
     title: props.title || false,
     description: props.description || false,
-    image: props.image || false
+    image: props.image || false,
   }
   const theme = createMuiTheme(themes[props.app.theme])
   const mainMenu = <MainMenu app={props.app} slug={props.slug} />

@@ -59,12 +59,12 @@ const Page = (props) => {
   const crumbs = [
     {
       slug: `/patterns/`,
-      title: app.translate('app.patterns')
+      title: app.translate('app.patterns'),
     },
     {
       slug: `/patterns/${props.params.pattern}/`,
-      title
-    }
+      title,
+    },
   ]
 
   if (person && pattern && design)

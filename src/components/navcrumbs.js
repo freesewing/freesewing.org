@@ -14,7 +14,7 @@ const NavCrumbs = ({ slug, app }) => {
     let slug = '/' + chunks.join('/') + '/'
     crumbs.push({
       slug,
-      title: app.pages[slug].title
+      title: app.pages[slug].title,
     })
   }
   return <BreadCrumbs crumbs={crumbs.reverse()} app={app} pageTitle={app.pages[slug].title} />

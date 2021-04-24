@@ -15,7 +15,7 @@ const personMethods = ({
   patterns,
   setAccount,
   setPatterns,
-  setPeople
+  setPeople,
 }) => {
   const createPerson = (data) => {
     setLoading(true)
@@ -27,7 +27,7 @@ const personMethods = ({
           updatePeople(res.data.person, res.data.person.handle)
           setNotification({
             type: 'success',
-            msg: translate('app.created')
+            msg: translate('app.created'),
           })
           navigate(`/account/people/${res.data.person.handle}/`)
         }
@@ -65,13 +65,13 @@ const personMethods = ({
           }
           setNotification({
             type: 'success',
-            msg: translate('app.fieldSaved', { field })
+            msg: translate('app.fieldSaved', { field }),
           })
         } else {
           console.log('Could not save account', res)
           setNotification({
             type: 'error',
-            msg: translate('errors.something')
+            msg: translate('errors.something'),
           })
         }
       })
@@ -90,7 +90,7 @@ const personMethods = ({
         if (res.status === 204) {
           setNotification({
             type: 'success',
-            msg: translate('app.fieldRemoved', { field: translate('app.person') })
+            msg: translate('app.fieldRemoved', { field: translate('app.person') }),
           })
           navigate('/account/people/')
         }
@@ -121,7 +121,7 @@ const personMethods = ({
     removePerson,
     savePerson,
     updatePeople,
-    isUsernameAvailable
+    isUsernameAvailable,
   }
 }
 

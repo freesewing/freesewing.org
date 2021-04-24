@@ -20,5 +20,5 @@ export default {
     ' ' +
     'https://www.googleapis.com/auth/userinfo.email' +
     '&access_type=online' +
-    '&state='
+    '&state=',
 }

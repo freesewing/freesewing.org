@@ -7,15 +7,15 @@ const OauthProvider = (props) => {
   let styles = {
     button: {
       width: props.app.mobile ? '100%' : '48%',
-      marginBottom: '1rem'
+      marginBottom: '1rem',
     },
     icon: {
-      marginRight: '1rem'
+      marginRight: '1rem',
     },
     label: {
       maxWidth: '16ch',
-      textAlign: 'left'
-    }
+      textAlign: 'left',
+    },
   }
 
   if (props.list)

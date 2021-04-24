@@ -16,18 +16,18 @@ const UserSocial = (props) => {
     return [
       renderIcon(social.twitter, 'twitter', props.size),
       renderIcon(social.instagram, 'instagram', props.size),
-      renderIcon(social.github, 'github', props.size)
+      renderIcon(social.github, 'github', props.size),
     ]
   }
 
   const styles = {
     icon: {
-      margin: '0.25rem'
+      margin: '0.25rem',
     },
     mutedIcon: {
       margin: '0.25rem',
-      opacity: '0.5'
-    }
+      opacity: '0.5',
+    },
   }
 
   if (typeof props.accounts === 'undefined' || props.accounts === null) return null

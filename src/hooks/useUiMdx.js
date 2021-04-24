@@ -24,7 +24,7 @@ function useUiMdx() {
     uiMdx[id] = {
       title: node.node.frontmatter.title,
       excerpt: node.node.excerpt,
-      body: node.node.body
+      body: node.node.body,
     }
   }
 

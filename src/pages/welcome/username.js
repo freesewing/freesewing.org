@@ -53,7 +53,7 @@ const Page = (props) => {
                   <InvalidIcon color="error" />
                 )}
               </InputAdornment>
-            )
+            ),
           }}
         />
         <p>

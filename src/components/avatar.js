@@ -8,7 +8,7 @@ const Avatar = (props) => {
     display: 'inline-block',
     backgroundColor: '#000',
     backgroundImage: 'url("https://freesewing.org/avatar.svg")',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
   }
 
   const { picture, pictureUris } = props.data

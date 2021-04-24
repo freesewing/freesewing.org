@@ -14,7 +14,7 @@ const Dialog = React.memo((props) => {
     props.app
       .updatePattern(props.pattern.handle, {
         person: props.pattern.person,
-        data: props.data
+        data: props.data,
       })
       .then((err) => {
         props.setDialog(false)
@@ -39,7 +39,7 @@ const Dialog = React.memo((props) => {
     person: props.person,
     setAction: props.setAction,
     setDialog: props.setDialog,
-    setPattern: props.setPattern
+    setPattern: props.setPattern,
   }
 
   const titles = {
@@ -53,7 +53,7 @@ const Dialog = React.memo((props) => {
     save: props.app.translate('app.saveThing', { thing: props.app.translate('app.pattern') }),
     saveAs: props.app.translate('app.saveAsNewPattern'),
     units: props.app.translate('account.units'),
-    zoom: props.app.translate('app.zoom')
+    zoom: props.app.translate('app.zoom'),
   }
 
   const colors = {
@@ -66,7 +66,7 @@ const Dialog = React.memo((props) => {
     save: 'primary',
     saveAs: 'primary',
     units: props.units === 'metric' ? 'primary' : 'secondary',
-    zoom: props.fit ? 'primary' : 'secondary'
+    zoom: props.fit ? 'primary' : 'secondary',
   }
 
   const info = {
@@ -79,7 +79,7 @@ const Dialog = React.memo((props) => {
     save: 'app.savePattern-txt',
     saveAs: 'app.saveAsNewPattern-txt',
     units: 'account.unitsInfo',
-    zoom: 'app.zoom-txt'
+    zoom: 'app.zoom-txt',
   }
 
   const actions = {
@@ -101,7 +101,7 @@ const Dialog = React.memo((props) => {
     zoom: () => {
       props.setFit(!props.fit)
       props.setDialog(false)
-    }
+    },
   }
 
   const getInfo = (type) => {

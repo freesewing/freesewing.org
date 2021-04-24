@@ -14,7 +14,7 @@ const formatData = (app, mdata, breasts, person = false) => {
         if (!person || typeof person.measurements[m] === 'number') {
           dd.push({
             x: app.translate('measurements.' + m),
-            y: mdata[size][m]
+            y: mdata[size][m],
           })
         }
       }
@@ -28,7 +28,7 @@ const formatData = (app, mdata, breasts, person = false) => {
       if (typeof person.measurements[m] === 'number' && typeof mdata.size36[m] !== 'undefined') {
         dd.push({
           x: app.translate('measurements.' + m),
-          y: person.measurements[m]
+          y: person.measurements[m],
         })
       }
     }

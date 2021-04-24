@@ -13,7 +13,7 @@ const alwaysDrop = [
   'person',
   'admin',
   'welcome',
-  '404.html'
+  '404.html',
 ]
 
 const titles = {
@@ -53,7 +53,7 @@ const titles = {
   '/community/who/patrons/': 'app.patrons',
   '/designs/': 'app.designs',
   '/docs/': 'app.docs',
-  '/showcase/': 'app.showcase'
+  '/showcase/': 'app.showcase',
 }
 // No translate for these
 const brands = {
@@ -65,7 +65,7 @@ const brands = {
   '/community/where/instagram/': 'Instagram',
   '/community/where/reddit/': 'Reddit',
   '/community/where/twitter/': 'Twitter',
-  '/community/where/youtube/': 'YouTube'
+  '/community/where/youtube/': 'YouTube',
 }
 
 const getTranslatedTitle = (slug, translate) => {

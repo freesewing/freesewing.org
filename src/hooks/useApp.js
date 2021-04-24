@@ -117,11 +117,11 @@ function useApp(full = true) {
           slug,
           prev: getPrev(slug),
           next: getNext(slug),
-          crumbs: getCrumbs(slug)
+          crumbs: getCrumbs(slug),
         }
       : {
           slug,
-          crumbs: getCrumbs(slug)
+          crumbs: getCrumbs(slug),
         }
 
   if (!full)
@@ -176,7 +176,7 @@ function useApp(full = true) {
       slate,
 
       // Site language
-      language: process.env.GATSBY_LANGUAGE
+      language: process.env.GATSBY_LANGUAGE,
     }
 
   // Only required for some pages
@@ -244,7 +244,7 @@ function useApp(full = true) {
     setLoading(false)
     setNotification({
       type: 'error',
-      msg: error
+      msg: error,
     })
   }
 
@@ -278,7 +278,7 @@ function useApp(full = true) {
     theme,
     setTheme,
     vars,
-    setVars
+    setVars,
   }
 
   return {
@@ -327,7 +327,7 @@ function useApp(full = true) {
     slate,
 
     // Site language
-    language: process.env.GATSBY_LANGUAGE
+    language: process.env.GATSBY_LANGUAGE,
   }
 }
 

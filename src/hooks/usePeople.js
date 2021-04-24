@@ -29,13 +29,13 @@ export default function usePeople(app, design) {
     ok: {
       withBreasts: {},
       withoutBreasts: {},
-      user: []
+      user: [],
     },
     no: {
       withBreasts: {},
       withoutBreasts: {},
-      user: []
-    }
+      user: [],
+    },
   }
 
   // People for users only

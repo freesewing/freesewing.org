@@ -10,14 +10,14 @@ const DraftPreButtons = ({ app, setFit, fit, setDisplay, display }) => {
   const styles = {
     buttons: {
       textAlign: app.mobile ? 'center' : 'right',
-      margin: '1rem auto'
+      margin: '1rem auto',
     },
     button: {
-      margin: '0.5rem'
+      margin: '0.5rem',
     },
     buttonIcon: {
-      marginRight: '0.5rem'
-    }
+      marginRight: '0.5rem',
+    },
   }
 
   return (

@@ -9,7 +9,7 @@ export default {
     44: 'XL',
     46: '2XL',
     48: '3XL',
-    50: '4XL'
+    50: '4XL',
   },
   withBreasts: {
     28: '3XS',
@@ -21,6 +21,6 @@ export default {
     40: 'XL',
     42: '2XL',
     44: '3XL',
-    46: '4XL'
-  }
+    46: '4XL',
+  },
 }

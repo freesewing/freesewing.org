@@ -19,8 +19,8 @@ const Page = (props) => {
       crumbs={[
         {
           slug: '/create/',
-          title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
-        }
+          title: app.translate('app.newThing', { thing: app.translate('app.pattern') }),
+        },
       ]}
       wide
     >

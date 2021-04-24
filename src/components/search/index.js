@@ -23,7 +23,7 @@ export default function Search({ indices, collapse, hitsAsGrid, search }) {
     flexDirection: 'row',
     placeContent: 'center',
     fontFamily: 'Ubuntu',
-    marginTop: '40px'
+    marginTop: '40px',
   }
 
   return (

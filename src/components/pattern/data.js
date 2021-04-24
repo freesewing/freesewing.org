@@ -19,7 +19,7 @@ const PatternData = (props) => (
               yaml.stringify(props.data || null),
               Prism.languages.yaml,
               'yaml'
-            )
+            ),
           }}
         />
       </pre>

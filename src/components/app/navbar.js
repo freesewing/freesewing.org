@@ -43,7 +43,7 @@ const ButtonAppBar = (props) => {
 
   const colors = {
     light: '#212529',
-    dark: '#f8f9fa'
+    dark: '#f8f9fa',
   }
 
   const style = {
@@ -53,7 +53,7 @@ const ButtonAppBar = (props) => {
       margin: 0,
       padding: 0,
       background: '#1a1d21',
-      zIndex: 15
+      zIndex: 15,
     },
     logo: {
       textDecoration: 'none',
@@ -61,59 +61,59 @@ const ButtonAppBar = (props) => {
       width: '42px',
       padding: '11px',
       display: 'inline-block',
-      color: colors.dark
+      color: colors.dark,
     },
     button: {
       height: '64px',
       padding: '0',
-      color: colors.dark
+      color: colors.dark,
     },
     icon: {
       maxWidth: '24px',
-      maxHeight: '24px'
+      maxHeight: '24px',
     },
     iconButton: {
-      width: '36px'
+      width: '36px',
     },
     spacer: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     darkModeIcon: {
       transform: 'rotate(26deg)',
       maxWidth: '24px',
-      maxHeight: '24px'
-    }
+      maxHeight: '24px',
+    },
   }
   const icons = {
     blog: <BlogIcon />,
     community: <CommunityIcon />,
     designs: <Icon icon="withBreasts" />,
     docs: <DocsIcon />,
-    showcase: <ShowcaseIcon />
+    showcase: <ShowcaseIcon />,
   }
 
   const popoverProps = {
     anchorOrigin: {
       vertical: 'bottom',
-      horizontal: 'left'
+      horizontal: 'left',
     },
     transformOrigin: {
       vertical: 'top',
-      horizontal: 'left'
+      horizontal: 'left',
     },
     disableRestoreFocus: true,
-    elevation: 1
+    elevation: 1,
   }
 
   const buttonProps = {
     color: 'primary',
     size: 'large',
-    style: style.button
+    style: style.button,
   }
   buttonProps['aria-haspopup'] = 'true'
 
   const iconStyle = {
-    marginRight: props.app.tablet ? '0' : '0.5rem'
+    marginRight: props.app.tablet ? '0' : '0.5rem',
   }
 
   return (

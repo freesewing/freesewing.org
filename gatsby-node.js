@@ -119,8 +119,8 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
               title: pageTitle(slug, page.node),
               order: page.node.frontmatter.order,
               // Keep file here, it is used in the page query to filter
-              file: page.node.fileAbsolutePath
-            }
+              file: page.node.fileAbsolutePath,
+            },
           }
           // Handle duplicates in docs
           if (type === 'docs' && typeof routes.duplicates[slug] !== 'undefined') {
@@ -133,8 +133,8 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
                   title: pages.docs[slug].context.title,
                   order: pages.docs[slug].context.order,
                   // Keep file here, it is used in the page query to filter
-                  file: pages.docs[slug].context.file
-                }
+                  file: pages.docs[slug].context.file,
+                },
               }
             }
           }
@@ -169,8 +169,8 @@ const createNewsletterPages = async function (pages, createPage, graphql, langua
           component,
           context: {
             // Keep file here, it is used in the page query to filter
-            file: page.node.fileAbsolutePath
-          }
+            file: page.node.fileAbsolutePath,
+          },
         }
       }
     }
@@ -197,7 +197,7 @@ const createPerDesignPages = async function (createPage, language) {
           createPage({
             path: match.replace('_design', design),
             component: path.resolve(`./src/pages/${routes.perDesign.single[match]}`),
-            context: { design }
+            context: { design },
           })
           resolve(true)
         })
@@ -215,8 +215,8 @@ const createPerDesignPages = async function (createPage, language) {
               design,
               // This is required because string interpolation is not allowed in page graphql queries
               optionsMdxRegex: `//docs/patterns/${design}/options/[^/]*/${language}.md/`,
-              settingsMdxRegex: `//docs/draft/settings/${language}.md/`
-            }
+              settingsMdxRegex: `//docs/draft/settings/${language}.md/`,
+            },
           })
           resolve(true)
         })
@@ -241,8 +241,8 @@ const createPerMeasurementPages = async function (createPage, language) {
             context: {
               measurement,
               // This is required because string interpolation is not allowed in page graphql queries
-              measurementsMdxRegex: `//docs/measurements/${measurement.toLowerCase()}/${language}.md/`
-            }
+              measurementsMdxRegex: `//docs/measurements/${measurement.toLowerCase()}/${language}.md/`,
+            },
           })
           resolve(true)
         })
@@ -261,7 +261,7 @@ const createDynamicPages = async function (createPage) {
         createPage({
           path: match.slice(0, -1),
           matchPath: match,
-          component: path.resolve(`./src/pages/${routes.dynamic[match]}`)
+          component: path.resolve(`./src/pages/${routes.dynamic[match]}`),
         })
         resolve(true)
       })
@@ -280,7 +280,7 @@ const createRedirects = async function (createRedirect) {
           fromPath: from,
           toPath: routes.redirect[from],
           isPermanent: true,
-          redirectInBrowser: true
+          redirectInBrowser: true,
         })
         resolve(true)
       })
@@ -326,12 +326,12 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
         parent: null,
         patron: {
           ...patron,
-          tier: tier
+          tier: tier,
         },
         internal: {
-          type: `FSPatron`
+          type: `FSPatron`,
         },
-        order: i
+        order: i,
       }
       i++
 

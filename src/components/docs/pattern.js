@@ -31,7 +31,7 @@ const PatternIndexPage = (props) => {
           flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
-          marginTop: '1rem'
+          marginTop: '1rem',
         }}
       >
         <p>
@@ -49,7 +49,7 @@ const PatternIndexPage = (props) => {
             <FormattedMessage
               id="app.newThing"
               values={{
-                thing: [capitalize(props.pattern), ' ', <FormattedMessage id={`app.pattern`} />]
+                thing: [capitalize(props.pattern), ' ', <FormattedMessage id={`app.pattern`} />],
               }}
             />
           </Button>

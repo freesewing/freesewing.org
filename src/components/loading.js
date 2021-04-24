@@ -15,19 +15,19 @@ const Loading = (props) => {
       zIndex: 15,
       display: 'flex',
       alignContent: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     inner: {
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     msg: {
       color: '#fff',
       textAlign: 'center',
       margin: '-40px 0 0',
-      padding: 0
-    }
+      padding: 0,
+    },
   }
 
   return (

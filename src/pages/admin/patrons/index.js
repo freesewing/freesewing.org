@@ -27,7 +27,7 @@ const Page = (props) => {
               bio: patron.bio,
               social: patron.social,
               email: patron.email,
-              initial: patron.initial
+              initial: patron.initial,
             })
           setPatrons(res.data)
           setList(l)

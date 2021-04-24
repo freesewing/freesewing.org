@@ -2,7 +2,7 @@ import { withBreasts, withoutBreasts } from '@freesewing/models'
 
 const sizes = {
   a: withoutBreasts,
-  b: withBreasts
+  b: withBreasts,
 }
 
 export default function usePerson(app, handle = false) {
@@ -14,7 +14,7 @@ export default function usePerson(app, handle = false) {
       notAPerson: true,
       handle: 'any',
       name: 'any',
-      measurements: {}
+      measurements: {},
     }
   }
   if (handle.slice(0, 5) === 'size-') {
@@ -30,7 +30,7 @@ export default function usePerson(app, handle = false) {
         notAPerson: true,
         handle: name,
         name,
-        measurements: sizes[build][size]
+        measurements: sizes[build][size],
       }
     }
   }

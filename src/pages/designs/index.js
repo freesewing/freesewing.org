@@ -21,8 +21,8 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   }
 
   return (
@@ -45,7 +45,7 @@ const Page = (props) => {
             app={app}
             img={{
               src: '/designs/' + design + '.jpg',
-              alt: capitalize(design)
+              alt: capitalize(design),
             }}
             title={capitalize(design)}
             description={app.translate('patterns.' + design + '.description')}

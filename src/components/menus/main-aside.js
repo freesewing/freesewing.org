@@ -14,7 +14,7 @@ const links = {
   showcase: 'app.showcase',
   blog: 'app.blog',
   docs: 'app.docs',
-  account: 'app.account'
+  account: 'app.account',
 }
 const icons = {
   designs: <Icon icon="withBreasts" />,
@@ -22,7 +22,7 @@ const icons = {
   blog: <BlogIcon />,
   docs: <DocsIcon />,
   community: <CommunityIcon />,
-  account: <AccountIcon />
+  account: <AccountIcon />,
 }
 
 const MainMenu = ({ app, active = '', footer = false }) => (

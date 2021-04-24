@@ -15,8 +15,8 @@ const UserProfile = (props) => {
   const styles = {
     avatar: {
       background: '#000',
-      borderRadius: '4px'
-    }
+      borderRadius: '4px',
+    },
   }
   if (!user) return <pre>{JSON.stringify(props, null, 2)}</pre>
 

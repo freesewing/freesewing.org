@@ -13,7 +13,7 @@ const accountMethods = ({
   patterns,
   setAccount,
   setPatterns,
-  setPeople
+  setPeople,
 }) => {
   const createAccount = (confirmId, consent) => {
     setLoading(true)
@@ -26,7 +26,7 @@ const accountMethods = ({
           navigate('/welcome/')
           setNotification({
             type: 'success',
-            msg: translate('app.accountCreated') + ' 🙌  ' + translate('app.welcomeAboard') + ' 🎉'
+            msg: translate('app.accountCreated') + ' 🙌  ' + translate('app.welcomeAboard') + ' 🎉',
           })
         } else return res.status
       })
@@ -49,7 +49,7 @@ const accountMethods = ({
         if (data[1] === 'settings') field = translate(`account.${data[2]}`)
         setNotification({
           type: 'success',
-          msg: translate('app.fieldSaved', { field })
+          msg: translate('app.fieldSaved', { field }),
         })
       })
       .catch((error) => showError(error))
@@ -78,11 +78,11 @@ const accountMethods = ({
             account: { username: false },
             people: {},
             patterns: {},
-            token: ''
+            token: '',
           })
           setNotification({
             type: 'success',
-            msg: translate('account.accountRemoved')
+            msg: translate('account.accountRemoved'),
           })
           navigate('/')
         }
@@ -100,11 +100,11 @@ const accountMethods = ({
             account: { username: false },
             people: {},
             patterns: {},
-            token: ''
+            token: '',
           })
           setNotification({
             type: 'success',
-            msg: translate('app.accountRestricted')
+            msg: translate('app.accountRestricted'),
           })
           navigate('/')
         }
@@ -121,7 +121,7 @@ const accountMethods = ({
         if (res.status === 200) {
           setNotification({
             type: 'success',
-            msg: translate('app.checkInboxClickLinkInConfirmationEmail')
+            msg: translate('app.checkInboxClickLinkInConfirmationEmail'),
           })
         }
       })
@@ -139,7 +139,7 @@ const accountMethods = ({
           navigate('/account/')
           setNotification({
             type: 'success',
-            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username }),
           })
         } else console.log('res in hook', res)
         return res.status
@@ -165,7 +165,7 @@ const accountMethods = ({
     refreshAccount,
     signup,
     loadProfile,
-    saveAccount
+    saveAccount,
   }
 }
 

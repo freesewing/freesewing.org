@@ -17,7 +17,7 @@ const icons = {
   docs: <DocsIcon {...iStyle} />,
   community: <CommunityIcon {...iStyle} />,
   account: <AccountIcon {...iStyle} />,
-  login: <LoginIcon {...iStyle} />
+  login: <LoginIcon {...iStyle} />,
 }
 
 const onPath = (slug, chunks) => {
@@ -41,7 +41,7 @@ const getSiblings = (slug, tree, chunks, level = 1) => {
   for (let key of Object.keys(branch.offspring)) {
     tmp[key] = {
       ...branch.offspring[key],
-      key
+      key,
     }
     if (typeof tmp[key].ordertitle === 'undefined')
       tmp[key].ordertitle = branch.offspring[key].order + branch.offspring[key].title
@@ -76,7 +76,7 @@ const MainMenu = ({ app, slug = '/fixme/' }) => {
     community: app.translate('cty.community'),
     showcase: app.translate('app.showcase'),
     blog: app.translate('app.blog'),
-    docs: app.translate('app.docs')
+    docs: app.translate('app.docs'),
   }
   let order = {}
   for (let key in links) order[links[key]] = key

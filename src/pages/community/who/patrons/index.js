@@ -19,22 +19,22 @@ const Page = (props) => {
       flexDirection: 'column',
       alignItems: 'center',
       marginBottom: '2rem',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     avatar: {
       width: 'calc(100% - 15px)',
       borderRadius: '50%',
-      background: '#000'
+      background: '#000',
     },
     list: {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
     },
     username: {
       fontWeight: 500,
-      margin: '-0.5rem 0 0.5rem 0'
-    }
+      margin: '-0.5rem 0 0.5rem 0',
+    },
   }
 
   // Preprocess data

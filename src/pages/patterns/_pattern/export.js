@@ -44,7 +44,7 @@ const Page = (props) => {
       description={description}
       crumbs={[
         { title: app.translate('app.patterns'), slug: '/patterns/' },
-        { title, slug: `/patterns/${props.params.pattern}/` }
+        { title, slug: `/patterns/${props.params.pattern}/` },
       ]}
     >
       <ExportPattern app={app} data={pattern.data} />

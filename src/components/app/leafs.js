@@ -7,58 +7,58 @@ export function patternLeaf(pattern, translate) {
     offspring: {
       name: {
         title: translate('app.editThing', {
-          thing: translate('app.name').toLowerCase()
+          thing: translate('app.name').toLowerCase(),
         }),
         slug: `/account/patterns/${pattern.handle}/name/`,
-        offspring: {}
+        offspring: {},
       },
       notes: {
         title: translate('app.editThing', {
-          thing: translate('app.notes').toLowerCase()
+          thing: translate('app.notes').toLowerCase(),
         }),
         slug: `/account/patterns/${pattern.handle}/notes/`,
-        offspring: {}
+        offspring: {},
       },
       edit: {
         title: translate('app.editThing', {
-          thing: translate('app.pattern')
+          thing: translate('app.pattern'),
         }),
         slug: `/account/patterns/${pattern.handle}/edit/`,
-        offspring: {}
+        offspring: {},
       },
       export: {
         title: translate('app.exportPattern'),
         slug: `/account/patterns/${pattern.handle}/export/`,
-        offspring: {}
+        offspring: {},
       },
       share: {
         title: translate('app.shareThing', {
-          thing: translate('app.pattern')
+          thing: translate('app.pattern'),
         }),
         slug: `/account/patterns/${pattern.handle}/share/`,
-        offspring: {}
+        offspring: {},
       },
       recreate: {
         title: translate('app.recreatePattern'),
         slug: `/recreate/${pattern.data.design}/from/${pattern.handle}/`,
-        offspring: {}
+        offspring: {},
       },
       'save-as': {
         title: translate('app.saveAsNewPattern'),
         slug: `/account/patterns/${pattern.handle}/save-as/`,
-        offspring: {}
+        offspring: {},
       },
       data: {
         title: 'YAML',
         slug: `/account/patterns/${pattern.handle}/data/`,
-        offspring: {}
+        offspring: {},
       },
       remove: {
         title: translate('app.removeThing', { thing: translate('app.pattern') }),
         slug: `/account/patterns/${pattern.handle}/remove/`,
-        offspring: {}
-      }
-    }
+        offspring: {},
+      },
+    },
   }
 }
 
@@ -72,7 +72,7 @@ export function personLeaf(person, translate) {
     mnodes[m.toLowerCase()] = {
       title,
       slug: `/account/people/${person.handle}/measurements/${m.toLowerCase()}/`,
-      offspring: {}
+      offspring: {},
     }
   }
 
@@ -82,49 +82,49 @@ export function personLeaf(person, translate) {
     offspring: {
       name: {
         title: translate('app.editThing', {
-          thing: translate('app.name').toLowerCase()
+          thing: translate('app.name').toLowerCase(),
         }),
         slug: `/account/people/${person.handle}/name/`,
-        offspring: {}
+        offspring: {},
       },
       chest: {
         title: translate('app.editThing', {
-          thing: translate('app.chest').toLowerCase()
+          thing: translate('app.chest').toLowerCase(),
         }),
         slug: `/account/people/${person.handle}/chest/`,
-        offspring: {}
+        offspring: {},
       },
       units: {
         title: translate('app.editThing', {
-          thing: translate('account.units').toLowerCase()
+          thing: translate('account.units').toLowerCase(),
         }),
         slug: `/account/people/${person.handle}/units/`,
-        offspring: {}
+        offspring: {},
       },
       avatar: {
         title: translate('app.editThing', {
-          thing: translate('account.avatar').toLowerCase()
+          thing: translate('account.avatar').toLowerCase(),
         }),
         slug: `/account/people/${person.handle}/avatar/`,
-        offspring: {}
+        offspring: {},
       },
       notes: {
         title: translate('app.editThing', {
-          thing: translate('app.notes').toLowerCase()
+          thing: translate('app.notes').toLowerCase(),
         }),
         slug: `/account/people/${person.handle}/notes/`,
-        offspring: {}
+        offspring: {},
       },
       measurements: {
         title: translate('app.measurements'),
         slug: `/account/people/${person.handle}/measurements/`,
-        offspring: mnodes
+        offspring: mnodes,
       },
       remove: {
         title: translate('app.removeThing', { thing: translate('app.person') }),
         slug: `/account/people/${person.handle}/remove/`,
-        offspring: {}
-      }
-    }
+        offspring: {},
+      },
+    },
   }
 }

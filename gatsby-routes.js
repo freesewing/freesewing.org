@@ -33,56 +33,56 @@ const dupes = {
         'sleevecapq4spread2',
         'sleevecaptopfactorx',
         'sleevecaptopfactory',
-        'sleevewidthguarantee'
+        'sleevewidthguarantee',
       ],
-      to: ['huey', 'simon', 'simone', 'sven', 'diana', 'teagan']
+      to: ['huey', 'simon', 'simone', 'sven', 'diana', 'teagan'],
     },
     {
       options: ['backneckcutout', 'frontarmholedeeper', 'shoulderslopereduction'],
-      to: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven']
+      to: ['bent', 'carlita', 'carlton', 'huey', 'hugo', 'jaeger', 'simon', 'sven'],
     },
     {
       options: ['sleevelengthbonus'],
-      to: ['huey', 'hugo']
+      to: ['huey', 'hugo'],
     },
     {
       options: ['sleevecapheight'],
-      to: ['carlita', 'carlton', 'jaeger']
+      to: ['carlita', 'carlton', 'jaeger'],
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo', 'teagan']
+      to: ['bent', 'diana', 'huey', 'hugo', 'teagan'],
     },
     {
       options: ['armholedepthfactor'],
-      to: ['bent', 'huey', 'sven', 'wahid', 'teagan']
+      to: ['bent', 'huey', 'sven', 'wahid', 'teagan'],
     },
     {
       options: ['acrossbackfactor'],
-      to: ['bent', 'diana', 'huey', 'hugo', 'teagan']
+      to: ['bent', 'diana', 'huey', 'hugo', 'teagan'],
     },
     {
       options: ['bicepsease'],
-      to: ['bent', 'huey', 'hugo', 'jaeger']
+      to: ['bent', 'huey', 'hugo', 'jaeger'],
     },
     {
       options: ['chestease', 'cuffease', 'lengthbonus'],
-      to: ['bent', 'huey', 'hugo']
+      to: ['bent', 'huey', 'hugo'],
     },
     {
       options: ['collarease'],
-      to: ['bent', 'huey', 'jaeger', 'sven']
+      to: ['bent', 'huey', 'jaeger', 'sven'],
     },
     {
       options: ['shoulderease'],
-      to: ['bent', 'huey', 'jaeger', 'simon']
-    }
+      to: ['bent', 'huey', 'jaeger', 'simon'],
+    },
   ],
   huey: [
     {
       options: ['ribbingheight'],
-      to: ['hugo']
-    }
+      to: ['hugo'],
+    },
   ],
   carlita: [
     {
@@ -93,10 +93,10 @@ const dupes = {
         'innerpocketplacement',
         'innerpocketweltheight',
         'innerpocketwidth',
-        'lapelreduction'
+        'lapelreduction',
       ],
-      to: ['carlton', 'jaeger']
-    }
+      to: ['carlton', 'jaeger'],
+    },
   ],
   titan: [
     {
@@ -116,11 +116,11 @@ const dupes = {
         'grainlineposition',
         'legbalance',
         'waistbalance',
-        'waistbandwidth'
+        'waistbandwidth',
       ],
-      to: ['paco', 'charlie']
-    }
-  ]
+      to: ['paco', 'charlie'],
+    },
+  ],
 }
 
 for (let from in dupes) {
@@ -166,20 +166,21 @@ const routes = {
       '/showcase/designs/_design/': 'showcase/designs/_design.js',
       '/create/_design/': 'create/_design/index.js',
       '/recreate/_design/': 'create/_design/index.js',
-      '/recreate/_design/from/': 'create/_design/index.js'
+      '/recreate/_design/from/': 'create/_design/index.js',
     },
     multiple: {
       '/create/_design/for/:person': 'create/_design/for/_person.js',
       '/recreate/_design/from/:pattern': 'recreate/_design/from/_pattern/index.js',
       '/recreate/_design/from/:pattern/for': 'recreate/_design/from/_pattern/index.js',
-      '/recreate/_design/from/:pattern/for/:person': 'recreate/_design/from/_pattern/for/_person.js'
-    }
+      '/recreate/_design/from/:pattern/for/:person':
+        'recreate/_design/from/_pattern/for/_person.js',
+    },
   },
   perMeasurement: {
     multiple: {
       '/account/people/:person/measurements/_measurement':
-        'account/people/_person/measurements/_measurement.js'
-    }
+        'account/people/_person/measurements/_measurement.js',
+    },
   },
   dynamic: {
     '/login/callback/:confirmation/:validation': 'login/callback/_index.js',
@@ -208,7 +209,7 @@ const routes = {
     '/patterns/:pattern/edit': 'patterns/_pattern/edit.js',
     '/patterns/:pattern/export': 'patterns/_pattern/export.js',
     '/patterns/:pattern/save-as': 'patterns/_pattern/save-as.js',
-    '/recreate/gist/:gist': 'recreate/gist/_gist.js'
+    '/recreate/gist/:gist': 'recreate/gist/_gist.js',
   },
   duplicates: getDuplicates(),
   redirects: {
@@ -224,8 +225,8 @@ const routes = {
     '/people/': '/account/people/',
     '/patterns/': '/account/patterns/',
     '/patrons/join/': '/community/patrons/join/',
-    '/patrons/thanks/': '/thanks/'
-  }
+    '/patrons/thanks/': '/thanks/',
+  },
 }
 
 for (let pattern of patterns) routes.redirects[`/patterns/${pattern}`] = `/designs/${pattern}/` // Old URL structure

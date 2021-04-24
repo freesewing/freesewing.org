@@ -3,7 +3,7 @@
 const posts = [
   '/showcase/wonder-woman-simon/',
   '/showcase/yellow-button-simon/',
-  '/showcase/linnen-theo/'
+  '/showcase/linnen-theo/',
 ]
 
 describe('Showcase posts', function () {

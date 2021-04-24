@@ -17,7 +17,7 @@ const Page = (props) => {
         <FormattedMessage
           id="app.newThing"
           values={{
-            thing: app.translate('app.pattern')
+            thing: app.translate('app.pattern'),
           }}
         />
       </Button>

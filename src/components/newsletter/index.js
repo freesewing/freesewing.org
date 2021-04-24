@@ -31,7 +31,7 @@ const Newsletter = ({ app, uiMdx, homepage = false }) => {
           if (res.status === 200) {
             app.setNotification({
               type: 'success',
-              msg: app.translate('app.yay')
+              msg: app.translate('app.yay'),
             })
             setSubscribed(true)
           }
@@ -80,7 +80,7 @@ const Newsletter = ({ app, uiMdx, homepage = false }) => {
                   />
                 )}
               </InputAdornment>
-            )
+            ),
           }}
         />
       )}

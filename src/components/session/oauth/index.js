@@ -8,7 +8,7 @@ const Oauth = (props) => {
     props.app.backend
       .initOauth({
         provider: provider,
-        language: process.env.GATSBY_LANGUAGE
+        language: process.env.GATSBY_LANGUAGE,
       })
       .then((result) => {
         if (result.status === 200) window.location = oauthConfig[provider] + result.data.state
@@ -16,7 +16,7 @@ const Oauth = (props) => {
           props.app.setLoading(false)
           props.app.setNotification({
             type: 'error',
-            msg: props.app.translate('errors.something')
+            msg: props.app.translate('errors.something'),
           })
         }
       })
@@ -27,8 +27,8 @@ const Oauth = (props) => {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      flexWrap: 'wrap'
-    }
+      flexWrap: 'wrap',
+    },
   }
 
   if (props.list)
@@ -46,7 +46,7 @@ const Oauth = (props) => {
         app={props.app}
         signup={() => handleSignup('github')}
         list
-      />
+      />,
     ]
 
   return (

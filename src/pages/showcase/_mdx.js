@@ -15,26 +15,26 @@ const Page = (props) => {
 
   const style = {
     base: {
-      maxWidth: '1200px'
+      maxWidth: '1200px',
     },
     meta: {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
-      fontFamily: "'Roboto Condensed', sans-serif"
+      fontFamily: "'Roboto Condensed', sans-serif",
     },
     title: {
-      marginBottom: 0
+      marginBottom: 0,
     },
     figure: {
-      marginTop: 0
+      marginTop: 0,
     },
     body: {
       maxWidth: '60ch',
       fontSize: '115%',
-      margin: 'auto'
-    }
+      margin: 'auto',
+    },
   }
   const tags = frontmatter.patterns
     ? frontmatter.patterns.map((pattern) => {

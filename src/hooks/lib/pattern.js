@@ -14,7 +14,7 @@ const patternMethods = ({
   patterns,
   setAccount,
   setPatterns,
-  setPeople
+  setPeople,
 }) => {
   const createPattern = (data) => {
     setLoading(true)
@@ -26,7 +26,7 @@ const patternMethods = ({
           updatePatterns(res.data, res.data.handle)
           setNotification({
             type: 'success',
-            msg: translate('app.created')
+            msg: translate('app.created'),
           })
           return res.data
         }
@@ -41,7 +41,7 @@ const patternMethods = ({
     let newPatterns = { ...patterns }
     newPatterns[handle] = {
       ...newPatterns[handle],
-      ...data
+      ...data,
     }
     setPatterns(newPatterns)
     return backend
@@ -50,7 +50,7 @@ const patternMethods = ({
         if (res.status === 200) {
           setNotification({
             type: 'success',
-            msg: translate('app.fieldSaved', { field: translate('app.pattern') })
+            msg: translate('app.fieldSaved', { field: translate('app.pattern') }),
           })
         }
       })
@@ -71,7 +71,7 @@ const patternMethods = ({
         if (res.status === 204) {
           setNotification({
             type: 'success',
-            msg: translate('app.fieldRemoved', { field: translate('app.pattern') })
+            msg: translate('app.fieldRemoved', { field: translate('app.pattern') }),
           })
           navigate('/account/patterns/')
         }
@@ -104,7 +104,7 @@ const patternMethods = ({
     removePattern,
     loadPattern,
     savePattern,
-    updatePatterns
+    updatePatterns,
   }
 }
 
