@@ -5,7 +5,7 @@ import AppWrapper from '../../components/app/wrapper'
 import { Link, graphql } from 'gatsby'
 import Mdx from '../../components/mdx'
 import { FormattedDate, FormattedMessage } from 'react-intl'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)

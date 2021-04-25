@@ -4,7 +4,7 @@ import AppWrapper from '../../components/app/wrapper'
 
 import PostPreview from '../../components/post-preview'
 import { graphql } from 'gatsby'
-import { getImage } from "gatsby-plugin-image"
+import { getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp()

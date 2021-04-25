@@ -405,7 +405,11 @@ ${e.stack}
             {app.draftMenu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
           </Fab>
           {app.draftMenu && (
-            <div id='mobile-draft-menu' className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
+            <div
+              id="mobile-draft-menu"
+              className="context-wrapper draft-ui-menu"
+              style={{ zIndex: 10, opacity: 1 }}
+            >
               {preMenu}
             </div>
           )}

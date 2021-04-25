@@ -10,7 +10,7 @@ import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
 import Newsletter from '../components/newsletter'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Style
 import './homepage.scss'

@@ -16,7 +16,7 @@ import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
-import { getImage } from "gatsby-plugin-image"
+import { getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)
