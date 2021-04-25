@@ -41,7 +41,7 @@ function useApp(full = true) {
   const [menu, setMenu] = useState(false)
   const [title, setTitle] = useState('FreeSewing')
   const [context, setContext] = useState([])
-  const [toc, setToc] = useState(false)
+  const [draftMenu, setDraftMenu] = useState(false)
   const [tree, setTree] = useState(useTree(translate))
 
   // Persist user data to local storage
@@ -150,8 +150,8 @@ function useApp(full = true) {
       setTitle,
       context,
       setContext,
-      toc,
-      setToc,
+      draftMenu,
+      setDraftMenu,
       tree,
       setTree,
 
@@ -307,8 +307,8 @@ function useApp(full = true) {
     setTitle,
     context,
     setContext,
-    toc,
-    setToc,
+    draftMenu,
+    setDraftMenu,
     tree,
     setTree,
 

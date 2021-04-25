@@ -400,12 +400,12 @@ ${e.stack}
             color="primary"
             className="fab secondary only-xs accent"
             aria-label="Menu"
-            onClick={() => setMenu(!menu)}
+            onClick={() => app.setDraftMenu(!app.draftMenu)}
           >
-            {menu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
+            {app.draftMenu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
           </Fab>
-          {menu && (
-            <div className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
+          {app.draftMenu && (
+            <div id='mobile-draft-menu' className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
               {preMenu}
             </div>
           )}

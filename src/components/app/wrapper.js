@@ -72,6 +72,7 @@ const AppWrapper = (props) => {
 
   let wrapperClasses = props.app.theme === 'light' ? 'theme-wrapper light' : 'theme-wrapper dark'
   if (props.app.menu) wrapperClasses += ' show-menu'
+  if (props.app.draftMenu) wrapperClasses += ' show-draft-menu'
   if (props.app.tablet) wrapperClasses += ' tablet'
   if (props.app.mobile) wrapperClasses += ' mobile'
   if (!props.app.mobile && !props.app.tablet) wrapperClasses += ' desktop'
