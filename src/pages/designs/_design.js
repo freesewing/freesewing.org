@@ -16,6 +16,7 @@ import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
+import { getImage } from "gatsby-plugin-image"
 
 const Page = (props) => {
   const app = useApp(false)
@@ -213,7 +214,7 @@ const Page = (props) => {
             <PostPreview
               key={node.node.parent.relativeDirectory}
               app={app}
-              img={node.node.frontmatter.img.childImageSharp.fluid}
+              img={getImage(node.node.frontmatter.img)}
               title={node.node.frontmatter.title}
               description={node.node.excerpt}
               link={'/' + node.node.parent.relativeDirectory + '/'}
@@ -249,13 +250,7 @@ export const pageQuery = graphql`
             patterns
             img {
               childImageSharp {
-                fluid(maxWidth: 400) {
-                  srcSet
-                  src
-                  sizes
-                  presentationWidth
-                  presentationHeight
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }

@@ -12,6 +12,7 @@ const domain = language === 'en' ? 'freesewing.org' : language + '.freesewing.or
 
 const plugins = [
   `gatsby-plugin-sass`,
+  `gatsby-plugin-image`,
   'gatsby-plugin-mdx-source-name',
   {
     resolve: 'gatsby-plugin-nprogress',

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const PostPreview = ({
   app,
@@ -56,19 +57,13 @@ const PostPreview = ({
   return (
     <div style={style.post}>
       <Link data-test="post-link" to={link} style={style.link} title={title}>
-        {imgComponent ? (
-          imgComponent
-        ) : (
-          <figure style={style.figure}>
-            <img
-              src={img.src}
-              style={style.img}
-              srcSet={img.srcSet || ''}
-              alt={caption || title}
-              className="shadow"
-            />
-          </figure>
-        )}
+        <figure style={style.figure}>
+          <GatsbyImage
+            image={img}
+            alt={caption || title}
+            className="shadow"
+          />
+        </figure>
         <h5 style={style.title}>{title}</h5>
         <p style={style.blurb}>{description}</p>
       </Link>

@@ -10,6 +10,7 @@ import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
 import Newsletter from '../components/newsletter'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // Style
 import './homepage.scss'
@@ -21,14 +22,11 @@ const renderBlogPost = (node) => (
       title={node.node.frontmatter.linktitle}
       className="image"
     >
-      <figure>
-        <img
-          src={node.node.frontmatter.img.childImageSharp.fluid.src}
-          srcSet={node.node.frontmatter.img.childImageSharp.fluid.srcSet || ''}
-          alt={node.node.frontmatter.title}
-          className="shadow"
-        />
-      </figure>
+      <GatsbyImage
+        image={getImage(node.node.frontmatter.img)}
+        alt={node.node.frontmatter.title}
+        className="shadow"
+      />
     </Link>
     <Link
       to={`/${node.node.parent.relativeDirectory}/`}
@@ -101,13 +99,7 @@ export const pageQuery = graphql`
             author
             img {
               childImageSharp {
-                fluid(maxWidth: 400) {
-                  src
-                  srcSet
-                  sizes
-                  presentationWidth
-                  presentationHeight
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
