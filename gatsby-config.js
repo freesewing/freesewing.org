@@ -15,17 +15,10 @@ const plugins = [
   `gatsby-plugin-image`,
   'gatsby-plugin-mdx-source-name',
   {
-    resolve: 'gatsby-plugin-nprogress',
-    options: {
-      color: '#9775fa',
-    },
-  },
-  {
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/markdown/newsletter`,
       name: 'newsletter',
-      //ignore: ignore
     },
   },
   {
@@ -39,19 +32,7 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-mdx',
     options: {
-      extensions: ['.mdx', '.md'],
-      // Plugins workaround. See: https://github.com/gatsbyjs/gatsby/issues/15486
-      plugins: [
-        {
-          resolve: 'gatsby-remark-images',
-          options: {
-            maxWidth: 800,
-            showCaptions: ['title', 'alt'],
-            markdownCaptions: true,
-            backgroundColor: `, 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)`,
-          },
-        },
-      ],
+      extensions: ['.md'],
       gatsbyRemarkPlugins: [
         {
           resolve: 'gatsby-remark-images',
@@ -71,8 +52,6 @@ const plugins = [
         },
         'gatsby-remark-copy-linked-files',
         'gatsby-remark-autolink-headers',
-        'gatsby-remark-smartypants',
-        'gatsby-remark-check-links',
         {
           resolve: 'gatsby-remark-jargon',
           options: { jargon },
@@ -97,12 +76,12 @@ const plugins = [
     },
   },
   'gatsby-plugin-netlify',
-  {
-    resolve: `gatsby-plugin-feed`,
-    options: {
-      feeds: feeds,
-    },
-  },
+  //{
+  //  resolve: `gatsby-plugin-feed`,
+  //  options: {
+  //    feeds: feeds,
+  //  },
+  //},
 ]
 
 // Only update the Algolia indices when having the ALGOLIA_UPDATE_KEY set.
@@ -120,15 +99,13 @@ if (process.env.CONTEXT === 'production' && process.env.HEAD === 'main') {
 }
 
 module.exports = {
-  flags: {
-    DEV_SSR: true,
-    //QUERY_ON_DEMAND: true,
-    FAST_DEV: true,
-    LAZY_IMAGES: true,
-    PRESERVE_WEBPACK_CACHE: true,
-    PRESERVE_FILE_DOWNLOAD_CACHE: true,
-    FAST_REFRESH: true,
-  },
+  //flags: {
+  //  //QUERY_ON_DEMAND: true,
+  //  FAST_DEV: true,
+  //  DEV_SSR: true,
+  //  PRESERVE_WEBPACK_CACHE: true,
+  //  PRESERVE_FILE_DOWNLOAD_CACHE: true,
+  //},
   plugins: plugins,
   siteMetadata: {
     title: 'FreeSewing',
