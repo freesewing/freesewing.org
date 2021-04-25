@@ -1,6 +1,7 @@
 import React from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { graphql, Link } from 'gatsby'
 
@@ -14,8 +15,12 @@ const Page = (props) => {
       flexWrap: 'wrap',
       justifyContent: 'center',
     },
+    postWrapper: {
+      maxHeight: '300px',
+      maxWidth: '300px',
+      margin: '10px',
+    },
     img: {
-      height: '300px',
       margin: '6px',
       padding: 0,
       borderRadius: '4px',
@@ -41,23 +46,24 @@ const Page = (props) => {
     let showcases = []
     let i = 0
     for (let showcase of posts) {
-      let img = showcase.frontmatter.img.childImageSharp.fixed
+      let img = getImage(showcase.frontmatter.img)
       showcases.push(
-        <Link
-          to={`/${showcase.parent.relativeDirectory}/`}
-          style={style.link}
-          key={`fig-${i}`}
-          title={showcase.frontmatter.title}
-        >
-          <img
-            data-test="img"
-            src={img.src}
-            style={style.img}
-            srcSet={img.srcSet}
-            alt={showcase.frontmatter.title}
-            className="shadow"
-          />
-        </Link>
+        <div style={style.postWrapper}>
+          <Link
+            to={`/${showcase.parent.relativeDirectory}/`}
+            style={style.link}
+            key={`fig-${i}`}
+            title={showcase.frontmatter.title}
+          >
+            <GatsbyImage
+              data-test="img"
+              image={img}
+              style={style.img}
+              alt={showcase.frontmatter.title}
+              className="shadow"
+            />
+          </Link>
+        </div>
       )
       i++
     }
@@ -99,9 +105,7 @@ export const pageQuery = graphql`
             title
             img {
               childImageSharp {
-                fixed(height: 300) {
-                  src
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }
