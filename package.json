@@ -135,7 +135,7 @@
     "styled-components": "^5.2.1",
     "tlds": "1.220.0",
     "trim-right": "1.0.1",
-    "yaml": "1.10.0"
+    "yaml": "1.10.2"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
