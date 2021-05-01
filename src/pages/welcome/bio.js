@@ -52,7 +52,7 @@ const Page = (props) => {
           <FormattedMessage id="app.preview" />
         </h6>
         <div style={styles.preview} className="shadow">
-          <Markdown source={bio} />
+          <Markdown>{bio}</Markdown>
         </div>
         <p>
           <Button

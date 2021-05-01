@@ -27,7 +27,7 @@ const LatestNews = (props) => {
   return news ? (
     news.map((a) => (
       <div className="news-article shadow">
-        <Markdown source={a} />
+        <Markdown>{a}</Markdown>
       </div>
     ))
   ) : (

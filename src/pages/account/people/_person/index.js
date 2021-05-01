@@ -26,7 +26,7 @@ const Page = (props) => {
           <h5>
             <FormattedMessage id="app.notes" />
           </h5>
-          <Markdown source={person.notes} data-test="notes" />
+          <Markdown>{person.notes}</Markdown>
         </>
       )}
     </AppWrapper>

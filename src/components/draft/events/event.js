@@ -12,10 +12,9 @@ const Event = ({ type, event, app }) => {
       <summary>
         <Highlight dense code={`${err.name}: ${err.message}`} lang="js-error" />
       </summary>
-      <Markdown
-        source={`Error in \`${err.fileName}\` line \`${err.lineNumber}:${err.columnNumber}\``}
-        className="react-markdown"
-      />
+      <Markdown className="react-markdown">
+        {`Error in \`${err.fileName}\` line \`${err.lineNumber}:${err.columnNumber}\``}
+      </Markdown>
       <Highlight code={err.stack} lang="js-trace" />
     </details>
   )
@@ -32,13 +31,12 @@ const Event = ({ type, event, app }) => {
     } else {
       if (app.intl.messages[e]) e = app.intl.messages[e]
       else if (app.intl.messages[`plugin.${e}`]) e = app.intl.messages[`plugin.${e}`]
-      if (type === 'info') data.push(<Markdown source={e} className="react-markdown" />)
+      if (type === 'info') data.push(<Markdown className="react-markdown">{e}</Markdown>)
       else
         data.push(
-          <Markdown
-            source={`**${app.translate('app.' + type)}:** ${e}`}
-            className="react-markdown"
-          />
+          <Markdown className="react-markdown">
+            {`**${app.translate('app.' + type)}:** ${e}`}
+          </Markdown>
         )
     }
 

@@ -138,7 +138,7 @@ const SavePattern = (props) => {
       </h6>
       <div style={styles.preview} className="shadow">
         <h5>{name}</h5>
-        <Markdown source={notes} />
+        <Markdown>{notes}</Markdown>
       </div>
     </div>
   )

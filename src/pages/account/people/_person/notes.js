@@ -69,7 +69,7 @@ const Page = (props) => {
         <FormattedMessage id="app.preview" />
       </h6>
       <div style={styles.preview} className="shadow">
-        <Markdown source={notes} />
+        <Markdown>{notes}</Markdown>
       </div>
       <Blockquote type="note">
         <FormattedMessage id="app.thisFieldSupportsMarkdown" />

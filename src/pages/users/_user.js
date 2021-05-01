@@ -95,7 +95,7 @@ const Page = (props) => {
     },
     bio: {
       label: 'account.bio',
-      value: <Markdown source={user.bio} />,
+      value: <Markdown>{user.bio}</Markdown>
     },
   }
 

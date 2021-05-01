@@ -23,7 +23,7 @@ const UserProfile = (props) => {
   return (
     <React.Fragment>
       <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username} />
-      <Markdown source={user.bio} />
+      <Markdown>{user.bio}</Markdown>
       {user.social && (
         <p style={{ textAlign: 'center' }}>
           <UserSocial accounts={user.social} size={36} />
