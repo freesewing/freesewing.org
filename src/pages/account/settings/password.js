@@ -49,7 +49,7 @@ const Page = (props) => {
                 )}
               </span>
             </InputAdornment>
-          )
+          ),
         }}
       />
       <p style={{ textAlign: 'right' }}>

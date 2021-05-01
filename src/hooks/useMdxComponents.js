@@ -13,7 +13,7 @@ const customMdxComponents = {
   },
   Fixme: ({ children }) => {
     return <Blockquote type="fixme">{children}</Blockquote>
-  }
+  },
 }
 
 export default customMdxComponents

@@ -32,7 +32,7 @@ const Pattern = ({ app, pattern = false }) => {
         </div>
       </div>
       <div className="notes">
-        <Markdown source={app.patterns[pattern].notes} />
+        <Markdown>{app.patterns[pattern].notes}</Markdown>
       </div>
       <Link to={`/account/patterns/${pattern}/`} className="link" />
     </div>

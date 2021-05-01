@@ -28,26 +28,26 @@ const Page = (props) => {
   const getCrumbs = (design, name) => [
     {
       slug: `/create/`,
-      title: app.translate('app.newThing', { thing: app.translate('app.pattern') })
+      title: app.translate('app.newThing', { thing: app.translate('app.pattern') }),
     },
     {
       slug: `/create/${design}/`,
       title: app.translate('app.recreateThing', {
-        thing: app.translate(`patterns.${design}.title`)
-      })
+        thing: app.translate(`patterns.${design}.title`),
+      }),
     },
     {
       slug: `/recreate/${design}/from/${props.pattern}/`,
       title: app.translate('app.recreateThing', {
-        thing: name + ' (' + app.translate(`patterns.${design}.title`) + ')'
-      })
-    }
+        thing: name + ' (' + app.translate(`patterns.${design}.title`) + ')',
+      }),
+    },
   ]
 
   const extractPerson = (pattern) => {
     setPerson({
       name: pattern.data.settings.metadata ? pattern.data.settings.metadata : pattern.person,
-      measurements: { ...pattern.data.settings.measurements }
+      measurements: { ...pattern.data.settings.measurements },
     })
   }
 
@@ -82,7 +82,7 @@ const Page = (props) => {
       setTitle(
         app.translate('app.recreateThingForPerson', {
           thing: pop.name + ' (' + app.translate(`patterns.${pop.data.design}.title`) + ')',
-          person: name
+          person: name,
         })
       )
     }
@@ -109,8 +109,8 @@ const Page = (props) => {
           ...pattern.data,
           settings: {
             ...pattern.data.settings,
-            measurements: person.measurements
-          }
+            measurements: person.measurements,
+          },
         }}
         person={person}
         design={pattern.data.design}

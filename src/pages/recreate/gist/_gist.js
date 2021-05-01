@@ -25,15 +25,15 @@ const Page = (props) => {
     name: gist?.settings?.metadata?.for || 'J. Doe',
     label: gist?.settings?.metadata?.for || 'J. Doe',
     measurements: gist?.settings?.measurements,
-    breasts: gist?.settings?.metadata.breasts || false
+    breasts: gist?.settings?.metadata.breasts || false,
   })
 
   const title = app.translate('app.recreateThing', { thing: 'gist' })
   const crumbs = [
     {
       title: app.translate('app.recreateThing', { thing: 'gist' }),
-      slug: '/recreate/gist/'
-    }
+      slug: '/recreate/gist/',
+    },
   ]
 
   useEffect(() => {

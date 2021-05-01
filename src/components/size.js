@@ -21,7 +21,7 @@ const Size = (props) => (
       <span
         className="val"
         dangerouslySetInnerHTML={{
-          __html: '<b>' + formatMm(props.size * 10, 'imperial', 'html') + '</b>'
+          __html: '<b>' + formatMm(props.size * 10, 'imperial', 'html') + '</b>',
         }}
       />
     </div>

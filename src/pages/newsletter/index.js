@@ -14,7 +14,7 @@ const Page = (props) => {
     q1: 'Winter',
     q2: 'Spring',
     q3: 'Summer',
-    q4: 'Autumn'
+    q4: 'Autumn',
   }
 
   return (

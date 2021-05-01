@@ -15,7 +15,7 @@ const customComponents = {
   Fixme: ({ children }) => <Blockquote type="fixme">{children}</Blockquote>,
   YouTube,
   Legend,
-  Hashtag
+  Hashtag,
 }
 
 const Mdx = ({ node, offspring }) => {

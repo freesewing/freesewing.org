@@ -37,7 +37,7 @@ const Page = (props) => {
       <li>{troubleLink}</li>
       <li>{signUpLink}</li>
       <Oauth app={app} login list />
-    </ul>
+    </ul>,
   ]
 
   const handleLogin = (evt) => {
@@ -50,7 +50,7 @@ const Page = (props) => {
         else {
           app.setNotification({
             type: 'error',
-            msg: app.translate(`errors.requestFailedWithStatusCode${res}`)
+            msg: app.translate(`errors.requestFailedWithStatusCode${res}`),
           })
         }
       }
@@ -73,7 +73,7 @@ const Page = (props) => {
         else {
           app.setNotification({
             type: 'warning',
-            msg: app.translate('app.noSuchUser')
+            msg: app.translate('app.noSuchUser'),
           })
         }
       })
@@ -85,7 +85,7 @@ const Page = (props) => {
         else if (err.response.status === 400) msg = 'errors.something'
         app.setNotification({
           type: err.response.status === 404 ? 'warning' : 'error',
-          msg: app.translate(msg)
+          msg: app.translate(msg),
         })
       })
   }
@@ -157,7 +157,7 @@ const Page = (props) => {
     trouble,
     setTrouble,
     handleLogin,
-    handlePasswordReset
+    handlePasswordReset,
   }
 
   let redirect = null

@@ -76,7 +76,7 @@ const AccountMenu = ({ app, className = '', settingsOnly = false }) => (
         'newsletter',
         'email',
         'username',
-        'password'
+        'password',
       ].map((setting) => (
         <li key={setting}>
           <Link to={`/account/settings/${setting}/`}>

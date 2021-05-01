@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 const PostPreview = ({
   app,
@@ -10,35 +11,35 @@ const PostPreview = ({
   width = 400,
   img = false,
   imgComponent = false,
-  designs = false
+  designs = false,
 }) => {
   const style = {
     post: {
       maxWidth: `${width}px`,
-      margin: '0 6px 2rem'
+      margin: '0 6px 2rem',
     },
     figure: {
       margin: 0,
-      padding: 0
+      padding: 0,
     },
     title: {
       margin: 0,
       padding: 0,
-      lineHeight: 1.25
+      lineHeight: 1.25,
     },
     blurb: {
       fontSize: '1.1rem',
       margin: 0,
-      padding: 0
+      padding: 0,
     },
     link: {
       color: 'inherit',
-      textDecoration: 'none'
+      textDecoration: 'none',
     },
     img: {
       borderRadius: '4px',
-      width: '100%'
-    }
+      width: '100%',
+    },
   }
   if (app.mobile) {
     if (designs) {
@@ -56,19 +57,9 @@ const PostPreview = ({
   return (
     <div style={style.post}>
       <Link data-test="post-link" to={link} style={style.link} title={title}>
-        {imgComponent ? (
-          imgComponent
-        ) : (
-          <figure style={style.figure}>
-            <img
-              src={img.src}
-              style={style.img}
-              srcSet={img.srcSet || ''}
-              alt={caption || title}
-              className="shadow"
-            />
-          </figure>
-        )}
+        <figure style={style.figure}>
+          <GatsbyImage image={img} alt={caption || title} className="shadow" />
+        </figure>
         <h5 style={style.title}>{title}</h5>
         <p style={style.blurb}>{description}</p>
       </Link>

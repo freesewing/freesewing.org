@@ -17,12 +17,12 @@ const inchMarkers = () =>
       stroke: '#ccc',
       strokeWidth: 1,
       strokeDasharray: '2 2',
-      transform: 'translateX(12px)'
+      transform: 'translateX(12px)',
     },
     textStyle: { fontFamily: 'sans-serif', fontSize: '11px', fill: '#232529' },
     legend: 5 * i + '"',
     legendOrientation: 'horizontal',
-    legendPosition: 'right'
+    legendPosition: 'right',
   }))
 const cmMarkers = () =>
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((i) => ({
@@ -32,7 +32,7 @@ const cmMarkers = () =>
     textStyle: { fontFamily: 'sans-serif', fontSize: '11px', fill: '#232529' },
     legend: 10 * i + 'cm',
     legendOrientation: 'horizontal',
-    legendPosition: 'left'
+    legendPosition: 'left',
   }))
 const horizontalMarkers = () => cmMarkers().concat(inchMarkers())
 
@@ -50,7 +50,7 @@ const verticalMarkers = (data) => {
       legend: m.x,
       legendOrientation: 'vertical',
       legendPosition: i < flip ? 'bottom-left' : 'top-left',
-      legendOffsetX: i < flip ? -7 : 7
+      legendOffsetX: i < flip ? -7 : 7,
     })
     i++
   }
@@ -68,12 +68,12 @@ const sizeStyles = {
   XL: { strokeWidth: '1px', stroke: oc.yellow6 },
   '2XL': { strokeWidth: '1px', stroke: oc.grape6 },
   '3XL': { strokeWidth: '1px', stroke: oc.indigo6 },
-  '4XL': { strokeWidth: '1px', stroke: oc.cyan6 }
+  '4XL': { strokeWidth: '1px', stroke: oc.cyan6 },
 }
 
 const personStyle = {
   stroke: 'currentColor',
-  strokeWidth: '3px'
+  strokeWidth: '3px',
 }
 
 const StyledLine = ({ series, lineGenerator, xScale, yScale }) => {
@@ -83,7 +83,7 @@ const StyledLine = ({ series, lineGenerator, xScale, yScale }) => {
       d={lineGenerator(
         data.map((d) => ({
           x: xScale(d.data.x),
-          y: yScale(d.data.y)
+          y: yScale(d.data.y),
         }))
       )}
       fill="none"
@@ -136,11 +136,11 @@ const Graph = ({ app, data }) => {
               on: 'hover',
               style: {
                 itemBackground: 'rgba(0, 0, 0, .03)',
-                itemOpacity: 1
-              }
-            }
-          ]
-        }
+                itemOpacity: 1,
+              },
+            },
+          ],
+        },
       ]}
       pointSymbol={CustomSymbol}
       markers={verticalMarkers(data).concat(horizontalMarkers())}

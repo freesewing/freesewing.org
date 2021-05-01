@@ -17,14 +17,16 @@ const Page = (props) => {
   const crumbs = [
     {
       slug: '/create/',
-      title: <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+      title: (
+        <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
+      ),
     },
     {
       slug: '/create/',
       title: (
         <FormattedMessage id="app.newThing" values={{ thing: design ? capitalize(design) : '' }} />
-      )
-    }
+      ),
+    },
   ]
 
   return (

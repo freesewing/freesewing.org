@@ -43,22 +43,22 @@ const Page = (props) => {
   const styles = {
     table: {
       padding: 0,
-      borderCollapse: 'collapse'
+      borderCollapse: 'collapse',
     },
     cell: {
       padding: '1rem',
       borderTop: '1px solid #9993',
-      verticalAlign: 'top'
+      verticalAlign: 'top',
     },
     question: {
       textAlign: 'right',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   }
 
   // react-i18n can be a real pain sometimes
   const bold = {
-    b: (...chunks) => <strong>{chunks}</strong>
+    b: (...chunks) => <strong>{chunks}</strong>,
   }
 
   // Detailed info
@@ -103,7 +103,7 @@ const Page = (props) => {
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>,
   ]
   const modelDetails = [
     <h2 key="modelTitle" data-test="consentForModelData">
@@ -150,7 +150,7 @@ const Page = (props) => {
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>,
   ]
 
   return (

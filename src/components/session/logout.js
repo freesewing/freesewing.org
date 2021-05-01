@@ -7,11 +7,11 @@ const Logout = (props) => {
   const styles = {
     wrapper: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     half: {
-      width: 'calc(50% - 1rem)'
-    }
+      width: 'calc(50% - 1rem)',
+    },
   }
 
   return (

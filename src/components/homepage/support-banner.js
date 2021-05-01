@@ -21,7 +21,7 @@ const SupportBanner = (props) => (
         variant="contained"
         href="/patrons/join/"
         style={{
-          margin: '1rem 1rem 0 0'
+          margin: '1rem 1rem 0 0',
         }}
       >
         <FormattedMessage id="app.becomeAPatron" />

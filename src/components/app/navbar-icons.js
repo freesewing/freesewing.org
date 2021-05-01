@@ -9,26 +9,26 @@ import SearchIcon from '@material-ui/icons/Search'
 const NavbarIcons = ({ translate, toggleDarkMode, theme, language }) => {
   const colors = {
     light: '#212529',
-    dark: '#f8f9fa'
+    dark: '#f8f9fa',
   }
 
   const style = {
     iconButton: {
-      color: colors.dark
+      color: colors.dark,
     },
     icon: {
       maxWidth: '24px',
-      maxHeight: '24px'
+      maxHeight: '24px',
     },
     spacer: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     darkModeIcon: {
       transform: 'rotate(26deg)',
       maxWidth: '24px',
       maxHeight: '24px',
-      color: '#ffe066'
-    }
+      color: '#ffe066',
+    },
   }
 
   return (

@@ -23,7 +23,7 @@ const MeasurementImages = (props) => {
     'highpointshouldertobust',
     'hpstobust',
     'waisttounderbust',
-    'underbust'
+    'underbust',
   ]
   const bg =
     '/model-' +
@@ -53,7 +53,7 @@ const MeasurementImages = (props) => {
           <Tab label={props.intl.formatMessage({ id: 'app.withBreasts' })} />
           <Tab
             label={props.intl.formatMessage({
-              id: 'app.withoutBreasts'
+              id: 'app.withoutBreasts',
             })}
           />
         </Tabs>

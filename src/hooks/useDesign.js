@@ -69,7 +69,7 @@ const designs = {
   titan,
   trayvon,
   wahid,
-  waralee
+  waralee,
 }
 
 function useDesign(design) {

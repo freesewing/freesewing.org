@@ -7,7 +7,7 @@ const PatternFabs = (props) => {
     props.app
       .updatePattern(props.pattern.handle, {
         person: props.pattern.person,
-        data: props.data
+        data: props.data,
       })
       .catch((err) => {
         console.log(err)
@@ -31,7 +31,7 @@ const PatternFabs = (props) => {
     save: props.app.translate('app.saveThing', { thing: props.app.translate('app.pattern') }),
     saveAs: props.app.translate('app.saveAsNewPattern'),
     units: props.app.translate('account.units'),
-    zoom: props.app.translate(props.fit ? 'app.zoomIn' : 'app.zoomOut')
+    zoom: props.app.translate(props.fit ? 'app.zoomIn' : 'app.zoomOut'),
   }
   const actions = {
     compare: () => props.setDisplay(props.display === 'draft' ? 'compare' : 'draft'),
@@ -43,7 +43,7 @@ const PatternFabs = (props) => {
     save: handleSave,
     saveAs: () => props.openDialog('saveAs'),
     units: () => props.toggleUnits(),
-    zoom: () => props.setFit(!props.fit)
+    zoom: () => props.setFit(!props.fit),
   }
   const getFab = (type) => (
     <li>

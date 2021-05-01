@@ -13,7 +13,7 @@ const sessionMethods = ({
   patterns,
   setAccount,
   setPatterns,
-  setPeople
+  setPeople,
 }) => {
   const login = (username, password) => {
     setLoading(true)
@@ -26,7 +26,7 @@ const sessionMethods = ({
           navigate('/account/')
           setNotification({
             type: 'success',
-            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username }),
           })
         } else console.log('res in hook', res)
         return res.status
@@ -49,7 +49,7 @@ const sessionMethods = ({
           navigate('/account')
           setNotification({
             type: 'success',
-            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+            msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username }),
           })
         } else return res.status
       })
@@ -73,7 +73,7 @@ const sessionMethods = ({
             navigate('/account/')
             setNotification({
               type: 'success',
-              msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username })
+              msg: translate('app.goodToSeeYouAgain', { user: '@' + res.data.account.username }),
             })
           }
         } else return res.status
@@ -88,13 +88,13 @@ const sessionMethods = ({
     navigate('/')
     setNotification({
       type: 'success',
-      msg: translate('app.seeYouLaterUser', { user: account.username })
+      msg: translate('app.seeYouLaterUser', { user: account.username }),
     })
     persist({
       account: { username: false },
       models: {},
       patterns: {},
-      token: ''
+      token: '',
     })
   }
 
@@ -102,7 +102,7 @@ const sessionMethods = ({
     login,
     confirmationLogin,
     providerLogin,
-    logout
+    logout,
   }
 }
 

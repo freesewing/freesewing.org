@@ -6,11 +6,11 @@ const MeasurementImage = (props) => (
     className="shadow"
     src={props.img}
     alt={props.intl.formatMessage({
-      id: 'measurements.' + props.measurement
+      id: 'measurements.' + props.measurement,
     })}
     style={{
       backgroundImage: 'url(' + props.bg + ')',
-      backgroundSize: 'cover'
+      backgroundSize: 'cover',
     }}
   />
 )

@@ -16,7 +16,7 @@ const PatternFilter = (props) => {
     tags: [],
     design: [],
     code: [],
-    difficulty: []
+    difficulty: [],
   })
 
   const closeFilter = () => {
@@ -37,7 +37,7 @@ const PatternFilter = (props) => {
       tags: [],
       design: [],
       code: [],
-      difficulty: []
+      difficulty: [],
     }
     setFilter(clear)
     props.applyFilter(filteredPatternList(clear, ''))
@@ -153,7 +153,7 @@ const PatternFilter = (props) => {
     type: [],
     tags: [],
     design: [],
-    code: []
+    code: [],
   }
 
   for (let p in info) {
@@ -175,25 +175,25 @@ const PatternFilter = (props) => {
 
   const item = {
     display: 'inline',
-    padding: '0.25rem'
+    padding: '0.25rem',
   }
   const styles = {
     item: {
-      ...item
+      ...item,
     },
     key: {
-      ...item
+      ...item,
     },
     list: {
       margin: '1rem 0',
       padding: 0,
-      listStyleType: 'none'
+      listStyleType: 'none',
     },
     listTitle: {
       display: 'inline',
       fontFamily: 'Roboto Condensed',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   }
 
   return (
@@ -213,7 +213,7 @@ const PatternFilter = (props) => {
               <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
-            )
+            ),
           }}
         />
       </form>

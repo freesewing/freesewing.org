@@ -12,7 +12,7 @@ const PeopleContext = ({ app }) => [
         <Link to={`/account/people/${handle}/`}>{app.people[handle].name}</Link>
       </li>
     ))}
-  </ul>
+  </ul>,
 ]
 
 export default PeopleContext

@@ -24,7 +24,7 @@ const flatten = (arr) => {
       path: '/' + node.node.parent.relativeDirectory,
       title: node.node.frontmatter.title,
       content: remark().use(recommended).use(frontmatter).use(html).processSync(node.node.rawBody)
-        .contents
+        .contents,
     }
     return it
   })
@@ -36,8 +36,8 @@ const getSearchData = (language) => {
       query: getQuery(language),
       transformer: ({ data }) => flatten(data.allMdx.edges),
       indexName: `${language}_freesewing_org`,
-      settings: {}
-    }
+      settings: {},
+    },
   ]
 
   return data

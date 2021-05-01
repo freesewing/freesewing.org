@@ -9,7 +9,7 @@ const Highlight = ({ code, lang = 'js', dense = false }) => {
           <code
             className={'language-' + lang}
             dangerouslySetInnerHTML={{
-              __html: Prism.highlight(code, Prism.languages.js, lang)
+              __html: Prism.highlight(code, Prism.languages.js, lang),
             }}
           />
         </pre>

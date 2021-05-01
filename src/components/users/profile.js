@@ -15,15 +15,15 @@ const UserProfile = (props) => {
   const styles = {
     avatar: {
       background: '#000',
-      borderRadius: '4px'
-    }
+      borderRadius: '4px',
+    },
   }
   if (!user) return <pre>{JSON.stringify(props, null, 2)}</pre>
 
   return (
     <React.Fragment>
       <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username} />
-      <Markdown source={user.bio} />
+      <Markdown>{user.bio}</Markdown>
       {user.social && (
         <p style={{ textAlign: 'center' }}>
           <UserSocial accounts={user.social} size={36} />

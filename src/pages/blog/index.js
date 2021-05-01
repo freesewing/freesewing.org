@@ -4,6 +4,7 @@ import AppWrapper from '../../components/app/wrapper'
 
 import { graphql } from 'gatsby'
 import PostPreview from '../../components/post-preview'
+import { getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)
@@ -13,8 +14,8 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   }
 
   return (
@@ -24,7 +25,7 @@ const Page = (props) => {
           <PostPreview
             key={node.node.parent.relativeDirectory}
             app={app}
-            img={node.node.frontmatter.img.childImageSharp.fluid}
+            img={getImage(node.node.frontmatter.img)}
             title={node.node.frontmatter.title}
             description={node.node.excerpt}
             link={'/' + node.node.parent.relativeDirectory + '/'}
@@ -61,13 +62,7 @@ export const pageQuery = graphql`
             author
             img {
               childImageSharp {
-                fluid(maxWidth: 400) {
-                  src
-                  srcSet
-                  sizes
-                  presentationWidth
-                  presentationHeight
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }

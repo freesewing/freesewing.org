@@ -102,7 +102,7 @@ const Page = (props) => {
             />
             <span
               dangerouslySetInnerHTML={{
-                __html: formatMm(measurementEstimate, person.units)
+                __html: formatMm(measurementEstimate, person.units),
               }}
             />
           </>
@@ -148,7 +148,7 @@ const Page = (props) => {
                 <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
               )}
             </InputAdornment>
-          )
+          ),
         }}
       />
       <p style={{ textAlign: 'right' }}>

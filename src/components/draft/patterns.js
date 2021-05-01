@@ -49,7 +49,7 @@ const patterns = {
   Theo,
   Trayvon,
   Wahid,
-  Waralee
+  Waralee,
 }
 
 export default patterns

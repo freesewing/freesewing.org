@@ -15,7 +15,7 @@ const Notification = ({ notification, setNotification, mobile }) => {
     success: CheckCircleIcon,
     warning: WarningIcon,
     error: ErrorIcon,
-    info: InfoIcon
+    info: InfoIcon,
   }
   const Icon = typeIcon[type]
 
@@ -35,7 +35,7 @@ const Notification = ({ notification, setNotification, mobile }) => {
 
   const styles = {
     icon: {
-      paddingRight: '1rem'
+      paddingRight: '1rem',
     },
     wrapper: {
       display: 'flex',
@@ -45,22 +45,22 @@ const Notification = ({ notification, setNotification, mobile }) => {
       padding: '0.5rem 1.5rem',
       borderRadius: '6px',
       color: '#fff',
-      fontFamily: 'Roboto condensed'
+      fontFamily: 'Roboto condensed',
     },
     color: {
       success: {
-        background: '#2f9e44'
+        background: '#2f9e44',
       },
       warning: {
-        background: '#f76707'
+        background: '#f76707',
       },
       error: {
-        background: '#e03131'
+        background: '#e03131',
       },
       info: {
-        background: '#1971c2'
-      }
-    }
+        background: '#1971c2',
+      },
+    },
   }
   const children = (
     <div style={{ ...styles.wrapper, ...styles.color[type] }} className="shadow">
@@ -72,7 +72,7 @@ const Notification = ({ notification, setNotification, mobile }) => {
     <Snackbar
       anchorOrigin={{
         vertical: mobile ? 'top' : 'bottom',
-        horizontal: 'right'
+        horizontal: 'right',
       }}
       open={true}
       autoHideDuration={3000}

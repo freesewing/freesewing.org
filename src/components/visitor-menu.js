@@ -7,12 +7,12 @@ const VisitorMenu = (props) => {
   const links = [
     {
       to: '/login',
-      title: 'app.logIn'
+      title: 'app.logIn',
     },
     {
       to: '/signup',
-      title: 'app.signUp'
-    }
+      title: 'app.signUp',
+    },
   ]
   return (
     <ul className="topics">

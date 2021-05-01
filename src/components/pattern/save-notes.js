@@ -18,7 +18,7 @@ const SavePatternNotes = (props) => {
     props.app
       .updatePattern(props.pattern, {
         name: nameVal,
-        notes
+        notes,
       })
       .catch((err) => console.log(err))
   }

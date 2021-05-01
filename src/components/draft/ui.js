@@ -112,11 +112,11 @@ ${e.stack}
           patternProps: {
             settings: YAML.stringify(patternProps.settings),
             events: YAML.stringify(patternProps.events),
-            parts: JSON.stringify(patternProps.parts, null, 2)
+            parts: JSON.stringify(patternProps.parts, null, 2),
           },
           traces: tracesFromPatternProps(patternProps),
           error,
-          compareWith
+          compareWith,
         })
         .then((res) =>
           setIssue(`https://github.com/freesewing/freesewing.org/issues/${res.data.id}`)
@@ -172,7 +172,7 @@ ${e.stack}
         models: compareWith,
         styles: sampleStyles(app.theme === 'dark'),
         focus: 'model',
-        focusStyle: focusStyle(app.theme === 'dark')
+        focusStyle: focusStyle(app.theme === 'dark'),
       }
       draft.sample()
       patternProps = draft.getRenderProps()
@@ -309,7 +309,7 @@ ${e.stack}
           )}
         </span>
       </li>
-    )
+    ),
   }
 
   // Fit to screen
@@ -400,12 +400,16 @@ ${e.stack}
             color="primary"
             className="fab secondary only-xs accent"
             aria-label="Menu"
-            onClick={() => setMenu(!menu)}
+            onClick={() => app.setDraftMenu(!app.draftMenu)}
           >
-            {menu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
+            {app.draftMenu ? <CloseIcon fontSize="inherit" /> : <ConfigIcon fontSize="inherit" />}
           </Fab>
-          {menu && (
-            <div className="context-wrapper draft-ui-menu" style={{ zIndex: 10, opacity: 1 }}>
+          {app.draftMenu && (
+            <div
+              id="mobile-draft-menu"
+              className="context-wrapper draft-ui-menu"
+              style={{ zIndex: 10, opacity: 1 }}
+            >
               {preMenu}
             </div>
           )}

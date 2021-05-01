@@ -31,7 +31,7 @@ Bugsnag.start({
   onError: (event) => {
     event.user = { id: user }
   },
-  plugins: [new BugsnagPluginReact(React)]
+  plugins: [new BugsnagPluginReact(React)],
 })
 
 const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React)

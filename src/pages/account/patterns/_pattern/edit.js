@@ -40,11 +40,11 @@ const Page = (props) => {
     app,
     title:
       app.translate('app.editThing', {
-        thing: app.translate('app.pattern')
+        thing: app.translate('app.pattern'),
       }) +
       ' ' +
       pattern.handle,
-    slug: props.location.pathname
+    slug: props.location.pathname,
   }
   shared.description = shared.title
 

@@ -12,7 +12,7 @@ const crumbsFromNavigation = (path, navigation, titles) => {
         titles[slug + '/'] ||
         (typeof navigation[slug + '/'] !== 'undefined'
           ? navigation[slug + '/'].title
-          : chunks.splice(-1))
+          : chunks.splice(-1)),
     })
   }
   return crumbs.reverse()

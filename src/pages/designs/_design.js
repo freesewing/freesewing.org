@@ -16,6 +16,7 @@ import LineDrawing from '@freesewing/components/LineDrawing'
 import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
+import { getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)
@@ -27,31 +28,31 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'left'
+      justifyContent: 'left',
     },
     col: {
       maxWidth: '290px',
-      margin: '1rem'
+      margin: '1rem',
     },
     img: {
       marginTop: '1rem',
-      borderRadius: '4px'
+      borderRadius: '4px',
     },
     star: {
-      color: 'orange'
+      color: 'orange',
     },
     table: {},
     keyTd: {
       textAlign: 'right',
       padding: '0.25rem 1rem 0.25rem 0',
       lineHeight: 1.15,
-      fontWeight: 300
+      fontWeight: 300,
     },
     valTd: {
       lineHeight: 1.15,
       padding: '0.25rem 0',
-      fontWeight: 500
-    }
+      fontWeight: 500,
+    },
   }
   if (app.mobile) styles.col.width = '100%'
 
@@ -213,7 +214,7 @@ const Page = (props) => {
             <PostPreview
               key={node.node.parent.relativeDirectory}
               app={app}
-              img={node.node.frontmatter.img.childImageSharp.fluid}
+              img={getImage(node.node.frontmatter.img)}
               title={node.node.frontmatter.title}
               description={node.node.excerpt}
               link={'/' + node.node.parent.relativeDirectory + '/'}
@@ -249,13 +250,7 @@ export const pageQuery = graphql`
             patterns
             img {
               childImageSharp {
-                fluid(maxWidth: 400) {
-                  srcSet
-                  src
-                  sizes
-                  presentationWidth
-                  presentationHeight
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }

@@ -8,7 +8,8 @@ import capitalize from '@freesewing/utils/capitalize'
 import Filter from '../../components/designs/filter'
 import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
-import PostPreview from '../../components/post-preview'
+import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)
@@ -21,8 +22,19 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
+    innerWrapper: {
+      padding: '10px',
+      maxWidth: '200px',
+    },
+    image: {
+      borderRadius: '4px',
+    },
+    link: {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
   }
 
   return (
@@ -39,20 +51,22 @@ const Page = (props) => {
       )}
       <div style={style.wrapper}>
         {designs.map((design) => (
-          <PostPreview
-            designs
-            key={design}
-            app={app}
-            img={{
-              src: '/designs/' + design + '.jpg',
-              alt: capitalize(design)
-            }}
-            title={capitalize(design)}
-            description={app.translate('patterns.' + design + '.description')}
-            link={'/designs/' + design + '/'}
-            caption={design}
-            width={200}
-          />
+          <div style={style.innerWrapper}>
+            <Link to={'/designs/' + design + '/'} title={capitalize(design)} style={style.link}>
+              <figure style={{ margin: 0 }}>
+                <img
+                  src={`/designs/${design}.jpg`}
+                  alt={capitalize(design)}
+                  style={style.image}
+                  className="shadow"
+                />
+              </figure>
+              <h5 style={{ margin: 0, lineHeight: '1.25' }}>
+                {app.translate('patterns.' + design + '.title')}
+              </h5>
+              <span>{app.translate('patterns.' + design + '.description')}</span>
+            </Link>
+          </div>
         ))}
       </div>
     </AppWrapper>

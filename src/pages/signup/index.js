@@ -49,7 +49,7 @@ const Page = (props) => {
         else
           app.setNotification({
             type: 'warning',
-            msg: app.translate('app.noSuchUser')
+            msg: app.translate('app.noSuchUser'),
           })
       })
       .catch((err, data) => {
@@ -58,7 +58,7 @@ const Page = (props) => {
         else if (err.response.status === 400) msg = 'errors.something'
         app.setNotification({
           type: err.response.status === 404 ? 'warning' : 'error',
-          msg: app.translate(msg)
+          msg: app.translate(msg),
         })
       })
   }
@@ -151,7 +151,7 @@ const Page = (props) => {
                 <InvalidIcon color="error" data-test="email-invalid" />
               )}
             </InputAdornment>
-          )
+          ),
         }}
       />
       {!trouble && (
@@ -186,7 +186,7 @@ const Page = (props) => {
                   )}
                 </span>
               </InputAdornment>
-            )
+            ),
           }}
         />
       )}
@@ -230,7 +230,7 @@ const Page = (props) => {
       <li>{troubleLink}</li>
       <li>{loginLink}</li>
     </ul>,
-    <Oauth app={app} signup list />
+    <Oauth app={app} signup list />,
   ]
 
   return (

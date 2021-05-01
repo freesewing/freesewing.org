@@ -14,8 +14,8 @@ const Page = (props) => {
     wrapper: {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap'
-    }
+      flexWrap: 'wrap',
+    },
   }
 
   const add = (

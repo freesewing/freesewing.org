@@ -46,13 +46,13 @@ const ExportPattern = ({ app, data, handle = false }) => {
   }
   const exportJsonData = (data) => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: 'application/json;charset=utf-8'
+      type: 'application/json;charset=utf-8',
     })
     fileSaver.saveAs(blob, 'data.json')
   }
   const exportYamlData = (data) => {
     const blob = new Blob([YAML.stringify(data)], {
-      type: 'application/x-yaml;charset=utf-8'
+      type: 'application/x-yaml;charset=utf-8',
     })
     fileSaver.saveAs(blob, 'data.yaml')
   }
@@ -61,7 +61,7 @@ const ExportPattern = ({ app, data, handle = false }) => {
     app.backend
       .createGist({
         data: YAML.stringify(data),
-        design: data.design
+        design: data.design,
       })
       .then((res) => ready('https://gist.github.com/' + res.data.id))
       .catch((err) => console.log(err))
@@ -69,7 +69,7 @@ const ExportPattern = ({ app, data, handle = false }) => {
   }
   const svgToFile = (svg) => {
     const blob = new Blob([svg], {
-      type: 'image/svg+xml;charset=utf-8'
+      type: 'image/svg+xml;charset=utf-8',
     })
     fileSaver.saveAs(blob, 'pattern.svg')
   }
@@ -81,31 +81,31 @@ const ExportPattern = ({ app, data, handle = false }) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
     },
     column: {
       width: '100%',
-      maxWidth: '266px'
+      maxWidth: '266px',
     },
     button: {
       margin: '0.5rem',
-      width: 'calc(100% - 1rem)'
+      width: 'calc(100% - 1rem)',
     },
     blockquote: {
-      background: 'red'
+      background: 'red',
     },
     loader: {
       textAlign: 'center',
-      margin: 'auto'
+      margin: 'auto',
     },
     download: {
-      textAlign: 'left'
+      textAlign: 'left',
     },
     link: {
       fontFamily: "'Roboto Condensed', sans-serif",
       fontWeight: 'bold',
-      marginLeft: '2rem'
-    }
+      marginLeft: '2rem',
+    },
   }
   if (app.tablet) styles.column.width = '45%'
   if (app.mobile) styles.column.width = '95%'
@@ -114,7 +114,7 @@ const ExportPattern = ({ app, data, handle = false }) => {
     size: 'large',
     variant: 'contained',
     color: 'primary',
-    style: styles.button
+    style: styles.button,
   }
 
   if (loading)

@@ -62,7 +62,7 @@ const AccountContext = ({ app, active = '' }) => [
       'newsletter',
       'email',
       'username',
-      'password'
+      'password',
     ].map((setting) => (
       <li key={setting}>
         <Link to={`/account/settings/${setting}/`}>
@@ -102,7 +102,7 @@ const AccountContext = ({ app, active = '' }) => [
         <FormattedMessage id="account.removeYourAccount" />
       </Link>
     </li>
-  </ul>
+  </ul>,
 ]
 
 export default AccountContext

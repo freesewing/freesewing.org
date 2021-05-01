@@ -35,12 +35,12 @@ const Page = (props) => {
                 id="app.newThing"
                 values={{ thing: app.translate('app.pattern') }}
               />
-            )
+            ),
           },
           {
             slug: '/create',
-            title: app.translate('app.recreate') + ' ' + capitalize(design)
-          }
+            title: app.translate('app.recreate') + ' ' + capitalize(design),
+          },
         ])
       })
     } else {
@@ -51,12 +51,12 @@ const Page = (props) => {
           slug: '/create',
           title: (
             <FormattedMessage id="app.newThing" values={{ thing: app.translate('app.pattern') }} />
-          )
+          ),
         },
         {
           slug: '/create',
-          title: app.translate('app.recreate') + ' ' + capitalize(design)
-        }
+          title: app.translate('app.recreate') + ' ' + capitalize(design),
+        },
       ])
     }
   }, [])

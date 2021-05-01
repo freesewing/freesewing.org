@@ -14,7 +14,7 @@ describe('User rights', function () {
     export: 'exportYourData',
     consent: 'reviewYourConsent',
     restrict: 'restrictProcessingOfYourData',
-    remove: 'removeYourAccount'
+    remove: 'removeYourAccount',
   }
 
   it('Verify translations and links', function () {
@@ -55,7 +55,7 @@ describe('User rights', function () {
       'openDataQuestion',
       'openDataInfo',
       'modelQuestion',
-      'modelWarning'
+      'modelWarning',
     ]
     for (let string of strings)
       cy.get(`[data-test=${string}]`).should('contain', i18n[`gdpr.${string}`])
@@ -68,7 +68,7 @@ describe('User rights', function () {
       'modelWhatAnswer',
       'modelWhyAnswer',
       'modelTimingAnswer',
-      'modelShareAnswer'
+      'modelShareAnswer',
     ]
     for (let string of strings)
       cy.get(`[data-test=${string}]`).should('contain', i18n[`gdpr.${string}`].slice(0, 3))

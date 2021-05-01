@@ -34,7 +34,7 @@ const Page = (props) => {
     app.createPerson({
       name,
       units,
-      breasts: breasts === 'true' ? true : false
+      breasts: breasts === 'true' ? true : false,
     })
 
   return (
@@ -67,7 +67,7 @@ const Page = (props) => {
                   <InvalidIcon color="error" data-test="invalid" />
                 )}
               </InputAdornment>
-            )
+            ),
           }}
         />
         <h5 data-test="units-title">

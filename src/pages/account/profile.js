@@ -23,25 +23,25 @@ const Page = (props) => {
       whiteSpace: 'nowrap',
       margin: '0',
       width: '100%',
-      maxWidth: '666px'
+      maxWidth: '666px',
     },
     title: {
       padding: '1rem',
       borderTop: '1px solid #9993',
       verticalAlign: 'top',
       textAlign: 'right',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     cell: {
       padding: '1rem',
       borderTop: '1px solid #9993',
       whiteSpace: 'wrap',
-      verticalAlign: 'top'
+      verticalAlign: 'top',
     },
     avatar: {
       background: '#000',
-      borderRadius: '4px'
-    }
+      borderRadius: '4px',
+    },
   }
 
   if (app.mobile) styles.table.margin = '0 -1.5rem'
@@ -49,19 +49,19 @@ const Page = (props) => {
   const fields = {
     username: {
       label: 'account.username',
-      value: user.username
+      value: user.username,
     },
     handle: {
       label: 'app.handle',
-      value: user.handle
+      value: user.handle,
     },
     patron: {
       label: 'app.patron',
-      value: <PatronStars tier={user.patron} />
+      value: <PatronStars tier={user.patron} />,
     },
     social: {
       label: 'account.social',
-      value: <UserSocial accounts={user.social} size={36} />
+      value: <UserSocial accounts={user.social} size={36} />,
     },
     units: {
       label: 'account.units',
@@ -70,11 +70,11 @@ const Page = (props) => {
           <FormattedMessage id="app.metricUnits" />
         ) : (
           <FormattedMessage id="app.imperialUnits" />
-        )
+        ),
     },
     language: {
       label: 'account.language',
-      value: <FormattedMessage id={`i18n.${user.settings.language}`} />
+      value: <FormattedMessage id={`i18n.${user.settings.language}`} />,
     },
     avatar: {
       label: 'account.avatar',
@@ -85,12 +85,12 @@ const Page = (props) => {
           className="shadow"
           alt={user.username}
         />
-      )
+      ),
     },
     bio: {
       label: 'account.bio',
-      value: <Markdown source={user.bio} />
-    }
+      value: <Markdown>{user.bio}</Markdown>,
+    },
   }
 
   return (

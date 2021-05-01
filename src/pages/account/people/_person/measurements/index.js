@@ -39,7 +39,7 @@ const Page = (props) => {
       setFilter(evt.target.value)
       app.setVars({
         ...app.vars,
-        designFilter: evt.target.value
+        designFilter: evt.target.value,
       })
     }
   }
@@ -66,7 +66,7 @@ const Page = (props) => {
     const missing = {
       opacity: value ? 1 : 0.5,
       padding: value ? '1rem' : '0 1rem',
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
     }
 
     let link = `/account/people/${props.person}/measurements/${name.toLowerCase()}`
@@ -96,7 +96,7 @@ const Page = (props) => {
               dangerouslySetInnerHTML={{
                 __html: isDegMeasurement(name)
                   ? Math.round(measurementEstimate * 10) / 10 + '°'
-                  : formatMm(measurementEstimate, person.units, 'html')
+                  : formatMm(measurementEstimate, person.units, 'html'),
               }}
             />
           )}
@@ -108,7 +108,7 @@ const Page = (props) => {
                 dangerouslySetInnerHTML={{
                   __html: isDegMeasurement(name)
                     ? Math.round(value * 10) / 10 + '°'
-                    : formatMm(value, person.units, 'html')
+                    : formatMm(value, person.units, 'html'),
                 }}
               />
             </b>
@@ -126,14 +126,14 @@ const Page = (props) => {
       whiteSpace: 'nowrap',
       margin: '0',
       width: '100%',
-      maxWidth: '666px'
+      maxWidth: '666px',
     },
     cell: {
       padding: '1rem',
       borderTop: '1px solid #9993',
       verticalAlign: 'top',
       overflow: 'hidden',
-      textOverflow: 'ellipsis'
+      textOverflow: 'ellipsis',
     },
     valueCell: {
       padding: '1rem',
@@ -142,7 +142,7 @@ const Page = (props) => {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       textAlign: 'right',
-      width: '150px'
+      width: '150px',
     },
     title: {
       padding: '1rem',
@@ -151,8 +151,8 @@ const Page = (props) => {
       textAlign: 'right',
       fontWeight: 500,
       overflow: 'hidden',
-      textOverflow: 'ellipsis'
-    }
+      textOverflow: 'ellipsis',
+    },
   }
 
   if (app.mobile) {
@@ -206,7 +206,7 @@ const Page = (props) => {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          margin: '1rem auto'
+          margin: '1rem auto',
         }}
       >
         <Button
@@ -214,7 +214,7 @@ const Page = (props) => {
           variant="link"
           style={{
             marginLeft: '1rem',
-            padding: '0 1rem'
+            padding: '0 1rem',
           }}
           disabled={filter ? false : true}
           onClick={() => updateFilter(false)}
@@ -239,7 +239,7 @@ const Page = (props) => {
               style={{
                 ...styles.valueCell,
                 textAlign: 'right',
-                paddingRight: 'calc(1rem + 25px)'
+                paddingRight: 'calc(1rem + 25px)',
               }}
               className="fw-700"
             >

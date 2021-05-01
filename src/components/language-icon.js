@@ -47,7 +47,7 @@ const LanguageIcon = (props) => {
         <rect key="stripe2" width="32" height="8" fill="#21468b" x="0" y="16" />
         <rect key="stripe3" width="32" height="8" fill="#ae1c28" x="0" y="0" />
       </g>
-    )
+    ),
   }
 
   return (

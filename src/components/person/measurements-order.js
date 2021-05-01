@@ -35,5 +35,5 @@ export default [
   'bustSpan',
 
   'waistToHips',
-  'waistToUnderbust'
+  'waistToUnderbust',
 ]

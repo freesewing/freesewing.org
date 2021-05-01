@@ -31,7 +31,7 @@ const Page = (props) => {
         type="text"
         onChange={(evt) => setGithub(evt.target.value)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">@</InputAdornment>
+          startAdornment: <InputAdornment position="start">@</InputAdornment>,
         }}
       />
       <p style={{ textAlign: 'right' }}>

@@ -33,7 +33,7 @@ const SavePatternAs = (props) => {
         name: nameVal,
         notes: notesVal,
         person: typeof props.person === 'string' ? props.person : props.person.handle,
-        data: props.data
+        data: props.data,
       })
       .then((data) => {
         setLoading(false)

@@ -13,7 +13,7 @@ const Footer = (props) => {
     facebook: 'https://www.facebook.com/groups/627769821272714/',
     github: 'https://github.com/freesewing',
     reddit: 'https://www.reddit.com/r/freesewing/',
-    twitter: 'https://twitter.com/freesewing_org'
+    twitter: 'https://twitter.com/freesewing_org',
   }
 
   const links = {
@@ -22,7 +22,7 @@ const Footer = (props) => {
     becomeAPatron: '/patrons/join/',
     ourRevenuePledge: '/docs/various/pledge/',
     privacyNotice: '/docs/various/privacy/',
-    yourRights: '/docs/various/rights/'
+    yourRights: '/docs/various/rights/',
   }
 
   return (

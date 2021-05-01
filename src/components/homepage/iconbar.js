@@ -18,7 +18,7 @@ const IconBar = ({ app }) => {
     community: <CommunityIcon style={iconStyle} />,
     showcase: <ShowcaseIcon style={iconStyle} />,
     blog: <BlogIcon style={iconStyle} />,
-    docs: <DocsIcon style={iconStyle} />
+    docs: <DocsIcon style={iconStyle} />,
   }
 
   if (app.account && app.account.username) icons.account = <AccountIcon style={iconStyle} />

@@ -31,32 +31,32 @@ const SearchHit = (props) => {
   const options = {
     t0: {
       label: 'No patron',
-      color: 'danger'
+      color: 'danger',
     },
     t2: {
       label: 'Patron: 2€',
-      color: 'accent'
+      color: 'accent',
     },
     t4: {
       label: 'Patron: 4€',
-      color: 'accent'
+      color: 'accent',
     },
     t8: {
       label: 'Patron: 8€',
-      color: 'accent'
+      color: 'accent',
     },
     uf: {
       label: 'Unfreeze account',
-      color: 'success'
+      color: 'success',
     },
     admin: {
       label: 'Assign admin role',
-      color: 'info'
+      color: 'info',
     },
     user: {
       label: 'Remove admin role',
-      color: 'warning'
-    }
+      color: 'warning',
+    },
   }
 
   delete options['t' + tier]
@@ -71,25 +71,25 @@ const SearchHit = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     data: {
       flexGrow: 2,
       textAlign: 'left',
-      padding: '0 1rem'
+      padding: '0 1rem',
     },
     buttons: {
-      textAlign: 'center'
+      textAlign: 'center',
     },
     button: {
-      margin: '0.5rem'
+      margin: '0.5rem',
     },
     heading: {
-      margin: 0
+      margin: 0,
     },
     json: {
-      width: '100%'
-    }
+      width: '100%',
+    },
   }
 
   return (

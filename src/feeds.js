@@ -14,7 +14,7 @@ module.exports = ['Blog'].map((feed) => ({
         title: edge.node.frontmatter.title,
         url: slug,
         guid: slug,
-        custom_elements: [{ 'content:encoded': edge.node.html }]
+        custom_elements: [{ 'content:encoded': edge.node.html }],
       })
     })
   },
@@ -40,5 +40,5 @@ module.exports = ['Blog'].map((feed) => ({
       }
     }`,
   output: `/${feed.toLowerCase()}.xml`,
-  title: `freesewing.org ${feed} feed`
+  title: `freesewing.org ${feed} feed`,
 }))

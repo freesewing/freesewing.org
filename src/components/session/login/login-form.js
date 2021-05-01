@@ -51,7 +51,7 @@ const LoginForm = (props) => {
                   )}
                 </span>
               </InputAdornment>
-            )
+            ),
           }}
         />
         <Button

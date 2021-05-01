@@ -13,19 +13,19 @@ const Page = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     img: {
       height: '300px',
       margin: '6px',
       padding: 0,
-      borderRadius: '4px'
+      borderRadius: '4px',
     },
     link: {
       margin: 0,
       padding: 0,
-      height: '312px'
-    }
+      height: '312px',
+    },
   }
   if (app.mobile || app.tablet) {
     style.img.height = '150px'

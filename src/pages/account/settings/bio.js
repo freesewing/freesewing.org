@@ -20,8 +20,8 @@ const Page = (props) => {
     preview: {
       margin: '1rem 0',
       borderRadius: '6px',
-      padding: '1rem 2rem'
-    }
+      padding: '1rem 2rem',
+    },
   }
 
   return (
@@ -63,7 +63,7 @@ const Page = (props) => {
         <FormattedMessage id="app.preview" />
       </h6>
       <div style={styles.preview} className="shadow" data-test="preview">
-        <Markdown source={bio} />
+        <Markdown>{bio}</Markdown>
       </div>
       <Blockquote type="note">
         <FormattedMessage id="account.bioInfo" />

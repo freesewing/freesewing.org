@@ -25,7 +25,7 @@ describe('Account page', function () {
     '/account/export/': 'account.exportYourData',
     '/account/consent/': 'account.reviewYourConsent',
     '/account/restrict/': 'account.restrictProcessingOfYourData',
-    '/account/remove/': 'account.removeYourAccount'
+    '/account/remove/': 'account.removeYourAccount',
   }
 
   describe('Verify links & translations', function () {

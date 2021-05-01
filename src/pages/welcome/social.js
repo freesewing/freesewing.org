@@ -42,7 +42,7 @@ const Page = (props) => {
         type="text"
         onChange={(evt) => setGithub(evt.target.valuet)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">@</InputAdornment>
+          startAdornment: <InputAdornment position="start">@</InputAdornment>,
         }}
       />
       <h5>Twitter</h5>
@@ -55,7 +55,7 @@ const Page = (props) => {
         type="text"
         onChange={(evt) => setTwitter(evt.target.value)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">@</InputAdornment>
+          startAdornment: <InputAdornment position="start">@</InputAdornment>,
         }}
       />
       <h5>Instagram</h5>
@@ -68,7 +68,7 @@ const Page = (props) => {
         type="text"
         onChange={(evt) => setInstagram(evt.target.value)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">@</InputAdornment>
+          startAdornment: <InputAdornment position="start">@</InputAdornment>,
         }}
       />
       <p>
