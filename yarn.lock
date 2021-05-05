@@ -1168,14 +1168,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
-  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.12.5":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.13.17"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.17.tgz#8966d1fc9593bf848602f0662d6b4d0069e3a7ec"
   integrity sha512-NCdgJEelPTSh+FEFylhnP1ylq848l1z9t9N0j1Lfbcw0+KXGjsTvUmkxy+voLLXB5SOKMbLLx4jxYliGrYQseA==
@@ -8741,10 +8734,10 @@ gatsby-remark-jargon@2.15.3:
   dependencies:
     remark-jargon "^2.15.3"
 
-gatsby-remark-prismjs@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-prismjs/-/gatsby-remark-prismjs-5.0.0.tgz#edbefd34c3007d6b9e422e32cbd79df1f2b3bdfa"
-  integrity sha512-uFFdTaMEXsLic1He1JZlm4FuoNK0wasFDTk4u7UiI5tpNIZnBsSo3P0KDTKBPjq53xeWVqhGKAFmdRUXW2XGGg==
+gatsby-remark-prismjs@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-prismjs/-/gatsby-remark-prismjs-5.1.0.tgz#1c0ad938d453e9c75955c920e398ac96be2eee52"
+  integrity sha512-Gx5v3dJ1LEbL+PQ3C0ExIwcUicDFwIJ9cv4aale8PZrlpQyfx6Z5N4NRaN2t+Vherhidm+Ygy6zJEqI20yds+Q==
   dependencies:
     "@babel/runtime" "^7.12.5"
     parse-numeric-range "^1.2.0"
