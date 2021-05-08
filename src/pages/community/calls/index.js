@@ -37,8 +37,8 @@ const Page = (props) => {
       </p>
       <h5>How to connect</h5>
       <p>
-        We use Zoom for the call, and you can join at{' '}
-        <a href="https://meet.freesewing.org">meet.freesewing.org</a>.
+        We use Discord for the call, and you can join at{' '}
+        <a href="https://discord.freesewing.org">discord.freesewing.org</a>.
       </p>
       <h5 id="timezones">Contributor call in various timezones</h5>
       <ul className="links">
