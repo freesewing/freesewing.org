@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@bugsnag/js": "^7.9.2",
+    "@bugsnag/js": "^7.10.0",
     "@bugsnag/plugin-react": "^7.9.2",
     "@fontsource/permanent-marker": "^4.3.0",
     "@fontsource/roboto-mono": "^4.3.0",
