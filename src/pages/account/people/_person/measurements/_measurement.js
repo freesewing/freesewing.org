@@ -100,17 +100,15 @@ const Page = (props) => {
               id="app.weEstimateYM2B"
               values={{ measurement: label.toLowerCase() }}
             />
-            {measurement === 'shoulderSlope'
-              ? (
-                <span> {measurementEstimate}°</span>
-              ) : (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: ' ' + formatMm(measurementEstimate, person.units),
-                  }}
-                />
-              )
-            }
+            {measurement === 'shoulderSlope' ? (
+              <span> {measurementEstimate}°</span>
+            ) : (
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: ' ' + formatMm(measurementEstimate, person.units),
+                }}
+              />
+            )}
           </>
         )
       }
