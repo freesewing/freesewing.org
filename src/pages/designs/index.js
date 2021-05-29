@@ -25,8 +25,8 @@ const Page = (props) => {
       justifyContent: 'center',
     },
     innerWrapper: {
-      padding: '10px',
-      maxWidth: '200px',
+      padding: app.mobile ? '4px' : (app.tablet ? '6px' : '10px'),
+      maxWidth: app.mobile ? '160px' : (app.tablet ? '180px' : '200px'),
     },
     image: {
       borderRadius: '4px',
@@ -39,16 +39,7 @@ const Page = (props) => {
 
   return (
     <AppWrapper app={app} title={app.translate('app.designs')} slug={props.path} wide>
-      {filter ? (
-        <Filter app={app} applyFilter={setDesigns} closeFilter={() => setFilter(false)} />
-      ) : (
-        <p style={{ textAlign: 'right' }}>
-          <Button onClick={() => setFilter(!filter)} variant="outlined">
-            <SearchIcon style={{ marginRight: '0.5rem' }} />
-            <FormattedMessage id="filter.filter" />
-          </Button>
-        </p>
-      )}
+      <Filter app={app} applyFilter={setDesigns} />
       <div style={style.wrapper}>
         {designs.map((design) => (
           <div style={style.innerWrapper}>

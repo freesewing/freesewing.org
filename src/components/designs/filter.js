@@ -6,23 +6,15 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Button from '@material-ui/core/Button'
 import { info } from '@freesewing/pattern-info'
 import Chip from '@material-ui/core/Chip'
-import StarIcon from '@material-ui/icons/Star'
+import Logo from '@freesewing/components/Logo'
 
 const PatternFilter = (props) => {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState({
     department: [],
     type: [],
-    tags: [],
-    design: [],
-    code: [],
     difficulty: [],
   })
-
-  const closeFilter = () => {
-    resetFilter()
-    props.closeFilter()
-  }
 
   const uniqueArray = (array) => {
     return array.filter(function (value, index, self) {
@@ -34,9 +26,6 @@ const PatternFilter = (props) => {
     let clear = {
       department: [],
       type: [],
-      tags: [],
-      design: [],
-      code: [],
       difficulty: [],
     }
     setFilter(clear)
@@ -51,20 +40,7 @@ const PatternFilter = (props) => {
 
   const toggle = (type, item) => {
     let f = Object.assign({}, filter)
-    if (type === 'tags') {
-      let list = []
-      if (typeof f.tags === 'undefined') list.push(item)
-      else {
-        list = f.tags
-        let pos = filter.tags.indexOf(item)
-        if (pos === -1) list.push(item)
-        else {
-          if (list.length === 1) list = []
-          else list.splice(pos, 1)
-        }
-      }
-      f.tags = uniqueArray(list)
-    } else if (type === 'difficulty') {
+    if (type === 'difficulty') {
       f.difficulty = [1, 2, 3, 4, 5].filter((dif) => {
         return dif <= item
       })
@@ -108,36 +84,6 @@ const PatternFilter = (props) => {
         if (!seen) delete patterns[pattern]
       }
     }
-    if (filtered.tags.length > 0) {
-      for (let pattern in patterns) {
-        for (let t of filtered.tags) {
-          if (patterns[pattern].tags.indexOf(t) === -1) {
-            delete patterns[pattern]
-            break
-          }
-        }
-      }
-    }
-    if (filtered.code.length > 0) {
-      for (let pattern in patterns) {
-        for (let t of filtered.code) {
-          if (patterns[pattern].code.indexOf(t) === -1) {
-            delete patterns[pattern]
-            break
-          }
-        }
-      }
-    }
-    if (filtered.design.length > 0) {
-      for (let pattern in patterns) {
-        for (let t of filtered.design) {
-          if (patterns[pattern].design.indexOf(t) === -1) {
-            delete patterns[pattern]
-            break
-          }
-        }
-      }
-    }
     if (filtered.difficulty.length > 0) {
       const maxDifficulty = Math.max(...filtered.difficulty)
 
@@ -149,16 +95,13 @@ const PatternFilter = (props) => {
   }
 
   const filterTypes = {
-    department: [],
     type: [],
-    tags: [],
-    design: [],
-    code: [],
+    department: [],
   }
 
   for (let p in info) {
     for (let f in filterTypes) {
-      if (['tags', 'code', 'design', 'difficulty'].includes(f)) {
+      if (['difficulty'].includes(f)) {
         if (typeof info[p][f] === 'string') filterTypes[f].push(info[p][f])
         else {
           for (let tag of info[p][f]) filterTypes[f].push(tag)
@@ -194,6 +137,10 @@ const PatternFilter = (props) => {
       fontFamily: 'Roboto Condensed',
       fontWeight: 'bold',
     },
+    star: {
+      margin: '4px 2px 0',
+      display: 'inline-block'
+    }
   }
 
   return (
@@ -234,7 +181,7 @@ const PatternFilter = (props) => {
                   for (let i = 1; i <= value; i++)
                     difficulty.push(
                       <span style={styles.star}>
-                        <StarIcon />
+                        <Logo size='16' />
                       </span>
                     )
                   return difficulty
@@ -261,17 +208,9 @@ const PatternFilter = (props) => {
           </ul>
         )
       })}
-      <p style={{ textAlign: 'right' }}>
-        <Button color="primary" variant="contained" onClick={resetFilter}>
+      <p>
+        <Button color="primary" variant="outlined" onClick={resetFilter}>
           <FormattedMessage id="filter.resetFilter" />
-        </Button>
-        <Button
-          style={{ marginLeft: '0.5rem' }}
-          color="primary"
-          variant="outlined"
-          onClick={closeFilter}
-        >
-          <FormattedMessage id="app.close" />
         </Button>
       </p>
     </div>
