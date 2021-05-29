@@ -87,7 +87,7 @@ const ButtonAppBar = (props) => {
   const icons = {
     blog: <BlogIcon />,
     community: <CommunityIcon />,
-    designs: <Icon icon="withBreasts" />,
+    designs: <Icon icon="designs" />,
     docs: <DocsIcon />,
     showcase: <ShowcaseIcon />,
   }
