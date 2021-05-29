@@ -11,7 +11,7 @@ import Icon from '@freesewing/components/Icon'
 
 const iStyle = { style: { maxWidth: '32px' } }
 const icons = {
-  designs: <Icon icon="withBreasts" {...iStyle} />,
+  designs: <Icon icon="designs" {...iStyle} />,
   showcase: <ShowcaseIcon {...iStyle} />,
   blog: <BlogIcon {...iStyle} />,
   docs: <DocsIcon {...iStyle} />,
