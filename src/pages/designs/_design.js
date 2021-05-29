@@ -4,9 +4,8 @@ import AppWrapper from '../../components/app/wrapper'
 
 import PostPreview from '../../components/post-preview'
 import { FormattedMessage } from 'react-intl'
-import StarIcon from '@material-ui/icons/Star'
 import PlayIcon from '@material-ui/icons/PlayArrow'
-import DocsIcon from '@material-ui/icons/ImportContacts'
+import DocsIcon from '@material-ui/icons/ChromeReaderMode'
 import Button from '@material-ui/core/Button'
 import { info as patternInfo, measurements, options } from '@freesewing/pattern-info'
 import PatternMeasurements from '../../components/docs/pattern-measurements'
@@ -17,6 +16,7 @@ import Blockquote from '@freesewing/components/Blockquote'
 import capitalize from '@freesewing/utils/capitalize'
 import Hashtag from '../../components/hashtag'
 import { getImage } from 'gatsby-plugin-image'
+import Logo from '@freesewing/components/Logo'
 
 const Page = (props) => {
   const app = useApp(false)
@@ -39,7 +39,8 @@ const Page = (props) => {
       borderRadius: '4px',
     },
     star: {
-      color: 'orange',
+      margin: '4px 2px 0',
+      display: 'inline-block',
     },
     table: {},
     keyTd: {
@@ -65,7 +66,7 @@ const Page = (props) => {
   for (let i = 1; i <= info.difficulty; i++)
     difficulty.push(
       <span style={styles.star}>
-        <StarIcon />
+        <Logo size={16} />
       </span>
     )
 

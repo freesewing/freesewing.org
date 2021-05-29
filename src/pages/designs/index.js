@@ -25,8 +25,8 @@ const Page = (props) => {
       justifyContent: 'center',
     },
     innerWrapper: {
-      padding: app.mobile ? '4px' : (app.tablet ? '6px' : '10px'),
-      maxWidth: app.mobile ? '160px' : (app.tablet ? '180px' : '200px'),
+      padding: app.mobile ? '4px' : app.tablet ? '6px' : '10px',
+      maxWidth: app.mobile ? '160px' : app.tablet ? '180px' : '200px',
     },
     image: {
       borderRadius: '4px',

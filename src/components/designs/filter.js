@@ -139,8 +139,8 @@ const PatternFilter = (props) => {
     },
     star: {
       margin: '4px 2px 0',
-      display: 'inline-block'
-    }
+      display: 'inline-block',
+    },
   }
 
   return (
@@ -181,7 +181,7 @@ const PatternFilter = (props) => {
                   for (let i = 1; i <= value; i++)
                     difficulty.push(
                       <span style={styles.star}>
-                        <Logo size='16' />
+                        <Logo size="16" />
                       </span>
                     )
                   return difficulty
