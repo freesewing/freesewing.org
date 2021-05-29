@@ -14,7 +14,7 @@ const IconBar = ({ app }) => {
   const iconStyle = { maxWidth: '64px' }
 
   const icons = {
-    designs: <Icon icon="withBreasts" style={iconStyle} />,
+    designs: <Icon icon="designs" style={iconStyle} />,
     community: <CommunityIcon style={iconStyle} />,
     showcase: <ShowcaseIcon style={iconStyle} />,
     blog: <BlogIcon style={iconStyle} />,
@@ -28,7 +28,10 @@ const IconBar = ({ app }) => {
     <div className="icons">
       {Object.keys(icons).map((icon) => (
         <div className="icon" key={icon}>
-          <Link to={`/${icon}/`} title={app.translate((icon === 'login') ? 'app.logIn' : `app.${icon}`)}>
+          <Link
+            to={`/${icon}/`}
+            title={app.translate(icon === 'login' ? 'app.logIn' : `app.${icon}`)}
+          >
             {icons[icon]}
             <br />
             <span>
