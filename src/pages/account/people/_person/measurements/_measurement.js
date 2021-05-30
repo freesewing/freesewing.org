@@ -87,9 +87,16 @@ const Page = (props) => {
 
   if (person.measurements.neck) {
     measurementEstimate = neckstimate(person.measurements.neck, measurement, person.breasts) // Note: This is in mm
-    measurementDiff = (value === '')
-      ? null
-      : measurementDiffers(person.measurements.neck, measurement, value * 10, person.breasts, false)
+    measurementDiff =
+      value === ''
+        ? null
+        : measurementDiffers(
+            person.measurements.neck,
+            measurement,
+            value * 10,
+            person.breasts,
+            false
+          )
 
     // Only show measurementEstimate for non measurements.neck
     helperText = () => {
@@ -117,9 +124,7 @@ const Page = (props) => {
 
   // Range for degree measurements
   if (isDegMeasurement(measurement)) {
-    measurementDiff = (value === '')
-      ? null
-      : (value - 13) / 2
+    measurementDiff = value === '' ? null : (value - 13) / 2
   }
   // Symbol for text box
   const unitsText = isDegMeasurement(measurement) ? '°' : person.units === 'imperial' ? '"' : 'cm'
@@ -155,7 +160,7 @@ const Page = (props) => {
         }}
       />
 
-      <p style={{ textAlign: 'right'}}>
+      <p style={{ textAlign: 'right' }}>
         <Button
           size="large"
           variant="outlined"
@@ -171,7 +176,7 @@ const Page = (props) => {
           style={{ marginLeft: '1rem' }}
           variant="contained"
           color="primary"
-          disabled={!updated || !valid || value===''}
+          disabled={!updated || !valid || value === ''}
           onClick={saveMeasurement}
         >
           <FormattedMessage id="app.save" />

@@ -242,7 +242,10 @@ const Page = (props) => {
                 <FormattedMessage id="app.actual" />
               </b>
             </th>
-            <th style={{...styles.valueCell, textAlign: 'center', width: '30px'}} className="fw-700">
+            <th
+              style={{ ...styles.valueCell, textAlign: 'center', width: '30px' }}
+              className="fw-700"
+            >
               Δ
             </th>
           </tr>
@@ -256,9 +259,15 @@ const Page = (props) => {
                 person.breasts
               )
               if (value) {
-                const measurementDifference = (isDegMeasurement(m))
+                const measurementDifference = isDegMeasurement(m)
                   ? (value - 13) / 2
-                  : measurementDiffers(person.measurements.neck || (person.breasts ? 360 : 420), m, value, person.breasts, false)
+                  : measurementDiffers(
+                      person.measurements.neck || (person.breasts ? 360 : 420),
+                      m,
+                      value,
+                      person.breasts,
+                      false
+                    )
 
                 return measurementRow(m, value, measurementEstimate, measurementDifference)
               } else return measurementRow(m, value, measurementEstimate, false, true)
