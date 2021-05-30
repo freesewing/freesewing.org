@@ -99,13 +99,12 @@ if (process.env.CONTEXT === 'production' && process.env.HEAD === 'main') {
 }
 
 module.exports = {
-  //flags: {
-  //  //QUERY_ON_DEMAND: true,
-  //  FAST_DEV: true,
-  //  DEV_SSR: true,
-  //  PRESERVE_WEBPACK_CACHE: true,
-  //  PRESERVE_FILE_DOWNLOAD_CACHE: true,
-  //},
+  flags: {
+    FAST_DEV: false,
+    DEV_SSR: false,
+    PRESERVE_WEBPACK_CACHE: false,
+    PRESERVE_FILE_DOWNLOAD_CACHE: false,
+  },
   plugins: plugins,
   siteMetadata: {
     title: 'FreeSewing',

@@ -5,8 +5,6 @@ import AppWrapper from '../../../../../components/app/wrapper'
 import usePerson from '../../../../../hooks/usePerson'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import ValidIcon from '@material-ui/icons/CheckCircle'
-import InvalidIcon from '@material-ui/icons/Warning'
 import { FormattedMessage } from 'react-intl'
 import Button from '@material-ui/core/Button'
 import measurementAsMm from '@freesewing/utils/measurementAsMm'
@@ -17,6 +15,7 @@ import neckstimate from '@freesewing/utils/neckstimate'
 import measurementDiffers from '@freesewing/utils/measurementDiffers'
 import Mdx from '../../../../../components/mdx'
 import MeasurementsImages from '../../../../../components/measurements/images'
+import MeasurementGauge from '../../../../../components/measurements/gauge'
 
 const Page = (props) => {
   const app = useApp()
@@ -83,13 +82,14 @@ const Page = (props) => {
   }
 
   let measurementEstimate = false
-  let measurementInRange = value > 0
+  let measurementDiff = null
   let helperText = () => null
 
   if (person.measurements.neck) {
     measurementEstimate = neckstimate(person.measurements.neck, measurement, person.breasts) // Note: This is in mm
-    measurementInRange =
-      measurementDiffers(person.measurements.neck, measurement, value * 10, person.breasts) <= 2
+    measurementDiff = (value === '')
+      ? null
+      : measurementDiffers(person.measurements.neck, measurement, value * 10, person.breasts, false)
 
     // Only show measurementEstimate for non measurements.neck
     helperText = () => {
@@ -116,8 +116,11 @@ const Page = (props) => {
   }
 
   // Range for degree measurements
-  if (isDegMeasurement(measurement)) measurementInRange = value > 0 && value < 20
-
+  if (isDegMeasurement(measurement)) {
+    measurementDiff = (value === '')
+      ? null
+      : (value - 13) / 2
+  }
   // Symbol for text box
   const unitsText = isDegMeasurement(measurement) ? '°' : person.units === 'imperial' ? '"' : 'cm'
 
@@ -146,16 +149,13 @@ const Page = (props) => {
             <InputAdornment position="start">
               {unitsText}
               &nbsp;
-              {measurementInRange ? (
-                <ValidIcon style={{ color: '#40c057' }} data-test="valid" />
-              ) : (
-                <InvalidIcon style={{ color: 'orange' }} data-test="invalid" />
-              )}
+              <MeasurementGauge val={measurementDiff} size={24} theme={app.theme} />
             </InputAdornment>
           ),
         }}
       />
-      <p style={{ textAlign: 'right' }}>
+
+      <p style={{ textAlign: 'right'}}>
         <Button
           size="large"
           variant="outlined"
@@ -171,7 +171,7 @@ const Page = (props) => {
           style={{ marginLeft: '1rem' }}
           variant="contained"
           color="primary"
-          disabled={!updated || !valid}
+          disabled={!updated || !valid || value===''}
           onClick={saveMeasurement}
         >
           <FormattedMessage id="app.save" />

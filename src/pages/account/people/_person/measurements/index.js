@@ -19,6 +19,7 @@ import InvalidIcon from '@material-ui/icons/Help'
 import { list, measurements as requiredMeasurements } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 import SizingGraph from '../../../../../components/person/size-graph'
+import MeasurementGauge from '../../../../../components/measurements/gauge'
 
 const Page = (props) => {
   const app = useApp()
@@ -60,7 +61,7 @@ const Page = (props) => {
     name,
     value = false,
     measurementEstimate = null,
-    measurementInRange = null,
+    measurementDifference = null,
     notSet = false
   ) => {
     const missing = {
@@ -68,27 +69,12 @@ const Page = (props) => {
       padding: value ? '1rem' : '0 1rem',
       verticalAlign: 'middle',
     }
-
     let link = `/account/people/${props.person}/measurements/${name.toLowerCase()}`
+
     return (
       <tr className="poh hover" onClick={() => app.navigate(link)}>
         <td style={{ ...styles.title, ...missing }}>
           <FormattedMessage id={'measurements.' + name} />
-          {measurementInRange ? (
-            <ValidIcon
-              size="small"
-              style={{ color: '#40c057', fontSize: '1.2rem', marginLeft: '0.5rem' }}
-              data-test="valid"
-            />
-          ) : (
-            !notSet && (
-              <InvalidIcon
-                size="small"
-                style={{ color: '#ff922b', fontSize: '1.2rem', marginLeft: '0.5rem' }}
-                data-test="invalid"
-              />
-            )
-          )}
         </td>
         <td style={{ ...styles.valueCell, ...missing, textAlign: 'right' }}>
           {measurementEstimate && (
@@ -113,6 +99,9 @@ const Page = (props) => {
               />
             </b>
           )}
+        </td>
+        <td style={{ ...styles.valueCell, ...missing, textAlign: 'center', width: '30px' }}>
+          {value && <MeasurementGauge val={measurementDifference} size={24} theme={app.theme} />}
         </td>
       </tr>
     )
@@ -142,7 +131,6 @@ const Page = (props) => {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       textAlign: 'right',
-      width: '150px',
     },
     title: {
       padding: '1rem',
@@ -235,26 +223,28 @@ const Page = (props) => {
       <table style={styles.table}>
         <tbody>
           <tr>
-            <td
+            <th
               style={{
                 ...styles.valueCell,
                 textAlign: 'right',
-                paddingRight: 'calc(1rem + 25px)',
               }}
               className="fw-700"
             >
               <b>
                 <FormattedMessage id="app.name" />
               </b>
-            </td>
-            <td style={styles.valueCell} className="fw-700">
+            </th>
+            <th style={styles.valueCell} className="fw-700">
               <FormattedMessage id="app.estimate" />
-            </td>
-            <td style={styles.valueCell} className="fw-700">
+            </th>
+            <th style={styles.valueCell} className="fw-700">
               <b>
                 <FormattedMessage id="app.actual" />
               </b>
-            </td>
+            </th>
+            <th style={{...styles.valueCell, textAlign: 'center', width: '30px'}} className="fw-700">
+              Δ
+            </th>
           </tr>
           {person.measurements &&
             measurements.map((m) => {
@@ -266,10 +256,11 @@ const Page = (props) => {
                 person.breasts
               )
               if (value) {
-                const measurementInRange =
-                  measurementDiffers(person.measurements.neck || 360, m, value, person.breasts) <= 2
+                const measurementDifference = (isDegMeasurement(m))
+                  ? (value - 13) / 2
+                  : measurementDiffers(person.measurements.neck || (person.breasts ? 360 : 420), m, value, person.breasts, false)
 
-                return measurementRow(m, value, measurementEstimate, measurementInRange)
+                return measurementRow(m, value, measurementEstimate, measurementDifference)
               } else return measurementRow(m, value, measurementEstimate, false, true)
             })}
         </tbody>
