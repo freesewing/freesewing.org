@@ -37,6 +37,21 @@ const accountMethods = ({
       })
   }
 
+  const invalidateAccountCache = () => {
+    return backend
+      .account(token)
+      .then((res) => {
+        if (res.status === 200) {
+          persist(res.data)
+        } else console.log('res in hook', res)
+        return res.status
+      })
+      .catch((error) => {
+        if (error.response) return error.response.status
+        else return error
+      })
+  }
+
   const updateAccount = (data, to = false) => {
     setLoading(true)
     saveAccount(data)
@@ -51,6 +66,7 @@ const accountMethods = ({
           type: 'success',
           msg: translate('app.fieldSaved', { field }),
         })
+        invalidateAccountCache()
       })
       .catch((error) => showError(error))
   }
@@ -163,6 +179,7 @@ const accountMethods = ({
     restrictAccount,
     recoverAccount,
     refreshAccount,
+    invalidateAccountCache,
     signup,
     loadProfile,
     saveAccount,
