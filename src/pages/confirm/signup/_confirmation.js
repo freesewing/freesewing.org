@@ -20,7 +20,7 @@ const Page = (props) => {
     if (profile) {
       let consent = {
         profile,
-        model,
+        measurements,
         openData,
       }
       app.createAccount(props.confirmation, consent)

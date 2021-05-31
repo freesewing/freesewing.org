@@ -27,16 +27,22 @@ const Page = (props) => {
   )
 
   const [model, setModel] = useState(
-    app.account ? (app.account.consent ? (app.account.consent.model ? true : false) : false) : false
+    app.account
+      ? app.account.consent
+        ? app.account.consent.measurements
+          ? true
+          : false
+        : false
+      : false
   )
   const [openData, setOpenData] = useState(
-    app.account.consent ? (app.account.consent.model ? true : false) : false
+    app.account.consent ? (app.account.consent.openData ? true : false) : false
   )
 
   // Methods
   const saveConsent = () => {
     if (!profile) app.removeAccount()
-    else app.updateAccount([{ profile, model, openData }, 'consent'], '/account/settings/')
+    else app.updateAccount([{ profile, measurements, openData }, 'consent'], '/account/settings/')
   }
 
   // Style
