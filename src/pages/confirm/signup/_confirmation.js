@@ -13,7 +13,7 @@ const Page = (props) => {
 
   const [details, setDetails] = useState(false)
   const [profile, setProfile] = useState(false)
-  const [model, setModel] = useState(false)
+  const [measurements, setMeasurements] = useState(false)
   const [openData, setOpenData] = useState(true)
 
   const createAccount = () => {
@@ -99,7 +99,7 @@ const Page = (props) => {
       </tbody>
     </table>,
   ]
-  const modelDetails = [
+  const measurementsDetails = [
     <h2 key="mdtitle">
       <FormattedMessage id="gdpr.consentForModelData" />
     </h2>,
@@ -171,18 +171,18 @@ const Page = (props) => {
           </Blockquote>
         )}
       </div>
-      {details ? modelDetails : null}
+      {details ? measurementsDetails : null}
       <h5>
         <FormattedMessage id="gdpr.modelQuestion" />
       </h5>
       <div style={styles.side}>
         <FormControlLabel
-          control={<Checkbox color="primary" onChange={() => setModel(!model)} />}
-          value={model}
-          checked={model ? true : false}
+          control={<Checkbox color="primary" onChange={() => setMeasurements(!measurements)} />}
+          value={measurements}
+          checked={measurements ? true : false}
           label={app.translate('gdpr.yesIDo')}
         />
-        {model ? null : (
+        {measurements ? null : (
           <Blockquote type="note">
             <FormattedMessage id="gdpr.noConsentNoPatterns" />
           </Blockquote>
