@@ -26,7 +26,7 @@ const Page = (props) => {
       : false
   )
 
-  const [model, setModel] = useState(
+  const [measurements, setMeasurements] = useState(
     app.account
       ? app.account.consent
         ? app.account.consent.measurements
@@ -203,19 +203,19 @@ const Page = (props) => {
       <h5 data-test="modelQuestion">
         <FormattedMessage id="gdpr.modelQuestion" />
       </h5>
-      <RadioGroup name="model" onChange={() => setModel(!model)} value={model}>
+      <RadioGroup name="model" onChange={() => setMeasurements(!measurements)} value={measurements}>
         <FormControlLabel
           data-test="noIDoNot"
           control={<Radio color="primary" />}
           value={false}
-          checked={model ? false : true}
+          checked={measurements ? false : true}
           label={app.translate('gdpr.noIDoNot')}
         />
         <FormControlLabel
           data-test="yesIDo"
           control={<Radio color="primary" />}
           value={true}
-          checked={model ? true : false}
+          checked={measurements ? true : false}
           label={app.translate('gdpr.yesIDo')}
         />
       </RadioGroup>
@@ -238,7 +238,7 @@ const Page = (props) => {
         </div>
       ) : null}
 
-      {model ? null : (
+      {measurements ? null : (
         <Blockquote type="warning" data-test="modelWarning">
           <FormattedMessage id="gdpr.modelWarning" />
         </Blockquote>
