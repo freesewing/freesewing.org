@@ -1142,10 +1142,10 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
-  integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+  version "7.14.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.5.tgz#665450911c6031af38f81db530f387ec04cd9a98"
+  integrity sha512-121rumjddw9c3NCQ55KGkyE1h/nzWhU/owjhw0l4mQrkzz4x9SGS1X8gFLraHwX7td3Yo4QTL+qj0NcIzN87BA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -7783,10 +7783,10 @@ gatsby-cli@^3.6.0:
     yoga-layout-prebuilt "^1.9.6"
     yurnalist "^2.1.0"
 
-gatsby-core-utils@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-2.6.0.tgz#4653995f3640b56fe218a20da6458cfe0bffcdfb"
-  integrity sha512-d8a/iblc3wIrLEOWTUcoK5uYE2DrvlQmeulx6DK3NY49KD8jet8ozB6T5GA1CftsvowWeO6aaDnoWDbTxIxTRA==
+gatsby-core-utils@^2.6.0, gatsby-core-utils@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-2.7.1.tgz#c50b0f0e21154d4701b30917b60db251814f16da"
+  integrity sha512-ofiAzLMeLjkS9huo0JQRbNzOfwCCxzPg7mSXeEhZhHGfbXoqZ9ZufmlTTgSYLc5v6agoM4yi4rHqdMOXu4qXAw==
   dependencies:
     ci-info "2.0.0"
     configstore "^5.0.1"
@@ -7940,25 +7940,25 @@ gatsby-plugin-mdx@2.6.0:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
-gatsby-plugin-netlify@3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-3.6.1.tgz#84a5b27248a02298d5dcf906868de4bd9e3e5e7a"
-  integrity sha512-q3AIIQdlHew6Hd7NJf99StGF76W5z7Z8sB5uBODbjm7W7xYvBab7WRuc6ejeH8poXCv6amk7ywiQV/iaFfNTRA==
+gatsby-plugin-netlify@3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-3.7.1.tgz#23e42307cf9172fd7ba79f5d0973648ddce8c0ed"
+  integrity sha512-VKytJR20ZXVz5a2B46KKVDiLKX7Ftp7+U0jbk80k2LhOHNOi8Z7aoJwOCLO75eAwcSCfWmcBpgcK1v/0Q4OBpA==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     fs-extra "^8.1.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.5"
 
-gatsby-plugin-offline@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-offline/-/gatsby-plugin-offline-4.6.0.tgz#d6f0ad301a16fbb8d219ab82bc7147afb914c51b"
-  integrity sha512-NEhO7jONqQXVhLssaHsfnu9Qeix9ncIEDGsGoDg4XcxmP0yHgLhXC7aUpAuodmZhx6+4UtiCAAkyZQqMDjOCZA==
+gatsby-plugin-offline@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-offline/-/gatsby-plugin-offline-4.7.1.tgz#9c49c3ad9595aa194a0f8c7b64d9b110662a459f"
+  integrity sha512-rK4oRxpiOsWQj5SNekcWuUY169OBrdYzxkYu+dOJM5rca6mPNMs0DkGJ4OqhIwxW+xGs6in9QKXbAtoc4ICQ6Q==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     cheerio "^1.0.0-rc.9"
-    gatsby-core-utils "^2.6.0"
+    gatsby-core-utils "^2.7.1"
     glob "^7.1.6"
     idb-keyval "^3.2.0"
     lodash "^4.17.21"
@@ -7986,12 +7986,12 @@ gatsby-plugin-react-helmet@4.6.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-gatsby-plugin-sass@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.6.0.tgz#3067a438a75d17165d22b3cebdd75fa027668fa3"
-  integrity sha512-tc82jDRlo8qwdjD2rFE7qA43VnDxw5DcJ17UK5HjKT2AaF4v049VBUT7eGLe41pPGsfwfm563nCtzORcNbkyCA==
+gatsby-plugin-sass@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.7.1.tgz#53e53039218f8203c3f59a4be75215b59da17337"
+  integrity sha512-W3YIHAJzpkH94nSZu+MmL6UKxT3VoHCfxTfiOG+vF/c/VKhMwkyO+1cSMufRlxcTGWmP2pgFNA57a7ZoXQdCTw==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     resolve-url-loader "^3.1.2"
     sass-loader "^10.1.1"
 
