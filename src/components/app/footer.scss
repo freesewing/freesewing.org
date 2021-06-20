@@ -3,7 +3,7 @@
 footer {
   background-color: darken($oc-gray-9, 3);
   color: $oc-gray-5;
-  padding: 2rem 0;
+  padding: 3rem 0;
   a {
     color: $oc-gray-3 !important;
     font-weight: 500;
@@ -20,23 +20,26 @@ footer {
     padding: 0 1.5rem;
     > div {
       min-width: 150px;
-      max-width: calc(20% - 4rem);
-      padding: 0 2rem 0 0;
-      width: 100%;
+      max-width: 360px;
+      padding: 1rem;
+      width: calc(100% - 2rem);
     }
     div:last-of-type {
       min-width: 250px;
     }
+    div.row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
   ul {
-    text-align: left;
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 0.85rem;
     margin: 0;
     padding: 0;
     width: 100%;
-    li:first-of-type {
-      padding: 0.35rem 0.75rem;
-    }
     li {
       display: block;
       a {
@@ -48,16 +51,10 @@ footer {
         text-decoration: none !important;
       }
     }
-    li.heading {
-      font-weight: bold;
-      border-bottom: 3px solid $oc-gray-5;
-      margin-bottom: 0.5rem;
-    }
   }
   div.logo {
     text-align: center;
     width: 100%;
-    padding-top: 2rem;
     color: $oc-gray-0;
     div.name {
       display: block;
@@ -73,7 +70,7 @@ footer {
     padding-top: 2rem;
     font-weight: 500;
     display: block;
-    font-size: 1.25rem;
+    font-size: 0.85rem;
     line-height: 1.2;
     text-align: center;
     color: $oc-gray-2;
@@ -81,6 +78,13 @@ footer {
   }
   p.version {
     font-size: 1rem;
+  }
+  div.license {
+    font-size: 0.666rem;
+    img {
+      float: left;
+      padding: 0.25rem;
+    }
   }
 }
 
@@ -90,7 +94,7 @@ footer {
     min-width: 350px;
   }
 }
-/* SM screens */
+/* SM sceens */
 @media (min-width: 600px) and (max-width: 959px) {
   footer div.cols {
     flex-wrap: wrap;

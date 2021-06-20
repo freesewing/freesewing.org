@@ -3,6 +3,7 @@ import Logo from '@freesewing/components/Logo'
 import { Link } from 'gatsby'
 import MainIcons from '../menus/main-aside'
 import { FormattedMessage } from 'react-intl'
+import Icon from '@freesewing/components/Icon'
 
 import './footer.scss'
 
@@ -30,9 +31,6 @@ const Footer = (props) => {
       <div className="cols">
         <div>
           <ul>
-            <li className="heading">
-              <FormattedMessage id="app.whatIsThis" />
-            </li>
             {Object.keys(links).map((key) => (
               <li key={key}>
                 <Link to={links[key]} title={props.app.translate(`app.${key}`)}>
@@ -43,21 +41,22 @@ const Footer = (props) => {
           </ul>
         </div>
         <div>
-          <MainIcons app={props.app} footer />
-        </div>
-        <div>
-          <ul>
-            <li className="heading">
-              <FormattedMessage id="app.socialMedia" />
-            </li>
-            {Object.keys(social).map((i) => (
-              <li key={i}>
-                <a href={social[i]} title={i}>
-                  {i}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className='row'>
+            {Object.keys(social).map((i) => <a key={i} href={social[i]} title={i}><Icon icon={i} size={32}/></a>)}
+          </div>
+          <div className='cc' style={{padding: '2.5rem 0'}}>
+            <div style={{textAlign: 'center', paddingBottom: '0.5rem'}}>
+              <img src='/cc-logo.svg' id='cc-logo' style={{maxWidth: '200px'}}/>
+            </div>
+            <div className='row license'>
+              <img src='/cc-by.svg' id='cc-by' style={{height: '32px', width: '32px'}}/>
+              <p className='license'><b>Content</b> on freesewing.org is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a></p>
+            </div>
+            <div className='row license'>
+              <img src='/osi-logo.svg' id='cc-by' style={{height: '31px', width: '32px'}}/>
+              <p className='license'>Our <b>source code</b> and <b>markdown</b> is <a href="https://github.com/freesewing/">available on GitHub</a> onder a <a href="https://opensource.org/licenses/MIT">MIT license</a></p>
+            </div>
+          </div>
         </div>
         <div>
           <div className="logo">
