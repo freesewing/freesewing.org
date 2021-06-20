@@ -5,13 +5,15 @@ import AuthRequired from '../../components/auth-required'
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import SearchHit from '../../components/admin/hit'
+import SearchHitUser from '../../components/admin/user-hit'
+import SearchHitPerson from '../../components/admin/person-hit'
 
 const Page = (props) => {
   const app = useApp()
 
   const [query, setQuery] = useState('')
   const [users, setUsers] = useState([])
+  const [people, setPeople] = useState([])
   const [impersonating, setImpersonating] = useState(false)
 
   // Effects
@@ -26,7 +28,11 @@ const Page = (props) => {
       .adminSearch(query)
       .then((res) => {
         if (res.status === 200) {
-          setUsers(res.data)
+          // FIXME: No need to support both once backend is migrated
+          if (res.data.users) {
+            setUsers(res.data.users)
+            setPeople(res.data.people)
+          } else if (res.data) setUsers(res.data)
         }
       })
       .catch((err) => console.log(err))
@@ -68,7 +74,10 @@ const Page = (props) => {
             </Button>
           </p>
           {users.map((user) => (
-            <SearchHit key={user.handle} user={user} search={search} app={app} />
+            <SearchHitUser key={user.handle} user={user} search={search} app={app} />
+          ))}
+          {people.map((person) => (
+            <SearchHitPerson key={person.handle} person={person} search={search} app={app} />
           ))}
         </AuthRequired>
       </AppWrapper>
