@@ -17,7 +17,7 @@ const Error = ({ report = false, err = defaultError }) => {
           <Button
             variant="outlined"
             color="primary"
-            href="https://github.com/freesewing/website/issues/new"
+            href="https://github.com/freesewing/freesewing/issues/new"
             target="_BLANK"
           >
             <Icon icon="github" style={{ marginRight: '0.5rem' }} />
