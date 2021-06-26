@@ -121,7 +121,7 @@ ${e.stack}
           compareWith,
         })
         .then((res) =>
-          setIssue(`https://github.com/freesewing/freesewing.org/issues/${res.data.id}`)
+          setIssue(`https://github.com/freesewing/freesewing/issues/${res.data.id}`)
         )
         .catch((err) => console.log(err))
         .finally(() => app.setLoading(false))
