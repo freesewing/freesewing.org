@@ -120,9 +120,7 @@ ${e.stack}
           error,
           compareWith,
         })
-        .then((res) =>
-          setIssue(`https://github.com/freesewing/freesewing/issues/${res.data.id}`)
-        )
+        .then((res) => setIssue(`https://github.com/freesewing/freesewing/issues/${res.data.id}`))
         .catch((err) => console.log(err))
         .finally(() => app.setLoading(false))
     }
