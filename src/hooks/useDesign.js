@@ -30,6 +30,7 @@ import tamiko from '@freesewing/tamiko'
 import teagan from '@freesewing/teagan'
 import theo from '@freesewing/theo'
 import titan from '@freesewing/titan'
+import ursula from '@freesewing/ursula'
 import trayvon from '@freesewing/trayvon'
 import wahid from '@freesewing/wahid'
 import waralee from '@freesewing/waralee'
@@ -68,6 +69,7 @@ const designs = {
   theo,
   titan,
   trayvon,
+  ursula,
   wahid,
   waralee,
 }
