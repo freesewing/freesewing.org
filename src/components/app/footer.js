@@ -65,7 +65,7 @@ const Footer = (props) => {
               <img src="/osi-logo.svg" id="cc-by" style={{ height: '31px', width: '32px' }} />
               <p className="license">
                 Our <b>source code</b> and <b>markdown</b> is{' '}
-                <a href="https://github.com/freesewing/">available on GitHub</a> onder a{' '}
+                <a href="https://github.com/freesewing/">available on GitHub</a> under a{' '}
                 <a href="https://opensource.org/licenses/MIT">MIT license</a>
               </p>
             </div>
