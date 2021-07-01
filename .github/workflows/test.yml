@@ -43,6 +43,7 @@ jobs:
         with:
           build: yarn build
           start: yarn serve
+          spec: cypress/integration/people.spec.js          
 
       # Test run screenshots are captured only on failures
       - name: Store screenshot artifacts
