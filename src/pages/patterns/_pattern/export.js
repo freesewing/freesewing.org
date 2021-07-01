@@ -47,7 +47,7 @@ const Page = (props) => {
         { title, slug: `/patterns/${props.params.pattern}/` },
       ]}
     >
-      <ExportPattern app={app} data={pattern.data} />
+      <ExportPattern app={app} data={pattern.data} handle={props.params.pattern} />
     </AppWrapper>
   )
 }

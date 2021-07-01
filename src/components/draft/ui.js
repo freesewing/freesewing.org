@@ -348,7 +348,8 @@ ${e.stack}
         data={data}
       />
     )
-  else if (display === 'export') main = <ExportPattern app={app} data={data} />
+  else if (display === 'export')
+    main = <ExportPattern app={app} data={data} handle={props.design} />
   else if (display === 'saveas')
     main = <SaveAsPattern app={app} data={data} person={props.person} />
   else
