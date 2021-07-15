@@ -18,7 +18,7 @@ const breastsOnly = [
   'waisttounderbust',
   'underbust',
 ]
-const nonSvg = ['ankle']
+const nonSvg = ['heel']
 
 const MeasurementImages = (props) => {
   const { measurement, intl, breasts } = props
