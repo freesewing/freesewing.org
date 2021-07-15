@@ -135,7 +135,7 @@
     "@commitlint/config-conventional": "12.1.4",
     "babel-plugin-apply-mdx-type-prop": "^1.6.22",
     "cypress": "7.6.0",
-    "eslint": "7.28.0",
+    "eslint": "7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-chai-friendly": "^0.7.1",
     "eslint-plugin-cypress": "^2.11.3",
