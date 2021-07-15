@@ -7763,19 +7763,10 @@ gatsby-legacy-polyfills@^1.8.0:
   dependencies:
     core-js-compat "3.9.0"
 
-gatsby-link@3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-3.6.0.tgz#39faf9eba9afb51b13cf4c05a4e831acde82b59d"
-  integrity sha512-lvRAA+RfH7DrId1gfGrCW1Ox1weMZnVyOaJwQZaTBXoxQ2H2xv5AkIS08GPm00Il5wnHfOUsh/qHxEW/Q6+ELQ==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    "@types/reach__router" "^1.3.7"
-    prop-types "^15.7.2"
-
-gatsby-link@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-3.8.0.tgz#6c6fdf1b7b5a72ca1fe543315d257052f2f01467"
-  integrity sha512-Ruso8cP++5egvpzx5y8HMJouA1ldkNsHMtHANYwZnSZ2Wd+OHfR+kWRRS+zPqqHbhRmMeecdTXRCth07vvzKEw==
+gatsby-link@3.9.0, gatsby-link@^3.8.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-3.9.0.tgz#342751b0504b934d9735f9339657165fa35bc333"
+  integrity sha512-eRxwi1Ri8oQPK6epIxYj69s2hybk/LVuVc9b6yFDsAzuQ2OLePxjSTku1T64anxICAN5OLbY8T8rFhUbzacuiQ==
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@types/reach__router" "^1.3.7"
