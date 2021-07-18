@@ -86,7 +86,7 @@
     "dotenv": "10.0.0",
     "file-saver": "2.0.5",
     "gatsby": "^3.8.1",
-    "gatsby-link": "3.6.0",
+    "gatsby-link": "3.9.0",
     "gatsby-plugin-algolia": "0.20.1",
     "gatsby-plugin-catch-links": "3.6.0",
     "gatsby-plugin-feed": "^3.7.1",
@@ -135,7 +135,7 @@
     "@commitlint/config-conventional": "12.1.4",
     "babel-plugin-apply-mdx-type-prop": "^1.6.22",
     "cypress": "7.6.0",
-    "eslint": "7.28.0",
+    "eslint": "7.31.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-chai-friendly": "^0.7.1",
     "eslint-plugin-cypress": "^2.11.3",
@@ -143,7 +143,7 @@
     "gatsby-cli": "^3.6.0",
     "husky": "^6.0.0",
     "prettier": "^2.3.1",
-    "pretty-quick": "^3.1.0"
+    "pretty-quick": "^3.1.1"
   },
   "keywords": [
     "gatsby"
