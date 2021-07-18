@@ -86,7 +86,7 @@
     "dotenv": "10.0.0",
     "file-saver": "2.0.5",
     "gatsby": "^3.8.1",
-    "gatsby-link": "3.6.0",
+    "gatsby-link": "3.9.0",
     "gatsby-plugin-algolia": "0.20.1",
     "gatsby-plugin-catch-links": "3.6.0",
     "gatsby-plugin-feed": "^3.7.1",
@@ -104,7 +104,7 @@
     "gatsby-remark-images": "5.4.1",
     "gatsby-remark-jargon": "2.17.1",
     "gatsby-remark-prismjs": "5.4.1",
-    "gatsby-source-filesystem": "3.6.0",
+    "gatsby-source-filesystem": "3.9.0",
     "gatsby-transformer-remark": "4.3.0",
     "gatsby-transformer-sharp": "^3.9.0",
     "lodash.orderby": "^4.6.0",
@@ -143,7 +143,7 @@
     "gatsby-cli": "^3.6.0",
     "husky": "^6.0.0",
     "prettier": "^2.3.1",
-    "pretty-quick": "^3.1.0"
+    "pretty-quick": "^3.1.1"
   },
   "keywords": [
     "gatsby"
