@@ -50,7 +50,7 @@ const Page = (props) => {
       let showcases = []
       let i = 0
       for (let showcase of patterns[pattern]) {
-        let img = showcase.frontmatter.img.childImageSharp.fixed
+        let img = showcase?.frontmatter?.img?.childImageSharp?.fixed
         showcases.push(
           <Link
             to={`/${showcase.parent.relativeDirectory}/`}
@@ -60,9 +60,9 @@ const Page = (props) => {
           >
             <img
               data-test="img"
-              src={img.src}
+              src={img?.src}
               style={style.img}
-              srcSet={img.srcSet}
+              srcSet={img?.srcSet}
               alt={pattern}
               className="shadow"
             />

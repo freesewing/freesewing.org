@@ -33,7 +33,11 @@ const Person = (props) => {
         </ul>
       </div>
       <div className="avatar">
-        <img src={props.data.pictureUris.m} />
+        <img
+          src={
+            props.data.pictureUris ? props.data.pictureUris.m : 'https://freesewing.org/avatar.svg'
+          }
+        />
       </div>
       {props.link && <Link to={props.link} className="link" />}
     </div>
