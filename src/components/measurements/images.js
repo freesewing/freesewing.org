@@ -6,25 +6,32 @@ import nobreastsImages from './nobreasts/'
 import MeasurementImage from './image'
 import { injectIntl } from 'react-intl'
 
+const seated = ['crotchdepth']
+const breastsOnly = [
+  'ankle',
+  'bustspan',
+  'bustfront',
+  'highbust',
+  'highbustfront',
+  'highpointshouldertobust',
+  'hpstobust',
+  'waisttounderbust',
+  'underbust',
+]
+const nonSvg = ['heel']
+
 const MeasurementImages = (props) => {
   const { measurement, intl, breasts } = props
+
   if (!measurement) return null
+  if (nonSvg.indexOf(measurement.toLowerCase()) !== -1)
+    return <img src={`/measurement-${measurement.toLowerCase()}.png`} className="shadow" />
+
   // Set tab to 0 with model that has breasts or 1 for no breasts
   // Default to breasts
   const [tab, setTab] = useState(breasts == false ? 1 : 0)
   const toggleTab = () => setTab(tab === 0 ? 1 : 0)
 
-  const seated = ['crotchdepth']
-  const breastsOnly = [
-    'bustspan',
-    'bustfront',
-    'highbust',
-    'highbustfront',
-    'highpointshouldertobust',
-    'hpstobust',
-    'waisttounderbust',
-    'underbust',
-  ]
   const bg =
     '/model-' +
     (tab === 0 ? '' : 'no') +
