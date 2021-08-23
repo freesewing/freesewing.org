@@ -7921,16 +7921,16 @@ gatsby-plugin-mdx@2.9.0:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
-gatsby-plugin-netlify@3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-3.9.0.tgz#c01f07dcecfe29f4d026e5352a1fbbecf585dd0a"
-  integrity sha512-umhw3NciYFgQzlhgUMZqCsKPPx2e3/ck95J3iFk377XcWG6QjWcZi9ikkrhnqBcns9ETBV14zuA2v6/vnNuPLA==
+gatsby-plugin-netlify@3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-3.12.0.tgz#5335d8045111485759829f2eb1a4e0400637b366"
+  integrity sha512-7c23MMRgNXAcwwt8jATZL6el/VDEda8U3pXJfCZaQNr7/6ykK/XwIvXyKM6gasUG9JCr6LjnzU/Ih2QazR1gbQ==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.14.8"
     fs-extra "^8.1.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
-    webpack-assets-manifest "^5.0.5"
+    webpack-assets-manifest "^5.0.6"
 
 gatsby-plugin-offline@^4.6.0:
   version "4.6.0"
@@ -17048,7 +17048,7 @@ web-namespaces@^1.0.0:
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.4.tgz#bc98a3de60dadd7faefc403d1076d529f5e030ec"
   integrity sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==
 
-webpack-assets-manifest@^5.0.5:
+webpack-assets-manifest@^5.0.6:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-5.0.6.tgz#1fe7baf9b57f2d28ff09fcaef3d678cc15912b88"
   integrity sha512-CW94ylPHurZTmxnYajSFA8763Cv/QFIKNgBwqBLaIOnBjH1EbDUAf8Eq1/i+o8qaKyKXJ3aX7r4/jtpXD88ldg==
