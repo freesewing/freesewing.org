@@ -7,6 +7,10 @@ import ReadMore from './readmore'
 import YouTube from '../youtube'
 import Legend from '@freesewing/components/Legend'
 import Hashtag from '../hashtag'
+import PatternDocs from '../docs/pattern'
+import PatternOptions from '../docs/pattern-options'
+import PatternMeasurements from '../docs/pattern-measurements'
+import Gauge from '../measurements/gauge'
 
 const customComponents = {
   Note: ({ children }) => <Blockquote type="note">{children}</Blockquote>,
@@ -16,11 +20,13 @@ const customComponents = {
   YouTube,
   Legend,
   Hashtag,
+  PatternDocs,
+  PatternOptions,
+  PatternMeasurements,
+  Gauge,
 }
 
 const Mdx = ({ node, offspring }) => {
-  console.log(node.body)
-  return <MDXRenderer>{node.body}</MDXRenderer>
   if (!node) return null
   customComponents.ReadMore = (props) => <ReadMore node={node} pages={offspring} {...props} />
   return (
