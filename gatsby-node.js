@@ -45,7 +45,6 @@ const mdxQuery = function (type, language) {
       fileAbsolutePath
       frontmatter {
         title
-        date
         order
       }
     } } }
