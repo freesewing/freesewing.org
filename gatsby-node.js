@@ -377,8 +377,8 @@ const getStrapiPosts = async (type, lang) => {
   const languages = ['en', 'de', 'es', 'fr', 'nl']
   const buildUrl = (type, lang) =>
     type === 'blog'
-      ? `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true`
-      : `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC`
+      ? `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
+      : `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
 
   let res
   try {
