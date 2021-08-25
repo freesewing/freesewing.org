@@ -29,7 +29,7 @@ const slugFromFilePath = (filePath) => {
   return (
     '/' +
     filePath
-      .match(/[\/|\\]markdown[\/|\\]org[\/|\\](.*)/)
+      .match(/[\/|\\]monorepo[\/|\\]markdown[\/|\\]org[\/|\\](.*)/)
       .pop()
       .slice(0, -5)
   )
