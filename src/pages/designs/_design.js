@@ -209,17 +209,15 @@ const Page = (props) => {
       </h5>
       <PatternOptions pattern={design} app={app} />
       <div style={styles.wrapper}>
-        {props.data.allMdx.edges.map((node) => {
-          if (node.node.frontmatter.patterns.indexOf(design) === -1) return null
+        {props.data.allShowcasePost.nodes.map((node) => {
+          if ([node.post.design1, node.post.design2, node.post.design3].indexOf(design) === -1)
+            return null
           return (
             <PostPreview
-              key={node.node.parent.relativeDirectory}
+              key={node.post.slug}
               app={app}
-              img={getImage(node.node.frontmatter.img)}
-              title={node.node.frontmatter.title}
-              description={node.node.excerpt}
-              link={'/' + node.node.parent.relativeDirectory + '/'}
-              caption={node.node.frontmatter.caption}
+              post={node.post}
+              type="showcase"
               width={300}
             />
           )
@@ -234,27 +232,34 @@ export default Page
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    allMdx(
-      filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          excerpt(pruneLength: 100)
-          frontmatter {
-            title
-            patterns
-            img {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
+    allShowcasePost(sort: { order: DESC, fields: order }) {
+      nodes {
+        post {
+          title
+          design1
+          design2
+          design3
+          image {
+            formats {
+              large {
+                width
+                url
+              }
+              medium {
+                width
+                url
+              }
+              small {
+                width
+                url
+              }
+              thumbnail {
+                width
+                url
               }
             }
           }
+          slug
         }
       }
     }

@@ -21,17 +21,8 @@ const Page = (props) => {
   return (
     <AppWrapper app={app} title={app.translate('app.blog')} {...app.treeProps(props.path)} wide>
       <div style={style.wrapper}>
-        {props.data.allMdx.edges.map((node) => (
-          <PostPreview
-            key={node.node.parent.relativeDirectory}
-            app={app}
-            img={getImage(node.node.frontmatter.img)}
-            title={node.node.frontmatter.title}
-            description={node.node.excerpt}
-            link={'/' + node.node.parent.relativeDirectory + '/'}
-            caption={node.node.frontmatter.caption}
-            width={368}
-          />
+        {props.data.allBlogPost.nodes.map((node) => (
+          <PostPreview key={node.post.slug} app={app} post={node.post} type="blog" width={368} />
         ))}
       </div>
     </AppWrapper>
@@ -43,29 +34,31 @@ export default Page
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    allMdx(
-      filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          excerpt(pruneLength: 100)
-          frontmatter {
-            title
-            date
-            linktitle
-            author
-            img {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
+    allBlogPost(sort: { order: DESC, fields: order }) {
+      nodes {
+        post {
+          title
+          image {
+            formats {
+              large {
+                width
+                url
+              }
+              medium {
+                width
+                url
+              }
+              small {
+                width
+                url
+              }
+              thumbnail {
+                width
+                url
               }
             }
           }
+          slug
         }
       }
     }
