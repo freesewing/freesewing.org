@@ -167,7 +167,7 @@
     "test:core": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/core.spec.js'",
     "test:showcase": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/showcase.spec.js'",
     "test:blog": "cypress run --env LANGUAGE=$GATSBY_LANGUAGE --spec 'cypress/integration/blog.spec.js'",
-    "prettier": "npx prettier --write '**/*.js'",
+    "prettier": "npx prettier --write 'src/**/*.js'",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "develop": "gatsby develop --verbose",
