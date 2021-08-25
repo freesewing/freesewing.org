@@ -45,12 +45,36 @@ const mdxQuery = function (type, language) {
       fileAbsolutePath
       frontmatter {
         title
-        ${type === 'blog' ? 'linktitle' : ''}
         date
         order
       }
     } } }
   }`
+}
+
+const strapiQuery = {
+  showcase: `{
+    allShowcasePost {
+      nodes {
+        order
+        post {
+          title
+          slug
+        }
+      }
+    }
+  }`,
+  blog: `{
+    allBlogPost {
+      nodes {
+        order
+        post {
+          slug
+          title
+        }
+      }
+    }
+  }`,
 }
 
 const newsletterQuery = () => `{
@@ -100,7 +124,7 @@ const pageTitle = (slug, page) => {
 }
 
 const createMdxPages = async function (pages, createPage, graphql, language) {
-  let types = ['blog', 'showcase', 'docs']
+  let types = ['docs']
   let promises = []
   for (let type of types) {
     pages[type] = {}
@@ -137,6 +161,44 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
                 },
               }
             }
+          }
+        }
+      }
+      for (let slug in pages[type]) {
+        promises.push(
+          new Promise((resolve, reject) => {
+            createPage(pages[type][slug])
+            resolve(true)
+          })
+        )
+      }
+    })
+  }
+
+  return Promise.all(promises)
+}
+
+const createStrapiPages = async function (pages, createPage, graphql, language) {
+  let types = ['blog', 'showcase']
+  let promises = []
+  for (let type of types) {
+    pages[type] = {}
+    let query = strapiQuery[type]
+    let component = path.resolve(`./src/pages/${type}/_strapi.js`)
+    await graphql(query).then((res) => {
+      if (typeof res.data === 'undefined') throw 'query failed ' + query
+      else {
+        for (let page of res.data[type === 'blog' ? 'allBlogPost' : 'allShowcasePost'].nodes) {
+          let slug = `/${type}/${page.post.slug}/`
+          pages[type][slug] = {
+            path: slug,
+            component,
+            context: {
+              slug,
+              title: page.title,
+              order: page.order,
+              slugId: page.post.slug,
+            },
           }
         }
       }
@@ -299,6 +361,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
   await createNewsletterPages(pages, actions.createPage, graphql, language)
+  await createStrapiPages(pages, actions.createPage, graphql, language)
 
   await createPerDesignPages(actions.createPage, language)
   await createPerMeasurementPages(actions.createPage, language)
@@ -309,12 +372,38 @@ exports.createPages = async ({ actions, graphql }) => {
   return
 }
 
+const getStrapiPosts = async (type, lang) => {
+  const host = 'https://posts.freesewing.org'
+  const languages = ['en', 'de', 'es', 'fr', 'nl']
+  const buildUrl = (type, lang) =>
+    type === 'blog'
+      ? `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
+      : `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
+
+  let res
+  try {
+    res = await axios.get(buildUrl(type, lang))
+  } catch (err) {
+    console.log(err)
+  }
+  const posts = {}
+  //const paths = []
+  for (const post of res.data) {
+    posts[post.slug] = post
+    //paths.push(`/${type}/${post.slug}`)
+  }
+
+  //return [paths, posts]
+  return posts
+}
+
 /* Source nodes from backend */
 const axios = require(`axios`)
 const crypto = require(`crypto`)
 exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged }) => {
   const { createNode } = actions
 
+  /* Backend patron nodes */
   // Do the initial fetch
   const result = await axios.get(process.env.GATSBY_BACKEND + 'patrons')
   // Create patron nodes.
@@ -345,6 +434,34 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
       createNode(patronNode)
     })
   })
+
+  /* Strapi blog post nodes */
+  for (const type of ['blog', 'showcase']) {
+    const posts = await getStrapiPosts(type, process.env.GATSBY_LANGUAGE)
+    i = 0
+    Object.keys(posts).map((postId) => {
+      const post = posts[postId]
+      const strapiNode = {
+        id: createNodeId(post._id),
+        parent: null,
+        post: { ...post },
+        internal: {
+          type: `${type}Post`,
+        },
+        order: i,
+      }
+      i++
+
+      // Get content digest of node.
+      const contentDigest = crypto
+        .createHash(`md5`)
+        .update(JSON.stringify(strapiNode))
+        .digest(`hex`)
+
+      strapiNode.internal.contentDigest = contentDigest
+      createNode(strapiNode)
+    })
+  }
 
   return
 }

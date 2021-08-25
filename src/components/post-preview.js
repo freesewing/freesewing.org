@@ -2,17 +2,17 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-const PostPreview = ({
-  app,
-  title,
-  description,
-  link,
-  caption = '',
-  width = 400,
-  img = false,
-  imgComponent = false,
-  designs = false,
-}) => {
+const PreviewImage = ({ formats }) => {
+  const sources = []
+  for (const size of ['large', 'medium', 'small', 'thumbnail']) {
+    if (formats[size])
+      sources.push(`https://posts.freesewing.org${formats[size].url} ${formats[size].width}w`)
+  }
+
+  return <img srcSet={sources.join(', ')} />
+}
+
+const PostPreview = ({ app, post, type, width = 400 }) => {
   const style = {
     post: {
       maxWidth: `${width}px`,
@@ -56,12 +56,9 @@ const PostPreview = ({
 
   return (
     <div style={style.post}>
-      <Link data-test="post-link" to={link} style={style.link} title={title}>
-        <figure style={style.figure}>
-          <GatsbyImage image={img} alt={caption || title} className="shadow" />
-        </figure>
-        <h5 style={style.title}>{title}</h5>
-        <p style={style.blurb}>{description}</p>
+      <Link to={`/${type}/${post.slug}/`} style={style.link} title={post.title}>
+        <PreviewImage formats={post.image.formats} />
+        <h5 style={style.title}>{post.title}</h5>
       </Link>
     </div>
   )

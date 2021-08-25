@@ -1,7 +1,7 @@
 import React from 'react'
 import useApp from '../../../hooks/useApp'
 import AppWrapper from '../../../components/app/wrapper'
-
+import PostPreview from '../../../components/post-preview'
 import { graphql, Link } from 'gatsby'
 import { list as patternList } from '@freesewing/pattern-info'
 
@@ -34,10 +34,10 @@ const Page = (props) => {
 
   const patterns = {}
   for (let p of patternList) patterns[p] = []
-  for (let node of props.data.allMdx.edges) {
-    for (let p of node.node.frontmatter.patterns) {
-      patterns[p].push(node.node)
-    }
+  for (let node of props.data.allShowcasePost.nodes) {
+    if (node.post.design1) patterns[node.post.design1].push(node.post)
+    if (node.post.design2) patterns[node.post.design2].push(node.post)
+    if (node.post.design3) patterns[node.post.design3].push(node.post)
   }
 
   const title = app.translate('app.showcase') + ': ' + app.translate('app.patterns')
@@ -50,21 +50,18 @@ const Page = (props) => {
       let showcases = []
       let i = 0
       for (let showcase of patterns[pattern]) {
-        let img = showcase?.frontmatter?.img?.childImageSharp?.fixed
         showcases.push(
           <Link
-            to={`/${showcase.parent.relativeDirectory}/`}
-            style={style.link}
+            to={`/showcase/${showcase.slug}/`}
             key={`fig-${pattern}-${i}`}
-            title={showcase.frontmatter.title}
+            title={showcase.title}
           >
-            <img
-              data-test="img"
-              src={img?.src}
-              style={style.img}
-              srcSet={img?.srcSet}
-              alt={pattern}
-              className="shadow"
+            <PostPreview
+              key={showcase.slug}
+              app={app}
+              post={showcase}
+              type="showcase"
+              width={368}
             />
           </Link>
         )
@@ -72,7 +69,7 @@ const Page = (props) => {
       }
       if (i > 0) {
         let link = (
-          <Link to={`/showcase/designs/${pattern}/`}>
+          <Link to={`/showcase/designs/${pattern}/`} id={pattern}>
             {app.translate(`patterns.${pattern}.title`)}
           </Link>
         )
@@ -100,6 +97,16 @@ const Page = (props) => {
       crumbs={[{ title: app.translate('app.showcase'), slug: '/showcase/' }]}
       wide
     >
+      <ul className="inline">
+        {Object.keys(patterns)
+          .filter((p) => patterns[p].length > 0)
+          .map((p) => (
+            <li key={p}>
+              {' '}
+              <a href={`#${p}`}>{p}</a>
+            </li>
+          ))}
+      </ul>
       {output}
     </AppWrapper>
   )
@@ -110,28 +117,34 @@ export default Page
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    allMdx(
-      filter: { fileAbsolutePath: { regex: "//showcase/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          frontmatter {
-            patterns
-            title
-            img {
-              childImageSharp {
-                fixed(height: 300) {
-                  src
-                }
+    allShowcasePost(sort: { order: DESC, fields: order }) {
+      nodes {
+        post {
+          title
+          design1
+          design2
+          design3
+          image {
+            formats {
+              large {
+                width
+                url
+              }
+              medium {
+                width
+                url
+              }
+              small {
+                width
+                url
+              }
+              thumbnail {
+                width
+                url
               }
             }
           }
+          slug
         }
       }
     }

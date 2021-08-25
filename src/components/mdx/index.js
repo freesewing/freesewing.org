@@ -19,6 +19,8 @@ const customComponents = {
 }
 
 const Mdx = ({ node, offspring }) => {
+  console.log(node.body)
+  return <MDXRenderer>{node.body}</MDXRenderer>
   if (!node) return null
   customComponents.ReadMore = (props) => <ReadMore node={node} pages={offspring} {...props} />
   return (
