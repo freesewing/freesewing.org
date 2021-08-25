@@ -10,32 +10,32 @@ import Splash from '../components/homepage/splash'
 import IconBar from '../components/homepage/iconbar'
 import SupportBanner from '../components/homepage/support-banner'
 import Newsletter from '../components/newsletter'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import Markdown from 'react-markdown'
 
 // Style
 import './homepage.scss'
 
-const renderBlogPost = (node) => (
+const PreviewImage = ({ formats }) => {
+  const sources = []
+  for (const size of ['large', 'medium', 'small', 'thumbnail']) {
+    if (formats[size])
+      sources.push(`https://posts.freesewing.org${formats[size].url} ${formats[size].width}w`)
+  }
+
+  return <img srcSet={sources.join(', ')} />
+}
+
+const renderBlogPost = (post) => (
   <div className="post">
-    <Link
-      to={`/${node.node.parent.relativeDirectory}/`}
-      title={node.node.frontmatter.linktitle}
-      className="image"
-    >
-      <GatsbyImage
-        image={getImage(node.node.frontmatter.img)}
-        alt={node.node.frontmatter.title}
-        className="shadow"
-      />
+    <Link to={`/blog/${post.slug}/`} title={post.title} className="image">
+      <PreviewImage formats={post.image.formats} />
     </Link>
-    <Link
-      to={`/${node.node.parent.relativeDirectory}/`}
-      title={node.node.frontmatter.linktitle}
-      className="text"
-    >
-      <h3>{node.node.frontmatter.title}</h3>
-      <p>{node.node.excerpt}</p>
-    </Link>
+    <div>
+      <Link to={`/blog/${post.slug}/`} title={post.title}>
+        <h3>{post.title}</h3>
+      </Link>
+      <Markdown>{post.body.split('\n\n').shift()}</Markdown>
+    </div>
   </div>
 )
 
@@ -57,11 +57,11 @@ const HomePage = (props) => {
 
         {/* Latest blog posts */}
         <div id="blog">
-          <div className="single">{renderBlogPost(props.data.blog.edges[0])}</div>
+          <div className="single">{renderBlogPost(props.data.blog.nodes[0].post)}</div>
           <div className="many">
-            {renderBlogPost(props.data.blog.edges[1])}
-            {renderBlogPost(props.data.blog.edges[2])}
-            {renderBlogPost(props.data.blog.edges[3])}
+            {renderBlogPost(props.data.blog.nodes[1].post)}
+            {renderBlogPost(props.data.blog.nodes[2].post)}
+            {renderBlogPost(props.data.blog.nodes[3].post)}
             <p style={{ textAlign: 'right', padding: '0 1rem' }}>
               <Link to="/blog/" className="more">
                 <FormattedMessage id="app.browseBlogposts" /> &raquo;
@@ -79,30 +79,34 @@ export default HomePage
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    blog: allMdx(
-      limit: 4
-      filter: { fileAbsolutePath: { regex: "//blog/[^/]*/[a-z]{2}.md/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
-          excerpt(pruneLength: 100)
-          frontmatter {
-            title
-            date
-            linktitle
-            author
-            img {
-              childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
+    blog: allBlogPost(limit: 4, sort: { fields: [post___date], order: DESC }) {
+      nodes {
+        post {
+          body
+          title
+          date
+          linktitle
+          image {
+            formats {
+              large {
+                width
+                url
+              }
+              medium {
+                width
+                url
+              }
+              small {
+                width
+                url
+              }
+              thumbnail {
+                width
+                url
               }
             }
           }
+          slug
         }
       }
     }
