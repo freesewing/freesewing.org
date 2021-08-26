@@ -153,14 +153,23 @@ function useTree(translate) {
           }
         }
       }
-      posts: allMdx(filter: { frontmatter: { date: { ne: null } } }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-            }
-            fileAbsolutePath
+      blogposts: allBlogPost {
+        nodes {
+          order
+          post {
+            title
+            date
+            slug
+          }
+        }
+      }
+      showcaseposts: allShowcasePost {
+        nodes {
+          order
+          post {
+            title
+            date
+            slug
           }
         }
       }
@@ -169,10 +178,16 @@ function useTree(translate) {
   const pages = {}
   for (let edge of data.pages.edges) pages[edge.node.path] = edge.node.context
   // We'll sort posts by date, rather than title
-  for (let edge of data.posts.edges) {
-    pages[edge.node.fileAbsolutePath.split('markdown/org').pop().slice(0, -5)].order =
-      edge.node.frontmatter.date + edge.node.frontmatter.title
-  }
+  for (let node of data.blogposts.nodes)
+    pages[`/blog/${node.post.slug}/`] = {
+      order: node.order.toString().padStart(3, '0'),
+      title: node.post.title,
+    }
+  for (let node of data.showcaseposts.nodes)
+    pages[`/showcase/${node.post.slug}/`] = {
+      order: node.order.toString().padStart(3, '0'),
+      title: node.post.title,
+    }
   const pageTree = buildTree(pages, translate)
 
   return { offspring: pageTree }

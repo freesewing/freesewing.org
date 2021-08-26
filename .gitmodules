@@ -1,3 +1,3 @@
-[submodule "markdown"]
-	path = markdown
-  url = https://github.com/freesewing/markdown.git
+[submodule "monorepo"]
+	path = monorepo
+  url = https://github.com/freesewing/freesewing.git

@@ -9,7 +9,7 @@ const EditLink = ({ edit = false, folder }) =>
   edit ? (
     <IconButton
       className="editpencil"
-      href={`https://github.com/freesewing/markdown/edit/develop/${folder}/${edit}/en.md`}
+      href={`https://github.com/freesewing/freesewing/edit/develop/markdown/${folder}/${edit}/en.md`}
       target="_BLANK"
       rel="nofollow"
       size="small"
