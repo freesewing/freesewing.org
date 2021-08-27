@@ -17,13 +17,6 @@ const plugins = [
   {
     resolve: 'gatsby-source-filesystem',
     options: {
-      path: `${__dirname}/monorepo/markdown/newsletter`,
-      name: 'newsletter',
-    },
-  },
-  {
-    resolve: 'gatsby-source-filesystem',
-    options: {
       path: `${__dirname}/monorepo/markdown/org`,
       name: 'markdown',
       ignore: ignore,
