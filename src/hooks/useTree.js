@@ -173,6 +173,15 @@ function useTree(translate) {
           }
         }
       }
+      newsletterposts: allNewsletterPost {
+        nodes {
+          order
+          post {
+            title
+            slug
+          }
+        }
+      }
     }
   `)
   const pages = {}
@@ -185,6 +194,11 @@ function useTree(translate) {
     }
   for (let node of data.showcaseposts.nodes)
     pages[`/showcase/${node.post.slug}/`] = {
+      order: node.order.toString().padStart(3, '0'),
+      title: node.post.title,
+    }
+  for (let node of data.newsletterposts.nodes)
+    pages[`/newsletter/${node.post.slug}/`] = {
       order: node.order.toString().padStart(3, '0'),
       title: node.post.title,
     }

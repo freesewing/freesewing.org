@@ -13,6 +13,12 @@ process.env.GATSBY_NETLIFY_REPOSITORY_URL = process.env.REPOSITORY_URL
 process.env.GATSBY_NETLIFY_BRANCH = process.env.BRANCH
 process.env.GATSBY_NETLIFY_COMMIT_REF = process.env.COMMIT_REF
 
+const strapiTypes = {
+  blog: 'allBlogPost',
+  showcase: 'allShowcasePost',
+  newsletter: 'allNewsletterPost'
+}
+
 const translate = (id) =>
   i18n.strings[process.env.GATSBY_LANGUAGE][id] || `No translation for ${id}`
 
@@ -74,25 +80,18 @@ const strapiQuery = {
       }
     }
   }`,
-}
-
-const newsletterQuery = () => `{
-  allMdx(
-    filter: {fields: {source: {eq: "newsletter"}}}
-    sort: { fields: [fileAbsolutePath], order: DESC }
-  ) {
-    edges {
-      node {
-        fileAbsolutePath
-        parent {
-          ... on File {
-            relativeDirectory
-          }
+  newsletter: `{
+    allNewsletterPost {
+      nodes {
+        order
+        post {
+          slug
+          title
         }
       }
     }
-  }
-}`
+  }`,
+}
 
 // Gets the page title for a given slug
 const pageTitle = (slug, page) => {
@@ -178,16 +177,15 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
 }
 
 const createStrapiPages = async function (pages, createPage, graphql, language) {
-  let types = ['blog', 'showcase']
-  let promises = []
-  for (let type of types) {
+  const promises = []
+  for (let type in strapiTypes) {
     pages[type] = {}
     let query = strapiQuery[type]
     let component = path.resolve(`./src/pages/${type}/_strapi.js`)
     await graphql(query).then((res) => {
       if (typeof res.data === 'undefined') throw 'query failed ' + query
       else {
-        for (let page of res.data[type === 'blog' ? 'allBlogPost' : 'allShowcasePost'].nodes) {
+        for (let page of res.data[strapiTypes[type]].nodes) {
           let slug = `/${type}/${page.post.slug}/`
           pages[type][slug] = {
             path: slug,
@@ -215,39 +213,39 @@ const createStrapiPages = async function (pages, createPage, graphql, language) 
   return Promise.all(promises)
 }
 
-const createNewsletterPages = async function (pages, createPage, graphql, language) {
-  let promises = []
-  pages = {}
-  let query = newsletterQuery()
-  let component = path.resolve(`./src/pages/newsletter/_mdx.js`)
-  await graphql(query).then((res) => {
-    if (typeof res.data === 'undefined') throw 'query failed ' + query
-    else {
-      for (let page of res.data.allMdx.edges) {
-        let slug = `/newsletter/${page.node.parent.relativeDirectory}/`
-        pages[slug] = {
-          path: slug,
-          component,
-          context: {
-            // Keep file here, it is used in the page query to filter
-            file: page.node.fileAbsolutePath,
-          },
-        }
-      }
-    }
-    for (let slug in pages) {
-      console.log('Creating', slug)
-      promises.push(
-        new Promise((resolve, reject) => {
-          createPage(pages[slug])
-          resolve(true)
-        })
-      )
-    }
-  })
-
-  return Promise.all(promises)
-}
+//const createNewsletterPages = async function (pages, createPage, graphql, language) {
+//  let promises = []
+//  pages = {}
+//  let query = newsletterQuery()
+//  let component = path.resolve(`./src/pages/newsletter/_mdx.js`)
+//  await graphql(query).then((res) => {
+//    if (typeof res.data === 'undefined') throw 'query failed ' + query
+//    else {
+//      for (let page of res.data.allMdx.edges) {
+//        let slug = `/newsletter/${page.node.parent.relativeDirectory}/`
+//        pages[slug] = {
+//          path: slug,
+//          component,
+//          context: {
+//            // Keep file here, it is used in the page query to filter
+//            file: page.node.fileAbsolutePath,
+//          },
+//        }
+//      }
+//    }
+//    for (let slug in pages) {
+//      console.log('Creating', slug)
+//      promises.push(
+//        new Promise((resolve, reject) => {
+//          createPage(pages[slug])
+//          resolve(true)
+//        })
+//      )
+//    }
+//  })
+//
+//  return Promise.all(promises)
+//}
 
 const createPerDesignPages = async function (createPage, language) {
   let promises = []
@@ -359,7 +357,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
-  await createNewsletterPages(pages, actions.createPage, graphql, language)
+  //await createNewsletterPages(pages, actions.createPage, graphql, language)
   await createStrapiPages(pages, actions.createPage, graphql, language)
 
   await createPerDesignPages(actions.createPage, language)
@@ -374,10 +372,11 @@ exports.createPages = async ({ actions, graphql }) => {
 const getStrapiPosts = async (type, lang) => {
   const host = 'https://posts.freesewing.org'
   const languages = ['en', 'de', 'es', 'fr', 'nl']
-  const buildUrl = (type, lang) =>
-    type === 'blog'
-      ? `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
-      : `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
+  const buildUrl = (type, lang) => {
+    if (type === 'blog') return `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
+    if (type === 'showcase') return `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
+    if (type === 'newsletter') return `${host}/newsletters?_sort=slug:ASC&_limit=-1`
+  }
 
   let res
   try {
@@ -386,13 +385,8 @@ const getStrapiPosts = async (type, lang) => {
     console.log(err)
   }
   const posts = {}
-  //const paths = []
-  for (const post of res.data) {
-    posts[post.slug] = post
-    //paths.push(`/${type}/${post.slug}`)
-  }
+  for (const post of res.data) posts[post.slug] = post
 
-  //return [paths, posts]
   return posts
 }
 
@@ -434,8 +428,8 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
     })
   })
 
-  /* Strapi blog post nodes */
-  for (const type of ['blog', 'showcase']) {
+  /* Strapi content nodes */
+  for (const type in strapiTypes) {
     const posts = await getStrapiPosts(type, process.env.GATSBY_LANGUAGE)
     i = 0
     Object.keys(posts).map((postId) => {

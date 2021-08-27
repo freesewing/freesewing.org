@@ -10,13 +10,6 @@ const Page = (props) => {
   const app = useApp(false)
   const uiMdx = useUiMdx()
 
-  const seasons = {
-    q1: 'Winter',
-    q2: 'Spring',
-    q3: 'Summer',
-    q4: 'Autumn',
-  }
-
   return (
     <AppWrapper app={app} title="The FreeSewing newsletter">
       <Blockquote type="tip">
@@ -35,12 +28,10 @@ const Page = (props) => {
       <Blockquote type="note">
         <h5>Browse the newsletter archive</h5>
         <ul className="links">
-          {props.data.allMdx.edges.map((node) => {
-            let edition = node.node.parent.relativeDirectory
-            let name = `${seasons[edition.slice(4, 6)]} ${edition.slice(0, 4)}`
+          {props.data.allNewsletterPost.nodes.map((node) => {
             return (
-              <li key={edition}>
-                <Link to={`/newsletter/${edition}/`}>{name}</Link>
+              <li key={node.post.slug}>
+                <Link to={`/newsletter/${node.post.slug}/`}>{node.post.title}</Link>
               </li>
             )
           })}
@@ -55,17 +46,12 @@ export default Page
 // See https://www.gatsbyjs.org/docs/page-query/
 export const pageQuery = graphql`
   {
-    allMdx(
-      filter: { fields: { source: { eq: "newsletter" } } }
-      sort: { fields: [fileAbsolutePath], order: DESC }
-    ) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              relativeDirectory
-            }
-          }
+    allNewsletterPost(sort: { order: ASC, fields: post___slug }) {
+      nodes {
+        post {
+          title
+          slug
+          body
         }
       }
     }
