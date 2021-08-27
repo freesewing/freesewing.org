@@ -12,7 +12,7 @@ const PreviewImage = ({ formats }) => {
   return <img srcSet={sources.join(', ')} />
 }
 
-const PostPreview = ({ app, post, type, width = 400 }) => {
+const PostPreview = ({ app, post, type, width = 400, designs = false }) => {
   const style = {
     post: {
       maxWidth: `${width}px`,
