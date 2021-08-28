@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import Markdown from 'react-markdown'
 import axios from 'axios'
 
-const maker = {
+const author = {
   name: 'joost',
   displayname: 'Joost De Cock',
   about:
@@ -61,7 +61,6 @@ const Page = (props) => {
   const [displayname, setDisplayname] = useState('')
   const [about, setAbout] = useState('')
   const [error, setError] = useState(false)
-  const [errorMsg, setErrorMsg] = useState(false)
   const [ready, setReady] = useState(false)
 
   const styles = {
@@ -91,7 +90,7 @@ const Page = (props) => {
     app.setLoading(true)
     let result = false
     try {
-      result = await axios.post('http://localhost:3000/strapi/maker', {
+      result = await axios.post('http://localhost:3000/strapi/author', {
         displayname,
         about,
         picture: img,
@@ -117,7 +116,7 @@ const Page = (props) => {
   }
 
   return (
-    <AppWrapper app={app} title="Create a new maker">
+    <AppWrapper app={app} title="Create a new author">
       {!help && !ready && (
         <p>
           <Button onClick={() => setHelp(true)} variant="outlined" color="primary" size="large">
@@ -131,36 +130,30 @@ const Page = (props) => {
             What is this page? <span role="image">🤔</span>
           </h3>
           <p>
-            This page allows anyone to add a new <b>maker profile</b> to our backend system so we
-            can link it to one or more <b>showcase posts</b>.
+            This page allows anyone to add a new <b>author profile</b> to our backend system so we
+            can link it to one or more <b>blog posts</b>.
           </p>
           <h3>
-            Maker profile? Showcase posts? Wut? <span role="image">🤯</span>
+            Author profile? Blog posts? Wut? <span role="image">🤯</span>
           </h3>
-          <h5>Showcase posts</h5>
+          <h5>Blog posts</h5>
           <p>
-            We like to showcase the makes of the FreeSewing community on freesewing.org in so-called{' '}
-            <b>
-              <Link to="/showcase/">showcase posts</Link>
-            </b>
-            .
-            <br />
-            It's not merely about inspiration and showing off (it is a bit though) it also helps
-            others to see what our designs look like, or how you can achieve different styles.
+            We have a blog for makers (on freesewing.org) and developers (on freesewing.dev) and we
+            invite contributors and members of the community alike to write on/for our blog.
           </p>
-          <h5>Maker profile</h5>
+          <h5>Author profile</h5>
           <p>
-            We give all makers who get showcases the possibility to have a <b>maker profile</b> that
-            goes along with their showcase posts.
+            We give all people who write a blog post the possibility to have a <b>author profile</b>{' '}
+            that goes along with their blog posts.
             <br />
             Think of it as a Instagram or Twitter bio. It's a place where you can tell a little
             about yourself and point fans of your work in the right direction to discover more of
             it.
           </p>
           <h3>
-            Ok, so what goes in a <em>maker profile</em>? <span role="image">🧐</span>
+            Ok, so what goes in a <em>author profile</em>? <span role="image">🧐</span>
           </h3>
-          <p>The following fields make up a maker profile:</p>
+          <p>The following fields make up an author profile:</p>
           <ul>
             <li>
               <b>displayname</b>: The name to be displayed
@@ -186,10 +179,10 @@ const Page = (props) => {
             </li>
           </ul>
           <h3>
-            Example of a maker profile <span role="image">👀</span>
+            Example of an author profile <span role="image">👀</span>
           </h3>
-          <p>Below is an example of a maker profile:</p>
-          <Author author={maker} type="showcase" />
+          <p>Below is an example of an author profile:</p>
+          <Author author={author} type="blog" />
           <p>
             <Button onClick={() => setHelp(false)} variant="outlined" color="primary" size="large">
               Hide help
@@ -199,7 +192,7 @@ const Page = (props) => {
       )}
       {!ready && (
         <>
-          <h2>Maker details</h2>
+          <h2>Author details</h2>
           <h5>displayname</h5>
           <TextField
             id="displayname"
@@ -255,7 +248,7 @@ const Page = (props) => {
                 color="primary"
                 onClick={() => createProfile()}
               >
-                Create maker profile
+                Create author profile
               </Button>
             ) : (
               <Button disabled>Please complete all fields</Button>
@@ -287,7 +280,7 @@ const Page = (props) => {
           <p>Hey thanks a million, this is really great.</p>
           <p>
             If you were asked by a FreeSewing contributor to fill in this form, please let them know
-            you did so, and tell them you created maker profile: <b>{ready.displayname}</b>
+            you did so, and tell them you created author profile: <b>{ready.displayname}</b>
             <br />
             <small>
               (with id <code>{ready.id}</code>)
@@ -295,7 +288,7 @@ const Page = (props) => {
           </p>
           <p>
             <Button onClick={init} variant="outlined" color="primary">
-              Create another maker profile
+              Create another author profile
             </Button>
           </p>
         </>
