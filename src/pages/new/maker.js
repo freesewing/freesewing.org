@@ -91,7 +91,7 @@ const Page = (props) => {
     app.setLoading(true)
     let result = false
     try {
-      result = await axios.post('http://localhost:3000/strapi/maker', {
+      result = await axios.post('https://backend.freesewing.org/strapi/maker', {
         displayname,
         about,
         picture: img,
