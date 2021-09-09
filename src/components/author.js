@@ -29,6 +29,7 @@ const Author = (props) => {
   const author = props.author
 
   if (!author) return props.type === 'showcase' ? <MissingMaker /> : <MissingAuthor />
+  console.log(author)
 
   return (
     <div
@@ -47,16 +48,16 @@ const Author = (props) => {
         margin: '4rem auto',
       }}
     >
-      <img
-        src={`https://posts.freesewing.org${author?.picture?.formats?.xsmall?.url}`}
+      <div
         style={{
           width: '200px',
           height: '200px',
           borderRadius: '100px',
           margin: 'auto',
+          backgroundImage: `url(https://posts.freesewing.org${author?.picture?.formats?.medium?.url}`,
+          backgroundSize: 'cover',
         }}
-        alt={author?.displayname}
-      />
+      ></div>
       <h5>
         <span style={{ fontSize: '60%', display: 'block' }}>
           {props.type === 'blog' ? 'written by' : 'made by'}

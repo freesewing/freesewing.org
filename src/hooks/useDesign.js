@@ -34,6 +34,7 @@ import ursula from '@freesewing/ursula'
 import trayvon from '@freesewing/trayvon'
 import wahid from '@freesewing/wahid'
 import waralee from '@freesewing/waralee'
+import yuri from '@freesewing/yuri'
 
 const designs = {
   aaron,
@@ -72,6 +73,7 @@ const designs = {
   ursula,
   wahid,
   waralee,
+  yuri,
 }
 
 function useDesign(design) {
