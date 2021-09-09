@@ -213,40 +213,6 @@ const createStrapiPages = async function (pages, createPage, graphql, language) 
   return Promise.all(promises)
 }
 
-//const createNewsletterPages = async function (pages, createPage, graphql, language) {
-//  let promises = []
-//  pages = {}
-//  let query = newsletterQuery()
-//  let component = path.resolve(`./src/pages/newsletter/_mdx.js`)
-//  await graphql(query).then((res) => {
-//    if (typeof res.data === 'undefined') throw 'query failed ' + query
-//    else {
-//      for (let page of res.data.allMdx.edges) {
-//        let slug = `/newsletter/${page.node.parent.relativeDirectory}/`
-//        pages[slug] = {
-//          path: slug,
-//          component,
-//          context: {
-//            // Keep file here, it is used in the page query to filter
-//            file: page.node.fileAbsolutePath,
-//          },
-//        }
-//      }
-//    }
-//    for (let slug in pages) {
-//      console.log('Creating', slug)
-//      promises.push(
-//        new Promise((resolve, reject) => {
-//          createPage(pages[slug])
-//          resolve(true)
-//        })
-//      )
-//    }
-//  })
-//
-//  return Promise.all(promises)
-//}
-
 const createPerDesignPages = async function (createPage, language) {
   let promises = []
   for (let design of designs) {
