@@ -121,7 +121,7 @@ export const pageQuery = graphql`
           displayname
           picture {
             formats {
-              xsmall {
+              medium {
                 url
               }
             }
