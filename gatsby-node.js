@@ -16,7 +16,13 @@ process.env.GATSBY_NETLIFY_COMMIT_REF = process.env.COMMIT_REF
 const strapiTypes = {
   blog: 'allBlogPost',
   showcase: 'allShowcasePost',
-  newsletter: 'allNewsletterPost'
+  newsletter: 'allNewsletterPost',
+  makers: 'allMakersPost',
+  authors: 'allAuthorsPost',
+}
+const strapiPeeps = {
+  makers: 'allMakersPost',
+  authors: 'allAuthorsPost',
 }
 
 const translate = (id) =>
@@ -87,6 +93,28 @@ const strapiQuery = {
         post {
           slug
           title
+        }
+      }
+    }
+  }`,
+  authors: `{
+    allAuthorsPost {
+      nodes {
+        post {
+          slug
+          displayname
+          name
+        }
+      }
+    }
+  }`,
+  makers: `{
+    allMakersPost {
+      nodes {
+        post {
+          slug
+          displayname
+          name
         }
       }
     }
@@ -342,6 +370,10 @@ const getStrapiPosts = async (type, lang) => {
     if (type === 'blog') return `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
     if (type === 'showcase') return `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
     if (type === 'newsletter') return `${host}/newsletters?_sort=slug:ASC&_limit=-1`
+
+    // Return author/maker aAlways in English for now
+    // because there's not much translation available for these
+    return `${host}/${type}?_locale=en&_sort=name:ASC`
   }
 
   let res
