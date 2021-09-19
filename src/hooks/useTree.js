@@ -182,6 +182,22 @@ function useTree(translate) {
           }
         }
       }
+      authorsposts: allAuthorsPost {
+        nodes {
+          post {
+            displayname
+            slug
+          }
+        }
+      }
+      makersposts: allMakersPost {
+        nodes {
+          post {
+            displayname
+            slug
+          }
+        }
+      }
     }
   `)
   const pages = {}
@@ -201,6 +217,16 @@ function useTree(translate) {
     pages[`/newsletter/${node.post.slug}/`] = {
       order: node.order.toString().padStart(3, '0'),
       title: node.post.title,
+    }
+  for (let node of data.authorsposts.nodes)
+    pages[`/authors/${node.post.slug}/`] = {
+      order: node.post.displayname,
+      title: node.post.displayname,
+    }
+  for (let node of data.makersposts.nodes)
+    pages[`/makers/${node.post.slug}/`] = {
+      order: node.post.displayname,
+      title: node.post.displayname,
     }
   const pageTree = buildTree(pages, translate)
 
