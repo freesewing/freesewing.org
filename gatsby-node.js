@@ -326,12 +326,12 @@ const createDynamicPages = async function (createPage) {
 
 const createRedirects = async function (createRedirect) {
   let promises = []
-  for (let from in routes.redirect) {
+  for (let from in routes.redirects) {
     promises.push(
       new Promise((resolve, reject) => {
         createRedirect({
           fromPath: from,
-          toPath: routes.redirect[from],
+          toPath: routes.redirects[from],
           isPermanent: true,
           redirectInBrowser: true,
         })
