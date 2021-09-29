@@ -1,0 +1,155 @@
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="2000"
+   height="1500"
+   viewBox="0 0 2000 1500"
+   >
+  <defs>
+    <path
+       id="path"
+       d="m 184,0 c 0.42997,7.8272995 0.85997,15.655002 -2.74155,23.624974 -3.60152,7.969973 -11.23458,16.080098 -18.86914,24.191816"
+       style="fill:none;stroke-linejoin:round" />
+    <path
+       style="fill:none;stroke-linejoin:round"
+       d="m 798,-28 c 1.42997,7.827299 0.85997,15.655002 -2.74155,23.624974 -3.60152,7.969973 -11.23458,16.080098 -16.86914,28.191816"
+       id="path30" />
+  </defs>
+  <style
+     type="text/css"><![CDATA[
+        path {fill: none; stroke-linejoin: round;}
+        .tape {stroke: #000; stroke-width: 20px; stroke-linecap: butt;}
+        .redtape {stroke: #f00; stroke-width: 1px;stroke-linecap: round;}
+        .color {stroke: #fff86c; stroke-width: 16px; stroke-linecap: butt;}
+        .cm {stroke: #000; stroke-width: 16px; stroke-dasharray: 2 10; stroke-linecap: butt;}
+    ]]></style>
+  <!-- Background image -->
+  <image
+     xlink:href="./standing.jpg"
+     x="0"
+     y="0"
+     width="2000"
+     height="1500"
+   />
+  <g
+     transform="translate(268.90839,456)"
+     id="g5364">
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path"
+       class="redtape"
+       id="use5356"
+       style="stroke:#ff0000;stroke-width:1px;stroke-linecap:round"
+       width="100%"
+       height="100%">
+      <animate
+         attributeType="CSS"
+         attributeName="stroke-width"
+         from="1"
+         to="450"
+         begin="loop.begin+2.5s"
+         dur="0.5s"
+         fill="freeze" />
+      <animate
+         attributeType="CSS"
+         attributeName="stroke-opacity"
+         from="1"
+         to="0"
+         begin="loop.begin+2.7s"
+         dur="0.3s"
+         fill="freeze" />
+    </use>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path"
+       class="tape"
+       id="use5358"
+       style="stroke:#000000;stroke-width:20px;stroke-linecap:butt"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path"
+       class="color"
+       id="use5360"
+       style="stroke:#fff86c;stroke-width:16px;stroke-linecap:butt"
+       width="100%"
+       height="100%" />
+    <use
+       clip-path="none"
+       x="0"
+       y="0"
+       xlink:href="#path"
+       class="cm"
+       id="use5362"
+       style="stroke:#000000;stroke-width:16px;stroke-linecap:butt;stroke-dasharray:2, 10"
+       width="100%"
+       height="100%" />
+  </g>
+  <g
+     id="g28"
+     transform="translate(268.90839,456)">
+    <use
+       height="100%"
+       width="100%"
+       style="stroke:#ff0000;stroke-width:1px;stroke-linecap:round"
+       id="use20"
+       class="redtape"
+       xlink:href="#path30"
+       y="0"
+       x="0">
+      <animate
+         fill="freeze"
+         dur="0.5s"
+         begin="loop.begin+2.5s"
+         to="450"
+         from="1"
+         attributeName="stroke-width"
+         attributeType="CSS" />
+      <animate
+         fill="freeze"
+         dur="0.3s"
+         begin="loop.begin+2.7s"
+         to="0"
+         from="1"
+         attributeName="stroke-opacity"
+         attributeType="CSS" />
+    </use>
+    <use
+       height="100%"
+       width="100%"
+       style="stroke:#000000;stroke-width:20px;stroke-linecap:butt"
+       id="use22"
+       class="tape"
+       xlink:href="#path30"
+       y="0"
+       x="0" />
+    <use
+       height="100%"
+       width="100%"
+       style="stroke:#fff86c;stroke-width:16px;stroke-linecap:butt"
+       id="use24"
+       class="color"
+       xlink:href="#path30"
+       y="0"
+       x="0" />
+    <use
+       height="100%"
+       width="100%"
+       style="stroke:#000000;stroke-width:16px;stroke-linecap:butt;stroke-dasharray:2, 10"
+       id="use26"
+       class="cm"
+       xlink:href="#path30"
+       y="0"
+       x="0"
+       clip-path="none" />
+  </g>
+  <!-- timing loop -->
+    <rect height="1" width="1" x="-10" y="-10">
+        <animate attributeType="CSS" attributeName="visibility" from="hide" to="hide" begin="0;loop.end" dur="4s" id="loop" />
+    </rect>
+</svg>
