@@ -2,6 +2,7 @@ import acrossback from './acrossback.svg'
 import ankle from './ankle.svg'
 import biceps from './biceps.svg'
 import bustfront from './bustfront.svg'
+import bustpointtounderbust from './bustpointtounderbust.svg'
 import bustspan from './bustspan.svg'
 import chest from './chest.svg'
 import crossseam from './crossseam.svg'
@@ -41,6 +42,7 @@ export default {
   ankle,
   biceps,
   bustfront,
+  bustpointtounderbust,
   bustspan,
   chest,
   crossseam,
