@@ -11,6 +11,7 @@ const breastsOnly = [
   'ankle',
   'bustspan',
   'bustfront',
+  'bustpointtounderbust',
   'highbust',
   'highbustfront',
   'highpointshouldertobust',
