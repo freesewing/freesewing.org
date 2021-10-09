@@ -19,6 +19,7 @@ import hortensia from '@freesewing/hortensia'
 import huey from '@freesewing/huey'
 import hugo from '@freesewing/hugo'
 import jaeger from '@freesewing/jaeger'
+import lunetius from '@freesewing/lunetius'
 import paco from '@freesewing/paco'
 import penelope from '@freesewing/penelope'
 import sandy from '@freesewing/sandy'
@@ -29,10 +30,12 @@ import sven from '@freesewing/sven'
 import tamiko from '@freesewing/tamiko'
 import teagan from '@freesewing/teagan'
 import theo from '@freesewing/theo'
+import tiberius from '@freesewing/tiberius'
 import titan from '@freesewing/titan'
 import ursula from '@freesewing/ursula'
 import trayvon from '@freesewing/trayvon'
 import wahid from '@freesewing/wahid'
+import walburga from '@freesewing/walburga'
 import waralee from '@freesewing/waralee'
 
 const designs = {
@@ -57,6 +60,7 @@ const designs = {
   huey,
   hugo,
   jaeger,
+  lunetius,
   paco,
   penelope,
   sandy,
@@ -66,11 +70,13 @@ const designs = {
   sven,
   tamiko,
   teagan,
+  tiberius,
   theo,
   titan,
   trayvon,
   ursula,
   wahid,
+  walburga,
   waralee,
 }
 
