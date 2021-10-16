@@ -29,7 +29,6 @@ const Author = (props) => {
   const author = props.author
 
   if (!author) return props.type === 'showcase' ? <MissingMaker /> : <MissingAuthor />
-  console.log(author)
 
   return (
     <div
