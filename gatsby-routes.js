@@ -223,7 +223,7 @@ const routes = {
     '/designs/fu/': '/designs/florence/',
     '/docs/patterns/fu/': '/docs/patterns/florence/',
     '/people/': '/account/people/',
-    '/patterns/': '/account/patterns/',
+    '/patterns/': '/designs/',
     '/patrons/join/': '/community/patrons/join/',
     '/patrons/thanks/': '/thanks/',
   },
