@@ -224,7 +224,7 @@ const routes = {
     '/docs/patterns/fu/': '/docs/patterns/florence/',
     '/people/': '/account/people/',
     '/patterns/': '/designs/',
-    '/patrons/join/': '/community/patrons/join/',
+    '/patrons/join/': '/community/join/',
     '/patrons/thanks/': '/thanks/',
   },
 }
