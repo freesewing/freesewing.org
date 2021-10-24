@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@bugsnag/js": "^7.11.0",
+    "@bugsnag/js": "^7.13.2",
     "@bugsnag/plugin-react": "^7.11.0",
     "@fontsource/permanent-marker": "^4.5.0",
     "@fontsource/roboto-mono": "^4.5.0",
@@ -89,7 +89,7 @@
     "@nivo/core": "^0.73.0",
     "@nivo/line": "^0.73.0",
     "algoliasearch": "4.10.5",
-    "axios": "0.21.4",
+    "axios": "0.23.0",
     "dotenv": "10.0.0",
     "file-saver": "2.0.5",
     "gatsby": "^3.14.0",
@@ -133,7 +133,7 @@
     "remark-html": "13.0.2",
     "remark-jargon": "2.19.1",
     "remark-preset-lint-recommended": "5.0.0",
-    "sharp": "^0.28.3",
+    "sharp": "^0.29.2",
     "tlds": "1.221.1",
     "yaml": "1.10.2"
   },
