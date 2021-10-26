@@ -1633,17 +1633,17 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@bugsnag/browser@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-7.11.0.tgz#21866da8a4699ec87a2c908e228af938a3a3c312"
-  integrity sha512-iOKXJcZzdl9XsjJnL62S+T4OQZJ21mUMCXXOiMRlLnDCrw30BwD4BoAZ5s3oQ0VE0azrv/CUsXQzU63NUcsb+Q==
+"@bugsnag/browser@^7.13.2":
+  version "7.13.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/browser/-/browser-7.13.2.tgz#d42956070f53894a449fb17aa84d82be7cc6969c"
+  integrity sha512-TNt6QhJxIqxvZ6wviLfwHu31V48EW+VnySxki0J2s4F++AF/lxCQ2o4ygFSQjOAHRMRChPI5jFM8OKDkx2q7mA==
   dependencies:
-    "@bugsnag/core" "^7.11.0"
+    "@bugsnag/core" "^7.13.2"
 
-"@bugsnag/core@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/core/-/core-7.11.0.tgz#61181c082d2407611b53308fe66f001287e794a4"
-  integrity sha512-xCaaONqQEAewifrvHC8v+yqN+Is4WNUcmK+sdeLcSb+ghLQ52y3BQ9nEDYzQxGuJRpv1zW3edCVIB4RN5eunSQ==
+"@bugsnag/core@^7.13.2":
+  version "7.13.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/core/-/core-7.13.2.tgz#f2e8033391146e1c52646c6cf41b3789a41727a6"
+  integrity sha512-nAQ0WNaI5Zf745ERFXbcwFmWAvrbm9Njtkk7ay45UxtlkINodP85SyV2XaktHRYCHJFjt0NQ9hbdNPeL4nTNGA==
   dependencies:
     "@bugsnag/cuid" "^3.0.0"
     "@bugsnag/safe-json-stringify" "^6.0.0"
@@ -1656,20 +1656,20 @@
   resolved "https://registry.yarnpkg.com/@bugsnag/cuid/-/cuid-3.0.0.tgz#2ee7642a30aee6dc86f5e7f824653741e42e5c35"
   integrity sha512-LOt8aaBI+KvOQGneBtpuCz3YqzyEAehd1f3nC5yr9TIYW1+IzYKa2xWS4EiMz5pPOnRPHkyyS5t/wmSmN51Gjg==
 
-"@bugsnag/js@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-7.11.0.tgz#ce76b261a0a31e631c79c04b235c17db19be58cb"
-  integrity sha512-2KQZdiBUQRayrTweMrH8LuT+YFcZSYxPVb+RaAx5J1z3vWWFar7Lw3II34zA4e+zs/7wMSTKll5p+O7Wuz60/A==
+"@bugsnag/js@^7.13.2":
+  version "7.13.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/js/-/js-7.13.2.tgz#5d1dad39bdab665a7dce155751f99fca19426177"
+  integrity sha512-yXEhiVAiHgpzlP/luA3lDTo+pLgxa3TDl6cSXJtUTOvVqcgzA30k+SHG8h0KwSjXQ0MJWiQFwzPPVENdLAB5nA==
   dependencies:
-    "@bugsnag/browser" "^7.11.0"
-    "@bugsnag/node" "^7.11.0"
+    "@bugsnag/browser" "^7.13.2"
+    "@bugsnag/node" "^7.13.2"
 
-"@bugsnag/node@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-7.11.0.tgz#47a97c45706b7cecd681d7c86860d9d5f4242303"
-  integrity sha512-hwIG7LTE2lwaIjAes1JxYbjSoih9Eu07MSf+QJoMILY6tJoHMgxJ6v0/8AfldJeEAb753qBtlQLO8Rtr2LKHBA==
+"@bugsnag/node@^7.13.2":
+  version "7.13.2"
+  resolved "https://registry.yarnpkg.com/@bugsnag/node/-/node-7.13.2.tgz#8d06176ebd37f00d7f6f923d9ce187bbd636bdf9"
+  integrity sha512-/JexaiCDmN2f54StyvwgxkMbOSRL58kNPy1GHwlQL7zAPoEiMe9Jq0LOeHIVMLzgB/i0n7gULjLIuYKDT5udfQ==
   dependencies:
-    "@bugsnag/core" "^7.11.0"
+    "@bugsnag/core" "^7.13.2"
     byline "^5.0.0"
     error-stack-parser "^2.0.2"
     iserror "^0.0.2"
@@ -4206,12 +4206,7 @@ async@1.5.2:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-async@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
-  integrity sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw==
-
-async@^3.2.1:
+async@^3.2.0, async@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.1.tgz#d3274ec66d107a47476a4c49136aacdb00665fc8"
   integrity sha512-XdD5lRO/87udXCMC9meWdYiR+Nq6ZjUfXidViUZGu2F1MO4T3XwZ1et0hb2++BgLfhyJwy44BGB/yx80ABx8hg==
@@ -7867,10 +7862,10 @@ gatsby-plugin-sass@^4.14.0:
     resolve-url-loader "^3.1.2"
     sass-loader "^10.1.1"
 
-gatsby-plugin-sharp@3.14.0:
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-3.14.0.tgz#e087b37d03704e019803439adfb7696339b2262d"
-  integrity sha512-i4jrmOElr0mB2tWlpfxzX72zimiheGny0GF+jPPYY77Uoie43AH7GGZm6wyhdtqKlphYDhgatOMU7xeiWQar6g==
+gatsby-plugin-sharp@3.14.1:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-3.14.1.tgz#4521d1ca7fe643eae743cae71621a8bb170a57dd"
+  integrity sha512-eLRoxLTrn5QCerIl/zaUTzJCBfPaaOZdVPhO6QUOd1o2qni6AR9QkeAw3He2e/1mnkB9wWGwJUdPiCfvUSE/pQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     async "^3.2.1"
