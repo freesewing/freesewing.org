@@ -72,6 +72,7 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
           )}
         </>
       )}
+      {!app.account.username && <MissingAccount app={app} />}
       <div style={styles.wrapper}>
         {Object.keys(people.ok.withBreasts).map((size) => (
           <Size
@@ -127,7 +128,6 @@ const SelectSize = ({ app, design, people, recreate = false }) => {
           </Blockquote>
         </div>
       )}
-      {!app.account.username && <MissingAccount app={app} />}
     </>
   )
 }
