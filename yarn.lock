@@ -15114,10 +15114,10 @@ title-case@^2.1.0:
     no-case "^2.2.0"
     upper-case "^1.0.3"
 
-tlds@1.221.1:
-  version "1.221.1"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.221.1.tgz#6cf6bff5eaf30c5618c5801c3f425a6dc61ca0ad"
-  integrity sha512-N1Afn/SLeOQRpxMwHBuNFJ3GvGrdtY4XPXKPFcx8he0U9Jg9ZkvTKE1k3jQDtCmlFn44UxjVtouF6PT4rEGd3Q==
+tlds@1.225.0:
+  version "1.225.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.225.0.tgz#c73f3505c30099e71e2828995d30e33e21aaf8fa"
+  integrity sha512-W6lNjs+IT3rjXumIJJindITMnv4R17mNBRsMkp6Kr0bF8vQcGW2Y//2VvMqegGmBnizBZFryv1thcPcpJQ3+CA==
 
 tmp@^0.0.33:
   version "0.0.33"
