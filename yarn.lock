@@ -14981,10 +14981,10 @@ title-case@^2.1.0:
     no-case "^2.2.0"
     upper-case "^1.0.3"
 
-tlds@1.225.0:
-  version "1.225.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.225.0.tgz#c73f3505c30099e71e2828995d30e33e21aaf8fa"
-  integrity sha512-W6lNjs+IT3rjXumIJJindITMnv4R17mNBRsMkp6Kr0bF8vQcGW2Y//2VvMqegGmBnizBZFryv1thcPcpJQ3+CA==
+tlds@1.226.0:
+  version "1.226.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.226.0.tgz#a20d4260141b0f76dccb736103ba1ec1c841afd2"
+  integrity sha512-8zUqBmpXX573ZrvqfL1pDYcnKq/12IROcipqmSSgj5ro/KvyPUnpsXAIAojpgNchVo5LXJwlV0anZGL1l1vr9Q==
 
 tmp@^0.0.33:
   version "0.0.33"
