@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 import Button from '@material-ui/core/Button'
@@ -46,15 +46,26 @@ const author = {
 const Page = (props) => {
   const app = useApp()
 
+  useEffect(() => {
+    const example = axios
+      .get('https://posts.freesewing.org/authors/60eae49cdb32b45d5c4d6d93')
+      .then((res) => {
+        if (res.data) setExampleMaker(res.data)
+      })
+  }, [])
+
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
     reader.onload = () => {
       setImg(reader.result)
+      if (reader.result.length > 5000000) setTooBig(true)
     }
     acceptedFiles.forEach((file) => reader.readAsDataURL(file))
   }, [])
 
   const [img, setImg] = useState(false)
+  const [exampleMaker, setExampleMaker] = useState(false)
+  const [tooBig, setTooBig] = useState(false)
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
   const [help, setHelp] = useState(false)
   const [displayname, setDisplayname] = useState('')
@@ -181,7 +192,7 @@ const Page = (props) => {
             Example of an author profile <span role="image">👀</span>
           </h3>
           <p>Below is an example of an author profile:</p>
-          <Author author={author} type="blog" />
+          {exampleMaker ? <Author author={exampleMaker} type="blog" /> : <p>Loading...</p>}
           <p>
             <Button onClick={() => setHelp(false)} variant="outlined" color="primary" size="large">
               Hide help
@@ -223,6 +234,15 @@ const Page = (props) => {
               </p>
             </div>
           </div>
+          {tooBig && (
+            <Blockquote type="warning">
+              <h5>Whoa, your image is a bit much</h5>
+              <p>
+                The image file you picked is rather large. Any chance you have have anything
+                smaller? Or perhaps you could resize it first?
+              </p>
+            </Blockquote>
+          )}
           <h5>about</h5>
           <TextField
             id="about"
