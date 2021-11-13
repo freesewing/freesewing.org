@@ -348,7 +348,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
   //await createNewsletterPages(pages, actions.createPage, graphql, language)
-  await createStrapiPages(pages, actions.createPage, graphql, language)
+  await createStrapiPages(pages, actions.createPage, graphql)
 
   await createPerDesignPages(actions.createPage, language)
   await createPerMeasurementPages(actions.createPage, language)

@@ -13,9 +13,7 @@ const Page = (props) => {
       <ul className="links">
         {props.data.allMakersPost.nodes.map(({ post }) => (
           <li key={post.slug}>
-            <Link to={`/makers/${post.slug}/`}>
-              {post.displayname}
-            </Link>
+            <Link to={`/makers/${post.slug}/`}>{post.displayname}</Link>
           </li>
         ))}
       </ul>

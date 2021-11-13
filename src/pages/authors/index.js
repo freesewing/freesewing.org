@@ -13,9 +13,7 @@ const Page = (props) => {
       <ul className="links">
         {props.data.allAuthorsPost.nodes.map(({ post }) => (
           <li key={post.slug}>
-            <Link to={`/authors/${post.slug}/`}>
-              {post.displayname}
-            </Link>
+            <Link to={`/authors/${post.slug}/`}>{post.displayname}</Link>
           </li>
         ))}
       </ul>

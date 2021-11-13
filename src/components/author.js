@@ -1,6 +1,5 @@
 import React from 'react'
 import Markdown from 'react-markdown'
-import { FormattedMessage } from 'react-intl'
 import Blockquote from '@freesewing/components/Blockquote'
 
 const MissingAuthor = (props) => (

@@ -8,25 +8,25 @@ const Page = (props) => {
   const app = useApp(false)
 
   const post = props.data.authorsPost.post
-  const img = post.picture?.formats?.medium?.url
-    ? post.picture.formats.medium.url
-    : post.picture?.formats?.small?.url
-    ? post.picture.formats.small.url
-    : post.picture?.formats?.xsmall?.url
-    ? post.picture.formats.xsmall.url
-    : post.picture.url
+  const img = post?.picture?.formats?.medium?.url
+    ? post?.picture?.formats.medium.url
+    : post?.picture?.formats?.small?.url
+    ? post?.picture?.formats.small.url
+    : post?.picture?.formats?.xsmall?.url
+    ? post?.picture?.formats.xsmall.url
+    : post?.picture?.url
   const imgUrl = `https://posts.freesewing.org${img}`
 
   return (
     <AppWrapper
       app={app}
-      title={post.displayname}
+      title={post?.displayname}
       img={`${imgUrl}`}
       {...app.treeProps(props.path)}
       crumbs={[{ title: 'Authors', slug: '/authors/' }]}
     >
       <img style={{ maxWidth: '100%', margin: 'auto' }} src={imgUrl} />
-      <Markdown>{post.about}</Markdown>
+      <Markdown>{post?.about}</Markdown>
     </AppWrapper>
   )
 }

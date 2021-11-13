@@ -77,7 +77,7 @@ const Page = (props) => {
               &nbsp;
               <FormattedMessage id="app.by" />
               &nbsp;
-              <a href="#author">{post?.maker?.displayname}</a>
+              <a href="#author">{post.maker.displayname}</a>
             </>
           )}
         </div>

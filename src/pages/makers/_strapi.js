@@ -26,7 +26,7 @@ const Page = (props) => {
       crumbs={[{ title: 'Makers', slug: '/makers/' }]}
     >
       <img style={{ maxWidth: '100%', margin: 'auto' }} src={imgUrl} />
-      <Markdown>{post.about}</Markdown>
+      <Markdown>{post?.about}</Markdown>
     </AppWrapper>
   )
 }
