@@ -9,24 +9,24 @@ const Page = (props) => {
 
   const post = props.data.makersPost.post
   const img = post?.picture?.formats?.medium?.url
-    ? post.picture.formats.medium.url
+    ? post?.picture.formats.medium.url
     : post?.picture?.formats?.small?.url
-    ? post.picture.formats.small.url
+    ? post?.picture.formats.small.url
     : post?.picture?.formats?.xsmall?.url
-    ? post.picture.formats.xsmall.url
-    : post.picture.url
+    ? post?.picture.formats.xsmall.url
+    : post?.picture.url
   const imgUrl = `https://posts.freesewing.org${img}`
 
   return (
     <AppWrapper
       app={app}
-      title={post.displayname}
+      title={post?.displayname}
       img={`${imgUrl}`}
       {...app.treeProps(props.path)}
       crumbs={[{ title: 'Makers', slug: '/makers/' }]}
     >
       <img style={{ maxWidth: '100%', margin: 'auto' }} src={imgUrl} />
-      <Markdown>{post.about}</Markdown>
+      <Markdown>{post?.about}</Markdown>
     </AppWrapper>
   )
 }

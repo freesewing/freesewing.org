@@ -44,7 +44,6 @@ const Page = (props) => {
   }
 
   const post = props.data.showcasePost.post
-  const node = { body: props.data.showcasePost.mdx }
 
   return (
     <AppWrapper
@@ -73,12 +72,12 @@ const Page = (props) => {
               & <Link to={`/showcase/designs/${post.design3}/`}>{post.design3}</Link>
             </span>
           )}
-          {post?.maker && (
+          {post.maker && (
             <>
               &nbsp;
               <FormattedMessage id="app.by" />
               &nbsp;
-              <a href="#author">{post?.maker?.displayname}</a>
+              <a href="#author">{post.maker.displayname}</a>
             </>
           )}
         </div>
@@ -91,7 +90,7 @@ const Page = (props) => {
         <Markdown>{post.body}</Markdown>
       </div>
       <div>
-        <Author author={post?.maker} type="showcase" />
+        <Author author={post.maker} type="showcase" />
       </div>
     </AppWrapper>
   )

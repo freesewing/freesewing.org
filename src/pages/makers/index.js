@@ -12,10 +12,8 @@ const Page = (props) => {
     <AppWrapper app={app} title="Makers" {...app.treeProps(props.path)} wide>
       <ul className="links">
         {props.data.allMakersPost.nodes.map(({ post }) => (
-          <li>
-            <Link key={post.slug} to={`/makers/${post.slug}/`}>
-              {post.displayname}
-            </Link>
+          <li key={post.slug}>
+            <Link to={`/makers/${post.slug}/`}>{post.displayname}</Link>
           </li>
         ))}
       </ul>

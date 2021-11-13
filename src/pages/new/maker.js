@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 import { Link } from 'gatsby'
@@ -40,6 +40,17 @@ const maker = {
         path: null,
         url: '/uploads/xsmall_joost_85adc5fad6.jpg',
       },
+      medium: {
+        name: 'medium_joost.jpg',
+        hash: 'medium_joost_85adc5fad6',
+        ext: '.jpg',
+        mime: 'image/jpeg',
+        width: 200,
+        height: 200,
+        size: 10.26,
+        path: null,
+        url: '/uploads/xsmall_joost_85adc5fad6.jpg',
+      },
     },
   },
 }
@@ -47,15 +58,26 @@ const maker = {
 const Page = (props) => {
   const app = useApp()
 
+  useEffect(() => {
+    const example = axios
+      .get('https://posts.freesewing.org/authors/60eae49cdb32b45d5c4d6d93')
+      .then((res) => {
+        if (res.data) setExampleMaker(res.data)
+      })
+  }, [])
+
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader()
     reader.onload = () => {
       setImg(reader.result)
+      if (reader.result.length > 5000000) setTooBig(true)
     }
     acceptedFiles.forEach((file) => reader.readAsDataURL(file))
   }, [])
 
   const [img, setImg] = useState(false)
+  const [exampleMaker, setExampleMaker] = useState(false)
+  const [tooBig, setTooBig] = useState(false)
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
   const [help, setHelp] = useState(false)
   const [displayname, setDisplayname] = useState('')
@@ -189,7 +211,7 @@ const Page = (props) => {
             Example of a maker profile <span role="image">👀</span>
           </h3>
           <p>Below is an example of a maker profile:</p>
-          <Author author={maker} type="showcase" />
+          {exampleMaker ? <Author author={exampleMaker} type="showcase" /> : <p>Loading...</p>}
           <p>
             <Button onClick={() => setHelp(false)} variant="outlined" color="primary" size="large">
               Hide help
@@ -215,7 +237,7 @@ const Page = (props) => {
           <div style={styles.wrapper}>
             <img
               alt="avatar"
-              src={img || app?.account?.pictureUris?.m}
+              src={img || app.account?.pictureUris?.m}
               style={styles.avatar}
               className="shadow"
             />
@@ -231,6 +253,15 @@ const Page = (props) => {
               </p>
             </div>
           </div>
+          {tooBig && (
+            <Blockquote type="warning">
+              <h5>Whoa, your image is a bit much</h5>
+              <p>
+                The image file you picked is rather large. Any chance you have have anything
+                smaller? Or perhaps you could resize it first?
+              </p>
+            </Blockquote>
+          )}
           <h5>about</h5>
           <TextField
             id="about"
@@ -263,7 +294,7 @@ const Page = (props) => {
           </p>
         </>
       )}
-      {error && ready && (
+      {error && (
         <Blockquote type="warning">
           <h5>Oh no, something went wrong</h5>
           {errorMsg ? (

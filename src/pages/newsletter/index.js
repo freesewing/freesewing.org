@@ -13,7 +13,7 @@ const Page = (props) => {
   return (
     <AppWrapper app={app} title="The FreeSewing newsletter">
       <Blockquote type="tip">
-        {app?.account?.username ? (
+        {app.account?.username ? (
           <>
             <h5>Subscribe to our newsletter</h5>
             <p>

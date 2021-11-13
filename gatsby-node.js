@@ -20,10 +20,6 @@ const strapiTypes = {
   makers: 'allMakersPost',
   authors: 'allAuthorsPost',
 }
-const strapiPeeps = {
-  makers: 'allMakersPost',
-  authors: 'allAuthorsPost',
-}
 
 const translate = (id) =>
   i18n.strings[process.env.GATSBY_LANGUAGE][id] || `No translation for ${id}`
@@ -204,7 +200,7 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
   return Promise.all(promises)
 }
 
-const createStrapiPages = async function (pages, createPage, graphql, language) {
+const createStrapiPages = async function (pages, createPage, graphql) {
   const promises = []
   for (let type in strapiTypes) {
     pages[type] = {}
@@ -352,7 +348,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const pages = {}
   await createMdxPages(pages, actions.createPage, graphql, language)
   //await createNewsletterPages(pages, actions.createPage, graphql, language)
-  await createStrapiPages(pages, actions.createPage, graphql, language)
+  await createStrapiPages(pages, actions.createPage, graphql)
 
   await createPerDesignPages(actions.createPage, language)
   await createPerMeasurementPages(actions.createPage, language)
@@ -365,7 +361,6 @@ exports.createPages = async ({ actions, graphql }) => {
 
 const getStrapiPosts = async (type, lang) => {
   const host = 'https://posts.freesewing.org'
-  const languages = ['en', 'de', 'es', 'fr', 'nl']
   const buildUrl = (type, lang) => {
     if (type === 'blog') return `${host}/blogposts?_locale=${lang}&_sort=date:ASC&dev_ne=true&_limit=-1`
     if (type === 'showcase') return `${host}/showcaseposts?_locale=${lang}&_sort=date:ASC&_limit=-1`
@@ -430,8 +425,7 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
   for (const type in strapiTypes) {
     const posts = await getStrapiPosts(type, process.env.GATSBY_LANGUAGE)
     i = 0
-    Object.keys(posts).map((postId) => {
-      const post = posts[postId]
+    for (const [postId, post] of Object.entries(posts)) {
       const strapiNode = {
         id: createNodeId(post._id),
         parent: null,
@@ -451,7 +445,7 @@ exports.sourceNodes = async ({ actions, getNode, createNodeId, hasNodeChanged })
 
       strapiNode.internal.contentDigest = contentDigest
       createNode(strapiNode)
-    })
+    }
   }
 
   return

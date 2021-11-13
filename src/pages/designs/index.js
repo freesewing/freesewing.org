@@ -2,14 +2,10 @@ import React, { useState } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 
-import { FormattedMessage } from 'react-intl'
 import { list } from '@freesewing/pattern-info'
 import capitalize from '@freesewing/utils/capitalize'
 import Filter from '../../components/designs/filter'
-import Button from '@material-ui/core/Button'
-import SearchIcon from '@material-ui/icons/Search'
 import { Link } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Page = (props) => {
   const app = useApp(false)
@@ -42,7 +38,7 @@ const Page = (props) => {
       <Filter app={app} applyFilter={setDesigns} />
       <div style={style.wrapper}>
         {designs.map((design) => (
-          <div style={style.innerWrapper}>
+          <div key={design} style={style.innerWrapper}>
             <Link to={'/designs/' + design + '/'} title={capitalize(design)} style={style.link}>
               <figure style={{ margin: 0 }}>
                 <img
