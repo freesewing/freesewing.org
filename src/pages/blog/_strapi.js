@@ -2,10 +2,8 @@ import React from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
 import Author from '../../components/author'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { FormattedDate, FormattedMessage } from 'react-intl'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Markdown from 'react-markdown'
 
 const PreviewImage = ({ formats }) => {

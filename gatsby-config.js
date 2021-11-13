@@ -1,6 +1,6 @@
 require('dotenv').config()
 const searchData = require('./src/algolia')
-const feeds = require('./src/feeds')
+//const feeds = require('./src/feeds')
 const languages = require('@freesewing/i18n').languages
 const ignore = []
 for (let lang in languages) {

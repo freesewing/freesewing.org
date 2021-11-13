@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import useApp from '../../hooks/useApp'
 import AppWrapper from '../../components/app/wrapper'
-import { Link } from 'gatsby'
 import Button from '@material-ui/core/Button'
 import Blockquote from '@freesewing/components/Blockquote'
 import Author from '../../components/author'
@@ -208,7 +207,7 @@ const Page = (props) => {
           <div style={styles.wrapper}>
             <img
               alt="avatar"
-              src={img || app?.account?.pictureUris?.m}
+              src={img || app.account?.pictureUris?.m}
               style={styles.avatar}
               className="shadow"
             />

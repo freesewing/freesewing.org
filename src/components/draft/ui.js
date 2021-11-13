@@ -107,8 +107,8 @@ ${e.stack}
         display === 'compare' ? comparePattern(crashData) : draftPattern(crashData)
       app.backend
         .createIssue({
-          userHandle: app?.account?.username,
-          userGithub: app?.account?.social?.github,
+          userHandle: app.account?.username,
+          userGithub: app.account?.social?.github,
           design,
           data: YAML.stringify(data),
           patternProps: {

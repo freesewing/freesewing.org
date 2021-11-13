@@ -39,7 +39,6 @@ const Author = (props) => {
         flexDirection: 'column',
         borderRadius: '4px',
         maxWidth: '500px',
-        margin: 'auto',
         textAlign: 'center',
         padding: '1rem',
         borderTop: '4px solid',
@@ -53,7 +52,7 @@ const Author = (props) => {
           height: '200px',
           borderRadius: '100px',
           margin: 'auto',
-          backgroundImage: `url(https://posts.freesewing.org${author?.picture?.formats?.medium?.url}`,
+          backgroundImage: `url(https://posts.freesewing.org${author.picture?.formats?.medium?.url}`,
           backgroundSize: 'cover',
         }}
       ></div>
@@ -61,10 +60,10 @@ const Author = (props) => {
         <span style={{ fontSize: '60%', display: 'block' }}>
           {props.type === 'blog' ? 'written by' : 'made by'}
         </span>
-        {author?.displayname}
+        {author.displayname}
       </h5>
       <div>
-        <Markdown>{author?.about}</Markdown>
+        <Markdown>{author.about}</Markdown>
       </div>
     </div>
   )

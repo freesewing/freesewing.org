@@ -8,11 +8,11 @@ const Page = (props) => {
   const app = useApp(false)
 
   const post = props.data.authorsPost.post
-  const img = post?.picture?.formats?.medium?.url
+  const img = post.picture?.formats?.medium?.url
     ? post.picture.formats.medium.url
-    : post?.picture?.formats?.small?.url
+    : post.picture?.formats?.small?.url
     ? post.picture.formats.small.url
-    : post?.picture?.formats?.xsmall?.url
+    : post.picture?.formats?.xsmall?.url
     ? post.picture.formats.xsmall.url
     : post.picture.url
   const imgUrl = `https://posts.freesewing.org${img}`

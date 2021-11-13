@@ -215,7 +215,7 @@ const Page = (props) => {
           <div style={styles.wrapper}>
             <img
               alt="avatar"
-              src={img || app?.account?.pictureUris?.m}
+              src={img || app.account?.pictureUris?.m}
               style={styles.avatar}
               className="shadow"
             />

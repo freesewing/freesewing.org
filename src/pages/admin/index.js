@@ -29,7 +29,7 @@ const Page = (props) => {
       .then((res) => {
         if (res.status === 200) {
           // FIXME: No need to support both once backend is migrated
-          if (res.data.users) {
+          if (res.data?.users) {
             setUsers(res.data.users)
             setPeople(res.data.people)
           } else if (res.data) setUsers(res.data)
