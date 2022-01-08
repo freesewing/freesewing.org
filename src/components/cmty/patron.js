@@ -11,7 +11,10 @@ const Contributor = ({ patron, app }) => {
 
   return (
     <div className="contributor shadow">
-      <img src={patron.pictureUris.m} alt={patron.username} />
+      <img
+        src={patron?.pictureUris ? patron.pictureUris.m : 'https://freesewing.org/avatar.svg'}
+        alt={patron.username}
+      />
       <div className="text snug">
         <h5>{patron.username}</h5>
         <ul>
