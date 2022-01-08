@@ -22,7 +22,12 @@ const UserProfile = (props) => {
 
   return (
     <React.Fragment>
-      <img src={user.pictureUris.l} style={styles.avatar} className="shadow" alt={user.username} />
+      <img
+        src={user?.pictureUris ? user.pictureUris.l : 'https://freesewing.org/avatar.svg'}
+        style={styles.avatar}
+        className="shadow"
+        alt={user.username}
+      />
       <Markdown>{user.bio}</Markdown>
       {user.social && (
         <p style={{ textAlign: 'center' }}>
