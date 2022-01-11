@@ -9,6 +9,7 @@ import { injectIntl } from 'react-intl'
 const seated = ['crotchdepth']
 const breastsOnly = [
   'ankle',
+  'bustpointtounderbust',
   'bustspan',
   'bustfront',
   'highbust',
