@@ -1,6 +1,9 @@
 import React from 'react'
 import Icon from '@freesewing/components/Icon'
 import { Link } from 'gatsby'
+import TimeAgo from 'react-timeago'
+import AddedIcon from '@material-ui/icons/AddCircleOutline'
+import UpdatedIcon from '@material-ui/icons/Edit'
 
 const Person = (props) => {
   // SSR
@@ -29,6 +32,14 @@ const Person = (props) => {
           <li>
             <Icon icon={props.data.breasts ? 'withBreasts' : 'withoutBreasts'} />
             {props.translate(props.data.breasts ? 'app.withBreasts' : 'app.withoutBreasts')}
+          </li>
+          <li>
+            <AddedIcon />
+            <TimeAgo date={props.data.created || props.data.createdAt} />
+          </li>
+          <li>
+            <UpdatedIcon />
+            <TimeAgo date={props.data.updatedAt} />
           </li>
         </ul>
       </div>
