@@ -55,7 +55,7 @@ const Page = (props) => {
     let valid = false
     let value = evt.target.value
     setValue(evt.target.value)
-    if (isDegMeasurement(measurement)) valid = value > 0 && value < 26
+    if (isDegMeasurement(measurement)) valid = value > 0 && value <= 35
     else {
       mm = measurementAsMm(value, person.units)
       valid = typeof measurementAsMm(value, person.units) === 'number' ? true : false
