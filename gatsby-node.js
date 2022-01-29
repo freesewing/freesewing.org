@@ -168,22 +168,6 @@ const createMdxPages = async function (pages, createPage, graphql, language) {
               file: page.node.fileAbsolutePath,
             },
           }
-          // Handle duplicates in docs
-          if (type === 'docs' && typeof routes.duplicates[slug] !== 'undefined') {
-            for (let newSlug of routes.duplicates[slug]) {
-              pages[type][newSlug] = {
-                path: newSlug,
-                component,
-                context: {
-                  slug: newSlug,
-                  title: pages.docs[slug].context.title,
-                  order: pages.docs[slug].context.order,
-                  // Keep file here, it is used in the page query to filter
-                  file: pages.docs[slug].context.file,
-                },
-              }
-            }
-          }
         }
       }
       for (let slug in pages[type]) {
