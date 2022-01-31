@@ -139,7 +139,7 @@ const Page = (props) => {
               variant="contained"
               color="primary"
               className="info"
-              href="https://chat.freesewing.org/"
+              href="https://discord.freesewing.org/"
             >
               <FormattedMessage id="app.askForHelp" />
             </Button>
