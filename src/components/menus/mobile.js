@@ -51,7 +51,7 @@ const MobileMenu = ({ app, mainMenu }) => {
     },
     discord: {
       title: 'app.chatOnDiscord',
-      link: 'https://chat.freesewing.org/',
+      link: 'https://discord.freesewing.org/',
       icon: <Icon icon="discord" />,
     },
     search: {

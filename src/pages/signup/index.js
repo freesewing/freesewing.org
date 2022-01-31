@@ -117,7 +117,7 @@ const Page = (props) => {
           </p>
           <p>
             <small>
-              <a href="https://chat.freesewing.org/">
+              <a href="https://discord.freesewing.org/">
                 <FormattedMessage id="app.emailNotReceived" />
               </a>
             </small>
@@ -207,7 +207,7 @@ const Page = (props) => {
       {trouble && (
         <p>
           <small>
-            <a href="https://chat.freesewing.org/">
+            <a href="https://discord.freesewing.org/">
               <FormattedMessage id="app.emailNotReceived" />
             </a>
           </small>

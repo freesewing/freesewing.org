@@ -182,11 +182,11 @@ const ButtonAppBar = (props) => {
           <span style={style.spacer} />
 
           {props.app.tablet ? (
-            <IconButton style={style.iconButton} href="https://chat.freesewing.org/">
+            <IconButton style={style.iconButton} href="https://discord.freesewing.org/">
               <Icon style={{ ...iconStyle }} icon="discord" />
             </IconButton>
           ) : (
-            <Button {...buttonProps} href="https://chat.freesewing.org/">
+            <Button {...buttonProps} href="https://discord.freesewing.org/">
               <Icon style={{ ...iconStyle }} icon="discord" />
               <FormattedMessage id="app.chatOnDiscord" />
             </Button>
