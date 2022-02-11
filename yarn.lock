@@ -1806,10 +1806,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/permanent-marker@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/permanent-marker/-/permanent-marker-4.5.0.tgz#b8cd62e60efaf76c5ed049cd1e1f2a453b5ce927"
-  integrity sha512-pQD7//FSAXNShAa8AfY5B9SKP3CiLLepx8iQlBfp3QdUNbQ4q8vVMrx8le7y6nrhr3+5peeNPYf9bin9+ZYkow==
+"@fontsource/permanent-marker@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/permanent-marker/-/permanent-marker-4.5.1.tgz#c420628cda35f6e241f279b71732125262991955"
+  integrity sha512-uC8u1ps5IWn+SIuLiyw+o4RFz1UzofqLebBQRqrvVa1y3x21LaV6se6x0kezRyIN8QCtBfKfTvdXN2g4A2bzJg==
 
 "@fontsource/permanent-marker@latest":
   version "4.4.0"
