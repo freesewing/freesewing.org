@@ -15,7 +15,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.15.1",
     "@bugsnag/plugin-react": "^7.14.0",
-    "@fontsource/permanent-marker": "^4.5.0",
+    "@fontsource/permanent-marker": "^4.5.1",
     "@fontsource/roboto-mono": "^4.5.0",
     "@fontsource/ubuntu": "^4.5.0",
     "@freesewing/aaron": "2.20.4",
@@ -124,7 +124,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "11.4.2",
     "react-helmet": "6.1.0",
-    "react-instantsearch-dom": "6.20.0",
+    "react-instantsearch-dom": "6.22.0",
     "react-intl": "5.22.0",
     "react-markdown": "6.0.2",
     "react-timeago": "^6.2.1",
@@ -134,7 +134,7 @@
     "remark-html": "13.0.2",
     "remark-jargon": "2.20.4",
     "remark-preset-lint-recommended": "5.0.0",
-    "sharp": "^0.29.3",
+    "sharp": "^0.30.1",
     "tlds": "1.229.0",
     "yaml": "1.10.2"
   },
