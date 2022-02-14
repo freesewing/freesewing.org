@@ -21,7 +21,7 @@ const DraftPreview = ({ app, data, pattern }) => {
   return (
     <figure key="pattern" style={{ textAlign: 'center' }} data-test="draft">
       <style>
-        {`:root { --freesewing-pattern-scale: ${patternProps?.settings?.scale || 1}; }`}
+        {`:root { --freesewing-pattern-scale: ${patternProps?.settings?.scale || 1}px; }`}
       </style>
       <Draft {...patternProps} />
     </figure>
