@@ -2073,10 +2073,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/paco/-/paco-2.20.6.tgz#f1f2860147413d2a8d625291a4e0166a386c11ff"
   integrity sha512-UE6Mgf2w7gq/FqWLhNB6Uj4tis/aVethBwGwD/KDtZiRmoi+bGJjAHiXBSLfWBhBysIJnxVwA+8hJTO/vM8NVA==
 
-"@freesewing/pattern-info@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/pattern-info/-/pattern-info-2.20.6.tgz#21e7d29787af3fddb9982333115d4f1ef8baf787"
-  integrity sha512-2lr1fnnEztI90EimPhaPMFFLPemXb9xHDjJ1z6BI9Zy4UzpycTKytxhSdCani0ze4I/1gy1oUPrcaZAR+1aLug==
+"@freesewing/pattern-info@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/pattern-info/-/pattern-info-2.20.7.tgz#e106be10aff3257afa91ec599f3f485caf86cf48"
+  integrity sha512-6BUcoBt3k9IcrBAj++3XIGhAdyX8BHEyvP6p7CSmatrFnAkss6onoOt7xxQROa5lN3XkcuFX7n0DqDq+bTMuyg==
 
 "@freesewing/penelope@2.20.6":
   version "2.20.6"
