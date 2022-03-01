@@ -2063,10 +2063,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/models/-/models-2.20.6.tgz#7e5e3c3b4bbf5cb45b7b108cb2d355b6e78dce13"
   integrity sha512-SzNt5X7VtSh3llf3tuyUuKXGrpB/bVggsEOsA7JhBAOyl2WvU9geMS14VuuAyABR4ygvDb2ybXqnuhRepA10gQ==
 
-"@freesewing/mui-theme@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.20.6.tgz#5a693095ce302088eb2fae01b557d60aadf3af6c"
-  integrity sha512-P3tjHu9yZqpBjWgkjI4cebHN66fvoBeIOOk5Pcl+aOxfUPGrPBwtR0EgKsR1eKd6B1dMkkPm7wX4uqTTKdLRyA==
+"@freesewing/mui-theme@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.20.7.tgz#7af40abfd062a2a08093787c03deea2a95a762bc"
+  integrity sha512-8YGo1uH2mMILicHhf5zeHkQJqnATqk5n9E3TPtRmkNnuKt/octDcKXwL6UB6ml2gESZmirY3ra+IEK2cFB9NPQ==
 
 "@freesewing/paco@2.20.6":
   version "2.20.6"
