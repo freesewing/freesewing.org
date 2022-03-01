@@ -1569,10 +1569,10 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-react@^7.14.0":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.14.0.tgz#066e9e28b18db3141daff34e14da81b5f36ef901"
-  integrity sha512-bCrCb+6DeWQjnjHp9mk923b30m9Uz0ritNaFbLC6WqpX1KmWJJ6YebP/McqxsV8DXzX7qf3W4qzCWdatkaOeKA==
+"@bugsnag/plugin-react@^7.16.1":
+  version "7.16.1"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.16.1.tgz#8abc7512c2a1d7f2422a20f103730bfd02cb5510"
+  integrity sha512-cMO1ujjo/cZTE3k6c/KpF7mFhWnYHjfn622NuvYijkNlRbxcdRXtLHhiPJ+gL31Z4AGA/PRvzWXxR4eWxHF8Mw==
 
 "@bugsnag/safe-json-stringify@^6.0.0":
   version "6.0.0"
@@ -1977,10 +1977,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.20.6.tgz#837f08d6fddf1222dafa532fd05de6917c1ba9e0"
   integrity sha512-p5O1JQXrsP+tWr+iQpw6TCilr20+4vy5lQUhuexd3F8fwVbhtNQJpoFP0Xxg/zVbnHf1Y6YrRIb6TEA4hbBNDQ==
 
-"@freesewing/core@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/core/-/core-2.20.6.tgz#3901b20683bbe2d04f1b99a1eb12f592074efff6"
-  integrity sha512-3mM7xoeMTc+kUWvDDc5BEMV8C98WRxlKgTH1w/RmCAA1exxH4URu4Bbxu+VhUyI6+/MptY5Vb5XsVvCQcdZ+zQ==
+"@freesewing/core@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/core/-/core-2.20.7.tgz#3c4e29ae86ab740016ba5dd3e94c6667dfc8393a"
+  integrity sha512-Lhj1p5aF5vv3NGUZBhytAB2ZezSl/bCSDORlg3FpZAexkAO2sYWDlbcjB7zod+nmbU4CPdQDfsjre38kFhGaeA==
   dependencies:
     bezier-js "^4.1.1"
     bin-pack "^1.0.2"
@@ -2063,10 +2063,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/models/-/models-2.20.6.tgz#7e5e3c3b4bbf5cb45b7b108cb2d355b6e78dce13"
   integrity sha512-SzNt5X7VtSh3llf3tuyUuKXGrpB/bVggsEOsA7JhBAOyl2WvU9geMS14VuuAyABR4ygvDb2ybXqnuhRepA10gQ==
 
-"@freesewing/mui-theme@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.20.6.tgz#5a693095ce302088eb2fae01b557d60aadf3af6c"
-  integrity sha512-P3tjHu9yZqpBjWgkjI4cebHN66fvoBeIOOk5Pcl+aOxfUPGrPBwtR0EgKsR1eKd6B1dMkkPm7wX4uqTTKdLRyA==
+"@freesewing/mui-theme@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/mui-theme/-/mui-theme-2.20.7.tgz#7af40abfd062a2a08093787c03deea2a95a762bc"
+  integrity sha512-8YGo1uH2mMILicHhf5zeHkQJqnATqk5n9E3TPtRmkNnuKt/octDcKXwL6UB6ml2gESZmirY3ra+IEK2cFB9NPQ==
 
 "@freesewing/paco@2.20.6":
   version "2.20.6"
