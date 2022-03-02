@@ -1569,10 +1569,10 @@
     pump "^3.0.0"
     stack-generator "^2.0.3"
 
-"@bugsnag/plugin-react@^7.14.0":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.14.0.tgz#066e9e28b18db3141daff34e14da81b5f36ef901"
-  integrity sha512-bCrCb+6DeWQjnjHp9mk923b30m9Uz0ritNaFbLC6WqpX1KmWJJ6YebP/McqxsV8DXzX7qf3W4qzCWdatkaOeKA==
+"@bugsnag/plugin-react@^7.16.1":
+  version "7.16.1"
+  resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.16.1.tgz#8abc7512c2a1d7f2422a20f103730bfd02cb5510"
+  integrity sha512-cMO1ujjo/cZTE3k6c/KpF7mFhWnYHjfn622NuvYijkNlRbxcdRXtLHhiPJ+gL31Z4AGA/PRvzWXxR4eWxHF8Mw==
 
 "@bugsnag/safe-json-stringify@^6.0.0":
   version "6.0.0"
@@ -2098,10 +2098,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.20.6.tgz#663875ee070c3b25f364a740c0c21cfc8c4f53fd"
   integrity sha512-qYWv4tBzeVaVkqiFiEOyAffPixgFxDZT5kHh+9RNsBP8pTF6y66ZSAhqn6rQJjwshq0nz70Wi9ymJmijYYrw9w==
 
-"@freesewing/plugin-buttons@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.6.tgz#d0ae83c22a241f7658af36807ef3e539a3de4ca0"
-  integrity sha512-sj5iftykf27C6xh8APBlYzhA6A76LEPvRTNNsky6G3OD+8dSljGS987z7/G+7p0ohSah/mCwpfdhFlGML9SzlQ==
+"@freesewing/plugin-buttons@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.7.tgz#01a884ef826466ece4bead561934e3fa088533bf"
+  integrity sha512-Sh4m4DjIs50ktC+6MjW2/Lbi7miEn5WKPJF0mmYb54UQ+nyq1y6PTEAmv1T5GZKNCNQS6icH0FfQh0ChHFdilw==
 
 "@freesewing/plugin-flip@2.20.6":
   version "2.20.6"
