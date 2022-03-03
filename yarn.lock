@@ -2098,10 +2098,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.20.6.tgz#663875ee070c3b25f364a740c0c21cfc8c4f53fd"
   integrity sha512-qYWv4tBzeVaVkqiFiEOyAffPixgFxDZT5kHh+9RNsBP8pTF6y66ZSAhqn6rQJjwshq0nz70Wi9ymJmijYYrw9w==
 
-"@freesewing/plugin-buttons@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.6.tgz#d0ae83c22a241f7658af36807ef3e539a3de4ca0"
-  integrity sha512-sj5iftykf27C6xh8APBlYzhA6A76LEPvRTNNsky6G3OD+8dSljGS987z7/G+7p0ohSah/mCwpfdhFlGML9SzlQ==
+"@freesewing/plugin-buttons@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.7.tgz#01a884ef826466ece4bead561934e3fa088533bf"
+  integrity sha512-Sh4m4DjIs50ktC+6MjW2/Lbi7miEn5WKPJF0mmYb54UQ+nyq1y6PTEAmv1T5GZKNCNQS6icH0FfQh0ChHFdilw==
 
 "@freesewing/plugin-flip@2.20.6":
   version "2.20.6"
