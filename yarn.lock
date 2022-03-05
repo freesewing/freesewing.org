@@ -1991,10 +1991,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/cornelius/-/cornelius-2.20.6.tgz#c448a176dc0e804f78359aeaa14dc8d4ab402051"
   integrity sha512-G/HH1uF3o5TlhMK94JfjEyUwBvUQ3If/wkNKbL6gjqJtiOVfVGSpVDhZ9ByVK6vhyj6A1VdkvO8FFWWH4vrg2w==
 
-"@freesewing/css-theme@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.20.6.tgz#477d18382e04d5988f0836dacfc9bc11c9920a92"
-  integrity sha512-uggizd44riBXmhvJbbMqTQhBHQ0FZHY7lPjHq70eCVfaclKIw/hDUCHjpk4O0L8yJeorP68EoBwWBkBpKAeOfg==
+"@freesewing/css-theme@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.20.7.tgz#762f8279604fcdf39cee91ad0eaddf4b0a77b870"
+  integrity sha512-TghO/cDQRXkYd3NQFlY4P8elkd3CI78pjtj2bm/4/UoMGYKqICqkUR6S0gwK4Yyn2ECh4I85lIcmEqyaaUFA7w==
   dependencies:
     "@fontsource/permanent-marker" latest
     "@fontsource/roboto-mono" latest
@@ -2093,20 +2093,20 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.20.6.tgz#3a3f54f9f7f245439d9722c9246caff688f41e3e"
   integrity sha512-jxSePciY8RqNVfqziqRm1Bj/Gs9tKMRLKbnJmGDt2b/PVync8cl/sEb39uTIUnsTHMzZQXQn5c8mudhdRIK+4A==
 
-"@freesewing/plugin-bust@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.20.6.tgz#663875ee070c3b25f364a740c0c21cfc8c4f53fd"
-  integrity sha512-qYWv4tBzeVaVkqiFiEOyAffPixgFxDZT5kHh+9RNsBP8pTF6y66ZSAhqn6rQJjwshq0nz70Wi9ymJmijYYrw9w==
+"@freesewing/plugin-bust@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bust/-/plugin-bust-2.20.7.tgz#21bdb4fb23ea6f634f1249f38e7d7a273e1582bd"
+  integrity sha512-hHJiJX3jkQjbRPwdTd1Lf0NWry8ySQn6UKxcpQF3atarYZBPwNkPPGllL01z2ugZc8IOCshekksklrwf2ZgCbg==
 
 "@freesewing/plugin-buttons@2.20.7":
   version "2.20.7"
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.7.tgz#01a884ef826466ece4bead561934e3fa088533bf"
   integrity sha512-Sh4m4DjIs50ktC+6MjW2/Lbi7miEn5WKPJF0mmYb54UQ+nyq1y6PTEAmv1T5GZKNCNQS6icH0FfQh0ChHFdilw==
 
-"@freesewing/plugin-flip@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.20.6.tgz#3291bb2cb8d153a51643de4cd78df54a73a94573"
-  integrity sha512-daeFjvQxAZtccQYeOKj2I2xkc+iz34MqrR20Y4Mq81fLOmKw6jTR5KUMsdBVwbl6bz6yCqsyY+nxWLcXgnBZiQ==
+"@freesewing/plugin-flip@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.20.7.tgz#2939d85845254e04349150c947bcdb8748d8ad5c"
+  integrity sha512-puQZyoqVuTibxj3m1yv2EXy10CGtYjZ4x+HU0B4bZv3DlOi6AatHkEgYJ487uTlJ+cYWKGr29fihMmIXYepGiw==
 
 "@freesewing/plugin-gore@^2.20.6":
   version "2.20.6"
