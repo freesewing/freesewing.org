@@ -2103,10 +2103,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-buttons/-/plugin-buttons-2.20.7.tgz#01a884ef826466ece4bead561934e3fa088533bf"
   integrity sha512-Sh4m4DjIs50ktC+6MjW2/Lbi7miEn5WKPJF0mmYb54UQ+nyq1y6PTEAmv1T5GZKNCNQS6icH0FfQh0ChHFdilw==
 
-"@freesewing/plugin-flip@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.20.6.tgz#3291bb2cb8d153a51643de4cd78df54a73a94573"
-  integrity sha512-daeFjvQxAZtccQYeOKj2I2xkc+iz34MqrR20Y4Mq81fLOmKw6jTR5KUMsdBVwbl6bz6yCqsyY+nxWLcXgnBZiQ==
+"@freesewing/plugin-flip@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-flip/-/plugin-flip-2.20.7.tgz#2939d85845254e04349150c947bcdb8748d8ad5c"
+  integrity sha512-puQZyoqVuTibxj3m1yv2EXy10CGtYjZ4x+HU0B4bZv3DlOi6AatHkEgYJ487uTlJ+cYWKGr29fihMmIXYepGiw==
 
 "@freesewing/plugin-gore@^2.20.6":
   version "2.20.6"
