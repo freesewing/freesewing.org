@@ -1991,10 +1991,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/cornelius/-/cornelius-2.20.6.tgz#c448a176dc0e804f78359aeaa14dc8d4ab402051"
   integrity sha512-G/HH1uF3o5TlhMK94JfjEyUwBvUQ3If/wkNKbL6gjqJtiOVfVGSpVDhZ9ByVK6vhyj6A1VdkvO8FFWWH4vrg2w==
 
-"@freesewing/css-theme@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.20.6.tgz#477d18382e04d5988f0836dacfc9bc11c9920a92"
-  integrity sha512-uggizd44riBXmhvJbbMqTQhBHQ0FZHY7lPjHq70eCVfaclKIw/hDUCHjpk4O0L8yJeorP68EoBwWBkBpKAeOfg==
+"@freesewing/css-theme@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/css-theme/-/css-theme-2.20.7.tgz#762f8279604fcdf39cee91ad0eaddf4b0a77b870"
+  integrity sha512-TghO/cDQRXkYd3NQFlY4P8elkd3CI78pjtj2bm/4/UoMGYKqICqkUR6S0gwK4Yyn2ECh4I85lIcmEqyaaUFA7w==
   dependencies:
     "@fontsource/permanent-marker" latest
     "@fontsource/roboto-mono" latest
