@@ -2083,10 +2083,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/penelope/-/penelope-2.20.6.tgz#1dac48fce86eb881ea9711c51ecc84a96f68962d"
   integrity sha512-kFdXFiwdWFShra2yl6Fb0kkhpL2rkGnXVur5bTc9QQAT0S+05fFQL6D/aogQwQqBdmXiNVSit3OGGHHOk/cNOw==
 
-"@freesewing/plugin-bartack@^2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bartack/-/plugin-bartack-2.20.6.tgz#afb8c33cd8c817df01c7c3b3b8c84dd6d5811721"
-  integrity sha512-d7JgDzTC3JMeMOh7JDCdAdIXv/tPsHwEjmfXPPB3yeZlGtHq8IH3NsVIONBFMz1SrIIJkHWzs0swv9Ve8o7C/g==
+"@freesewing/plugin-bartack@^2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bartack/-/plugin-bartack-2.20.7.tgz#e27882136ef46fe17f358267e4d0136887e578e7"
+  integrity sha512-aF9RMJ0cZ2omkkMhXNJiNb54SALFDeWI54yXiHqctL8Jbr26+c5z3hRueBMBBsriQmTR0f3d9DGE9CmKTYrkFw==
 
 "@freesewing/plugin-bundle@2.20.6":
   version "2.20.6"
