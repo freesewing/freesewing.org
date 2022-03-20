@@ -2123,10 +2123,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-mirror/-/plugin-mirror-2.20.6.tgz#f3a4a7790b21c2cf778e5d48fef714ea7c60f8e4"
   integrity sha512-koo1/G7Kpmz6Aq5R9nZ+ypDzVKI4ZQoIcoxrTpLQgh4MQiQnFJp9lPmG8exddd17I5kuQAY8KNXEwssEbxnNsA==
 
-"@freesewing/plugin-round@^2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-round/-/plugin-round-2.20.6.tgz#d18409cc867cf857d89c860ac5c9c712a0ffc5e8"
-  integrity sha512-NxxPt5AEJppLN6t1g43IDYzMzS+pg9SBWVCUOtG9WpoquyavnDynaHRMbp8T6lkPitdVPJ1vv/rI5ZkvsJO/Zw==
+"@freesewing/plugin-round@^2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-round/-/plugin-round-2.20.7.tgz#7bcede059c63a7d2c359c9894b3a8cf223923a77"
+  integrity sha512-mvbDsGl5sKFOaPpFuXh7AZzH3zkPdi90qhN2wk2mQIJsYg3zLoM2VKz8PTEmsVjJ8uCVM3xhID9v6XIFyPZSKw==
 
 "@freesewing/plugin-theme@2.20.6":
   version "2.20.6"
