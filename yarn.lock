@@ -1827,10 +1827,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.4.0.tgz#0d461438028eb89a6d6825267cfb2275fff33fb7"
   integrity sha512-ms8hLWD3KHJMViM4g69MZ0qOCuOuYLyYMfcziCLLrRd8LPRf59grKXz3oWr0sCjhqGFkqsldj7SZ2JBxKZVPSA==
 
-"@fontsource/ubuntu@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/ubuntu/-/ubuntu-4.5.3.tgz#4e66224ef009a140e888b844477a8c5e62cc1f3d"
-  integrity sha512-7CMVpTHKTFJhTU+eQz7Qi8zrsRHGAQD81NRJHVDQxeyPGcx6+v/6fPPdvtV+DRnIZl1jICOL8LRvnsGrp4aBEg==
+"@fontsource/ubuntu@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/ubuntu/-/ubuntu-4.5.4.tgz#fe694cb5aab6b599475c5958f208b87aaf9920bd"
+  integrity sha512-wekWBF7Mj0GOyoLHnsSXgKZyO7gfS1KzQXOqxEOUUO9wj4ligv4QAWj/hnDqKDtYdBXxBAVKr5B7Yp3LrI6/mw==
 
 "@fontsource/ubuntu@latest":
   version "4.4.0"
@@ -1894,10 +1894,10 @@
   dependencies:
     tslib "^2.1.0"
 
-"@formatjs/intl@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl/-/intl-2.0.0.tgz#d003f7c5bdb84c0cbeb86d50695a7a87da6bf272"
-  integrity sha512-EVVIhDeFVBxy7ej3IZFM/PNknM5QkGPUjMbl9PZvoB5q1/zmPQzTcDSqYxCEK+XfkrfT6XB1gHvfum+O8ASI1Q==
+"@formatjs/intl@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl/-/intl-2.1.0.tgz#383b186b1f26195ac896fc6912871abccf9dad2d"
+  integrity sha512-1iGGqKcCym+ZH+cktHa6YILVGn8Sve+yuYK7hJpN21JiPKCPJuFJViKFY6rDM5jnj5LDCeH8N5YbhQjccDVOVA==
   dependencies:
     "@formatjs/ecma402-abstract" "1.11.3"
     "@formatjs/fast-memoize" "1.2.1"
@@ -7962,12 +7962,12 @@ gatsby-remark-images@5.11.0:
     unist-util-select "^3.0.4"
     unist-util-visit-parents "^3.1.1"
 
-gatsby-remark-jargon@2.20.6:
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-jargon/-/gatsby-remark-jargon-2.20.6.tgz#f22e6b3cf54248b163a631748ea5c03f59629e35"
-  integrity sha512-L6nkz8cX624BKXhxBsNdr2vKMWhzC1Irh7cJFVe/iRYPs4kRbSv/c91EngFj51ze+x6goYimdcbpdjIYeoOeUA==
+gatsby-remark-jargon@2.20.7:
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-jargon/-/gatsby-remark-jargon-2.20.7.tgz#649e3614832616dfa41e66cacb5fdad7f690ebf7"
+  integrity sha512-qmRd2bgVTqtcIzUUI7csHGXRmixDuMfp8vfHKhLS99JXqnv4eeweDv2rDr5aOKnOSVu1E6wzSTbk1OXpx+JRww==
   dependencies:
-    remark-jargon "^2.20.6"
+    remark-jargon "^2.20.7"
 
 gatsby-remark-prismjs@5.11.0:
   version "5.11.0"
@@ -12927,14 +12927,14 @@ react-instantsearch-dom@6.22.0:
     react-fast-compare "^3.0.0"
     react-instantsearch-core "6.22.0"
 
-react-intl@5.24.6:
-  version "5.24.6"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-5.24.6.tgz#d3dcd07ff967f804504cfdfd5dfa4ee1f64b4f80"
-  integrity sha512-6gUhQwNAeAoRpN6F3N+bR66aot/mI6yduRwQS5ajfmXHX/YFvOfINkgMFTTrcbf3+qjBhACNU3ek4wFt6cn2ww==
+react-intl@5.24.7:
+  version "5.24.7"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-5.24.7.tgz#a57084543ff8e58ed2d2bc2f1d3b8add3a2f0e3b"
+  integrity sha512-URPLwISsEmnzft33honGEb87LcK0QtwkZXCNsXcDYTnrYC8ZyeJRTcPYvuXC3mrN6+DxnW52RfHC416zNxfyIg==
   dependencies:
     "@formatjs/ecma402-abstract" "1.11.3"
     "@formatjs/icu-messageformat-parser" "2.0.18"
-    "@formatjs/intl" "2.0.0"
+    "@formatjs/intl" "2.1.0"
     "@formatjs/intl-displaynames" "5.4.2"
     "@formatjs/intl-listformat" "6.5.2"
     "@types/hoist-non-react-statics" "^3.3.1"
@@ -13259,10 +13259,17 @@ remark-html@13.0.2:
     hast-util-to-html "^7.0.0"
     mdast-util-to-hast "^10.0.0"
 
-remark-jargon@2.20.6, remark-jargon@^2.20.6:
+remark-jargon@2.20.6:
   version "2.20.6"
   resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.6.tgz#7c7d8601abf26febc09b8a2387a944b20a144d41"
   integrity sha512-cg9H1lIuqOxqO9/C434IyUMMV6pMssTeYGLFqfztAFLJwBunGJ5j3EtC80b1mRnCTKY2GgLf81C3/3TASG2W7g==
+  dependencies:
+    unist-util-visit "^4.0.0"
+
+remark-jargon@^2.20.7:
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.7.tgz#477950551f9ce98fdce9f5a29eeae0ec82cc81d3"
+  integrity sha512-zuSIkZ20aGZlbCTD/TjFh2o3JaOI09EQII0FMbgdqnQE2dEog76MMT9tj6kZ/fcjRoHaxiAEvq/NTHJCcYsP7Q==
   dependencies:
     unist-util-visit "^4.0.0"
 
