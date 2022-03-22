@@ -2163,10 +2163,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/simone/-/simone-2.20.6.tgz#d0e4e38c99a4321ab8f4e3dbc3bf2cd582c64b65"
   integrity sha512-JgC0BVixX4IUHodkKMqBKMce4USTAnYBKL6eaqcSHEA7j8KQx+B6zJPJZ3/kKHj38G8DQeDjYQj2wSnnnTeXUQ==
 
-"@freesewing/snapseries@^2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/snapseries/-/snapseries-2.20.6.tgz#98784ba704a2d98b0da7192855d5fb8eabe3981e"
-  integrity sha512-oWvuOW50uiy0evyIShGbOTcPyQWckJB0PwuPLOV0a91af6QdQxMFfPLrGpjmF90eFuhxXWzOk/M3V/fMCxpVQg==
+"@freesewing/snapseries@^2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/snapseries/-/snapseries-2.20.7.tgz#83a832d6e89c82c6242e2e1381949757a861a5e5"
+  integrity sha512-yBqIgORB34BmyBpyJnpmi7xLLsyQ7C4dS/+05LlDNtSIv2R6jEmteYXxDQbCWdqLqzHPRQJkqbCktgQ4oKiGOw==
 
 "@freesewing/sven@2.20.6":
   version "2.20.6"
