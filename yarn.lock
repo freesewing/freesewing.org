@@ -2163,10 +2163,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/simone/-/simone-2.20.6.tgz#d0e4e38c99a4321ab8f4e3dbc3bf2cd582c64b65"
   integrity sha512-JgC0BVixX4IUHodkKMqBKMce4USTAnYBKL6eaqcSHEA7j8KQx+B6zJPJZ3/kKHj38G8DQeDjYQj2wSnnnTeXUQ==
 
-"@freesewing/snapseries@^2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/snapseries/-/snapseries-2.20.6.tgz#98784ba704a2d98b0da7192855d5fb8eabe3981e"
-  integrity sha512-oWvuOW50uiy0evyIShGbOTcPyQWckJB0PwuPLOV0a91af6QdQxMFfPLrGpjmF90eFuhxXWzOk/M3V/fMCxpVQg==
+"@freesewing/snapseries@^2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/snapseries/-/snapseries-2.20.7.tgz#83a832d6e89c82c6242e2e1381949757a861a5e5"
+  integrity sha512-yBqIgORB34BmyBpyJnpmi7xLLsyQ7C4dS/+05LlDNtSIv2R6jEmteYXxDQbCWdqLqzHPRQJkqbCktgQ4oKiGOw==
 
 "@freesewing/sven@2.20.6":
   version "2.20.6"
@@ -12552,10 +12552,10 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier@^2.3.2, prettier@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
-  integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
+prettier@^2.3.2, prettier@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.0.tgz#12f8f504c4d8ddb76475f441337542fa799207d4"
+  integrity sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==
 
 pretty-bytes@^5.1.0, pretty-bytes@^5.3.0, pretty-bytes@^5.4.1, pretty-bytes@^5.6.0:
   version "5.6.0"
