@@ -2118,10 +2118,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-i18n/-/plugin-i18n-2.20.6.tgz#dd02ac60e809afe1046b6b7d0bcab9ff9ff2559c"
   integrity sha512-m91Jc4tmLKJdeVBhHJh+Of73idPzKTcIDk8uQviHpNTcfMQYFWM2oUXHx0jzMIvZa7QjSXvPKT0avdWx4wOYuw==
 
-"@freesewing/plugin-mirror@^2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-mirror/-/plugin-mirror-2.20.6.tgz#f3a4a7790b21c2cf778e5d48fef714ea7c60f8e4"
-  integrity sha512-koo1/G7Kpmz6Aq5R9nZ+ypDzVKI4ZQoIcoxrTpLQgh4MQiQnFJp9lPmG8exddd17I5kuQAY8KNXEwssEbxnNsA==
+"@freesewing/plugin-mirror@^2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-mirror/-/plugin-mirror-2.20.7.tgz#9e68c5d79447cb17d6c79f8fc9a6a495a87ed2f9"
+  integrity sha512-wZVcvSBKRzZ0XpHsIFviMW744xpD7eSNvGbLBBBTfw/hFLafRgw3CAewCmDzcJFSpsZZaEFNoNKeIaNIvdu1dw==
 
 "@freesewing/plugin-round@^2.20.7":
   version "2.20.7"
