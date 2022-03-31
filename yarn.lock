@@ -2113,10 +2113,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-gore/-/plugin-gore-2.20.6.tgz#b3bb49797a95a26d3b1a575c1450d190b979b57a"
   integrity sha512-FYZJwZMgcBz8QT++k4VVDaUPC/gCTQzrNEbTYUbW+dHQnY64mrZxVnsurm6NWo7WAe9/ofqSidPw/h0LttBEEg==
 
-"@freesewing/plugin-i18n@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-i18n/-/plugin-i18n-2.20.6.tgz#dd02ac60e809afe1046b6b7d0bcab9ff9ff2559c"
-  integrity sha512-m91Jc4tmLKJdeVBhHJh+Of73idPzKTcIDk8uQviHpNTcfMQYFWM2oUXHx0jzMIvZa7QjSXvPKT0avdWx4wOYuw==
+"@freesewing/plugin-i18n@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-i18n/-/plugin-i18n-2.20.7.tgz#4e0ea5f2596c9c92dda22d3b027ac25a1ea5d2d4"
+  integrity sha512-AkRfUAQoPMf+uRBONQwJB0Q0kPlD3TLqSwIHsjVSDM6z4lM2jd23RilVrOonwwdCDZcerJHvEadYCqeRDs7IyA==
 
 "@freesewing/plugin-mirror@^2.20.7":
   version "2.20.7"
@@ -13259,14 +13259,7 @@ remark-html@13.0.2:
     hast-util-to-html "^7.0.0"
     mdast-util-to-hast "^10.0.0"
 
-remark-jargon@2.20.6:
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.6.tgz#7c7d8601abf26febc09b8a2387a944b20a144d41"
-  integrity sha512-cg9H1lIuqOxqO9/C434IyUMMV6pMssTeYGLFqfztAFLJwBunGJ5j3EtC80b1mRnCTKY2GgLf81C3/3TASG2W7g==
-  dependencies:
-    unist-util-visit "^4.0.0"
-
-remark-jargon@^2.20.7:
+remark-jargon@2.20.7, remark-jargon@^2.20.7:
   version "2.20.7"
   resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.7.tgz#477950551f9ce98fdce9f5a29eeae0ec82cc81d3"
   integrity sha512-zuSIkZ20aGZlbCTD/TjFh2o3JaOI09EQII0FMbgdqnQE2dEog76MMT9tj6kZ/fcjRoHaxiAEvq/NTHJCcYsP7Q==
