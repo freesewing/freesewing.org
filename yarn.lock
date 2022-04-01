@@ -2088,10 +2088,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-bartack/-/plugin-bartack-2.20.7.tgz#e27882136ef46fe17f358267e4d0136887e578e7"
   integrity sha512-aF9RMJ0cZ2omkkMhXNJiNb54SALFDeWI54yXiHqctL8Jbr26+c5z3hRueBMBBsriQmTR0f3d9DGE9CmKTYrkFw==
 
-"@freesewing/plugin-bundle@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.20.6.tgz#3a3f54f9f7f245439d9722c9246caff688f41e3e"
-  integrity sha512-jxSePciY8RqNVfqziqRm1Bj/Gs9tKMRLKbnJmGDt2b/PVync8cl/sEb39uTIUnsTHMzZQXQn5c8mudhdRIK+4A==
+"@freesewing/plugin-bundle@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.20.7.tgz#b6f8e17be7ac0ffb1eeda453b1e1164120ee8fbb"
+  integrity sha512-BkNYSn/yLrH462Wd9otZTtV9VWBb4eZt6iHXn12oaOW0iou9JdEJ9ttSHKvubcC3ZnGfQsGW/lyNTUzPx0uiqg==
 
 "@freesewing/plugin-bust@2.20.7":
   version "2.20.7"
@@ -2228,10 +2228,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/walburga/-/walburga-2.20.6.tgz#38a793551449180ec46a6582c66f2bf1676573a0"
   integrity sha512-1LNeEYE7hKtbdm3ASo4eFoTC8j08m0Uif8FMPadP8daLFxXqDbPV2aWn89olAFl6svVS1gKsXRNbyXfu19ANqQ==
 
-"@freesewing/waralee@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.20.6.tgz#4dfac08d0b8b7457936968b82059c30fc54ea03a"
-  integrity sha512-cGIwC374VAO1IcCI4plKLfZKenNnQj61rOPt2CQTIgdKejNnTpDovCegTt388roXrJ9LcNJaFsAq2ZZ5RLLwvQ==
+"@freesewing/waralee@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.20.7.tgz#a56f06f47c132ea1b0e9ab048f7993c96ba94346"
+  integrity sha512-mvXlPgIUlG14F4cZdQB48IGJYuSCatDT7cqwf+hONwwuIO81Rjzk92W4N0eO0udzW/NGCoVMKriLBDTbzdEEJA==
 
 "@freesewing/yuri@^2.20.6":
   version "2.20.6"
@@ -13259,14 +13259,7 @@ remark-html@13.0.2:
     hast-util-to-html "^7.0.0"
     mdast-util-to-hast "^10.0.0"
 
-remark-jargon@2.20.6:
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.6.tgz#7c7d8601abf26febc09b8a2387a944b20a144d41"
-  integrity sha512-cg9H1lIuqOxqO9/C434IyUMMV6pMssTeYGLFqfztAFLJwBunGJ5j3EtC80b1mRnCTKY2GgLf81C3/3TASG2W7g==
-  dependencies:
-    unist-util-visit "^4.0.0"
-
-remark-jargon@^2.20.7:
+remark-jargon@2.20.7, remark-jargon@^2.20.7:
   version "2.20.7"
   resolved "https://registry.yarnpkg.com/remark-jargon/-/remark-jargon-2.20.7.tgz#477950551f9ce98fdce9f5a29eeae0ec82cc81d3"
   integrity sha512-zuSIkZ20aGZlbCTD/TjFh2o3JaOI09EQII0FMbgdqnQE2dEog76MMT9tj6kZ/fcjRoHaxiAEvq/NTHJCcYsP7Q==
