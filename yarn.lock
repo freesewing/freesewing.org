@@ -2088,10 +2088,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-bartack/-/plugin-bartack-2.20.7.tgz#e27882136ef46fe17f358267e4d0136887e578e7"
   integrity sha512-aF9RMJ0cZ2omkkMhXNJiNb54SALFDeWI54yXiHqctL8Jbr26+c5z3hRueBMBBsriQmTR0f3d9DGE9CmKTYrkFw==
 
-"@freesewing/plugin-bundle@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.20.6.tgz#3a3f54f9f7f245439d9722c9246caff688f41e3e"
-  integrity sha512-jxSePciY8RqNVfqziqRm1Bj/Gs9tKMRLKbnJmGDt2b/PVync8cl/sEb39uTIUnsTHMzZQXQn5c8mudhdRIK+4A==
+"@freesewing/plugin-bundle@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/plugin-bundle/-/plugin-bundle-2.20.7.tgz#b6f8e17be7ac0ffb1eeda453b1e1164120ee8fbb"
+  integrity sha512-BkNYSn/yLrH462Wd9otZTtV9VWBb4eZt6iHXn12oaOW0iou9JdEJ9ttSHKvubcC3ZnGfQsGW/lyNTUzPx0uiqg==
 
 "@freesewing/plugin-bust@2.20.7":
   version "2.20.7"
