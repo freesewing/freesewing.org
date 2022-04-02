@@ -2228,10 +2228,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/walburga/-/walburga-2.20.6.tgz#38a793551449180ec46a6582c66f2bf1676573a0"
   integrity sha512-1LNeEYE7hKtbdm3ASo4eFoTC8j08m0Uif8FMPadP8daLFxXqDbPV2aWn89olAFl6svVS1gKsXRNbyXfu19ANqQ==
 
-"@freesewing/waralee@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.20.6.tgz#4dfac08d0b8b7457936968b82059c30fc54ea03a"
-  integrity sha512-cGIwC374VAO1IcCI4plKLfZKenNnQj61rOPt2CQTIgdKejNnTpDovCegTt388roXrJ9LcNJaFsAq2ZZ5RLLwvQ==
+"@freesewing/waralee@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/waralee/-/waralee-2.20.7.tgz#a56f06f47c132ea1b0e9ab048f7993c96ba94346"
+  integrity sha512-mvXlPgIUlG14F4cZdQB48IGJYuSCatDT7cqwf+hONwwuIO81Rjzk92W4N0eO0udzW/NGCoVMKriLBDTbzdEEJA==
 
 "@freesewing/yuri@^2.20.6":
   version "2.20.6"
