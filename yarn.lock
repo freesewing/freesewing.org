@@ -1962,10 +1962,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/carlton/-/carlton-2.20.6.tgz#c4ce62427136c4aa457b5886a6f894d63f99e629"
   integrity sha512-i7JDUwsVXHIikKcDLBT7ToIbCipsaSZ6QleL+AyLL/x7GfvsHNTZ2oNJNOIoNR49K9or72T9V+KXf4ySmGeaBw==
 
-"@freesewing/cathrin@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/cathrin/-/cathrin-2.20.6.tgz#e3d1feca568126c27473ae59e142cda7c31a6cc7"
-  integrity sha512-2dnMQLQVn9SrLdzkM+RpqbubUsZ5vEH6/aUaMGTmlUhPvD0Qyw0p8/XBqC6QLopcXng+5h5BxwSYElGhFZ8dxQ==
+"@freesewing/cathrin@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/cathrin/-/cathrin-2.20.7.tgz#a13972a7c27b3e249cce612fbc6d7e69c847478d"
+  integrity sha512-ORlHu5oCINOnFHIKpGJWbjKblb1D4R7s1xcat1TwkOoxwziPlGn5rT92sOyKvZ6vz5C01xbbY6pssovP+q5xMA==
 
 "@freesewing/charlie@^2.20.6":
   version "2.20.6"
