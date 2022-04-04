@@ -1912,10 +1912,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/aaron/-/aaron-2.20.6.tgz#75e3ca05bff961bd8b3ab9883043abfa6ed1cb7c"
   integrity sha512-vrf3jrCCPb728z7QkPZHM7t5o0UCLDy1iswK4zrgnGC7p3EOFXPDzdcrLkp8dQPd9oEeA2llQWbqojXCU1EX5w==
 
-"@freesewing/albert@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/albert/-/albert-2.20.6.tgz#c81c1d81718b4c67ac70f4bfa7f9eb24e56f7846"
-  integrity sha512-8CwiykOVvCGISo0stCKXKT9ZmDeDF1I1g0gt6wKHDb5OliOLKF1fx/QT1hNvawqBvzOQ91DpMylFsmiViasaGg==
+"@freesewing/albert@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/albert/-/albert-2.20.7.tgz#ffc8a83e26bb607b2c1ed3e89307fa840c3ca220"
+  integrity sha512-ecHhPO2dbf9zNnLC3QEvlFNt30OqXDeXPwGP8f9TjHuj720egTFANaF0whSg+sY2cCEsYdFBVcx9o2rjAph3pw==
 
 "@freesewing/bee@2.20.6":
   version "2.20.6"
