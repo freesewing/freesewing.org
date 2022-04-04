@@ -2133,10 +2133,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/plugin-theme/-/plugin-theme-2.20.7.tgz#ab2f602f7f777756e23cbda5512a25fa91241cb1"
   integrity sha512-7bueMjDaqmv+WbIICzn9e/AGC/qiakcsV2dY3L75N9T9kXYITBuwB87doaXmFLh2wCZ4Kn3jUACc6nNmkoUXjg==
 
-"@freesewing/prettier-config@2.20.6":
-  version "2.20.6"
-  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.20.6.tgz#6523c844428cdc2299e7bc3909a0acef11fc592d"
-  integrity sha512-TQpINH57fu/HAn0+wZ6KLafgn4baVFO509Dgh9BO3Ui5uQzRfOhA3HYRhnl2MsIOf0N2epx7WF5zsu7ikRRcWA==
+"@freesewing/prettier-config@2.20.7":
+  version "2.20.7"
+  resolved "https://registry.yarnpkg.com/@freesewing/prettier-config/-/prettier-config-2.20.7.tgz#596705c9c75aec8a53713ed56d360343cb25b9a9"
+  integrity sha512-7Z0eKJdh+kTWXkl5vY69WR8fU6hSsbW8M/1q/XpY+hmpg7swpWaBC9d9ufUyDpTPp3yLIpMvzzX9O0Lb4NTtqg==
 
 "@freesewing/rendertest@2.20.6":
   version "2.20.6"
