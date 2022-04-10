@@ -357,7 +357,7 @@ ${e.stack}
       <>
         <figure key="pattern" style={{ textAlign: 'center' }} id={`freesewing-${display}`}>
           <style>
-            {`:root { --freesewing-pattern-scale: ${patternProps?.settings?.scale || 1}px; }`}
+            {`:root { --freesewing-pattern-scale: ${patternProps?.settings?.scale || 1}; }`}
           </style>
           <Draft {...patternProps} extraDefs={extraDefs(app.theme === 'dark')} />
           {display === 'compare' && (
