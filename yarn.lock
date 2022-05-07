@@ -1817,10 +1817,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/permanent-marker/-/permanent-marker-4.4.0.tgz#c3b18fccf30936c68177d72c068159403dfceac6"
   integrity sha512-axfreGEK4q29eH5X04ZJBZQ34fWy9VOCKXtqKNI81T02BLbi49ZOYV+VvsCeV/UP9wZ6RnOljI9I6aOyYHg0Ng==
 
-"@fontsource/roboto-mono@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.3.tgz#04b9969707b10a53511780b0f686d9d0c233a082"
-  integrity sha512-ELuIIUBo1kq2hFmOXjWv9o2VbM22Pct2F0T+D8f5T0MxDKIqkh0m1JMs9bbTzMjc+wVvyJ6LU5EiNkO26kLlKA==
+"@fontsource/roboto-mono@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.7.tgz#69a89b679ab962ea3591438f35833b09f0f8980f"
+  integrity sha512-1uBjM95BEz7zJlmmnpNAM5afMvIxx0wqr86eA76vRqZw8OF5wmsRqYfF3caHuVarBH9/AGN7t9h+3UXK8fjq/Q==
 
 "@fontsource/roboto-mono@latest":
   version "4.4.0"
