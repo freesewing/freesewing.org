@@ -38,12 +38,15 @@ const Page = (props) => {
           model: person.name || props.person,
         })
 
+  // Store units for easy access
+  const units = app.account.settings ? app.account.settings.units : 'metric'
+
   // Initial pattern data
   const data = {
     design: props.pageContext.design,
     version,
     settings: {
-      sa: 10,
+      sa: units === 'imperial' ? (25.4 / 8) * 5 : 10,
       complete: true,
       paperless: false,
       locale: app.language,
