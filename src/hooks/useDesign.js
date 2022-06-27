@@ -4,6 +4,7 @@ import bee from '@freesewing/bee'
 import bella from '@freesewing/bella'
 import benjamin from '@freesewing/benjamin'
 import bent from '@freesewing/bent'
+import bob from '@freesewing/bob'
 import breanna from '@freesewing/breanna'
 import brian from '@freesewing/brian'
 import bruce from '@freesewing/bruce'
@@ -15,12 +16,15 @@ import cornelius from '@freesewing/cornelius'
 import diana from '@freesewing/diana'
 import florent from '@freesewing/florent'
 import florence from '@freesewing/florence'
+import hi from '@freesewing/hi'
 import holmes from '@freesewing/holmes'
 import hortensia from '@freesewing/hortensia'
 import huey from '@freesewing/huey'
 import hugo from '@freesewing/hugo'
 import jaeger from '@freesewing/jaeger'
+import lucy from '@freesewing/lucy'
 import lunetius from '@freesewing/lunetius'
+import noble from '@freesewing/noble'
 import paco from '@freesewing/paco'
 import penelope from '@freesewing/penelope'
 import sandy from '@freesewing/sandy'
@@ -33,6 +37,7 @@ import teagan from '@freesewing/teagan'
 import theo from '@freesewing/theo'
 import tiberius from '@freesewing/tiberius'
 import titan from '@freesewing/titan'
+import unice from '@freesewing/unice'
 import ursula from '@freesewing/ursula'
 import trayvon from '@freesewing/trayvon'
 import wahid from '@freesewing/wahid'
@@ -47,6 +52,7 @@ const designs = {
   bella,
   benjamin,
   bent,
+  bob,
   breanna,
   brian,
   bruce,
@@ -58,12 +64,15 @@ const designs = {
   diana,
   florent,
   florence,
+  hi,
   holmes,
   hortensia,
   huey,
   hugo,
   jaeger,
+  lucy,
   lunetius,
+  noble,
   paco,
   penelope,
   sandy,
@@ -77,6 +86,7 @@ const designs = {
   tiberius,
   titan,
   trayvon,
+  unice,
   ursula,
   wahid,
   walburga,
