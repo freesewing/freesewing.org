@@ -12,6 +12,8 @@ import PatternOptions from '../docs/pattern-options'
 import PatternMeasurements from '../docs/pattern-measurements'
 import Gauge from '../measurements/gauge'
 
+import './mdx.css'
+
 const customComponents = {
   Note: ({ children }) => <Blockquote type="note">{children}</Blockquote>,
   Tip: ({ children }) => <Blockquote type="tip">{children}</Blockquote>,
