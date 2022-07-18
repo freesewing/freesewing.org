@@ -1985,10 +1985,10 @@
   resolved "https://registry.yarnpkg.com/@freesewing/components/-/components-2.21.1.tgz#0eafaa976cbd8258150e8e77f0e1f0b2e30a1bb1"
   integrity sha512-aWYMkPmcqF0R237pS5B6yb8Y1G4KXRMhjbGbRGfyGFGaIxfapkKxswYk48tAy8dlNwyU+v1opvLGto2Ufe+9AA==
 
-"@freesewing/config-helpers@^2.21.1":
-  version "2.21.1"
-  resolved "https://registry.yarnpkg.com/@freesewing/config-helpers/-/config-helpers-2.21.1.tgz#164953151c968949729a1b58bd30f8d0839eb47a"
-  integrity sha512-vXONLajf1mrsgIHA7zMAYqA+h6oxDeS+8ffJDjcoghWizjk55hfQefjo9UAf1/abcovDnVP/8W9q+HZt1snn9Q==
+"@freesewing/config-helpers@^2.21.3":
+  version "2.21.3"
+  resolved "https://registry.yarnpkg.com/@freesewing/config-helpers/-/config-helpers-2.21.3.tgz#f1815faee80b672d59fbbf83b53cb3dc695a762d"
+  integrity sha512-HQJfGAZhPf9xZg1slEJCbNNZv6BuCS5H1YTkbHpoawr/qWUuQ3VvDLP69UlwUROyVLp7asrJEQQ6h60lgM0sag==
 
 "@freesewing/core@2.21.1":
   version "2.21.1"
