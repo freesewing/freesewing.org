@@ -19,6 +19,10 @@ import capitalize from '@freesewing/utils/capitalize'
 import SizingGraph from '../../../../../components/person/size-graph'
 import MeasurementGauge from '../../../../../components/measurements/gauge'
 
+
+/* Keep these new measurments out of it */
+const newMeasurements = ['waistToArmhole']
+
 const Page = (props) => {
   const app = useApp()
 
@@ -46,8 +50,11 @@ const Page = (props) => {
     let sorted = []
     let translated = {}
     for (let m of measurements) {
-      let translation = app.intl.messages['measurements' + m] || m
-      translated[translation] = m
+      // Keep new measurements out of it
+      if (newMeasurements.indexOf(m) === -1) {
+        let translation = app.intl.messages['measurements' + m] || m
+        translated[translation] = m
+      }
     }
     let order = Object.keys(translated)
     order.sort()
