@@ -25,6 +25,7 @@ import jaeger from '@freesewing/jaeger'
 import lucy from '@freesewing/lucy'
 import lunetius from '@freesewing/lunetius'
 import noble from '@freesewing/noble'
+import octoplushy from '@freesewing/octoplushy'
 import paco from '@freesewing/paco'
 import penelope from '@freesewing/penelope'
 import sandy from '@freesewing/sandy'
@@ -73,6 +74,7 @@ const designs = {
   lucy,
   lunetius,
   noble,
+  octoplushy,
   paco,
   penelope,
   sandy,
