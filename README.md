@@ -12,7 +12,12 @@ This repository holds the source code for the [freesewing.org](https://freesewin
 
 ## Getting started ⚡
 
-Please refer to the online documentation for this repository at: https://freesewing.dev/reference/repos/org/
+This repository holds the code for our *legacy* website.
+It is what's running on freesewing.org today, but we are working on a new frontend.
+
+For that, please refer to `sites/org` in [our monorepo](https://github.com/freesewing/freesewing).
+
+This code is currently maintained, but not actively developed.
 
 ## About FreeSewing 💀
 
