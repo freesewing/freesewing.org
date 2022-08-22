@@ -19,7 +19,6 @@ import capitalize from '@freesewing/utils/capitalize'
 import SizingGraph from '../../../../../components/person/size-graph'
 import MeasurementGauge from '../../../../../components/measurements/gauge'
 
-
 /* Keep these new measurments out of it */
 const newMeasurements = ['waistToArmhole']
 
