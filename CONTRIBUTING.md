@@ -1,1 +1,1 @@
-Please refer to [https://freesewing.dev/contributors/](https://freesewing.dev/contributors/)
+Please refer to [https://freesewing.dev/contribute](https://freesewing.dev/contribute)
